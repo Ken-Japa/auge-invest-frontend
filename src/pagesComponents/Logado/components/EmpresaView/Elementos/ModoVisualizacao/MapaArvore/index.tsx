@@ -70,7 +70,7 @@ const MapaArvoreComponent: React.FC<MapaArvoreProps> = ({ onLoadingChange }) => 
             onLoadingChange?.(false);
             currentContainer.innerHTML = '';
         };
-    }, [onLoadingChange, widgetId]);
+    }, [onLoadingChange, widgetId, isDarkMode]);
 
     return (
         <Box

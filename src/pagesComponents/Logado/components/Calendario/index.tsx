@@ -40,7 +40,7 @@ const CalendarioComponent: React.FC = () => {
             clearTimeout(scriptTimeout);
             currentContainer.innerHTML = '';
         };
-    }, [widgetId]);
+    }, [widgetId, isDarkMode]);
 
     return (
         <Box
