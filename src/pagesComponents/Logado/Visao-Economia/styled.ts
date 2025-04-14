@@ -1,32 +1,41 @@
 import { styled } from '@mui/material/styles';
-import { Box, Paper } from '@mui/material';
+import { Box } from '@mui/material';
 
-export const BackgroundContainer = styled(Box)(({ theme }) => ({
-  minHeight: '100vh',
+export const BackgroundContainer = styled(Box)({
   width: '100%',
-  background: theme.palette.background.default,
-  backgroundImage: theme.palette.mode === 'dark' 
-    ? 'linear-gradient(to bottom right, rgba(13, 149, 249, 0.05), rgba(132, 17, 204, 0.05))'
-    : 'linear-gradient(to bottom right, rgba(13, 149, 249, 0.02), rgba(132, 17, 204, 0.02))',
-  backgroundAttachment: 'fixed',
-}));
+  position: 'relative',
+  willChange: 'transform',
+  '& .MuiGrid-item': {
+    minHeight: '50px',
+  },
 
-export const DashboardItem = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(3),
-  height: '100%',
+  '&::-webkit-scrollbar': {
+    width: '8px',
+  },
+  '&::-webkit-scrollbar-track': {
+    background: 'rgba(0, 0, 0, 0.1)',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    background: 'rgba(0, 0, 0, 0.2)',
+    borderRadius: '4px',
+  },
+});
+
+export const DashboardItem = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(2),
   borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.palette.mode === 'dark'
-    ? '0 4px 20px rgba(0, 0, 0, 0.25)'
-    : '0 2px 10px rgba(0, 0, 0, 0.05)',
-  background: theme.palette.background.paper,
-  backdropFilter: 'blur(10px)',
-  transition: theme.transitions.create(['box-shadow', 'transform'], {
-    duration: theme.transitions.duration.standard,
-  }),
+  backgroundColor: theme.palette.background.paper,
+  boxShadow: theme.shadows[1],
+  height: '100%',
+  minHeight: '100px', 
+  display: 'flex',
+  flexDirection: 'column',
+  overflow: 'hidden', 
+
+  willChange: 'transform',
+ 
+  transition: 'box-shadow 0.2s ease-in-out',
   '&:hover': {
-    boxShadow: theme.palette.mode === 'dark'
-      ? '0 6px 25px rgba(0, 0, 0, 0.3)'
-      : '0 4px 15px rgba(0, 0, 0, 0.08)',
-    transform: 'translateY(-2px)',
+    boxShadow: theme.shadows[3],
   },
 }));

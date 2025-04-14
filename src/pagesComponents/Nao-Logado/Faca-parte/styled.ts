@@ -44,9 +44,10 @@ export const StyledPageTransition = styled(PageTransition)({
 
 export const BackgroundImage = styled("div")<{ isLoaded: boolean }>(
   ({ isLoaded }) => ({
-    filter: !isLoaded ? "grayscale(1)" : "none",
-    transition: "filter 0.5s ease-in-out",
+    position: "relative",
     width: "100%",
     height: "100%",
+    opacity: isLoaded ? 1 : 0.8,
+    transition: "opacity 0.3s ease-in-out",
   })
 );

@@ -26,7 +26,6 @@ import {
 export const Perfil = () => {
     const { data: session, status } = useSession();
 
-    // Use custom hooks to manage state and actions
     const {
         userData,
         setUserData,

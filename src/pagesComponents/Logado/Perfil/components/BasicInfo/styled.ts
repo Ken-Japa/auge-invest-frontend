@@ -79,5 +79,4 @@ export const StyledDivider = styled(Box)(({ theme }) => ({
     theme.palette.mode === "dark"
       ? "rgba(255, 255, 255, 0.1)"
       : "rgba(0, 0, 0, 0.1)",
-  margin: theme.spacing(2, 0),
 }));

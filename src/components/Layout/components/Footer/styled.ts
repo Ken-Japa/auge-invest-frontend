@@ -78,6 +78,8 @@ export const NavigationSection = styled(Box)`
 `;
 
 export const SocialSection = styled(Box)`
+  color: white;
+  font-weight: bold;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -89,7 +89,7 @@ export const Footer = () => {
                         </NavigationSection>
 
                         <SocialSection>
-                            <Typography variant="h6">
+                            <Typography variant="h4">
                                 Redes Sociais
                             </Typography>
                             <Box sx={{ display: 'flex', gap: 3 }}>

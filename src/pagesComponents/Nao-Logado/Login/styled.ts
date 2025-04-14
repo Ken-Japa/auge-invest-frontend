@@ -1,10 +1,11 @@
 import { Dialog, styled, IconButton } from "@mui/material";
 import { visitorColors } from "@/theme/palette/visitor";
-import { spacing, transitions, borderRadius } from "@/theme/variables";
+import { spacing } from "@/theme/variables";
 
 export const StyledDialog = styled(Dialog)({
   "& .MuiDialog-container": {
     height: "100vh",
+    willChange: "opacity, transform",
   },
 
   "& .MuiDialog-paper": {
@@ -17,6 +18,7 @@ export const StyledDialog = styled(Dialog)({
     position: "relative",
     overflow: "hidden",
     backgroundColor: "transparent",
+    transform: "translateZ(0)",
 
     "@media (max-width: 600px)": {
       padding: spacing.md,
@@ -61,12 +63,18 @@ export const StyledCloseButton = styled(IconButton)({
   top: spacing.lg,
   color: visitorColors.text,
   zIndex: 10,
-  transition: transitions.medium,
+  transition: "opacity 0.2s",
   backgroundColor: `${visitorColors.backgroundDark}33`,
+  willChange: "opacity",
 
   "&:hover": {
     opacity: 0.8,
     backgroundColor: `${visitorColors.backgroundDark}66`,
+  },
+
+  "& svg": {
+    willChange: "transform",
+    transform: "translateZ(0)",
   },
 
   "@media (max-width: 600px)": {

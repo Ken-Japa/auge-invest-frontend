@@ -51,7 +51,9 @@ export const FormFields = ({ formData, errors, onChange, isLoading }: FormFields
                 error={!!errors.name}
                 helperText={errors.name}
                 required
-                id="nome-registrar"
+                inputProps={{
+                    autoComplete: "name",
+                }}
             />
             <StyledTextField
                 name="cpf"

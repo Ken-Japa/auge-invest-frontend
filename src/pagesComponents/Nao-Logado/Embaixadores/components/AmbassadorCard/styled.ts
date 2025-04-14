@@ -10,6 +10,10 @@ export const CardContainer = styled(Box)({
   padding: spacing.lg,
   border: `1px solid ${visitorColors.borderLight}`,
   transition: transitions.medium,
+  minHeight: "300px",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
 
   "&:hover": {
     borderColor: `${visitorColors.gold}4d`,
@@ -40,5 +44,5 @@ export const animationConfig = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-50px" },
-  transition: { duration: 0.5, ease: "easeOut" },
+  transition: { duration: 0.3, ease: "easeOut" },
 } as const;

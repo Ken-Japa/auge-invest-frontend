@@ -12,19 +12,28 @@ import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
 import { useLoginForm } from "./hooks/useLoginForm";
 import { useNavigation } from "./hooks/useNavigation";
 import { StyledDialog, StyledCloseButton } from "./styled";
-import { BlockTimer } from "./components/BlockTimer";
 
-const LoginFormComponent = lazy(() => import('./components/LoginForm').then(mod => ({ default: mod.LoginFormComponent })));
+const LoginFormComponent = lazy(() =>
+    import('./components/LoginForm').then(mod => ({
+        default: mod.LoginFormComponent
+    }))
+);
+
+const BlockTimerComponent = lazy(() =>
+    import('./components/BlockTimer').then(mod => ({
+        default: mod.BlockTimer
+    }))
+);
 
 const IMAGE_PROPS = {
     src: "/assets/images/background/REGISTER.jpg",
     alt: "Fundo da página de Login",
     fill: true,
     priority: true,
-    sizes: "(max-width: 900px) 100vw, 900px",
+    sizes: "(max-width: 600px) 100vw, (max-width: 900px) 900px, 1200px",
     className: "object-cover",
-    loadingClassName: "scale-100 ",
-    quality: 85
+    quality: 75,
+
 };
 
 export const Login = () => {
@@ -49,10 +58,13 @@ export const Login = () => {
                     <div className="background-image">
                         <OptimizedImage
                             {...IMAGE_PROPS}
-                            onLoad={() => setImageLoaded(true)}
+                            onLoad={() => {
+                                setImageLoaded(true);
+                            }}
+
                             style={{
-                                filter: !imageLoaded ? 'grayscale(1)' : 'none',
-                                transition: 'filter 0.5s ease-in-out'
+                                opacity: imageLoaded ? 1 : 0.8,
+                                transition: 'opacity 0.3s'
                             }}
                         />
                     </div>
@@ -61,14 +73,14 @@ export const Login = () => {
                             <CloseIcon />
                         </StyledCloseButton>
 
-                        <SuspenseWrapper>
+                        <SuspenseWrapper fallback={<div style={{ minHeight: '400px' }}></div>}>
                             {isBlocked ? (
-                                <BlockTimer seconds={blockTimer} />
+                                <BlockTimerComponent seconds={blockTimer} />
                             ) : (
                                 <LoginFormComponent
                                     formData={formData}
                                     errors={errors}
-                                    isLoading={!imageLoaded}
+                                    isLoading={false}
                                     isBlocked={isBlocked}
                                     blockTimer={blockTimer}
                                     rememberMe={rememberMe}

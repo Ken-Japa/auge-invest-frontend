@@ -1,6 +1,6 @@
 "use client";
 
-import { type FC, useState, lazy } from "react";
+import { type FC, useState, lazy, useEffect } from "react";
 
 import { ErrorBoundary } from "@/components/Feedback/ErrorBoundary";
 import { OptimizedImage } from "@/components/Utils/OptimizedImage";
@@ -17,25 +17,37 @@ const IMAGE_PROPS = {
     alt: "Fundo da página de Embaixadores",
     fill: true,
     priority: true,
-    sizes: "100vw",
-    className: "object-cover",
-    loadingClassName: "scale-100 blur-sm grayscale-0",
-    quality: 85
+    sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw",
+    className: "object-cover object-center",
+    quality: 70,
+    loading: "eager",
 
 } as const;
 
 export const Embaixadores: FC = () => {
     const [imageLoaded, setImageLoaded] = useState(false);
+    const [footerHeight, setFooterHeight] = useState(0);
+
+    useEffect(() => {
+        const footer = document.querySelector('footer');
+        if (footer) {
+            const height = footer.offsetHeight;
+            setFooterHeight(height);
+        }
+    }, []);
 
     return (
         <StyledPageTransition direction="up" duration={0.4} distance={30}>
             <ErrorBoundary>
-                <EmbaixadoresSection>
+                <EmbaixadoresSection footerHeight={footerHeight}>
                     <div className="background-container">
                         <BackgroundImage isLoaded={imageLoaded}>
                             <OptimizedImage
                                 {...IMAGE_PROPS}
                                 onLoad={() => setImageLoaded(true)}
+                                style={{
+                                    transition: 'opacity 0.3s ease-in-out'
+                                }}
                             />
                         </BackgroundImage>
                         <div className="overlay" />

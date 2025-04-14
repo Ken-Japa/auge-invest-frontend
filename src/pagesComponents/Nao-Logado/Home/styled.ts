@@ -79,7 +79,7 @@ export const StyledDivider = styled(Divider)({
   backgroundColor: "rgba(255, 255, 255, 0.12)",
 });
 
-export const FaqLink = styled("a")({
+export const FaqLink = styled("span")({
   color: "#0D95F9",
   textDecoration: "underline",
   "&:hover": {

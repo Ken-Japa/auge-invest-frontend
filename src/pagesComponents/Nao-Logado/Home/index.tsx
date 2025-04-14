@@ -106,7 +106,7 @@ export const Home: FC = () => {
                                 <Stack alignItems="center" sx={{ mt: 4 }}>
                                     <StyledTypography variant="body1">
                                         Encontre mais respostas acessando o{' '}
-                                        <Link href="/visitante/faq" passHref>
+                                        <Link href="/visitante/faq" passHref legacyBehavior={false}>
                                             <FaqLink>FAQ</FaqLink>
                                         </Link>
                                         .

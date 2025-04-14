@@ -12,7 +12,7 @@ export const RegisterPageContainer = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  
+
   "& .background-image": {
     position: "absolute",
     top: 0,
@@ -20,6 +20,7 @@ export const RegisterPageContainer = styled("div")({
     width: "100%",
     height: "100%",
     zIndex: -1,
+    willChange: "transform",
   },
 
   "& .content": {
@@ -33,22 +34,20 @@ export const RegisterPageContainer = styled("div")({
     justifyContent: "flex-start",
     padding: spacing.md,
     backgroundColor: visitorColors.backgroundOverlay,
-    backdropFilter: visitorColors.blur,
+    backdropFilter: "blur(10px)",
     minHeight: "100vh",
     overflowY: "auto",
-    
+
     // Estilização da barra de rolagem
     "&::-webkit-scrollbar": {
       width: "8px",
     },
     "&::-webkit-scrollbar-track": {
       background: `${visitorColors.backgroundDark}33`,
-      borderRadius: borderRadius.md,
     },
     "&::-webkit-scrollbar-thumb": {
       background: `${visitorColors.primary}66`,
-      borderRadius: borderRadius.md,
-      transition: transitions.medium,
+      borderRadius: "4px",
     },
     "&::-webkit-scrollbar-thumb:hover": {
       background: visitorColors.primary,

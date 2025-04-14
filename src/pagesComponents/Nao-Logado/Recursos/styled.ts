@@ -15,6 +15,7 @@ export const SectionSolutions = styled("section")({
     height: "100%",
     objectFit: "cover",
     zIndex: -3,
+    willChange: "transform",
   },
 
   "& .video-overlay": {
@@ -53,4 +54,17 @@ export const ContentWrapper = styled("div")({
   zIndex: 1,
   paddingBottom: "80px",
   width: "100%",
+  minHeight: "calc(100vh - 80px)",
+  display: "flex",
+  flexDirection: "column",
+
+  "& > *": {
+    minHeight: "50px",
+  },
+  "& .MuiContainer-root": {
+    width: "100%",
+    maxWidth: "1536px",
+    margin: "0 auto",
+    padding: "0 24px",
+  },
 });

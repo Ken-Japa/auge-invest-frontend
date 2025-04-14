@@ -30,7 +30,7 @@ export const Solutions: FC = () => {
 
         if (videoElement) {
             const handleVideoLoad = () => {
-                videoElement.playbackRate = 0.35;
+                videoElement.playbackRate = 0.25;
                 setVideoLoaded(true);
             };
 
@@ -41,7 +41,10 @@ export const Solutions: FC = () => {
             videoElement.addEventListener('loadeddata', handleVideoLoad);
             videoElement.addEventListener('error', handleVideoError as EventListener);
 
-            videoElement.load();
+            setTimeout(() => {
+                videoElement.load();
+            }, 100);
+
 
             return () => {
                 videoElement.removeEventListener('loadeddata', handleVideoLoad);
@@ -64,6 +67,7 @@ export const Solutions: FC = () => {
                                 playsInline
                                 className="video-background"
                                 crossOrigin="anonymous"
+                                preload="metadata"
                             >
                                 <source
                                     src="/assets/video/Recursos.mp4"
@@ -81,6 +85,9 @@ export const Solutions: FC = () => {
                                 className="video-background"
                                 fill
                                 sizes="100vw"
+                                priority={false}
+                                loading="eager"
+                                quality={70}
                                 style={{
                                     objectFit: 'cover',
                                 }}

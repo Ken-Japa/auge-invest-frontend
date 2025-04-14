@@ -23,6 +23,15 @@ const Blog: FC = () => {
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [imageLoaded, setImageLoaded] = useState(false);
 
+    const IMAGE_PROPS = {
+        src: "/assets/images/background/BlogHeader.jpg",
+        alt: "Imagem de Fundo Blog",
+        fill: true,
+        priority: true,
+        sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw",
+        className: "object-cover object-center",
+        quality: 70,
+    } as const;
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -52,14 +61,7 @@ const Blog: FC = () => {
         <BlogContainer>
             <div className="absolute inset-0 w-full h-full background-image">
                 <OptimizedImage
-                    src="/assets/images/background/BlogHeader.jpg"
-                    alt="Blog Background"
-                    fill
-                    priority
-                    sizes="100vw"
-                    className="object-cover opacity-60"
-                    loadingClassName="scale-100 blur-sm"
-                    quality={85}
+                    {...IMAGE_PROPS}
                     onLoad={() => setImageLoaded(true)}
                 />
             </div>

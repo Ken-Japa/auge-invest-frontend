@@ -48,12 +48,12 @@ export const Register = () => {
                             priority
                             sizes="(max-width: 900px) 100vw, 900px"
                             className="object-cover"
-                            loadingClassName="scale-100 blur-sm grayscale"
-                            quality={85}
+                            loadingClassName=""
+                            quality={70}
                             onLoad={() => setImageLoaded(true)}
                             style={{
-                                filter: !imageLoaded ? 'grayscale(1)' : 'none',
-                                transition: 'filter 0.5s ease-in-out'
+                                opacity: imageLoaded ? 1 : 0.3,
+                                transition: 'opacity 0.3s ease-in-out'
                             }}
                         />
                     </div>

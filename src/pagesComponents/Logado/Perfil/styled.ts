@@ -1,17 +1,25 @@
 import { ElementType } from "react";
-import { styled, Paper, Box, Typography, Button as MuiButton, ButtonProps } from "@mui/material";
+import {
+  styled,
+  Paper,
+  Box,
+  Typography,
+  Button as MuiButton,
+  ButtonProps,
+} from "@mui/material";
 import { transitions } from "@/theme/variables";
 
 export const ProfileContainer = styled(Box)(({ theme }) => ({
   minHeight: "100vh",
-  backgroundImage: theme.palette.mode === "dark"
-    ? 'url("/assets/images/background/Perfil-Dark.jpg")'
-    : 'url("/assets/images/background/Perfil-Light.jpg")',
+  backgroundImage:
+    theme.palette.mode === "dark"
+      ? 'url("/assets/images/background/Perfil-Dark.jpg")'
+      : 'url("/assets/images/background/Perfil-Light.jpg")',
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundAttachment: "fixed",
   transition: transitions.medium,
-  padding: theme.spacing(4, 2), // Added horizontal padding
+  padding: theme.spacing(4, 2),
   marginTop: "-64px",
   paddingTop: "84px",
   display: "flex",
@@ -20,18 +28,21 @@ export const ProfileContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const ProfileCard = styled(Paper)(({ theme }) => ({
-  maxWidth: 1000, // Increased from 800 to 1000
-  width: "100%", // Ensure it takes full width up to maxWidth
+  maxWidth: 1000,
+  width: "100%",
   margin: "0 auto",
   padding: theme.spacing(4),
-  background: theme.palette.mode === "dark"
-    ? "rgba(19, 47, 76, 0.8)" // Increased opacity for better readability
-    : "rgba(255, 255, 255, 0.8)",
+  background:
+    theme.palette.mode === "dark"
+      ? "rgba(19, 47, 76, 0.8)"
+      : "rgba(255, 255, 255, 0.8)",
   backdropFilter: "blur(10px)",
   borderRadius: theme.shape.borderRadius * 2,
-  border: `1px solid ${theme.palette.mode === "dark"
-    ? "rgba(255, 255, 255, 0.1)"
-    : "rgba(0, 0, 0, 0.1)"}`,
+  border: `1px solid ${
+    theme.palette.mode === "dark"
+      ? "rgba(255, 255, 255, 0.1)"
+      : "rgba(0, 0, 0, 0.1)"
+  }`,
   marginBottom: theme.spacing(4),
 }));
 
@@ -81,7 +92,6 @@ export const StyledContactButton = styled(MuiButton)<
   },
 }));
 
-// Common styled components for profile sections
 export const ProfileSection = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",

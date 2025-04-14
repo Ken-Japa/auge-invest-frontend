@@ -2,26 +2,31 @@ import { styled } from "@mui/material/styles";
 import { visitorColors } from "@/theme/palette/visitor";
 import { PageTransition } from "@/components/Utils/PageTransition";
 
-export const EmbaixadoresSection = styled("main")({
-  minHeight: "100vh",
-  position: "relative",
-  paddingBottom: visitorColors.paddingPage,
-  paddingTop: visitorColors.paddingTop,
+export const EmbaixadoresSection = styled("main")<{ footerHeight?: number }>(
+  ({ footerHeight = 0 }) => ({
+    minHeight: "100vh",
+    position: "relative",
+    paddingBottom: `calc(${visitorColors.paddingPage} + ${footerHeight}px)`,
+    paddingTop: visitorColors.paddingTop,
+    display: "flex",
+    flexDirection: "column",
 
-  "& .background-container": {
-    position: "absolute",
-    inset: 0,
-    width: "100%",
-    height: "100%",
-  },
+    "& .background-container": {
+      position: "absolute",
+      inset: 0,
+      width: "100%",
+      height: "100%",
+      willChange: "transform",
+    },
 
-  "& .overlay": {
-    position: "absolute",
-    inset: 0,
-    backgroundColor: visitorColors.overlayS,
-    backdropFilter: visitorColors.blur,
-  },
-});
+    "& .overlay": {
+      position: "absolute",
+      inset: 0,
+      backgroundColor: visitorColors.overlayS,
+      backdropFilter: visitorColors.blur,
+    },
+  })
+);
 
 export const StyledPageTransition = styled(PageTransition)({
   width: "100%",
@@ -29,8 +34,9 @@ export const StyledPageTransition = styled(PageTransition)({
 
 export const BackgroundImage = styled("div")<{ isLoaded: boolean }>(
   ({ isLoaded }) => ({
+    position: "relative",
     filter: !isLoaded ? "grayscale(1)" : "none",
-    transition: "filter 0.5s ease-in-out",
+    transition: "filter 0.3s ease-in-out",
     width: "100%",
     height: "100%",
   })

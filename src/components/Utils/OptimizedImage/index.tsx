@@ -25,7 +25,7 @@ export const OptimizedImage = ({
     onError,
     ...props
 }: OptimizedImageProps) => {
-    const [isLoading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(!priority);
     const [hasError, setHasError] = useState(false);
 
     const handleLoad = useCallback(() => {

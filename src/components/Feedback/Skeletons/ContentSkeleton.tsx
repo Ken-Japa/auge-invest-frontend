@@ -1,66 +1,89 @@
-"use client";
-
-import { Box, Skeleton, Stack } from "@mui/material";
+import React from 'react';
+import { Skeleton, Box } from '@mui/material';
 
 interface ContentSkeletonProps {
-  type?: "text" | "card" | "form";
-  className?: string;
-  cardHeight?: number;
-  formFields?: number;
+  type?: 'text' | 'card' | 'avatar' | 'chart';
   textLines?: number;
-  height?: number;
+  height?: number | string;
+  width?: number | string;
+  className?: string;
+  variant?: 'rectangular' | 'circular' | 'rounded' | 'text';
 }
 
-export const ContentSkeleton = ({
-  type = "text",
-  className = "",
-  cardHeight = 200,
-  formFields = 4,
+export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
+  type = 'text',
   textLines = 3,
-  height
-}: ContentSkeletonProps) => {
-  if (type === "card") {
+  height,
+  width,
+  className = '',
+  variant,
+}) => {
+  const getDefaultHeight = () => {
+    switch (type) {
+      case 'card':
+        return height || 200;
+      case 'avatar':
+        return height || 40;
+      case 'chart':
+        return height || 300;
+      case 'text':
+      default:
+        return height || 20;
+    }
+  };
+
+  const getDefaultWidth = () => {
+    switch (type) {
+      case 'avatar':
+        return width || 40;
+      default:
+        return width || '100%';
+    }
+  };
+
+  const getVariant = () => {
+    switch (type) {
+      case 'avatar':
+        return 'circular';
+      case 'card':
+      case 'chart':
+        return 'rectangular';
+      case 'text':
+      default:
+        return variant || 'text';
+    }
+  };
+
+  if (type === 'text') {
     return (
-      <Box className={`p-4 bg-[#ffffff0a] rounded-lg backdrop-blur-sm ${className}`} style={{ height }}>
-        <Stack spacing={2}>
-          <Skeleton variant="rectangular" height={cardHeight} className="bg-white/10" />
-          <Skeleton variant="text" className="bg-white/10" />
-          <Skeleton variant="text" width="60%" className="bg-white/10" />
-          <Stack direction="row" spacing={1}>
-            <Skeleton variant="rounded" width={80} height={32} className="bg-white/10" />
-            <Skeleton variant="rounded" width={80} height={32} className="bg-white/10" />
-          </Stack>
-        </Stack>
+      <Box className={className} sx={{ width: getDefaultWidth() }}>
+        {Array(textLines)
+          .fill(0)
+          .map((_, index) => (
+            <Skeleton
+              key={index}
+              variant={getVariant() as any}
+              height={getDefaultHeight()}
+              width={index === textLines - 1 && textLines > 1 ? '80%' : '100%'}
+              sx={{ my: 0.5 }}
+              animation="wave"
+            />
+          ))}
       </Box>
     );
   }
 
-  if (type === "form") {
-    return (
-      <Stack spacing={3} className={`p-4 ${className}`} style={{ height }}>
-        <Skeleton variant="text" width="40%" height={32} className="bg-white/10" />
-        {Array(formFields).fill(0).map((_, index) => (
-          <Skeleton
-            key={index}
-            variant="rounded"
-            height={56}
-            className="bg-white/10"
-          />
-        ))}
-      </Stack>
-    );
-  }
-
   return (
-    <Stack spacing={1} className={className} style={{ height }}>
-      {Array(textLines).fill(0).map((_, index) => (
-        <Skeleton
-          key={index}
-          variant="text"
-          width={index === textLines - 1 ? "60%" : "100%"}
-          className="bg-white/10"
-        />
-      ))}
-    </Stack>
+    <Skeleton
+      variant={getVariant() as any}
+      height={getDefaultHeight()}
+      width={getDefaultWidth()}
+      className={className}
+      animation="wave"
+      sx={{
+        transform: 'none',
+        transformOrigin: 'center'
+      }}
+    />
   );
 };

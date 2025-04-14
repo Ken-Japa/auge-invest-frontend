@@ -4,10 +4,10 @@ import {
     Typography, Checkbox, FormControlLabel
 } from '@mui/material';
 import { formatCurrency } from '../utils/currency';
-import { 
-    TableContainer, 
-    StyledTable, 
-    LoadingContainer, 
+import {
+    TableContainer,
+    StyledTable,
+    LoadingContainer,
     StyledCircularProgress,
     TableControlsContainer,
     CheckboxesContainer,
@@ -90,7 +90,7 @@ export const TabelaView: React.FC<TabelaViewProps> = ({ onLoadingChange }) => {
                     />
                 </CheckboxesContainer>
                 <TableTitle>
-                    <Typography variant="h6">
+                    <Typography variant="h4">
                         Mercado Brasileiro {data && formatCurrency(data.sumarioTotal.valorMercadoTotalGeral)}
                     </Typography>
                 </TableTitle>
