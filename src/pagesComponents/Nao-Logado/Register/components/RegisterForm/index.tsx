@@ -1,4 +1,4 @@
-import { type FormEvent, type ChangeEvent, type MouseEvent } from 'react';
+import { type FormEvent, type ChangeEvent, type MouseEvent, memo } from 'react';
 import Link from 'next/link';
 
 import { Stack, Typography } from "@mui/material";
@@ -22,7 +22,7 @@ interface RegisterFormProps {
     isLoading?: boolean;
 }
 
-export const RegisterFormContent = ({
+export const RegisterFormContent = memo(({
     formData,
     errors,
     acceptedTerms,
@@ -62,6 +62,7 @@ export const RegisterFormContent = ({
                     <Link
                         href="/login"
                         className="text-[#0D95F9] hover:text-[#0D95F9]/80 transition-colors underline"
+                        prefetch={false}
                     >
                         Faça seu login
                     </Link>
@@ -86,4 +87,6 @@ export const RegisterFormContent = ({
             <GoogleSignInButton onClick={onGoogleClick} />
         </RegisterFormStyled>
     );
-};
+});
+
+RegisterFormContent.displayName = 'RegisterFormContent';

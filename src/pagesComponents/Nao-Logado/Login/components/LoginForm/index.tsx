@@ -26,7 +26,6 @@ interface LoginFormProps {
     setRememberMe: (value: boolean) => void;
 }
 
-// Using memo to prevent unnecessary re-renders
 export const LoginFormComponent = memo(({
     formData,
     errors,
@@ -39,9 +38,7 @@ export const LoginFormComponent = memo(({
     handleGoogleSignIn,
     setRememberMe
 }: LoginFormProps) => {
-    // Add effect to disable browser password managers and extensions
     useEffect(() => {
-        // Create a style element to disable autofill styling
         const style = document.createElement('style');
         style.textContent = `
             input:-webkit-autofill,
@@ -53,7 +50,7 @@ export const LoginFormComponent = memo(({
             }
         `;
         document.head.appendChild(style);
-        
+
         return () => {
             document.head.removeChild(style);
         };
@@ -65,19 +62,18 @@ export const LoginFormComponent = memo(({
 
     const isFormValid = formData.email.trim() !== '' && formData.password.trim() !== '';
 
-    // Prevent default on form submit to handle it manually
     const handleFormSubmit = (e: FormEvent) => {
         e.preventDefault();
-        e.stopPropagation(); // Stop event propagation
+        e.stopPropagation();
         if (!isBlocked && isFormValid) {
             handleSubmit(e);
         }
     };
 
     return (
-        <LoginFormStyled 
-            onSubmit={handleFormSubmit} 
-            id="login-form" 
+        <LoginFormStyled
+            onSubmit={handleFormSubmit}
+            id="login-form"
             noValidate
             autoComplete="off"
             spellCheck="false"
@@ -163,5 +159,4 @@ export const LoginFormComponent = memo(({
     );
 });
 
-// Add display name for better debugging
 LoginFormComponent.displayName = 'LoginFormComponent';

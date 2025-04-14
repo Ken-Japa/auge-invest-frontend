@@ -11,6 +11,7 @@ interface OptimizedImageProps extends Omit<ImageProps, 'src' | 'alt'> {
     className?: string;
     loadingClassName?: string;
     onImageError?: (error: Error) => void;
+
 }
 
 export const OptimizedImage = ({
@@ -30,7 +31,11 @@ export const OptimizedImage = ({
 
     const handleLoad = useCallback(() => {
         setLoading(false);
-    }, []);
+        if (props.onLoad) {
+            // @ts-ignore - Call the onLoad prop if it exists
+            props.onLoad();
+        }
+    }, [props]);
 
     const handleError: ReactEventHandler<HTMLImageElement> = useCallback((event) => {
         setHasError(true);
@@ -50,6 +55,8 @@ export const OptimizedImage = ({
         );
     }
 
+    const { loading, onLoad, ...restProps } = props as any;
+
     return (
         <Image
             src={src}
@@ -58,14 +65,14 @@ export const OptimizedImage = ({
             sizes={sizes}
             priority={priority}
             className={`
-                duration-500 ease-in-out // Reduced from 700ms
+                duration-300 ease-in-out // Reduced from 500ms for better performance
                 ${isLoading ? loadingClassName : 'scale-100 blur-0 grayscale-0'}
                 ${className}
             `}
             onLoad={handleLoad}
             onError={handleError}
-            loading={priority ? undefined : "lazy"}
-            {...props}
+
+            {...restProps}
         />
     );
 };

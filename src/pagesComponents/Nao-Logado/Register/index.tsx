@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, lazy } from "react";
+import { useState, lazy, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import CloseIcon from '@mui/icons-material/Close';
@@ -15,18 +15,57 @@ import { useRegisterForm } from "./hooks/useRegisterForm";
 import { useGoogleSignIn } from "./hooks/useGoogleSignIn";
 import { StyledCloseButton, RegisterPageContainer } from "./styled";
 import { BlockTimer } from "./components/BlockTimer";
+import { RegisterFormSkeleton } from "./components/RegisterForm/RegisterFormSkeleton";
 
 const BLOCK_DURATION = 10 * 60 * 1000;
 const DEFAULT_REDIRECT = "/visao-economia";
 
-const RegisterFormContent = lazy(() => import('./components/RegisterForm').then(mod => ({ default: mod.RegisterFormContent })));
+const IMAGE_PROPS = {
+    src: "/assets/images/background/REGISTER.jpg",
+    alt: "Fundo da página de Registro",
+    fill: true,
+    priority: true,
+    sizes: "(max-width: 600px) 100vw, (max-width: 900px) 900px, 1200px",
+    className: "object-cover",
+    quality: 60,
+};
+
+const RegisterFormContent = lazy(() =>
+    import('./components/RegisterForm').then(mod => ({
+        default: mod.RegisterFormContent
+    }))
+);
 
 export const Register = () => {
     const router = useRouter();
     const [imageLoaded, setImageLoaded] = useState(false);
+    const [isComponentMounted, setIsComponentMounted] = useState(false);
     const { isBlocked, blockTimer, handleBlockUser } = useBlockTimer(BLOCK_DURATION);
     const { formData, errors, acceptedTerms, isSubmitting, setAcceptedTerms, handleChange, handleSubmit } = useRegisterForm(handleBlockUser);
     const { handleGoogleClick } = useGoogleSignIn(DEFAULT_REDIRECT);
+
+    // Preload critical resources
+    useEffect(() => {
+        setIsComponentMounted(true);
+
+        const preloadResources = async () => {
+            const formPromise = import('./components/RegisterForm');
+            const headerPromise = import('./components/Header');
+            const fieldsPromise = import('./components/FormFields');
+
+            await Promise.all([formPromise, headerPromise, fieldsPromise]);
+        };
+
+        preloadResources().catch(console.error);
+
+        const imgPreload = new Image();
+        imgPreload.src = IMAGE_PROPS.src;
+
+        return () => {
+            imgPreload.onload = null;
+            imgPreload.onerror = null;
+        };
+    }, []);
 
     const handleClose = () => {
         try {
@@ -37,23 +76,20 @@ export const Register = () => {
     };
 
     return (
-        <PageTransition direction="up" duration={0.4} distance={30} className="w-full">
+        <PageTransition direction="up" duration={0.3} distance={20} className="w-full">
             <ErrorBoundary>
                 <RegisterPageContainer>
                     <div className="background-image">
                         <OptimizedImage
-                            src="/assets/images/background/REGISTER.jpg"
-                            alt="Fundo da página de Registro"
-                            fill
-                            priority
-                            sizes="(max-width: 900px) 100vw, 900px"
-                            className="object-cover"
-                            loadingClassName=""
-                            quality={70}
-                            onLoad={() => setImageLoaded(true)}
+                            {...IMAGE_PROPS}
+                            onLoad={() => {
+                                setImageLoaded(true);
+                            }}
                             style={{
                                 opacity: imageLoaded ? 1 : 0.3,
-                                transition: 'opacity 0.3s ease-in-out'
+                                transition: 'opacity 0.2s ease-in-out',
+                                transform: 'translateZ(0)',
+                                willChange: 'opacity'
                             }}
                         />
                     </div>
@@ -62,7 +98,7 @@ export const Register = () => {
                             <CloseIcon />
                         </StyledCloseButton>
 
-                        <SuspenseWrapper>
+                        <SuspenseWrapper fallback={<RegisterFormSkeleton />}>
                             {isBlocked ? (
                                 <BlockTimer seconds={blockTimer} />
                             ) : (
@@ -74,7 +110,7 @@ export const Register = () => {
                                     onChange={handleChange}
                                     onTermsChange={setAcceptedTerms}
                                     onGoogleClick={handleGoogleClick}
-                                    isLoading={!imageLoaded || isSubmitting}
+                                    isLoading={!isComponentMounted || isSubmitting}
                                 />
                             )}
                         </SuspenseWrapper>
@@ -84,3 +120,5 @@ export const Register = () => {
         </PageTransition>
     );
 };
+
+export default Register;

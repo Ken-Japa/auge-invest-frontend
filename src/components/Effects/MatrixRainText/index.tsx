@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, memo } from 'react';
 import styles from './MatrixRainText.module.css';
 
 interface Props {
@@ -13,19 +13,19 @@ interface Props {
     animationDuration?: number;
 }
 
-export const MatrixRainText = ({
+export const MatrixRainText = memo(({
     text,
     className = '',
     fontSize,
     onComplete,
-    triggerOnce = false,
+    triggerOnce = true,
     charDelay = 25,
     animationDuration = 0.2
 }: Props) => {
     const containerRef = useRef<HTMLSpanElement>(null);
     const hasPlayedRef = useRef(false);
+    const animationFrameRef = useRef<number | null>(null);
 
-    // Update createCharSpan to use CSS classes
     const createCharSpan = useCallback((char: string) => {
         const charSpan = document.createElement('span');
         charSpan.style.opacity = '0';
@@ -39,15 +39,18 @@ export const MatrixRainText = ({
     }, [fontSize]);
 
     const animateChar = useCallback((charSpan: HTMLSpanElement, delay: number) => {
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
             charSpan.style.transition = `all ${animationDuration}s ease`;
             charSpan.style.opacity = '1';
             charSpan.style.animation = `matrixDrop ${animationDuration}s forwards`;
         }, delay);
+
+        return timeoutId;
     }, [animationDuration]);
 
     useEffect(() => {
         if (!containerRef.current) return;
+
         if (triggerOnce && hasPlayedRef.current) {
             containerRef.current.innerHTML = text;
             return;
@@ -55,48 +58,63 @@ export const MatrixRainText = ({
 
         const container = containerRef.current;
         const words = text.split(' ');
+        const timeouts: NodeJS.Timeout[] = [];
+
         container.innerHTML = '';
 
-        let totalDelay = 0;
+        animationFrameRef.current = requestAnimationFrame(() => {
+            let totalDelay = 0;
 
-        words.forEach((word, wordIndex) => {
-            const wordSpan = document.createElement('span');
-            const chars = word.split('');
+            words.forEach((word, wordIndex) => {
+                const wordSpan = document.createElement('span');
+                const chars = word.split('');
 
-            chars.forEach((char, charIndex) => {
-                const charSpan = createCharSpan(char);
-                wordSpan.appendChild(charSpan);
-                animateChar(charSpan, totalDelay + charIndex * charDelay);
+                chars.forEach((char, charIndex) => {
+                    const charSpan = createCharSpan(char);
+                    wordSpan.appendChild(charSpan);
+                    const timeoutId = animateChar(charSpan, totalDelay + charIndex * charDelay);
+                    timeouts.push(timeoutId);
+                });
+
+                container.appendChild(wordSpan);
+                if (wordIndex < words.length - 1) {
+                    const space = document.createElement('span');
+                    space.innerHTML = '&nbsp;';
+                    container.appendChild(space);
+                }
+
+                totalDelay += chars.length * charDelay;
             });
 
-            container.appendChild(wordSpan);
-            if (wordIndex < words.length - 1) {
-                const space = document.createElement('span');
-                space.innerHTML = '&nbsp;';
-                container.appendChild(space);
+            if (onComplete) {
+                const completeTimeoutId = setTimeout(onComplete, totalDelay + (charDelay * 2));
+                timeouts.push(completeTimeoutId);
             }
 
-            totalDelay += chars.length * charDelay;
+            hasPlayedRef.current = true;
         });
-
-        if (onComplete) {
-            setTimeout(onComplete, totalDelay + (charDelay * 2));
-        }
-
-        hasPlayedRef.current = true;
 
         // Cleanup function
         return () => {
             if (container) {
                 container.innerHTML = '';
             }
+
+            timeouts.forEach(clearTimeout);
+
+            if (animationFrameRef.current !== null) {
+                cancelAnimationFrame(animationFrameRef.current);
+            }
         };
     }, [text, onComplete, triggerOnce, charDelay, createCharSpan, animateChar]);
 
     return (
-        <span 
-            ref={containerRef} 
+        <span
+            ref={containerRef}
             className={`${styles.container} ${className}`}
+            style={{ willChange: 'transform', transform: 'translateZ(0)' }}
         />
     );
-};
+});
+
+MatrixRainText.displayName = 'MatrixRainText';

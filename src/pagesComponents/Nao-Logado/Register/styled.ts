@@ -12,6 +12,8 @@ export const RegisterPageContainer = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  transform: "translateZ(0)",
+  backfaceVisibility: "hidden",
 
   "& .background-image": {
     position: "absolute",
@@ -21,6 +23,7 @@ export const RegisterPageContainer = styled("div")({
     height: "100%",
     zIndex: -1,
     willChange: "transform",
+    transform: "translateZ(0)",
   },
 
   "& .content": {
@@ -37,8 +40,10 @@ export const RegisterPageContainer = styled("div")({
     backdropFilter: "blur(10px)",
     minHeight: "100vh",
     overflowY: "auto",
+    transform: "translateZ(0)",
+    backfaceVisibility: "hidden",
 
-    // Estilização da barra de rolagem
+    // Scrollbar styling
     "&::-webkit-scrollbar": {
       width: "8px",
     },
@@ -62,8 +67,10 @@ export const StyledCloseButton = styled(IconButton)({
   color: visitorColors.text,
   backgroundColor: `${visitorColors.backgroundDark}80`,
   backdropFilter: visitorColors.blur,
-  transition: transitions.medium,
+  transition: "background-color 0.2s, color 0.2s",
   zIndex: 10,
+  transform: "translateZ(0)",
+  willChange: "transform, background-color",
 
   "&:hover": {
     backgroundColor: visitorColors.backgroundDark,

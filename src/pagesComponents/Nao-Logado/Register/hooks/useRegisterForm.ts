@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { useState, type ChangeEvent, type FormEvent, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { FormData, FormErrors } from '../types';
 import { validateForm } from '../utils/validation';
@@ -20,15 +20,15 @@ export const useRegisterForm = (onBlock: () => void) => {
     const [registerAttempts, setRegisterAttempts] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
         if (errors[name as keyof FormErrors]) {
             setErrors(prev => ({ ...prev, [name]: undefined }));
         }
-    };
+    }, [errors]);
 
-    const handleSubmit = async (e: FormEvent) => {
+    const handleSubmit = useCallback(async (e: FormEvent) => {
         e.preventDefault();
 
         if (!acceptedTerms) {
@@ -43,16 +43,14 @@ export const useRegisterForm = (onBlock: () => void) => {
             setIsSubmitting(true);
             
             try {
-                // Prepare the data for the API
                 const userData = {
                     name: formData.name,
-                    cpf: formData.cpf.replace(/[^\d]/g, ""), // Remove non-digits
-                    phone: formData.phone.replace(/[^\d]/g, ""), // Remove non-digits
+                    cpf: formData.cpf.replace(/[^\d]/g, ""),
+                    phone: formData.phone.replace(/[^\d]/g, ""),
                     email: formData.email,
                     password: formData.password
                 };
                 
-                // Call the API to create a user
                 const response = await fetch("https://api-servidor-yupg.onrender.com/user/create", {
                     method: "POST",
                     headers: {
@@ -68,13 +66,11 @@ export const useRegisterForm = (onBlock: () => void) => {
                 
                 const data = await response.json();
                 
-                // Registration successful, redirect to login
                 alert("Registro realizado com sucesso! Faça login para continuar.");
                 router.push("/login");
             } catch (error) {
                 console.error("Registration error:", error);
                 
-                // Increment attempt counter
                 setRegisterAttempts(prev => {
                     const newAttempts = prev + 1;
                     if (newAttempts >= MAX_ATTEMPTS) {
@@ -84,20 +80,23 @@ export const useRegisterForm = (onBlock: () => void) => {
                     return newAttempts;
                 });
                 
-                // Show error to user
                 alert(`Erro ao registrar: ${error instanceof Error ? error.message : "Tente novamente mais tarde"}`);
             } finally {
                 setIsSubmitting(false);
             }
         }
-    };
+    }, [formData, acceptedTerms, router, onBlock]);
+
+    const setAcceptedTermsCallback = useCallback((checked: boolean) => {
+        setAcceptedTerms(checked);
+    }, []);
 
     return {
         formData,
         errors,
         acceptedTerms,
         isSubmitting,
-        setAcceptedTerms,
+        setAcceptedTerms: setAcceptedTermsCallback,
         handleChange,
         handleSubmit
     };

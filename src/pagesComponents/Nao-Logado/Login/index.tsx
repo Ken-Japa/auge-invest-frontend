@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, lazy } from "react";
-
+import { useState, lazy, useEffect } from "react";
 import CloseIcon from '@mui/icons-material/Close';
 
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
@@ -25,6 +24,12 @@ const BlockTimerComponent = lazy(() =>
     }))
 );
 
+const LoginFormSkeleton = lazy(() => 
+    import('./components/LoginForm/LoginFormSkeleton').then(mod => ({
+        default: mod.LoginFormSkeleton
+    }))
+);
+
 const IMAGE_PROPS = {
     src: "/assets/images/background/REGISTER.jpg",
     alt: "Fundo da página de Login",
@@ -32,12 +37,12 @@ const IMAGE_PROPS = {
     priority: true,
     sizes: "(max-width: 600px) 100vw, (max-width: 900px) 900px, 1200px",
     className: "object-cover",
-    quality: 75,
-
+    quality: 60,
 };
 
 export const Login = () => {
     const [imageLoaded, setImageLoaded] = useState(false);
+    const [isComponentMounted, setIsComponentMounted] = useState(false);
     const { handleClose } = useNavigation();
     const {
         formData,
@@ -51,20 +56,54 @@ export const Login = () => {
         handleGoogleSignIn
     } = useLoginForm();
 
+    useEffect(() => {
+        setIsComponentMounted(true);
+
+        const preloadResources = async () => {
+            const formPromise = import('./components/LoginForm');
+            const timerPromise = import('./components/BlockTimer');
+            const skeletonPromise = import('./components/LoginForm/LoginFormSkeleton');
+            
+            await Promise.all([
+                formPromise, 
+                timerPromise,
+                skeletonPromise
+            ]);
+        };
+
+        preloadResources().catch(console.error);
+
+        const imgPreload = new Image();
+        imgPreload.src = IMAGE_PROPS.src;
+        
+        return () => {
+            imgPreload.onload = null;
+            imgPreload.onerror = null;
+        };
+    }, []);
+
     return (
-        <PageTransition direction="up" duration={0.4} distance={30} className="w-full">
+        <PageTransition direction="up" duration={0.3} distance={20} className="w-full">
             <ErrorBoundary>
-                <StyledDialog open={true} maxWidth="md" fullWidth disableEscapeKeyDown>
+                <StyledDialog
+                    open={true}
+                    maxWidth="md"
+                    fullWidth
+                    disableEscapeKeyDown
+                    transitionDuration={{
+                        enter: 300,
+                        exit: 200
+                    }}
+                >
                     <div className="background-image">
                         <OptimizedImage
                             {...IMAGE_PROPS}
                             onLoad={() => {
                                 setImageLoaded(true);
                             }}
-
                             style={{
                                 opacity: imageLoaded ? 1 : 0.8,
-                                transition: 'opacity 0.3s'
+                                transition: 'opacity 0.2s'
                             }}
                         />
                     </div>
@@ -73,14 +112,14 @@ export const Login = () => {
                             <CloseIcon />
                         </StyledCloseButton>
 
-                        <SuspenseWrapper fallback={<div style={{ minHeight: '400px' }}></div>}>
+                        <SuspenseWrapper fallback={<LoginFormSkeleton />}>
                             {isBlocked ? (
                                 <BlockTimerComponent seconds={blockTimer} />
                             ) : (
                                 <LoginFormComponent
                                     formData={formData}
                                     errors={errors}
-                                    isLoading={false}
+                                    isLoading={!isComponentMounted}
                                     isBlocked={isBlocked}
                                     blockTimer={blockTimer}
                                     rememberMe={rememberMe}
