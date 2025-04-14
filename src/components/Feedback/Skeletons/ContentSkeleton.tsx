@@ -2,12 +2,14 @@ import React from 'react';
 import { Skeleton, Box } from '@mui/material';
 
 interface ContentSkeletonProps {
-  type?: 'text' | 'card' | 'avatar' | 'chart';
+  type?: 'text' | 'card' | 'avatar' | 'chart' | 'form';
   textLines?: number;
   height?: number | string;
   width?: number | string;
   className?: string;
   variant?: 'rectangular' | 'circular' | 'rounded' | 'text';
+  cardHeight?: number;
+  formFields?: number;
 }
 
 export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
@@ -17,15 +19,19 @@ export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
   width,
   className = '',
   variant,
+  cardHeight,
+  formFields = 3,
 }) => {
   const getDefaultHeight = () => {
     switch (type) {
       case 'card':
-        return height || 200;
+        return cardHeight || height || 200;
       case 'avatar':
         return height || 40;
       case 'chart':
         return height || 300;
+      case 'form':
+        return height || 56;
       case 'text':
       default:
         return height || 20;
@@ -47,6 +53,7 @@ export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
         return 'circular';
       case 'card':
       case 'chart':
+      case 'form':
         return 'rectangular';
       case 'text':
       default:
@@ -68,6 +75,37 @@ export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
               sx={{ my: 0.5 }}
               animation="wave"
             />
+          ))}
+      </Box>
+    );
+  }
+
+  if (type === 'form') {
+    return (
+      <Box className={className} sx={{ width: getDefaultWidth() }}>
+        {Array(formFields)
+          .fill(0)
+          .map((_, index) => (
+            <Box key={index} sx={{ mb: 3 }}>
+              <Skeleton
+                variant="text"
+                width="30%"
+                height={24}
+                sx={{ mb: 1 }}
+                animation="wave"
+              />
+              <Skeleton
+                variant="rectangular"
+                width="100%"
+                height={56}
+                animation="wave"
+                sx={{
+                  borderRadius: 1,
+                  transform: 'none',
+                  transformOrigin: 'center'
+                }}
+              />
+            </Box>
           ))}
       </Box>
     );
