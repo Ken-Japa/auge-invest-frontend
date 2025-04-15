@@ -6,19 +6,17 @@ import FIIDetails from '@/pagesComponents/Logado/FII/components/FIIDetalhes';
 interface FIIPageProps {
     params: {
         slug: string;
-        codigo: string;
     };
 }
 
-export default function FIICodePage({ params }: FIIPageProps) {
+export default function FIIPage({ params }: FIIPageProps) {
     const decodedSlug = decodeURIComponent(params.slug);
-    const decodedCodigo = decodeURIComponent(params.codigo);
 
-    if (!decodedSlug || !decodedCodigo) {
+    if (!decodedSlug) {
         notFound();
     }
 
-    const isCode = true;
+    const isCode = /^[A-Z0-9]+\d+$/i.test(decodedSlug);
 
     return (
         <Container maxWidth="xl">
@@ -29,7 +27,6 @@ export default function FIICodePage({ params }: FIIPageProps) {
             }>
                 <FIIDetails
                     slug={decodedSlug}
-                    codigo={decodedCodigo}
                     isCode={isCode}
                 />
             </Suspense>

@@ -1,6 +1,5 @@
-import { FII } from '@/services/api/types';
+import { FII } from "@/services/api/types";
 
-// Types for future API response format
 export interface FIICode {
   codigo: string;
   preco: number | null;
@@ -9,7 +8,6 @@ export interface FIICode {
 }
 
 export interface FIIExtended extends FII {
-  // Fields for future API response
   nomeCompleto?: string;
   dataInicio?: string;
   codigos?: FIICode[];
@@ -20,6 +18,7 @@ export interface FIIFilter {
   nome?: string;
   page?: number;
   pageSize?: number;
+  codigo?: string;
 }
 
-export type VisualizationMode = 'card' | 'table' | 'grid';
+export type VisualizationMode = "card" | "table" | "grid";
