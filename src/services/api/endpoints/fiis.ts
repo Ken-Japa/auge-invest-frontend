@@ -1,12 +1,12 @@
 import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
 import { ErrorCode, handleApiError } from "../errorHandler";
-import { 
-  FIIListResponse, 
-  FIIFilter, 
-  FII, 
-  FIIDividendResponse, 
-  FIIDividendFilter 
+import {
+  FIIListResponse,
+  FIIFilter,
+  FII,
+  FIIDividendResponse,
+  FIIDividendFilter,
 } from "../types";
 
 class FIIsApiService extends BaseApiService {
@@ -19,20 +19,14 @@ class FIIsApiService extends BaseApiService {
     };
 
     try {
-      // Changed return type to match actual API response
-      return await this.get(
-        API_ENDPOINTS.FII.PAGINATION,
-        params
-      );
+      return await this.get(API_ENDPOINTS.FII.PAGINATION, params);
     } catch (error) {
       console.error("Erro ao buscar FIIs:", error);
       throw handleApiError(error, ErrorCode.FII_DATA_ERROR);
     }
   };
 
-  getFII = async (
-    id: string
-  ): Promise<{ success: boolean; data: FII }> => {
+  getFII = async (id: string): Promise<{ success: boolean; data: FII }> => {
     try {
       return await this.get<{ success: boolean; data: FII }>(
         `${API_ENDPOINTS.FII.DETAIL}/${id}`,
@@ -58,7 +52,6 @@ class FIIsApiService extends BaseApiService {
     }
   };
 
-  // New method for FII dividends
   getFIIDividends = async (
     filters: FIIDividendFilter
   ): Promise<FIIDividendResponse> => {

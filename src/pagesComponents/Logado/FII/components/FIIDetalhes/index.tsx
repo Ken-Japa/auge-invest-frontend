@@ -5,7 +5,6 @@ import {
     Grid,
     CircularProgress,
     Alert,
-    Breadcrumbs,
     Typography
 } from '@mui/material';
 import {
@@ -21,19 +20,15 @@ import {
     DetailContainer,
     DetailPaper,
     HeaderContainer,
-    FIITitle,
-    FIISubtitle,
     CodeChip,
     SectionDivider,
-    InfoLabel,
-    InfoValue,
     InfoContainer,
     IconWrapper,
     BackButton,
-    SectionTitle,
     LoadingContainer,
     ErrorContainer
 } from './styled';
+import FIIDividendos from './components/FIIDividendos';
 
 interface FIIDetailsProps {
     slug: string;
@@ -205,7 +200,9 @@ const FIIDetails = ({ slug, codigo, isCode = false }: FIIDetailsProps) => {
                     </Grid>
                 </Grid>
             </DetailPaper>
+            {fii.nomeFII && <FIIDividendos nomeFII={fii.nomeFII} />}
         </DetailContainer>
+
     );
 };
 
