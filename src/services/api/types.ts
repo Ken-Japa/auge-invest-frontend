@@ -197,3 +197,44 @@ export interface DerivativeFilter {
   page?: number;
   pageSize?: number;
 }
+
+export interface FIIInformation {
+  cnpj: string;
+  site: string;
+}
+
+export interface FII {
+  _id: string;
+  nomeCompletoFII: string;
+  nomeFII: string;
+  codigoFII: string;
+  codigo: string[];
+  quotaCount: string;
+  quotaDateApproved: string;
+  industria: string;
+  segmento: string;
+  informacoes: FIIInformation;
+}
+
+export interface FIIPagination {
+  offset: number;
+  limit: number;
+  total: number;
+  page: number;
+  pages: number;
+}
+
+export interface FIIListResponse {
+  success: boolean;
+  data: {
+    result: FII[];
+    pagination: FIIPagination;
+  };
+}
+
+export interface FIIFilter {
+  nome?: string;
+  segmento?: string;
+  page?: number;
+  pageSize?: number;
+}

@@ -11,6 +11,8 @@ export enum ErrorCode {
   COMPANY_NOT_FOUND = "company/not-found",
   COMPANY_DATA_ERROR = "company/data-error",
   REGISTRATION_FAILED = "auth/registration-failed",
+  FII_NOT_FOUND = "fii/not-found",
+  FII_DATA_ERROR = "fii/data-error",
 }
 
 // Mapeamento de mensagens de erro amigáveis
@@ -21,16 +23,22 @@ const ERROR_MESSAGES: Record<ErrorCode, string> = {
     "Usuário não encontrado. Por favor, verifique as informações fornecidas.",
   [ErrorCode.INVALID_CREDENTIALS]:
     "Email ou senha inválidos. Por favor, tente novamente.",
-  [ErrorCode.SERVER_ERROR]: "Erro no servidor. Por favor, tente novamente mais tarde.",
+  [ErrorCode.SERVER_ERROR]:
+    "Erro no servidor. Por favor, tente novamente mais tarde.",
   [ErrorCode.NETWORK_ERROR]:
     "Erro de rede. Por favor, verifique sua conexão com a internet.",
-  [ErrorCode.UNKNOWN_ERROR]: "Ocorreu um erro inesperado. Por favor, tente novamente.",
+  [ErrorCode.UNKNOWN_ERROR]:
+    "Ocorreu um erro inesperado. Por favor, tente novamente.",
   [ErrorCode.COMPANY_NOT_FOUND]:
     "Empresa não encontrada. Por favor, verifique as informações fornecidas.",
   [ErrorCode.COMPANY_DATA_ERROR]:
     "Erro ao processar dados da empresa. Por favor, tente novamente.",
   [ErrorCode.REGISTRATION_FAILED]:
     "Falha no registro. Por favor, verifique as informações e tente novamente.",
+  [ErrorCode.FII_NOT_FOUND]:
+    "FII não encontrado. Por favor, verifique as informações fornecidas.",
+  [ErrorCode.FII_DATA_ERROR]:
+    "Erro ao processar dados do FII. Por favor, tente novamente.",
 };
 
 export function getErrorMessage(code: ErrorCode): string {
