@@ -1,5 +1,12 @@
-import { Box, Typography, Grid, Card, CardContent } from '@mui/material';
+import { Grid } from '@mui/material';
 import { FIIExtended } from '../../../types';
+import {
+  StyledCard,
+  StyledCardContent,
+  FIIName,
+  CodeChip,
+  GridContainer
+} from './styled';
 
 interface GridViewProps {
   fiis: FIIExtended[];
@@ -7,27 +14,29 @@ interface GridViewProps {
 
 export const GridView = ({ fiis }: GridViewProps) => {
   return (
-    <Box>
-      <Grid container spacing={1}>
+    <GridContainer>
+      <Grid container spacing={2}>
         {fiis.map((fii) => (
           <Grid item xs={6} sm={4} md={3} lg={2} key={fii._id}>
-            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-              <CardContent sx={{ padding: 1 }}>
-                <Typography variant="subtitle1" component="div" noWrap>
+            <StyledCard>
+              <StyledCardContent>
+                <FIIName>
                   {fii.nomeFII}
-                </Typography>
-                <Typography variant="caption" color="text.secondary" noWrap>
-                  {fii.codigo[0]}
-                </Typography>
-                <Typography variant="caption" display="block" color="text.secondary" noWrap>
-                  {fii.segmento}
-                </Typography>
-              </CardContent>
-            </Card>
+                </FIIName>
+                
+                {fii.codigo && fii.codigo.length > 0 && fii.codigo[0] && (
+                  <CodeChip 
+                    label={fii.codigo[0]} 
+                    size="small" 
+                    variant="filled"
+                  />
+                )}
+              </StyledCardContent>
+            </StyledCard>
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </GridContainer>
   );
 };
 

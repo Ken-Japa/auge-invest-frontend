@@ -1,10 +1,31 @@
 import { useState, useEffect } from 'react';
-import { Box, Typography, CircularProgress, Pagination } from '@mui/material';
+import {
+  Typography,
+  CircularProgress,
+  Pagination,
+  PaginationItem,
+  InputLabel,
+  Select,
+  MenuItem,
+  SelectChangeEvent
+} from '@mui/material';
+import {
+  FirstPage as FirstPageIcon,
+  LastPage as LastPageIcon
+} from '@mui/icons-material';
 import { fetchFIIs } from '../../services/fiisService';
 import { FIIExtended, VisualizationMode } from '../../types';
 import CardView from './Cards';
 import TableView from './Table';
 import GridView from './Grid';
+import {
+  VisualizationContainer,
+  LoadingContainer,
+  ErrorContainer,
+  EmptyResultsContainer,
+  PaginationContainer,
+  PageSizeSelector
+} from './styled';
 
 interface VisualizacaoFIIsProps {
   mode?: VisualizationMode;
@@ -27,19 +48,19 @@ export const VisualizacaoFIIs = ({
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const [pageSize, setPageSize] = useState(limit);
 
   useEffect(() => {
     const loadFIIs = async () => {
       try {
         setLoading(true);
         setError(null);
-        
-        // Add a small delay to prevent too many API calls while typing
+
         const result = await fetchFIIs({
           segmento: filter.segmento,
           nome: filter.nome,
           page,
-          pageSize: limit
+          pageSize
         });
 
         setFiis(result.fiis);
@@ -55,39 +76,40 @@ export const VisualizacaoFIIs = ({
       }
     };
 
-    // Use a debounce to prevent too many API calls while typing
-    const timeoutId = setTimeout(() => {
-      loadFIIs();
-    }, 300); // 300ms delay
-
-    return () => clearTimeout(timeoutId);
-  }, [filter, page, limit, onError]);
+    loadFIIs();
+  }, [filter.segmento, filter.nome, page, pageSize, onError]);
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
-    setPage(newPage - 1); // MUI Pagination é 1-indexed, nossa API é 0-indexed
+    setPage(newPage - 1);
+  };
+
+  const handlePageSizeChange = (event: SelectChangeEvent<number>) => {
+    const newPageSize = Number(event.target.value);
+    setPageSize(newPageSize);
+    setPage(0);
   };
 
   if (loading) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="200px">
+      <LoadingContainer>
         <CircularProgress />
-      </Box>
+      </LoadingContainer>
     );
   }
 
   if (error) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="200px">
+      <ErrorContainer>
         <Typography color="error">{error}</Typography>
-      </Box>
+      </ErrorContainer>
     );
   }
 
   if (fiis.length === 0) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="200px">
+      <EmptyResultsContainer>
         <Typography>Nenhum FII encontrado com os filtros aplicados.</Typography>
-      </Box>
+      </EmptyResultsContainer>
     );
   }
 
@@ -105,20 +127,54 @@ export const VisualizacaoFIIs = ({
   };
 
   return (
-    <Box>
+    <VisualizationContainer>
       {renderVisualization()}
-      
+
       {totalPages > 1 && (
-        <Box display="flex" justifyContent="center" mt={3}>
-          <Pagination 
-            count={totalPages} 
-            page={page + 1} 
-            onChange={handlePageChange} 
-            color="primary" 
+        <PaginationContainer
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={2}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Pagination
+            count={totalPages}
+            page={page + 1}
+            onChange={handlePageChange}
+            color="primary"
+            renderItem={(item) => (
+              <PaginationItem
+                slots={{
+                  first: FirstPageIcon,
+                  last: LastPageIcon
+                }}
+                {...item}
+              />
+            )}
+            showFirstButton
+            showLastButton
           />
-        </Box>
+
+          <PageSizeSelector variant="outlined" size="small">
+            <InputLabel id="page-size-select-label">Por página</InputLabel>
+            <Select
+              labelId="page-size-select-label"
+              id="page-size-select"
+              value={pageSize}
+              onChange={handlePageSizeChange}
+              label="Por página"
+              displayEmpty={false}
+              renderValue={(value) => `${value}`}
+            >
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={20}>20</MenuItem>
+              <MenuItem value={50}>50</MenuItem>
+              <MenuItem value={100}>100</MenuItem>
+            </Select>
+          </PageSizeSelector>
+        </PaginationContainer>
       )}
-    </Box>
+    </VisualizationContainer>
   );
 };
 

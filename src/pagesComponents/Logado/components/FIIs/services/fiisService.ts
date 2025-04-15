@@ -11,7 +11,7 @@ export const fetchFIIs = async (filter: FIIFilter = {}) => {
         fiis: [],
         pagination: { 
           offset: 0, 
-          limit: 10, 
+          limit: filter.pageSize || 10, 
           total: 0, 
           page: 1, 
           pages: 1 
@@ -19,11 +19,14 @@ export const fetchFIIs = async (filter: FIIFilter = {}) => {
       };
     }
     
+    // Ensure pageSize is a valid number
+    const pageSize = filter.pageSize && filter.pageSize > 0 ? filter.pageSize : 10;
+    
     const response = await api.fiis.getFIIs({
       segmento: filter.segmento,
       nome: filter.nome,
       page: filter.page !== undefined ? filter.page : 0,
-      pageSize: filter.pageSize || 10
+      pageSize
     });
     
     console.log('API Response:', response);
@@ -59,10 +62,10 @@ export const fetchFIIs = async (filter: FIIFilter = {}) => {
       fiis: mappedFIIs,
       pagination: response.pagination || { 
         offset: 0, 
-        limit: 10, 
+        limit: pageSize, 
         total: mappedFIIs.length, 
-        page: 1, 
-        pages: 1 
+        page: filter.page !== undefined ? filter.page + 1 : 1, 
+        pages: Math.ceil(mappedFIIs.length / pageSize) || 1 
       }
     };
   } catch (error) {

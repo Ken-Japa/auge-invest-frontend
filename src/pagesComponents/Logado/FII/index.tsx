@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Box, Typography, Container, Paper, Tabs, Tab, Alert, Snackbar } from '@mui/material';
 import { VisualizacaoFIIs } from '../components/FIIs/components/Vizualização';
 import { FIISearchBar } from '../components/FIIs/components/SearchBar';
@@ -31,24 +31,21 @@ export const FII = () => {
     const [tabValue, setTabValue] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
     const [viewMode, setViewMode] = useState<VisualizationMode>('card');
-    const [key, setKey] = useState(0); // Add a key to force re-render of visualization component
+    const [key, setKey] = useState(0);
     const [error, setError] = useState<string | null>(null);
+    const [showSearchResults, setShowSearchResults] = useState(false);
 
     const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
         setTabValue(newValue);
     };
 
     const handleSearch = (query: string) => {
-        // Reset any previous errors when search changes
         setError(null);
         setSearchQuery(query);
-        // Force re-render of visualization component when search changes
-        setKey(prevKey => prevKey + 1);
-        
-        // Reset to first page when search changes
-        if (tabValue === 0) {
-            // Only update if we're already on the first tab to avoid unnecessary renders
-            setViewMode('card');
+        if (query && query.length >= 4) {
+            setShowSearchResults(true);
+        } else {
+            setShowSearchResults(false);
         }
     };
 
@@ -64,7 +61,6 @@ export const FII = () => {
         setError(null);
     };
 
-    // Map tab index to view mode
     const getViewMode = (): VisualizationMode => {
         switch (tabValue) {
             case 0:
@@ -89,9 +85,9 @@ export const FII = () => {
                     <FIISearchBar onSearch={handleSearch} />
                 </Box>
 
-                <Snackbar 
-                    open={!!error} 
-                    autoHideDuration={6000} 
+                <Snackbar
+                    open={!!error}
+                    autoHideDuration={6000}
                     onClose={handleCloseError}
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 >
@@ -99,6 +95,7 @@ export const FII = () => {
                         {error}
                     </Alert>
                 </Snackbar>
+
 
                 <Paper sx={{ width: '100%', mb: 2 }}>
                     <Tabs
@@ -116,9 +113,8 @@ export const FII = () => {
 
                     <TabPanel value={tabValue} index={0}>
                         <VisualizacaoFIIs
-                            key={`card-${key}`}
                             mode="card"
-                            filter={{ nome: searchQuery }}
+                            filter={{}}
                             limit={12}
                             onError={handleError}
                         />
@@ -126,9 +122,8 @@ export const FII = () => {
 
                     <TabPanel value={tabValue} index={1}>
                         <VisualizacaoFIIs
-                            key={`table-${key}`}
                             mode="table"
-                            filter={{ nome: searchQuery }}
+                            filter={{}}
                             limit={20}
                             onError={handleError}
                         />
@@ -136,14 +131,15 @@ export const FII = () => {
 
                     <TabPanel value={tabValue} index={2}>
                         <VisualizacaoFIIs
-                            key={`grid-${key}`}
                             mode="grid"
-                            filter={{ nome: searchQuery }}
+                            filter={{}}
                             limit={24}
                             onError={handleError}
                         />
                     </TabPanel>
                 </Paper>
+
+
             </Box>
         </Container>
     );
