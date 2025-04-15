@@ -225,16 +225,52 @@ export interface FIIPagination {
 }
 
 export interface FIIListResponse {
-  success: boolean;
-  data: {
-    result: FII[];
-    pagination: FIIPagination;
+  result: FII[];
+  pagination: {
+    offset: number;
+    limit: number;
+    total: number;
+    page: number;
+    pages: number;
   };
 }
 
 export interface FIIFilter {
   nome?: string;
   segmento?: string;
+  page?: number;
+  pageSize?: number;
+}
+
+// FII Dividend related types
+export interface FIIDividendItem {
+  dataPagamento: string;
+  valor: string;
+  relativo: string;
+  dataAprovacao: string;
+  tipoDividendo: string;
+  ultimoDiaCom: string;
+  _id: string;
+}
+
+export interface FIIDividendData {
+  _id: string;
+  nomeFII: string;
+  quantidade: string;
+  totalDividendos: number;
+  dividendos: FIIDividendItem[];
+}
+
+export interface FIIDividendResponse {
+  success: boolean;
+  data: {
+    result: FIIDividendData;
+    pagination: FIIPagination;
+  };
+}
+
+export interface FIIDividendFilter {
+  nomeFII?: string;
   page?: number;
   pageSize?: number;
 }

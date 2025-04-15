@@ -38,6 +38,7 @@ export const API_ENDPOINTS = {
   FII: {
     PAGINATION: "/fiis/pagination",
     DETAIL: "/fiis",
+    DIVIDENDS: "/fiis/dividendos/pagination",
   },
   // Outros grupos de endpoints...
 };
