@@ -1,9 +1,20 @@
 "use client";
 import { useState } from 'react';
-import { Box, Typography, Container, Paper, Tabs, Tab, Alert, Snackbar } from '@mui/material';
+import { Box, Typography, Alert, Snackbar, Tabs, Tab } from '@mui/material';
+import { PageTransition } from '@/components/Utils/PageTransition';
+import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { VisualizacaoFIIs } from '../components/FIIs/components/Vizualização';
 import { FIISearchBar } from '../components/FIIs/components/SearchBar';
 import { VisualizationMode } from '../components/FIIs/types';
+import {
+    FIIPageContainer,
+    ContentWrapper,
+    ContentBox,
+    FIITitle,
+    FIITabsContainer,
+    TabPanelContainer
+} from './styled';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -22,7 +33,7 @@ function TabPanel(props: TabPanelProps) {
             aria-labelledby={`fii-tab-${index}`}
             {...other}
         >
-            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+            {value === index && <TabPanelContainer>{children}</TabPanelContainer>}
         </div>
     );
 }
@@ -75,73 +86,78 @@ export const FII = () => {
     };
 
     return (
-        <Container maxWidth="xl">
-            <Box sx={{ my: 4, textAlign: "center", alignItems: "center" }}>
-                <Typography variant="h2" gutterBottom>
-                    Fundos Imobiliários
-                </Typography>
+        <PageTransition direction="up" duration={0.4} distance={30}>
+            <ErrorBoundary>
+                <SuspenseWrapper>
+                    <FIIPageContainer>
+                        <ContentWrapper maxWidth="xl">
+                            <ContentBox>
+                                <FIITitle variant="h2" gutterBottom>
+                                    Fundos Imobiliários
+                                </FIITitle>
 
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 3 }}>
-                    <FIISearchBar onSearch={handleSearch} />
-                </Box>
+                                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 3 }}>
+                                    <FIISearchBar onSearch={handleSearch} />
+                                </Box>
 
-                <Snackbar
-                    open={!!error}
-                    autoHideDuration={6000}
-                    onClose={handleCloseError}
-                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                >
-                    <Alert onClose={handleCloseError} severity="error" sx={{ width: '100%' }}>
-                        {error}
-                    </Alert>
-                </Snackbar>
+                                <Snackbar
+                                    open={!!error}
+                                    autoHideDuration={6000}
+                                    onClose={handleCloseError}
+                                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                                >
+                                    <Alert onClose={handleCloseError} severity="error" sx={{ width: '100%' }}>
+                                        {error}
+                                    </Alert>
+                                </Snackbar>
 
+                                <FIITabsContainer>
+                                    <Tabs
+                                        value={tabValue}
+                                        onChange={handleTabChange}
+                                        indicatorColor="primary"
+                                        textColor="primary"
+                                        aria-label="Modos de visualização de FIIs"
+                                        centered
+                                    >
+                                        <Tab label="Cartões" />
+                                        <Tab label="Tabela" />
+                                        <Tab label="Grade" />
+                                    </Tabs>
 
-                <Paper sx={{ width: '100%', mb: 2 }}>
-                    <Tabs
-                        value={tabValue}
-                        onChange={handleTabChange}
-                        indicatorColor="primary"
-                        textColor="primary"
-                        aria-label="Modos de visualização de FIIs"
-                        centered
-                    >
-                        <Tab label="Cartões" />
-                        <Tab label="Tabela" />
-                        <Tab label="Grade" />
-                    </Tabs>
+                                    <TabPanel value={tabValue} index={0}>
+                                        <VisualizacaoFIIs
+                                            mode="card"
+                                            filter={{}}
+                                            limit={12}
+                                            onError={handleError}
+                                        />
+                                    </TabPanel>
 
-                    <TabPanel value={tabValue} index={0}>
-                        <VisualizacaoFIIs
-                            mode="card"
-                            filter={{}}
-                            limit={12}
-                            onError={handleError}
-                        />
-                    </TabPanel>
+                                    <TabPanel value={tabValue} index={1}>
+                                        <VisualizacaoFIIs
+                                            mode="table"
+                                            filter={{}}
+                                            limit={20}
+                                            onError={handleError}
+                                        />
+                                    </TabPanel>
 
-                    <TabPanel value={tabValue} index={1}>
-                        <VisualizacaoFIIs
-                            mode="table"
-                            filter={{}}
-                            limit={20}
-                            onError={handleError}
-                        />
-                    </TabPanel>
-
-                    <TabPanel value={tabValue} index={2}>
-                        <VisualizacaoFIIs
-                            mode="grid"
-                            filter={{}}
-                            limit={24}
-                            onError={handleError}
-                        />
-                    </TabPanel>
-                </Paper>
-
-
-            </Box>
-        </Container>
+                                    <TabPanel value={tabValue} index={2}>
+                                        <VisualizacaoFIIs
+                                            mode="grid"
+                                            filter={{}}
+                                            limit={24}
+                                            onError={handleError}
+                                        />
+                                    </TabPanel>
+                                </FIITabsContainer>
+                            </ContentBox>
+                        </ContentWrapper>
+                    </FIIPageContainer>
+                </SuspenseWrapper>
+            </ErrorBoundary>
+        </PageTransition>
     );
 };
 
