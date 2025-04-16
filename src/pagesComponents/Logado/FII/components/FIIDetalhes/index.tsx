@@ -28,19 +28,19 @@ const FIIDetails = ({ slug, codigo, isCode = false }: FIIDetailsProps) => {
     <PageTransition direction="up" duration={0.4} distance={30}>
       <ErrorBoundary>
         <SuspenseWrapper>
-          {loading ? (
-            <LoadingState />
-          ) : error ? (
-            <ErrorState error={error} onBack={handleBack} />
-          ) : !fii ? (
-            <NotFoundState onBack={handleBack} />
-          ) : (
-            <DetailPageContainer>
+          <DetailPageContainer>
+            {loading ? (
+              <LoadingState />
+            ) : error ? (
+              <ErrorState error={error} onBack={handleBack} />
+            ) : !fii ? (
+              <NotFoundState onBack={handleBack} />
+            ) : (
               <ContentWrapper>
                 <FIIContent fii={fii} />
               </ContentWrapper>
-            </DetailPageContainer>
-          )}
+            )}
+          </DetailPageContainer>
         </SuspenseWrapper>
       </ErrorBoundary>
     </PageTransition>

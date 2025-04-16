@@ -1,43 +1,19 @@
 import { Metadata } from "next";
-import { notFound } from 'next/navigation';
-import { Suspense } from 'react';
-import { Box, CircularProgress, Container } from '@mui/material';
-import FIIDetails from '@/pagesComponents/Logado/FII/components/FIIDetalhes';
+import FIIDetails from "@/pagesComponents/Logado/FII/components/FIIDetalhes";
 
-interface FIIPageProps {
-    params: {
-        slug: string;
-    };
-}
+type Props = {
+    params: { slug: string }
+};
 
-export async function generateMetadata({ params }: FIIPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const decodedSlug = decodeURIComponent(params.slug).toUpperCase();
     return {
-        title: `${params.slug.toUpperCase()} | AugeInvest`,
-        description: `Análise detalhada do FII ${params.slug.toUpperCase()}, incluindo dividendos e métricas principais.`,
+        title: `${decodedSlug} | AugeInvest`,
+        description: `Análise detalhada do Fundo Imobiliário ${decodedSlug}, incluindo dividendos, patrimônio e métricas principais.`,
     };
 }
 
-export default function FIIPage({ params }: FIIPageProps) {
+export default function FIIPage({ params }: Props) {
     const decodedSlug = decodeURIComponent(params.slug);
-
-    if (!decodedSlug) {
-        notFound();
-    }
-
-    const isCode = /^[A-Z0-9]+\d+$/i.test(decodedSlug);
-
-    return (
-        <Container maxWidth="xl">
-            <Suspense fallback={
-                <Box display="flex" justifyContent="center" alignItems="center" height="50vh">
-                    <CircularProgress />
-                </Box>
-            }>
-                <FIIDetails
-                    slug={decodedSlug}
-                    isCode={isCode}
-                />
-            </Suspense>
-        </Container>
-    );
+    return <FIIDetails slug={decodedSlug} />;
 }

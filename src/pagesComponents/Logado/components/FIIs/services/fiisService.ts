@@ -83,24 +83,17 @@ export const fetchFIIBySlugOrCode = async (
   isCode: boolean = false
 ): Promise<FIIExtended | null> => {
   try {
-    if (isCode) {
-      const searchParam: FIIFilter = {
-        codigo: slugOrCode.trim().toUpperCase(),
-      };
+    const decodedSlug = decodeURIComponent(slugOrCode);
 
-      const response = await api.fiis.getFIIs(searchParam);
+    // Se estamos buscando por código (XXXX11)
+    if (isCode || /^[A-Z]{4}11$/.test(decodedSlug.toUpperCase())) {
+      const upperCode = decodedSlug.trim().toUpperCase();
 
-      if (
-        !response ||
-        !response.result ||
-        !Array.isArray(response.result) ||
-        response.result.length === 0
-      ) {
-        console.error("FII não encontrado pelo código:", slugOrCode);
+      const fii = await api.fiis.getFIIByCode(upperCode);
+
+      if (!fii) {
         return null;
       }
-
-      const fii = response.result[0];
 
       const codigo = Array.isArray(fii.codigo)
         ? fii.codigo
@@ -122,33 +115,25 @@ export const fetchFIIBySlugOrCode = async (
 
       return extendedFII;
     } else {
+      // Busca por nome
       const response = await api.fiis.getFIIs({ pageSize: 100 });
 
       if (!response || !response.result || !Array.isArray(response.result)) {
-        console.error("Failed to fetch FIIs list");
         throw new Error("Falha ao buscar lista de FIIs");
       }
 
-      let normalizedSearchName = slugOrCode
-        .trim()
-        .replace(/^FII[\s_]+/i, "")
-        .replace(/_/g, " ")
-        .toUpperCase();
+      const normalizedSearchName = decodedSlug.trim();
 
-      const matchingFIIs = response.result.filter((fii: any) => {
-        const fiiName = (fii.nomeFII || "").toUpperCase();
-        return (
-          fiiName.includes(normalizedSearchName) ||
-          (normalizedSearchName.includes(fiiName) && fiiName.length > 3)
-        );
+      const matchingFII = response.result.find((fii: any) => {
+        const fiiName = (fii.nomeFII || "").trim();
+        return fiiName === normalizedSearchName;
       });
 
-      if (matchingFIIs.length === 0) {
-        console.error("FII não encontrado pelo nome:", slugOrCode);
+      if (!matchingFII) {
         return null;
       }
 
-      const fii = matchingFIIs[0];
+      const fii = matchingFII;
 
       const codigo = Array.isArray(fii.codigo)
         ? fii.codigo
@@ -175,5 +160,43 @@ export const fetchFIIBySlugOrCode = async (
     throw new Error(
       "Não foi possível carregar os detalhes do FII. Tente novamente mais tarde."
     );
+  }
+};
+
+export const getAllFIIs = async (): Promise<FIIExtended[]> => {
+  try {
+    const response = await api.fiis.getAllFIIs();
+
+    if (!response || !response.result || !Array.isArray(response.result)) {
+      console.error("Unexpected API response structure:", response);
+      return [];
+    }
+
+    // Map the response to FIIExtended format
+    const mappedFIIs = response.result.map((fii: any) => {
+      const codigo = Array.isArray(fii.codigo)
+        ? fii.codigo
+        : fii.codigo
+        ? [fii.codigo]
+        : [];
+
+      const extendedFII: FIIExtended = {
+        ...fii,
+        nomeCompleto: fii.nomeCompletoFII || "",
+        dataInicio: fii.quotaDateApproved || "",
+        codigos: codigo.map((code: string) => ({
+          codigo: code,
+          preco: null,
+          precoAnterior: null,
+          variacao: null,
+        })),
+      };
+      return extendedFII;
+    });
+
+    return mappedFIIs;
+  } catch (error) {
+    console.error("Erro ao buscar todas as FIIs:", error);
+    return [];
   }
 };

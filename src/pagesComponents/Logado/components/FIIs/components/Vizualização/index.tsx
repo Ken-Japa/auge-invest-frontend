@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   Typography,
   CircularProgress,
@@ -43,12 +43,17 @@ export const VisualizacaoFIIs = ({
   limit = 10,
   onError
 }: VisualizacaoFIIsProps) => {
+  // Ensure limit is one of the valid options
+  const validPageSizes = [10, 20, 50, 100];
+  const initialPageSize = validPageSizes.includes(limit) ? limit : 20;
+
   const [fiis, setFiis] = useState<FIIExtended[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  const [pageSize, setPageSize] = useState(limit);
+  const [pageSize, setPageSize] = useState(initialPageSize);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const loadFIIs = async () => {
@@ -81,12 +86,32 @@ export const VisualizacaoFIIs = ({
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
     setPage(newPage - 1);
+
+    // Scroll to top of the container when page changes
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+
+    // Alternative approach if window.scrollTo doesn't work well
+    if (containerRef.current) {
+      containerRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   };
 
   const handlePageSizeChange = (event: SelectChangeEvent<number>) => {
     const newPageSize = Number(event.target.value);
     setPageSize(newPageSize);
     setPage(0);
+
+    // Scroll to top when page size changes
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   if (loading) {
@@ -127,7 +152,7 @@ export const VisualizacaoFIIs = ({
   };
 
   return (
-    <VisualizationContainer>
+    <VisualizationContainer ref={containerRef}>
       {renderVisualization()}
 
       {totalPages > 1 && (

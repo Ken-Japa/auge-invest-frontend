@@ -52,6 +52,38 @@ class FIIsApiService extends BaseApiService {
     }
   };
 
+  getAllFIIs = async (): Promise<FIIListResponse> => {
+    try {
+      return await this.get<FIIListResponse>(
+        API_ENDPOINTS.FII.PAGINATION,
+        { pageSize: 1000, page: 0 },
+        ErrorCode.FII_DATA_ERROR
+      );
+    } catch (error) {
+      console.error("Erro ao buscar todas as FIIs:", error);
+      throw handleApiError(error, ErrorCode.FII_DATA_ERROR);
+    }
+  };
+
+  getFIIByCode = async (code: string): Promise<FII | null> => {
+    try {
+      const upperCode = code.trim().toUpperCase();
+
+      const response = await this.get<FIIListResponse>(
+        API_ENDPOINTS.FII.PAGINATION,
+        { codigo: upperCode, pageSize: 1, page: 0 },
+        ErrorCode.FII_NOT_FOUND
+      );
+
+      if (response && response.result && response.result.length > 0) {
+        return response.result[0];
+      }
+      return null;
+    } catch (error) {
+      console.error(`Erro ao buscar FII com código ${code}:`, error);
+      throw handleApiError(error, ErrorCode.FII_NOT_FOUND);
+    }
+  };
   getFIIDividends = async (
     filters: FIIDividendFilter
   ): Promise<FIIDividendResponse> => {
