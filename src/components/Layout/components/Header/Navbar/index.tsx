@@ -8,6 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { motion } from "framer-motion";
 
 import { NavLink } from "./NavLink";
+import { NavDropdown } from "./NavDropdown";
 import { useDrawer } from "../../../hooks/useDrawer";
 import { publicNavigation, authNavigation } from "@/components/Layout/constants/Navigation";
 import { LinkNavbar, MobileNavContainer } from "./styled";
@@ -61,21 +62,37 @@ export const Navbar = () => {
                 {session ?
                     authNavigation.map(nav => (
                         <motion.div key={nav.name} variants={item} className="relative">
-                            <NavLink
-                                path={nav.path}
-                                name={nav.name}
-                                highlight={nav.highlight}
-                            />
+                            {nav.dropdown ? (
+                                <NavDropdown
+                                    name={nav.name}
+                                    path={nav.path}
+                                    items={nav.dropdown}
+                                />
+                            ) : (
+                                <NavLink
+                                    path={nav.path}
+                                    name={nav.name}
+                                    highlight={nav.highlight}
+                                />
+                            )}
                         </motion.div>
                     ))
                     :
                     publicNavigation.map(nav => (
                         <motion.div key={nav.name} variants={item} className="relative">
-                            <NavLink
-                                path={nav.path}
-                                name={nav.name}
-                                highlight={nav.highlight}
-                            />
+                            {nav.dropdown ? (
+                                <NavDropdown
+                                    name={nav.name}
+                                    path={nav.path}
+                                    items={nav.dropdown}
+                                />
+                            ) : (
+                                <NavLink
+                                    path={nav.path}
+                                    name={nav.name}
+                                    highlight={nav.highlight}
+                                />
+                            )}
                         </motion.div>
                     ))
                 }
@@ -92,30 +109,68 @@ export const Navbar = () => {
                     >
                         {session ?
                             authNavigation.map(nav => (
-                                <motion.div key={nav.name} variants={item}>
-                                    <LinkNavbar
-                                        className={getLinkStyles(pathname === nav.path, !!nav.highlight)}
-                                        onClick={() => {
-                                            router.push(nav.path);
-                                            toggle();
-                                        }}
-                                    >
-                                        {nav.name}
-                                    </LinkNavbar>
+                                <motion.div key={nav.name} variants={item} className="w-full">
+                                    {nav.dropdown ? (
+                                        <div className="w-full">
+                                            <div className="text-white/70 px-3 py-2 font-medium">
+                                                {nav.name}
+                                            </div>
+                                            <div className="pl-4 flex flex-col gap-1">
+                                                {nav.dropdown.map(item => (
+                                                    <LinkNavbar
+                                                        key={item.name}
+                                                        className={getLinkStyles(pathname === item.path, false)}
+                                                        onClick={() => {
+                                                            router.push(item.path);
+                                                            toggle();
+                                                        }}
+                                                    >
+                                                        {item.name}
+                                                    </LinkNavbar>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <NavLink
+                                            path={nav.path}
+                                            name={nav.name}
+                                            highlight={nav.highlight}
+                                            onClick={toggle}
+                                        />
+                                    )}
                                 </motion.div>
                             ))
                             :
                             publicNavigation.map(nav => (
-                                <motion.div key={nav.name} variants={item}>
-                                    <LinkNavbar
-                                        className={getLinkStyles(pathname === nav.path, !!nav.highlight)}
-                                        onClick={() => {
-                                            router.push(nav.path);
-                                            toggle();
-                                        }}
-                                    >
-                                        {nav.name}
-                                    </LinkNavbar>
+                                <motion.div key={nav.name} variants={item} className="w-full">
+                                    {nav.dropdown ? (
+                                        <div className="w-full">
+                                            <div className="text-white/70 px-3 py-2 font-medium">
+                                                {nav.name}
+                                            </div>
+                                            <div className="pl-4 flex flex-col gap-1">
+                                                {nav.dropdown.map(item => (
+                                                    <LinkNavbar
+                                                        key={item.name}
+                                                        className={getLinkStyles(pathname === item.path, false)}
+                                                        onClick={() => {
+                                                            router.push(item.path);
+                                                            toggle();
+                                                        }}
+                                                    >
+                                                        {item.name}
+                                                    </LinkNavbar>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <NavLink
+                                            path={nav.path}
+                                            name={nav.name}
+                                            highlight={nav.highlight}
+                                            onClick={toggle}
+                                        />
+                                    )}
                                 </motion.div>
                             ))
                         }
@@ -124,4 +179,4 @@ export const Navbar = () => {
             )}
         </div>
     );
-}
+};

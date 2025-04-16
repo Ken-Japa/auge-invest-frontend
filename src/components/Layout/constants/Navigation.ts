@@ -3,6 +3,13 @@ interface NavigationItem {
   path: string;
   icon?: React.ElementType;
   highlight?: boolean;
+  dropdown?: DropdownItem[];
+}
+
+export interface DropdownItem {
+  name: string;
+  path: string;
+  icon?: React.ElementType;
 }
 
 export const publicNavigation: NavigationItem[] = [
@@ -20,6 +27,11 @@ export const authNavigation: NavigationItem[] = [
   { name: "Posições", path: "/dashboard" },
   { name: "Empresas", path: "/empresa" },
   { name: "Alertas", path: "/alertas" },
+  {
+    name: "Ativos",
+    path: "/ativos",
+    dropdown: [{ name: "Fundos Imobiliários", path: "/fii" }],
+  },
   { name: "Análise", path: "/fundamentalista" },
   { name: "Blog", path: "/blog" },
 ];
