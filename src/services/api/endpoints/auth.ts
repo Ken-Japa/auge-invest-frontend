@@ -1,11 +1,6 @@
 import { clearAuthData, setAuthData } from "@/utils/auth";
 import { API_ENDPOINTS } from "../config";
-import {
-  LoginRequest,
-  LoginResponse,
-  User,
-  ApiSuccessResponse,
-} from "../types";
+import { LoginRequest, LoginResponse, User } from "../types";
 import { BaseApiService } from "../baseService";
 import { ErrorCode, handleApiError } from "../errorHandler";
 
@@ -41,9 +36,7 @@ class AuthApiService extends BaseApiService {
 
   getCurrentUser = async (): Promise<User> => {
     try {
-      const response = await this.get<User>(
-        API_ENDPOINTS.AUTH.CURRENT_USER
-      );
+      const response = await this.get<User>(API_ENDPOINTS.AUTH.CURRENT_USER);
       return response;
     } catch (error) {
       console.error("Erro ao buscar usuário atual:", error);
