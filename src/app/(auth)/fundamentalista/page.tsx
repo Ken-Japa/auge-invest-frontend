@@ -4,10 +4,10 @@ import { AnaliseFundamentalista } from "@/pagesComponents/Logado/Analise Fundame
 
 export const metadata: Metadata = {
     title: "Análise Fundamentalista | AugeInvest",
-    description: "Faça o upload do arquivo e obtenha as principais métricas da análise fundamentalista.",
+    description: "Principais métricas da análise fundamentalista.",
     openGraph: {
         title: 'Análise Fundamentalista | AugeInvest',
-        description: 'Faça o upload do arquivo e obtenha as principais métricas da análise fundamentalista.',
+        description: 'Principais métricas da análise fundamentalista.',
         type: 'website',
         siteName: 'AugeInvest',
     },

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TableBody, TableSortLabel, Tooltip } from '@mui/material';
+import Link from 'next/link';
 import { FIIExtended } from '../../../types';
 import {
   StyledTableContainer,
@@ -121,12 +122,16 @@ export const TableView = ({ fiis }: TableViewProps) => {
             <DataRow key={fii._id}>
               <DataCell>
                 <Tooltip title={fii.nomeCompletoFII || ''} placement="top">
-                  <FIIName>{fii.nomeFII}</FIIName>
+                  <Link href={`/fii/${fii.nomeFII}`} style={{ textDecoration: 'none' }}>
+                    <FIIName>{fii.nomeFII}</FIIName>
+                  </Link>
                 </Tooltip>
               </DataCell>
               <DataCell>
                 {fii.codigo.map((code) => (
-                  <CodeChip key={code}>{code}</CodeChip>
+                  <Link key={code} href={`/fii/${code}`} style={{ textDecoration: 'none' }}>
+                    <CodeChip>{code}</CodeChip>
+                  </Link>
                 ))}
               </DataCell>
               <DataCell>

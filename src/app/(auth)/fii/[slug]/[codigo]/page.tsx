@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import { Box, CircularProgress, Container } from '@mui/material';
@@ -7,6 +9,13 @@ interface FIIPageProps {
     params: {
         slug: string;
         codigo: string;
+    };
+}
+
+export async function generateMetadata({ params }: FIIPageProps): Promise<Metadata> {
+    return {
+        title: `${params.codigo.toUpperCase()} | AugeInvest`,
+        description: `Análise detalhada do FII ${params.codigo.toUpperCase()}.`,
     };
 }
 

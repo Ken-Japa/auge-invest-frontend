@@ -6,11 +6,10 @@ export const FIIPageContainer = styled(Box)(({ theme }) => ({
     position: "relative",
     padding: theme.spacing(4, 2),
     marginTop: "-64px",
-    paddingTop: "84px",
+
     display: "flex",
     flexDirection: "column",
     flexGrow: 1,
-
     "&::before": {
         content: '""',
         position: "absolute",
@@ -62,8 +61,8 @@ export const FIITabsContainer = styled(Paper)(({ theme }) => ({
     backdropFilter: 'blur(10px)',
     borderRadius: theme.shape.borderRadius * 2,
     border: `1px solid ${theme.palette.mode === 'dark'
-        ? 'rgba(255, 255, 255, 0.1)'
-        : 'rgba(0, 0, 0, 0.1)'
+            ? 'rgba(255, 255, 255, 0.1)'
+            : 'rgba(0, 0, 0, 0.1)'
         }`,
     boxShadow: theme.shadows[3],
 }));

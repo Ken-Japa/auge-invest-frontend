@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import { Box, CircularProgress, Container } from '@mui/material';
@@ -6,6 +7,13 @@ import FIIDetails from '@/pagesComponents/Logado/FII/components/FIIDetalhes';
 interface FIIPageProps {
     params: {
         slug: string;
+    };
+}
+
+export async function generateMetadata({ params }: FIIPageProps): Promise<Metadata> {
+    return {
+        title: `${params.slug.toUpperCase()} | AugeInvest`,
+        description: `Análise detalhada do FII ${params.slug.toUpperCase()}, incluindo dividendos e métricas principais.`,
     };
 }
 

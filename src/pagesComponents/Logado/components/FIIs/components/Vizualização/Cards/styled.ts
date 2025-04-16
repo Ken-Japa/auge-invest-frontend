@@ -1,25 +1,38 @@
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   Card as MuiCard,
   CardContent as MuiCardContent,
   Box,
   Typography,
 } from "@mui/material";
-import { shadows, borderRadius, transitions, spacing } from "@/theme/variables";
+import { borderRadius, transitions, spacing } from "@/theme/variables";
 
 export const StyledCard = styled(MuiCard)(({ theme }) => ({
   height: "100%",
   display: "flex",
   flexDirection: "column",
   transition: transitions.medium,
-  boxShadow: theme.palette.mode === 'dark' ? '0 8px 16px rgba(0, 0, 0, 0.4)' : '0 8px 16px rgba(0, 0, 0, 0.1)',
+  boxShadow:
+    theme.palette.mode === "dark"
+      ? "0 8px 16px rgba(0, 0, 0, 0.4)"
+      : "0 8px 16px rgba(0, 0, 0, 0.1)",
   borderRadius: borderRadius.md,
-  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(30, 40, 60, 0.8)' : theme.palette.background.paper,
-  border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(100, 120, 180, 0.2)' : theme.palette.divider}`,
+  backgroundColor:
+    theme.palette.mode === "dark"
+      ? "rgba(30, 40, 60, 0.8)"
+      : theme.palette.background.paper,
+  border: `1px solid ${
+    theme.palette.mode === "dark"
+      ? "rgba(100, 120, 180, 0.2)"
+      : theme.palette.divider
+  }`,
 
   "&:hover": {
     transform: "translateY(-4px)",
-    boxShadow: theme.palette.mode === 'dark' ? '0 12px 24px rgba(0, 0, 0, 0.6)' : '0 12px 24px rgba(0, 0, 0, 0.15)',
+    boxShadow:
+      theme.palette.mode === "dark"
+        ? "0 12px 24px rgba(0, 0, 0, 0.6)"
+        : "0 12px 24px rgba(0, 0, 0, 0.15)",
     borderColor: theme.palette.primary.main,
   },
 }));
@@ -29,10 +42,26 @@ export const StyledCardContent = styled(MuiCardContent)(({ theme }) => ({
   padding: spacing.md,
 }));
 
+export const CardHeader = styled(Box)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "flex-end",
+  padding: theme.spacing(1, 1, 0, 1),
+  position: "absolute",
+  top: 0,
+  right: 0,
+  zIndex: 1,
+}));
+
 export const CardTitle = styled(Typography)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightBold,
-  marginBottom: spacing.xs,
-  color: theme.palette.text.primary,
+  fontSize: "1.25rem",
+  marginBottom: theme.spacing(0.5),
+  transition: "color 0.3s ease",
+  "&:hover": {
+    color: theme.palette.primary.main,
+    textDecoration: "underline",
+    cursor: "pointer",
+  },
 }));
 
 export const CardSubtitle = styled(Typography)(({ theme }) => ({
