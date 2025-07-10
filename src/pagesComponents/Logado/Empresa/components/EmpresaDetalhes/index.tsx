@@ -15,6 +15,7 @@ import { GraficoHistorico } from './components/GraficoHistorico';
 import { AlertasSection } from './components/AlertasSection';
 import { DividendosTab } from './components/DividendosTab';
 import { DerivativosTab } from './components/DerivativosTab';
+import { AnalisePrecos } from './components/AnalisePrecos';
 import { TabPanel } from './components/TabPanel';
 import { EmpresaHeader } from './components/EmpresaHeader';
 
@@ -256,6 +257,7 @@ export const EmpresaDetalhes = ({ slug, codigoSelecionado }: EmpresaDetalhesProp
                                 <Tab label="Principal" value="principal" />
                                 <Tab label="Dividendos" value="dividendos" />
                                 {hasDerivatives && <Tab value="derivativos" label="Derivativos" />}
+                                <Tab label="Análise Preços" value="analiseprecos" />
                             </Tabs>
                         </Box>
 
@@ -293,6 +295,12 @@ export const EmpresaDetalhes = ({ slug, codigoSelecionado }: EmpresaDetalhesProp
                                 </ProgressiveLoad>
                             </TabPanel>
                         )}
+
+                        <TabPanel value={currentTab} index="analiseprecos">
+                            <ProgressiveLoad>
+                                <AnalisePrecos codigoAtivo={codigoAtivo || ''} />
+                            </ProgressiveLoad>
+                        </TabPanel>
 
                     </ContentContainer>
                 </EmpresaContainer>
