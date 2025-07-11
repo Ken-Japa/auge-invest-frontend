@@ -12,7 +12,6 @@ import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 // Componentes específicos
 import { MetricasEmpresa } from './components/MetricasEmpresa';
 import { GraficoHistorico } from './components/GraficoHistorico';
-import { AlertasSection } from './components/AlertasSection';
 import { DividendosTab } from './components/DividendosTab';
 import { DerivativosTab } from './components/DerivativosTab';
 import { AnalisePrecos } from './components/AnalisePrecos';
@@ -275,10 +274,6 @@ export const EmpresaDetalhes = ({ slug, codigoSelecionado }: EmpresaDetalhesProp
 
                             <ProgressiveLoad delay={0.2}>
                                 <GraficoHistorico codigoAtivo={codigoAtivo || ''} />
-                            </ProgressiveLoad>
-
-                            <ProgressiveLoad delay={0.4}>
-                                <AlertasSection codigoAtivo={codigoAtivo || ''} />
                             </ProgressiveLoad>
                         </TabPanel>
 
