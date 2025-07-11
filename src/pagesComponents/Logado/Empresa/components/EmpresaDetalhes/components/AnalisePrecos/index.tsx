@@ -51,8 +51,12 @@ export const AnalisePrecos: React.FC<AnalisePrecoProps> = ({ codigoAtivo }) => {
     }, [periodsData, selectedPeriod]);
 
     // Manipulador para mudança de período
-    const handlePeriodChange = (event: SelectChangeEvent) => {
-        setSelectedPeriod(event.target.value as AnalysisPeriod);
+    const handlePeriodChange = (period: AnalysisPeriod | SelectChangeEvent) => {
+        if (typeof period === 'string') {
+            setSelectedPeriod(period);
+        } else {
+            setSelectedPeriod(period.target.value as AnalysisPeriod);
+        }
     };
 
     // Manipulador para mudança no slider de anos personalizados
@@ -95,6 +99,8 @@ export const AnalisePrecos: React.FC<AnalisePrecoProps> = ({ codigoAtivo }) => {
                                 stdDev={selectedPeriodData.stats.stdDev}
                                 data={selectedPeriodData.data}
                                 codigoAtivo={codigoAtivo || ''}
+                                selectedPeriod={selectedPeriod}
+                                onPeriodChange={handlePeriodChange}
                             />
 
 

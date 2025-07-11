@@ -1,8 +1,10 @@
 import React from 'react';
+import { SelectChangeEvent } from '@mui/material';
 
 // Serviços e tipos
 import { calculateAlertSuggestions } from '../../services/analiseService';
 import { PriceDataPoint } from "../../../GraficoHistorico/services/historicalService";
+import { AnalysisPeriod } from '../../utils/types';
 
 // Componentes
 import { AlertasSection } from '../AlertasSection';
@@ -28,6 +30,8 @@ interface SugestoesAlertasProps {
   stdDev: number;
   data: PriceDataPoint[];
   codigoAtivo: string;
+  selectedPeriod: AnalysisPeriod;
+  onPeriodChange: (period: AnalysisPeriod | SelectChangeEvent) => void;
 }
 
 const formatDate = (date: Date | null): string => {
@@ -35,7 +39,7 @@ const formatDate = (date: Date | null): string => {
   return date.toLocaleDateString('pt-BR');
 };
 
-const SugestoesAlertas: React.FC<SugestoesAlertasProps> = ({ mean, stdDev, data, codigoAtivo }) => {
+const SugestoesAlertas: React.FC<SugestoesAlertasProps> = ({ mean, stdDev, data, codigoAtivo, selectedPeriod, onPeriodChange }) => {
   const alerts = calculateAlertSuggestions(mean, stdDev, data);
 
   return (
@@ -143,6 +147,9 @@ const SugestoesAlertas: React.FC<SugestoesAlertasProps> = ({ mean, stdDev, data,
         codigoAtivo={codigoAtivo || ''}
         lowAlert={alerts.lowAlert90.price}
         highAlert={alerts.highAlert90.price}
+        data={data}
+        selectedPeriod={selectedPeriod}
+        onPeriodChange={onPeriodChange}
       />
     </>
   );
