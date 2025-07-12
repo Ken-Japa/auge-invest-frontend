@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { Tabs, Tab, Box, Typography, Paper } from '@mui/material';
 
 // Componentes compartilhados
@@ -39,13 +39,15 @@ type TabValue = 'principal' | 'dividendos' | 'derivativos' | 'analiseprecos';
 
 export const EmpresaDetalhes = ({ slug, codigoSelecionado }: EmpresaDetalhesProps) => {
     const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const router = useRouter();
     const tabParam = searchParams.get('tab');
-    
+
     // Verificar se o parâmetro de tab é válido
     const isValidTab = (tab: string | null): tab is TabValue => {
         return tab === 'principal' || tab === 'dividendos' || tab === 'derivativos' || tab === 'analiseprecos';
     };
-    
+
     const [currentTab, setCurrentTab] = useState<TabValue>(isValidTab(tabParam) ? tabParam : 'principal');
     const [empresa, setEmpresa] = useState<EmpresaDetalhada | null>(null);
     const [loading, setLoading] = useState(true);
@@ -219,7 +221,7 @@ export const EmpresaDetalhes = ({ slug, codigoSelecionado }: EmpresaDetalhesProp
 
         checkDerivatives();
     }, [codigoAtivo]);
-    
+
     // Efeito para atualizar a aba quando o parâmetro da URL mudar
     useEffect(() => {
         const tab = searchParams.get('tab');
@@ -227,36 +229,76 @@ export const EmpresaDetalhes = ({ slug, codigoSelecionado }: EmpresaDetalhesProp
             // Verificar se a aba é 'derivativos' e se hasDerivatives é false
             if (tab === 'derivativos' && !hasDerivatives) {
                 // Se não houver derivativos, não mudar para essa aba
-                // Atualizar a URL para remover o parâmetro tab
-                const url = new URL(window.location.href);
-                url.searchParams.delete('tab');
-                window.history.pushState({}, '', url);
+                // Atualizar a URL para remover o parâmetro tab sem rolar para o topo
+                const params = new URLSearchParams(searchParams.toString());
+                params.delete('tab');
+                router.push(`${pathname}?${params.toString()}`, { scroll: false });
             } else {
                 setCurrentTab(tab);
             }
         }
-    }, [searchParams, hasDerivatives]);
+    }, [searchParams, hasDerivatives, pathname, router]);
+
+    // Efeito para sincronizar o código ativo com a URL
+    useEffect(() => {
+        // Extrair o código da URL atual
+        const pathParts = pathname.split('/');
+        const slugIndex = pathParts.findIndex(part => part === 'empresa') + 1;
+
+        if (slugIndex > 0 && slugIndex < pathParts.length) {
+            const urlCodigo = pathParts[slugIndex].toUpperCase();
+
+            // Verificar se o código na URL é diferente do código ativo atual
+            // e se é um código válido para esta empresa
+            if (empresa && codigoAtivo !== urlCodigo) {
+                const codigoExiste = empresa.codigos.some(c => c.codigo.toUpperCase() === urlCodigo);
+
+                if (codigoExiste) {
+                    setCodigoAtivo(urlCodigo);
+                }
+            }
+        }
+    }, [empresa, pathname, codigoAtivo]);
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: TabValue) => {
         setCurrentTab(newValue);
-        
-        // Atualizar a URL com o parâmetro da tab
-        const url = new URL(window.location.href);
-        
+
+        // Criar objeto com os parâmetros de busca atuais
+        const params = new URLSearchParams(searchParams.toString());
+
         if (newValue === 'principal') {
             // Se for a tab principal, remover o parâmetro tab da URL
-            url.searchParams.delete('tab');
+            params.delete('tab');
         } else {
             // Caso contrário, adicionar o parâmetro tab com o valor da tab selecionada
-            url.searchParams.set('tab', newValue);
+            params.set('tab', newValue);
         }
-        
-        // Atualizar a URL sem recarregar a página
-        window.history.pushState({}, '', url);
+
+        // Atualizar a URL sem recarregar a página e sem rolar para o topo usando o router do Next.js
+        router.push(`${pathname}?${params.toString()}`, { scroll: false });
     };
 
     const handleCodigoChange = (codigo: string) => {
         setCodigoAtivo(codigo);
+
+        // Atualizar a URL com o código selecionado
+        // Extrair o slug da URL atual
+        const pathParts = pathname.split('/');
+        const slugIndex = pathParts.findIndex(part => part === 'empresa') + 1;
+
+        if (slugIndex > 0 && slugIndex < pathParts.length) {
+            // Construir nova URL com o código selecionado
+            pathParts[slugIndex] = codigo;
+
+            // Manter os parâmetros de busca existentes (como tab)
+            const newPath = pathParts.join('/');
+
+            // Criar objeto com os parâmetros de busca atuais
+            const params = new URLSearchParams(searchParams.toString());
+
+            // Atualizar a URL sem recarregar a página e sem rolar para o topo usando o router do Next.js
+            router.push(`${newPath}?${params.toString()}`, { scroll: false });
+        }
     };
 
     if (loading) {

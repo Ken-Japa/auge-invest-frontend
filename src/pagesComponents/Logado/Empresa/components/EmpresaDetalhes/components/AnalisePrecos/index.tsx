@@ -66,7 +66,7 @@ export const AnalisePrecos: React.FC<AnalisePrecoProps> = ({ codigoAtivo }) => {
 
     return (
         <StyledPaper>
-            <Typography variant="h2" gutterBottom sx={{ textAlign: 'center', mb: 2 }}>Análise Estatística de Preços</Typography>
+            <Typography variant="h2" gutterBottom sx={{ textAlign: 'center', mb: 2 }}>Análise Estatística de Preços de {codigoAtivo}</Typography>
             <Description variant="body1" paragraph sx={{ textAlign: 'center', mb: 4 }}>
                 Esta ferramenta analisa a distribuição histórica de preços para ajudar a identificar níveis estatisticamente significativos para alertas de compra e venda.
             </Description>
