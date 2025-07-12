@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Tabs, Tab, Box, Typography, Paper } from '@mui/material';
 
 // Componentes compartilhados
@@ -34,10 +35,18 @@ interface EmpresaDetalhesProps {
     codigoSelecionado?: string;
 }
 
-type TabValue = 'principal' | 'dividendos' | 'derivativos';
+type TabValue = 'principal' | 'dividendos' | 'derivativos' | 'analiseprecos';
 
 export const EmpresaDetalhes = ({ slug, codigoSelecionado }: EmpresaDetalhesProps) => {
-    const [currentTab, setCurrentTab] = useState<TabValue>('principal');
+    const searchParams = useSearchParams();
+    const tabParam = searchParams.get('tab');
+    
+    // Verificar se o parâmetro de tab é válido
+    const isValidTab = (tab: string | null): tab is TabValue => {
+        return tab === 'principal' || tab === 'dividendos' || tab === 'derivativos' || tab === 'analiseprecos';
+    };
+    
+    const [currentTab, setCurrentTab] = useState<TabValue>(isValidTab(tabParam) ? tabParam : 'principal');
     const [empresa, setEmpresa] = useState<EmpresaDetalhada | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -210,9 +219,40 @@ export const EmpresaDetalhes = ({ slug, codigoSelecionado }: EmpresaDetalhesProp
 
         checkDerivatives();
     }, [codigoAtivo]);
+    
+    // Efeito para atualizar a aba quando o parâmetro da URL mudar
+    useEffect(() => {
+        const tab = searchParams.get('tab');
+        if (isValidTab(tab)) {
+            // Verificar se a aba é 'derivativos' e se hasDerivatives é false
+            if (tab === 'derivativos' && !hasDerivatives) {
+                // Se não houver derivativos, não mudar para essa aba
+                // Atualizar a URL para remover o parâmetro tab
+                const url = new URL(window.location.href);
+                url.searchParams.delete('tab');
+                window.history.pushState({}, '', url);
+            } else {
+                setCurrentTab(tab);
+            }
+        }
+    }, [searchParams, hasDerivatives]);
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: TabValue) => {
         setCurrentTab(newValue);
+        
+        // Atualizar a URL com o parâmetro da tab
+        const url = new URL(window.location.href);
+        
+        if (newValue === 'principal') {
+            // Se for a tab principal, remover o parâmetro tab da URL
+            url.searchParams.delete('tab');
+        } else {
+            // Caso contrário, adicionar o parâmetro tab com o valor da tab selecionada
+            url.searchParams.set('tab', newValue);
+        }
+        
+        // Atualizar a URL sem recarregar a página
+        window.history.pushState({}, '', url);
     };
 
     const handleCodigoChange = (codigo: string) => {
