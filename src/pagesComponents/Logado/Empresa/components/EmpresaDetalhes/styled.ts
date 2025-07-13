@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-import { Box, Tab, Tabs } from "@mui/material";
+import { Box, Tab, Tabs, Paper, CircularProgress, Typography } from "@mui/material";
 
 export const EmpresaContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(3),
@@ -66,8 +66,50 @@ export const StyledTab = styled(Tab)(({ theme }) => ({
   },
 }));
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: string;
-  value: string;
-}
+// Componentes adicionais estilizados
+export const LoadingContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  minHeight: 400,
+  width: '100%',
+}));
+
+export const ErrorContainer = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(3),
+  textAlign: 'center',
+  color: theme.palette.error.main,
+}));
+
+export const TabContent = styled(Box)(({ theme }) => ({
+  marginTop: theme.spacing(3),
+}));
+
+export const StyledPaper = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(3),
+  borderRadius: theme.shape.borderRadius,
+  boxShadow: theme.shadows[1],
+  backgroundColor: theme.palette.background.paper,
+  transition: theme.transitions.create(['background-color', 'box-shadow'], {
+    duration: theme.transitions.duration.standard,
+  }),
+}));
+
+export const SectionTitle = styled(Typography)(({ theme }) => ({
+  marginBottom: theme.spacing(2),
+  fontWeight: 500,
+}));
+
+export const SectionDescription = styled(Typography)(({ theme }) => ({
+  marginBottom: theme.spacing(3),
+  color: theme.palette.text.secondary,
+}));
+
+export const ProgressContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: theme.spacing(2),
+}));
+
+// Removida a interface TabPanelProps duplicada, pois já existe no componente TabPanel.tsx
