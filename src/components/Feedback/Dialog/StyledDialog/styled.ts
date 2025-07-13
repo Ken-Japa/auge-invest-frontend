@@ -1,18 +1,25 @@
-import { styled } from '@mui/material/styles';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
-import { spacing, borderRadius, transitions } from '@/theme/variables';
+import { styled } from "@mui/material/styles";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+} from "@mui/material";
+import { spacing, borderRadius, transitions } from "@/theme/variables";
 
 export const StyledDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiPaper-root': {
+  "& .MuiPaper-root": {
     backgroundColor: theme.palette.background.paper,
     borderRadius: borderRadius.md,
-  }
+  },
 }));
 
 export const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' 
-    ? theme.palette.grey[800] 
-    : theme.palette.grey[100],
+  backgroundColor:
+    theme.palette.mode === "dark"
+      ? theme.palette.primary.main
+      : theme.palette.primary.main,
   color: theme.palette.text.primary,
   fontWeight: 600,
   padding: spacing.md,
@@ -20,6 +27,7 @@ export const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
 
 export const StyledDialogContent = styled(DialogContent)(({ theme }) => ({
   padding: spacing.lg,
+  margin: spacing.lg,
 }));
 
 export const StyledDialogActions = styled(DialogActions)(({ theme }) => ({
@@ -30,23 +38,23 @@ export const StyledDialogActions = styled(DialogActions)(({ theme }) => ({
 export const CancelButton = styled(Button)(({ theme }) => ({
   color: theme.palette.text.secondary,
   transition: transitions.medium,
-  
-  '&:hover': {
+
+  "&:hover": {
     backgroundColor: theme.palette.action.hover,
-  }
+  },
 }));
 
 export const SaveButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.primary.contrastText,
   transition: transitions.medium,
-  
-  '&:hover': {
+
+  "&:hover": {
     backgroundColor: theme.palette.primary.A200,
   },
-  
-  '&.Mui-disabled': {
+
+  "&.Mui-disabled": {
     backgroundColor: theme.palette.action.disabledBackground,
     color: theme.palette.action.disabled,
-  }
+  },
 }));

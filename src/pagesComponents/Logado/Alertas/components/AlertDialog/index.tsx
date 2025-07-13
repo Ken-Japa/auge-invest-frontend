@@ -53,8 +53,8 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
-            [name]: name.includes('Percentage') || name.includes('Price') 
-                ? parseFloat(value) || 0 
+            [name]: name.includes('Percentage') || name.includes('Price')
+                ? parseFloat(value) || 0
                 : value
         }));
     };
@@ -62,7 +62,7 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
     const handleSubmit = async () => {
         try {
             setIsSubmitting(true);
-            
+
             const alertData = {
                 symbol: formData.symbol,
                 name: formData.name || formData.symbol,
@@ -87,7 +87,7 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
             } else {
                 await createAlert(alertData);
             }
-            
+
             onClose();
         } catch (error) {
             console.error('Erro ao salvar alerta:', error);
@@ -97,10 +97,10 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
     };
 
     return (
-        <StyledDialog 
-            open={open} 
-            onClose={onClose} 
-            maxWidth="sm" 
+        <StyledDialog
+            open={open}
+            onClose={onClose}
+            maxWidth="sm"
             fullWidth
             title={alert ? 'Editar Alerta' : 'Novo Alerta'}
             onSave={handleSubmit}
@@ -115,7 +115,7 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
                         name="symbol"
                         value={formData.symbol}
                         onChange={handleChange}
-                        placeholder="Ex: PETR4"
+                        placeholder="Código Ativo"
                         required
                     />
                 </Grid>
@@ -126,7 +126,7 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Ex: Petrobras PN"
+                        placeholder=""
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>

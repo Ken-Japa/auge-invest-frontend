@@ -34,39 +34,63 @@ src/
 ├── pageComponents/         # Componentes específicos de página
 │   ├── Logado/             # Componentes para usuários logados
 │   └── Não-Logado/         # Componentes para visitantes
+│   └── Blog/               # Lógica páginas do Blog   
 ├── providers/              # Providers React
-├── services/               # Serviços e APIs
+├── services/               # APIs
 ├── theme/                  # Configuração de tema
 ├── types/                  # Definições de tipos TypeScript
 └── utils/                  # Funções utilitárias
-## Tarefas Prioritárias:
 
-1. Conectar banco de usuários (registrar) - > Assinantes
-2. Testar backend API fornecendo dados ao frontend
+## Tarefas Prioritárias BACKEND:
+
+1. Assinantes (modos de pagamento) - Período de Testes
+2. Possibilitar a criação de alertas
+3. Cadastro de Posição - Carteira
+4. Cadastrar Favoritos
+5. APIs para ETF, ETD de BDR, BDR
+
+## Tarefas Prioritárias FRONTEND:
+
+1. Página de ativos específicos (ETF, ETF de BDR, BDR) (FII preços)
+2. Posições de usuário
+3. Favoritos
+4. Alertas
+5. Assinatura (modos de pagamento)
+6. Dashboard de visão geral da economia (ir adicionando a medida que for feito os ativos individuais) (favoritos)
+
+## Tarefas Finais:
+
+1. Atualizar backend
+2. Configurar atualização automática do backend
+3. Melhorar estilo geral do frontend
+4. Resolver problemas identificados - Trello
+5. Revisar todos os componentes criados, identificar problemas e melhorias
+6. Redes Sociais
+7. Campanhas de Marketing
 
 ## Tarefas Futuras:
 
-1. Dashboard de visão geral da economia
-     (rede neural - sistema de card - listas - gráficos)
-2. Página de ativos específicos (uma empresa em si, BDR) (ETF, ETF de BDR) (FII) - Dividendos
-3. Posições de usuário (extra: adicionar rentabilidade em um gráfico x tempo)
-4. Página para derivativos
-5. Função para exibir histórico de derivativos
-6. Alertas
-7. Dados fundamentalistas
-8. Selic, Inflacao, Moedas, Debentures, Commodities
-9. Calendario Economico (widget) - Calendario Proventos (widget)
+1. Selic, Inflacao
+2. Moedas, Debentures, Commodities
+3. Tesouro Direto
+4. Posições em aberto (derivativos)
+5. IA chatbot
 
-## Tarefas Finais:
-1. Assinantes (modos de pagamento)
-2. Período de Testes
-3. Artigos Blog
-4. Redes Sociais
+## Tarefas Feitas
 
-## Componentes essenciais:
-1. Gráficos
-2. Cards
-3. Calendário (utilização de um widget da TradingView)
+1. Páginas para visitantes
+2. Login e Registrar
+3. Analise fundamentalista 
+4. Perfil e configurações usuário
+5. Empresas Geral
+6. Empresas Individual (dividendos - derivativos - analise preços)
+7. FII (problema com preços)
+8. Visão economia (parcial)
+9. Blog
+
+1. APIs (auth, user, empresa, historico empresa, derivativos, fii)
+2. Tema
+
 
 ## MUI material
 https://mui.com/
