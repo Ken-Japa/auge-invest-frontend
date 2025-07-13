@@ -7,11 +7,12 @@ import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+import { PageBackground } from '@/components/Layout/PageBackground';
 import { AppearanceSettings } from './components/AppearanceSettings/index';
 import { NotificationSettings } from './components/NotificationSettings/index';
 import { AlertPreferences } from './components/AlertPreferences/index';
 import { useSettings } from './hooks/useSettings';
-import { ConfiguracoesWrapper, SettingsTitle } from './styled';
+import { SettingsTitle } from './styled';
 
 export const Configuracoes = () => {
     const {
@@ -42,18 +43,18 @@ export const Configuracoes = () => {
 
     if (error) {
         return (
-            <ConfiguracoesWrapper>
+            <PageBackground imageName="Configuracoes">
                 <Container maxWidth="md" sx={{ py: 4 }}>
                     <Alert severity="error">{error}</Alert>
                 </Container>
-            </ConfiguracoesWrapper>
+            </PageBackground>
         );
     }
 
     return (
         <PageTransition direction="up" duration={0.4} distance={30}>
             <ErrorBoundary>
-                <ConfiguracoesWrapper>
+                <PageBackground imageName="Configuracoes">
                     <Container maxWidth="md" sx={{ py: 4 }}>
                         <SettingsTitle variant="h2" >
                             Configurações
@@ -92,7 +93,7 @@ export const Configuracoes = () => {
                             </Alert>
                         </Snackbar>
                     </Container>
-                </ConfiguracoesWrapper>
+                </PageBackground>
             </ErrorBoundary>
         </PageTransition>
     );

@@ -1,25 +1,17 @@
 import { FormControlLabel, Switch } from '@mui/material';
 import { DarkIcon, LightIcon } from '@/components/Theme/TrocarTema/styled';
 import { useTheme } from '@/theme/ThemeContext';
-import {
-  SettingsCard,
-  SettingsSectionHeader,
-  SettingsSectionIcon,
-  SettingsSectionTitle,
-  SettingsControlContainer
-} from '../../styled';
+import { SettingsCard } from '@/components/Core/Card/SettingsCard';
+import { SettingsControlContainer } from '../../styled';
 
 export const AppearanceSettings = () => {
   const { isDarkMode, toggleTheme } = useTheme();
 
   return (
-    <SettingsCard>
-      <SettingsSectionHeader>
-        <SettingsSectionIcon>
-          {isDarkMode ? <DarkIcon /> : <LightIcon />}
-        </SettingsSectionIcon>
-        <SettingsSectionTitle variant="h4">Aparência</SettingsSectionTitle>
-      </SettingsSectionHeader>
+    <SettingsCard
+      icon={isDarkMode ? <DarkIcon /> : <LightIcon />}
+      title="Aparência"
+    >
       <SettingsControlContainer>
         <FormControlLabel
           control={

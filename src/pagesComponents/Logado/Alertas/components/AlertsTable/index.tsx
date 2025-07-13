@@ -1,12 +1,7 @@
 import { useState } from 'react';
 import {
-    Table,
-    TableBody,
     TableCell,
-    TableContainer,
-    TableHead,
     TableRow,
-    Paper,
     IconButton,
     Switch,
     Tooltip,
@@ -18,8 +13,8 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
 import { AlertDialog } from '../AlertDialog';
 import { Alert } from '../../types';
-import { TableWrapper, NoAlertsMessage } from './styled';
 import { useAlerts } from '../../hooks/useAlerts';
+import { StyledTable } from '@/components/Data-Display/Table';
 
 export const AlertsTable = () => {
     const [openDialog, setOpenDialog] = useState(false);
@@ -39,33 +34,34 @@ export const AlertsTable = () => {
         await deleteAlert(id);
     };
 
-    if (alerts.length === 0 && !loading) {
-        return (
-            <NoAlertsMessage>
-                <Typography variant="h6">Nenhum alerta encontrado</Typography>
-                <Typography variant="body2">
-                    Clique em &quot;Adicionar Alerta&quot; para criar seu primeiro alerta de preço.
-                </Typography>
-            </NoAlertsMessage>
-        );
-    }
+    const tableHeaders = [
+        'Ativo',
+        'Preço Atual',
+        'Alerta de Compra',
+        'Alerta de Venda',
+        'Status',
+        'Ações'
+    ];
+
+    const tableAlignments = [
+        'left',
+        'right',
+        'right',
+        'right',
+        'center',
+        'center'
+    ] as ('left' | 'center' | 'right')[];
 
     return (
         <>
-            <TableWrapper>
-                <TableContainer component={Paper}>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Ativo</TableCell>
-                                <TableCell align="right">Preço Atual</TableCell>
-                                <TableCell align="right">Alerta de Compra</TableCell>
-                                <TableCell align="right">Alerta de Venda</TableCell>
-                                <TableCell align="center">Status</TableCell>
-                                <TableCell align="center">Ações</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
+            <StyledTable 
+                headers={tableHeaders} 
+                alignments={tableAlignments}
+                showData={alerts.length > 0}
+                loading={loading}
+                noDataMessage="Nenhum alerta encontrado"
+                noDataDescription="Clique em 'Adicionar Alerta' para criar seu primeiro alerta de preço."
+            >
                             {alerts.map((alert) => (
                                 <TableRow key={alert.id}>
                                     <TableCell>
@@ -132,10 +128,7 @@ export const AlertsTable = () => {
                                     </TableCell>
                                 </TableRow>
                             ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </TableWrapper>
+                        </StyledTable>
 
             <AlertDialog
                 open={openDialog}

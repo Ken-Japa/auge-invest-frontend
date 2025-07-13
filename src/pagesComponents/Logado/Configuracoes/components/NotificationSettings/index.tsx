@@ -1,12 +1,7 @@
 import { FormControlLabel, Switch } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import {
-  SettingsCard,
-  SettingsSectionHeader,
-  SettingsSectionIcon,
-  SettingsSectionTitle,
-  SettingsControlContainer
-} from '../../styled';
+import { SettingsCard } from '@/components/Core/Card/SettingsCard';
+import { SettingsControlContainer } from '../../styled';
 
 type NotificationTypes = {
   email: boolean;
@@ -21,13 +16,10 @@ interface NotificationSettingsProps {
 
 export const NotificationSettings = ({ notifications, onNotificationChange }: NotificationSettingsProps) => {
   return (
-    <SettingsCard>
-      <SettingsSectionHeader>
-        <SettingsSectionIcon>
-          <NotificationsIcon />
-        </SettingsSectionIcon>
-        <SettingsSectionTitle variant="h4">Notificações</SettingsSectionTitle>
-      </SettingsSectionHeader>
+    <SettingsCard
+      icon={<NotificationsIcon />}
+      title="Notificações"
+    >
       <SettingsControlContainer>
         <FormControlLabel
           control={

@@ -7,14 +7,7 @@ import {
 
 import { Alert } from '../../types';
 import { useAlerts } from '../../hooks/useAlerts';
-import {
-    StyledDialog,
-    StyledDialogTitle,
-    StyledDialogContent,
-    StyledDialogActions,
-    CancelButton,
-    SaveButton
-} from './styled';
+import { StyledDialog } from '@/components/Feedback/Dialog/StyledDialog';
 
 interface AlertDialogProps {
     open: boolean;
@@ -104,99 +97,91 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
     };
 
     return (
-        <StyledDialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-            <StyledDialogTitle>
-                {alert ? 'Editar Alerta' : 'Novo Alerta'}
-            </StyledDialogTitle>
-            <StyledDialogContent>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                            fullWidth
-                            label="Símbolo"
-                            name="symbol"
-                            value={formData.symbol}
-                            onChange={handleChange}
-                            placeholder="Ex: PETR4"
-                            required
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                            fullWidth
-                            label="Nome do Ativo"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            placeholder="Ex: Petrobras PN"
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                            fullWidth
-                            label="Preço de Compra"
-                            name="buyPrice"
-                            type="number"
-                            value={formData.buyPrice}
-                            onChange={handleChange}
-                            InputProps={{
-                                startAdornment: <InputAdornment position="start">R$</InputAdornment>
-                            }}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                            fullWidth
-                            label="Distância para Compra"
-                            name="buyPercentage"
-                            type="number"
-                            value={formData.buyPercentage}
-                            onChange={handleChange}
-                            InputProps={{
-                                endAdornment: <InputAdornment position="end">%</InputAdornment>
-                            }}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                            fullWidth
-                            label="Preço de Venda"
-                            name="sellPrice"
-                            type="number"
-                            value={formData.sellPrice}
-                            onChange={handleChange}
-                            InputProps={{
-                                startAdornment: <InputAdornment position="start">R$</InputAdornment>
-                            }}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                            fullWidth
-                            label="Distância para Venda"
-                            name="sellPercentage"
-                            type="number"
-                            value={formData.sellPercentage}
-                            onChange={handleChange}
-                            InputProps={{
-                                endAdornment: <InputAdornment position="end">%</InputAdornment>
-                            }}
-                        />
-                    </Grid>
+        <StyledDialog 
+            open={open} 
+            onClose={onClose} 
+            maxWidth="sm" 
+            fullWidth
+            title={alert ? 'Editar Alerta' : 'Novo Alerta'}
+            onSave={handleSubmit}
+            disableSave={isSubmitting || !formData.symbol}
+            loading={isSubmitting}
+        >
+            <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="Símbolo"
+                        name="symbol"
+                        value={formData.symbol}
+                        onChange={handleChange}
+                        placeholder="Ex: PETR4"
+                        required
+                    />
                 </Grid>
-            </StyledDialogContent>
-            <StyledDialogActions>
-                <CancelButton onClick={onClose}>
-                    Cancelar
-                </CancelButton>
-                <SaveButton 
-                    variant="contained" 
-                    onClick={handleSubmit}
-                    disabled={isSubmitting || !formData.symbol}
-                >
-                    Salvar
-                </SaveButton>
-            </StyledDialogActions>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="Nome do Ativo"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Ex: Petrobras PN"
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="Preço de Compra"
+                        name="buyPrice"
+                        type="number"
+                        value={formData.buyPrice}
+                        onChange={handleChange}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">R$</InputAdornment>
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="Distância para Compra"
+                        name="buyPercentage"
+                        type="number"
+                        value={formData.buyPercentage}
+                        onChange={handleChange}
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">%</InputAdornment>
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="Preço de Venda"
+                        name="sellPrice"
+                        type="number"
+                        value={formData.sellPrice}
+                        onChange={handleChange}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">R$</InputAdornment>
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        fullWidth
+                        label="Distância para Venda"
+                        name="sellPercentage"
+                        type="number"
+                        value={formData.sellPercentage}
+                        onChange={handleChange}
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">%</InputAdornment>
+                        }}
+                    />
+                </Grid>
+            </Grid>
         </StyledDialog>
     );
 };

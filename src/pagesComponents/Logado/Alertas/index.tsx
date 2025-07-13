@@ -6,16 +6,17 @@ import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { PageBackground } from '@/components/Layout/PageBackground';
 
 import { AlertsTable } from './components/AlertsTable';
 import { AddAlertButton } from './components/AddAlertButton';
-import { BackgroundContainer, PageHeader, ActionContainer } from './styled';
+import { PageHeader, ActionContainer } from './styled';
 
 export const Alertas = () => {
     return (
         <PageTransition direction="up" duration={0.4} distance={30}>
             <ErrorBoundary>
-                <BackgroundContainer>
+                <PageBackground imageName="Alertas" opacity={0.2}>
                     <Container maxWidth="xl">
                         <PageHeader>
                             <Typography variant="h2" component="h1">
@@ -41,7 +42,7 @@ export const Alertas = () => {
                             </ProgressiveLoad>
                         </SuspenseWrapper>
                     </Container>
-                </BackgroundContainer>
+                </PageBackground>
             </ErrorBoundary>
         </PageTransition>
     );

@@ -56,7 +56,7 @@ export const TableWrapper = styled(Box)(({ theme }) => ({
   }
 }));
 
-export const NoAlertsMessage = styled("div")(({ theme }) => ({
+export const NoDataMessage = styled("div")(({ theme }) => ({
   textAlign: "center",
   padding: spacing.xl,
   color: theme.palette.text.secondary,

@@ -1,9 +1,9 @@
 import { styled } from '@mui/material/styles';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
-import { spacing, borderRadius, transitions } from "@/theme/variables";
+import { spacing, borderRadius, transitions } from '@/theme/variables';
 
 export const StyledDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiPaper-root": {
+  '& .MuiPaper-root': {
     backgroundColor: theme.palette.background.paper,
     borderRadius: borderRadius.md,
   }
@@ -31,7 +31,7 @@ export const CancelButton = styled(Button)(({ theme }) => ({
   color: theme.palette.text.secondary,
   transition: transitions.medium,
   
-  "&:hover": {
+  '&:hover': {
     backgroundColor: theme.palette.action.hover,
   }
 }));
@@ -41,7 +41,12 @@ export const SaveButton = styled(Button)(({ theme }) => ({
   color: theme.palette.primary.contrastText,
   transition: transitions.medium,
   
-  "&:hover": {
+  '&:hover': {
     backgroundColor: theme.palette.primary.A200,
+  },
+  
+  '&.Mui-disabled': {
+    backgroundColor: theme.palette.action.disabledBackground,
+    color: theme.palette.action.disabled,
   }
 }));

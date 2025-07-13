@@ -2,7 +2,7 @@ import { useState } from 'react';
 import AddAlertIcon from '@mui/icons-material/AddAlert';
 
 import { AlertDialog } from '../AlertDialog';
-import { StyledAddButton } from './styled';
+import { CustomButton } from '@/components/Core/Button';
 
 export const AddAlertButton = () => {
     const [openDialog, setOpenDialog] = useState(false);
@@ -13,13 +13,13 @@ export const AddAlertButton = () => {
 
     return (
         <>
-            <StyledAddButton
+            <CustomButton
                 variant="contained"
                 startIcon={<AddAlertIcon />}
                 onClick={handleAddAlert}
             >
                 Adicionar Alerta
-            </StyledAddButton>
+            </CustomButton>
 
             <AlertDialog
                 open={openDialog}

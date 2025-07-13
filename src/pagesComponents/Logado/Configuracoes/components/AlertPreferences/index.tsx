@@ -1,10 +1,7 @@
 import { Slider } from '@mui/material';
 import PercentIcon from '@mui/icons-material/Percent';
+import { SettingsCard } from '@/components/Core/Card/SettingsCard';
 import {
-  SettingsCard,
-  SettingsSectionHeader,
-  SettingsSectionIcon,
-  SettingsSectionTitle,
   SliderContainer,
   SliderLabel,
   SliderDescription
@@ -20,14 +17,10 @@ interface AlertPreferencesProps {
 
 export const AlertPreferences = ({ percentages, onPercentageChange }: AlertPreferencesProps) => {
   return (
-    <SettingsCard>
-      <SettingsSectionHeader>
-        <SettingsSectionIcon>
-          <PercentIcon />
-        </SettingsSectionIcon>
-        <SettingsSectionTitle variant="h4">Preferências de Alerta</SettingsSectionTitle>
-      </SettingsSectionHeader>
-
+    <SettingsCard
+      icon={<PercentIcon />}
+      title="Preferências de Alerta"
+    >
       <SliderContainer>
         <SliderLabel gutterBottom>
           Alerta de Compra: {percentages.buy}%

@@ -1,0 +1,31 @@
+import { ReactNode } from 'react';
+import { Box, Typography } from '@mui/material';
+import {
+  StyledCard,
+  SectionHeader,
+  SectionIcon,
+  SectionTitle,
+  ContentContainer
+} from './styled';
+
+interface SettingsCardProps {
+  icon: ReactNode;
+  title: string;
+  children: ReactNode;
+}
+
+export const SettingsCard = ({ icon, title, children }: SettingsCardProps) => {
+  return (
+    <StyledCard>
+      <SectionHeader>
+        <SectionIcon>
+          {icon}
+        </SectionIcon>
+        <SectionTitle variant="h4">{title}</SectionTitle>
+      </SectionHeader>
+      <ContentContainer>
+        {children}
+      </ContentContainer>
+    </StyledCard>
+  );
+};
