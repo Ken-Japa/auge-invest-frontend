@@ -1,6 +1,7 @@
 import React from 'react';
-import { Typography, Paper, Grid } from '@mui/material';
-import { StatisticalData } from '../../services/analiseService';
+import { Grid } from '@mui/material';
+import { StatisticalData } from '../../utils/types';
+import { MetricasContainer, MetricCard, MetricTitle, MetricValue } from './styled';
 
 interface MetricasProps {
   stats: StatisticalData;
@@ -10,32 +11,32 @@ const Metricas: React.FC<MetricasProps> = ({ stats }) => {
   const { mean, stdDev, min, max } = stats;
 
   return (
-    <Grid container spacing={2} sx={{ my: 4 }}>
+    <MetricasContainer container spacing={2}>
       <Grid item xs={12} md={3}>
-        <Paper sx={{ p: 2, textAlign: 'center' }}>
-          <Typography variant="subtitle1">Preço Médio</Typography>
-          <Typography variant="h4">R$ {mean.toFixed(2)}</Typography>
-        </Paper>
+        <MetricCard>
+          <MetricTitle variant="subtitle1">Preço Médio</MetricTitle>
+          <MetricValue variant="h4">R$ {mean.toFixed(2)}</MetricValue>
+        </MetricCard>
       </Grid>
       <Grid item xs={12} md={3}>
-        <Paper sx={{ p: 2, textAlign: 'center' }}>
-          <Typography variant="subtitle1">Desvio Padrão σ </Typography>
-          <Typography variant="h4">R$ {stdDev.toFixed(2)}</Typography>
-        </Paper>
+        <MetricCard>
+          <MetricTitle variant="subtitle1">Desvio Padrão σ</MetricTitle>
+          <MetricValue variant="h4">R$ {stdDev.toFixed(2)}</MetricValue>
+        </MetricCard>
       </Grid>
       <Grid item xs={12} md={3}>
-        <Paper sx={{ p: 2, textAlign: 'center' }}>
-          <Typography variant="subtitle1">Preço Mínimo</Typography>
-          <Typography variant="h4">R$ {min.toFixed(2)}</Typography>
-        </Paper>
+        <MetricCard>
+          <MetricTitle variant="subtitle1">Preço Mínimo</MetricTitle>
+          <MetricValue variant="h4">R$ {min.toFixed(2)}</MetricValue>
+        </MetricCard>
       </Grid>
       <Grid item xs={12} md={3}>
-        <Paper sx={{ p: 2, textAlign: 'center' }}>
-          <Typography variant="subtitle1">Preço Máximo</Typography>
-          <Typography variant="h4">R$ {max.toFixed(2)}</Typography>
-        </Paper>
+        <MetricCard>
+          <MetricTitle variant="subtitle1">Preço Máximo</MetricTitle>
+          <MetricValue variant="h4">R$ {max.toFixed(2)}</MetricValue>
+        </MetricCard>
       </Grid>
-    </Grid>
+    </MetricasContainer>
   );
 };
 

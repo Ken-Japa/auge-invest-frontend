@@ -1,8 +1,17 @@
 import { useState } from 'react';
-import { Paper, Typography, Grid, TextField, Button, useTheme, Box, SelectChangeEvent } from '@mui/material';
+import { Grid, SelectChangeEvent } from '@mui/material';
 import GraficoHistoricoAlertas from '../GraficoHistoricoAlertas';
 import { PriceDataPoint } from '../../../GraficoHistorico/services/historicalService';
 import { AnalysisPeriod } from '../../utils/types';
+import {
+    AlertasSectionContainer,
+    AlertasSectionTitle,
+    AlertInputContainer,
+    AlertTextField,
+    BuyAlertButton,
+    SellAlertButton,
+    AlertHistoryContainer
+} from './styled';
 
 interface AlertasSectionProps {
     codigoAtivo: string;
@@ -17,7 +26,7 @@ export const AlertasSection: React.FC<AlertasSectionProps> = ({ codigoAtivo, low
     const [buyPrice, setBuyPrice] = useState('');
     const [sellPrice, setSellPrice] = useState('');
     const [activeAlert, setActiveAlert] = useState<{ type: 'compra' | 'venda', price: number } | null>(null);
-    const theme = useTheme();
+
 
     const handleCreateBuyAlert = () => {
         // Implementar criação de alerta de compra
@@ -37,13 +46,13 @@ export const AlertasSection: React.FC<AlertasSectionProps> = ({ codigoAtivo, low
 
 
     return (
-        <Paper sx={{ p: 3, my: 4 }}>
-            <Typography variant="h3" gutterBottom sx={{ mb: 4, textAlign: 'center' }}>
+        <AlertasSectionContainer>
+            <AlertasSectionTitle variant="h3" gutterBottom align="center">
                 Configurar Alertas para {codigoAtivo}
-            </Typography>
+            </AlertasSectionTitle>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={6}>
-                    <TextField
+                    <AlertTextField
                         fullWidth
                         label="Alerta de Compra"
                         type="number"
@@ -54,18 +63,16 @@ export const AlertasSection: React.FC<AlertasSectionProps> = ({ codigoAtivo, low
                         }}
                         helperText="Notificar quando o preço estiver neste valor"
                     />
-                    <Button
+                    <BuyAlertButton
                         variant="contained"
-                        color="success"
                         fullWidth
-                        sx={{ mt: 2, color: 'white' }}
                         onClick={handleCreateBuyAlert}
                     >
                         Criar Alerta de Compra
-                    </Button>
+                    </BuyAlertButton>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <TextField
+                    <AlertTextField
                         fullWidth
                         label="Alerta de Venda"
                         type="number"
@@ -76,27 +83,25 @@ export const AlertasSection: React.FC<AlertasSectionProps> = ({ codigoAtivo, low
                         }}
                         helperText="Notificar quando o preço estiver neste valor"
                     />
-                    <Button
+                    <SellAlertButton
                         variant="contained"
-                        color="error"
                         fullWidth
-                        sx={{ mt: 2, color: 'white' }}
                         onClick={handleCreateSellAlert}
                     >
                         Criar Alerta de Venda
-                    </Button>
+                    </SellAlertButton>
                 </Grid>
             </Grid>
 
             {activeAlert && (
-                <Box sx={{ mt: 4 }}>
+                <AlertHistoryContainer>
                     <GraficoHistoricoAlertas
                         data={data}
                         alertaCompra={activeAlert.type === 'compra' ? activeAlert.price : null}
                         alertaVenda={activeAlert.type === 'venda' ? activeAlert.price : null}
                     />
-                </Box>
+                </AlertHistoryContainer>
             )}
-        </Paper>
+        </AlertasSectionContainer>
     );
 };

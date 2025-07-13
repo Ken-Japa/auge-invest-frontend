@@ -1,26 +1,27 @@
 import React from 'react';
-import { Grid, FormControl, InputLabel, Select, MenuItem, Typography, Slider, SelectChangeEvent } from '@mui/material';
-import { AnalysisPeriod, PeriodData } from '../../services/analiseService';
+import { Grid, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
+import { AnalysisPeriod, PeriodData } from '../../utils/types';
+import { PeriodoContainer, PeriodoFormControl, CustomYearsContainer, YearsTypography, CustomYearsSlider } from './styled';
 
 interface PeriodoProps {
+  periodsData: PeriodData[];
   selectedPeriod: AnalysisPeriod;
   customYears: number;
-  periodsData: PeriodData[];
   onPeriodChange: (event: SelectChangeEvent) => void;
-  onCustomYearsChange: (event: Event, value: number | number[]) => void;
+  onCustomYearsChange: (event: Event, newValue: number | number[]) => void;
 }
 
 const Periodo: React.FC<PeriodoProps> = ({
+  periodsData,
   selectedPeriod,
   customYears,
-  periodsData,
   onPeriodChange,
-  onCustomYearsChange
+  onCustomYearsChange,
 }) => {
   return (
-    <Grid container spacing={2} alignItems="center">
+    <PeriodoContainer container spacing={2} alignItems="center">
       <Grid item xs={12} md={6}>
-        <FormControl fullWidth>
+        <PeriodoFormControl>
           <InputLabel>Período de Análise</InputLabel>
           <Select
             value={selectedPeriod}
@@ -33,28 +34,30 @@ const Periodo: React.FC<PeriodoProps> = ({
               </MenuItem>
             ))}
           </Select>
-        </FormControl>
+        </PeriodoFormControl>
       </Grid>
       {selectedPeriod === 'custom' && (
         <Grid item xs={12} md={6}>
-          <Typography gutterBottom>Período Escolhido - {customYears} Anos </Typography>
-          <Slider
-            value={customYears}
-            onChange={onCustomYearsChange}
-            min={0.5}
-            max={10}
-            step={0.5}
-            marks={[
-              { value: 0.5, label: '0.5' },
-              { value: 5, label: '5' },
-              { value: 10, label: '10' },
-            ]}
-            valueLabelDisplay="auto"
-            valueLabelFormat={(value) => `${value} anos`}
-          />
+          <CustomYearsContainer>
+            <YearsTypography gutterBottom>Período Escolhido - {customYears} Anos</YearsTypography>
+            <CustomYearsSlider
+              value={customYears}
+              onChange={onCustomYearsChange}
+              min={0.5}
+              max={10}
+              step={0.5}
+              marks={[
+                { value: 0.5, label: '0.5' },
+                { value: 5, label: '5' },
+                { value: 10, label: '10' },
+              ]}
+              valueLabelDisplay="auto"
+              valueLabelFormat={(value) => `${value} anos`}
+            />
+          </CustomYearsContainer>
         </Grid>
       )}
-    </Grid>
+    </PeriodoContainer>
   );
 };
 

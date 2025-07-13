@@ -1,8 +1,9 @@
 import React from 'react';
-import { useTheme, Box } from '@mui/material';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
-import { StatisticalData } from '../../services/analiseService';
+import { StatisticalData, StdDevLine } from '../../utils/types';
+import { useChartStyles } from '../../utils/chartConfig';
 import { generateStdDevLines } from '../../services/analiseService';
+import { ChartContainer, ChartTitle, ChartDescription } from './styled';
 
 
 interface GraficoAnalisePrecoProps {
@@ -10,14 +11,19 @@ interface GraficoAnalisePrecoProps {
 }
 
 const GraficoAnalisePreco: React.FC<GraficoAnalisePrecoProps> = ({ stats }) => {
-  const theme = useTheme();
+  const chartStyles = useChartStyles();
   const { mean, stdDev, histogramData } = stats;
 
   const stdDevLines = generateStdDevLines(mean, stdDev);
 
   return (
-    <Box sx={{ height: 400, width: '100%', position: 'relative' }}>
-
+    <>
+      <ChartTitle variant="h6">Distribuição de Preços</ChartTitle>
+      <ChartDescription variant="body2">
+        Este gráfico mostra a distribuição de frequência dos preços históricos e a curva normal correspondente.
+        As linhas verticais indicam a média e os desvios padrão.
+      </ChartDescription>
+      <ChartContainer>
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart
           data={histogramData}
@@ -32,7 +38,7 @@ const GraficoAnalisePreco: React.FC<GraficoAnalisePrecoProps> = ({ stats }) => {
           />
           <YAxis
             yAxisId="left"
-            stroke="#1E88E5"
+            stroke={chartStyles.colors.primary}
             tickFormatter={(value) => `${(value * 100).toFixed(1)}%`}
           />
           <YAxis
@@ -64,7 +70,13 @@ const GraficoAnalisePreco: React.FC<GraficoAnalisePrecoProps> = ({ stats }) => {
               return `Intervalo de Preço: R$ ${binStart.toFixed(2)} - R$ ${binEnd.toFixed(2)}`;
             }}
             wrapperStyle={{ zIndex: 1000 }}
-            contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', border: '1px solid #ccc', padding: '10px' }}
+            contentStyle={{
+              backgroundColor: chartStyles.tooltip.background,
+              border: chartStyles.tooltip.border,
+              padding: '10px',
+              borderRadius: chartStyles.tooltip.borderRadius,
+              boxShadow: chartStyles.tooltip.boxShadow
+            }}
           />
           <Legend wrapperStyle={{ paddingTop: '20px' }} />
 
@@ -72,7 +84,7 @@ const GraficoAnalisePreco: React.FC<GraficoAnalisePrecoProps> = ({ stats }) => {
           <Bar
             dataKey="frequency"
             name="Frequência"
-            fill={theme.palette.primary.main}
+            fill={chartStyles.colors.primary}
             yAxisId="left"
             opacity={0.7}
           />
@@ -82,22 +94,22 @@ const GraficoAnalisePreco: React.FC<GraficoAnalisePrecoProps> = ({ stats }) => {
             type="monotone"
             dataKey="normalValue"
             name="Curva Normal"
-            stroke={theme.palette.secondary.main}
+            stroke={chartStyles.colors.secondary}
             strokeWidth={2}
             dot={false}
             yAxisId="right"
           />
 
-          {stdDevLines.map((line, index) => (
+          {stdDevLines.map((line: StdDevLine, index: number) => (
             <ReferenceLine
               key={index}
               x={line.value}
-              stroke={line.label === 'Média' ? theme.palette.error.main : theme.palette.info.main}
-              strokeDasharray={line.label === 'Média' ? '3 0' : '3 3'}
+              stroke={line.label === 'Média' ? chartStyles.colors.error : chartStyles.colors.info}
+              strokeDasharray={line.label === 'Média' ? chartStyles.markers.solidLine : chartStyles.markers.dashArray}
               label={{
                 value: `${line.label} (${line.value.toFixed(2)})`,
                 position: 'top',
-                fill: line.label === 'Média' ? theme.palette.error.main : theme.palette.info.main,
+                fill: line.label === 'Média' ? chartStyles.colors.error : chartStyles.colors.info,
                 fontSize: 12
               }}
               yAxisId="left"
@@ -106,7 +118,8 @@ const GraficoAnalisePreco: React.FC<GraficoAnalisePrecoProps> = ({ stats }) => {
 
         </ComposedChart>
       </ResponsiveContainer>
-    </Box>
+    </ChartContainer>
+    </>
   );
 };
 

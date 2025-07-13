@@ -1,31 +1,13 @@
+import { getHistoricalData } from "../../GraficoHistorico/services/historicalService";
 import {
-  getHistoricalData,
   PriceDataPoint,
-} from "../../GraficoHistorico/services/historicalService";
-
-// Interface para os dados estatísticos calculados
-export interface StatisticalData {
-  mean: number;
-  stdDev: number;
-  min: number;
-  max: number;
-  histogramData: Array<{
-    price: number;
-    frequency: number;
-    normalValue: number;
-  }>;
-}
-
-// Interface para os dados de cada período
-export interface PeriodData {
-  label: string;
-  period: AnalysisPeriod;
-  data: PriceDataPoint[];
-  stats: StatisticalData | null;
-}
-
-// Tipos para os períodos de análise
-export type AnalysisPeriod = "all" | "5y" | "2.5y" | "custom";
+  StatisticalData,
+  PeriodData,
+  AnalysisPeriod,
+  DetailedAlert,
+  AlertSuggestions,
+  StdDevLine
+} from "../utils/types";
 
 /**
  * Busca os dados históricos para um ativo específico
@@ -195,7 +177,7 @@ export const preparePeriodData = (
 /**
  * Gera linhas de desvio padrão para o gráfico
  */
-export const generateStdDevLines = (mean: number, stdDev: number) => {
+export const generateStdDevLines = (mean: number, stdDev: number): StdDevLine[] => {
   return [
     { label: "-3σ", value: mean - 3 * stdDev },
     { label: "-2σ", value: mean - 2 * stdDev },
@@ -262,7 +244,7 @@ export const calculateAlertSuggestions = (
   mean: number,
   stdDev: number,
   data: PriceDataPoint[]
-) => {
+): AlertSuggestions => {
   // Ordenar os preços do menor para o maior
   const sortedPrices = data.map((item) => item.valor).sort((a, b) => a - b);
 
@@ -297,7 +279,7 @@ export const calculateAlertSuggestions = (
   const highLastDate90 = findLastDateForPrice(data, highAlert90, true);
   const highLastDate80 = findLastDateForPrice(data, highAlert80, true);
   const highLastDate70 = findLastDateForPrice(data, highAlert70, true);
-  return {
+  const result: AlertSuggestions = {
     lowAlert90: {
       price: lowAlert90,
       percentage: lowPercentage90,
@@ -335,4 +317,6 @@ export const calculateAlertSuggestions = (
       daysSince: highLastDate70.daysSince,
     },
   };
+  
+  return result;
 };

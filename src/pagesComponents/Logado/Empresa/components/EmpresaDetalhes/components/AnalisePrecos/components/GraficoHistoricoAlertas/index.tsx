@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Typography, useTheme, CircularProgress, Box } from '@mui/material';
+import { Typography, CircularProgress } from '@mui/material';
 import { ResponsiveLine } from '@nivo/line';
-import { GraficoContainer, GraficoHeader, ChartWrapper, LoadingContainer } from '../../../GraficoHistorico/styled';
+import { useChartStyles, configureAlertMarkers } from '../../utils/chartConfig';
+import { PriceDataPoint, ChartDataPoint, ChartMarker } from '../../utils/types';
+import {
+    GraficoContainer,
+    GraficoTitle,
+    LoadingContainer,
+    ErrorContainer,
+    EmptyDataContainer,
+    TooltipContainer,
+    TooltipTitle,
+    TooltipRow,
+    TooltipLabel,
+    TooltipValue
+} from './styled';
 
-
-interface PriceDataPoint {
-    dataFormatada: string;
-    valor: number;
-    showLabel?: boolean;
-}
-
-interface ChartDataPoint {
-    x: string;
-    y: number;
-    showLabel?: boolean;
-    originalData: PriceDataPoint;
-}
 
 interface GraficoHistoricoAlertasProps {
     data: PriceDataPoint[];
@@ -25,16 +25,6 @@ interface GraficoHistoricoAlertasProps {
     alertaVenda?: number | null;
 }
 
-interface MarkerProps {
-    axis: 'x' | 'y';
-    value: number | string;
-    lineStyle: { stroke: string; strokeWidth: number; strokeDasharray?: string };
-    legend: string;
-    legendPosition: 'top';
-    legendOrientation?: 'horizontal';
-    textStyle: { fill: string };
-}
-
 const GraficoHistoricoAlertas: React.FC<GraficoHistoricoAlertasProps> = ({
     data,
     loading = false,
@@ -42,7 +32,7 @@ const GraficoHistoricoAlertas: React.FC<GraficoHistoricoAlertasProps> = ({
     alertaCompra = null,
     alertaVenda = null,
 }) => {
-    const theme = useTheme();
+    const chartStyles = useChartStyles();
     const [chartData, setChartData] = useState<PriceDataPoint[]>([]);
     const [filteredData, setFilteredData] = useState<PriceDataPoint[]>(data);
 
@@ -72,27 +62,12 @@ const GraficoHistoricoAlertas: React.FC<GraficoHistoricoAlertasProps> = ({
 
 
 
-    const markers: MarkerProps[] = useMemo(() => [
-        alertaCompra !== null && {
-            axis: 'y',
-            value: alertaCompra,
-            lineStyle: { stroke: theme.palette.success.main, strokeWidth: 2 },
-            legend: `Alerta Compra R$ ${alertaCompra.toFixed(2)}`,
-            legendPosition: 'top',
-            legendOrientation: 'horizontal',
-            textStyle: { fill: theme.palette.success.main }
-        },
-        alertaVenda !== null && {
-            axis: 'y',
-            value: alertaVenda,
-            lineStyle: { stroke: theme.palette.error.main, strokeWidth: 2 },
-            legend: `Alerta Venda R$ ${alertaVenda.toFixed(2)}`,
-            legendPosition: 'top',
-            legendOrientation: 'horizontal',
-            textStyle: { fill: theme.palette.error.main }
-        }
-
-    ].filter(Boolean) as MarkerProps[], [alertaCompra, alertaVenda, theme.palette]);
+    const markers: ChartMarker[] = useMemo(() => {
+        return configureAlertMarkers(alertaCompra, alertaVenda, {
+            success: chartStyles.colors.success,
+            error: chartStyles.colors.error
+        });
+    }, [alertaCompra, alertaVenda, chartStyles.colors.success, chartStyles.colors.error]);
 
 
     const formattedChartData = useMemo(() => {
@@ -116,28 +91,24 @@ const GraficoHistoricoAlertas: React.FC<GraficoHistoricoAlertasProps> = ({
 
     return (
         <GraficoContainer>
-            <GraficoHeader>
-                <div style={{ width: '100%', textAlign: 'center' }}>
-                    <Typography variant="h4">Histórico de Preços com Alerta</Typography>
-                </div>
-            </GraficoHeader>
+            <GraficoTitle variant="h6">
+                Histórico de Preços com Alertas
+            </GraficoTitle>
 
-            <ChartWrapper>
-                {loading ? (
-                    <LoadingContainer>
-                        <CircularProgress size={40} />
-                        <Typography variant="body2" sx={{ mt: 2 }}>Carregando dados...</Typography>
-                    </LoadingContainer>
-                ) : error ? (
-                    <LoadingContainer>
-                        <Typography color="error">{error}</Typography>
-                    </LoadingContainer>
-                ) : chartData.length === 0 ? (
-                    <LoadingContainer>
-                        <Typography>Nenhum dado disponível para o período selecionado</Typography>
-                    </LoadingContainer>
-                ) : (
-                    <Box sx={{ height: 400, position: 'relative' }}>
+            {loading ? (
+                <LoadingContainer>
+                    <CircularProgress size={40} />
+                    <Typography variant="body2" sx={{ mt: 2, color: chartStyles.colors.text }}>Carregando dados...</Typography>
+                </LoadingContainer>
+            ) : error ? (
+                <ErrorContainer>
+                    <Typography variant="body1" sx={{ color: chartStyles.colors.error }}>{error}</Typography>
+                </ErrorContainer>
+            ) : chartData.length === 0 ? (
+                <EmptyDataContainer>
+                    <Typography variant="body1" sx={{ color: chartStyles.colors.text }}>Nenhum dado disponível para o período selecionado</Typography>
+                </EmptyDataContainer>
+            ) : (
                         <ResponsiveLine
                             data={formattedChartData}
                             margin={{ top: 20, right: 30, bottom: 100, left: 90 }}
@@ -162,7 +133,7 @@ const GraficoHistoricoAlertas: React.FC<GraficoHistoricoAlertasProps> = ({
                                             transform="rotate(-45)"
                                             textAnchor="end"
                                             dominantBaseline="middle"
-                                            style={{ fill: '#fff', fontSize: 12 }}
+                                            style={{ fill: chartStyles.colors.text, fontSize: 12 }}
                                         >
                                             {value}
                                         </text>
@@ -180,7 +151,7 @@ const GraficoHistoricoAlertas: React.FC<GraficoHistoricoAlertasProps> = ({
                                             x={-10}
                                             textAnchor="end"
                                             dominantBaseline="middle"
-                                            style={{ fill: '#fff', fontSize: 12 }}
+                                            style={{ fill: chartStyles.colors.text, fontSize: 12 }}
                                         >
                                             {`R$ ${Number(value).toFixed(2)}`}
                                         </text>
@@ -191,44 +162,44 @@ const GraficoHistoricoAlertas: React.FC<GraficoHistoricoAlertasProps> = ({
                             enableGridY={true}
 
                             pointSize={8}
-                            pointColor="white"
+                            pointColor={chartStyles.colors.background}
                             pointBorderWidth={2}
 
                             tooltip={({ point }) => (
-                                <Box
-                                    sx={{
-                                        background: 'rgba(255, 255, 255, 0.95)',
-                                        padding: 1.5,
-                                        borderRadius: 1,
-                                        boxShadow: '0 0 10px rgba(0,0,0,0.25)',
-                                        border: '1px solid rgba(0,0,0,0.1)'
-                                    }}
-                                >
-                                    <Typography variant="body2" color="text.primary" sx={{ fontWeight: 'bold' }}>
+                                <TooltipContainer>
+                                    <TooltipTitle variant="body2">
                                         Data: {String(point.data.x)}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.primary">
-                                        Preço: R$ {Number(point.data.y).toFixed(2)}
-                                    </Typography>
+                                    </TooltipTitle>
+                                    <TooltipRow>
+                                        <TooltipLabel variant="body2">Preço:</TooltipLabel>
+                                        <TooltipValue variant="body2">R$ {Number(point.data.y).toFixed(2)}</TooltipValue>
+                                    </TooltipRow>
                                     {alertaCompra && (
-                                        <Typography
-                                            variant="body2"
-                                            color={Number(point.data.y) <= alertaCompra ? 'success.main' : 'text.primary'}
-                                        >
-                                            Alerta de Compra: R$ {alertaCompra.toFixed(2)}
-                                        </Typography>
+                                        <TooltipRow>
+                                            <TooltipLabel variant="body2">Alerta de Compra:</TooltipLabel>
+                                            <TooltipValue 
+                                                variant="body2"
+                                                color={Number(point.data.y) <= alertaCompra ? chartStyles.colors.success : chartStyles.colors.text}
+                                            >
+                                                R$ {alertaCompra.toFixed(2)}
+                                            </TooltipValue>
+                                        </TooltipRow>
                                     )}
                                     {alertaVenda && (
-                                        <Typography
-                                            variant="body2"
-                                            color={Number(point.data.y) >= alertaVenda ? 'error.main' : 'text.primary'}
-                                        >
-                                            Alerta de Venda: R$ {alertaVenda.toFixed(2)}
-                                        </Typography>
+                                        <TooltipRow>
+                                            <TooltipLabel variant="body2">Alerta de Venda:</TooltipLabel>
+                                            <TooltipValue 
+                                                variant="body2"
+                                                color={Number(point.data.y) >= alertaVenda ? chartStyles.colors.error : chartStyles.colors.text}
+                                            >
+                                                R$ {alertaVenda.toFixed(2)}
+                                            </TooltipValue>
+                                        </TooltipRow>
                                     )}
-                                </Box>
+                                </TooltipContainer>
                             )}
                             lineWidth={1.5}
+                            colors={[chartStyles.colors.primary]}
                             enableArea={false}
                             enablePoints={chartData.length < 60}
                             curve="monotoneX"
@@ -236,9 +207,7 @@ const GraficoHistoricoAlertas: React.FC<GraficoHistoricoAlertasProps> = ({
                             enableSlices="x"
                             markers={markers}
                         />
-                    </Box>
                 )}
-            </ChartWrapper>
         </GraficoContainer>
     );
 };
