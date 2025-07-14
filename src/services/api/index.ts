@@ -8,6 +8,7 @@ export const api = {
   historical: endpoints.historicalApi,
   derivatives: endpoints.derivativesApi,
   fiis: endpoints.fiisApi,
+  bdrs: endpoints.bdrsApi,
 };
 
 export * from "./types";

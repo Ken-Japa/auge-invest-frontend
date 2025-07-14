@@ -40,6 +40,12 @@ export const API_ENDPOINTS = {
     DETAIL: "/fiis",
     DIVIDENDS: "/fiis/dividendos/pagination",
   },
+  //BDR endpoints
+  BDR: {
+    PAGINATION: "/bdrs/pagination",
+    DETAIL: "/bdrs",
+    DIVIDENDS: "/bdrs/dividendos/pagination",
+  },
   // Outros grupos de endpoints...
 };
 

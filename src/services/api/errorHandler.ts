@@ -13,6 +13,8 @@ export enum ErrorCode {
   REGISTRATION_FAILED = "auth/registration-failed",
   FII_NOT_FOUND = "fii/not-found",
   FII_DATA_ERROR = "fii/data-error",
+  BDR_NOT_FOUND = "bdr/not-found",
+  BDR_DATA_ERROR = "bdr/data-error",
 }
 
 // Mapeamento de mensagens de erro amigáveis
@@ -39,6 +41,10 @@ const ERROR_MESSAGES: Record<ErrorCode, string> = {
     "FII não encontrado. Por favor, verifique as informações fornecidas.",
   [ErrorCode.FII_DATA_ERROR]:
     "Erro ao processar dados do FII. Por favor, tente novamente.",
+  [ErrorCode.BDR_NOT_FOUND]:
+    "BDR não encontrado. Por favor, verifique as informações fornecidas.",
+  [ErrorCode.BDR_DATA_ERROR]:
+    "Erro ao processar dados do BDR. Por favor, tente novamente.",
 };
 
 export function getErrorMessage(code: ErrorCode): string {
