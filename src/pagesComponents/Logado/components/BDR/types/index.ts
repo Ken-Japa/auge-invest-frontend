@@ -2,20 +2,20 @@ import { BDR } from "@/services/api/types";
 
 export interface BDRCode {
   codigo: string;
-  preco: number | null;
-  precoAnterior: number | null;
-  variacao: number | null;
+  preco?: number | null;
+  precoAnterior?: number | null;
+  variacao?: number | null;
 }
 
 export interface BDRExtended extends BDR {
   nomeCompleto?: string;
   dataInicio?: string;
-  codigos?: BDRCode[];
+  codigos: BDRCode[];
 }
 
 export interface BDRFilter {
   segmento?: string;
-  nome?: string;
+  nomeEmpresa?: string;
   page?: number;
   pageSize?: number;
   codigo?: string;

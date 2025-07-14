@@ -1,9 +1,13 @@
 import { api } from "@/services/api";
-import { BDRExtended, BDRFilter } from "../types";
+import { BDRFilter } from "../types";
 
 export const fetchBDRs = async (filter: BDRFilter = {}) => {
   try {
-    if (filter.nome && filter.nome.length < 3 && filter.nome !== "") {
+    if (
+      filter.nomeEmpresa &&
+      filter.nomeEmpresa.length < 3 &&
+      filter.nomeEmpresa !== ""
+    ) {
       return {
         bdrs: [],
         pagination: {
@@ -21,7 +25,7 @@ export const fetchBDRs = async (filter: BDRFilter = {}) => {
 
     const response = await api.bdrs.getBDRs({
       segmento: filter.segmento,
-      nome: filter.nome,
+      nomeEmpresa: filter.nomeEmpresa,
       page: filter.page !== undefined ? filter.page : 0,
       pageSize,
     });
@@ -32,16 +36,12 @@ export const fetchBDRs = async (filter: BDRFilter = {}) => {
     }
 
     const mappedBDRs = response.result.map((bdr: any) => {
-      const codigo = Array.isArray(bdr.codigo)
-        ? bdr.codigo
-        : bdr.codigo
-        ? [bdr.codigo]
-        : [];
+      const codigo = bdr.codigo ? [{ codigo: bdr.codigo }] : [];
 
       const extendedBDR: BDRExtended = {
         ...bdr,
-        nomeCompleto: bdr.nomeCompletoFII || "",
-        dataInicio: bdr.quotaDateApproved || "",
+        nomeCompleto: bdr.nomeEmpresaCompleto || "",
+        dataInicio: bdr.dataInicio || "",
         codigos: codigo.map((code: string) => ({
           codigo: code,
           preco: null,
@@ -95,11 +95,7 @@ export const fetchBDRBySlugOrCode = async (
         return null;
       }
 
-      const codigo = Array.isArray(bdr.codigo)
-        ? bdr.codigo
-        : bdr.codigo
-        ? [bdr.codigo]
-        : [];
+      const codigo = bdr.codigo ? [{ codigo: bdr.codigo }] : [];
 
       const extendedBDR: BDRExtended = {
         ...bdr,
@@ -135,11 +131,7 @@ export const fetchBDRBySlugOrCode = async (
 
       const bdr = matchingBDR;
 
-      const codigo = Array.isArray(bdr.codigo)
-        ? bdr.codigo
-        : bdr.codigo
-        ? [bdr.codigo]
-        : [];
+      const codigo = bdr.codigo ? [{ codigo: bdr.codigo }] : [];
 
       const extendedBDR: BDRExtended = {
         ...bdr,

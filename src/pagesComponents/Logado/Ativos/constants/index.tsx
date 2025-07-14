@@ -20,7 +20,14 @@ export const ativosList = [
         path: "/fii",
         available: true
     },
-
+    {
+        id: "bdr",
+        title: "BDR",
+        description: "Brazilian Deposit Receipts, dividendos e mais.",
+        icon: ApartmentIcon,
+        path: "/bdr",
+        available: true
+    },
     {
         id: "tesouro",
         title: "Tesouro Direto",

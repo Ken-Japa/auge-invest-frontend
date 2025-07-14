@@ -14,7 +14,7 @@ class BDRsApiService extends BaseApiService {
     const params = {
       page: filters?.page !== undefined ? filters.page : 0,
       pageSize: filters?.pageSize || 10,
-      ...(filters?.nome && { nome: filters.nome }),
+      ...(filters?.nomeEmpresa && { nome: filters.nomeEmpresa }),
       ...(filters?.segmento && { segmento: filters.segmento }),
     };
 
@@ -90,7 +90,7 @@ class BDRsApiService extends BaseApiService {
     const params = {
       page: filters.page !== undefined ? filters.page : 0,
       pageSize: filters.pageSize || 100,
-      ...(filters.nomeBDR && { nomeBDR: filters.nomeBDR }),
+      ...(filters.nomeEmpresa && { nomeEmpresa: filters.nomeEmpresa }),
     };
 
     try {
@@ -100,7 +100,7 @@ class BDRsApiService extends BaseApiService {
       );
     } catch (error) {
       console.error(
-        `Erro ao buscar dividendos para BDR ${filters.nomeBDR}:`,
+        `Erro ao buscar dividendos para BDR ${filters.nomeEmpresa}:`,
         error
       );
       throw handleApiError(error, ErrorCode.BDR_DATA_ERROR);

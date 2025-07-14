@@ -1,7 +1,7 @@
 import { Grid, Chip, IconButton } from '@mui/material';
 import { OpenInNew as OpenInNewIcon } from '@mui/icons-material';
 import Link from 'next/link';
-import { FIIExtended } from '../../../types';
+import { BDRExtended } from '../../../types';
 import {
   StyledCard,
   StyledCardContent,
@@ -16,10 +16,22 @@ import {
 } from './styled';
 
 interface CardViewProps {
-  fiis: FIIExtended[];
+  bdrs: BDRExtended[];
 }
 
-export const CardView = ({ fiis }: CardViewProps) => {
+const typeMap: Record<string, string> = {
+  '1': 'BDR Nível I',
+  '2': 'BDR Nível II',
+  '3': 'BDR Nível III'
+};
+
+const marketMap: Record<string, string> = {
+  'DR1': 'BOVESPA',
+  'DRN': 'NYSE',
+  'DR3': 'NASDAQ'
+};
+
+export const CardView = ({ bdrs }: CardViewProps) => {
 
   const formatCNPJ = (cnpj: string | undefined): string => {
     if (!cnpj) return 'N/A';
@@ -49,14 +61,14 @@ export const CardView = ({ fiis }: CardViewProps) => {
 
   return (
     <Grid container spacing={3}>
-      {fiis.map((fii) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={fii._id}>
+      {bdrs.map((bdr) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} key={bdr._id}>
           <StyledCard>
             <CardHeader>
               <IconButton
                 component={Link}
-                href={`/fii/${fii.nomeFII}`}
-                aria-label="Ver detalhes do FII"
+                href={`/bdr/${bdr.nomeEmpresa}`}
+                aria-label="Ver detalhes do BDR"
                 color="primary"
                 size="small"
               >
@@ -64,44 +76,71 @@ export const CardView = ({ fiis }: CardViewProps) => {
               </IconButton>
             </CardHeader>
             <StyledCardContent>
-              <Link href={`/fii/${fii.nomeFII}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Link href={`/bdr/${bdr.nomeEmpresa}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <CardTitle variant="h4">
-                  {fii.nomeFII}
+                  {bdr.nomeEmpresa}
                 </CardTitle>
               </Link>
 
               <CardSubtitle variant="body2" color="text.secondary">
-                {fii.nomeCompletoFII}
+                {bdr.nomeEmpresaCompleto}
               </CardSubtitle>
 
               <ChipsContainer>
-                {fii.codigo.map((code) => (
-                  <Link key={code} href={`/fii/${code}`} style={{ textDecoration: 'none' }}>
-                    <Chip
-                      label={code}
-                      size="small"
-                      color="primary"
-                      variant="outlined"
-                      clickable
-                    />
-                  </Link>
-                ))}
+
+                <Link href={`/bdr/${bdr.codigo}`} style={{ textDecoration: 'none' }}>
+                  <Chip
+                    label={bdr.codigo || 'N/A'}
+                    size="small"
+                    color="primary"
+                    variant="outlined"
+                    clickable
+                  />
+                </Link>
+
+                {/* Additional info chips */}
+                {bdr.informacoes?.tipo && (
+                  <Chip
+                    label={typeMap[bdr.informacoes.tipo] || `Tipo ${bdr.informacoes.tipo}`}
+                    size="small"
+                    color="secondary"
+                  />
+                )}
+
+                {(bdr.tipoBDR || bdr.informacoes?.market) && (
+                  <Chip
+                    label={marketMap[bdr.tipoBDR || bdr.informacoes?.market] || `Mercado ${bdr.tipoBDR || bdr.informacoes?.market}`}
+                    size="small"
+                  />
+                )}
+
+                {bdr.informacoes?.status === 'A' && (
+                  <Chip label="Ativo" size="small" color="success" />
+                )}
+
+                {bdr.informacoes?.marketIndicator && (
+                  <Chip
+                    label={`Ind. ${bdr.informacoes.marketIndicator}`}
+                    size="small"
+                    variant="outlined"
+                  />
+                )}
               </ChipsContainer>
 
               <InfoContainer>
                 <InfoItem>
-                  <InfoLabel>Quantidade de Cotas:</InfoLabel>
-                  <InfoValue>{formatNumber(fii.quotaCount)}</InfoValue>
-                </InfoItem>
-
-                <InfoItem>
                   <InfoLabel>CNPJ:</InfoLabel>
-                  <InfoValue>{formatCNPJ(fii.informacoes?.cnpj)}</InfoValue>
+                  <InfoValue>{formatCNPJ(bdr.informacoes?.cnpj)}</InfoValue>
                 </InfoItem>
 
                 <InfoItem>
                   <InfoLabel>Desde:</InfoLabel>
-                  <InfoValue>{formatDate(fii.quotaDateApproved)}</InfoValue>
+                  <InfoValue>{formatDate(bdr.dataInicio)}</InfoValue>
+                </InfoItem>
+
+                <InfoItem>
+                  <InfoLabel>Segmento:</InfoLabel>
+                  <InfoValue>{bdr.segmento || 'N/A'}</InfoValue>
                 </InfoItem>
               </InfoContainer>
             </StyledCardContent>

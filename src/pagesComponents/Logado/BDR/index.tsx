@@ -3,7 +3,7 @@ import { Box, Alert, Snackbar } from '@mui/material';
 import { PageTransition } from '@/components/Utils/PageTransition';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { BDRSearchBar } from '../components/BDRs/components/SearchBar';
+import { BDRSearchBar } from '../components/BDR/components/SearchBar';
 import { useErrorHandling } from './components/ErrorHandling';
 import { BDRTabs } from './components/BDRTabs';
 import {
@@ -29,7 +29,7 @@ export const BDR = () => {
                         <ContentWrapper maxWidth="xl">
                             <ContentBox>
                                 <BDRTitle variant="h2" gutterBottom>
-                                    Fundos Imobiliários
+                                    BDRs
                                 </BDRTitle>
 
                                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 3 }}>

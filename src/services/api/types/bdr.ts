@@ -3,19 +3,26 @@ import { Pagination } from "./common";
 export interface BDRInformation {
   cnpj: string;
   site: string;
+  marketIndicator: string;
+  status: string;
+  tipo: string;
+  market: string;
 }
 
 export interface BDR {
   _id: string;
-  nomeCompletBDR: string;
-  nomeBDR: string;
-  codigoBDR: string;
-  codigo: string[];
-  quotaCount: string;
-  quotaDateApproved: string;
-  industria: string;
-  segmento: string;
-  informacoes: BDRInformation;
+  nomeEmpresaCompleto: string;
+  nomeEmpresa: string;
+  codigoEmpresa: string;
+  codigoCVM: string;
+  dataInicio: string;
+  indústria: string | null;
+  segmento: string | null;
+  atividade: string | null;
+  tipoBDR: string;
+  codigo: string;
+  __v?: number;
+  informações: BDRInformation;
 }
 
 export interface BDRListResponse {
@@ -24,7 +31,7 @@ export interface BDRListResponse {
 }
 
 export interface BDRFilter {
-  nome?: string;
+  nomeEmpresa?: string;
   segmento?: string;
   page?: number;
   pageSize?: number;
@@ -32,19 +39,17 @@ export interface BDRFilter {
 
 // FII Dividend related types
 export interface BDRDividendItem {
-  dataPagamento: string;
-  valor: string;
-  relativo: string;
+  tipo: string;
   dataAprovacao: string;
-  tipoDividendo: string;
+  valor: string;
+  dataPagamento: string;
   ultimoDiaCom: string;
   _id: string;
 }
 
 export interface BDRDividendData {
   _id: string;
-  nomeBDR: string;
-  quantidade: string;
+  nomeEmpresa: string;
   totalDividendos: number;
   dividendos: BDRDividendItem[];
 }
@@ -58,6 +63,7 @@ export interface BDRDividendResponse {
 }
 
 export interface BDRDividendFilter {
+  nomeEmpresa?: string;
   nomeBDR?: string;
   page?: number;
   pageSize?: number;

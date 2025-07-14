@@ -1,19 +1,19 @@
 import { Metadata } from "next";
-import { FII } from "@/pagesComponents/Logado/FII";
+import { BDR } from "@/pagesComponents/Logado/BDR";
 
 export const metadata: Metadata = {
-    title: "Fundos Imobiliários | AugeInvest",
-    description: "Explore informações detalhadas sobre Fundos de Investimento Imobiliário (FIIs). Acesse dados de rendimentos, patrimônio, cotações e análises dos principais FIIs do mercado brasileiro.",
+    title: "BDR | AugeInvest",
+    description: "Explore informações detalhadas sobre Brazilian Deposit Receipt (BDRs). Acesse dados de rendimentos, patrimônio, cotações e análises dos principais FIIs do mercado brasileiro.",
     openGraph: {
-        title: 'Análise de Fundos Imobiliários | AugeInvest',
-        description: 'Dados completos e análises de FIIs para investidores. Tome decisões de investimento informadas com a plataforma AugeInvest.',
+        title: 'Análise de BDR | AugeInvest',
+        description: 'Dados completos e análises de BDRs para investidores. Tome decisões de investimento informadas com a plataforma AugeInvest.',
         type: 'website',
         siteName: 'AugeInvest',
     },
-    keywords: 'fundos imobiliários, FIIs, investimento imobiliário, rendimentos FII, dividendos imobiliários, análise FII, mercado imobiliário',
+    keywords: 'brazilian deposit receipt, BDRs, BDR, rendimentos BDR, dividendos BDR, análise BDR, mercado BDR',
     robots: 'index, follow',
 };
 
-export default function FIIPage() {
-    return <FII />;
+export default function BDRPage() {
+    return <BDR />;
 }
