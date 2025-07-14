@@ -15,12 +15,26 @@ export const fetchETFs = async (
   }
 };
 
-export const fetchETFById = async (id: string): Promise<ETF | null> => {
+export const fetchETFBySlugOrCode = async (
+  param: string,
+  isCode: boolean
+): Promise<ETF | null> => {
   try {
-    const response = await api.etf.getETFByCode(id);
-    return response
+    let response: ETF | null;
+    if (isCode) {
+      response = await api.etf.getETFByCode(param);
+    } else {
+      // Assuming there's a getETFBySlug or similar API call for slug
+      // If not, you might need to implement logic to search by name or other fields
+      // For now, let's assume getETFByCode can handle both or we need to adjust API
+      response = await api.etf.getETFByNomeETF(param);
+    }
+    return response;
   } catch (error) {
-    console.error(`Error fetching ETF with ID ${id}:`, error);
+    console.error(
+      `Error fetching ETF with param ${param} (isCode: ${isCode}):`,
+      error
+    );
     throw error;
   }
 };

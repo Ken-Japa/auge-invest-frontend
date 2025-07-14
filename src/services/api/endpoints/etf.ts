@@ -65,6 +65,46 @@ class ETFsApiService extends BaseApiService {
     }
   };
 
+  getETFByNomeETF = async (nomeETF: string): Promise<ETF | null> => {
+    try {
+      const upperNomeETF = nomeETF.trim().toUpperCase();
+
+      const response = await this.get<ETFListResponse>(
+        API_ENDPOINTS.ETF.PAGINATION,
+        { nomeETF: upperNomeETF, pageSize: 1, page: 0 },
+        ErrorCode.ETF_NOT_FOUND
+      );
+
+      if (response && response.result && response.result.length > 0) {
+        return response.result[0];
+      }
+      return null;
+    } catch (error) {
+      console.error(`Erro ao buscar ETF com nome ${nomeETF}:`, error);
+      throw handleApiError(error, ErrorCode.ETF_NOT_FOUND);
+    }
+  };
+
+  getETFByNomeCompletoETF = async (nomeCompletoETF: string): Promise<ETF | null> => {
+    try {
+      const upperNomeCompletoETF = nomeCompletoETF.trim().toUpperCase();
+
+      const response = await this.get<ETFListResponse>(
+        API_ENDPOINTS.ETF.PAGINATION,
+        { nomeCompletoETF: upperNomeCompletoETF, pageSize: 1, page: 0 },
+        ErrorCode.ETF_NOT_FOUND
+      );
+
+      if (response && response.result && response.result.length > 0) {
+        return response.result[0];
+      }
+      return null;
+    } catch (error) {
+      console.error(`Erro ao buscar ETF com nome completo ${nomeCompletoETF}:`, error);
+      throw handleApiError(error, ErrorCode.ETF_NOT_FOUND);
+    }
+  };
+
   getETFByCode = async (code: string): Promise<ETF | null> => {
     try {
       const upperCode = code.trim().toUpperCase();

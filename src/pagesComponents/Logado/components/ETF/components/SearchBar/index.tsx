@@ -10,7 +10,7 @@ import { ETF } from '@/services/api/types/etf';
 interface SearchOption {
   label: string;
   value: string;
-  type: 'nomeETF' | 'codigo';
+  type: 'nomeETF' | 'codigo' | 'nomeCompletoETF';
   id: string;
 }
 
@@ -18,10 +18,10 @@ interface ETFSearchBarProps {
   value?: string;
   defaultValue?: string;
   onChange?: (query: string) => void;
-  onSearch?: (query: string) => void;
+  onClear?: () => void;
 }
 
-export const SearchBar = ({ value, defaultValue = '', onChange, onSearch }: ETFSearchBarProps) => {
+export const SearchBar = ({ value, defaultValue = '', onChange, onClear }: ETFSearchBarProps) => {
   const [searchQuery, setSearchQuery] = useState(value || defaultValue);
   const [options, setOptions] = useState<SearchOption[]>([]);
   const [loading, setLoading] = useState(false);
@@ -39,7 +39,7 @@ export const SearchBar = ({ value, defaultValue = '', onChange, onSearch }: ETFS
     const loadETFs = async () => {
       try {
         setLoading(true);
-        const response = await api.etf.searchETFs('nomeETF'); // Fetch all ETFs initially
+        const response = await api.etf.getAllETFs(); // Fetch all ETFs initially
 
         const searchOptions: SearchOption[] = [];
 
@@ -47,10 +47,18 @@ export const SearchBar = ({ value, defaultValue = '', onChange, onSearch }: ETFS
           response.result.forEach((etf: ETF) => {
             if (etf.nomeETF) {
               searchOptions.push({
-                label: `${etf.nomeETF} (ETF)`,
+                label: `${etf.nomeETF} (${etf.codigo})`,
                 value: etf.nomeETF,
                 type: 'nomeETF',
-                id: etf._id || ''
+                id: etf.nomeETF || ''
+              });
+            }
+            if (etf.nomeCompletoETF) {
+              searchOptions.push({
+                label: `${etf.nomeCompletoETF} (${etf.codigo})`,
+                value: etf.nomeCompletoETF,
+                type: 'nomeCompletoETF',
+                id: etf.nomeCompletoETF || ''
               });
             }
             if (etf.codigo) {
@@ -77,7 +85,10 @@ export const SearchBar = ({ value, defaultValue = '', onChange, onSearch }: ETFS
 
   const handleOptionSelect = (option: SearchOption | null) => {
     if (option) {
-      router.push(`/etf/${option.id}`);
+      // Determine if the selected option is a code or a name
+      const isCode = option.type === 'codigo';
+      const param = isCode ? option.value : option.id; // Use value for code, id for slug/name
+      router.push(`/etf/${param}`);
     }
   };
 
@@ -87,9 +98,10 @@ export const SearchBar = ({ value, defaultValue = '', onChange, onSearch }: ETFS
     if (onChange) {
       onChange('');
     }
-    if (onSearch) {
-      onSearch('');
+    if (onClear) {
+      onClear();
     }
+
   };
 
   return (
@@ -101,6 +113,7 @@ export const SearchBar = ({ value, defaultValue = '', onChange, onSearch }: ETFS
         inputValue={inputValue}
         filterOptions={(options, { inputValue }) => {
           const inputLower = inputValue.toLowerCase();
+          // Only show suggestions when user types at least 2 characters
           if (inputLower.length < 2) {
             return [];
           }
@@ -157,14 +170,7 @@ export const SearchBar = ({ value, defaultValue = '', onChange, onSearch }: ETFS
             onChange(newInputValue);
           }
 
-          if (onSearch) {
-            if (newInputValue === '' || newInputValue.length >= 4) {
-              clearTimeout((window as any).searchTimeout);
-              (window as any).searchTimeout = setTimeout(() => {
-                onSearch(newInputValue);
-              }, 500);
-            }
-          }
+
         }}
       />
     </SearchBarContainer>

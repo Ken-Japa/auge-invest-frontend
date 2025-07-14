@@ -54,7 +54,7 @@ export const BDRSearchBar = ({ value, defaultValue = '', onChange, onSearch }: B
                     sponsoredResponse.result.forEach((bdr: any) => {
                         if (bdr.nomeEmpresa) {
                             searchOptions.push({
-                                label: `${bdr.nomeEmpresa} (BDR)`,
+                                label: `${bdr.nomeEmpresa} (${bdr.codigo})`,
                                 value: bdr.nomeEmpresa,
                                 type: 'bdr',
                                 id: bdr._id || ''

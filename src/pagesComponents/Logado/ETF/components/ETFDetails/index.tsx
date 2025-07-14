@@ -1,36 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { Box, Typography, CircularProgress, Button, Alert } from '@mui/material';
+"use client";
+import { useRouter } from 'next/navigation';
+import { Box, Typography, CircularProgress, Alert } from '@mui/material';
 import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
-import { fetchETFById } from '../../../components/ETF/services/etfsService';
-import { ETFExtended } from '../../../components/ETF/types';
 import { DetailPageContainer, ContentWrapper, LoadingContainer, ErrorContainer, BackButton } from './styled';
+import { useETFDetails } from './hooks/useETFDetails';
 
-const ETFDetais: React.FC = () => {
-  const { id } = useParams();
+interface ETFDetailsProps {
+  slug: string;
+  codigo?: string;
+  isCode?: boolean;
+}
+
+const ETFDetails = ({ slug, codigo, isCode = false }: ETFDetailsProps) => {
   const router = useRouter();
-  const [etf, setEtf] = useState<ETFExtended | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { etf, loading, error } = useETFDetails({ slug, codigo, isCode });
 
-  useEffect(() => {
-    if (id) {
-      const loadETF = async () => {
-        try {
-          setLoading(true);
-          setError(null);
-          const result = await fetchETFById(id as string);
-          setEtf(result);
-        } catch (err) {
-          const errorMessage = err instanceof Error ? err.message : 'Ocorreu um erro desconhecido ao buscar o ETF.';
-          setError(errorMessage);
-        } finally {
-          setLoading(false);
-        }
-      };
-      loadETF();
-    }
-  }, [id]);
 
   const handleBack = () => {
     router.back();
@@ -113,4 +97,4 @@ const ETFDetais: React.FC = () => {
   );
 };
 
-export default ETFDetais;
+export default ETFDetails;

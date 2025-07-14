@@ -22,17 +22,13 @@ const ETF: React.FC = () => {
         setValue(newValue);
     };
 
-    const handleSearch = (newFilters: ETFFilter) => {
-        setFilters(newFilters);
-    };
-
     const handleClear = () => {
         setFilters({});
     };
 
     return (
         <ETFTabsContainer>
-            <SearchBar onSearch={handleSearch} onClear={handleClear} initialFilters={filters} />
+            <SearchBar onClear={handleClear} />
             <Box >
                 <Tabs value={value} onChange={handleChange} aria-label="ETF visualization tabs">
                     <Tab label="Cartões" {...a11yProps(0)} />
