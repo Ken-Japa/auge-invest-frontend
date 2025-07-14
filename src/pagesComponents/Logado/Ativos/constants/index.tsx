@@ -29,6 +29,14 @@ export const ativosList = [
         available: true
     },
     {
+        id: "etf",
+        title: "ETF",
+        description: "Exchangable Trade Funds",
+        icon: ApartmentIcon,
+        path: "/etf",
+        available: true
+    },
+    {
         id: "tesouro",
         title: "Tesouro Direto",
         description: "Acompanhe títulos públicos, simulações de rentabilidade e comparativos.",

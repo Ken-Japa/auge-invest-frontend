@@ -33,7 +33,7 @@ const ETF: React.FC = () => {
     return (
         <ETFTabsContainer>
             <SearchBar onSearch={handleSearch} onClear={handleClear} initialFilters={filters} />
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Box >
                 <Tabs value={value} onChange={handleChange} aria-label="ETF visualization tabs">
                     <Tab label="Cartões" {...a11yProps(0)} />
                     <Tab label="Tabela" {...a11yProps(1)} />

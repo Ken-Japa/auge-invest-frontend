@@ -144,11 +144,9 @@ export const VisualizationETFs = ({
 
       {totalPages > 1 && (
         <PaginationContainer
-          direction={{ xs: 'column', sm: 'row' }}
-          spacing={2}
-          alignItems="center"
-          justifyContent="center"
-        >
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={2}
+          >
           <Pagination
             count={totalPages}
             page={page + 1}

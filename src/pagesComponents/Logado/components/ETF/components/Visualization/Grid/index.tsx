@@ -13,55 +13,39 @@ import {
   CodeChip,
 } from './styled';
 import { formatNumber } from '@/components/Utils/Formatters/formatters';
+import { useRouter } from 'next/navigation';
 
 interface GridViewProps {
   etfs: ETFExtended[];
 }
 
 const GridView: React.FC<GridViewProps> = ({ etfs }) => {
+  const router = useRouter();
+
+  const sortedEtfs = [...etfs].sort((a, b) => {
+    const quotaA = Number(a.quotaCount) || 0;
+    const quotaB = Number(b.quotaCount) || 0;
+    return quotaB - quotaA;
+  });
+
+  const handleItemClick = (nomeETF: string) => {
+    router.push(`/etf/${nomeETF}`);
+  };
+
   return (
     <GridContainer container spacing={2}>
-      {etfs.map((etf) => (
+      {sortedEtfs.map((etf) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={etf._id}>
-          <GridItemPaper elevation={1}>
+          <GridItemPaper elevation={1} onClick={() => handleItemClick(etf.nomeETF)} style={{ cursor: 'pointer' }}>
             <GridHeader>
               <GridTitle variant="subtitle1">{etf.nomeETF}</GridTitle>
               {etf.codigo && (
                 <CodeChip label={etf.codigo} color="primary" size="small" />
               )}
             </GridHeader>
-            <GridSubtitle variant="caption">
-              {etf.nomeCompletoETF}
-            </GridSubtitle>
-
-            <GridInfo>
-              <GridInfoLabel>Indústria:</GridInfoLabel>
-              <GridInfoValue>{etf.indústria || 'N/A'}</GridInfoValue>
-            </GridInfo>
-
-            <GridInfo>
-              <GridInfoLabel>Segmento:</GridInfoLabel>
-              <GridInfoValue>{etf.segmento || 'N/A'}</GridInfoValue>
-            </GridInfo>
-
             <GridInfo>
               <GridInfoLabel>Cotas:</GridInfoLabel>
               <GridInfoValue>{formatNumber(etf.quotaCount) || 'N/A'}</GridInfoValue>
-            </GridInfo>
-
-            <GridInfo>
-              <GridInfoLabel>Aprovado em:</GridInfoLabel>
-              <GridInfoValue>{etf.quotaDateApproved || 'N/A'}</GridInfoValue>
-            </GridInfo>
-
-            <GridInfo>
-              <GridInfoLabel>CNPJ:</GridInfoLabel>
-              <GridInfoValue>{etf.informações?.cnpj || 'N/A'}</GridInfoValue>
-            </GridInfo>
-
-            <GridInfo>
-              <GridInfoLabel>Site:</GridInfoLabel>
-              <GridInfoValue>{etf.informações?.site || 'N/A'}</GridInfoValue>
             </GridInfo>
           </GridItemPaper>
         </Grid>

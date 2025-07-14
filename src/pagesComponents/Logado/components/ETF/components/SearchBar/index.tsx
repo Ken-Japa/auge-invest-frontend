@@ -1,149 +1,172 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Box, MenuItem, Select, FormControl, InputLabel, Grid } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import { TextField, Autocomplete, InputAdornment, IconButton } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import ClearIcon from '@mui/icons-material/Clear';
 import { SearchBarContainer } from './styled';
-import { ETFFilter } from '@/services/api/types/etf';
+import { api } from '@/services/api';
+import { ETF } from '@/services/api/types/etf';
 
-interface SearchBarProps {
-  onSearch: (filters: ETFFilter) => void;
-  onClear: () => void;
-  initialFilters?: ETFFilter;
+interface SearchOption {
+  label: string;
+  value: string;
+  type: 'nomeETF' | 'codigo';
+  id: string;
 }
 
-const industryOptions = [
-  'Financeiro e Outros',
-  'Materiais Básicos',
-  'Bens Industriais',
-  'Consumo Cíclico',
-  'Consumo Não Cíclico',
-  'Saúde',
-  'Tecnologia da Informação',
-  'Comunicações',
-  'Utilidade Pública',
-  'Petróleo, Gás e Biocombustíveis',
-];
+interface ETFSearchBarProps {
+  value?: string;
+  defaultValue?: string;
+  onChange?: (query: string) => void;
+  onSearch?: (query: string) => void;
+}
 
-const segmentOptions = [
-  'Fundos de Ações',
-  'Fundos de Renda Fixa',
-  'Fundos Multimercado',
-  'Fundos Cambiais',
-  'Fundos de Dívida Externa',
-  'Fundos de Previdência',
-  'Fundos de Investimento Imobiliário',
-  'Fundos de Investimento em Participações',
-  'Fundos de Investimento em Direitos Creditórios',
-  'Fundos de Índice (ETFs)',
-];
-
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onClear, initialFilters }) => {
-  const [filters, setFilters] = useState<ETFFilter>(initialFilters || {});
+export const SearchBar = ({ value, defaultValue = '', onChange, onSearch }: ETFSearchBarProps) => {
+  const [searchQuery, setSearchQuery] = useState(value || defaultValue);
+  const [options, setOptions] = useState<SearchOption[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [inputValue, setInputValue] = useState(value || defaultValue);
+  const router = useRouter();
 
   useEffect(() => {
-    if (initialFilters) {
-      setFilters(initialFilters);
+    if (value !== undefined && value !== searchQuery) {
+      setSearchQuery(value);
+      setInputValue(value);
     }
-  }, [initialFilters]);
+  }, [value, searchQuery]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | { name?: string; value: unknown }>) => {
-    const { name, value } = event.target;
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      [name as string]: value,
-    }));
+  useEffect(() => {
+    const loadETFs = async () => {
+      try {
+        setLoading(true);
+        const response = await api.etf.searchETFs('nomeETF'); // Fetch all ETFs initially
+
+        const searchOptions: SearchOption[] = [];
+
+        if (response && response.result && Array.isArray(response.result)) {
+          response.result.forEach((etf: ETF) => {
+            if (etf.nomeETF) {
+              searchOptions.push({
+                label: `${etf.nomeETF} (ETF)`,
+                value: etf.nomeETF,
+                type: 'nomeETF',
+                id: etf._id || ''
+              });
+            }
+            if (etf.codigo) {
+              searchOptions.push({
+                label: `${etf.codigo} (${etf.nomeETF})`,
+                value: etf.codigo,
+                type: 'codigo',
+                id: etf._id || ''
+              });
+            }
+          });
+        }
+        setOptions(searchOptions);
+      } catch (error) {
+        console.error('Erro ao carregar ETFs:', error);
+        setOptions([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadETFs();
+  }, []);
+
+  const handleOptionSelect = (option: SearchOption | null) => {
+    if (option) {
+      router.push(`/etf/${option.id}`);
+    }
   };
 
-  const handleSearch = () => {
-    onSearch(filters);
-  };
-
-  const handleClear = () => {
-    setFilters({});
-    onClear();
+  const handleClearSearch = () => {
+    setSearchQuery('');
+    setInputValue('');
+    if (onChange) {
+      onChange('');
+    }
+    if (onSearch) {
+      onSearch('');
+    }
   };
 
   return (
     <SearchBarContainer>
-      <Grid container spacing={2} alignItems="center">
-        <Grid item xs={12} sm={6} md={3}>
+      <Autocomplete
+        freeSolo
+        options={options}
+        loading={loading}
+        inputValue={inputValue}
+        filterOptions={(options, { inputValue }) => {
+          const inputLower = inputValue.toLowerCase();
+          if (inputLower.length < 2) {
+            return [];
+          }
+          return options.filter(option =>
+            option.label.toLowerCase().includes(inputLower)
+          );
+        }}
+        getOptionLabel={(option) => {
+          if (typeof option === 'string') {
+            return option;
+          }
+          return option.label;
+        }}
+        renderInput={(params) => (
           <TextField
-            name="nomeETF"
-            label="Nome do ETF"
-            variant="outlined"
-            fullWidth
-            value={filters.nomeETF || ''}
-            onChange={handleChange}
+            {...params}
             size="small"
+            placeholder="Buscar ETF ou código"
+            InputProps={{
+              ...params.InputProps,
+              style: {
+                minWidth: '250px',
+                padding: '2px 8px'
+              },
+              endAdornment: (
+                <InputAdornment position="end">
+                  {inputValue ? (
+                    <IconButton
+                      aria-label="clear search"
+                      onClick={handleClearSearch}
+                      edge="end"
+                      size="small"
+                    >
+                      <ClearIcon fontSize="small" />
+                    </IconButton>
+                  ) : (
+                    <SearchIcon color="action" />
+                  )}
+                </InputAdornment>
+              )
+            }}
           />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <TextField
-            name="codigoETF"
-            label="Código do ETF"
-            variant="outlined"
-            fullWidth
-            value={filters.codigoETF || ''}
-            onChange={handleChange}
-            size="small"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <TextField
-            name="codigo"
-            label="Código"
-            variant="outlined"
-            fullWidth
-            value={filters.codigo || ''}
-            onChange={handleChange}
-            size="small"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <FormControl variant="outlined" fullWidth size="small">
-            <InputLabel>Indústria</InputLabel>
-            <Select
-              name="industria"
-              value={filters.industria || ''}
-              onChange={handleChange}
-              label="Indústria"
-            >
-              <MenuItem value=""><em>Nenhum</em></MenuItem>
-              {industryOptions.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <FormControl variant="outlined" fullWidth size="small">
-            <InputLabel>Segmento</InputLabel>
-            <Select
-              name="segmento"
-              value={filters.segmento || ''}
-              onChange={handleChange}
-              label="Segmento"
-            >
-              <MenuItem value=""><em>Nenhum</em></MenuItem>
-              {segmentOptions.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <Box display="flex" gap={1}>
-            <Button variant="contained" color="primary" onClick={handleSearch} fullWidth>
-              Buscar
-            </Button>
-            <Button variant="outlined" color="secondary" onClick={handleClear} fullWidth>
-              Limpar
-            </Button>
-          </Box>
-        </Grid>
-      </Grid>
+        )}
+        onChange={(_, newValue) => {
+          if (newValue && typeof newValue !== 'string') {
+            handleOptionSelect(newValue);
+          }
+        }}
+        onInputChange={(_, newInputValue) => {
+          setInputValue(newInputValue);
+          setSearchQuery(newInputValue);
+
+          if (onChange) {
+            onChange(newInputValue);
+          }
+
+          if (onSearch) {
+            if (newInputValue === '' || newInputValue.length >= 4) {
+              clearTimeout((window as any).searchTimeout);
+              (window as any).searchTimeout = setTimeout(() => {
+                onSearch(newInputValue);
+              }, 500);
+            }
+          }
+        }}
+      />
     </SearchBarContainer>
   );
 };

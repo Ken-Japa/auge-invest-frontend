@@ -30,6 +30,8 @@ export const PaginationContainer = styled(Stack)(({ theme }) => ({
   marginTop: theme.spacing(4),
   paddingTop: theme.spacing(2),
   borderTop: `1px solid ${theme.palette.divider}`,
+  justifyContent: 'center',
+  alignItems: 'center',
 }));
 
 export const PageSizeSelector = styled(Box)(({ theme }) => ({

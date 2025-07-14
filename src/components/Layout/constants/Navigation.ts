@@ -33,6 +33,7 @@ export const authNavigation: NavigationItem[] = [
     dropdown: [
       { name: "Fundos Imobiliários", path: "/fii" },
       { name: "BDRs", path: "/bdr" },
+      { name: "ETFs", path: "/etf" },
     ],
   },
   { name: "Análise", path: "/fundamentalista" },

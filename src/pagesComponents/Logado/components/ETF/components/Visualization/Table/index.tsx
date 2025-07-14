@@ -2,9 +2,7 @@ import React from 'react';
 import {
   Table,
   TableBody,
-  TableCell,
   TableContainer,
-  TableHead,
   TableRow,
   Paper,
   Typography,
@@ -12,31 +10,41 @@ import {
 import { ETFExtended } from '../../../types';
 import { StyledTableHead, StyledTableRow, StyledTableCell } from './styled';
 import { formatNumber } from '@/components/Utils/Formatters/formatters';
+import { useRouter } from 'next/navigation';
 
 interface TableViewProps {
   etfs: ETFExtended[];
 }
 
 const TableView: React.FC<TableViewProps> = ({ etfs }) => {
+  const router = useRouter();
+
+  const sortedEtfs = [...etfs].sort((a, b) => {
+    const quotaA = Number(a.quotaCount) || 0;
+    const quotaB = Number(b.quotaCount) || 0;
+    return quotaB - quotaA;
+  });
+
+  const handleRowClick = (nomeETF: string) => {
+    router.push(`/etf/${nomeETF}`);
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="ETF table">
         <StyledTableHead>
           <TableRow>
-            <StyledTableCell>Nome ETF</StyledTableCell>
-            <StyledTableCell>Código</StyledTableCell>
-            <StyledTableCell>Indústria</StyledTableCell>
-            <StyledTableCell>Segmento</StyledTableCell>
-            <StyledTableCell align="right">Cotas</StyledTableCell>
-            <StyledTableCell>Aprovado em</StyledTableCell>
-            <StyledTableCell>CNPJ</StyledTableCell>
-            <StyledTableCell>Site</StyledTableCell>
+            <StyledTableCell align="center">Nome ETF</StyledTableCell>
+            <StyledTableCell align="center">Código</StyledTableCell>
+            <StyledTableCell align="center">Cotas</StyledTableCell>
+            <StyledTableCell align="center">Aprovado em</StyledTableCell>
+
           </TableRow>
         </StyledTableHead>
         <TableBody>
-          {etfs.map((etf) => (
-            <StyledTableRow key={etf._id}>
-              <StyledTableCell component="th" scope="row">
+          {sortedEtfs.map((etf) => (
+            <StyledTableRow key={etf._id} onClick={() => handleRowClick(etf.nomeETF)} style={{ cursor: 'pointer' }}>
+              <StyledTableCell component="th" scope="row" align="center">
                 <Typography variant="subtitle2" fontWeight="bold">
                   {etf.nomeETF}
                 </Typography>
@@ -44,15 +52,13 @@ const TableView: React.FC<TableViewProps> = ({ etfs }) => {
                   {etf.nomeCompletoETF}
                 </Typography>
               </StyledTableCell>
-              <StyledTableCell>{etf.codigo || 'N/A'}</StyledTableCell>
-              <StyledTableCell>{etf.indústria || 'N/A'}</StyledTableCell>
-              <StyledTableCell>{etf.segmento || 'N/A'}</StyledTableCell>
-              <StyledTableCell align="right">
+              <StyledTableCell align="center">{etf.codigo || 'N/A'}</StyledTableCell>
+
+              <StyledTableCell align="center">
                 {formatNumber(etf.quotaCount) || 'N/A'}
               </StyledTableCell>
-              <StyledTableCell>{etf.quotaDateApproved || 'N/A'}</StyledTableCell>
-              <StyledTableCell>{etf.informações?.cnpj || 'N/A'}</StyledTableCell>
-              <StyledTableCell>{etf.informações?.site || 'N/A'}</StyledTableCell>
+              <StyledTableCell align="center">{etf.quotaDateApproved || 'N/A'}</StyledTableCell>
+
             </StyledTableRow>
           ))}
         </TableBody>
