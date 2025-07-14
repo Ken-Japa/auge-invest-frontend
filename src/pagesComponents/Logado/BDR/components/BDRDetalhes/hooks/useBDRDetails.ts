@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { api } from "@/services/api";
 import { fetchBDRBySlugOrCode } from "../../../../components/BDR/services/bdrsService";
 import { UnifiedBDR } from "../../../../components/BDR/types";
 
@@ -29,18 +30,40 @@ export const useBDRDetails = ({
         setLoading(true);
         setError(null);
 
+        const isUUID = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(slug);
+
+        let result: UnifiedBDR | null = null;
+
+        if (isUUID) {
+          try {
+            // Try fetching by ID for both sponsored and non-sponsored BDRs
+            const sponsoredResult = await api.bdrs.getBDR(slug);
+            if (sponsoredResult?.success) {
+              result = sponsoredResult.data;
+            } else {
+              const nonSponsoredResult = await api.bdrnp.getBDRNP(slug);
+              if (nonSponsoredResult?.success) {
+                result = nonSponsoredResult.data;
+              }
+            }
+          } catch (idError) {
+            console.warn("Failed to fetch BDR by ID, trying other methods:", idError);
+            // Continue to other search methods if ID fetch fails
+          }
+        }
+
         const searchParam = codigo || slug;
+        if (!result) {
+          const isBDRCode = /^[A-Z]{4}11$/.test(searchParam.toUpperCase());
 
-        const isBDRCode = /^[A-Z]{4}11$/.test(searchParam.toUpperCase());
-
-        let result: BDRExtended | null;
-        if (isBDRCode) {
-          result = await fetchBDRBySlugOrCode(searchParam, true);
-        } else {
-          result = await fetchBDRBySlugOrCode(searchParam, false);
-
-          if (!result) {
+          if (isBDRCode) {
             result = await fetchBDRBySlugOrCode(searchParam, true);
+          } else {
+            result = await fetchBDRBySlugOrCode(searchParam, false);
+
+            if (!result) {
+              result = await fetchBDRBySlugOrCode(searchParam, true);
+            }
           }
         }
 

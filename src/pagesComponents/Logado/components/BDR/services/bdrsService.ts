@@ -1,5 +1,11 @@
 import { api } from "@/services/api";
-import { BDRFilter, BDRExtended, BDRNPExtended, UnifiedBDR, BDRType } from "../types";
+import {
+  BDRFilter,
+  BDRExtended,
+  BDRNPExtended,
+  UnifiedBDR,
+  BDRType,
+} from "../types";
 import { BDR, BDRNP } from "@/services/api/types";
 
 export const fetchBDRs = async (filter: BDRFilter = {}) => {
@@ -25,8 +31,12 @@ export const fetchBDRs = async (filter: BDRFilter = {}) => {
       filter.pageSize && filter.pageSize > 0 ? filter.pageSize : 10;
 
     // Determina se devemos buscar BDRs patrocinados, não patrocinados ou ambos
-    const bdrType: BDRType = filter.isPatrocinado === undefined ? "todos" :
-                            filter.isPatrocinado ? "patrocinado" : "nao-patrocinado";
+    const bdrType: BDRType =
+      filter.isPatrocinado === undefined
+        ? "todos"
+        : filter.isPatrocinado
+        ? "patrocinado"
+        : "nao-patrocinado";
 
     let patrocinados: BDRExtended[] = [];
     let naoPatrocinados: BDRNPExtended[] = [];
@@ -48,20 +58,19 @@ export const fetchBDRs = async (filter: BDRFilter = {}) => {
         pageSize,
       });
 
-      if (responsePatrocinados && responsePatrocinados.result && Array.isArray(responsePatrocinados.result)) {
+      if (
+        responsePatrocinados &&
+        responsePatrocinados.result &&
+        Array.isArray(responsePatrocinados.result)
+      ) {
         patrocinados = responsePatrocinados.result.map((bdr: BDR) => {
           const codigo = bdr.codigo ? [{ codigo: bdr.codigo }] : [];
 
           const extendedBDR: BDRExtended = {
             ...bdr,
-            nomeCompleto: bdr.nomeEmpresaCompleto || "",
+            nomeEmpresa: bdr.nomeEmpresa || "",
             dataInicio: bdr.dataInicio || "",
-            codigos: codigo.map((code: any) => ({
-              codigo: typeof code === 'string' ? code : code.codigo,
-              preco: null,
-              precoAnterior: null,
-              variacao: null,
-            })),
+            codigo: bdr.codigo || "",
             isPatrocinado: true,
           };
           return extendedBDR;
@@ -86,20 +95,19 @@ export const fetchBDRs = async (filter: BDRFilter = {}) => {
         pageSize,
       });
 
-      if (responseNaoPatrocinados && responseNaoPatrocinados.result && Array.isArray(responseNaoPatrocinados.result)) {
+      if (
+        responseNaoPatrocinados &&
+        responseNaoPatrocinados.result &&
+        Array.isArray(responseNaoPatrocinados.result)
+      ) {
         naoPatrocinados = responseNaoPatrocinados.result.map((bdrnp: BDRNP) => {
           const codigo = bdrnp.codigo ? [{ codigo: bdrnp.codigo }] : [];
 
           const extendedBDRNP: BDRNPExtended = {
             ...bdrnp,
-            nomeCompleto: bdrnp.nomeEmpresaCompleto || "",
+            nomeEmpresa: bdrnp.nomeEmpresa || "",
             dataInicio: bdrnp.dataInicio || "",
-            codigos: codigo.map((code: any) => ({
-              codigo: typeof code === 'string' ? code : code.codigo,
-              preco: null,
-              precoAnterior: null,
-              variacao: null,
-            })),
+            codigo: bdrnp.codigo || "",
             isPatrocinado: false,
           };
           return extendedBDRNP;
@@ -122,14 +130,22 @@ export const fetchBDRs = async (filter: BDRFilter = {}) => {
     const combinedPagination = {
       offset: 0,
       limit: pageSize,
-      total: (bdrType === "todos" ? 
-              paginationPatrocinados.total + paginationNaoPatrocinados.total : 
-              bdrType === "patrocinado" ? paginationPatrocinados.total : paginationNaoPatrocinados.total),
+      total:
+        bdrType === "todos"
+          ? paginationPatrocinados.total + paginationNaoPatrocinados.total
+          : bdrType === "patrocinado"
+          ? paginationPatrocinados.total
+          : paginationNaoPatrocinados.total,
       page: filter.page !== undefined ? filter.page + 1 : 1,
       pages: Math.max(
-        bdrType === "todos" ? 
-          Math.max(paginationPatrocinados.pages, paginationNaoPatrocinados.pages) : 
-          bdrType === "patrocinado" ? paginationPatrocinados.pages : paginationNaoPatrocinados.pages,
+        bdrType === "todos"
+          ? Math.max(
+              paginationPatrocinados.pages,
+              paginationNaoPatrocinados.pages
+            )
+          : bdrType === "patrocinado"
+          ? paginationPatrocinados.pages
+          : paginationNaoPatrocinados.pages,
         1
       ),
     };
@@ -176,14 +192,9 @@ export const fetchBDRBySlugOrCode = async (
 
             const extendedBDR: BDRExtended = {
               ...bdr,
-              nomeCompleto: bdr.nomeEmpresaCompleto || "",
+              nomeEmpresa: bdr.nomeEmpresa || "",
               dataInicio: bdr.dataInicio || "",
-              codigos: codigo.map((code: any) => ({
-                codigo: typeof code === 'string' ? code : code.codigo,
-                preco: null,
-                precoAnterior: null,
-                variacao: null,
-              })),
+              codigo: bdr.codigo || "",
               isPatrocinado: true,
             };
 
@@ -191,29 +202,28 @@ export const fetchBDRBySlugOrCode = async (
           }
         } else {
           // Busca por nome em BDRs patrocinados
-          const response = await api.bdrs.getBDRs({ pageSize: 100 });
+          const response = await api.bdrs.searchBDRs(
+            decodedSlug,
+            "nomeEmpresa"
+          );
 
           if (response && response.result && Array.isArray(response.result)) {
             const normalizedSearchName = decodedSlug.trim();
 
             const matchingBDR = response.result.find((bdr: any) => {
               const bdrName = (bdr.nomeEmpresa || "").trim();
-              return bdrName.toLowerCase() === normalizedSearchName.toLowerCase();
             });
 
             if (matchingBDR) {
-              const codigo = matchingBDR.codigo ? [{ codigo: matchingBDR.codigo }] : [];
+              const codigo = matchingBDR.codigo
+                ? [{ codigo: matchingBDR.codigo }]
+                : [];
 
               const extendedBDR: BDRExtended = {
                 ...matchingBDR,
-                nomeCompleto: matchingBDR.nomeEmpresaCompleto || "",
+                nomeEmpresa: matchingBDR.nomeEmpresa || "",
                 dataInicio: matchingBDR.dataInicio || "",
-                codigos: codigo.map((code: any) => ({
-                  codigo: typeof code === 'string' ? code : code.codigo,
-                  preco: null,
-                  precoAnterior: null,
-                  variacao: null,
-                })),
+                codigo: matchingBDR.codigo || "",
                 isPatrocinado: true,
               };
 
@@ -239,14 +249,9 @@ export const fetchBDRBySlugOrCode = async (
 
             const extendedBDRNP: BDRNPExtended = {
               ...bdrnp,
-              nomeCompleto: bdrnp.nomeEmpresaCompleto || "",
+              nomeEmpresa: bdrnp.nomeEmpresa || "",
               dataInicio: bdrnp.dataInicio || "",
-              codigos: codigo.map((code: any) => ({
-                codigo: typeof code === 'string' ? code : code.codigo,
-                preco: null,
-                precoAnterior: null,
-                variacao: null,
-              })),
+              codigo: bdrnp.codigo || "",
               isPatrocinado: false,
             };
 
@@ -254,29 +259,28 @@ export const fetchBDRBySlugOrCode = async (
           }
         } else {
           // Busca por nome em BDRs não patrocinados
-          const response = await api.bdrnp.getBDRNPs({ pageSize: 100 });
+          const response = await api.bdrnp.searchBDRNPs(
+            decodedSlug,
+            "nomeEmpresa"
+          );
 
           if (response && response.result && Array.isArray(response.result)) {
             const normalizedSearchName = decodedSlug.trim();
 
             const matchingBDRNP = response.result.find((bdrnp: any) => {
               const bdrnpName = (bdrnp.nomeEmpresa || "").trim();
-              return bdrnpName.toLowerCase() === normalizedSearchName.toLowerCase();
             });
 
             if (matchingBDRNP) {
-              const codigo = matchingBDRNP.codigo ? [{ codigo: matchingBDRNP.codigo }] : [];
+              const codigo = matchingBDRNP.codigo
+                ? [{ codigo: matchingBDRNP.codigo }]
+                : [];
 
               const extendedBDRNP: BDRNPExtended = {
                 ...matchingBDRNP,
-                nomeCompleto: matchingBDRNP.nomeEmpresaCompleto || "",
+                nomeEmpresa: matchingBDRNP.nomeEmpresa || "",
                 dataInicio: matchingBDRNP.dataInicio || "",
-                codigos: codigo.map((code: any) => ({
-                  codigo: typeof code === 'string' ? code : code.codigo,
-                  preco: null,
-                  precoAnterior: null,
-                  variacao: null,
-                })),
+                codigo: matchingBDRNP.codigo,
                 isPatrocinado: false,
               };
 
@@ -299,7 +303,9 @@ export const fetchBDRBySlugOrCode = async (
   }
 };
 
-export const getAllBDRs = async (bdrType: BDRType = "todos"): Promise<UnifiedBDR[]> => {
+export const getAllBDRs = async (
+  bdrType: BDRType = "todos"
+): Promise<UnifiedBDR[]> => {
   try {
     let patrocinados: BDRExtended[] = [];
     let naoPatrocinados: BDRNPExtended[] = [];
@@ -309,7 +315,11 @@ export const getAllBDRs = async (bdrType: BDRType = "todos"): Promise<UnifiedBDR
       try {
         const responsePatrocinados = await api.bdrs.getAllBDRs();
 
-        if (responsePatrocinados && responsePatrocinados.result && Array.isArray(responsePatrocinados.result)) {
+        if (
+          responsePatrocinados &&
+          responsePatrocinados.result &&
+          Array.isArray(responsePatrocinados.result)
+        ) {
           patrocinados = responsePatrocinados.result.map((bdr: any) => {
             const codigo = Array.isArray(bdr.codigo)
               ? bdr.codigo
@@ -322,7 +332,7 @@ export const getAllBDRs = async (bdrType: BDRType = "todos"): Promise<UnifiedBDR
               nomeCompleto: bdr.nomeEmpresaCompleto || "",
               dataInicio: bdr.dataInicio || "",
               codigos: codigo.map((code: any) => ({
-                codigo: typeof code === 'string' ? code : code.codigo,
+                codigo: typeof code === "string" ? code : code.codigo,
                 preco: null,
                 precoAnterior: null,
                 variacao: null,
@@ -342,7 +352,11 @@ export const getAllBDRs = async (bdrType: BDRType = "todos"): Promise<UnifiedBDR
       try {
         const responseNaoPatrocinados = await api.bdrnp.getAllBDRNPs();
 
-        if (responseNaoPatrocinados && responseNaoPatrocinados.result && Array.isArray(responseNaoPatrocinados.result)) {
+        if (
+          responseNaoPatrocinados &&
+          responseNaoPatrocinados.result &&
+          Array.isArray(responseNaoPatrocinados.result)
+        ) {
           naoPatrocinados = responseNaoPatrocinados.result.map((bdrnp: any) => {
             const codigo = Array.isArray(bdrnp.codigo)
               ? bdrnp.codigo
@@ -355,7 +369,7 @@ export const getAllBDRs = async (bdrType: BDRType = "todos"): Promise<UnifiedBDR
               nomeCompleto: bdrnp.nomeEmpresaCompleto || "",
               dataInicio: bdrnp.dataInicio || "",
               codigos: codigo.map((code: any) => ({
-                codigo: typeof code === 'string' ? code : code.codigo,
+                codigo: typeof code === "string" ? code : code.codigo,
                 preco: null,
                 precoAnterior: null,
                 variacao: null,

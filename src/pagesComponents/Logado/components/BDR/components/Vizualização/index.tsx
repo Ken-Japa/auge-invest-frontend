@@ -17,9 +17,7 @@ import {
 import {
   FirstPage as FirstPageIcon,
   LastPage as LastPageIcon,
-  ViewModule as CardIcon,
-  TableRows as TableIcon,
-  GridView as GridIcon
+
 } from '@mui/icons-material';
 import { fetchBDRs } from '../../services/bdrsService';
 import { UnifiedBDR, VisualizationMode, BDRType } from '../../types';
@@ -34,7 +32,6 @@ import {
   PaginationContainer,
   PageSizeSelector,
   FilterContainer,
-  ViewControls
 } from './styled';
 
 interface VisualizacaoBDRsProps {
@@ -49,8 +46,6 @@ interface VisualizacaoBDRsProps {
   onError?: (message: string) => void;
   viewMode?: string;
   onChangeView?: (mode: string) => void;
-  isLoading?: boolean;
-  setIsLoading?: (loading: boolean) => void;
 }
 
 export const VisualizacaoBDRs = ({
@@ -59,9 +54,7 @@ export const VisualizacaoBDRs = ({
   limit = 10,
   onError,
   viewMode = 'cartao',
-  onChangeView = () => { },
-  isLoading: externalLoading,
-  setIsLoading: setExternalLoading
+  onChangeView = () => { }
 }: VisualizacaoBDRsProps) => {
   // Ensure limit is one of the valid options
   const validPageSizes = [10, 20, 50, 100];
@@ -76,18 +69,12 @@ export const VisualizacaoBDRs = ({
   const [bdrType, setBdrType] = useState<BDRType>('todos');
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    // Sincroniza o estado de loading interno com o externo, se fornecido
-    if (externalLoading !== undefined && loading !== externalLoading) {
-      setLoading(externalLoading);
-    }
-  }, [externalLoading]);
+
 
   useEffect(() => {
     const loadBDRs = async () => {
       try {
         setLoading(true);
-        if (setExternalLoading) setExternalLoading(true);
         setError(null);
 
         // Determina o valor de isPatrocinado com base no bdrType
@@ -117,7 +104,6 @@ export const VisualizacaoBDRs = ({
         }
       } finally {
         setLoading(false);
-        if (setExternalLoading) setExternalLoading(false);
       }
     };
 
@@ -194,35 +180,6 @@ export const VisualizacaoBDRs = ({
       default:
         return <CardView bdrs={bdrs} />;
     }
-  };
-
-  // Componente para controle do modo de visualização
-  const ModoVisualizacao = () => {
-    return (
-      <ViewControls>
-        <IconButton
-          onClick={() => onChangeView('cartao')}
-          color={viewMode === 'cartao' ? 'primary' : 'default'}
-          title="Visualização em Cartões"
-        >
-          <CardIcon />
-        </IconButton>
-        <IconButton
-          onClick={() => onChangeView('tabela')}
-          color={viewMode === 'tabela' ? 'primary' : 'default'}
-          title="Visualização em Tabela"
-        >
-          <TableIcon />
-        </IconButton>
-        <IconButton
-          onClick={() => onChangeView('grid')}
-          color={viewMode === 'grid' ? 'primary' : 'default'}
-          title="Visualização em Grade"
-        >
-          <GridIcon />
-        </IconButton>
-      </ViewControls>
-    );
   };
 
   return (

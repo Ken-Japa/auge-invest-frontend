@@ -8,16 +8,10 @@ export interface BDRCode {
 }
 
 export interface BDRExtended extends BDR {
-  nomeCompleto?: string;
-  dataInicio?: string;
-  codigos: BDRCode[];
   isPatrocinado?: boolean;
 }
 
 export interface BDRNPExtended extends BDRNP {
-  nomeCompleto?: string;
-  dataInicio?: string;
-  codigos: BDRCode[];
   isPatrocinado?: boolean;
 }
 

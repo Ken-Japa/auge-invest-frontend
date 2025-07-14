@@ -10,6 +10,8 @@ export const viewModeToVisualizationMode = (
       return "card";
     case "tabela":
       return "table";
+    case "grid":
+      return "grid";
     default:
       return "card";
   }

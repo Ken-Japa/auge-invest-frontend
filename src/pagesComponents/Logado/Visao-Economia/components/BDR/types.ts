@@ -1,4 +1,4 @@
-export type ViewMode = "grid" | "tabela" | "cartao";
+export type ViewMode = 'cartao' | 'tabela' | 'grid';
 
 export interface Empresa {
   symbol: string;
