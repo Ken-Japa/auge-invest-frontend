@@ -15,6 +15,8 @@ export enum ErrorCode {
   FII_DATA_ERROR = "fii/data-error",
   BDR_NOT_FOUND = "bdr/not-found",
   BDR_DATA_ERROR = "bdr/data-error",
+  ETF_NOT_FOUND = "etf/not-found",
+  ETF_DATA_ERROR = "etf/data-error",
 }
 
 // Mapeamento de mensagens de erro amigáveis
@@ -45,6 +47,10 @@ const ERROR_MESSAGES: Record<ErrorCode, string> = {
     "BDR não encontrado. Por favor, verifique as informações fornecidas.",
   [ErrorCode.BDR_DATA_ERROR]:
     "Erro ao processar dados do BDR. Por favor, tente novamente.",
+  [ErrorCode.ETF_NOT_FOUND]:
+    "ETF não encontrado. Por favor, verifique as informações fornecidas.",
+  [ErrorCode.ETF_DATA_ERROR]:
+    "Erro ao processar dados do ETF. Por favor, tente novamente.",
 };
 
 export function getErrorMessage(code: ErrorCode): string {

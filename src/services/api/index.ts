@@ -10,6 +10,7 @@ export const api = {
   fiis: endpoints.fiisApi,
   bdrs: endpoints.bdrsApi,
   bdrnp: endpoints.bdrnpApi,
+  etf: endpoints.etfApi,
 };
 
 export * from "./types";

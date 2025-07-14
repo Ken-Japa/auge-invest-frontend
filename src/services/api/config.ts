@@ -55,7 +55,6 @@ export const API_ENDPOINTS = {
   ETF: {
     PAGINATION: "/etf/pagination",
     DETAIL: "/etf",
-    DIVIDENDS: "/etf/dividendos/pagination",
   },
   ETFBDR: {
     PAGINATION: "/etf/bdr/pagination",

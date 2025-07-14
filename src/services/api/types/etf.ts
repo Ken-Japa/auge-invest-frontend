@@ -18,3 +18,18 @@ export interface ETFInformation {
   cnpj: string;
   site: string;
 }
+
+export interface ETFListResponse {
+  result: ETF[];
+  pagination: Pagination;
+}
+
+export interface ETFFilter {
+  nomeETF?: string;
+  codigoETF?: string;
+  codigo?: string;
+  industria?: string;
+  segmento?: string;
+  page?: number;
+  pageSize?: number;
+}
