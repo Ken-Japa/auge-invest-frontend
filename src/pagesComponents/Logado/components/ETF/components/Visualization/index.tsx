@@ -15,7 +15,7 @@ import {
   LastPage as LastPageIcon
 } from '@mui/icons-material';
 import { fetchETFs } from '../../services/etfsService';
-import { ETFExtended, VisualizationMode } from '../../types';
+import { ETFExtended } from '../../types';
 import CardView from './Cards';
 import TableView from './Table';
 import GridView from './Grid';
@@ -60,7 +60,7 @@ export const VisualizationETFs = ({
           pageSize
         });
 
-        setETFs(result.etfs);
+        setETFs(result.result);
         setTotalPages(result.pagination.pages);
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Ocorreu um erro desconhecido';
@@ -167,7 +167,7 @@ export const VisualizationETFs = ({
             showLastButton
           />
 
-          <PageSizeSelector variant="outlined" size="small">
+          <PageSizeSelector>
             <InputLabel id="page-size-select-label">Por página</InputLabel>
             <Select
               labelId="page-size-select-label"
