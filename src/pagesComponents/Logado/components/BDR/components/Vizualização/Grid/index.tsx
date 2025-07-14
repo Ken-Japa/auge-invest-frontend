@@ -33,16 +33,12 @@ export const GridView = ({ bdrs }: GridViewProps) => {
                       label={bdr.codigo}
                       size="small"
                       variant="filled"
+                      color="primary"
                     />
                   </Link>
                 )}
 
-                <CodeChip
-                  label={bdr.isPatrocinado ? 'Patrocinado' : 'Não Patrocinado'}
-                  size="small"
-                  variant="outlined"
-                  color={bdr.isPatrocinado ? 'primary' : 'secondary'}
-                />
+
 
               </StyledCardContent>
             </StyledCard>

@@ -11,11 +11,15 @@ import {
   FormControl,
   FormControlLabel,
   Radio,
-  RadioGroup
+  RadioGroup,
+  IconButton
 } from '@mui/material';
 import {
   FirstPage as FirstPageIcon,
-  LastPage as LastPageIcon
+  LastPage as LastPageIcon,
+  ViewModule as CardIcon,
+  TableRows as TableIcon,
+  GridView as GridIcon
 } from '@mui/icons-material';
 import { fetchBDRs } from '../../services/bdrsService';
 import { UnifiedBDR, VisualizationMode, BDRType } from '../../types';
@@ -29,7 +33,8 @@ import {
   EmptyResultsContainer,
   PaginationContainer,
   PageSizeSelector,
-  FilterContainer
+  FilterContainer,
+  ViewControls
 } from './styled';
 
 interface VisualizacaoBDRsProps {
@@ -38,16 +43,25 @@ interface VisualizacaoBDRsProps {
     segmento?: string;
     nome?: string;
     isPatrocinado?: boolean;
+    searchQuery?: string;
   };
   limit?: number;
   onError?: (message: string) => void;
+  viewMode?: string;
+  onChangeView?: (mode: string) => void;
+  isLoading?: boolean;
+  setIsLoading?: (loading: boolean) => void;
 }
 
 export const VisualizacaoBDRs = ({
   mode = 'card',
   filter = {},
   limit = 10,
-  onError
+  onError,
+  viewMode = 'cartao',
+  onChangeView = () => { },
+  isLoading: externalLoading,
+  setIsLoading: setExternalLoading
 }: VisualizacaoBDRsProps) => {
   // Ensure limit is one of the valid options
   const validPageSizes = [10, 20, 50, 100];
@@ -63,9 +77,17 @@ export const VisualizacaoBDRs = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Sincroniza o estado de loading interno com o externo, se fornecido
+    if (externalLoading !== undefined && loading !== externalLoading) {
+      setLoading(externalLoading);
+    }
+  }, [externalLoading]);
+
+  useEffect(() => {
     const loadBDRs = async () => {
       try {
         setLoading(true);
+        if (setExternalLoading) setExternalLoading(true);
         setError(null);
 
         // Determina o valor de isPatrocinado com base no bdrType
@@ -79,7 +101,7 @@ export const VisualizacaoBDRs = ({
 
         const result = await fetchBDRs({
           segmento: filter.segmento,
-          nomeEmpresa: filter.nome,
+          nomeEmpresa: filter.nome || filter.searchQuery,
           page,
           pageSize,
           isPatrocinado
@@ -95,11 +117,12 @@ export const VisualizacaoBDRs = ({
         }
       } finally {
         setLoading(false);
+        if (setExternalLoading) setExternalLoading(false);
       }
     };
 
     loadBDRs();
-  }, [filter.segmento, filter.nome, page, pageSize, bdrType, onError]);
+  }, [filter.segmento, filter.nome, filter.searchQuery, page, pageSize, bdrType, onError]);
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
     setPage(newPage - 1);
@@ -173,8 +196,38 @@ export const VisualizacaoBDRs = ({
     }
   };
 
+  // Componente para controle do modo de visualização
+  const ModoVisualizacao = () => {
+    return (
+      <ViewControls>
+        <IconButton
+          onClick={() => onChangeView('cartao')}
+          color={viewMode === 'cartao' ? 'primary' : 'default'}
+          title="Visualização em Cartões"
+        >
+          <CardIcon />
+        </IconButton>
+        <IconButton
+          onClick={() => onChangeView('tabela')}
+          color={viewMode === 'tabela' ? 'primary' : 'default'}
+          title="Visualização em Tabela"
+        >
+          <TableIcon />
+        </IconButton>
+        <IconButton
+          onClick={() => onChangeView('grid')}
+          color={viewMode === 'grid' ? 'primary' : 'default'}
+          title="Visualização em Grade"
+        >
+          <GridIcon />
+        </IconButton>
+      </ViewControls>
+    );
+  };
+
   return (
     <VisualizationContainer ref={containerRef}>
+
       <FilterContainer>
         <FormControl component="fieldset">
           <Typography variant="subtitle1" gutterBottom>
@@ -192,6 +245,7 @@ export const VisualizacaoBDRs = ({
             <FormControlLabel value="nao-patrocinado" control={<Radio />} label="Não Patrocinados" />
           </RadioGroup>
         </FormControl>
+
       </FilterContainer>
 
       {renderVisualization()}

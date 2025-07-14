@@ -1,5 +1,5 @@
 import { Grid, Chip, IconButton } from '@mui/material';
-import { OpenInNew as OpenInNewIcon } from '@mui/icons-material';
+import { OpenInNew as OpenInNewIcon, Star } from '@mui/icons-material';
 import Link from 'next/link';
 import { UnifiedBDR } from '../../../types';
 import {
@@ -18,18 +18,6 @@ import {
 interface CardViewProps {
   bdrs: UnifiedBDR[];
 }
-
-const typeMap: Record<string, string> = {
-  '1': 'BDR Nível I',
-  '2': 'BDR Nível II',
-  '3': 'BDR Nível III'
-};
-
-const marketMap: Record<string, string> = {
-  'DR1': 'BOVESPA',
-  'DRN': 'NYSE',
-  'DR3': 'NASDAQ'
-};
 
 export const CardView = ({ bdrs }: CardViewProps) => {
 
@@ -51,6 +39,7 @@ export const CardView = ({ bdrs }: CardViewProps) => {
         <Grid item xs={12} sm={6} md={4} lg={3} key={bdr._id}>
           <StyledCard>
             <CardHeader>
+
               <IconButton
                 component={Link}
                 href={`/bdr/${bdr.nomeEmpresa}`}
@@ -68,13 +57,15 @@ export const CardView = ({ bdrs }: CardViewProps) => {
                 </CardTitle>
               </Link>
 
+
               <CardSubtitle variant="body2" color="text.secondary">
                 {bdr.nomeEmpresaCompleto}
               </CardSubtitle>
 
+
               <ChipsContainer>
 
-                <Link href={`/bdr/${bdr.codigo}`} style={{ textDecoration: 'none' }}>
+                <Link href={`/bdr/${bdr.nomeEmpresa}`} style={{ textDecoration: 'none' }}>
                   <Chip
                     label={bdr.codigo || 'N/A'}
                     size="small"
@@ -84,32 +75,18 @@ export const CardView = ({ bdrs }: CardViewProps) => {
                   />
                 </Link>
 
-                <Chip
-                  label={bdr.isPatrocinado ? 'Patrocinado' : 'Não Patrocinado'}
-                  size="small"
-                  variant="outlined"
-                  color={bdr.isPatrocinado ? 'primary' : 'secondary'}
-                />
-
-                {/* Additional info chips */}
-
-
                 {(bdr.tipoBDR || bdr.informações?.market) && (
                   <Chip
-                    label={marketMap[bdr.tipoBDR || bdr.informações?.market] || `Mercado ${bdr.tipoBDR || bdr.informações?.market}`}
-                    size="small"
-                  />
-                )}
-
-                {bdr.informações?.tipo && (
-                  <Chip
-                    label={typeMap[bdr.informações.tipo] || `Tipo ${bdr.informações.tipo}`}
+                    label={bdr.tipoBDR || bdr.informações?.market || `Mercado ${bdr.tipoBDR || bdr.informações?.market}`}
                     size="small"
                     color="primary"
                   />
                 )}
 
+                {bdr.isPatrocinado ? <Star color="warning" /> : ''}
+
               </ChipsContainer>
+
 
               <InfoContainer>
                 {bdr.indústria !== 'Não Classificados' && (

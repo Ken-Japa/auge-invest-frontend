@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchBDRBySlugOrCode } from "../../../../components/BDR/services/bdrsService";
-import { BDRExtended } from "../../../../components/BDR/types";
+import { UnifiedBDR } from "../../../../components/BDR/types";
 
 interface UseBDRDetailsProps {
   slug: string;
@@ -9,7 +9,7 @@ interface UseBDRDetailsProps {
 }
 
 interface UseBDRDetailsResult {
-  bdr: BDRExtended | null;
+  bdr: UnifiedBDR | null;
   loading: boolean;
   error: string | null;
 }
@@ -19,7 +19,7 @@ export const useBDRDetails = ({
   codigo,
   isCode = false,
 }: UseBDRDetailsProps): UseBDRDetailsResult => {
-  const [bdr, setBDR] = useState<BDRExtended | null>(null);
+  const [bdr, setBDR] = useState<UnifiedBDR | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

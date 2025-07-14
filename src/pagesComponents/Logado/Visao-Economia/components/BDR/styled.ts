@@ -35,3 +35,32 @@ export const ContentPlaceholder = styled(Box)`
       : "rgba(0, 0, 0, 0.01)"};
   border-radius: ${({ theme }) => theme.shape.borderRadius}px;
 `;
+
+export const VisualizationWrapper = styled(Box)`
+  height: 1000px;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: ${({ theme }) =>
+      theme.palette.mode === "dark"
+        ? "rgba(255, 255, 255, 0.05)"
+        : "rgba(0, 0, 0, 0.02)"};
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) =>
+      theme.palette.mode === "dark"
+        ? "rgba(255, 255, 255, 0.2)"
+        : "rgba(0, 0, 0, 0.2)"};
+    border-radius: 4px;
+    &:hover {
+      background: ${({ theme }) =>
+        theme.palette.mode === "dark"
+          ? "rgba(255, 255, 255, 0.3)"
+          : "rgba(0, 0, 0, 0.3)"};
+    }
+  }
+`;

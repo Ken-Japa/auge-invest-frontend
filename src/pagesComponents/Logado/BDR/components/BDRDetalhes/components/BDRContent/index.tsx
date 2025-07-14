@@ -1,6 +1,6 @@
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, Chip } from '@mui/material';
 import { CalendarToday as CalendarIcon, Business as BusinessIcon } from '@mui/icons-material';
-import { BDRExtended } from '../../../../../components/BDR/types';
+import { UnifiedBDR } from '../../../../../components/BDR/types';
 import { formatCNPJ, formatDate, formatNumber } from '@/components/Utils/Formatters/formatters';
 import {
   DetailContainer,
@@ -14,7 +14,7 @@ import {
 import BDRDividendos from '../BDRDividendos';
 
 interface BDRContentProps {
-  bdr: BDRExtended;
+  bdr: UnifiedBDR;
 }
 
 export const BDRContent = ({ bdr }: BDRContentProps) => (
@@ -41,6 +41,12 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
                   color="primary"
                 />
               )}
+              <Chip
+                label={bdr.isPatrocinado ? "Patrocinado" : "Não Patrocinado"}
+                color={bdr.isPatrocinado ? "success" : "default"}
+                sx={{ ml: 1 }}
+                size="small"
+              />
             </div>
           </HeaderContainer>
         </Grid>
@@ -49,15 +55,18 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
           <SectionDivider />
         </Grid>
 
+
         <Grid item xs={12} md={6}>
-          <InfoContainer>
-            <Typography variant="body2" component="div" sx={{ color: 'text.secondary', mb: 0.5 }}>
-              CNPJ
-            </Typography>
-            <Typography variant="body1" component="div" sx={{ display: 'flex', alignItems: 'center' }}>
-              {bdr.informações?.cnpj ? formatCNPJ(bdr.informações.cnpj) : 'Não informado'}
-            </Typography>
-          </InfoContainer>
+          {bdr.informações?.cnpj !== '0' && (
+            <InfoContainer>
+              <Typography variant="body2" component="div" sx={{ color: 'text.secondary', mb: 0.5 }}>
+                CNPJ
+              </Typography>
+              <Typography variant="body1" component="div" sx={{ display: 'flex', alignItems: 'center' }}>
+                {bdr.informações?.cnpj ? formatCNPJ(bdr.informações.cnpj) : 'Não informado'}
+              </Typography>
+            </InfoContainer>
+          )}
 
           <InfoContainer>
             <Typography variant="body2" component="div" sx={{ color: 'text.secondary', mb: 0.5 }}>
@@ -81,7 +90,7 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
               <IconWrapper>
                 <BusinessIcon fontSize="small" />
               </IconWrapper>
-              {bdr.informações?.market ? formatNumber(bdr.informações?.market) : 'Não informado'}
+              {bdr.tipoBDR || bdr.informações?.market || `Mercado ${bdr.tipoBDR || bdr.informações?.market}`}
             </Typography>
           </InfoContainer>
         </Grid>

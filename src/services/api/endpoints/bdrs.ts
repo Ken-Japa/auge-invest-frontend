@@ -39,15 +39,15 @@ class BDRsApiService extends BaseApiService {
     }
   };
 
-  searchBDRs = async (nome: string): Promise<BDRListResponse> => {
+  searchBDRs = async (searchTerm: string, searchBy: 'nomeEmpresa' | 'codigoEmpresa' = 'nomeEmpresa'): Promise<BDRListResponse> => {
     try {
       return await this.get<BDRListResponse>(
         API_ENDPOINTS.BDR.PAGINATION,
-        { nome, pageSize: 10, page: 0 },
+        { [searchBy]: searchTerm, pageSize: 10, page: 0 },
         ErrorCode.BDR_DATA_ERROR
       );
     } catch (error) {
-      console.error(`Erro ao pesquisar BDR com nome "${nome}":`, error);
+      console.error(`Erro ao pesquisar BDR com ${searchBy} "${searchTerm}":`, error);
       throw handleApiError(error, ErrorCode.BDR_DATA_ERROR);
     }
   };

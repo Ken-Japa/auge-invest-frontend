@@ -66,17 +66,40 @@ const BDRDividendos = ({ nomeBDR }: BDRDividendosProps) => {
         setLoading(true);
         setError(null);
 
-        const response = await api.bdrs.getBDRDividends({
-          nomeBDR,
-          pageSize: 100,
-          page: 0
-        }) as unknown as BDRDividendResponse;
+        // Tenta buscar dividendos de BDRs patrocinados primeiro
+        try {
+          const response = await api.bdrs.getBDRDividends({
+            nomeBDR,
+            pageSize: 100,
+            page: 0
+          }) as unknown as BDRDividendResponse;
 
-        if (response && response.result && response.result.dividendos) {
-          setDividends(response.result.dividendos);
-        } else {
-          setDividends([]);
+          if (response && response.result && response.result.dividendos) {
+            setDividends(response.result.dividendos);
+            return;
+          }
+        } catch (err) {
+          console.log('Não encontrou dividendos em BDRs patrocinados, tentando não patrocinados');
         }
+
+        // Se não encontrou em BDRs patrocinados, tenta em não patrocinados
+        try {
+          const response = await api.bdrnp.getBDRNPDividends({
+            nomeBDR,
+            pageSize: 100,
+            page: 0
+          }) as unknown as BDRDividendResponse;
+
+          if (response && response.result && response.result.dividendos) {
+            setDividends(response.result.dividendos);
+            return;
+          }
+        } catch (err) {
+          console.log('Não encontrou dividendos em BDRs não patrocinados');
+        }
+
+        // Se chegou aqui, não encontrou dividendos
+        setDividends([]);
       } catch (err) {
         console.error('Erro ao buscar dividendos:', err);
         const errorMessage = err instanceof Error ? err.message : 'Ocorreu um erro ao buscar os dividendos';
@@ -238,7 +261,7 @@ const BDRDividendos = ({ nomeBDR }: BDRDividendosProps) => {
     <DividendContainer>
       <DividendPaper>
         <DividendTitle variant="h3">
-          Histórico de Dividendos
+          Histórico de Dividendos {nomeBDR}
         </DividendTitle>
 
         <DividendSummary>

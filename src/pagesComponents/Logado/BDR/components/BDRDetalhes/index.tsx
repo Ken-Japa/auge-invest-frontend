@@ -9,6 +9,7 @@ import { ErrorState } from './components/ErrorState';
 import { NotFoundState } from './components/NotFoundState';
 import { BDRContent } from './components/BDRContent';
 import { DetailPageContainer, ContentWrapper } from './styled';
+import { UnifiedBDR } from '../../../components/BDR/types';
 
 interface BDRDetailsProps {
   slug: string;

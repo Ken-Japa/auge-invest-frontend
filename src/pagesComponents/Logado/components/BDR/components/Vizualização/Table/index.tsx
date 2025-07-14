@@ -106,7 +106,6 @@ export const TableView = ({ bdrs }: TableViewProps) => {
               </TableSortLabel>
             </HeaderCell>
             <HeaderCell>Tipo</HeaderCell>
-            <HeaderCell>Patrocinado</HeaderCell>
           </HeaderRow>
         </StyledTableHead>
         <TableBody>
@@ -132,14 +131,7 @@ export const TableView = ({ bdrs }: TableViewProps) => {
               <DataCell>
                 <DataText>{(bdr.informações?.market)}</DataText>
               </DataCell>
-              <DataCell>
-                <Chip
-                  label={bdr.isPatrocinado ? 'Sim' : 'Não'}
-                  size="small"
-                  variant="outlined"
-                  color={bdr.isPatrocinado ? 'primary' : 'secondary'}
-                />
-              </DataCell>
+
             </DataRow>
           ))}
         </TableBody>

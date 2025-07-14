@@ -9,55 +9,88 @@ import { SearchContainer } from './styled';
 interface SearchOption {
     label: string;
     value: string;
-    type: 'bdr' | 'codigo';
+    type: 'bdr' | 'bdr-np' | 'codigo';
     id: string;
 }
 
 interface BDRSearchBarProps {
+    value?: string;
     defaultValue?: string;
+    onChange?: (query: string) => void;
     onSearch?: (query: string) => void;
 }
 
-export const BDRSearchBar = ({ defaultValue = '', onSearch }: BDRSearchBarProps) => {
-    const [searchQuery, setSearchQuery] = useState(defaultValue);
+export const BDRSearchBar = ({ value, defaultValue = '', onChange, onSearch }: BDRSearchBarProps) => {
+    const [searchQuery, setSearchQuery] = useState(value || defaultValue);
     const [options, setOptions] = useState<SearchOption[]>([]);
     const [loading, setLoading] = useState(false);
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState(value || defaultValue);
     const router = useRouter();
+
+    // Atualiza o estado interno quando o valor externo muda
+    useEffect(() => {
+        if (value !== undefined && value !== searchQuery) {
+            setSearchQuery(value);
+            setInputValue(value);
+        }
+    }, [value, searchQuery]);
 
     useEffect(() => {
         const loadBDRs = async () => {
             try {
                 setLoading(true);
 
-                // Get all BDRs (with a reasonable limit)
-                const response = await api.bdrs.getBDRs({ pageSize: 100 });
+                // Get all BDRs (both sponsored and non-sponsored)
+                const [sponsoredResponse, nonSponsoredResponse] = await Promise.all([
+                    api.bdrs.searchBDRs('', 'nomeEmpresa'),
+                    api.bdrnp.searchBDRNPs('', 'nomeEmpresa')
+                ]);
 
                 // Extract all BDRs and their codes
                 const searchOptions: SearchOption[] = [];
 
-                // Updated to match the new API response structure
-                if (response && response.result && Array.isArray(response.result)) {
-                    response.result.forEach((bdr: any) => {
-                        // Only add if nomeBDR exists
-                        if (bdr.nomeBDR) {
-                            // Add BDR name as an option
+                // Process sponsored BDRs
+                if (sponsoredResponse && sponsoredResponse.result && Array.isArray(sponsoredResponse.result)) {
+                    sponsoredResponse.result.forEach((bdr: any) => {
+                        if (bdr.nomeEmpresa) {
                             searchOptions.push({
-                                label: `${bdr.nomeBDR} (BDR)`,
-                                value: bdr.nomeBDR,
+                                label: `${bdr.nomeEmpresa} (BDR)`,
+                                value: bdr.nomeEmpresa,
                                 type: 'bdr',
                                 id: bdr._id || ''
                             });
 
-                            // Add each code as an option
-                            if (bdr.codigo && Array.isArray(bdr.codigo) && bdr.codigo.length > 0) {
-                                bdr.codigo.forEach((codigo: string) => {
-                                    searchOptions.push({
-                                        label: `${codigo} (${bdr.nomeBDR})`,
-                                        value: codigo,
-                                        type: 'codigo',
-                                        id: bdr._id || ''
-                                    });
+                            // Add code as an option
+                            if (bdr.codigo) {
+                                searchOptions.push({
+                                    label: `${bdr.codigo} (${bdr.nomeEmpresa})`,
+                                    value: bdr.codigo,
+                                    type: 'codigo',
+                                    id: bdr._id || ''
+                                });
+                            }
+                        }
+                    });
+                }
+
+                // Process non-sponsored BDRs
+                if (nonSponsoredResponse && nonSponsoredResponse.result && Array.isArray(nonSponsoredResponse.result)) {
+                    nonSponsoredResponse.result.forEach((bdr: any) => {
+                        if (bdr.nomeEmpresa) {
+                            searchOptions.push({
+                                label: `${bdr.nomeEmpresa} (BDR Não Patrocinado)`,
+                                value: bdr.nomeEmpresa,
+                                type: 'bdr-np',
+                                id: bdr._id || ''
+                            });
+
+                            // Add code as an option
+                            if (bdr.codigo) {
+                                searchOptions.push({
+                                    label: `${bdr.codigo} (${bdr.nomeEmpresa})`,
+                                    value: bdr.codigo,
+                                    type: 'codigo',
+                                    id: bdr._id || ''
                                 });
                             }
                         }
@@ -86,6 +119,9 @@ export const BDRSearchBar = ({ defaultValue = '', onSearch }: BDRSearchBarProps)
     const handleClearSearch = () => {
         setSearchQuery('');
         setInputValue('');
+        if (onChange) {
+            onChange('');
+        }
         if (onSearch) {
             onSearch('');
         }
@@ -102,8 +138,8 @@ export const BDRSearchBar = ({ defaultValue = '', onSearch }: BDRSearchBarProps)
                 inputValue={inputValue}
                 filterOptions={(options, { inputValue }) => {
                     const inputLower = inputValue.toLowerCase();
-                    // Only show suggestions when user types at least 4 characters
-                    if (inputLower.length < 4) {
+                    // Only show suggestions when user types at least 2 characters
+                    if (inputLower.length < 2) {
                         return [];
                     }
                     return options.filter(option =>
@@ -154,6 +190,11 @@ export const BDRSearchBar = ({ defaultValue = '', onSearch }: BDRSearchBarProps)
                 onInputChange={(_, newInputValue) => {
                     setInputValue(newInputValue);
                     setSearchQuery(newInputValue);
+
+                    // Notifica sobre a mudança imediatamente
+                    if (onChange) {
+                        onChange(newInputValue);
+                    }
 
                     // Debounce the search to prevent too many API calls
                     if (onSearch) {
