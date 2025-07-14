@@ -10,8 +10,23 @@ export interface ETFBDR {
   industria: string | null;
   segmento: string | null;
   atividade: string | null;
-  __v?: number | null;
+  __v?: number;
   informações: ETFBDRInformation;
+}
+
+export interface ETFBDRListResponse {
+  result: ETFBDR[];
+  pagination: Pagination;
+}
+
+export interface ETFBDRFilter {
+  nomeETF?: string;
+  codigoETF?: string;
+  industria?: string;
+  segmento?: string;
+  atividade?: string;
+  page?: number;
+  pageSize?: number;
 }
 
 export interface ETFBDRInformation {

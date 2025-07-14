@@ -59,8 +59,8 @@ export const API_ENDPOINTS = {
   ETFBDR: {
     PAGINATION: "/etf/bdr/pagination",
     DETAIL: "/etf/bdr",
-    DIVIDENDS: "/etf/bdr/dividendos/pagination",
   },
+
   // Outros grupos de endpoints...
 };
 
