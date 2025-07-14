@@ -1,4 +1,4 @@
-import { BDR } from "@/services/api/types";
+import { BDR, BDRNP } from "@/services/api/types";
 
 export interface BDRCode {
   codigo: string;
@@ -11,7 +11,18 @@ export interface BDRExtended extends BDR {
   nomeCompleto?: string;
   dataInicio?: string;
   codigos: BDRCode[];
+  isPatrocinado?: boolean;
 }
+
+export interface BDRNPExtended extends BDRNP {
+  nomeCompleto?: string;
+  dataInicio?: string;
+  codigos: BDRCode[];
+  isPatrocinado?: boolean;
+}
+
+// Tipo unificado para representar tanto BDRs patrocinados quanto não patrocinados
+export type UnifiedBDR = BDRExtended | BDRNPExtended;
 
 export interface BDRFilter {
   segmento?: string;
@@ -19,6 +30,9 @@ export interface BDRFilter {
   page?: number;
   pageSize?: number;
   codigo?: string;
+  isPatrocinado?: boolean;
 }
 
 export type VisualizationMode = "card" | "table" | "grid";
+
+export type BDRType = "patrocinado" | "nao-patrocinado" | "todos";

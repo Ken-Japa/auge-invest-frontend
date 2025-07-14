@@ -39,7 +39,7 @@ export const StyledCardContent = styled(MuiCardContent)(({ theme }) => ({
   },
 }));
 
-export const FIIName = styled("div")(({ theme }) => ({
+export const BDRName = styled("div")(({ theme }) => ({
   fontWeight: 600,
   fontSize: "0.9rem",
   marginBottom: theme.spacing(1),

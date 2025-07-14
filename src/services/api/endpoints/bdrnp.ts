@@ -2,15 +2,15 @@ import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
 import { ErrorCode, handleApiError } from "../errorHandler";
 import {
-  BDRListResponse,
-  BDRFilter,
-  BDR,
-  BDRDividendResponse,
-  BDRDividendFilter,
+  BDRNPListResponse,
+  BDRNPFilter,
+  BDRNP,
+  BDRNPDividendResponse,
+  BDRNPDividendFilter,
 } from "../types";
 
-class BDRsApiService extends BaseApiService {
-  getBDRs = async (filters?: BDRFilter): Promise<any> => {
+class BDRNPApiService extends BaseApiService {
+  getBDRNPs = async (filters?: BDRNPFilter): Promise<any> => {
     const params = {
       page: filters?.page !== undefined ? filters.page : 0,
       pageSize: filters?.pageSize || 10,
@@ -19,17 +19,17 @@ class BDRsApiService extends BaseApiService {
     };
 
     try {
-      return await this.get(API_ENDPOINTS.BDR.PAGINATION, params);
+      return await this.get(API_ENDPOINTS.BDRNP.PAGINATION, params);
     } catch (error) {
       console.error("Erro ao buscar BDRs:", error);
       throw handleApiError(error, ErrorCode.BDR_DATA_ERROR);
     }
   };
 
-  getBDR = async (id: string): Promise<{ success: boolean; data: BDR }> => {
+  getBDRNP = async (id: string): Promise<{ success: boolean; data: BDRNP }> => {
     try {
-      return await this.get<{ success: boolean; data: BDR }>(
-        `${API_ENDPOINTS.BDR.DETAIL}/${id}`,
+      return await this.get<{ success: boolean; data: BDRNP }>(
+        `${API_ENDPOINTS.BDRNP.DETAIL}/${id}`,
         undefined,
         ErrorCode.BDR_NOT_FOUND
       );
@@ -39,10 +39,10 @@ class BDRsApiService extends BaseApiService {
     }
   };
 
-  searchBDRs = async (nome: string): Promise<BDRListResponse> => {
+  searchBDRNPs = async (nome: string): Promise<BDRNPListResponse> => {
     try {
-      return await this.get<BDRListResponse>(
-        API_ENDPOINTS.BDR.PAGINATION,
+      return await this.get<BDRNPListResponse>(
+        API_ENDPOINTS.BDRNP.PAGINATION,
         { nome, pageSize: 10, page: 0 },
         ErrorCode.BDR_DATA_ERROR
       );
@@ -52,10 +52,10 @@ class BDRsApiService extends BaseApiService {
     }
   };
 
-  getAllBDRs = async (): Promise<BDRListResponse> => {
+  getAllBDRNPs = async (): Promise<BDRNPListResponse> => {
     try {
-      return await this.get<BDRListResponse>(
-        API_ENDPOINTS.BDR.PAGINATION,
+      return await this.get<BDRNPListResponse>(
+        API_ENDPOINTS.BDRNP.PAGINATION,
         { pageSize: 1000, page: 0 },
         ErrorCode.BDR_DATA_ERROR
       );
@@ -65,12 +65,12 @@ class BDRsApiService extends BaseApiService {
     }
   };
 
-  getBDRByCode = async (code: string): Promise<BDR | null> => {
+  getBDRNPByCode = async (code: string): Promise<BDRNP | null> => {
     try {
       const upperCode = code.trim().toUpperCase();
 
-      const response = await this.get<BDRListResponse>(
-        API_ENDPOINTS.BDR.PAGINATION,
+      const response = await this.get<BDRNPListResponse>(
+        API_ENDPOINTS.BDRNP.PAGINATION,
         { codigo: upperCode, pageSize: 1, page: 0 },
         ErrorCode.BDR_NOT_FOUND
       );
@@ -84,9 +84,9 @@ class BDRsApiService extends BaseApiService {
       throw handleApiError(error, ErrorCode.BDR_NOT_FOUND);
     }
   };
-  getBDRDividends = async (
-    filters: BDRDividendFilter
-  ): Promise<BDRDividendResponse> => {
+  getBDRNPDividends = async (
+    filters: BDRNPDividendFilter
+  ): Promise<BDRNPDividendResponse> => {
     const params = {
       page: filters.page !== undefined ? filters.page : 0,
       pageSize: filters.pageSize || 100,
@@ -94,8 +94,8 @@ class BDRsApiService extends BaseApiService {
     };
 
     try {
-      return await this.get<BDRDividendResponse>(
-        API_ENDPOINTS.BDR.DIVIDENDS,
+      return await this.get<BDRNPDividendResponse>(
+        API_ENDPOINTS.BDRNP.DIVIDENDS,
         params
       );
     } catch (error) {
@@ -108,4 +108,4 @@ class BDRsApiService extends BaseApiService {
   };
 }
 
-export const bdrsApi = new BDRsApiService();
+export const bdrnpApi = new BDRNPApiService();

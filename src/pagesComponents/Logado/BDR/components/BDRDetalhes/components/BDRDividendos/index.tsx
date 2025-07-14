@@ -50,9 +50,8 @@ interface Dividend {
   id?: string;
   dataPagamento: string;
   valor: string | number;
-  relativo: string;
   dataAprovacao: string;
-  tipoDividendo: string;
+  tipo: string;
   ultimoDiaCom?: string;
 }
 
@@ -272,7 +271,6 @@ const BDRDividendos = ({ nomeBDR }: BDRDividendosProps) => {
                 <HeaderCell align="center">Data Base</HeaderCell>
                 <HeaderCell align="center">Data Pagamento</HeaderCell>
                 <HeaderCell align="center">Valor (R$)</HeaderCell>
-                <HeaderCell align="center">Relativo</HeaderCell>
                 <HeaderCell align="center">Tipo</HeaderCell>
               </TableRow>
             </TableHead>
@@ -287,11 +285,10 @@ const BDRDividendos = ({ nomeBDR }: BDRDividendosProps) => {
                     <TableCell>{formatDate(dividend.dataAprovacao)}</TableCell>
                     <TableCell>{formatDate(dividend.dataPagamento)}</TableCell>
                     <TableCell align="right">{formatCurrency(valor)}</TableCell>
-                    <TableCell align="right">{dividend.relativo}</TableCell>
                     <TableCell align="center">
                       <StatusChip
-                        label={dividend.tipoDividendo}
-                        color={getStatusColor(dividend.tipoDividendo) as any}
+                        label={dividend.tipo}
+                        color={getStatusColor(dividend.tipo) as any}
                         size="small"
                       />
                     </TableCell>

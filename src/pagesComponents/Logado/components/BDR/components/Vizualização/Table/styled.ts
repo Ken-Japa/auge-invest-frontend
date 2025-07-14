@@ -54,7 +54,7 @@ export const DataCell = styled(MuiTableCell)({
   textAlign: "center",
 });
 
-export const FIIName = styled("span")(({ theme }) => ({
+export const BDRName = styled("span")(({ theme }) => ({
   fontWeight: 600,
   transition: "color 0.3s ease",
   "&:hover": {

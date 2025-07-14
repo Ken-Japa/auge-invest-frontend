@@ -42,9 +42,25 @@ export const API_ENDPOINTS = {
   },
   //BDR endpoints
   BDR: {
-    PAGINATION: "/bdrs/pagination",
-    DETAIL: "/bdrs",
-    DIVIDENDS: "/bdrs/dividendos/pagination",
+    PAGINATION: "/bdr/pagination",
+    DETAIL: "/bdr",
+    DIVIDENDS: "/bdr/dividendos/pagination",
+  },
+  //BDR NP endpoints
+  BDRNP: {
+    PAGINATION: "/bdr/np/pagination",
+    DETAIL: "/bdr/np",
+    DIVIDENDS: "/bdrs/np/dividendos/pagination",
+  },
+  ETF: {
+    PAGINATION: "/etf/pagination",
+    DETAIL: "/etf",
+    DIVIDENDS: "/etf/dividendos/pagination",
+  },
+  ETFBDR: {
+    PAGINATION: "/etf/bdr/pagination",
+    DETAIL: "/etf/bdr",
+    DIVIDENDS: "/etf/bdr/dividendos/pagination",
   },
   // Outros grupos de endpoints...
 };

@@ -25,22 +25,22 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
           <HeaderContainer>
             <div>
               <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
-                {bdr.nomeBDR}
+                {bdr.nomeEmpresa}
               </Typography>
-              {bdr.nomeCompletoBDR && (
+              {bdr.nomeEmpresaCompleto && (
                 <Typography variant="subtitle1" component="div" gutterBottom sx={{ color: 'text.secondary' }}>
-                  {bdr.nomeCompletoBDR}
+                  {bdr.nomeEmpresaCompleto}
                 </Typography>
               )}
             </div>
             <div>
-              {bdr.codigo && bdr.codigo.map((code) => (
+              {bdr.codigo && (
                 <CodeChip
-                  key={code}
-                  label={code}
+                  key={bdr.codigo}
+                  label={bdr.codigo}
                   color="primary"
                 />
-              ))}
+              )}
             </div>
           </HeaderContainer>
         </Grid>
@@ -55,19 +55,19 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
               CNPJ
             </Typography>
             <Typography variant="body1" component="div" sx={{ display: 'flex', alignItems: 'center' }}>
-              {bdr.informacoes?.cnpj ? formatCNPJ(bdr.informacoes.cnpj) : 'Não informado'}
+              {bdr.informações?.cnpj ? formatCNPJ(bdr.informações.cnpj) : 'Não informado'}
             </Typography>
           </InfoContainer>
 
           <InfoContainer>
             <Typography variant="body2" component="div" sx={{ color: 'text.secondary', mb: 0.5 }}>
-              Data de Aprovação
+              Data de Início
             </Typography>
             <Typography variant="body1" component="div" sx={{ display: 'flex', alignItems: 'center' }}>
               <IconWrapper>
                 <CalendarIcon fontSize="small" />
               </IconWrapper>
-              {bdr.quotaDateApproved ? formatDate(bdr.quotaDateApproved) : 'Não informado'}
+              {bdr.dataInicio ? formatDate(bdr.dataInicio) : 'Não informado'}
             </Typography>
           </InfoContainer>
         </Grid>
@@ -75,13 +75,13 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
         <Grid item xs={12} md={6}>
           <InfoContainer>
             <Typography variant="body2" component="div" sx={{ color: 'text.secondary', mb: 0.5 }}>
-              Quantidade de Cotas
+              Tipo
             </Typography>
             <Typography variant="body1" component="div" sx={{ display: 'flex', alignItems: 'center' }}>
               <IconWrapper>
                 <BusinessIcon fontSize="small" />
               </IconWrapper>
-              {bdr.quotaCount ? formatNumber(bdr.quotaCount) : 'Não informado'}
+              {bdr.informações?.market ? formatNumber(bdr.informações?.market) : 'Não informado'}
             </Typography>
           </InfoContainer>
         </Grid>
@@ -100,6 +100,6 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
         </Grid>
       </Grid>
     </DetailPaper>
-    {bdr.nomeBDR && <BDRDividendos nomeBDR={bdr.nomeBDR} />}
+    {bdr.nomeEmpresa && <BDRDividendos nomeBDR={bdr.nomeEmpresa} />}
   </DetailContainer>
 );

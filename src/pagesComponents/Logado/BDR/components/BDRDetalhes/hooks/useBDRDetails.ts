@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { fetchBDRBySlugOrCode } from "../../../../components/BDRs/services/bdrsService";
-import { BDRExtended } from "../../../../components/BDRs/types";
+import { fetchBDRBySlugOrCode } from "../../../../components/BDR/services/bdrsService";
+import { BDRExtended } from "../../../../components/BDR/types";
 
 interface UseBDRDetailsProps {
   slug: string;

@@ -7,14 +7,18 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  SelectChangeEvent
+  SelectChangeEvent,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup
 } from '@mui/material';
 import {
   FirstPage as FirstPageIcon,
   LastPage as LastPageIcon
 } from '@mui/icons-material';
 import { fetchBDRs } from '../../services/bdrsService';
-import { BDRExtended, VisualizationMode } from '../../types';
+import { UnifiedBDR, VisualizationMode, BDRType } from '../../types';
 import CardView from './Cards';
 import TableView from './Table';
 import GridView from './Grid';
@@ -24,7 +28,8 @@ import {
   ErrorContainer,
   EmptyResultsContainer,
   PaginationContainer,
-  PageSizeSelector
+  PageSizeSelector,
+  FilterContainer
 } from './styled';
 
 interface VisualizacaoBDRsProps {
@@ -32,6 +37,7 @@ interface VisualizacaoBDRsProps {
   filter?: {
     segmento?: string;
     nome?: string;
+    isPatrocinado?: boolean;
   };
   limit?: number;
   onError?: (message: string) => void;
@@ -45,14 +51,15 @@ export const VisualizacaoBDRs = ({
 }: VisualizacaoBDRsProps) => {
   // Ensure limit is one of the valid options
   const validPageSizes = [10, 20, 50, 100];
-  const initialPageSize = validPageSizes.includes(limit) ? limit : 20;
+  const initialPageSize = validPageSizes.includes(limit) ? limit : 50;
 
-  const [bdrs, setBdrs] = useState<BDRExtended[]>([]);
+  const [bdrs, setBdrs] = useState<UnifiedBDR[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [pageSize, setPageSize] = useState(initialPageSize);
+  const [bdrType, setBdrType] = useState<BDRType>('todos');
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -61,11 +68,21 @@ export const VisualizacaoBDRs = ({
         setLoading(true);
         setError(null);
 
+        // Determina o valor de isPatrocinado com base no bdrType
+        let isPatrocinado;
+        if (bdrType === 'patrocinado') {
+          isPatrocinado = true;
+        } else if (bdrType === 'nao-patrocinado') {
+          isPatrocinado = false;
+        }
+        // Se bdrType for 'todos', isPatrocinado permanece undefined
+
         const result = await fetchBDRs({
           segmento: filter.segmento,
-          nome: filter.nome,
+          nomeEmpresa: filter.nome,
           page,
-          pageSize
+          pageSize,
+          isPatrocinado
         });
 
         setBdrs(result.bdrs);
@@ -82,7 +99,7 @@ export const VisualizacaoBDRs = ({
     };
 
     loadBDRs();
-  }, [filter.segmento, filter.nome, page, pageSize, onError]);
+  }, [filter.segmento, filter.nome, page, pageSize, bdrType, onError]);
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
     setPage(newPage - 1);
@@ -112,6 +129,11 @@ export const VisualizacaoBDRs = ({
       top: 0,
       behavior: 'smooth'
     });
+  };
+
+  const handleBDRTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBdrType(event.target.value as BDRType);
+    setPage(0);
   };
 
   if (loading) {
@@ -153,6 +175,25 @@ export const VisualizacaoBDRs = ({
 
   return (
     <VisualizationContainer ref={containerRef}>
+      <FilterContainer>
+        <FormControl component="fieldset">
+          <Typography variant="subtitle1" gutterBottom>
+            Tipo de BDR
+          </Typography>
+          <RadioGroup
+            row
+            aria-label="tipo-bdr"
+            name="tipo-bdr"
+            value={bdrType}
+            onChange={handleBDRTypeChange}
+          >
+            <FormControlLabel value="todos" control={<Radio />} label="Todos" />
+            <FormControlLabel value="patrocinado" control={<Radio />} label="Patrocinados" />
+            <FormControlLabel value="nao-patrocinado" control={<Radio />} label="Não Patrocinados" />
+          </RadioGroup>
+        </FormControl>
+      </FilterContainer>
+
       {renderVisualization()}
 
       {totalPages > 1 && (

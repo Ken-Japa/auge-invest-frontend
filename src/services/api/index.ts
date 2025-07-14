@@ -9,6 +9,7 @@ export const api = {
   derivatives: endpoints.derivativesApi,
   fiis: endpoints.fiisApi,
   bdrs: endpoints.bdrsApi,
+  bdrnp: endpoints.bdrnpApi,
 };
 
 export * from "./types";

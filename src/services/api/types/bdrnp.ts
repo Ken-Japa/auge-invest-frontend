@@ -1,6 +1,6 @@
 import { Pagination } from "./common";
 
-export interface BDRInformation {
+export interface BDRNPInformation {
   cnpj: string;
   site: string;
   marketIndicator: string;
@@ -9,7 +9,7 @@ export interface BDRInformation {
   market: string;
 }
 
-export interface BDR {
+export interface BDRNP {
   _id: string;
   nomeEmpresaCompleto: string;
   nomeEmpresa: string;
@@ -22,24 +22,23 @@ export interface BDR {
   tipoBDR: string;
   codigo: string;
   __v?: number;
-  informações: BDRInformation;
+  informações: BDRNPInformation;
 }
 
-export interface BDRListResponse {
-  result: BDR[];
+export interface BDRNPListResponse {
+  result: BDRNP[];
   pagination: Pagination;
 }
 
-export interface BDRFilter {
+export interface BDRNPFilter {
   nomeEmpresa?: string;
   codigoEmpresa?: string;
   segmento?: string;
   page?: number;
   pageSize?: number;
 }
-
 // BDR Dividend related types
-export interface BDRDividendItem {
+export interface BDRNPDividendItem {
   tipo: string;
   dataAprovacao: string;
   valor: string;
@@ -48,22 +47,22 @@ export interface BDRDividendItem {
   _id: string;
 }
 
-export interface BDRDividendData {
+export interface BDRNPDividendData {
   _id: string;
   nomeEmpresa: string;
   totalDividendos: number;
-  dividendos: BDRDividendItem[];
+  dividendos: BDRNPDividendItem[];
 }
 
-export interface BDRDividendResponse {
+export interface BDRNPDividendResponse {
   success: boolean;
   data: {
-    result: BDRDividendData;
+    result: BDRNPDividendData;
     pagination: Pagination;
   };
 }
 
-export interface BDRDividendFilter {
+export interface BDRNPDividendFilter {
   nomeEmpresa?: string;
   nomeBDR?: string;
   page?: number;

@@ -1,7 +1,7 @@
 import { Grid, Chip, IconButton } from '@mui/material';
 import { OpenInNew as OpenInNewIcon } from '@mui/icons-material';
 import Link from 'next/link';
-import { BDRExtended } from '../../../types';
+import { UnifiedBDR } from '../../../types';
 import {
   StyledCard,
   StyledCardContent,
@@ -16,7 +16,7 @@ import {
 } from './styled';
 
 interface CardViewProps {
-  bdrs: BDRExtended[];
+  bdrs: UnifiedBDR[];
 }
 
 const typeMap: Record<string, string> = {
@@ -33,20 +33,6 @@ const marketMap: Record<string, string> = {
 
 export const CardView = ({ bdrs }: CardViewProps) => {
 
-  const formatCNPJ = (cnpj: string | undefined): string => {
-    if (!cnpj) return 'N/A';
-
-    const numericCNPJ = cnpj.replace(/\D/g, '');
-
-    if (numericCNPJ.length !== 14) return cnpj;
-
-    return `${numericCNPJ.slice(0, 2)}.${numericCNPJ.slice(2, 5)}.${numericCNPJ.slice(5, 8)}/${numericCNPJ.slice(8, 12)}-${numericCNPJ.slice(12)}`;
-  };
-
-  const formatNumber = (num: number | string | undefined): string => {
-    if (num === undefined) return 'N/A';
-    return new Intl.NumberFormat('pt-BR').format(Number(num));
-  };
 
   const formatDate = (dateStr: string | undefined): string => {
     if (!dateStr) return 'N/A';
@@ -98,50 +84,46 @@ export const CardView = ({ bdrs }: CardViewProps) => {
                   />
                 </Link>
 
+                <Chip
+                  label={bdr.isPatrocinado ? 'Patrocinado' : 'Não Patrocinado'}
+                  size="small"
+                  variant="outlined"
+                  color={bdr.isPatrocinado ? 'primary' : 'secondary'}
+                />
+
                 {/* Additional info chips */}
-                {bdr.informacoes?.tipo && (
-                  <Chip
-                    label={typeMap[bdr.informacoes.tipo] || `Tipo ${bdr.informacoes.tipo}`}
-                    size="small"
-                    color="secondary"
-                  />
-                )}
 
-                {(bdr.tipoBDR || bdr.informacoes?.market) && (
+
+                {(bdr.tipoBDR || bdr.informações?.market) && (
                   <Chip
-                    label={marketMap[bdr.tipoBDR || bdr.informacoes?.market] || `Mercado ${bdr.tipoBDR || bdr.informacoes?.market}`}
+                    label={marketMap[bdr.tipoBDR || bdr.informações?.market] || `Mercado ${bdr.tipoBDR || bdr.informações?.market}`}
                     size="small"
                   />
                 )}
 
-                {bdr.informacoes?.status === 'A' && (
-                  <Chip label="Ativo" size="small" color="success" />
-                )}
-
-                {bdr.informacoes?.marketIndicator && (
+                {bdr.informações?.tipo && (
                   <Chip
-                    label={`Ind. ${bdr.informacoes.marketIndicator}`}
+                    label={typeMap[bdr.informações.tipo] || `Tipo ${bdr.informações.tipo}`}
                     size="small"
-                    variant="outlined"
+                    color="primary"
                   />
                 )}
+
               </ChipsContainer>
 
               <InfoContainer>
-                <InfoItem>
-                  <InfoLabel>CNPJ:</InfoLabel>
-                  <InfoValue>{formatCNPJ(bdr.informacoes?.cnpj)}</InfoValue>
-                </InfoItem>
+                {bdr.indústria !== 'Não Classificados' && (
+                  <InfoItem>
+                    <InfoLabel>Segmento:</InfoLabel>
+                    <InfoValue>{bdr.indústria || 'N/A'}</InfoValue>
+                  </InfoItem>
+                )}
 
                 <InfoItem>
                   <InfoLabel>Desde:</InfoLabel>
                   <InfoValue>{formatDate(bdr.dataInicio)}</InfoValue>
                 </InfoItem>
 
-                <InfoItem>
-                  <InfoLabel>Segmento:</InfoLabel>
-                  <InfoValue>{bdr.segmento || 'N/A'}</InfoValue>
-                </InfoItem>
               </InfoContainer>
             </StyledCardContent>
           </StyledCard>

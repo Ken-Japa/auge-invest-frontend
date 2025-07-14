@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { TableBody, TableSortLabel, Tooltip } from '@mui/material';
+import { TableBody, TableSortLabel, Tooltip, Chip } from '@mui/material';
 import Link from 'next/link';
-import { FIIExtended } from '../../../types';
+import { UnifiedBDR } from '../../../types';
 import {
   StyledTableContainer,
   StyledTable,
@@ -11,18 +11,18 @@ import {
   DataRow,
   DataCell,
   CodeChip,
-  FIIName,
+  BDRName,
   DataText
 } from './styled';
 
 interface TableViewProps {
-  fiis: FIIExtended[];
+  bdrs: UnifiedBDR[];
 }
 
 type Order = 'asc' | 'desc';
 type OrderBy = 'quotaCount' | 'quotaDateApproved';
 
-export const TableView = ({ fiis }: TableViewProps) => {
+export const TableView = ({ bdrs }: TableViewProps) => {
   const [order, setOrder] = useState<Order>('desc');
   const [orderBy, setOrderBy] = useState<OrderBy>('quotaCount');
 
@@ -58,27 +58,27 @@ export const TableView = ({ fiis }: TableViewProps) => {
     setOrderBy(property);
   };
 
-  const sortedFiis = [...fiis].sort((a, b) => {
+  const sortedBdrs = [...bdrs].sort((a, b) => {
     if (orderBy === 'quotaCount') {
-      const aValue = a.quotaCount ? Number(a.quotaCount) : 0;
-      const bValue = b.quotaCount ? Number(b.quotaCount) : 0;
+      const aValue = a.dataInicio ? Number(a.dataInicio) : 0;
+      const bValue = b.dataInicio ? Number(b.dataInicio) : 0;
       return order === 'asc' ? aValue - bValue : bValue - aValue;
     } else if (orderBy === 'quotaDateApproved') {
 
       let aDate = 0;
       let bDate = 0;
 
-      if (a.quotaDateApproved) {
+      if (a.dataInicio) {
         try {
-          aDate = new Date(a.quotaDateApproved).getTime();
+          aDate = new Date(a.dataInicio).getTime();
         } catch (e) {
           aDate = 0;
         }
       }
 
-      if (b.quotaDateApproved) {
+      if (b.dataInicio) {
         try {
-          bDate = new Date(b.quotaDateApproved).getTime();
+          bDate = new Date(b.dataInicio).getTime();
         } catch (e) {
           bDate = 0;
         }
@@ -91,57 +91,54 @@ export const TableView = ({ fiis }: TableViewProps) => {
 
   return (
     <StyledTableContainer>
-      <StyledTable aria-label="FIIs table">
+      <StyledTable aria-label="BDRs table">
         <StyledTableHead>
           <HeaderRow>
             <HeaderCell>Nome</HeaderCell>
             <HeaderCell>Código</HeaderCell>
             <HeaderCell>
               <TableSortLabel
-                active={orderBy === 'quotaCount'}
-                direction={orderBy === 'quotaCount' ? order : 'asc'}
-                onClick={() => handleRequestSort('quotaCount')}
-              >
-                Cotas
-              </TableSortLabel>
-            </HeaderCell>
-            <HeaderCell>
-              <TableSortLabel
                 active={orderBy === 'quotaDateApproved'}
                 direction={orderBy === 'quotaDateApproved' ? order : 'asc'}
                 onClick={() => handleRequestSort('quotaDateApproved')}
               >
-                Data Aprovação
+                Data Início
               </TableSortLabel>
             </HeaderCell>
-            <HeaderCell>CNPJ</HeaderCell>
+            <HeaderCell>Tipo</HeaderCell>
+            <HeaderCell>Patrocinado</HeaderCell>
           </HeaderRow>
         </StyledTableHead>
         <TableBody>
-          {sortedFiis.map((fii) => (
-            <DataRow key={fii._id}>
+          {sortedBdrs.map((bdr) => (
+            <DataRow key={bdr._id}>
               <DataCell>
-                <Tooltip title={fii.nomeCompletoFII || ''} placement="top">
-                  <Link href={`/fii/${fii.nomeFII}`} style={{ textDecoration: 'none' }}>
-                    <FIIName>{fii.nomeFII}</FIIName>
+                <Tooltip title={bdr.nomeEmpresa || ''} placement="top">
+                  <Link href={`/bdr/${bdr.nomeEmpresa}`} style={{ textDecoration: 'none' }}>
+                    <BDRName>{bdr.nomeEmpresa}</BDRName>
                   </Link>
                 </Tooltip>
               </DataCell>
               <DataCell>
-                {fii.codigo.map((code) => (
-                  <Link key={code} href={`/fii/${code}`} style={{ textDecoration: 'none' }}>
-                    <CodeChip>{code}</CodeChip>
-                  </Link>
-                ))}
+
+                <Link key={bdr.codigo} href={`/bdr/${bdr.codigo}`} style={{ textDecoration: 'none' }}>
+                  <CodeChip>{bdr.codigo}</CodeChip>
+                </Link>
+
               </DataCell>
               <DataCell>
-                <DataText>{formatNumber(fii.quotaCount)}</DataText>
+                <DataText>{formatDate(bdr.dataInicio)}</DataText>
               </DataCell>
               <DataCell>
-                <DataText>{formatDate(fii.quotaDateApproved)}</DataText>
+                <DataText>{(bdr.informações?.market)}</DataText>
               </DataCell>
               <DataCell>
-                <DataText>{formatCNPJ(fii.informacoes?.cnpj)}</DataText>
+                <Chip
+                  label={bdr.isPatrocinado ? 'Sim' : 'Não'}
+                  size="small"
+                  variant="outlined"
+                  color={bdr.isPatrocinado ? 'primary' : 'secondary'}
+                />
               </DataCell>
             </DataRow>
           ))}
