@@ -6,6 +6,7 @@ import { SearchBar } from '../components/ETFBDR/components/SearchBar';
 import { VisualizationETFBDRs } from '../components/ETFBDR/components/Visualization';
 import { ETFBDRFilter } from '@/services/api/types/etfbdr';
 import { TabPanel } from '../components/ETFBDR/components/TabPanel';
+import { ETFBDRTabsContainer } from './styled';
 
 export const ETFBDRPage = () => {
   const [currentTab, setCurrentTab] = useState(0);
@@ -19,13 +20,17 @@ export const ETFBDRPage = () => {
     setFilters(newFilters);
   };
 
+  const handleClear = () => {
+    setFilters({});
+  };
+
   return (
-    <Box sx={{ width: '100%' }}>
+    <ETFBDRTabsContainer>
       <Typography variant="h4" component="h1" gutterBottom>
         ETFBDRs
       </Typography>
 
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onClear={handleClear} />
 
       <Box sx={{ borderBottom: 1, borderColor: 'divider', marginTop: 2 }}>
         <Tabs value={currentTab} onChange={handleTabChange} aria-label="visualization tabs">
@@ -44,6 +49,6 @@ export const ETFBDRPage = () => {
       <TabPanel value={currentTab} index={2}>
         <VisualizationETFBDRs view="grid" filters={filters} />
       </TabPanel>
-    </Box>
+    </ETFBDRTabsContainer>
   );
 };

@@ -26,7 +26,9 @@ class ETFBDRsApiService extends BaseApiService {
     }
   };
 
-  getETFBDR = async (id: string): Promise<{ success: boolean; data: ETFBDR }> => {
+  getETFBDR = async (
+    id: string
+  ): Promise<{ success: boolean; data: ETFBDR }> => {
     try {
       return await this.get<{ success: boolean; data: ETFBDR }>(
         `${API_ENDPOINTS.ETFBDR.DETAIL}/${id}`,
@@ -62,6 +64,25 @@ class ETFBDRsApiService extends BaseApiService {
     } catch (error) {
       console.error("Erro ao buscar todas as ETFs BDR:", error);
       throw handleApiError(error, ErrorCode.ETF_DATA_ERROR);
+    }
+  };
+  getETFBDRByNomeETF = async (nomeETF: string): Promise<ETFBDR | null> => {
+    try {
+      const upperNomeETF = nomeETF.trim().toUpperCase();
+
+      const response = await this.get<ETFBDRListResponse>(
+        API_ENDPOINTS.ETFBDR.PAGINATION,
+        { nomeETF: upperNomeETF, pageSize: 1, page: 0 },
+        ErrorCode.ETF_NOT_FOUND
+      );
+
+      if (response && response.result && response.result.length > 0) {
+        return response.result[0];
+      }
+      return null;
+    } catch (error) {
+      console.error(`Erro ao buscar ETF com nome ${nomeETF}:`, error);
+      throw handleApiError(error, ErrorCode.ETF_NOT_FOUND);
     }
   };
 

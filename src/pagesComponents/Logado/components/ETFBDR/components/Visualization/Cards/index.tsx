@@ -28,11 +28,7 @@ const formatCNPJ = (cnpj: string | undefined) => {
 const CardView: React.FC<CardViewProps> = ({ etfbdrs }) => {
   const router = useRouter();
 
-  const sortedEtfbdrs = [...etfbdrs].sort((a, b) => {
-    const quotaA = Number(a.quotaCount) || 0;
-    const quotaB = Number(b.quotaCount) || 0;
-    return quotaB - quotaA;
-  });
+
 
   const handleCardClick = (nomeETF: string) => {
     router.push(`/etfbdr/${nomeETF}`);
@@ -40,7 +36,7 @@ const CardView: React.FC<CardViewProps> = ({ etfbdrs }) => {
 
   return (
     <Grid container spacing={3}>
-      {sortedEtfbdrs.map((etfbdr) => (
+      {etfbdrs.map((etfbdr) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={etfbdr._id}>
           <CardContainer onClick={() => handleCardClick(etfbdr.nomeETF)} style={{ cursor: 'pointer' }}>
 
@@ -53,22 +49,6 @@ const CardView: React.FC<CardViewProps> = ({ etfbdrs }) => {
             <CardSubtitle variant="body2">
               {etfbdr.nomeCompletoETF}
             </CardSubtitle>
-
-
-            <CardInfo>
-              <CardInfoLabel variant="body2">Cotas:</CardInfoLabel>
-              <CardInfoValue variant="body1">{formatNumber(etfbdr.quotaCount) || 'N/A'}</CardInfoValue>
-            </CardInfo>
-
-            <CardInfo>
-              <CardInfoLabel variant="body2">Aprovado em:</CardInfoLabel>
-              <CardInfoValue variant="body1">{etfbdr.quotaDateApproved || 'N/A'}</CardInfoValue>
-            </CardInfo>
-
-            <CardInfo>
-              <CardInfoLabel variant="body2">CNPJ:</CardInfoLabel>
-              <CardInfoValue variant="body1">{formatCNPJ(etfbdr.informações?.cnpj)}</CardInfoValue>
-            </CardInfo>
 
           </CardContainer>
         </Grid>
