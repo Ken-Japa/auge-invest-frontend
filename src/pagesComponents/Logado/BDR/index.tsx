@@ -47,7 +47,13 @@ export const BDR = () => {
                                     </Alert>
                                 </Snackbar>
 
-                                <BDRTabs onError={setError} />
+                                <BDRTabs
+                                    onError={setError}
+                                    viewMode="cartao"
+                                    onChangeView={(view) => {
+                                        // Handle view mode change
+                                    }}
+                                />
                             </ContentBox>
                         </ContentWrapper>
                     </BDRPageContainer>

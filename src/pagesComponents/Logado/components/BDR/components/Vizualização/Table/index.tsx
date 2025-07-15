@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { TableBody, TableSortLabel, Tooltip, Chip } from '@mui/material';
+import { TableBody, TableSortLabel, Tooltip } from '@mui/material';
 import Link from 'next/link';
+import { formatDate } from '@/components/Utils/Formatters/formatters';
 import { UnifiedBDR } from '../../../types';
 import {
   StyledTableContainer,
@@ -25,32 +26,6 @@ type OrderBy = 'quotaCount' | 'quotaDateApproved';
 export const TableView = ({ bdrs }: TableViewProps) => {
   const [order, setOrder] = useState<Order>('desc');
   const [orderBy, setOrderBy] = useState<OrderBy>('quotaCount');
-
-  const formatCNPJ = (cnpj: string | undefined): string => {
-    if (!cnpj) return 'N/A';
-
-    const numericCNPJ = cnpj.replace(/\D/g, '');
-
-    if (numericCNPJ.length !== 14) return cnpj;
-
-    return `${numericCNPJ.slice(0, 2)}.${numericCNPJ.slice(2, 5)}.${numericCNPJ.slice(5, 8)}/${numericCNPJ.slice(8, 12)}-${numericCNPJ.slice(12)}`;
-  };
-
-  const formatNumber = (num: number | string | undefined): string => {
-    if (num === undefined) return 'N/A';
-    return new Intl.NumberFormat('pt-BR').format(Number(num));
-  };
-
-  const formatDate = (dateStr: string | undefined): string => {
-    if (!dateStr) return 'N/A';
-
-    try {
-      const date = new Date(dateStr);
-      return new Intl.DateTimeFormat('pt-BR').format(date);
-    } catch (e) {
-      return dateStr;
-    }
-  };
 
   const handleRequestSort = (property: OrderBy) => {
     const isAsc = orderBy === property && order === 'asc';

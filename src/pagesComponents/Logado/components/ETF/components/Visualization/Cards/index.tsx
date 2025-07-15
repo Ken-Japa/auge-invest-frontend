@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import { ETFExtended } from '../../../types';
 import {
   CardContainer,
@@ -11,19 +11,13 @@ import {
   CardInfoValue,
   CodeChip,
 } from './styled';
-import { formatNumber } from '@/components/Utils/Formatters/formatters';
+import { formatNumber, formatCNPJ } from '@/components/Utils/Formatters/formatters';
 import { useRouter } from 'next/navigation';
 
 interface CardViewProps {
   etfs: ETFExtended[];
 }
 
-const formatCNPJ = (cnpj: string | undefined) => {
-  if (!cnpj) return 'N/A';
-  const cnpjDigits = cnpj.replace(/\D/g, '');
-  if (cnpjDigits.length !== 14) return cnpj;
-  return cnpjDigits.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
-};
 
 const CardView: React.FC<CardViewProps> = ({ etfs }) => {
   const router = useRouter();

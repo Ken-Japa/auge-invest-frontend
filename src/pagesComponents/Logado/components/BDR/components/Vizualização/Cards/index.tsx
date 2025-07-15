@@ -2,6 +2,7 @@ import { Grid, Chip, IconButton } from '@mui/material';
 import { OpenInNew as OpenInNewIcon, Star } from '@mui/icons-material';
 import Link from 'next/link';
 import { UnifiedBDR } from '../../../types';
+import { formatDate } from '@/components/Utils/Formatters/formatters';
 import {
   StyledCard,
   StyledCardContent,
@@ -20,18 +21,6 @@ interface CardViewProps {
 }
 
 export const CardView = ({ bdrs }: CardViewProps) => {
-
-
-  const formatDate = (dateStr: string | undefined): string => {
-    if (!dateStr) return 'N/A';
-
-    try {
-      const date = new Date(dateStr);
-      return new Intl.DateTimeFormat('pt-BR').format(date);
-    } catch (e) {
-      return dateStr;
-    }
-  };
 
   return (
     <Grid container spacing={3}>

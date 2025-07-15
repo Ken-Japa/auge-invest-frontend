@@ -83,7 +83,7 @@ const ETFDetails = ({ slug, codigo, isCode = false }: ETFDetailsProps) => {
             <Typography variant="body1">Aprovação: {etf.quotaDateApproved}</Typography>
             <Chip
               label={etf.codigo || 'N/A'}
-              size="small"
+              size="medium"
               color="success"
               variant="outlined"
               clickable
