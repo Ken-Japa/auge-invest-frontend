@@ -15,6 +15,17 @@ export const DetailPageContainer = styled(Box)(({ theme }) => ({
   minHeight: "100vh",
   marginTop: -64,
   paddingTop: 64,
+  position: "relative",
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    zIndex: 1,
+  },
 }));
 
 export const ContentWrapper = styled(Box)(({ theme }) => ({
@@ -28,6 +39,8 @@ export const ContentWrapper = styled(Box)(({ theme }) => ({
   transition: theme.transitions.create(["background-color", "box-shadow"], {
     duration: theme.transitions.duration.standard,
   }),
+  zIndex: 2,
+  position: "relative",
 }));
 
 export const LoadingContainer = styled(Box)(({ theme }) => ({
