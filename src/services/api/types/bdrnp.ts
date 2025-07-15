@@ -37,34 +37,3 @@ export interface BDRNPFilter {
   page?: number;
   pageSize?: number;
 }
-// BDR Dividend related types
-export interface BDRNPDividendItem {
-  tipo: string;
-  dataAprovacao: string;
-  valor: string;
-  dataPagamento: string;
-  ultimoDiaCom: string;
-  _id: string;
-}
-
-export interface BDRNPDividendData {
-  _id: string;
-  nomeEmpresa: string;
-  totalDividendos: number;
-  dividendos: BDRNPDividendItem[];
-}
-
-export interface BDRNPDividendResponse {
-  success: boolean;
-  data: {
-    result: BDRNPDividendData;
-    pagination: Pagination;
-  };
-}
-
-export interface BDRNPDividendFilter {
-  nomeEmpresa?: string;
-  nomeBDR?: string;
-  page?: number;
-  pageSize?: number;
-}

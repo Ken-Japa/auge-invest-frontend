@@ -109,6 +109,6 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
         </Grid>
       </Grid>
     </DetailPaper>
-    {bdr.nomeEmpresa && <BDRDividendos nomeBDR={bdr.nomeEmpresa} />}
+    {bdr.nomeEmpresa && <BDRDividendos codigoEmpresa={bdr.codigoEmpresa} />}
   </DetailContainer>
 );

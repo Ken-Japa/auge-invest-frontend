@@ -25,14 +25,13 @@ import {
 } from './styled';
 
 interface BDRDividendosProps {
-  nomeBDR: string;
+  codigoEmpresa: string;
 }
 
 interface BDRDividendResponse {
   result: {
     _id: string;
-    nomeBDR: string;
-    quantidade: string;
+    nomeEmpresa: string;
     totalDividendos: number;
     dividendos: Dividend[];
   };
@@ -55,7 +54,7 @@ interface Dividend {
   ultimoDiaCom?: string;
 }
 
-const BDRDividendos = ({ nomeBDR }: BDRDividendosProps) => {
+const BDRDividendos = ({ codigoEmpresa }: BDRDividendosProps) => {
   const [dividends, setDividends] = useState<Dividend[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -69,7 +68,7 @@ const BDRDividendos = ({ nomeBDR }: BDRDividendosProps) => {
         // Tenta buscar dividendos de BDRs patrocinados primeiro
         try {
           const response = await api.bdrs.getBDRDividends({
-            nomeBDR,
+            nomeEmpresa: codigoEmpresa,
             pageSize: 100,
             page: 0
           }) as unknown as BDRDividendResponse;
@@ -81,23 +80,6 @@ const BDRDividendos = ({ nomeBDR }: BDRDividendosProps) => {
         } catch (err) {
           console.log('Não encontrou dividendos em BDRs patrocinados, tentando não patrocinados');
         }
-
-        // Se não encontrou em BDRs patrocinados, tenta em não patrocinados
-        try {
-          const response = await api.bdrnp.getBDRNPDividends({
-            nomeBDR,
-            pageSize: 100,
-            page: 0
-          }) as unknown as BDRDividendResponse;
-
-          if (response && response.result && response.result.dividendos) {
-            setDividends(response.result.dividendos);
-            return;
-          }
-        } catch (err) {
-          console.log('Não encontrou dividendos em BDRs não patrocinados');
-        }
-
         // Se chegou aqui, não encontrou dividendos
         setDividends([]);
       } catch (err) {
@@ -109,10 +91,10 @@ const BDRDividendos = ({ nomeBDR }: BDRDividendosProps) => {
       }
     };
 
-    if (nomeBDR) {
+    if (codigoEmpresa) {
       fetchDividends();
     }
-  }, [nomeBDR]);
+  }, [codigoEmpresa]);
 
   const calculateSummary = () => {
     if (!dividends.length) return { total: 0, average: 0, lastValue: 0, paymentFrequency: 'N/A', firstPaymentDate: '' };
@@ -132,25 +114,21 @@ const BDRDividendos = ({ nomeBDR }: BDRDividendosProps) => {
     // Helper function to safely parse dates
     const parseDate = (dateString: string) => {
       try {
-        // Handle different date formats
-        // First try direct parsing
+
         const date = new Date(dateString);
 
-        // Check if date is valid
         if (!isNaN(date.getTime())) {
           return date;
         }
 
-        // If direct parsing fails, try to parse DD/MM/YYYY format
         if (dateString.includes('/')) {
           const [day, month, year] = dateString.split('/').map(Number);
           return new Date(year, month - 1, day);
         }
 
-        // Try to parse Brazilian date format DD/MM/YYYY
         const parts = dateString.match(/(\d+)/g);
         if (parts && parts.length >= 3) {
-          // Assuming day/month/year format
+
           return new Date(
             parseInt(parts[2]),
             parseInt(parts[1]) - 1,
@@ -261,7 +239,7 @@ const BDRDividendos = ({ nomeBDR }: BDRDividendosProps) => {
     <DividendContainer>
       <DividendPaper>
         <DividendTitle variant="h3">
-          Histórico de Dividendos {nomeBDR}
+          Histórico de Dividendos {codigoEmpresa}
         </DividendTitle>
 
         <DividendSummary>

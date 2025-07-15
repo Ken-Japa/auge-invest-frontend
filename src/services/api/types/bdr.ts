@@ -65,7 +65,6 @@ export interface BDRDividendResponse {
 
 export interface BDRDividendFilter {
   nomeEmpresa?: string;
-  nomeBDR?: string;
   page?: number;
   pageSize?: number;
 }

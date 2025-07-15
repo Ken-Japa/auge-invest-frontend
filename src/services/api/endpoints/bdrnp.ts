@@ -1,13 +1,7 @@
 import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
 import { ErrorCode, handleApiError } from "../errorHandler";
-import {
-  BDRNPListResponse,
-  BDRNPFilter,
-  BDRNP,
-  BDRNPDividendResponse,
-  BDRNPDividendFilter,
-} from "../types";
+import { BDRNPListResponse, BDRNPFilter, BDRNP } from "../types";
 
 class BDRNPApiService extends BaseApiService {
   getBDRNPs = async (filters?: BDRNPFilter): Promise<any> => {
@@ -39,16 +33,23 @@ class BDRNPApiService extends BaseApiService {
     }
   };
 
-  searchBDRNPs = async (searchTerm: string, searchBy: 'nomeEmpresa' | 'codigoEmpresa' = 'nomeEmpresa'): Promise<BDRNPListResponse> => {
+  searchBDRNPs = async (
+    searchTerm: string,
+    searchBy: "nomeEmpresa" | "codigoEmpresa" = "nomeEmpresa"
+  ): Promise<BDRNPListResponse> => {
     try {
-      const processedSearchTerm = searchBy === 'nomeEmpresa' ? searchTerm.toLowerCase() : searchTerm;
+      const processedSearchTerm =
+        searchBy === "nomeEmpresa" ? searchTerm.toLowerCase() : searchTerm;
       return await this.get<BDRNPListResponse>(
         API_ENDPOINTS.BDRNP.PAGINATION,
         { [searchBy]: processedSearchTerm, pageSize: 10, page: 0 },
         ErrorCode.BDR_DATA_ERROR
       );
     } catch (error) {
-      console.error(`Erro ao pesquisar BDR com ${searchBy} "${searchTerm}":`, error);
+      console.error(
+        `Erro ao pesquisar BDR com ${searchBy} "${searchTerm}":`,
+        error
+      );
       throw handleApiError(error, ErrorCode.BDR_DATA_ERROR);
     }
   };
@@ -83,28 +84,6 @@ class BDRNPApiService extends BaseApiService {
     } catch (error) {
       console.error(`Erro ao buscar BDR com código ${code}:`, error);
       throw handleApiError(error, ErrorCode.BDR_NOT_FOUND);
-    }
-  };
-  getBDRNPDividends = async (
-    filters: BDRNPDividendFilter
-  ): Promise<BDRNPDividendResponse> => {
-    const params = {
-      page: filters.page !== undefined ? filters.page : 0,
-      pageSize: filters.pageSize || 100,
-      ...(filters.nomeEmpresa && { nomeEmpresa: filters.nomeEmpresa }),
-    };
-
-    try {
-      return await this.get<BDRNPDividendResponse>(
-        API_ENDPOINTS.BDRNP.DIVIDENDS,
-        params
-      );
-    } catch (error) {
-      console.error(
-        `Erro ao buscar dividendos para BDR ${filters.nomeEmpresa}:`,
-        error
-      );
-      throw handleApiError(error, ErrorCode.BDR_DATA_ERROR);
     }
   };
 }

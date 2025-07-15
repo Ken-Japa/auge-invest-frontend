@@ -51,8 +51,8 @@ export const API_ENDPOINTS = {
   BDRNP: {
     PAGINATION: "/bdr/np/pagination",
     DETAIL: "/bdr/np",
-    DIVIDENDS: "/bdrs/np/dividendos/pagination",
   },
+  //ETF endpoints
   ETF: {
     PAGINATION: "/etf/pagination",
     DETAIL: "/etf",
@@ -61,6 +61,7 @@ export const API_ENDPOINTS = {
     PAGINATION: "/etf/bdr/pagination",
     DETAIL: "/etf/bdr",
   },
+  //Dictionary endpoints
   DICTIONARY: {
     PAGINATION: "/dictionary/pagination",
   },
