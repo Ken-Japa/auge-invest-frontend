@@ -41,9 +41,10 @@ class BDRNPApiService extends BaseApiService {
 
   searchBDRNPs = async (searchTerm: string, searchBy: 'nomeEmpresa' | 'codigoEmpresa' = 'nomeEmpresa'): Promise<BDRNPListResponse> => {
     try {
+      const processedSearchTerm = searchBy === 'nomeEmpresa' ? searchTerm.toLowerCase() : searchTerm;
       return await this.get<BDRNPListResponse>(
         API_ENDPOINTS.BDRNP.PAGINATION,
-        { [searchBy]: searchTerm, pageSize: 10, page: 0 },
+        { [searchBy]: processedSearchTerm, pageSize: 10, page: 0 },
         ErrorCode.BDR_DATA_ERROR
       );
     } catch (error) {

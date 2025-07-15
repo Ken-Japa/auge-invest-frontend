@@ -41,9 +41,10 @@ class BDRsApiService extends BaseApiService {
 
   searchBDRs = async (searchTerm: string, searchBy: 'nomeEmpresa' | 'codigoEmpresa' = 'nomeEmpresa'): Promise<BDRListResponse> => {
     try {
+      const processedSearchTerm = searchBy === 'nomeEmpresa' ? searchTerm.toLowerCase() : searchTerm;
       return await this.get<BDRListResponse>(
         API_ENDPOINTS.BDR.PAGINATION,
-        { [searchBy]: searchTerm, pageSize: 10, page: 0 },
+        { [searchBy]: processedSearchTerm, pageSize: 10, page: 0 },
         ErrorCode.BDR_DATA_ERROR
       );
     } catch (error) {

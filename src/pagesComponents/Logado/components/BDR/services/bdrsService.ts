@@ -212,6 +212,7 @@ export const fetchBDRBySlugOrCode = async (
 
             const matchingBDR = response.result.find((bdr: any) => {
               const bdrName = (bdr.nomeEmpresa || "").trim();
+              return bdrName.toLowerCase() === normalizedSearchName.toLowerCase();
             });
 
             if (matchingBDR) {
@@ -269,6 +270,7 @@ export const fetchBDRBySlugOrCode = async (
 
             const matchingBDRNP = response.result.find((bdrnp: any) => {
               const bdrnpName = (bdrnp.nomeEmpresa || "").trim();
+              return bdrnpName.toLowerCase() === normalizedSearchName.toLowerCase();
             });
 
             if (matchingBDRNP) {
