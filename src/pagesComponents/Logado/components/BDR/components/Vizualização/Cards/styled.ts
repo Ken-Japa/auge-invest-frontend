@@ -8,6 +8,7 @@ import {
 import { borderRadius, transitions, spacing } from "@/theme/variables";
 
 export const StyledCard = styled(MuiCard)(({ theme }) => ({
+  position: "relative",
   height: "100%",
   display: "flex",
   flexDirection: "column",

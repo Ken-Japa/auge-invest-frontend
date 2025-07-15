@@ -1,5 +1,5 @@
 "use client";
-import { Box, Alert, Snackbar } from '@mui/material';
+import { Alert, Snackbar } from '@mui/material';
 import { PageTransition } from '@/components/Utils/PageTransition';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';

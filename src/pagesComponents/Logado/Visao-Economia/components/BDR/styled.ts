@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 export const BdrContainer = styled(Box)`
   width: 100%;
@@ -8,6 +8,13 @@ export const BdrContainer = styled(Box)`
   display: flex;
   flex-direction: column;
   gap: 16px;
+`;
+
+export const Title = styled(Typography)`
+  font-size: 24px;
+  font-weight: 500;
+  padding-left: 8px;
+  color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 export const ControlsWrapper = styled(Box)`
@@ -63,4 +70,10 @@ export const VisualizationWrapper = styled(Box)`
           : "rgba(0, 0, 0, 0.3)"};
     }
   }
+`;
+export const ContentBox = styled(Box)`
+position: relative;
+marginBottom: theme.spacing(4),
+textAlign: "center",
+alignItems: "center",
 `;

@@ -57,7 +57,7 @@ export const VisualizacaoBDRs = ({
 }: VisualizacaoBDRsProps) => {
   // Ensure limit is one of the valid options
   const validPageSizes = [10, 20, 50, 100];
-  const initialPageSize = validPageSizes.includes(limit) ? limit : 50;
+  const initialPageSize = validPageSizes.includes(limit) ? limit : 20;
 
   const [bdrs, setBdrs] = useState<UnifiedBDR[]>([]);
   const [loading, setLoading] = useState(true);
@@ -186,7 +186,7 @@ export const VisualizacaoBDRs = ({
 
       <FilterContainer>
         <FormControl component="fieldset">
-          <Typography variant="subtitle1" gutterBottom>
+          <Typography variant="subtitle1" gutterBottom sx={{ textAlign: 'center' }}>
             Tipo de BDR
           </Typography>
           <RadioGroup

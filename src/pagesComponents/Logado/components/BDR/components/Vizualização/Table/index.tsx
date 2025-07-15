@@ -87,7 +87,7 @@ export const TableView = ({ bdrs }: TableViewProps) => {
           {sortedBdrs.map((bdr) => (
             <DataRow key={bdr._id}>
               <DataCell>
-                <Tooltip title={bdr.nomeEmpresa || ''} placement="top">
+                <Tooltip title={bdr.nomeEmpresaCompleto || ''} placement="top">
                   <Link href={`/bdr/${bdr.nomeEmpresa}`} style={{ textDecoration: 'none' }}>
                     <BDRName>{bdr.nomeEmpresa}</BDRName>
                   </Link>
