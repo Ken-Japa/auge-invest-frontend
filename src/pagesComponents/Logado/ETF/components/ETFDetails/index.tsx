@@ -1,9 +1,10 @@
 "use client";
 import { useRouter } from 'next/navigation';
-import { Box, Typography, CircularProgress, Alert } from '@mui/material';
+import { Box, Typography, CircularProgress, Alert, Chip } from '@mui/material';
 import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
-import { DetailPageContainer, ContentWrapper, LoadingContainer, ErrorContainer, BackButton } from './styled';
+import { DetailPageContainer, ContentWrapper, LoadingContainer, ErrorContainer, BackButton, Header, NomeETF, SubHeader, BoxContent, BoxHeader, BoxBody } from './styled';
 import { useETFDetails } from './hooks/useETFDetails';
+import { formatCNPJ, formatNumber, formatLink } from '@/components/Utils/Formatters/formatters';
 
 interface ETFDetailsProps {
   slug: string;
@@ -73,17 +74,64 @@ const ETFDetails = ({ slug, codigo, isCode = false }: ETFDetailsProps) => {
   return (
     <DetailPageContainer>
       <ContentWrapper>
-        <Typography variant="h4" gutterBottom>{etf.nomeETF}</Typography>
-        <Typography variant="h6" color="textSecondary" gutterBottom>{etf.nomeCompletoETF}</Typography>
-        <Box sx={{ mt: 4 }}>
-          <Typography variant="body1"><strong>Código:</strong> {etf.codigo}</Typography>
-          <Typography variant="body1"><strong>Indústria:</strong> {etf.indústria}</Typography>
-          <Typography variant="body1"><strong>Segmento:</strong> {etf.segmento}</Typography>
-          <Typography variant="body1"><strong>CNPJ:</strong> {etf.informações?.cnpj}</Typography>
-          <Typography variant="body1"><strong>Site:</strong> {etf.informações?.site}</Typography>
-          <Typography variant="body1"><strong>Cotas:</strong> {etf.quotaCount}</Typography>
-          <Typography variant="body1"><strong>Aprovado em:</strong> {etf.quotaDateApproved}</Typography>
+        <Header>
+          <NomeETF>
+            <Typography variant="h3" gutterBottom>{etf.nomeETF}</Typography>
+          </NomeETF>
+          <Typography variant="h5" color="textSecondary" gutterBottom>{etf.nomeCompletoETF}</Typography>
+          <SubHeader >
+            <Typography variant="body1">Aprovação: {etf.quotaDateApproved}</Typography>
+            <Chip
+              label={etf.codigo || 'N/A'}
+              size="small"
+              color="success"
+              variant="outlined"
+              clickable
+            />
+          </SubHeader>
+        </Header>
+
+        <Box display="grid" gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap={4} mt={4}>
+          <Box>
+            <BoxHeader>
+              <Typography variant="h4" gutterBottom >Informações básicas</Typography>
+            </BoxHeader>
+            <BoxContent>
+              <BoxBody>
+                <Typography variant="body1"><strong>Cotas disponíveis:</strong></Typography>
+                <Typography variant="body1">{formatNumber(etf.quotaCount)}</Typography>
+              </BoxBody>
+              <BoxBody>
+                <Typography variant="body1"><strong>Indústria:</strong></Typography>
+                <Typography variant="body1">{etf.indústria}</Typography>
+              </BoxBody>
+              <BoxBody>
+                <Typography variant="body1"><strong>Segmento:</strong></Typography>
+                <Typography variant="body1">{etf.segmento}</Typography>
+              </BoxBody>
+
+            </BoxContent>
+          </Box>
+
+          <Box>
+            <BoxHeader>
+              <Typography variant="h4" gutterBottom >Detalhes</Typography>
+            </BoxHeader>
+            <BoxContent>
+              <BoxBody>
+                <Typography variant="body1"><strong>CNPJ:</strong></Typography>
+                <Typography variant="body1">{formatCNPJ(etf.informações?.cnpj || '')}</Typography>
+              </BoxBody>
+              <BoxBody>
+                <Typography variant="body1"><strong>Site:</strong></Typography>
+                <Typography variant="body1" dangerouslySetInnerHTML={{ __html: formatLink(etf.informações?.site, 'Acessar Link') }} />
+              </BoxBody>
+
+
+            </BoxContent>
+          </Box>
         </Box>
+
         <BackButton
           startIcon={<ArrowBackIcon />}
           variant="contained"

@@ -1,6 +1,5 @@
-import React from "react";
 import { styled } from "@mui/material/styles";
-import { Box, Tab, Tabs, Paper, CircularProgress, Typography } from "@mui/material";
+import { Box, Tab, Tabs, Paper, Typography } from "@mui/material";
 
 export const EmpresaContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(3),
@@ -29,7 +28,7 @@ export const ContentContainer = styled(Box)(({ theme }) => ({
   backdropFilter: "blur(8px)",
   boxShadow: theme.shadows[4],
   padding: theme.spacing(3),
-  transition: theme.transitions.create(['background-color', 'box-shadow'], {
+  transition: theme.transitions.create(["background-color", "box-shadow"], {
     duration: theme.transitions.duration.standard,
   }),
 }));
@@ -49,7 +48,7 @@ export const StyledTab = styled(Tab)(({ theme }) => ({
   fontSize: theme.typography.pxToRem(16),
   marginRight: theme.spacing(4),
   color: theme.palette.text.secondary,
-  transition: theme.transitions.create('color', {
+  transition: theme.transitions.create("color", {
     duration: theme.transitions.duration.shorter,
   }),
   "&.Mui-selected": {
@@ -60,24 +59,25 @@ export const StyledTab = styled(Tab)(({ theme }) => ({
     backgroundColor: theme.palette.action.selected,
   },
   "&:hover": {
-    color: theme.palette.mode === "dark"
-      ? theme.palette.primary.light
-      : theme.palette.primary.dark,
+    color:
+      theme.palette.mode === "dark"
+        ? theme.palette.primary.light
+        : theme.palette.primary.dark,
   },
 }));
 
 // Componentes adicionais estilizados
 export const LoadingContainer = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   minHeight: 400,
-  width: '100%',
+  width: "100%",
 }));
 
 export const ErrorContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(3),
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.error.main,
 }));
 
@@ -90,7 +90,7 @@ export const StyledPaper = styled(Paper)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[1],
   backgroundColor: theme.palette.background.paper,
-  transition: theme.transitions.create(['background-color', 'box-shadow'], {
+  transition: theme.transitions.create(["background-color", "box-shadow"], {
     duration: theme.transitions.duration.standard,
   }),
 }));
@@ -106,9 +106,9 @@ export const SectionDescription = styled(Typography)(({ theme }) => ({
 }));
 
 export const ProgressContainer = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   padding: theme.spacing(2),
 }));
 

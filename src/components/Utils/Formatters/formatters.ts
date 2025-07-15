@@ -31,3 +31,8 @@ export const formatCurrency = (value: number | string): string => {
     currency: 'BRL' 
   }).format(Number(value));
 };
+
+export const formatLink = (url: string | undefined, displayText: string = 'Link'): string => {
+  if (!url) return 'N/A';
+  return `<a href="${url}" target="_blank" rel="noopener noreferrer">${displayText}</a>`;
+};
