@@ -24,7 +24,7 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
         <Grid item xs={12}>
           <HeaderContainer>
             <div>
-              <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
+              <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
                 {bdr.nomeEmpresa}
               </Typography>
               {bdr.nomeEmpresaCompleto && (

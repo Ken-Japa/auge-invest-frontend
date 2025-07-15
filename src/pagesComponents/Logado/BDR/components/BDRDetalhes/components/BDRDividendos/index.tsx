@@ -114,28 +114,20 @@ const BDRDividendos = ({ codigoEmpresa }: BDRDividendosProps) => {
     // Helper function to safely parse dates
     const parseDate = (dateString: string) => {
       try {
+        if (!dateString) return null;
 
-        const date = new Date(dateString);
-
-        if (!isNaN(date.getTime())) {
-          return date;
-        }
-
+        // Expecting DD/MM/AAAA format
         if (dateString.includes('/')) {
           const [day, month, year] = dateString.split('/').map(Number);
-          return new Date(year, month - 1, day);
+          // Basic validation for date components
+          if (day > 0 && day <= 31 && month > 0 && month <= 12 && year > 1900) {
+            const date = new Date(year, month - 1, day);
+            // Validate if the date components match after creation to catch invalid dates like 31/02
+            if (date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day) {
+              return date;
+            }
+          }
         }
-
-        const parts = dateString.match(/(\d+)/g);
-        if (parts && parts.length >= 3) {
-
-          return new Date(
-            parseInt(parts[2]),
-            parseInt(parts[1]) - 1,
-            parseInt(parts[0])
-          );
-        }
-
         return null;
       } catch (e) {
         console.error('Error parsing date:', dateString, e);
@@ -195,8 +187,10 @@ const BDRDividendos = ({ codigoEmpresa }: BDRDividendosProps) => {
 
   const getStatusColor = (tipoDividendo: string) => {
     switch (tipoDividendo.toUpperCase()) {
-      case 'RENDIMENTO':
+      case 'DIVIDENDO':
         return 'success';
+      case 'RENDIMENTO':
+        return 'warning';
       case 'AMORTIZAÇÃO':
         return 'info';
       default:
@@ -273,6 +267,7 @@ const BDRDividendos = ({ codigoEmpresa }: BDRDividendosProps) => {
                 <HeaderCell align="center">Data Pagamento</HeaderCell>
                 <HeaderCell align="center">Valor (R$)</HeaderCell>
                 <HeaderCell align="center">Tipo</HeaderCell>
+                <HeaderCell align="center">Último Dia com</HeaderCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -283,8 +278,8 @@ const BDRDividendos = ({ codigoEmpresa }: BDRDividendosProps) => {
 
                 return (
                   <TableRow key={dividend._id || dividend.id || index}>
-                    <TableCell>{formatDate(dividend.dataAprovacao)}</TableCell>
-                    <TableCell>{formatDate(dividend.dataPagamento)}</TableCell>
+                    <TableCell>{dividend.dataAprovacao}</TableCell>
+                    <TableCell>{dividend.dataPagamento}</TableCell>
                     <TableCell align="right">{formatCurrency(valor)}</TableCell>
                     <TableCell align="center">
                       <StatusChip
@@ -293,6 +288,7 @@ const BDRDividendos = ({ codigoEmpresa }: BDRDividendosProps) => {
                         size="small"
                       />
                     </TableCell>
+                    <TableCell >{dividend.ultimoDiaCom}</TableCell>
                   </TableRow>
                 );
               })}
