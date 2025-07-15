@@ -11,6 +11,8 @@ import {
     ContentWrapper,
     ContentBox,
     BDRTitle,
+    BDRSubTitle,
+    SearchBox
 } from './styled';
 
 export const BDR = () => {
@@ -31,10 +33,13 @@ export const BDR = () => {
                                 <BDRTitle variant="h2" gutterBottom>
                                     BDRs
                                 </BDRTitle>
+                                <BDRSubTitle>
+                                    Recebíveis de Depósitos Brasileiros
+                                </BDRSubTitle>
 
-                                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 3 }}>
+                                <SearchBox >
                                     <BDRSearchBar onSearch={handleSearch} />
-                                </Box>
+                                </SearchBox>
 
                                 <Snackbar
                                     open={!!error}

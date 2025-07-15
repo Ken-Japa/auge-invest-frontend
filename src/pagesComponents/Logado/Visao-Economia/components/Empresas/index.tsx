@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { Box } from "@mui/material";
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ViewMode } from '../../../components/EmpresaView/Elementos/ModoVisualizacao/types';
@@ -8,7 +9,7 @@ import { ContentSkeleton } from '../../../../../components/Feedback/Skeletons/Co
 import { ModoVisualizacao } from '../../../components/EmpresaView/Elementos/ModoVisualizacao';
 import { SearchBar } from '../../../components/EmpresaView/Elementos/SearchBar';
 import { VisualizationContent } from '../../../components/EmpresaView';
-import { EmpresasContainer, ControlsWrapper, VisualizationWrapper } from './styled';
+import { EmpresasContainer, ControlsWrapper, VisualizationWrapper, Title } from './styled';
 
 
 export const Empresas = () => {
@@ -27,6 +28,9 @@ export const Empresas = () => {
                             viewMode={viewMode}
                             onChangeView={setViewMode}
                         />
+                        <Box sx={{ flexGrow: 1, textAlign: 'center' }}>
+                            <Title>Empresas</Title>
+                        </Box>
                         <SearchBar />
                     </ControlsWrapper>
 

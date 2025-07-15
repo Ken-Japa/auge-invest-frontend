@@ -21,11 +21,8 @@ export const ContentWrapper = styled(Box)(({ theme }) => ({
   maxWidth: 1200,
   margin: "0 auto",
   backgroundColor:
-    theme.palette.mode === "dark"
-      ? "rgba(18, 24, 38, 0.85)"
-      : "rgba(255, 255, 255, 0.85)",
+    theme.palette.mode === "dark" ? "rgba(18, 24, 38)" : "rgba(255, 255, 255)",
   borderRadius: theme.shape.borderRadius,
-  backdropFilter: "blur(8px)",
   boxShadow: theme.shadows[4],
   padding: theme.spacing(3),
   transition: theme.transitions.create(["background-color", "box-shadow"], {

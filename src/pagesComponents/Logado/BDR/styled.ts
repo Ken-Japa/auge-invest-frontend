@@ -49,11 +49,28 @@ export const ContentBox = styled(Box)(({ theme }) => ({
 
 export const BDRTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 700,
-  marginBottom: theme.spacing(3),
+  marginBottom: theme.spacing(1),
   color:
     theme.palette.mode === "dark"
       ? theme.palette.primary.light
       : theme.palette.primary.dark,
+}));
+
+export const BDRSubTitle = styled(Typography)(({ theme }) => ({
+  fontWeight: 500,
+  marginBottom: theme.spacing(3),
+  color:
+    theme.palette.mode === "dark"
+      ? theme.palette.text.secondary
+      : theme.palette.text.secondary,
+}));
+
+export const SearchBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  mb: "3",
+  padding: theme.spacing(2),
 }));
 
 export const BDRTabsContainer = styled(Paper)(({ theme }) => ({
@@ -61,8 +78,8 @@ export const BDRTabsContainer = styled(Paper)(({ theme }) => ({
   marginBottom: theme.spacing(2),
   backgroundColor:
     theme.palette.mode === "dark"
-      ? "rgba(19, 47, 76, 0.8)"
-      : "rgba(255, 255, 255, 0.8)",
+      ? "rgba(19, 47, 76, 0.85)"
+      : "rgba(255, 255, 255, 0.85)",
   backdropFilter: "blur(10px)",
   borderRadius: theme.shape.borderRadius * 2,
   border: `1px solid ${

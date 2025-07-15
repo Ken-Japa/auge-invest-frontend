@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 export const EmpresasContainer = styled(Box)`
   width: 100%;
@@ -8,6 +8,12 @@ export const EmpresasContainer = styled(Box)`
   display: flex;
   flex-direction: column;
   gap: 16px;
+`;
+
+export const Title = styled(Typography)`
+  font-size: 24px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 export const ControlsWrapper = styled(Box)`

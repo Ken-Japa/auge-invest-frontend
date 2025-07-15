@@ -11,8 +11,7 @@ import {
   FormControl,
   FormControlLabel,
   Radio,
-  RadioGroup,
-  IconButton
+  RadioGroup
 } from '@mui/material';
 import {
   FirstPage as FirstPageIcon,
