@@ -41,23 +41,23 @@ interface VisualizacaoBDRsProps {
     isPatrocinado?: boolean;
     searchQuery?: string;
   };
-  limit?: number;
   onError?: (message: string) => void;
   viewMode?: string;
   onChangeView?: (mode: string) => void;
+  defaultPageSize?: number;
 }
 
 export const VisualizacaoBDRs = ({
   mode = 'card',
   filter = {},
-  limit = 10,
   onError,
   viewMode = 'cartao',
-  onChangeView = () => { }
+  onChangeView = () => { },
+  defaultPageSize = 10,
 }: VisualizacaoBDRsProps) => {
-  // Ensure limit is one of the valid options
+  // Ensure defaultPageSize is one of the valid options
   const validPageSizes = [10, 20, 50, 100];
-  const initialPageSize = validPageSizes.includes(limit) ? limit : 20;
+  const initialPageSize = validPageSizes.includes(defaultPageSize) ? defaultPageSize : 10;
 
   const [bdrs, setBdrs] = useState<UnifiedBDR[]>([]);
   const [loading, setLoading] = useState(true);

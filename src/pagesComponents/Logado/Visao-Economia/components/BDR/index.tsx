@@ -46,6 +46,7 @@ export const Bdr = () => {
                             onChangeView={(view) => {
                                 // Handle view mode change
                             }}
+                            defaultPageSize={10}
                         />
                     </ContentBox>
 

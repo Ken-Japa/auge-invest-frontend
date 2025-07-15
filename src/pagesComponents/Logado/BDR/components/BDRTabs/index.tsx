@@ -4,15 +4,16 @@ import { Tabs, Tab } from '@mui/material';
 import VisualizacaoBDRs from '../../../components/BDR/components/Vizualização';
 import { BDRTabsContainer } from '../../styled';
 import { TabPanel } from '../TabPanel';
-import { VisualizationMode } from '../../../components/BDR/types';
+
 
 interface BDRTabsProps {
     viewMode: string;
     onChangeView: (mode: string) => void;
     onError: (message: string) => void;
+    defaultPageSize?: number;
 }
 
-export const BDRTabs: React.FC<BDRTabsProps> = ({ viewMode, onChangeView, onError }) => {
+export const BDRTabs: React.FC<BDRTabsProps> = ({ viewMode, onChangeView, onError, defaultPageSize }) => {
     const [tabValue, setTabValue] = useState(0);
 
     const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
@@ -49,10 +50,9 @@ export const BDRTabs: React.FC<BDRTabsProps> = ({ viewMode, onChangeView, onErro
                 <VisualizacaoBDRs
                     mode="card"
                     filter={{}}
-                    limit={12}
                     onError={onError}
                     viewMode={viewMode}
-
+                    defaultPageSize={defaultPageSize}
                 />
             </TabPanel>
 
@@ -60,10 +60,9 @@ export const BDRTabs: React.FC<BDRTabsProps> = ({ viewMode, onChangeView, onErro
                 <VisualizacaoBDRs
                     mode="table"
                     filter={{}}
-                    limit={20}
                     onError={onError}
                     viewMode={viewMode}
-
+                    defaultPageSize={defaultPageSize}
                 />
             </TabPanel>
 
@@ -71,10 +70,9 @@ export const BDRTabs: React.FC<BDRTabsProps> = ({ viewMode, onChangeView, onErro
                 <VisualizacaoBDRs
                     mode="grid"
                     filter={{}}
-                    limit={24}
                     onError={onError}
                     viewMode={viewMode}
-
+                    defaultPageSize={defaultPageSize}
                 />
             </TabPanel>
         </BDRTabsContainer>
