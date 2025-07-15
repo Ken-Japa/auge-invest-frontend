@@ -39,7 +39,7 @@ export const SearchBar = ({ value, defaultValue = '', onChange, onClear }: ETFSe
     const loadETFs = async () => {
       try {
         setLoading(true);
-        const response = await api.etf.getAllETFs(); // Fetch all ETFs initially
+        const response = await api.etf.getAllETFs();
 
         const searchOptions: SearchOption[] = [];
 
@@ -53,15 +53,15 @@ export const SearchBar = ({ value, defaultValue = '', onChange, onClear }: ETFSe
                 id: etf.nomeETF || ''
               });
             }
-            if (etf.nomeCompletoETF) {
+            else if (etf.nomeCompletoETF) {
               searchOptions.push({
                 label: `${etf.nomeCompletoETF} (${etf.codigo})`,
-                value: etf.nomeCompletoETF,
+                value: etf.nomeETF,
                 type: 'nomeCompletoETF',
                 id: etf.nomeCompletoETF || ''
               });
             }
-            if (etf.codigo) {
+            else if (etf.codigo) {
               searchOptions.push({
                 label: `${etf.codigo} (${etf.nomeETF})`,
                 value: etf.codigo,
@@ -87,7 +87,7 @@ export const SearchBar = ({ value, defaultValue = '', onChange, onClear }: ETFSe
     if (option) {
       // Determine if the selected option is a code or a name
       const isCode = option.type === 'codigo';
-      const param = isCode ? option.value : option.id; // Use value for code, id for slug/name
+      const param = isCode ? option.value : option.value;
       router.push(`/etf/${param}`);
     }
   };
@@ -113,8 +113,8 @@ export const SearchBar = ({ value, defaultValue = '', onChange, onClear }: ETFSe
         inputValue={inputValue}
         filterOptions={(options, { inputValue }) => {
           const inputLower = inputValue.toLowerCase();
-          // Only show suggestions when user types at least 2 characters
-          if (inputLower.length < 2) {
+
+          if (inputLower.length < 3) {
             return [];
           }
           return options.filter(option =>

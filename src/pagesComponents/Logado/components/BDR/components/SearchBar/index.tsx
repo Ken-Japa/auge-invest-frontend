@@ -64,8 +64,16 @@ export const BDRSearchBar = ({ value, defaultValue = '', onChange, onSearch }: B
                             if (bdr.codigo) {
                                 searchOptions.push({
                                     label: `${bdr.codigo} (${bdr.nomeEmpresa})`,
-                                    value: bdr.codigo,
+                                    value: bdr.nomeEmpresa,
                                     type: 'codigo',
+                                    id: bdr._id || ''
+                                });
+                            }
+                            if (bdr.nomeEmpresaCompleto) {
+                                searchOptions.push({
+                                    label: `${bdr.nomeEmpresaCompleto} (${bdr.codigo})`,
+                                    value: bdr.nomeEmpresa,
+                                    type: 'bdr',
                                     id: bdr._id || ''
                                 });
                             }
@@ -88,8 +96,16 @@ export const BDRSearchBar = ({ value, defaultValue = '', onChange, onSearch }: B
                             if (bdr.codigo) {
                                 searchOptions.push({
                                     label: `${bdr.codigo} (${bdr.nomeEmpresa})`,
-                                    value: bdr.codigo,
+                                    value: bdr.nomeEmpresa,
                                     type: 'codigo',
+                                    id: bdr._id || ''
+                                });
+                            }
+                            if (bdr.nomeEmpresaCompleto) {
+                                searchOptions.push({
+                                    label: `${bdr.nomeEmpresaCompleto} (${bdr.codigo})`,
+                                    value: bdr.nomeEmpresa,
+                                    type: 'bdr-np',
                                     id: bdr._id || ''
                                 });
                             }
@@ -112,7 +128,7 @@ export const BDRSearchBar = ({ value, defaultValue = '', onChange, onSearch }: B
 
     const handleOptionSelect = (option: SearchOption | null) => {
         if (option) {
-            router.push(`/bdr/${option.id}`);
+            router.push(`/bdr/${option.value}`);
         }
     };
 
@@ -139,7 +155,7 @@ export const BDRSearchBar = ({ value, defaultValue = '', onChange, onSearch }: B
                 filterOptions={(options, { inputValue }) => {
                     const inputLower = inputValue.toLowerCase();
                     // Only show suggestions when user types at least 2 characters
-                    if (inputLower.length < 2) {
+                    if (inputLower.length < 3) {
                         return [];
                     }
                     return options.filter(option =>

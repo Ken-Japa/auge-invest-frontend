@@ -12,6 +12,7 @@ import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton
 import { Empresas } from './components/Empresas';
 import { Indices } from './components/Indices';
 import { Bdr } from './components/BDR';
+import { Etf } from './components/ETF';
 import { Selic } from './components/Outros/Selic';
 import { Inflacao } from './components/Outros/Inflacao';
 import { PosicaoUsuario } from './components/Outros/PosicaoUsuario';
@@ -96,12 +97,7 @@ export const VisaoEconomia = () => {
                                                 </DashboardItem>
                                             </Grid>
 
-                                            {/* Componente de BDRs */}
-                                            <Grid item xs={12}>
-                                                <DashboardItem>
-                                                    <Bdr />
-                                                </DashboardItem>
-                                            </Grid>
+
                                         </Grid>
                                     </Grid>
 
@@ -161,7 +157,20 @@ export const VisaoEconomia = () => {
                                     </Grid>
 
                                     {/* Calendários na parte inferior - Largura total */}
-                                    <Suspense fallback={<Box sx={{ height: '300px' }}><ContentSkeleton type="card" height={300} /></Box>}>
+                                    <Suspense fallback={<Box sx={{ height: '500px' }}><ContentSkeleton type="card" height={300} /></Box>}>
+                                        <Grid item xs={12}>
+                                            <DashboardItem>
+                                                <Bdr />
+                                            </DashboardItem>
+                                        </Grid>
+
+                                        <Grid item xs={12}>
+                                            <DashboardItem>
+                                                <Etf />
+                                            </DashboardItem>
+                                        </Grid>
+
+
                                         <Grid item xs={12}>
                                             <DashboardItem>
                                                 <Calendario />

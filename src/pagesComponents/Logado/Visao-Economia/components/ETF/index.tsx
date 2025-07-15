@@ -2,17 +2,19 @@
 
 import { useState } from 'react';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
+import { ViewMode } from './types';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ContentSkeleton } from '../../../../../components/Feedback/Skeletons/ContentSkeleton';
 
 // Importando componentes do módulo BDR
-import { BDRSearchBar } from '../../../components/BDR';
+import { SearchBar } from '../../../components/ETF/components/SearchBar';
+import ETF from '../../../components/ETF'
 import { BDRTabs } from '../../../BDR/components/BDRTabs';
-import { useErrorHandling } from '../../../BDR/components/ErrorHandling';
+
 import { BdrContainer, ControlsWrapper, Title, ContentBox } from './styled';
 
-export const Bdr = () => {
-    const { error, setError, clearError } = useErrorHandling();
+export const Etf = () => {
+
     const [searchQuery, setSearchQuery] = useState('');
 
 
@@ -24,24 +26,15 @@ export const Bdr = () => {
             >
                 <BdrContainer>
                     <ControlsWrapper>
-                        <Title>BDRs</Title>
-                        <BDRSearchBar
+                        <Title>ETFs</Title>
+                        <SearchBar
                             value={searchQuery}
                             onChange={setSearchQuery}
-                            onSearch={(query) => {
-                                setSearchQuery(query);
-                            }}
+
                         />
                     </ControlsWrapper>
                     <ContentBox>
-                        <BDRTabs
-                            onError={setError}
-                            viewMode="cartao"
-                            onChangeView={(view) => {
-                                // Handle view mode change
-                            }}
-                            defaultPageSize={10}
-                        />
+                        <ETF />
                     </ContentBox>
 
                 </BdrContainer>

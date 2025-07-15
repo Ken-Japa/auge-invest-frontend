@@ -43,7 +43,7 @@ export const FIISearchBar = ({ defaultValue = '', onSearch }: FIISearchBarProps)
                         if (fii.nomeFII) {
                             // Add FII name as an option
                             searchOptions.push({
-                                label: `${fii.nomeFII} (FII)`,
+                                label: `${fii.nomeFII} (${fii.codigo})`,
                                 value: fii.nomeFII,
                                 type: 'fii',
                                 id: fii._id || ''
@@ -54,11 +54,20 @@ export const FIISearchBar = ({ defaultValue = '', onSearch }: FIISearchBarProps)
                                 fii.codigo.forEach((codigo: string) => {
                                     searchOptions.push({
                                         label: `${codigo} (${fii.nomeFII})`,
-                                        value: codigo,
+                                        value: fii.codigo,
                                         type: 'codigo',
                                         id: fii._id || ''
                                     });
                                 });
+                            }
+                            if (fii.nomeCompletoFII) {
+                                searchOptions.push({
+                                    label: `${fii.nomeCompletoFII} (${fii.codigo})`,
+                                    value: fii.codigo,
+                                    type: 'fii',
+                                    id: fii._id || ''
+                                });
+                                ;
                             }
                         }
                     });
@@ -79,7 +88,7 @@ export const FIISearchBar = ({ defaultValue = '', onSearch }: FIISearchBarProps)
 
     const handleOptionSelect = (option: SearchOption | null) => {
         if (option) {
-            router.push(`/fii/${option.id}`);
+            router.push(`/fii/${option.value}`);
         }
     };
 
