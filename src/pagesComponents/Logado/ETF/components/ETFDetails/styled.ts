@@ -1,15 +1,37 @@
-import { styled } from '@mui/material/styles';
-import { Box, Button } from '@mui/material';
+import { styled } from "@mui/material/styles";
+import { Box, Button } from "@mui/material";
 
 export const DetailPageContainer = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(4),
-  backgroundColor: theme.palette.background.default,
-  minHeight: '100vh',
+  minHeight: "100vh",
+  position: "relative",
+  padding: theme.spacing(4, 2),
+  marginTop: "-64px",
+
+  display: "flex",
+  flexDirection: "column",
+  flexGrow: 1,
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundImage:
+      theme.palette.mode === "dark"
+        ? 'url("/assets/images/background/ETF-Dark.jpg")'
+        : 'url("/assets/images/background/ETF-Light.jpg")',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed",
+    opacity: 0.15,
+    zIndex: -1,
+  },
 }));
 
 export const ContentWrapper = styled(Box)(({ theme }) => ({
-  maxWidth: '900px',
-  margin: '0 auto',
+  maxWidth: "900px",
+  margin: "0 auto",
   padding: theme.spacing(4),
   backgroundColor: theme.palette.background.paper,
   borderRadius: theme.shape.borderRadius,
@@ -17,21 +39,21 @@ export const ContentWrapper = styled(Box)(({ theme }) => ({
 }));
 
 export const LoadingContainer = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  minHeight: '300px',
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  minHeight: "300px",
   padding: theme.spacing(4),
 }));
 
 export const ErrorContainer = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  minHeight: '200px',
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  minHeight: "200px",
   padding: theme.spacing(4),
-  textAlign: 'center',
+  textAlign: "center",
 }));
 
 export const BackButton = styled(Button)(({ theme }) => ({

@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from 'react';
-import { Box, Tabs, Tab } from '@mui/material';
+import { Tabs, Tab } from '@mui/material';
 import { VisualizationETFs } from './components/Visualization';
-import { ETFTabsContainer } from './styled';
+import { ETFTabsContainer, BoxVizualizationControl } from './styled';
 import { TabPanel } from './components/TabPanel';
 import SearchBar from './components/SearchBar';
 import { ETFFilter } from '@/services/api/types/etf';
@@ -29,13 +29,13 @@ const ETF: React.FC = () => {
     return (
         <ETFTabsContainer>
             <SearchBar onClear={handleClear} />
-            <Box >
+            <BoxVizualizationControl >
                 <Tabs value={value} onChange={handleChange} aria-label="ETF visualization tabs">
                     <Tab label="Cartões" {...a11yProps(0)} />
                     <Tab label="Tabela" {...a11yProps(1)} />
                     <Tab label="Grade" {...a11yProps(2)} />
                 </Tabs>
-            </Box>
+            </BoxVizualizationControl>
             <TabPanel value={value} index={0}>
                 <VisualizationETFs view="card" filters={filters} />
             </TabPanel>

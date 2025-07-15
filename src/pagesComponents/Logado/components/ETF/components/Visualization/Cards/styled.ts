@@ -21,7 +21,7 @@ export const CardContainer = styled(MuiCard)(({ theme }) => ({
   borderRadius: borderRadius.md,
   backgroundColor:
     theme.palette.mode === "dark"
-      ? "rgba(30, 40, 60, 0.8)"
+      ? "rgba(30, 40, 60)"
       : theme.palette.background.paper,
   border: `1px solid ${
     theme.palette.mode === "dark"
