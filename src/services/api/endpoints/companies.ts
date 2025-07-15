@@ -1,6 +1,12 @@
 import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
-import { Company, CompanyListResponse, CompanyFilter } from "../types";
+import {
+  Company,
+  CompanyListResponse,
+  CompanyFilter,
+  CompanyDividendFilter,
+  CompanyDividendResponse,
+} from "../types";
 import { ErrorCode, handleApiError } from "../errorHandler";
 
 class CompaniesApiService extends BaseApiService {
@@ -50,6 +56,28 @@ class CompaniesApiService extends BaseApiService {
       );
     } catch (error) {
       console.error(`Erro ao pesquisar empresas com nome "${nome}":`, error);
+      throw handleApiError(error, ErrorCode.COMPANY_DATA_ERROR);
+    }
+  };
+  getFIIDividends = async (
+    filters: CompanyDividendFilter
+  ): Promise<CompanyDividendResponse> => {
+    const params = {
+      page: filters.page !== undefined ? filters.page : 0,
+      pageSize: filters.pageSize || 100,
+      ...(filters.nomeEmpresa && { nomeEmpresa: filters.nomeEmpresa }),
+    };
+
+    try {
+      return await this.get<CompanyDividendResponse>(
+        API_ENDPOINTS.COMPANY.DIVIDENDS,
+        params
+      );
+    } catch (error) {
+      console.error(
+        `Erro ao buscar dividendos para Empresa: ${filters.nomeEmpresa}:`,
+        error
+      );
       throw handleApiError(error, ErrorCode.COMPANY_DATA_ERROR);
     }
   };

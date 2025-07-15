@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
 // Componentes compartilhados
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
@@ -13,24 +12,22 @@ import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { EmpresaContent } from './components/EmpresaContent';
 
 // Hooks customizados
-import { 
-  useEmpresaData, 
-  useHistoricalData, 
-  useDerivativesCheck, 
-  useTabNavigation, 
-  useUrlSync 
+import {
+  useEmpresaData,
+  useHistoricalData,
+  useDerivativesCheck,
+  useTabNavigation,
+  useUrlSync
 } from './hooks';
 
-// Tipos
-import { EmpresaDetalhada } from '../../types';
 
 // Estilos
-import { 
-  EmpresaContainer, 
-  ContentContainer, 
-  StyledPaper, 
-  LoadingContainer, 
-  ErrorContainer 
+import {
+  EmpresaContainer,
+  ContentContainer,
+  StyledPaper,
+  LoadingContainer,
+  ErrorContainer
 } from './styled';
 
 interface EmpresaDetalhesProps {

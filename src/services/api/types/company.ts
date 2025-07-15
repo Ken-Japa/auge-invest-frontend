@@ -1,4 +1,4 @@
-import { Pagination } from './common';
+import { Pagination } from "./common";
 
 export interface CompanyCode {
   codigo: string;
@@ -35,25 +35,37 @@ export interface CompanyFilter {
   pageSize?: number;
 }
 
-export interface CompanyHistoricalData {
-  date: string;
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-  volume: number;
-  adjustedClose?: number;
+// FII Dividend related types
+export interface CompanyDividendItem {
+  tipo: string;
+  dataAprovacao: string;
+  valor: string;
+  ratio: string;
+  tipoDividendo: string;
+  ultimoDiaCom: string;
+  valorUltimoDiaCom: string;
+  _id: string;
 }
 
-export interface CompanyDividend {
-  id: string;
-  companyId: string;
-  exDate: string;
-  paymentDate: string;
-  recordDate?: string;
-  amount: number;
-  type: "DIVIDEND" | "JCP" | "STOCK_SPLIT" | "OTHER";
-  currency: string;
+export interface CompanyDividendData {
+  _id: string;
+  nomeEmpresa: string;
+  totalDividendos: number;
+  dividendos: CompanyDividendItem[];
+}
+
+export interface CompanyDividendResponse {
+  success: boolean;
+  data: {
+    result: CompanyDividendData;
+    pagination: Pagination;
+  };
+}
+
+export interface CompanyDividendFilter {
+  nomeEmpresa?: string;
+  page?: number;
+  pageSize?: number;
 }
 
 // Legacy Company types (keeping for backward compatibility)

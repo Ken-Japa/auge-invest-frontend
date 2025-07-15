@@ -25,6 +25,7 @@ export const API_ENDPOINTS = {
   COMPANY: {
     PAGINATION: "/company/pagination",
     DETAIL: "/company",
+    DIVIDENDS: "/company/dividendos/pagination",
   },
   // Historical data endpoints
   HISTORIC: {
