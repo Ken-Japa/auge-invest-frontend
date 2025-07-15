@@ -55,7 +55,7 @@ export const DetailPaper = styled(Paper)(({ theme }) => ({
   boxShadow: theme.shadows[3],
   backgroundColor:
     theme.palette.mode === "dark"
-      ? "rgba(19, 47, 76, 0.8)"
+      ? "rgba(19, 47, 76, 0.9)"
       : "rgba(255, 255, 255, 0.9)",
   backdropFilter: "blur(10px)",
   border: `1px solid ${

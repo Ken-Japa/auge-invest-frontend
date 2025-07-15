@@ -24,7 +24,7 @@ export const FIIContent = ({ fii }: FIIContentProps) => (
         <Grid item xs={12}>
           <HeaderContainer>
             <div>
-              <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
+              <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
                 {fii.nomeFII}
               </Typography>
               {fii.nomeCompletoFII && (

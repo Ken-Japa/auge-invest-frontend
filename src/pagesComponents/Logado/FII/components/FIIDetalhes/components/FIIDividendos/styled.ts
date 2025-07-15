@@ -15,6 +15,7 @@ import {
 export const DividendContainer = styled(Box)(({ theme }) => ({
   marginTop: theme.spacing(4),
   marginBottom: theme.spacing(4),
+  display: "flex",
 }));
 
 export const DividendPaper = styled(Paper)(({ theme }) => ({
@@ -24,8 +25,8 @@ export const DividendPaper = styled(Paper)(({ theme }) => ({
 }));
 
 export const TableContainer = styled(MuiTableContainer)({
-  maxHeight: "400px",
   overflowY: "auto",
+  display: "flex",
 });
 
 export const Table = styled(MuiTable)({

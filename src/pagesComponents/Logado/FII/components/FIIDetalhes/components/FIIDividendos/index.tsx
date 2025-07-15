@@ -155,7 +155,7 @@ const FIIDividendos = ({ nomeFII }: FIIDividendosProps) => {
     });
 
     // Get the first (oldest) payment date for the tooltip
-    const firstPaymentDate = sortedByDate.length > 0 ? formatDate(sortedByDate[0].dataPagamento) : '';
+    const firstPaymentDate = sortedByDate.length > 0 ? sortedByDate[0].dataPagamento : '';
 
     // Calculate frequency (average days between payments)
     let paymentFrequency = 'N/A';
@@ -197,6 +197,8 @@ const FIIDividendos = ({ nomeFII }: FIIDividendosProps) => {
     switch (tipoDividendo.toUpperCase()) {
       case 'RENDIMENTO':
         return 'success';
+      case 'DIVIDENDO':
+        return 'warning';
       case 'AMORTIZAÇÃO':
         return 'info';
       default:
@@ -239,7 +241,7 @@ const FIIDividendos = ({ nomeFII }: FIIDividendosProps) => {
     <DividendContainer>
       <DividendPaper>
         <DividendTitle variant="h3">
-          Histórico de Dividendos
+          Histórico de Dividendos - {nomeFII}
         </DividendTitle>
 
         <DividendSummary>
@@ -272,8 +274,8 @@ const FIIDividendos = ({ nomeFII }: FIIDividendosProps) => {
                 <HeaderCell align="center">Data Base</HeaderCell>
                 <HeaderCell align="center">Data Pagamento</HeaderCell>
                 <HeaderCell align="center">Valor (R$)</HeaderCell>
-                <HeaderCell align="center">Relativo</HeaderCell>
                 <HeaderCell align="center">Tipo</HeaderCell>
+                <HeaderCell align="center">Último Dia com</HeaderCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -284,10 +286,10 @@ const FIIDividendos = ({ nomeFII }: FIIDividendosProps) => {
 
                 return (
                   <TableRow key={dividend._id || dividend.id || index}>
-                    <TableCell>{formatDate(dividend.dataAprovacao)}</TableCell>
-                    <TableCell>{formatDate(dividend.dataPagamento)}</TableCell>
+                    <TableCell>{dividend.dataAprovacao}</TableCell>
+                    <TableCell>{dividend.dataPagamento}</TableCell>
                     <TableCell align="right">{formatCurrency(valor)}</TableCell>
-                    <TableCell align="right">{dividend.relativo}</TableCell>
+
                     <TableCell align="center">
                       <StatusChip
                         label={dividend.tipoDividendo}
@@ -295,6 +297,7 @@ const FIIDividendos = ({ nomeFII }: FIIDividendosProps) => {
                         size="small"
                       />
                     </TableCell>
+                    <TableCell >{dividend.ultimoDiaCom}</TableCell>
                   </TableRow>
                 );
               })}
