@@ -19,8 +19,8 @@ export const BDRPageContainer = styled(Box)(({ theme }) => ({
     bottom: 0,
     backgroundImage:
       theme.palette.mode === "dark"
-        ? 'url("/assets/images/background/FII-Dark.jpg")'
-        : 'url("/assets/images/background/FII-Light.jpg")',
+        ? 'url("/assets/images/background/BDRs-Dark.jpg")'
+        : 'url("/assets/images/background/BDRs-Light.jpg")',
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundAttachment: "fixed",
