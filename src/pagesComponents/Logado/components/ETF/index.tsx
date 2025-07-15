@@ -14,7 +14,11 @@ function a11yProps(index: number) {
     };
 }
 
-const ETF: React.FC = () => {
+interface ETFProps {
+  defaultPageSize?: number;
+}
+
+const ETF: React.FC<ETFProps> = ({ defaultPageSize }) => {
     const [value, setValue] = useState(0);
     const [filters, setFilters] = useState<ETFFilter>({});
 
@@ -37,13 +41,13 @@ const ETF: React.FC = () => {
                 </Tabs>
             </BoxVizualizationControl>
             <TabPanel value={value} index={0}>
-                <VisualizationETFs view="card" filters={filters} />
+                <VisualizationETFs view="card" filters={filters} defaultPageSize={defaultPageSize} />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <VisualizationETFs view="table" filters={filters} />
+                <VisualizationETFs view="table" filters={filters} defaultPageSize={defaultPageSize} />
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <VisualizationETFs view="grid" filters={filters} />
+                <VisualizationETFs view="grid" filters={filters} defaultPageSize={defaultPageSize} />
             </TabPanel>
         </ETFTabsContainer>
     );

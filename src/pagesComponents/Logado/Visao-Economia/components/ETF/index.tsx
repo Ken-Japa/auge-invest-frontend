@@ -34,7 +34,7 @@ export const Etf = () => {
                         />
                     </ControlsWrapper>
                     <ContentBox>
-                        <ETF />
+                        <ETF defaultPageSize={20} />
                     </ContentBox>
 
                 </BdrContainer>

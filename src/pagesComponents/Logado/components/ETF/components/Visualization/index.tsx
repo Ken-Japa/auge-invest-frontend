@@ -31,16 +31,19 @@ import {
 interface VisualizationETFsProps {
   view: 'card' | 'table' | 'grid';
   filters: ETFFilter;
+  defaultPageSize?: number;
 }
 
 export const VisualizationETFs = ({
   view,
-  filters
+  filters,
+  defaultPageSize = 20
 }: VisualizationETFsProps) => {
   const validPageSizes = [10, 20, 50, 100];
-  const initialPageSize = validPageSizes.includes(filters.pageSize || 20) ? (filters.pageSize || 20) : 20;
+  const initialPageSize = validPageSizes.includes(defaultPageSize) ? defaultPageSize : 20;
 
-  const [etfs, setETFs] = useState<ETFExtended[]>([]);
+  const [allEtfs, setAllEtfs] = useState<ETFExtended[]>([]); // Armazenar todas as ETFs
+  const [etfs, setETFs] = useState<ETFExtended[]>([]); // ETFs da página atual
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(0);
@@ -56,23 +59,44 @@ export const VisualizationETFs = ({
 
         const result = await fetchETFs({
           ...filters,
-          page,
-          pageSize
+          // page e pageSize não são passados aqui para que a API retorne todos os dados
         });
 
-        setETFs(result.result);
-        setTotalPages(result.pagination.pages);
+        setAllEtfs(result.result); // Armazenar todas as ETFs
+        setPage(0); // Resetar a página para 0 ao carregar novos filtros
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Ocorreu um erro desconhecido';
         setError(errorMessage);
-
       } finally {
         setLoading(false);
       }
     };
 
     loadETFs();
-  }, [filters, page, pageSize]);
+  }, [filters]); // Depende apenas dos filtros, para buscar todos os dados novamente quando os filtros mudarem
+
+  // Novo useEffect para lidar com a paginação e ordenação no frontend
+  useEffect(() => {
+    if (allEtfs.length > 0) {
+      // Aplicar ordenação antes de fatiar para a página
+      const sortedEtfs = [...allEtfs].sort((a, b) => {
+        // Converter quotaCount para número para garantir ordenação numérica
+        const quotaA = Number(a.quotaCount);
+        const quotaB = Number(b.quotaCount);
+        return quotaB - quotaA; // Ordenação decrescente
+      });
+
+      const newTotalPages = Math.ceil(sortedEtfs.length / pageSize);
+      setTotalPages(newTotalPages);
+
+      const startIndex = page * pageSize;
+      const endIndex = startIndex + pageSize;
+      setETFs(sortedEtfs.slice(startIndex, endIndex));
+    } else {
+      setETFs([]);
+      setTotalPages(0);
+    }
+  }, [allEtfs, page, pageSize]);
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
     setPage(newPage - 1);
@@ -144,9 +168,9 @@ export const VisualizationETFs = ({
 
       {totalPages > 1 && (
         <PaginationContainer
-            direction={{ xs: 'column', sm: 'row' }}
-            spacing={2}
-          >
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={2}
+        >
           <Pagination
             count={totalPages}
             page={page + 1}

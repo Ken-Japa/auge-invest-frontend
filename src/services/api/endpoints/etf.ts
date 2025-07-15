@@ -7,7 +7,7 @@ class ETFsApiService extends BaseApiService {
   getETFs = async (filters?: ETFFilter): Promise<ETFListResponse> => {
     const params = {
       page: filters?.page !== undefined ? filters.page : 0,
-      pageSize: filters?.pageSize || 10,
+      pageSize: filters?.pageSize || 1000,
       ...(filters?.nomeETF && { nomeETF: filters.nomeETF }),
       ...(filters?.codigoETF && { codigoETF: filters.codigoETF }),
       ...(filters?.codigo && { codigo: filters.codigo }),
@@ -85,7 +85,9 @@ class ETFsApiService extends BaseApiService {
     }
   };
 
-  getETFByNomeCompletoETF = async (nomeCompletoETF: string): Promise<ETF | null> => {
+  getETFByNomeCompletoETF = async (
+    nomeCompletoETF: string
+  ): Promise<ETF | null> => {
     try {
       const upperNomeCompletoETF = nomeCompletoETF.trim().toUpperCase();
 
@@ -100,7 +102,10 @@ class ETFsApiService extends BaseApiService {
       }
       return null;
     } catch (error) {
-      console.error(`Erro ao buscar ETF com nome completo ${nomeCompletoETF}:`, error);
+      console.error(
+        `Erro ao buscar ETF com nome completo ${nomeCompletoETF}:`,
+        error
+      );
       throw handleApiError(error, ErrorCode.ETF_NOT_FOUND);
     }
   };

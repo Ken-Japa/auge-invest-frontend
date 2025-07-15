@@ -19,11 +19,7 @@ interface TableViewProps {
 const TableView: React.FC<TableViewProps> = ({ etfs }) => {
   const router = useRouter();
 
-  const sortedEtfs = [...etfs].sort((a, b) => {
-    const quotaA = Number(a.quotaCount) || 0;
-    const quotaB = Number(b.quotaCount) || 0;
-    return quotaB - quotaA;
-  });
+
 
   const handleRowClick = (nomeETF: string) => {
     router.push(`/etf/${nomeETF}`);
@@ -42,7 +38,7 @@ const TableView: React.FC<TableViewProps> = ({ etfs }) => {
           </TableRow>
         </StyledTableHead>
         <TableBody>
-          {sortedEtfs.map((etf) => (
+          {etfs.map((etf) => (
             <StyledTableRow key={etf._id} onClick={() => handleRowClick(etf.nomeETF)} style={{ cursor: 'pointer' }}>
               <StyledTableCell component="th" scope="row" align="center">
                 <Typography variant="subtitle2" fontWeight="bold">

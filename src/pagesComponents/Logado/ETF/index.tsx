@@ -7,7 +7,7 @@ import { ETFPageContainer } from './styled'
 const ETFPage: React.FC = () => {
     return (
         <ETFPageContainer>
-            <ETF />
+            <ETF defaultPageSize={50} />
         </ETFPageContainer>
     )
 };

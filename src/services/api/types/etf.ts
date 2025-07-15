@@ -32,4 +32,6 @@ export interface ETFFilter {
   segmento?: string;
   page?: number;
   pageSize?: number;
+  sortBy?: string;
+  sortOrder?: 'asc' | 'desc';
 }

@@ -7,7 +7,12 @@ export const fetchETFs = async (
   filters: ETFFilter
 ): Promise<ETFListResponse> => {
   try {
-    const response = await api.etf.getETFs(filters);
+    const { page, pageSize, ...restFilters } = filters; // Extrai page e pageSize
+    const response = await api.etf.getETFs({
+      ...restFilters, // Usa o restante dos filtros
+      sortBy: filters.sortBy || "quotaCount",
+      sortOrder: filters.sortOrder || "desc",
+    });
     return response;
   } catch (error) {
     console.error("Error fetching ETFs:", error);
