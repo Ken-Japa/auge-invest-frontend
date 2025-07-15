@@ -2,15 +2,15 @@ import { Metadata } from "next";
 import { BDR } from "@/pagesComponents/Logado/BDR";
 
 export const metadata: Metadata = {
-    title: "BDR | AugeInvest",
-    description: "Explore informações detalhadas sobre Brazilian Deposit Receipt (BDRs). Acesse dados de rendimentos, patrimônio, cotações e análises dos principais FIIs do mercado brasileiro.",
+    title: "BDRs | AugeInvest",
+    description: "Todas as informações sobre Recebíveis de Depósito Brasileiro (BDRs) em um só lugar. Acompanhe cotações, dividendos, histórico de rendimentos, análises dos principais BDRs negociados no Brasil.",
     openGraph: {
-        title: 'Análise de BDR | AugeInvest',
-        description: 'Dados completos e análises de BDRs para investidores. Tome decisões de investimento informadas com a plataforma AugeInvest.',
+        title: 'Análise de BDRs | AugeInvest',
+        description: 'Plataforma completa para análise de BDRs. Compare desempenho, receba alertas e tome decisões de investimento baseadas em dados com a AugeInvest.',
         type: 'website',
         siteName: 'AugeInvest',
     },
-    keywords: 'brazilian deposit receipt, BDRs, BDR, rendimentos BDR, dividendos BDR, análise BDR, mercado BDR',
+    keywords: 'BDR, Recebíveis de Depósito Brasileiro, Brazilian Deposit Receipt, BDRs brasileiros, análise BDR, dividendos BDR, investimento em ações internacionais, cotações BDR, rendimentos BDR, mercado financeiro',
     robots: 'index, follow',
 };
 

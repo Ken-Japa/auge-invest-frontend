@@ -1,7 +1,8 @@
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import CandlestickChartIcon from '@mui/icons-material/CandlestickChart';
 
 export const ativosList = [
     {
@@ -23,16 +24,16 @@ export const ativosList = [
     {
         id: "bdr",
         title: "BDR",
-        description: "Brazilian Deposit Receipts, dividendos e mais.",
-        icon: ApartmentIcon,
+        description: "Recebíveis de Depósito Brasileiros - Acompanhe ações internacionais negociadas no Brasil.",
+        icon: CurrencyExchangeIcon,
         path: "/bdr",
         available: true
     },
     {
         id: "etf",
         title: "ETF",
-        description: "Exchangable Trade Funds",
-        icon: ApartmentIcon,
+        description: "Fundos de Índice - Invista em cestas de ativos que replicam índices de mercado.",
+        icon: CandlestickChartIcon,
         path: "/etf",
         available: true
     },
