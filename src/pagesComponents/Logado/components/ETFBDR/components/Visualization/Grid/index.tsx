@@ -34,8 +34,8 @@ const GridView: React.FC<GridViewProps> = ({ etfbdrs }) => {
           <GridItemPaper elevation={1} onClick={() => handleItemClick(etfbdr.nomeETF)} style={{ cursor: 'pointer' }}>
             <GridHeader>
               <GridTitle variant="subtitle1">{etfbdr.nomeETF}</GridTitle>
-              {etfbdr.codigo && (
-                <CodeChip label={etfbdr.codigo} color="primary" size="small" />
+              {etfbdr.codigoETF && (
+                <CodeChip label={etfbdr.codigoETF} color="primary" size="small" />
               )}
             </GridHeader>
 

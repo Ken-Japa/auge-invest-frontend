@@ -8,3 +8,4 @@ export { bdrsApi } from "./bdrs";
 export { bdrnpApi } from "./bdrnp";
 export { etfApi } from "./etf";
 export { etfbdrApi } from "./etfbdr";
+export { dictionaryApi } from "./dictionary";

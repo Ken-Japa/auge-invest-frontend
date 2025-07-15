@@ -45,7 +45,7 @@ const TableView: React.FC<TableViewProps> = ({ etfbdrs }) => {
                   {etfbdr.nomeCompletoETF}
                 </Typography>
               </StyledTableCell>
-              <StyledTableCell align="center">{etfbdr.codigo || 'N/A'}</StyledTableCell>
+              <StyledTableCell align="center">{etfbdr.codigoETF || 'N/A'}</StyledTableCell>
 
             </StyledTableRow>
           ))}

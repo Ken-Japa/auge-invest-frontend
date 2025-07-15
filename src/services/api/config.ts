@@ -60,6 +60,9 @@ export const API_ENDPOINTS = {
     PAGINATION: "/etf/bdr/pagination",
     DETAIL: "/etf/bdr",
   },
+  DICTIONARY: {
+    PAGINATION: "/dictionary/pagination",
+  },
 
   // Outros grupos de endpoints...
 };
