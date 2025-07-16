@@ -13,6 +13,7 @@ import { Empresas } from './components/Empresas';
 import { Indices } from './components/Indices';
 import { Bdr } from './components/BDR';
 import { Etf } from './components/ETF';
+import { Fii } from './components/FII';
 import { Selic } from './components/Outros/Selic';
 import { Inflacao } from './components/Outros/Inflacao';
 import { PosicaoUsuario } from './components/Outros/PosicaoUsuario';
@@ -167,6 +168,12 @@ export const VisaoEconomia = () => {
                                         <Grid item xs={12}>
                                             <DashboardItem>
                                                 <Etf />
+                                            </DashboardItem>
+                                        </Grid>
+
+                                        <Grid item xs={12}>
+                                            <DashboardItem>
+                                                <Fii />
                                             </DashboardItem>
                                         </Grid>
 

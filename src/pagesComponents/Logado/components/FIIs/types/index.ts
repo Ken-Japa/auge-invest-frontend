@@ -19,6 +19,8 @@ export interface FIIFilter {
   page?: number;
   pageSize?: number;
   codigo?: string;
+  sortBy?: string;
+  sortOrder?: "asc" | "desc";
 }
 
 export type VisualizationMode = "card" | "table" | "grid";

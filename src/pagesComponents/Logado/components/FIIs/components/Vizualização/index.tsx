@@ -14,7 +14,7 @@ import {
   LastPage as LastPageIcon
 } from '@mui/icons-material';
 import { fetchFIIs } from '../../services/fiisService';
-import { FIIExtended, VisualizationMode } from '../../types';
+import { FIIExtended, VisualizationMode, FIIFilter } from '../../types';
 import CardView from './Cards';
 import TableView from './Table';
 import GridView from './Grid';
@@ -29,24 +29,22 @@ import {
 
 interface VisualizacaoFIIsProps {
   mode?: VisualizationMode;
-  filter?: {
-    segmento?: string;
-    nome?: string;
-  };
-  limit?: number;
+  filters: FIIFilter;
   onError?: (message: string) => void;
+  defaultPageSize?: number;
 }
 
 export const VisualizacaoFIIs = ({
   mode = 'card',
-  filter = {},
-  limit = 10,
-  onError
+  filters,
+  onError,
+  defaultPageSize = 20
 }: VisualizacaoFIIsProps) => {
   // Ensure limit is one of the valid options
   const validPageSizes = [10, 20, 50, 100];
-  const initialPageSize = validPageSizes.includes(limit) ? limit : 20;
+  const initialPageSize = validPageSizes.includes(defaultPageSize) ? defaultPageSize : 20;
 
+  const [allFiis, setAllFiis] = useState<FIIExtended[]>([]);
   const [fiis, setFiis] = useState<FIIExtended[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -62,14 +60,11 @@ export const VisualizacaoFIIs = ({
         setError(null);
 
         const result = await fetchFIIs({
-          segmento: filter.segmento,
-          nome: filter.nome,
-          page,
-          pageSize
+          ...filters,
         });
 
-        setFiis(result.fiis);
-        setTotalPages(result.pagination.pages);
+        setAllFiis(result.result);
+        setPage(0);
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Ocorreu um erro desconhecido';
         setError(errorMessage);
@@ -82,7 +77,29 @@ export const VisualizacaoFIIs = ({
     };
 
     loadFIIs();
-  }, [filter.segmento, filter.nome, page, pageSize, onError]);
+  }, [filters, onError]);
+
+  useEffect(() => {
+    if (allFiis.length > 0) {
+      // Aplicar ordenação antes de fatiar para a página
+      const sortedEtfs = [...allFiis].sort((a, b) => {
+        // Converter quotaCount para número para garantir ordenação numérica
+        const quotaA = Number(a.quotaCount);
+        const quotaB = Number(b.quotaCount);
+        return quotaB - quotaA; // Ordenação decrescente
+      });
+
+      const newTotalPages = Math.ceil(sortedEtfs.length / pageSize);
+      setTotalPages(newTotalPages);
+
+      const startIndex = page * pageSize;
+      const endIndex = startIndex + pageSize;
+      setFiis(sortedEtfs.slice(startIndex, endIndex));
+    } else {
+      setFiis([]);
+      setTotalPages(0);
+    }
+  }, [allFiis, page, pageSize]);
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
     setPage(newPage - 1);

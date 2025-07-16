@@ -1,67 +1,18 @@
 import { api } from "@/services/api";
 import { FIIExtended, FIIFilter } from "../types";
+import { FIIListResponse } from "@/services/api/types/fii";
 
-export const fetchFIIs = async (filter: FIIFilter = {}) => {
+export const fetchFIIs = async (
+  filters: FIIFilter
+): Promise<FIIListResponse> => {
   try {
-    if (filter.nome && filter.nome.length < 3 && filter.nome !== "") {
-      return {
-        fiis: [],
-        pagination: {
-          offset: 0,
-          limit: filter.pageSize || 10,
-          total: 0,
-          page: 1,
-          pages: 1,
-        },
-      };
-    }
-
-    const pageSize =
-      filter.pageSize && filter.pageSize > 0 ? filter.pageSize : 10;
-
+    const { page, pageSize, ...restFilters } = filters; // Extrai page e pageSize
     const response = await api.fiis.getFIIs({
-      segmento: filter.segmento,
-      nome: filter.nome,
-      page: filter.page !== undefined ? filter.page : 0,
-      pageSize,
+      ...restFilters, // Usa o restante dos filtros
+      sortBy: filters.sortBy || "quotaCount",
+      sortOrder: filters.sortOrder || "desc",
     });
-
-    if (!response || !response.result || !Array.isArray(response.result)) {
-      console.error("Unexpected API response structure:", response);
-      throw new Error("Formato de resposta da API inesperado");
-    }
-
-    const mappedFIIs = response.result.map((fii: any) => {
-      const codigo = Array.isArray(fii.codigo)
-        ? fii.codigo
-        : fii.codigo
-        ? [fii.codigo]
-        : [];
-
-      const extendedFII: FIIExtended = {
-        ...fii,
-        nomeCompleto: fii.nomeCompletoFII || "",
-        dataInicio: fii.quotaDateApproved || "",
-        codigos: codigo.map((code: string) => ({
-          codigo: code,
-          preco: null,
-          precoAnterior: null,
-          variacao: null,
-        })),
-      };
-      return extendedFII;
-    });
-
-    return {
-      fiis: mappedFIIs,
-      pagination: response.pagination || {
-        offset: 0,
-        limit: pageSize,
-        total: mappedFIIs.length,
-        page: filter.page !== undefined ? filter.page + 1 : 1,
-        pages: Math.ceil(mappedFIIs.length / pageSize) || 1,
-      },
-    };
+    return response;
   } catch (error) {
     console.error("Erro ao buscar FIIs:", error);
 

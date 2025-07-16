@@ -13,7 +13,7 @@ class FIIsApiService extends BaseApiService {
   getFIIs = async (filters?: FIIFilter): Promise<any> => {
     const params = {
       page: filters?.page !== undefined ? filters.page : 0,
-      pageSize: filters?.pageSize || 10,
+      pageSize: filters?.pageSize || 1000,
       ...(filters?.nome && { nome: filters.nome }),
       ...(filters?.segmento && { segmento: filters.segmento }),
     };

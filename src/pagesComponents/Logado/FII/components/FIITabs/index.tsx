@@ -4,13 +4,16 @@ import { Tabs, Tab } from '@mui/material';
 import { VisualizacaoFIIs } from '../../../components/FIIs/components/Vizualização';
 import { FIITabsContainer } from '../../styled';
 import { TabPanel } from '../TabPanel';
+import { ETFFilter } from '@/services/api/types/etf';
 
 interface FIITabsProps {
+    defaultPageSize?: number;
     onError: (message: string) => void;
 }
 
-export const FIITabs: React.FC<FIITabsProps> = ({ onError }) => {
+export const FIITabs: React.FC<FIITabsProps> = ({ defaultPageSize, onError }) => {
     const [tabValue, setTabValue] = useState(0);
+    const [filters, setFilters] = useState<ETFFilter>({});
 
     const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
         setTabValue(newValue);
@@ -34,8 +37,8 @@ export const FIITabs: React.FC<FIITabsProps> = ({ onError }) => {
             <TabPanel value={tabValue} index={0}>
                 <VisualizacaoFIIs
                     mode="card"
-                    filter={{}}
-                    limit={12}
+                    filters={filters}
+                    defaultPageSize={defaultPageSize}
                     onError={onError}
                 />
             </TabPanel>
@@ -43,8 +46,8 @@ export const FIITabs: React.FC<FIITabsProps> = ({ onError }) => {
             <TabPanel value={tabValue} index={1}>
                 <VisualizacaoFIIs
                     mode="table"
-                    filter={{}}
-                    limit={20}
+                    filters={filters}
+                    defaultPageSize={defaultPageSize}
                     onError={onError}
                 />
             </TabPanel>
@@ -52,8 +55,8 @@ export const FIITabs: React.FC<FIITabsProps> = ({ onError }) => {
             <TabPanel value={tabValue} index={2}>
                 <VisualizacaoFIIs
                     mode="grid"
-                    filter={{}}
-                    limit={24}
+                    filters={filters}
+                    defaultPageSize={defaultPageSize}
                     onError={onError}
                 />
             </TabPanel>

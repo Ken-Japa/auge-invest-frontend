@@ -1,4 +1,4 @@
-import { Pagination } from './common';
+import { Pagination } from "./common";
 
 export interface FIIInformation {
   cnpj: string;
@@ -28,6 +28,8 @@ export interface FIIFilter {
   segmento?: string;
   page?: number;
   pageSize?: number;
+  sortBy?: string;
+  sortOrder?: "asc" | "desc";
 }
 
 // FII Dividend related types

@@ -47,7 +47,7 @@ export const FII = () => {
                                     </Alert>
                                 </Snackbar>
 
-                                <FIITabs onError={setError} />
+                                <FIITabs onError={setError} defaultPageSize={50} />
                             </ContentBox>
                         </ContentWrapper>
                     </FIIPageContainer>
