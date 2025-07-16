@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { ContentSkeleton } from '../../../../../components/Feedback/Skeletons/ContentSkeleton';
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
 
 // Importando componentes do módulo BDR
 import { FIISearchBar } from '../../../components/FIIs/components/SearchBar';
 import { FIITabs } from '../../../FII/components/FIITabs';
-import { useErrorHandling } from '../../../FII/components/ErrorHandling';
 import { FiiContainer, ControlsWrapper, Title, ContentBox } from './styled';
 
 export const Fii = () => {

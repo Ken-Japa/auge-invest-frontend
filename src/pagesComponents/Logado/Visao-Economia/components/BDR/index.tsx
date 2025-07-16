@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { ContentSkeleton } from '../../../../../components/Feedback/Skeletons/ContentSkeleton';
+import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 
 // Importando componentes do módulo BDR
 import { BDRSearchBar } from '../../../components/BDR';
 import { BDRTabs } from '../../../BDR/components/BDRTabs';
-import { useErrorHandling } from '../../../BDR/components/ErrorHandling';
 import { BdrContainer, ControlsWrapper, Title, ContentBox } from './styled';
 
 export const Bdr = () => {

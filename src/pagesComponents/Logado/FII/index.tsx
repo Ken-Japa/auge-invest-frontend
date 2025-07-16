@@ -4,7 +4,7 @@ import { PageTransition } from '@/components/Utils/PageTransition';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { FIISearchBar } from '../components/FIIs/components/SearchBar';
-import { useErrorHandling } from './components/ErrorHandling';
+import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
 import { FIITabs } from './components/FIITabs';
 import {
     FIIPageContainer,

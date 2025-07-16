@@ -3,8 +3,8 @@ import { Alert, Snackbar } from '@mui/material';
 import { PageTransition } from '@/components/Utils/PageTransition';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
+import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
 import { BDRSearchBar } from '../components/BDR/components/SearchBar';
-import { useErrorHandling } from './components/ErrorHandling';
 import { BDRTabs } from './components/BDRTabs';
 import {
     BDRPageContainer,
