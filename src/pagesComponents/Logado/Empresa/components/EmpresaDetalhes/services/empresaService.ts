@@ -21,10 +21,6 @@ export const getEmpresaBySlug = async (
     const sumario = sumarioResponse.result || [];
 
     let dividendosData: any[] = [];
-    const dividendosResponse = await companiesApi.getCompanyDividends({
-      pageSize: 1000,
-      nomeEmpresa: slug,
-    });
 
     // Buscar por código
     let empresa = empresas.find((emp: any) => {
@@ -48,19 +44,16 @@ export const getEmpresaBySlug = async (
     }
 
     if (!empresa) return { empresa: null };
+    const dividendosResponse = await companiesApi.getCompanyDividends({
+      pageSize: 1000,
+      nomeEmpresa: empresa.nome,
+    });
 
     console.log("Full dividendosResponse (getEmpresaBySlug):");
     console.log(dividendosResponse);
     console.log("dividendosResponse.data (getEmpresaBySlug):");
-    console.log(dividendosResponse?.result.dividendos);
-    dividendosData = dividendosResponse.result.dividendos || [];
-
-    // Buscar dividendos da empresa
-    const dividendosEmpresa = dividendosData.find(
-      (div: any) =>
-        div.nomeEmpresa &&
-        div.nomeEmpresa.toLowerCase() === empresa.nome.toLowerCase()
-    );
+    console.log(dividendosResponse?.result);
+    const dividendosEmpresa = dividendosResponse.result || [];
 
     // Buscar informações adicionais do sumário
     let valorMercado = 0;
@@ -133,21 +126,13 @@ export const getAllEmpresas = async (): Promise<EmpresaDetalhada[]> => {
     const sumarioResponse = await sumarioApi.getSumarioItems({
       pageSize: 100,
     });
-    console.log("Full sumarioResponse (getAllEmpresas):");
-    console.log(sumarioResponse);
-    console.log("sumarioResponse.data (getAllEmpresas):");
-    console.log(sumarioResponse?.data);
     const sumario = sumarioResponse.result || [];
 
     let dividendosData: any[] = [];
     const dividendosResponse = await companiesApi.getCompanyDividends({
       pageSize: 1000,
     });
-    console.log("Full dividendosResponse (getAllEmpresas):");
-    console.log(dividendosResponse);
-    console.log("dividendosResponse.data (getAllEmpresas):");
-    console.log(dividendosResponse?.data);
-    dividendosData = dividendosResponse.result.dividendos || [];
+    const dividendosEmpresa = dividendosResponse.result || [];
 
     // Transformar os dados brutos em EmpresaDetalhada[]
     const empresasDetalhadas: EmpresaDetalhada[] = empresasRaw.map(
