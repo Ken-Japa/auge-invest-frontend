@@ -9,28 +9,30 @@ export const getEmpresaBySlug = async (
   try {
     // Importar dados mock (será substituído por chamada API)
 
-    const { data: empresasResponse } = await companiesApi.getCompanies({
+    const empresasResponse = await companiesApi.getCompanies({
       pageSize: 1000,
     });
     const empresas = empresasResponse.companies || [];
 
-    const { data: sumarioResponse } = await sumarioApi.getSumarioItems({
-      pageSize: 1000,
+    const sumarioResponse = await sumarioApi.getSumarioItems({
+      pageSize: 100,
     });
+
     const sumario = sumarioResponse.result || [];
 
     let dividendosData: any[] = [];
     const dividendosResponse = await companiesApi.getCompanyDividends({
       pageSize: 1000,
+      nomeEmpresa: slug,
     });
-    dividendosData = dividendosResponse.data.result.dividendos || [];
 
     // Buscar por código
-    let empresa = empresas.find((emp: any) =>
-      emp.codigos.some(
-        (cod: any) => cod.codigo.toLowerCase() === slug.toLowerCase()
-      )
-    );
+    let empresa = empresas.find((emp: any) => {
+      const foundByCode = emp.codigos.some((cod: any) => {
+        return cod.codigo.toLowerCase() === slug.toLowerCase();
+      });
+      return foundByCode;
+    });
 
     // Armazenar o código usado para encontrar a empresa
     let codigoEncontrado: string | undefined;
@@ -40,12 +42,18 @@ export const getEmpresaBySlug = async (
       codigoEncontrado = slug;
     } else {
       // Se não encontrou por código, buscar por nome
-      empresa = empresas.find(
-        (emp: any) => emp.nome.toLowerCase() === slug.toLowerCase()
-      );
+      empresa = empresas.find((emp: any) => {
+        return emp.nome.toLowerCase() === slug.toLowerCase();
+      });
     }
 
     if (!empresa) return { empresa: null };
+
+    console.log("Full dividendosResponse (getEmpresaBySlug):");
+    console.log(dividendosResponse);
+    console.log("dividendosResponse.data (getEmpresaBySlug):");
+    console.log(dividendosResponse?.result.dividendos);
+    dividendosData = dividendosResponse.result.dividendos || [];
 
     // Buscar dividendos da empresa
     const dividendosEmpresa = dividendosData.find(
@@ -116,21 +124,30 @@ export const getAllEmpresas = async (): Promise<EmpresaDetalhada[]> => {
     // Importar dados mock (será substituído por chamada API)
 
     // Tratamento seguro para os dados de empresas
-    const { data: empresasResponse } = await companiesApi.getCompanies({
+    const empresasResponse = await companiesApi.getCompanies({
       pageSize: 1000,
     });
+
     const empresasRaw = empresasResponse.companies || [];
 
-    const { data: sumarioResponse } = await sumarioApi.getSumarioItems({
-      pageSize: 1000,
+    const sumarioResponse = await sumarioApi.getSumarioItems({
+      pageSize: 100,
     });
+    console.log("Full sumarioResponse (getAllEmpresas):");
+    console.log(sumarioResponse);
+    console.log("sumarioResponse.data (getAllEmpresas):");
+    console.log(sumarioResponse?.data);
     const sumario = sumarioResponse.result || [];
 
     let dividendosData: any[] = [];
     const dividendosResponse = await companiesApi.getCompanyDividends({
       pageSize: 1000,
     });
-    dividendosData = dividendosResponse.data.result.dividendos || [];
+    console.log("Full dividendosResponse (getAllEmpresas):");
+    console.log(dividendosResponse);
+    console.log("dividendosResponse.data (getAllEmpresas):");
+    console.log(dividendosResponse?.data);
+    dividendosData = dividendosResponse.result.dividendos || [];
 
     // Transformar os dados brutos em EmpresaDetalhada[]
     const empresasDetalhadas: EmpresaDetalhada[] = empresasRaw.map(
