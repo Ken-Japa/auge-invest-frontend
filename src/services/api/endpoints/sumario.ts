@@ -14,7 +14,7 @@ class SumarioApiService extends BaseApiService {
 
     try {
       return await this.get<SumarioListResponse>(
-        API_ENDPOINTS.DICTIONARY.PAGINATION,
+        API_ENDPOINTS.SUMARIO.PAGINATION,
         params
       );
     } catch (error) {

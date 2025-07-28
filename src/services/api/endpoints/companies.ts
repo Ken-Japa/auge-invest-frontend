@@ -59,7 +59,7 @@ class CompaniesApiService extends BaseApiService {
       throw handleApiError(error, ErrorCode.COMPANY_DATA_ERROR);
     }
   };
-  getFIIDividends = async (
+  getCompanyDividends = async (
     filters: CompanyDividendFilter
   ): Promise<CompanyDividendResponse> => {
     const params = {
