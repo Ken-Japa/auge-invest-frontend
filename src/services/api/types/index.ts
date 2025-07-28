@@ -10,3 +10,4 @@ export * from "./bdrnp";
 export * from "./etf";
 export * from "./etfbdr";
 export * from "./dictionary";
+export * from "./sumario";

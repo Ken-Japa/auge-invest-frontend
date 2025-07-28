@@ -13,6 +13,7 @@ export const api = {
   etf: endpoints.etfApi,
   etfbdr: endpoints.etfbdrApi,
   dictionary: endpoints.dictionaryApi,
+  sumario: endpoints.sumarioApi,
 };
 
 export * from "./types";

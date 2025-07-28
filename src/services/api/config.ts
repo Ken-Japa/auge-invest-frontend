@@ -65,7 +65,10 @@ export const API_ENDPOINTS = {
   DICTIONARY: {
     PAGINATION: "/dictionary/pagination",
   },
-
+  //Dictionary endpoints
+  SUMARIO: {
+    PAGINATION: "/sumario/pagination",
+  },
   // Outros grupos de endpoints...
 };
 

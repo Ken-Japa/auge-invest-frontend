@@ -17,7 +17,7 @@ export enum ErrorCode {
   BDR_DATA_ERROR = "bdr/data-error",
   ETF_NOT_FOUND = "etf/not-found",
   ETF_DATA_ERROR = "etf/data-error",
-  DICTIONARY_DATA_ERROR = "DICTIONARY_DATA_ERROR",
+  DICTIONARY_DATA_ERROR = "dictionary/data-error",
 }
 
 // Mapeamento de mensagens de erro amigáveis
@@ -50,10 +50,8 @@ const ERROR_MESSAGES: Record<ErrorCode, string> = {
     "Erro ao processar dados do BDR. Por favor, tente novamente.",
   [ErrorCode.ETF_NOT_FOUND]:
     "ETF não encontrado. Por favor, verifique as informações fornecidas.",
-  [ErrorCode.ETF_DATA_ERROR]:
-    "Erro ao carregar dados de ETF.",
-  [ErrorCode.DICTIONARY_DATA_ERROR]:
-    "Erro ao carregar dados do dicionário.",
+  [ErrorCode.ETF_DATA_ERROR]: "Erro ao carregar dados de ETF.",
+  [ErrorCode.DICTIONARY_DATA_ERROR]: "Erro ao carregar dados do dicionário.",
 };
 
 export function getErrorMessage(code: ErrorCode): string {
