@@ -1,5 +1,5 @@
-import { PriceDataPoint } from "../utils/metricasCalculations";
-import { api } from "@/services/api";
+import { companiesApi } from "@/services/api/endpoints/companies";
+import { sumarioApi } from "@/services/api/endpoints/sumario";
 import { EmpresaDetalhada, Codigo } from "../../../types";
 
 // Função para buscar dados de uma empresa específica por slug (código ou nome)
@@ -8,82 +8,22 @@ export const getEmpresaBySlug = async (
 ): Promise<{ empresa: EmpresaDetalhada | null; codigoEncontrado?: string }> => {
   try {
     // Importar dados mock (será substituído por chamada API)
-    const empresasResponse = await import(
-      "@/pagesComponents/Logado/components/EmpresaView/mockdata_example/empresas.json"
-    );
-    const sumarioResponse = await import(
-      "@/pagesComponents/Logado/components/EmpresaView/mockdata_example/sumario.json"
-    );
-    const dividendosResponse = await import(
-      "@/pagesComponents/Logado/components/EmpresaView/mockdata_example/dividendosEmpresas.json"
-    );
 
-    const empresas = Array.isArray(empresasResponse.default)
-      ? empresasResponse.default
-      : (empresasResponse.default as any)?.empresas ||
-        (empresasResponse as any).empresas ||
-        [];
+    const { data: empresasResponse } = await companiesApi.getCompanies({
+      pageSize: 1000,
+    });
+    const empresas = empresasResponse.companies || [];
 
-    const sumario =
-      sumarioResponse.default?.sumario || sumarioResponse.sumario || [];
+    const { data: sumarioResponse } = await sumarioApi.getSumarioItems({
+      pageSize: 1000,
+    });
+    const sumario = sumarioResponse.result || [];
 
-    // Tratamento seguro para os dados de dividendos
     let dividendosData: any[] = [];
-
-    // Usar type assertion para tratar dividendosResponse como um objeto com propriedades dinâmicas
-    const dividendosObj = dividendosResponse as any;
-
-    // Verificar se dividendosResponse é um array
-    if (Array.isArray(dividendosObj)) {
-      dividendosData = dividendosObj;
-    }
-    // Verificar se dividendosResponse.default é um array
-    else if (Array.isArray(dividendosObj.default)) {
-      dividendosData = dividendosObj.default;
-    }
-    // Verificar se dividendosResponse.dividendosEmpresas existe e é um array
-    else if (
-      dividendosObj.dividendosEmpresas &&
-      Array.isArray(dividendosObj.dividendosEmpresas)
-    ) {
-      dividendosData = dividendosObj.dividendosEmpresas;
-    }
-    // Verificar se dividendosResponse.default.dividendosEmpresas existe e é um array
-    else if (
-      dividendosObj.default?.dividendosEmpresas &&
-      Array.isArray(dividendosObj.default.dividendosEmpresas)
-    ) {
-      dividendosData = dividendosObj.default.dividendosEmpresas;
-    }
-    // Verificar outras possíveis estruturas
-    else {
-      // Tentar encontrar o array em diferentes propriedades
-      const possibleArrays = [
-        // Verificar propriedades específicas
-        dividendosObj.default?.dividendos,
-        dividendosObj.dividendos,
-        dividendosObj.default?.data,
-        dividendosObj.data,
-      ].filter(Boolean); // Remover valores null/undefined
-
-      for (const arr of possibleArrays) {
-        if (Array.isArray(arr)) {
-          dividendosData = arr;
-          break;
-        }
-      }
-
-      // Se ainda não encontrou, tentar usar o objeto diretamente
-      if (dividendosData.length === 0) {
-        // Converter objeto em array se necessário
-        if (typeof dividendosObj === "object" && dividendosObj !== null) {
-          const tempArray = Object.values(dividendosObj).filter(Array.isArray);
-          if (tempArray.length > 0) {
-            dividendosData = tempArray[0];
-          }
-        }
-      }
-    }
+    const dividendosResponse = await companiesApi.getCompanyDividends({
+      pageSize: 1000,
+    });
+    dividendosData = dividendosResponse.data.result.dividendos || [];
 
     // Buscar por código
     let empresa = empresas.find((emp: any) =>
@@ -144,8 +84,8 @@ export const getEmpresaBySlug = async (
     // Construir objeto com todos os detalhes
     const empresaDetalhada: EmpresaDetalhada = {
       nome: empresa.nome,
-      industria: empresa.industria || "",
-      segmento: empresa.segmento || "",
+      industria: empresa.setor || "",
+      segmento: empresa.subsetor || "",
       valorMercado,
       codigos: codigosMapeados,
       dividendos: dividendosEmpresa?.dividendos || [],
@@ -174,72 +114,23 @@ export const getCodigoPrincipal = (codigos: Codigo[]): string => {
 export const getAllEmpresas = async (): Promise<EmpresaDetalhada[]> => {
   try {
     // Importar dados mock (será substituído por chamada API)
-    const empresasResponse = await import(
-      "@/pagesComponents/Logado/components/EmpresaView/mockdata_example/empresas.json"
-    );
-    const sumarioResponse = await import(
-      "@/pagesComponents/Logado/components/EmpresaView/mockdata_example/sumario.json"
-    );
-    const dividendosResponse = await import(
-      "@/pagesComponents/Logado/components/EmpresaView/mockdata_example/dividendosEmpresas.json"
-    );
 
     // Tratamento seguro para os dados de empresas
-    const empresasRaw = Array.isArray(empresasResponse.default)
-      ? empresasResponse.default
-      : (empresasResponse.default as any)?.empresas ||
-        (empresasResponse as any).empresas ||
-        [];
+    const { data: empresasResponse } = await companiesApi.getCompanies({
+      pageSize: 1000,
+    });
+    const empresasRaw = empresasResponse.companies || [];
 
-    // Tratamento seguro para os dados de sumário
-    const sumario =
-      sumarioResponse.default?.sumario || sumarioResponse.sumario || [];
+    const { data: sumarioResponse } = await sumarioApi.getSumarioItems({
+      pageSize: 1000,
+    });
+    const sumario = sumarioResponse.result || [];
 
-    // Tratamento seguro para os dados de dividendos
     let dividendosData: any[] = [];
-    const dividendosObj = dividendosResponse as any;
-
-    // Usar a mesma lógica de extração de dividendos do getEmpresaBySlug
-    if (Array.isArray(dividendosObj)) {
-      dividendosData = dividendosObj;
-    } else if (Array.isArray(dividendosObj.default)) {
-      dividendosData = dividendosObj.default;
-    } else if (
-      dividendosObj.dividendosEmpresas &&
-      Array.isArray(dividendosObj.dividendosEmpresas)
-    ) {
-      dividendosData = dividendosObj.dividendosEmpresas;
-    } else if (
-      dividendosObj.default?.dividendosEmpresas &&
-      Array.isArray(dividendosObj.default.dividendosEmpresas)
-    ) {
-      dividendosData = dividendosObj.default.dividendosEmpresas;
-    } else {
-      const possibleArrays = [
-        dividendosObj.default?.dividendos,
-        dividendosObj.dividendos,
-        dividendosObj.default?.data,
-        dividendosObj.data,
-      ].filter(Boolean);
-
-      for (const arr of possibleArrays) {
-        if (Array.isArray(arr)) {
-          dividendosData = arr;
-          break;
-        }
-      }
-
-      if (
-        dividendosData.length === 0 &&
-        typeof dividendosObj === "object" &&
-        dividendosObj !== null
-      ) {
-        const tempArray = Object.values(dividendosObj).filter(Array.isArray);
-        if (tempArray.length > 0) {
-          dividendosData = tempArray[0];
-        }
-      }
-    }
+    const dividendosResponse = await companiesApi.getCompanyDividends({
+      pageSize: 1000,
+    });
+    dividendosData = dividendosResponse.data.result.dividendos || [];
 
     // Transformar os dados brutos em EmpresaDetalhada[]
     const empresasDetalhadas: EmpresaDetalhada[] = empresasRaw.map(
@@ -250,25 +141,6 @@ export const getAllEmpresas = async (): Promise<EmpresaDetalhada[]> => {
             div.nomeEmpresa &&
             div.nomeEmpresa.toLowerCase() === empresa.nome.toLowerCase()
         );
-
-        // Buscar informações adicionais do sumário
-        let valorMercado = 0;
-        let participacao = 0;
-
-        for (const industria of sumario) {
-          for (const segmento of industria.segmentos) {
-            const empresaDetalhe = segmento.empresasDetalhes.find(
-              (emp: any) =>
-                emp.empresa.toLowerCase() === empresa.nome.toLowerCase()
-            );
-
-            if (empresaDetalhe) {
-              valorMercado = empresaDetalhe.valorMercado;
-              participacao = empresaDetalhe.participacao;
-              break;
-            }
-          }
-        }
 
         // Mapear códigos para o formato correto
         const codigosMapeados: Codigo[] = empresa.codigos.map((cod: any) => ({
@@ -290,6 +162,7 @@ export const getAllEmpresas = async (): Promise<EmpresaDetalhada[]> => {
           nome: empresa.nome,
           industria: empresa.industria || empresa.setor || "",
           segmento: empresa.segmento || empresa.subsetor || "",
+          valorMercado: empresa.valorMercado || 0,
           codigos: codigosMapeados,
           dividendos: dividendosEmpresa?.dividendos || [],
         };

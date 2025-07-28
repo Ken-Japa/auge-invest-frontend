@@ -1,3 +1,5 @@
+import { Pagination } from "./common";
+
 export interface Sumario {
   industria: string;
   valorMercadoTotal: number;
@@ -29,12 +31,11 @@ export interface CodigosSumario {
   variacao: number;
 }
 export interface SumarioListResponse {
-  result: Sumario[];
-  offset: number;
-  limit: number;
-  total: number;
-  page: number;
-  pages: number;
+  success: boolean;
+  data: {
+    result: Sumario[];
+    pagination: Pagination;
+  };
 }
 
 export interface SumarioFilter {
