@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { CardContent, Divider, Box, IconButton, Tooltip } from '@mui/material';
+import { CardContent, Divider, IconButton, Tooltip } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { CardContainer, CardHeader, CodesContainer } from '../../styled';
+import { CardContainer, CodesContainer } from '../../styled';
 import { formatCurrency } from '../../../utils/currency';
 import { CodeItem } from '../CodeItem';
 import {

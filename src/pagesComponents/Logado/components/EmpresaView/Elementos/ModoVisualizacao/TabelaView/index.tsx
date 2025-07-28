@@ -18,7 +18,7 @@ import { IndustriaRow } from './components/IndustriaRow';
 import { SegmentoSection } from './components/SegmentoSection';
 import { FlatTableView } from './components/FlatTableView';
 import { useSortableData } from './hooks/useSortableData';
-import { sumarioService } from './services/sumarioService';
+import { sumarioService } from '../utils/sumarioService';
 
 interface TabelaViewProps {
     onLoadingChange?: (loading: boolean) => void;

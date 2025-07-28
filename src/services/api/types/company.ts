@@ -19,12 +19,9 @@ export interface Company {
   codigos: CompanyCode[];
 }
 
-export interface CompanyListResponse {
-  success: boolean;
-  data: {
-    companies: Company[];
-    pagination: Pagination;
-  };
+export interface CompanyListResponseApi {
+  companies: Company[];
+  pagination: Pagination;
 }
 
 export interface CompanyFilter {
@@ -54,12 +51,9 @@ export interface CompanyDividendData {
   dividendos: CompanyDividendItem[];
 }
 
-export interface CompanyDividendResponse {
-  success: boolean;
-  data: {
-    result: CompanyDividendData;
-    pagination: Pagination;
-  };
+export interface CompanyDividendResponseApi {
+  result: CompanyDividendData;
+  pagination: Pagination;
 }
 
 export interface CompanyDividendFilter {

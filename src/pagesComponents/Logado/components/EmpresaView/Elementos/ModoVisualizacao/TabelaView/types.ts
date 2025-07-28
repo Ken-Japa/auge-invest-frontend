@@ -24,6 +24,10 @@ export interface Industria {
 
 export interface SumarioTotal {
     valorMercadoTotalGeral: number;
+    qtdIndustriasTotal: number;
+    qtdEmpresasTotal: number;
+    qtdSegmentosTotal: number;
+    industrias: string[];
 }
 
 export interface SumarioData {

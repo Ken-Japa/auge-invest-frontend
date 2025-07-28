@@ -2,17 +2,17 @@ import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
 import {
   Company,
-  CompanyListResponse,
+  CompanyListResponseApi,
   CompanyFilter,
   CompanyDividendFilter,
-  CompanyDividendResponse,
+  CompanyDividendResponseApi,
 } from "../types";
 import { ErrorCode, handleApiError } from "../errorHandler";
 
 class CompaniesApiService extends BaseApiService {
   getCompanies = async (
     filters?: CompanyFilter
-  ): Promise<CompanyListResponse> => {
+  ): Promise<CompanyListResponseApi> => {
     const params = {
       page: filters?.page !== undefined ? filters.page : 0,
       pageSize: filters?.pageSize || 10,
@@ -22,7 +22,7 @@ class CompaniesApiService extends BaseApiService {
     };
 
     try {
-      return await this.get<CompanyListResponse>(
+      return await this.get<CompanyListResponseApi>(
         API_ENDPOINTS.COMPANY.PAGINATION,
         params
       );
@@ -47,9 +47,9 @@ class CompaniesApiService extends BaseApiService {
     }
   };
 
-  searchCompanies = async (nome: string): Promise<CompanyListResponse> => {
+  searchCompanies = async (nome: string): Promise<CompanyListResponseApi> => {
     try {
-      return await this.get<CompanyListResponse>(
+      return await this.get<CompanyListResponseApi>(
         API_ENDPOINTS.COMPANY.PAGINATION,
         { nome, pageSize: 10, page: 0 },
         ErrorCode.COMPANY_DATA_ERROR
@@ -61,7 +61,7 @@ class CompaniesApiService extends BaseApiService {
   };
   getCompanyDividends = async (
     filters: CompanyDividendFilter
-  ): Promise<CompanyDividendResponse> => {
+  ): Promise<CompanyDividendResponseApi> => {
     const params = {
       page: filters.page !== undefined ? filters.page : 0,
       pageSize: filters.pageSize || 100,
@@ -69,7 +69,7 @@ class CompaniesApiService extends BaseApiService {
     };
 
     try {
-      return await this.get<CompanyDividendResponse>(
+      return await this.get<CompanyDividendResponseApi>(
         API_ENDPOINTS.COMPANY.DIVIDENDS,
         params
       );

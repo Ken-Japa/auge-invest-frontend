@@ -4,7 +4,7 @@ import { TextField, Autocomplete, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { SearchContainer } from './styled';
 
-import sumarioData from '../../mockdata_example/sumario.json';
+import { sumarioService } from '../ModoVisualizacao/utils/sumarioService';
 
 interface SearchOption {
     label: string;
@@ -23,15 +23,15 @@ export const SearchBar = ({ defaultValue = '' }: SearchBarProps) => {
     const router = useRouter();
 
     useEffect(() => {
-        // Use the mock data instead of fetching
-        const loadCompanies = () => {
+        const loadCompanies = async () => {
             try {
                 setLoading(true);
+                const { sumario } = await sumarioService.getSumarioData();
 
                 // Extract all companies and their codes
                 const searchOptions: SearchOption[] = [];
 
-                sumarioData.sumario.forEach(industria => {
+                sumario.forEach(industria => {
                     industria.segmentos.forEach(segmento => {
                         segmento.empresasDetalhes.forEach(empresa => {
                             // Check if codigos exists and has items
@@ -101,7 +101,7 @@ export const SearchBar = ({ defaultValue = '' }: SearchBarProps) => {
                         placeholder="Buscar empresa ou código"
                         InputProps={{
                             ...params.InputProps,
-                            style: { 
+                            style: {
                                 minWidth: '250px',
                                 padding: '2px 8px'
                             },

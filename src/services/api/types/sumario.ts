@@ -30,12 +30,10 @@ export interface CodigosSumario {
   preco: number;
   variacao: number;
 }
-export interface SumarioListResponse {
-  success: boolean;
-  data: {
-    result: Sumario[];
-    pagination: Pagination;
-  };
+
+export interface SumarioListResponseApi {
+  result: Sumario[];
+  pagination: Pagination;
 }
 
 export interface SumarioFilter {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, Grid, Box } from '@mui/material';
 import { SumarioData } from '../TabelaView/types';
-import { sumarioService } from './services/sumarioService';
+import { sumarioService } from '../utils/sumarioService';
 import { CompanyCard } from './components/CompanyCard/index';
 import { CardsContainer, LoadingContainer, StyledCircularProgress } from './styled';
 
@@ -63,9 +63,9 @@ export const CardsView: React.FC<CardsViewProps> = ({ onLoadingChange }) => {
   const sortedCompanies = [...allCompanies].sort((a, b) => b.valorMercado - a.valorMercado);
 
   return (
-    <Box sx={{ 
-      position: 'relative', 
-      zIndex: 3, 
+    <Box sx={{
+      position: 'relative',
+      zIndex: 3,
       '&::before': {
         content: '""',
         position: 'absolute',

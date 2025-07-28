@@ -3,14 +3,14 @@ import { useRouter } from 'next/navigation';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
-import { formatPercentage } from '../../../MapaArvore/utils';
+import { formatPercentage } from '../../../utils/currency';
 import { CodeChip } from '../../styled';
-import { 
-  CodeText, 
-  CodeContainer, 
-  PriceText, 
-  VariationContainer, 
-  VariationText 
+import {
+  CodeText,
+  CodeContainer,
+  PriceText,
+  VariationContainer,
+  VariationText
 } from './styled';
 
 interface CodeItemProps {
@@ -37,13 +37,13 @@ export const CodeItem: React.FC<CodeItemProps> = ({ codigo }) => {
           <CodeText variant="caption" onDoubleClick={handleDoubleClick}>
             {codigo.codigo}
           </CodeText>
-          
+
           {codigo.preco !== undefined && (
             <PriceText variant="caption">
               R$ {codigo.preco.toFixed(2)}
             </PriceText>
           )}
-          
+
           {codigo.variacao !== undefined && (
             <VariationContainer>
               {isPositive ? (
@@ -53,8 +53,8 @@ export const CodeItem: React.FC<CodeItemProps> = ({ codigo }) => {
               ) : (
                 <TrendingDownIcon fontSize="small" color="error" />
               )}
-              <VariationText 
-                variant="caption" 
+              <VariationText
+                variant="caption"
                 isPositive={isPositive}
                 isZero={isZero}
               >

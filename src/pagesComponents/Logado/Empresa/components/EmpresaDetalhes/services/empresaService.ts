@@ -7,8 +7,6 @@ export const getEmpresaBySlug = async (
   slug: string
 ): Promise<{ empresa: EmpresaDetalhada | null; codigoEncontrado?: string }> => {
   try {
-    // Importar dados mock (será substituído por chamada API)
-
     const empresasResponse = await companiesApi.getCompanies({
       pageSize: 1000,
     });
@@ -19,8 +17,6 @@ export const getEmpresaBySlug = async (
     });
 
     const sumario = sumarioResponse.result || [];
-
-    let dividendosData: any[] = [];
 
     // Buscar por código
     let empresa = empresas.find((emp: any) => {
@@ -49,10 +45,6 @@ export const getEmpresaBySlug = async (
       nomeEmpresa: empresa.nome,
     });
 
-    console.log("Full dividendosResponse (getEmpresaBySlug):");
-    console.log(dividendosResponse);
-    console.log("dividendosResponse.data (getEmpresaBySlug):");
-    console.log(dividendosResponse?.result);
     const dividendosEmpresa = dividendosResponse.result || [];
 
     // Buscar informações adicionais do sumário
@@ -114,8 +106,6 @@ export const getCodigoPrincipal = (codigos: Codigo[]): string => {
 // Função para buscar todas as empresas
 export const getAllEmpresas = async (): Promise<EmpresaDetalhada[]> => {
   try {
-    // Importar dados mock (será substituído por chamada API)
-
     // Tratamento seguro para os dados de empresas
     const empresasResponse = await companiesApi.getCompanies({
       pageSize: 1000,

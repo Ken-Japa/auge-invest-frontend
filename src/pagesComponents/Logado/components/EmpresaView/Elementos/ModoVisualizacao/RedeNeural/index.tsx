@@ -16,10 +16,12 @@ import { createEmpresaNode } from './components/EmpresaNode';
 // Utils
 import { generateSegmentColors, adjustColorHSL } from './utils/graphUtils';
 import { GraphContainer, LoadingContainer } from './styled';
-import { sumarioService } from './services/sumarioService';
+import { sumarioService } from '../utils/sumarioService';
 
 // Types
-import { SumarioData } from './types';
+import { SumarioData as TabelaViewSumarioData } from "../TabelaView/types";
+import { SumarioData as RedeNeuralSumarioData, IndustriaNode, SegmentoNode, EmpresaNode } from "./types";
+import { transformSumarioData } from "./utils/transformSumarioData";
 
 // Import our custom graph component with SSR disabled
 const CustomGraph = dynamic(
@@ -74,7 +76,8 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
         ));
 
         // Construir o grafo
-        buildGraphData(data, nodes, edges, maxIndustriaValue, maxSegmentoValue, maxEmpresaValue);
+        const transformedData: RedeNeuralSumarioData = transformSumarioData(data as TabelaViewSumarioData);
+        buildGraphData(transformedData, nodes, edges, maxIndustriaValue, maxSegmentoValue, maxEmpresaValue);
 
         setGraphData({ nodes, edges });
       } catch (error) {
@@ -92,16 +95,16 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
 
   // Função auxiliar para construir os dados do grafo
   const buildGraphData = (
-    data: SumarioData, 
-    nodes: any[], 
-    edges: any[], 
-    maxIndustriaValue: number, 
-    maxSegmentoValue: number, 
+    data: RedeNeuralSumarioData,
+    nodes: any[],
+    edges: any[],
+    maxIndustriaValue: number,
+    maxSegmentoValue: number,
     maxEmpresaValue: number
   ) => {
     // Industry nodes - First level
     const industriaRadius = 1200;
-    data.sumario.forEach((industria, index, array) => {
+    data.sumario.forEach((industria: IndustriaNode, index: number, array: IndustriaNode[]) => {
       const industriaAngle = (2 * Math.PI * index) / array.length;
       const industriaSector = (2 * Math.PI) / array.length;
       const corIndustria = adjustColorHSL(CORES_INDUSTRIAS[index % CORES_INDUSTRIAS.length], {
@@ -132,7 +135,7 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
       const segmentRadius = industriaRadius + 2000;
       const segmentColors = generateSegmentColors(corIndustria, industria.segmentos.length);
 
-      industria.segmentos.forEach((segmento, segIndex, segArray) => {
+      industria.segmentos.forEach((segmento: SegmentoNode, segIndex: number, segArray: SegmentoNode[]) => {
         const segmentoNode = createSegmentoNode(
           segmento,
           segIndex,
@@ -154,7 +157,7 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
 
         // Company nodes - Third level
         const empresaRadius = segmentRadius + 3000;
-        segmento.empresasDetalhes.forEach((empresa, empIndex, empArray) => {
+        segmento.empresasDetalhes.forEach((empresa: EmpresaNode, empIndex: number, empArray: EmpresaNode[]) => {
           const empresaNode = createEmpresaNode(
             empresa,
             empIndex,

@@ -1,19 +1,19 @@
 import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
 import { ErrorCode, handleApiError } from "../errorHandler";
-import { SumarioListResponse, SumarioFilter } from "../types";
+import { SumarioListResponseApi, SumarioFilter } from "../types";
 
 class SumarioApiService extends BaseApiService {
   getSumarioItems = async (
     filters?: SumarioFilter
-  ): Promise<SumarioListResponse> => {
+  ): Promise<SumarioListResponseApi> => {
     const params = {
       page: filters?.page !== undefined ? filters.page : 0,
       pageSize: filters?.pageSize || 10,
     };
 
     try {
-      return await this.get<SumarioListResponse>(
+      return await this.get<SumarioListResponseApi>(
         API_ENDPOINTS.SUMARIO.PAGINATION,
         params
       );
