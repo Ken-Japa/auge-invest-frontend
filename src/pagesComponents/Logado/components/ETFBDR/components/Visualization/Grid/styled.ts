@@ -1,7 +1,8 @@
 import { Box, Paper, Chip, Typography } from '@mui/material';
-import { styled } from '@mui/system';
+import { styled } from '@mui/material/styles';
+import { Grid } from '@mui/material';
 
-export const GridContainer = styled(Box)(({ theme }) => ({
+export const GridContainer = styled(Grid)(({ theme }) => ({
   display: 'flex',
   flexGrow: 1,
   padding: theme.spacing(2),

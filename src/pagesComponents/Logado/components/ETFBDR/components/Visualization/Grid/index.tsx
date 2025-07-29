@@ -6,10 +6,6 @@ import {
   GridItemPaper,
   GridHeader,
   GridTitle,
-  GridSubtitle,
-  GridInfo,
-  GridInfoLabel,
-  GridInfoValue,
   CodeChip,
 } from './styled';
 import { useRouter } from 'next/navigation';

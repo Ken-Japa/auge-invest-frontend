@@ -37,10 +37,10 @@ export const StyledCard = styled(MuiCard)(({ theme }) => ({
   },
 }));
 
-export const StyledCardContent = styled(MuiCardContent)(({ theme }) => ({
+export const StyledCardContent = styled(MuiCardContent)({
   flexGrow: 1,
   padding: spacing.md,
-}));
+});
 
 export const CardHeader = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -91,9 +91,9 @@ export const ChipsContainer = styled(Box)(({ theme }) => ({
       : "rgba(0, 0, 0, 0.02)",
 }));
 
-export const InfoContainer = styled(Box)(({ theme }) => ({
+export const InfoContainer = styled(Box)({
   marginTop: spacing.md,
-}));
+});
 
 export const InfoItem = styled(Box)(({ theme }) => ({
   display: "flex",

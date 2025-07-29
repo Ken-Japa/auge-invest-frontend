@@ -6,7 +6,6 @@ import {
   GridItemPaper,
   GridHeader,
   GridTitle,
-  GridSubtitle,
   GridInfo,
   GridInfoLabel,
   GridInfoValue,

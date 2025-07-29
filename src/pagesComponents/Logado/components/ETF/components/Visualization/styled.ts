@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { Box, Typography, Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
 export const VisualizationContainer = styled(Box)(({ theme }) => ({
   marginTop: theme.spacing(4),
