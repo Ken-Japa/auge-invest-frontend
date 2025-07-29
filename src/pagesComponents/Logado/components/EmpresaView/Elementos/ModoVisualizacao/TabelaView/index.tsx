@@ -6,7 +6,6 @@ import {
 import { formatCurrency } from '../utils/currency';
 import {
     TableContainer,
-    StyledTable,
     LoadingContainer,
     StyledCircularProgress,
     TableControlsContainer,
@@ -104,63 +103,63 @@ export const TabelaView: React.FC<TabelaViewProps> = ({ onLoadingChange }) => {
                     handleSort={handleSort}
                 />
             ) : hideIndustrias ? (
-                <StyledTable>
-                    <Table sx={{ width: '100%', tableLayout: 'fixed' }}>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell width={50} />
-                                <TableCell>Segmento</TableCell>
-                                <TableCell align="right">Valor de Mercado</TableCell>
-                                <TableCell align="right">Número de Empresas</TableCell>
-                                <TableCell align="right">Participação</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {data.sumario
-                                .flatMap(industria =>
-                                    industria.segmentos.map(segmento => ({
-                                        ...segmento,
-                                        industria: industria.industria
-                                    }))
-                                )
-                                .sort((a, b) => b.valorMercado - a.valorMercado)
-                                .map((segmento, index) => (
-                                    <SegmentoSection
-                                        key={index}
-                                        segmento={segmento}
-                                        valorMercadoIndustria={data.sumarioTotal.valorMercadoTotalGeral}
-                                        valorMercadoTotal={data.sumarioTotal.valorMercadoTotalGeral}
-                                    />
-                                ))}
-                        </TableBody>
-                    </Table>
-                </StyledTable>
-            ) : (
-                <StyledTable>
-                    <Table sx={{ width: '100%', tableLayout: 'fixed' }}>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell width={50} />
-                                <TableCell>Nome</TableCell>
-                                <TableCell align="right">Valor de Mercado</TableCell>
-                                <TableCell align="right">Número de Empresas</TableCell>
-                                <TableCell align="right">%</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {sortedIndustrias.map((industria, index) => (
-                                <IndustriaRow
+                <Table sx={{ width: '100%', tableLayout: 'fixed' }} className="StyledTable">
+
+                    <TableHead>
+                        <TableRow>
+                            <TableCell width={50} />
+                            <TableCell>Segmento</TableCell>
+                            <TableCell align="right">Valor de Mercado</TableCell>
+                            <TableCell align="right">Número de Empresas</TableCell>
+                            <TableCell align="right">Participação</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {data.sumario
+                            .flatMap(industria =>
+                                industria.segmentos.map(segmento => ({
+                                    ...segmento,
+                                    industria: industria.industria
+                                }))
+                            )
+                            .sort((a, b) => b.valorMercado - a.valorMercado)
+                            .map((segmento, index) => (
+                                <SegmentoSection
                                     key={index}
-                                    industria={industria.industria}
-                                    valorMercadoTotal={industria.valorMercadoTotal}
-                                    valorMercadoGeral={data.sumarioTotal.valorMercadoTotalGeral}
-                                    segmentos={industria.segmentos}
-                                    hideSegmentos={hideSegmentos}
+                                    segmento={segmento}
+                                    valorMercadoIndustria={data.sumarioTotal.valorMercadoTotalGeral}
+                                    valorMercadoTotal={data.sumarioTotal.valorMercadoTotalGeral}
                                 />
                             ))}
-                        </TableBody>
-                    </Table>
-                </StyledTable>
+                    </TableBody>
+                </Table>
+
+            ) : (
+                <Table sx={{ width: '100%', tableLayout: 'fixed' }} className="StyledTable">
+
+                    <TableHead>
+                        <TableRow>
+                            <TableCell width={50} />
+                            <TableCell>Nome</TableCell>
+                            <TableCell align="right">Valor de Mercado</TableCell>
+                            <TableCell align="right">Número de Empresas</TableCell>
+                            <TableCell align="right">%</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {sortedIndustrias.map((industria, index) => (
+                            <IndustriaRow
+                                key={index}
+                                industria={industria.industria}
+                                valorMercadoTotal={industria.valorMercadoTotal}
+                                valorMercadoGeral={data.sumarioTotal.valorMercadoTotalGeral}
+                                segmentos={industria.segmentos}
+                                hideSegmentos={hideSegmentos}
+                            />
+                        ))}
+                    </TableBody>
+                </Table>
+
             )}
         </TableContainer>
     );
