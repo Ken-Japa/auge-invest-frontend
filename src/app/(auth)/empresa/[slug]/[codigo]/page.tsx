@@ -1,20 +1,17 @@
 import { Metadata } from "next";
 import { EmpresaDetalhes } from "@/pagesComponents/Logado/Empresa/components/EmpresaDetalhes";
 
-type PageProps = {
-    params: {
-        slug: string;
-        codigo: string;
-    }
-};
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const awaitedParams = await params;
+    const decodedSlug = decodeURIComponent(awaitedParams.slug).toUpperCase();
     return {
-        title: `${params.codigo.toUpperCase()} | AugeInvest`,
-        description: `Análise detalhada do ativo ${params.codigo.toUpperCase()} da empresa ${params.slug.toUpperCase()}.`,
+        title: `${decodedSlug.toUpperCase()} | AugeInvest`,
+        description: `Análise detalhada do ativo ${decodedSlug.toUpperCase()} da empresa ${decodedSlug.toUpperCase()}.`,
     };
 }
 
-export default function EmpresaCodigoPage({ params }: PageProps) {
-    return <EmpresaDetalhes slug={params.slug} codigoSelecionado={params.codigo} />;
+export default async function EmpresaCodigoPage({ params }: { params: Promise<{ slug: string }> }) {
+    const awaitedParams = await params;
+    const decodedSlug = decodeURIComponent(awaitedParams.slug);
+    return <EmpresaDetalhes slug={decodedSlug} codigoSelecionado={decodedSlug} />;
 }

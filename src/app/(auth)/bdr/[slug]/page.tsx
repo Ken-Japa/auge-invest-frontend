@@ -1,10 +1,6 @@
 import { Metadata } from "next";
 import BDRDetails from "@/pagesComponents/Logado/BDR/components/BDRDetalhes";
 
-type PageProps = {
-    params: { slug: string }
-};
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const awaitedParams = await params;
     const decodedSlug = decodeURIComponent(awaitedParams.slug).toUpperCase();
