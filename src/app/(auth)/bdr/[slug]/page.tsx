@@ -5,15 +5,17 @@ type PageProps = {
     params: { slug: string }
 };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const decodedSlug = decodeURIComponent(params.slug).toUpperCase();
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const awaitedParams = await params;
+    const decodedSlug = decodeURIComponent(awaitedParams.slug).toUpperCase();
     return {
         title: `${decodedSlug} | AugeInvest`,
         description: `Análise detalhada do BDR ${decodedSlug}, incluindo dividendos, patrimônio e métricas principais.`,
     };
 }
 
-export default function FIIPage({ params }: PageProps) {
-    const decodedSlug = decodeURIComponent(params.slug);
+export default async function FIIPage({ params }: { params: Promise<{ slug: string }> }) {
+    const awaitedParams = await params;
+    const decodedSlug = decodeURIComponent(awaitedParams.slug);
     return <BDRDetails slug={decodedSlug} />;
 }
