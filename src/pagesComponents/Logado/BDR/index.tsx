@@ -4,7 +4,7 @@ import { PageTransition } from '@/components/Utils/PageTransition';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
-import { BDRSearchBar } from '../components/BDR/components/SearchBar';
+import BDRSearchBar from '../components/BDR/components/SearchBar';
 import { BDRTabs } from './components/BDRTabs';
 import {
     BDRPageContainer,
@@ -18,10 +18,6 @@ import {
 export const BDR = () => {
     const { error, setError, clearError } = useErrorHandling();
 
-    const handleSearch = (query: string) => {
-        clearError();
-        // If search functionality is needed in the future, implement it here
-    };
 
     return (
         <PageTransition direction="up" duration={0.4} distance={30}>
@@ -38,7 +34,7 @@ export const BDR = () => {
                                 </BDRSubTitle>
 
                                 <SearchBox >
-                                    <BDRSearchBar onSearch={handleSearch} />
+                                    <BDRSearchBar />
                                 </SearchBox>
 
                                 <Snackbar
@@ -56,7 +52,7 @@ export const BDR = () => {
                                     onError={setError}
                                     viewMode="cartao"
                                     onChangeView={(view) => {
-                                        // Handle view mode change
+
                                     }}
                                     defaultPageSize={50}
                                 />

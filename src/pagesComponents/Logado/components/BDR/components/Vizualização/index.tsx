@@ -55,7 +55,6 @@ export const VisualizacaoBDRs = ({
   onChangeView = () => { },
   defaultPageSize = 10,
 }: VisualizacaoBDRsProps) => {
-  // Ensure defaultPageSize is one of the valid options
   const validPageSizes = [10, 20, 50, 100];
   const initialPageSize = validPageSizes.includes(defaultPageSize) ? defaultPageSize : 10;
 
@@ -76,14 +75,12 @@ export const VisualizacaoBDRs = ({
         setLoading(true);
         setError(null);
 
-        // Determina o valor de isPatrocinado com base no bdrType
         let isPatrocinado;
         if (bdrType === 'patrocinado') {
           isPatrocinado = true;
         } else if (bdrType === 'nao-patrocinado') {
           isPatrocinado = false;
         }
-        // Se bdrType for 'todos', isPatrocinado permanece undefined
 
         const result = await fetchBDRs({
           segmento: filter.segmento,
@@ -112,13 +109,11 @@ export const VisualizacaoBDRs = ({
   const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
     setPage(newPage - 1);
 
-    // Scroll to top of the container when page changes
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
 
-    // Alternative approach if window.scrollTo doesn't work well
     if (containerRef.current) {
       containerRef.current.scrollIntoView({
         behavior: 'smooth',
@@ -132,7 +127,6 @@ export const VisualizacaoBDRs = ({
     setPageSize(newPageSize);
     setPage(0);
 
-    // Scroll to top when page size changes
     window.scrollTo({
       top: 0,
       behavior: 'smooth'

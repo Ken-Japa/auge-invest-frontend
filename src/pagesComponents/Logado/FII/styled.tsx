@@ -1,5 +1,5 @@
-import { styled } from '@mui/material/styles';
 import { Box, Container, Paper, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 export const FIIPageContainer = styled(Box)(({ theme }) => ({
     minHeight: "100vh",

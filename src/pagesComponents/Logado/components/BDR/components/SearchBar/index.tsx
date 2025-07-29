@@ -1,231 +1,56 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
-import { TextField, Autocomplete, InputAdornment, IconButton } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import ClearIcon from '@mui/icons-material/Clear';
+import SearchBar from '@/pagesComponents/Logado/components/SearchBar';
 import { api } from '@/services/api';
-import { SearchContainer } from './styled';
+import { SearchOption } from '@/pagesComponents/Logado/components/SearchBar/search';
+import { BDR } from '@/services/api/types/bdr';
 
-interface SearchOption {
-    label: string;
-    value: string;
-    type: 'bdr' | 'bdr-np' | 'codigo';
-    id: string;
-}
 
-interface BDRSearchBarProps {
-    value?: string;
-    defaultValue?: string;
-    onChange?: (query: string) => void;
-    onSearch?: (query: string) => void;
-}
-
-export const BDRSearchBar = ({ value, defaultValue = '', onChange, onSearch }: BDRSearchBarProps) => {
-    const [searchQuery, setSearchQuery] = useState(value || defaultValue);
-    const [options, setOptions] = useState<SearchOption[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [inputValue, setInputValue] = useState(value || defaultValue);
+const BDRSearchBar: React.FC = () => {
     const router = useRouter();
 
-    // Atualiza o estado interno quando o valor externo muda
-    useEffect(() => {
-        if (value !== undefined && value !== searchQuery) {
-            setSearchQuery(value);
-            setInputValue(value);
-        }
-    }, [value, searchQuery]);
+    const fetchBDRs = async (): Promise<SearchOption[]> => {
+        try {
+            const response = await api.bdrs.getAllBDRs();
+            const searchOptions: SearchOption[] = [];
 
-    useEffect(() => {
-        const loadBDRs = async () => {
-            try {
-                setLoading(true);
-
-                // Get all BDRs (both sponsored and non-sponsored)
-                const [sponsoredResponse, nonSponsoredResponse] = await Promise.all([
-                    api.bdrs.searchBDRs('', 'nomeEmpresa'),
-                    api.bdrnp.searchBDRNPs('', 'nomeEmpresa')
-                ]);
-
-                // Extract all BDRs and their codes
-                const searchOptions: SearchOption[] = [];
-
-                // Process sponsored BDRs
-                if (sponsoredResponse && sponsoredResponse.result && Array.isArray(sponsoredResponse.result)) {
-                    sponsoredResponse.result.forEach((bdr: any) => {
-                        if (bdr.nomeEmpresa) {
-                            searchOptions.push({
-                                label: `${bdr.nomeEmpresa} (${bdr.codigo})`,
-                                value: bdr.nomeEmpresa,
-                                type: 'bdr',
-                                id: bdr._id || ''
-                            });
-
-                            // Add code as an option
-                            if (bdr.codigo) {
-                                searchOptions.push({
-                                    label: `${bdr.codigo} (${bdr.nomeEmpresa})`,
-                                    value: bdr.nomeEmpresa,
-                                    type: 'codigo',
-                                    id: bdr._id || ''
-                                });
-                            }
-                            if (bdr.nomeEmpresaCompleto) {
-                                searchOptions.push({
-                                    label: `${bdr.nomeEmpresaCompleto} (${bdr.codigo})`,
-                                    value: bdr.nomeEmpresa,
-                                    type: 'bdr',
-                                    id: bdr._id || ''
-                                });
-                            }
-                        }
-                    });
-                }
-
-                // Process non-sponsored BDRs
-                if (nonSponsoredResponse && nonSponsoredResponse.result && Array.isArray(nonSponsoredResponse.result)) {
-                    nonSponsoredResponse.result.forEach((bdr: any) => {
-                        if (bdr.nomeEmpresa) {
-                            searchOptions.push({
-                                label: `${bdr.nomeEmpresa} (BDR Não Patrocinado)`,
-                                value: bdr.nomeEmpresa,
-                                type: 'bdr-np',
-                                id: bdr._id || ''
-                            });
-
-                            // Add code as an option
-                            if (bdr.codigo) {
-                                searchOptions.push({
-                                    label: `${bdr.codigo} (${bdr.nomeEmpresa})`,
-                                    value: bdr.nomeEmpresa,
-                                    type: 'codigo',
-                                    id: bdr._id || ''
-                                });
-                            }
-                            if (bdr.nomeEmpresaCompleto) {
-                                searchOptions.push({
-                                    label: `${bdr.nomeEmpresaCompleto} (${bdr.codigo})`,
-                                    value: bdr.nomeEmpresa,
-                                    type: 'bdr-np',
-                                    id: bdr._id || ''
-                                });
-                            }
-                        }
-                    });
-                }
-
-                setOptions(searchOptions);
-            } catch (error) {
-                console.error('Erro ao carregar BDRs:', error);
-                // Set empty options instead of failing
-                setOptions([]);
-            } finally {
-                setLoading(false);
+            if (response?.result?.length) {
+                response.result.forEach((bdr: BDR) => {
+                    if (bdr.nomeEmpresa) {
+                        searchOptions.push({
+                            label: `${bdr.nomeEmpresa} (${bdr.codigo})`,
+                            value: bdr.nomeEmpresa,
+                            id: bdr.nomeEmpresa || '',
+                        });
+                    }
+                    if (bdr.codigo) {
+                        searchOptions.push({
+                            label: `${bdr.codigo} (${bdr.nomeEmpresa})`,
+                            value: bdr.codigo,
+                            id: bdr.nomeEmpresa || '',
+                        });
+                    }
+                });
             }
-        };
-
-        loadBDRs();
-    }, []);
-
-    const handleOptionSelect = (option: SearchOption | null) => {
-        if (option) {
-            router.push(`/bdr/${option.value}`);
+            return searchOptions;
+        } catch (error) {
+            console.error('Error fetching BDRs:', error);
+            return [];
         }
     };
 
-    const handleClearSearch = () => {
-        setSearchQuery('');
-        setInputValue('');
-        if (onChange) {
-            onChange('');
-        }
-        if (onSearch) {
-            onSearch('');
+    const handleBDRSearch = (option: SearchOption | null) => {
+        if (option && option.id) {
+            router.push(`/bdr/${option.id}`);
         }
     };
-
-
 
     return (
-        <SearchContainer>
-            <Autocomplete
-                freeSolo
-                options={options}
-                loading={loading}
-                inputValue={inputValue}
-                filterOptions={(options, { inputValue }) => {
-                    const inputLower = inputValue.toLowerCase();
-                    // Only show suggestions when user types at least 2 characters
-                    if (inputLower.length < 3) {
-                        return [];
-                    }
-                    return options.filter(option =>
-                        option.label.toLowerCase().includes(inputLower)
-                    );
-                }}
-                getOptionLabel={(option) => {
-                    if (typeof option === 'string') {
-                        return option;
-                    }
-                    return option.label;
-                }}
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        size="small"
-                        placeholder="Buscar BDR ou código"
-                        InputProps={{
-                            ...params.InputProps,
-                            style: {
-                                minWidth: '250px',
-                                padding: '2px 8px'
-                            },
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    {inputValue ? (
-                                        <IconButton
-                                            aria-label="clear search"
-                                            onClick={handleClearSearch}
-                                            edge="end"
-                                            size="small"
-                                        >
-                                            <ClearIcon fontSize="small" />
-                                        </IconButton>
-                                    ) : (
-                                        <SearchIcon color="action" />
-                                    )}
-                                </InputAdornment>
-                            )
-                        }}
-                    />
-                )}
-                onChange={(_, newValue) => {
-                    if (newValue && typeof newValue !== 'string') {
-                        handleOptionSelect(newValue);
-                    }
-                }}
-                onInputChange={(_, newInputValue) => {
-                    setInputValue(newInputValue);
-                    setSearchQuery(newInputValue);
-
-                    // Notifica sobre a mudança imediatamente
-                    if (onChange) {
-                        onChange(newInputValue);
-                    }
-
-                    // Debounce the search to prevent too many API calls
-                    if (onSearch) {
-                        // Only search if empty (to reset) or has at least 4 characters
-                        if (newInputValue === '' || newInputValue.length >= 4) {
-                            // Add a small delay to prevent rapid API calls while typing
-                            clearTimeout((window as any).searchTimeout);
-                            (window as any).searchTimeout = setTimeout(() => {
-                                onSearch(newInputValue);
-                            }, 500);
-                        }
-                    }
-                }}
-            />
-        </SearchContainer>
+        <SearchBar
+            placeholder="Buscar BDRs..."
+            fetchOptions={fetchBDRs}
+            onSearch={handleBDRSearch}
+        />
     );
 };
 

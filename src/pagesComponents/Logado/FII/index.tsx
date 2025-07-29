@@ -3,7 +3,7 @@ import { Box, Alert, Snackbar } from '@mui/material';
 import { PageTransition } from '@/components/Utils/PageTransition';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { FIISearchBar } from '../components/FIIs/components/SearchBar';
+import FIISearchBar from '../components/FIIs/components/SearchBar';
 import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
 import { FIITabs } from './components/FIITabs';
 import {
@@ -16,10 +16,6 @@ import {
 export const FII = () => {
     const { error, setError, clearError } = useErrorHandling();
 
-    const handleSearch = (query: string) => {
-        clearError();
-        // If search functionality is needed in the future, implement it here
-    };
 
     return (
         <PageTransition direction="up" duration={0.4} distance={30}>
@@ -33,7 +29,7 @@ export const FII = () => {
                                 </FIITitle>
 
                                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 3 }}>
-                                    <FIISearchBar onSearch={handleSearch} />
+                                    <FIISearchBar />
                                 </Box>
 
                                 <Snackbar

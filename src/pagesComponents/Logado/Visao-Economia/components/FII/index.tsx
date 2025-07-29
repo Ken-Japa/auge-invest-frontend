@@ -6,19 +6,12 @@ import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton
 import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
 
 // Importando componentes do módulo BDR
-import { FIISearchBar } from '../../../components/FIIs/components/SearchBar';
+import FIISearchBar from '../../../components/FIIs/components/SearchBar';
 import { FIITabs } from '../../../FII/components/FIITabs';
 import { FiiContainer, ControlsWrapper, Title, ContentBox } from './styled';
 
 export const Fii = () => {
     const { error, setError, clearError } = useErrorHandling();
-
-    const handleSearch = (query: string) => {
-        clearError();
-        // If search functionality is needed in the future, implement it here
-    };
-
-
 
     return (
         <ErrorBoundary>
@@ -28,9 +21,7 @@ export const Fii = () => {
                 <FiiContainer>
                     <ControlsWrapper>
                         <Title>Fundos Imobiliários</Title>
-                        <FIISearchBar
-                            onSearch={handleSearch}
-                        />
+                        <FIISearchBar />
                     </ControlsWrapper>
                     <ContentBox>
                         <FIITabs

@@ -4,7 +4,7 @@ import { Tabs, Tab } from '@mui/material';
 import { VisualizationETFs } from './components/Visualization';
 import { ETFTabsContainer, BoxVizualizationControl } from './styled';
 import { TabPanel } from './components/TabPanel';
-import SearchBar from './components/SearchBar';
+import ETFSearchBar from './components/SearchBar';
 import { ETFFilter } from '@/services/api/types/etf';
 
 function a11yProps(index: number) {
@@ -15,7 +15,7 @@ function a11yProps(index: number) {
 }
 
 interface ETFProps {
-  defaultPageSize?: number;
+    defaultPageSize?: number;
 }
 
 const ETF: React.FC<ETFProps> = ({ defaultPageSize }) => {
@@ -26,13 +26,9 @@ const ETF: React.FC<ETFProps> = ({ defaultPageSize }) => {
         setValue(newValue);
     };
 
-    const handleClear = () => {
-        setFilters({});
-    };
-
     return (
         <ETFTabsContainer>
-            <SearchBar onClear={handleClear} />
+            <ETFSearchBar />
             <BoxVizualizationControl >
                 <Tabs value={value} onChange={handleChange} aria-label="ETF visualization tabs">
                     <Tab label="Cartões" {...a11yProps(0)} />

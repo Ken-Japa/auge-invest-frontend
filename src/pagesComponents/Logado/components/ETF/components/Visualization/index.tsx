@@ -42,8 +42,8 @@ export const VisualizationETFs = ({
   const validPageSizes = [10, 20, 50, 100];
   const initialPageSize = validPageSizes.includes(defaultPageSize) ? defaultPageSize : 20;
 
-  const [allEtfs, setAllEtfs] = useState<ETFExtended[]>([]); // Armazenar todas as ETFs
-  const [etfs, setETFs] = useState<ETFExtended[]>([]); // ETFs da página atual
+  const [allEtfs, setAllEtfs] = useState<ETFExtended[]>([]);
+  const [etfs, setETFs] = useState<ETFExtended[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(0);
@@ -59,11 +59,11 @@ export const VisualizationETFs = ({
 
         const result = await fetchETFs({
           ...filters,
-          // page e pageSize não são passados aqui para que a API retorne todos os dados
+
         });
 
-        setAllEtfs(result.result); // Armazenar todas as ETFs
-        setPage(0); // Resetar a página para 0 ao carregar novos filtros
+        setAllEtfs(result.result);
+        setPage(0);
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Ocorreu um erro desconhecido';
         setError(errorMessage);
@@ -73,17 +73,15 @@ export const VisualizationETFs = ({
     };
 
     loadETFs();
-  }, [filters]); // Depende apenas dos filtros, para buscar todos os dados novamente quando os filtros mudarem
+  }, [filters]);
 
-  // Novo useEffect para lidar com a paginação e ordenação no frontend
   useEffect(() => {
     if (allEtfs.length > 0) {
-      // Aplicar ordenação antes de fatiar para a página
+
       const sortedEtfs = [...allEtfs].sort((a, b) => {
-        // Converter quotaCount para número para garantir ordenação numérica
         const quotaA = Number(a.quotaCount);
         const quotaB = Number(b.quotaCount);
-        return quotaB - quotaA; // Ordenação decrescente
+        return quotaB - quotaA;
       });
 
       const newTotalPages = Math.ceil(sortedEtfs.length / pageSize);

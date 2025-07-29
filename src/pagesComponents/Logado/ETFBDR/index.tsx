@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Box, Tab, Tabs, Typography } from '@mui/material';
-import { SearchBar } from '../components/ETFBDR/components/SearchBar';
+import { Box, Tab, Tabs } from '@mui/material';
+import ETFBDRSearchBar from '../components/ETFBDR/components/SearchBar';
 import { VisualizationETFBDRs } from '../components/ETFBDR/components/Visualization';
 import { ETFBDRFilter } from '@/services/api/types/etfbdr';
 import { TabPanel } from '../components/ETFBDR/components/TabPanel';
-import { ETFBDRTabsContainer } from './styled';
+import { ETFBDRTabsContainer, Title } from './styled';
 
 export const ETFBDRPage = () => {
   const [currentTab, setCurrentTab] = useState(0);
@@ -26,11 +26,11 @@ export const ETFBDRPage = () => {
 
   return (
     <ETFBDRTabsContainer>
-      <Typography variant="h4" component="h1" gutterBottom>
+      <Title variant="h2" gutterBottom>
         ETFBDRs
-      </Typography>
+      </Title>
 
-      <SearchBar onClear={handleClear} />
+      <ETFBDRSearchBar />
 
       <Box sx={{ borderBottom: 1, borderColor: 'divider', marginTop: 2 }}>
         <Tabs value={currentTab} onChange={handleTabChange} aria-label="visualization tabs">
