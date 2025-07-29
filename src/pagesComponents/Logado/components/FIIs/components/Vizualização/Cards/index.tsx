@@ -39,7 +39,7 @@ export const CardView = ({ fiis }: CardViewProps) => {
               </IconButton>
             </CardHeader>
             <StyledCardContent>
-              <Link href={`/fii/${fii.nomeFII}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Link href={`/fii/${fii.codigoFII}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <CardTitle variant="h4">
                   {fii.nomeFII}
                 </CardTitle>

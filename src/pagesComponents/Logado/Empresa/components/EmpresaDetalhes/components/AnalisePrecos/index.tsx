@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Typography, CircularProgress, Box, SelectChangeEvent } from '@mui/material';
+import { Typography, CircularProgress, SelectChangeEvent } from '@mui/material';
 import { fetchHistoricalData, preparePeriodData } from './services/analiseService';
 import { AnalisePrecoProps, AnalysisPeriod, PriceDataPoint } from './utils/types';
 import { StyledPaper, LoadingContainer, ErrorContainer, Description } from './styled';

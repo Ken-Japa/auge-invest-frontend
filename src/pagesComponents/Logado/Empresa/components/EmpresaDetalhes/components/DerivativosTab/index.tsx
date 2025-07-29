@@ -116,8 +116,6 @@ export const DerivativosTab: React.FC<DerivativosTabProps> = ({ codigoBase }) =>
           pageSize: totalCount // Get all at once
         });
 
-        console.log('All Derivativos response:', response);
-
         if (response.Derivativos && Array.isArray(response.Derivativos)) {
           setDerivativos(response.Derivativos);
           setTotalDerivativos(response.Derivativos.length);

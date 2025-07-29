@@ -97,7 +97,7 @@ export const InformacoesAdicionais: React.FC<InformacoesAdicionaisProps> = ({ em
                                 <Typography variant="subtitle1" sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
                                     <TimelineIcon color="primary" /> Perspectivas Futuras
                                 </Typography>
-                                <Typography variant="body2" sx={{ mt: 1, maxWidth: '90%' }}>
+                                <Typography variant="body2" sx={{ mt: 1, maxWidth: '100%' }}>
                                     {empresaInfo.perspectivas}
                                 </Typography>
                             </Box>

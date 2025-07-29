@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Container, Typography, Box } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { PageTransition } from '@/components/Utils/PageTransition';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
@@ -81,7 +81,7 @@ export const AtivosPage = () => {
                                             <motion.div key={ativo.id} variants={itemVariants}>
                                                 <AtivoCard
                                                     onClick={() => handleCardClick(ativo.path, ativo.available)}
-                                                    available={ativo.available}
+                                                    available={ativo.available.toString()}
                                                     whileHover={{ y: -8, boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)" }}
                                                     whileTap={{ scale: 0.98 }}
                                                 >
@@ -98,7 +98,7 @@ export const AtivosPage = () => {
                                                             </ComingSoonBadge>
                                                         )}
                                                     </CardContent>
-                                                </AtivoCard>
+                                       AtivoCard</AtivoCard>
                                             </motion.div>
                                         ))}
                                     </AtivosGrid>

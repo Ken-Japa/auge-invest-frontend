@@ -6,9 +6,7 @@ export const CodeText = styled(Typography)(({ theme }) => ({
   cursor: "pointer",
   fontWeight: "bold",
   transition: transitions.medium,
-  color: theme.palette.mode === "dark" 
-    ? "#ffffff" 
-    : theme.palette.text.primary,
+  color: theme.palette.mode === "dark" ? "#ffffff" : theme.palette.text.primary,
   "&:hover": {
     color: theme.palette.primary.main,
   },
@@ -23,9 +21,10 @@ export const CodeContainer = styled(Box)(({ theme }) => ({
 
 export const PriceText = styled(Typography)(({ theme }) => ({
   marginLeft: theme.spacing(0.5),
-  color: theme.palette.mode === "dark" 
-    ? "rgba(255, 255, 255, 0.8)" 
-    : theme.palette.text.secondary,
+  color:
+    theme.palette.mode === "dark"
+      ? "rgba(255, 255, 255, 0.8)"
+      : theme.palette.text.secondary,
 }));
 
 export const VariationContainer = styled(Box)(({ theme }) => ({
@@ -34,13 +33,13 @@ export const VariationContainer = styled(Box)(({ theme }) => ({
   marginLeft: theme.spacing(1),
 }));
 
-export const VariationText = styled(Typography)<{ isPositive: boolean; isZero?: boolean }>(
-  ({ theme, isPositive, isZero }) => ({
-    color: isZero 
-      ? theme.palette.text.secondary
-      : isPositive 
-        ? theme.palette.success.main 
-        : theme.palette.error.main,
-    fontWeight: "bold",
-  })
-);
+export const VariationText = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== 'ispositive' && prop !== 'iszero',
+})<{ ispositive: boolean; iszero?: boolean }>(({ theme, ispositive, iszero }) => ({
+  color: iszero
+    ? theme.palette.text.secondary
+    : ispositive
+    ? theme.palette.success.main
+    : theme.palette.error.main,
+  fontWeight: "bold",
+}));

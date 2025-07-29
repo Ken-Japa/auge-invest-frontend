@@ -1,10 +1,10 @@
-import { useState, useEffect, useMemo } from 'react';
-import { 
-  fetchHistoricalData, 
-  preparePeriodData, 
-  calculateAlertSuggestions 
-} from '../services/analiseService';
-import { PriceDataPoint, StatisticalData, AnalysisPeriod, PeriodData } from '../utils/types';
+import { useState, useEffect, useMemo } from "react";
+import {
+  fetchHistoricalData,
+  preparePeriodData,
+  calculateAlertSuggestions,
+} from "../services/analiseService";
+import { PriceDataPoint, AnalysisPeriod, PeriodData } from "../utils/types";
 
 /**
  * Hook para gerenciar a análise de preços de um ativo
@@ -16,7 +16,7 @@ export const useAnalisePrecos = (codigoAtivo: string) => {
   const [error, setError] = useState<string | null>(null);
   const [historicalData, setHistoricalData] = useState<PriceDataPoint[]>([]);
   const [periodData, setPeriodData] = useState<PeriodData[]>([]);
-  const [selectedPeriod, setSelectedPeriod] = useState<AnalysisPeriod>('5y');
+  const [selectedPeriod, setSelectedPeriod] = useState<AnalysisPeriod>("5y");
   const [customYears, setCustomYears] = useState<number>(1);
 
   // Buscar dados históricos ao carregar o componente
@@ -35,7 +35,7 @@ export const useAnalisePrecos = (codigoAtivo: string) => {
 
         setLoading(false);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Erro ao carregar dados');
+        setError(err instanceof Error ? err.message : "Erro ao carregar dados");
         setLoading(false);
       }
     };
@@ -53,7 +53,9 @@ export const useAnalisePrecos = (codigoAtivo: string) => {
 
   // Obter dados do período selecionado
   const selectedPeriodData = useMemo(() => {
-    return periodData.find((period) => period.period === selectedPeriod) || null;
+    return (
+      periodData.find((period) => period.period === selectedPeriod) || null
+    );
   }, [periodData, selectedPeriod]);
 
   // Obter estatísticas do período selecionado
@@ -64,7 +66,7 @@ export const useAnalisePrecos = (codigoAtivo: string) => {
   // Calcular sugestões de alertas
   const alertSuggestions = useMemo(() => {
     if (!selectedStats || !selectedPeriodData) return null;
-    
+
     const { mean, stdDev } = selectedStats;
     return calculateAlertSuggestions(mean, stdDev, selectedPeriodData.data);
   }, [selectedStats, selectedPeriodData]);

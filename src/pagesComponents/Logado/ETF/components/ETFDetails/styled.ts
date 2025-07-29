@@ -86,7 +86,7 @@ export const Header = styled(Box)(({ theme }) => ({
   }),
 }));
 
-export const NomeETF = styled(Typography)(({ theme }) => ({
+export const NomeETF = styled(Box)(({ theme }) => ({
   color: theme.palette.primary.main,
 }));
 
@@ -103,7 +103,7 @@ export const BoxContent = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(1),
 }));
 
-export const BoxHeader = styled(Typography)(({ theme }) => ({
+export const BoxHeader = styled(Box)(({ theme }) => ({
   fontWeight: "600",
   fontSize: "2.2rem",
   marginBottom: theme.spacing(2),

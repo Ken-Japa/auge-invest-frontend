@@ -76,7 +76,7 @@ const ETFDetails = ({ slug, codigo, isCode = false }: ETFDetailsProps) => {
       <ContentWrapper>
         <Header>
           <NomeETF>
-            <Typography variant="h3" gutterBottom>{etf.nomeETF}</Typography>
+            <Typography variant="h3" component="h3" gutterBottom>{etf.nomeETF}</Typography>
           </NomeETF>
           <Typography variant="h5" color="textSecondary" gutterBottom>{etf.nomeCompletoETF}</Typography>
           <SubHeader >
@@ -94,7 +94,7 @@ const ETFDetails = ({ slug, codigo, isCode = false }: ETFDetailsProps) => {
         <Box display="grid" gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap={4} mt={4}>
           <Box>
             <BoxHeader>
-              <Typography variant="h4" gutterBottom >Informações básicas</Typography>
+              <Typography variant="h4" component="h4" gutterBottom >Informações básicas</Typography>
             </BoxHeader>
             <BoxContent>
               <BoxBody>
@@ -115,7 +115,7 @@ const ETFDetails = ({ slug, codigo, isCode = false }: ETFDetailsProps) => {
 
           <Box>
             <BoxHeader>
-              <Typography variant="h4" gutterBottom >Detalhes</Typography>
+              <Typography variant="h4" component="h4" gutterBottom >Detalhes</Typography>
             </BoxHeader>
             <BoxContent>
               <BoxBody>

@@ -23,8 +23,8 @@ interface CodeItemProps {
 
 export const CodeItem: React.FC<CodeItemProps> = ({ codigo }) => {
   const router = useRouter();
-  const isPositive = codigo.variacao !== undefined && codigo.variacao > 0;
-  const isZero = codigo.variacao !== undefined && codigo.variacao === 0;
+  const ispositive = codigo.variacao !== undefined && codigo.variacao > 0;
+  const iszero = codigo.variacao !== undefined && codigo.variacao === 0;
 
   const handleDoubleClick = () => {
     router.push(`/empresa/${codigo.codigo}`);
@@ -46,17 +46,17 @@ export const CodeItem: React.FC<CodeItemProps> = ({ codigo }) => {
 
           {codigo.variacao !== undefined && (
             <VariationContainer>
-              {isPositive ? (
+              {ispositive ? (
                 <TrendingUpIcon fontSize="small" color="success" />
-              ) : isZero ? (
+              ) : iszero ? (
                 <TrendingFlatIcon fontSize="small" color="inherit" />
               ) : (
                 <TrendingDownIcon fontSize="small" color="error" />
               )}
               <VariationText
                 variant="caption"
-                isPositive={isPositive}
-                isZero={isZero}
+                ispositive={ispositive}
+                iszero={iszero}
               >
                 {formatPercentage(codigo.variacao)}
               </VariationText>
