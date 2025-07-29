@@ -1,5 +1,5 @@
-import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/system";
+import { Box, Typography } from "@mui/material";
 
 export const ETFBDRTabsContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(3),

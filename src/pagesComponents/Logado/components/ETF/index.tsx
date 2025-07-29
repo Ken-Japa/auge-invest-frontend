@@ -1,11 +1,14 @@
 "use client";
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Tabs, Tab } from '@mui/material';
+import PublicIcon from '@mui/icons-material/Public';
+import { Box, Tooltip } from '@mui/material';
+import { ETFFilter } from '@/services/api/types/etf';
 import { VisualizationETFs } from './components/Visualization';
-import { ETFTabsContainer, BoxVizualizationControl } from './styled';
 import { TabPanel } from './components/TabPanel';
 import ETFSearchBar from './components/SearchBar';
-import { ETFFilter } from '@/services/api/types/etf';
+import { ETFTabsContainer, BoxVizualizationControl, Title, SubTitle } from './styled';
 
 function a11yProps(index: number) {
     return {
@@ -28,6 +31,19 @@ const ETF: React.FC<ETFProps> = ({ defaultPageSize }) => {
 
     return (
         <ETFTabsContainer>
+            <Title variant="h2" gutterBottom>
+                ETFs
+            </Title>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', position: 'relative' }}>
+                <SubTitle>
+                    Fundo de Índice | Exchange Traded Fund
+                </SubTitle>
+                <Tooltip title="ETF de BDR" arrow>
+                    <Link href="/etfbdr" passHref style={{ position: 'absolute', right: 0 }}>
+                        <PublicIcon sx={{ fontSize: 30, cursor: 'pointer' }} />
+                    </Link>
+                </Tooltip>
+            </Box>
             <ETFSearchBar />
             <BoxVizualizationControl >
                 <Tabs value={value} onChange={handleChange} aria-label="ETF visualization tabs">

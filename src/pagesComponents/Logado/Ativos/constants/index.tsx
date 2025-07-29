@@ -3,6 +3,7 @@ import ShowChartIcon from '@mui/icons-material/ShowChart';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import CandlestickChartIcon from '@mui/icons-material/CandlestickChart';
+import PublicIcon from '@mui/icons-material/Public';
 
 export const ativosList = [
     {
@@ -35,6 +36,14 @@ export const ativosList = [
         description: "Fundos de Índice - Invista em cestas de ativos que replicam índices de mercado.",
         icon: CandlestickChartIcon,
         path: "/etf",
+        available: true
+    },
+    {
+        id: "etf-bdr",
+        title: "ETF de BDR",
+        description: "Explore ETFs de BDRs e invista em empresas estrangeiras através da bolsa brasileira.",
+        icon: PublicIcon,
+        path: "/etfbdr",
         available: true
     },
     {
