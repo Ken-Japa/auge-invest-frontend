@@ -27,7 +27,7 @@ export const ETFBDRPage = () => {
   return (
     <ETFBDRTabsContainer>
       <Title variant="h2" gutterBottom>
-        ETFBDRs
+        ETF de BDRs
       </Title>
 
       <ETFBDRSearchBar />
