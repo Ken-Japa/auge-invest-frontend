@@ -1,5 +1,5 @@
 import { Box, Card, Chip, Typography } from '@mui/material';
-import { styled } from '@mui/system';
+import { styled } from '@mui/material/styles';
 
 export const CardContainer = styled(Card)(({ theme }) => ({
   display: 'flex',
