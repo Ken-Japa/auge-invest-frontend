@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 import ETFBDRDetails from "@/pagesComponents/Logado/ETFBDR/components/ETFBDRDetails";
 
-type Props = {
+type PageProps = {
   params: { slug: string }
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const decodedSlug = decodeURIComponent(params.slug).toUpperCase();
   return {
     title: `${decodedSlug} | AugeInvest`,
@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function ETFPage({ params }: Props) {
+export default function ETFPage({ params }: PageProps) {
   const decodedSlug = decodeURIComponent(params.slug);
   return <ETFBDRDetails slug={decodedSlug} />;
 }

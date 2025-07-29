@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 import FIIDetails from "@/pagesComponents/Logado/FII/components/FIIDetalhes";
 
-type Props = {
+type PageProps = {
     params: { slug: string }
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const decodedSlug = decodeURIComponent(params.slug).toUpperCase();
     return {
         title: `${decodedSlug} | AugeInvest`,
@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
-export default function FIIPage({ params }: Props) {
+export default function FIIPage({ params }: PageProps) {
     const decodedSlug = decodeURIComponent(params.slug);
     return <FIIDetails slug={decodedSlug} />;
 }
