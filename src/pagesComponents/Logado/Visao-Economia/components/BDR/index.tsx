@@ -25,13 +25,7 @@ export const Bdr = () => {
                 <BdrContainer>
                     <ControlsWrapper>
                         <Title>BDRs</Title>
-                        <BDRSearchBar
-                            value={searchQuery}
-                            onChange={setSearchQuery}
-                            onSearch={(query) => {
-                                setSearchQuery(query);
-                            }}
-                        />
+                        <BDRSearchBar />
                     </ControlsWrapper>
                     <ContentBox>
                         <BDRTabs
