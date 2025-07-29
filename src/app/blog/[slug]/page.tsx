@@ -9,8 +9,9 @@ interface Props {
     };
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const post = blogPosts.find(post => post.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const awaitedParams = await params;
+    const post = blogPosts.find(post => post.slug === awaitedParams.slug);
 
     if (!post) {
         return {
@@ -28,8 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
-export default function BlogPostPage({ params }: Props) {
-    const post = blogPosts.find(post => post.slug === params.slug);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+    const awaitedParams = await params;
+    const post = blogPosts.find(post => post.slug === awaitedParams.slug);
 
     if (!post) {
         notFound();
