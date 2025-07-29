@@ -24,7 +24,7 @@ const Commodities = lazy(() => import('./components/Outros/Commodities').then(mo
 const Debentures = lazy(() => import('./components/Outros/Debentures').then(mod => ({ default: mod.Debentures })));
 const Calendario = lazy(() => import('../components/Calendario').then(mod => ({ default: mod.Calendario })));
 
-import { BackgroundContainer, DashboardItem } from './styled';
+import { BackgroundContainer, DashboardItem, Title, Subtitle } from './styled';
 
 export const VisaoEconomia = () => {
     const [headerHeight, setHeaderHeight] = useState(0);
@@ -65,6 +65,9 @@ export const VisaoEconomia = () => {
             <PageTransition direction="up" duration={0.4} distance={30}>
                 <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
                     <ProgressiveLoad threshold={0.1} delay={0.2}>
+                        <Title>
+                            Visão Geral da Economia
+                        </Title>
                         <BackgroundContainer
                             style={{
                                 paddingTop: `${headerHeight}px`,
@@ -72,6 +75,7 @@ export const VisaoEconomia = () => {
                                 minHeight: '100vh'
                             }}
                         >
+
                             <Container
                                 maxWidth="xl"
                                 sx={{
@@ -180,11 +184,14 @@ export const VisaoEconomia = () => {
 
                                         <Grid item xs={12}>
                                             <DashboardItem>
+                                                <Subtitle>
+                                                    Calendário de Proventos
+                                                </Subtitle>
                                                 <Calendario />
                                             </DashboardItem>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <DashboardItem>Calendário de Proventos</DashboardItem>
+                                            <DashboardItem>Outro</DashboardItem>
                                         </Grid>
                                     </Suspense>
                                 </Grid>

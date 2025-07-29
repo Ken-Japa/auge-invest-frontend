@@ -67,13 +67,13 @@ export const StyledTab = styled(Tab)(({ theme }) => ({
 }));
 
 // Componentes adicionais estilizados
-export const LoadingContainer = styled(Box)(({ theme }) => ({
+export const LoadingContainer = styled(Box)({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   minHeight: 400,
   width: "100%",
-}));
+});
 
 export const ErrorContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(3),
@@ -111,5 +111,3 @@ export const ProgressContainer = styled(Box)(({ theme }) => ({
   justifyContent: "center",
   padding: theme.spacing(2),
 }));
-
-// Removida a interface TabPanelProps duplicada, pois já existe no componente TabPanel.tsx
