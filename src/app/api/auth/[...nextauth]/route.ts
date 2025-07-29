@@ -7,9 +7,10 @@ import { cookies } from "next/headers";
 import { API_ENDPOINTS, getFullEndpointUrl } from "@/services/api/config";
 
 // Helper function to set auth cookies
-function setAuthCookies(token: string, userId?: string) {
+async function setAuthCookies(token: string, userId?: string) {
+  const cookieStore = await cookies();
   // Set HTTP-only cookie for server-side use
-  cookies().set("authToken", token, {
+  cookieStore.set("authToken", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     maxAge: 30 * 24 * 60 * 60, // 30 days
@@ -17,7 +18,7 @@ function setAuthCookies(token: string, userId?: string) {
   });
 
   // Set client-accessible cookie for API calls
-  cookies().set("clientAuthToken", token, {
+  cookieStore.set("clientAuthToken", token, {
     httpOnly: false,
     secure: process.env.NODE_ENV === "production",
     maxAge: 30 * 24 * 60 * 60,
@@ -26,7 +27,7 @@ function setAuthCookies(token: string, userId?: string) {
 
   // Set user ID cookie if available
   if (userId) {
-    cookies().set("userId", userId, {
+    cookieStore.set("userId", userId, {
       httpOnly: false,
       secure: process.env.NODE_ENV === "production",
       maxAge: 30 * 24 * 60 * 60,
