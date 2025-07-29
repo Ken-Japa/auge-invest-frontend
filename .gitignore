@@ -35,6 +35,5 @@ yarn-error.log*
 next-env.d.ts
 
 # Large mock data files
-src/pagesComponents/Logado/components/EmpresaView/mockdata_example/old
-src/pagesComponents/Logado/components/EmpresaView/mockdata_example/historicoempresas.json
+
 
