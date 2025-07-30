@@ -32,13 +32,19 @@ export const metadata: Metadata = {
     siteName: 'Auge Invest',
     images: [
       {
-        url: '/assets/images/logo/Logo6.png',
-        width: 722,
-        height: 545,
+        url: '/assets/images/logo/OgCard.png',
+        width: 1536,
+        height: 1024,
       },
     ],
     locale: 'pt_BR',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Auge Invest',
+    description: 'Plataforma líder em análise de investimentos',
+    images: ['/assets/images/logo/OgCard.png'],
   },
   icons: {
     icon: [
@@ -75,6 +81,7 @@ export default function RootLayout({
       <head>
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
 
         <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

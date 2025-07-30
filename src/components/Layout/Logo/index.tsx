@@ -15,7 +15,7 @@ export const Logo = ({
     return (
         <LogoContainer onClick={onClick} style={{ cursor: onClick ? 'pointer' : 'default' }}>
             <OptimizedImage
-                src="/assets/images/logo/Logo6.png"
+                src="/assets/images/logo/icon-48.png"
                 alt="Auge Invest"
                 width={width}
                 height={height}
