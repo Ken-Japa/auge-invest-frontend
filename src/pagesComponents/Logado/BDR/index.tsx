@@ -3,7 +3,9 @@ import { Alert, Snackbar } from '@mui/material';
 import { PageTransition } from '@/components/Utils/PageTransition';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
+import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import BDRSearchBar from '../components/BDR/components/SearchBar';
 import { BDRTabs } from './components/BDRTabs';
 import {
@@ -20,48 +22,50 @@ export const BDR = () => {
 
 
     return (
-        <PageTransition direction="up" duration={0.4} distance={30}>
-            <ErrorBoundary>
-                <SuspenseWrapper>
-                    <BDRPageContainer>
-                        <ContentWrapper maxWidth="xl">
-                            <ContentBox>
-                                <BDRTitle variant="h2" gutterBottom>
-                                    BDRs
-                                </BDRTitle>
-                                <BDRSubTitle>
-                                    Recebíveis de Depósitos Brasileiros
-                                </BDRSubTitle>
+        <ErrorBoundary>
+            <PageTransition direction="up" duration={0.4} distance={30}>
+                <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
+                    <ProgressiveLoad threshold={0.1} delay={0.2}>
+                        <BDRPageContainer>
+                            <ContentWrapper maxWidth="xl">
+                                <ContentBox>
+                                    <BDRTitle variant="h2" gutterBottom>
+                                        BDRs
+                                    </BDRTitle>
+                                    <BDRSubTitle>
+                                        Recebíveis de Depósitos Brasileiros
+                                    </BDRSubTitle>
 
-                                <SearchBox >
-                                    <BDRSearchBar />
-                                </SearchBox>
+                                    <SearchBox >
+                                        <BDRSearchBar />
+                                    </SearchBox>
 
-                                <Snackbar
-                                    open={!!error}
-                                    autoHideDuration={6000}
-                                    onClose={clearError}
-                                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                                >
-                                    <Alert onClose={clearError} severity="error" sx={{ width: '100%' }}>
-                                        {error}
-                                    </Alert>
-                                </Snackbar>
+                                    <Snackbar
+                                        open={!!error}
+                                        autoHideDuration={6000}
+                                        onClose={clearError}
+                                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                                    >
+                                        <Alert onClose={clearError} severity="error" sx={{ width: '100%' }}>
+                                            {error}
+                                        </Alert>
+                                    </Snackbar>
 
-                                <BDRTabs
-                                    onError={setError}
-                                    viewMode="cartao"
-                                    onChangeView={(view) => {
+                                    <BDRTabs
+                                        onError={setError}
+                                        viewMode="cartao"
+                                        onChangeView={(view) => {
 
-                                    }}
-                                    defaultPageSize={50}
-                                />
-                            </ContentBox>
-                        </ContentWrapper>
-                    </BDRPageContainer>
+                                        }}
+                                        defaultPageSize={50}
+                                    />
+                                </ContentBox>
+                            </ContentWrapper>
+                        </BDRPageContainer>
+                    </ProgressiveLoad>
                 </SuspenseWrapper>
-            </ErrorBoundary>
-        </PageTransition>
+            </PageTransition>
+        </ErrorBoundary>
     );
 };
 

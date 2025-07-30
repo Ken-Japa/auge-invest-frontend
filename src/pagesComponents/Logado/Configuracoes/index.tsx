@@ -52,49 +52,53 @@ export const Configuracoes = () => {
     }
 
     return (
-        <PageTransition direction="up" duration={0.4} distance={30}>
-            <ErrorBoundary>
-                <PageBackground imageName="Configuracoes">
-                    <Container maxWidth="md" sx={{ py: 4 }}>
-                        <SettingsTitle variant="h2" >
-                            Configurações
-                        </SettingsTitle>
+        <ErrorBoundary>
+            <PageTransition direction="up" duration={0.4} distance={30}>
+                <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
+                    <ProgressiveLoad threshold={0.1} delay={0.2}>
+                        <PageBackground imageName="Configuracoes">
+                            <Container maxWidth="md" sx={{ py: 4 }}>
+                                <SettingsTitle variant="h2" >
+                                    Configurações
+                                </SettingsTitle>
 
-                        <SuspenseWrapper fallback={<ContentSkeleton type="form" formFields={1} />}>
-                            <ProgressiveLoad delay={0.2}>
-                                <AppearanceSettings />
-                            </ProgressiveLoad>
-                        </SuspenseWrapper>
+                                <SuspenseWrapper fallback={<ContentSkeleton type="form" formFields={1} />}>
+                                    <ProgressiveLoad delay={0.2}>
+                                        <AppearanceSettings />
+                                    </ProgressiveLoad>
+                                </SuspenseWrapper>
 
-                        <SuspenseWrapper fallback={<ContentSkeleton type="form" formFields={3} />}>
-                            <ProgressiveLoad delay={0.4}>
-                                <NotificationSettings
-                                    notifications={settings.notifications}
-                                    onNotificationChange={handleNotificationChange}
-                                />
-                            </ProgressiveLoad>
-                        </SuspenseWrapper>
+                                <SuspenseWrapper fallback={<ContentSkeleton type="form" formFields={3} />}>
+                                    <ProgressiveLoad delay={0.4}>
+                                        <NotificationSettings
+                                            notifications={settings.notifications}
+                                            onNotificationChange={handleNotificationChange}
+                                        />
+                                    </ProgressiveLoad>
+                                </SuspenseWrapper>
 
-                        <SuspenseWrapper fallback={<ContentSkeleton type="form" formFields={2} />}>
-                            <ProgressiveLoad delay={0.6}>
-                                <AlertPreferences
-                                    percentages={settings.defaultPercentages}
-                                    onPercentageChange={handlePercentageChange}
-                                />
-                            </ProgressiveLoad>
-                        </SuspenseWrapper>
-                        <Snackbar
-                            open={snackbar.open}
-                            autoHideDuration={3000}
-                            onClose={() => setSnackbar(prev => ({ ...prev, open: false }))}
-                        >
-                            <Alert severity={snackbar.type} sx={{ width: '100%' }}>
-                                {snackbar.message}
-                            </Alert>
-                        </Snackbar>
-                    </Container>
-                </PageBackground>
-            </ErrorBoundary>
-        </PageTransition>
+                                <SuspenseWrapper fallback={<ContentSkeleton type="form" formFields={2} />}>
+                                    <ProgressiveLoad delay={0.6}>
+                                        <AlertPreferences
+                                            percentages={settings.defaultPercentages}
+                                            onPercentageChange={handlePercentageChange}
+                                        />
+                                    </ProgressiveLoad>
+                                </SuspenseWrapper>
+                                <Snackbar
+                                    open={snackbar.open}
+                                    autoHideDuration={3000}
+                                    onClose={() => setSnackbar(prev => ({ ...prev, open: false }))}
+                                >
+                                    <Alert severity={snackbar.type} sx={{ width: '100%' }}>
+                                        {snackbar.message}
+                                    </Alert>
+                                </Snackbar>
+                            </Container>
+                        </PageBackground>
+                    </ProgressiveLoad>
+                </SuspenseWrapper>
+            </PageTransition>
+        </ErrorBoundary>
     );
 };

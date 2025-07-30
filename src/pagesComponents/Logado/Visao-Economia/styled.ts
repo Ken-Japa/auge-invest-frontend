@@ -1,6 +1,35 @@
 import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 
+export const PageContainer = styled(Box)(({ theme }) => ({
+  position: "relative",
+  padding: theme.spacing(8, 0),
+  backgroundColor: theme.palette.background.default,
+  minHeight: "100vh",
+  marginTop: "-64px",
+  zIndex: -1,
+  backgroundImage:
+    theme.palette.mode === "dark"
+      ? 'url("/assets/images/background/VisaoEconomia-Dark.jpg")'
+      : 'url("/assets/images/background/VisaoEconomia-Light.jpg")',
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundAttachment: "fixed",
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor:
+      theme.palette.mode === "dark"
+        ? "rgba(18, 24, 38, 0.4)"
+        : "rgba(255, 255, 255, 0.7)",
+  },
+}));
+
 export const BackgroundContainer = styled(Box)({
   width: "100%",
   position: "relative",

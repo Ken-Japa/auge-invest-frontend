@@ -9,6 +9,7 @@ import { clearAuthData } from '@/utils/auth';
 import { PageTransition } from '@/components/Utils/PageTransition';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
+import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { SubscriptionInfo } from './components/SubscriptionInfo';
 import { ProfileSkeleton } from './components/ProfileSkeleton';
 import { AdditionalInfo } from './components/AdditionalInfo';
@@ -61,102 +62,104 @@ export const Perfil = () => {
     }
 
     return (
-        <PageTransition direction="up" duration={0.4} distance={30}>
-            <ErrorBoundary>
+        <ErrorBoundary>
+            <PageTransition direction="up" duration={0.4} distance={30}>
                 <SuspenseWrapper fallback={<ProfileSkeleton />}>
-                    <ProfileContainer>
-                        <Typography
-                            variant="h1"
-                            sx={{
-                                textAlign: "center",
-                                fontSize: "2.5rem",
-                                fontWeight: 600,
-                                mb: 4,
-                            }}
-                        >
-                            Perfil
-                        </Typography>
-
-                        <ProfileCard elevation={0}>
-                            <BasicInfo
-                                displayName={displayName}
-                                displayEmail={displayEmail}
-                                displayPhone={displayPhone}
-                                displayCpf={displayCpf}
-                                handleEdit={handleEdit}
-                                showPasswordDialog={showPasswordDialog}
-                                setShowPasswordDialog={setShowPasswordDialog}
-                                setPasswordError={setPasswordError}
-                                handlePasswordChange={handlePasswordChange}
-                                isSaving={isSaving}
-                                editField={editField}
-                                editValue={editValue}
-                                setEditField={setEditField}
-                                handleSave={handleSave}
-                            />
-                        </ProfileCard>
-
-                        <ProfileCard>
-                            <AdditionalInfo
-                                displayCreatedAt={displayCreatedAt}
-                                displayUpdatedAt={displayUpdatedAt}
-                                isActiveUser={isActiveUser}
-                                userData={userData}
-                                handleEdit={handleEdit}
-                            />
-                        </ProfileCard>
-
-                        <ProfileCard elevation={0}>
-                            <SubscriptionInfo />
-                        </ProfileCard>
-
-                        <ProfileCard elevation={0} sx={{ display: 'flex', justifyContent: 'center' }}>
-                            <Button
-                                variant="text"
-                                color="error"
-                                endIcon={<LogoutIcon />}
-                                onClick={() => {
-                                    clearAuthData();
-                                    signOut({ callbackUrl: '/' })
-                                }}
+                    <ProgressiveLoad threshold={0.1} delay={0.2}>
+                        <ProfileContainer>
+                            <Typography
+                                variant="h1"
                                 sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: 0.5
+                                    textAlign: "center",
+                                    fontSize: "2.5rem",
+                                    fontWeight: 600,
+                                    mb: 4,
                                 }}
                             >
-                                Fazer logout
-                            </Button>
-                        </ProfileCard>
+                                Perfil
+                            </Typography>
 
-                        <ContactButton>
-                            <StyledContactButton
-                                variant="contained"
-                                startIcon={<ContactSupportIcon />}
-                                component={Link}
-                                href={`/visitante/contato?name=${displayName}&email=${displayEmail}`}
-                            >
-                                Precisa de Ajuda? Entre em Contato
-                            </StyledContactButton>
-                        </ContactButton>
+                            <ProfileCard elevation={0}>
+                                <BasicInfo
+                                    displayName={displayName}
+                                    displayEmail={displayEmail}
+                                    displayPhone={displayPhone}
+                                    displayCpf={displayCpf}
+                                    handleEdit={handleEdit}
+                                    showPasswordDialog={showPasswordDialog}
+                                    setShowPasswordDialog={setShowPasswordDialog}
+                                    setPasswordError={setPasswordError}
+                                    handlePasswordChange={handlePasswordChange}
+                                    isSaving={isSaving}
+                                    editField={editField}
+                                    editValue={editValue}
+                                    setEditField={setEditField}
+                                    handleSave={handleSave}
+                                />
+                            </ProfileCard>
 
-                        <Snackbar
-                            open={notification.open}
-                            autoHideDuration={6000}
-                            onClose={handleCloseNotification}
-                            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                        >
-                            <Alert
+                            <ProfileCard>
+                                <AdditionalInfo
+                                    displayCreatedAt={displayCreatedAt}
+                                    displayUpdatedAt={displayUpdatedAt}
+                                    isActiveUser={isActiveUser}
+                                    userData={userData}
+                                    handleEdit={handleEdit}
+                                />
+                            </ProfileCard>
+
+                            <ProfileCard elevation={0}>
+                                <SubscriptionInfo />
+                            </ProfileCard>
+
+                            <ProfileCard elevation={0} sx={{ display: 'flex', justifyContent: 'center' }}>
+                                <Button
+                                    variant="text"
+                                    color="error"
+                                    endIcon={<LogoutIcon />}
+                                    onClick={() => {
+                                        clearAuthData();
+                                        signOut({ callbackUrl: '/' })
+                                    }}
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: 0.5
+                                    }}
+                                >
+                                    Fazer logout
+                                </Button>
+                            </ProfileCard>
+
+                            <ContactButton>
+                                <StyledContactButton
+                                    variant="contained"
+                                    startIcon={<ContactSupportIcon />}
+                                    component={Link}
+                                    href={`/visitante/contato?name=${displayName}&email=${displayEmail}`}
+                                >
+                                    Precisa de Ajuda? Entre em Contato
+                                </StyledContactButton>
+                            </ContactButton>
+
+                            <Snackbar
+                                open={notification.open}
+                                autoHideDuration={6000}
                                 onClose={handleCloseNotification}
-                                severity={notification.type}
-                                sx={{ width: '100%' }}
+                                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                             >
-                                {notification.message}
-                            </Alert>
-                        </Snackbar>
-                    </ProfileContainer>
+                                <Alert
+                                    onClose={handleCloseNotification}
+                                    severity={notification.type}
+                                    sx={{ width: '100%' }}
+                                >
+                                    {notification.message}
+                                </Alert>
+                            </Snackbar>
+                        </ProfileContainer>
+                    </ProgressiveLoad>
                 </SuspenseWrapper>
-            </ErrorBoundary>
-        </PageTransition>
+            </PageTransition>
+        </ErrorBoundary>
     );
 };

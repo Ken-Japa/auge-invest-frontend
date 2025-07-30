@@ -8,6 +8,7 @@ import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { PageTransition } from '@/components/Utils/PageTransition';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 
 // Componentes específicos
 import { SearchBar } from '../components/EmpresaView/Elementos/SearchBar';
@@ -31,30 +32,32 @@ export const Empresa = () => {
         <ErrorBoundary>
             <PageTransition>
                 <SuspenseWrapper fallback={<ContentSkeleton height={600} />}>
-                    <EmpresasContainer>
-                        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                            <SearchBarWrapper>
-                                <SearchBar />
-                            </SearchBarWrapper>
+                    <ProgressiveLoad threshold={0.1} delay={0.2}>
+                        <EmpresasContainer>
+                            <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                                <SearchBarWrapper>
+                                    <SearchBar />
+                                </SearchBarWrapper>
 
-                            <ContentContainer>
-                                <ControlsWrapper>
-                                    <ModoVisualizacao
+                                <ContentContainer>
+                                    <ControlsWrapper>
+                                        <ModoVisualizacao
+                                            viewMode={viewMode}
+                                            onChangeView={setViewMode}
+                                        />
+                                    </ControlsWrapper>
+
+                                    <VisualizationContent
                                         viewMode={viewMode}
-                                        onChangeView={setViewMode}
+                                        isLoading={isLoading}
+                                        setIsLoading={setIsLoading}
                                     />
-                                </ControlsWrapper>
-
-                                <VisualizationContent
-                                    viewMode={viewMode}
-                                    isLoading={isLoading}
-                                    setIsLoading={setIsLoading}
-                                />
-                            </ContentContainer>
-                        </Box>
-                    </EmpresasContainer>
+                                </ContentContainer>
+                            </Box>
+                        </EmpresasContainer>
+                    </ProgressiveLoad>
                 </SuspenseWrapper>
             </PageTransition>
-        </ErrorBoundary>
+        </ErrorBoundary >
     );
 };
