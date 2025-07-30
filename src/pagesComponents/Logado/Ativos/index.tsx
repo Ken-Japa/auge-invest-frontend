@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Container, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { PageTransition } from '@/components/Utils/PageTransition';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
@@ -18,7 +18,8 @@ import {
     CardIcon,
     CardTitle,
     CardDescription,
-    ComingSoonBadge
+    ComingSoonBadge,
+    Page
 } from "./styled";
 
 
@@ -60,7 +61,7 @@ export const AtivosPage = () => {
                 <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
                     <ProgressiveLoad threshold={0.1} delay={0.2}>
                         <AtivosPageContainer>
-                            <Container maxWidth="lg">
+                            <Page>
                                 <AtivosHeader>
                                     <Typography variant="h1" component="h1" className="text-gradient">
                                         Ativos
@@ -98,12 +99,12 @@ export const AtivosPage = () => {
                                                             </ComingSoonBadge>
                                                         )}
                                                     </CardContent>
-                                       AtivoCard</AtivoCard>
+                                                    AtivoCard</AtivoCard>
                                             </motion.div>
                                         ))}
                                     </AtivosGrid>
                                 </motion.div>
-                            </Container>
+                            </Page>
                         </AtivosPageContainer>
                     </ProgressiveLoad>
                 </SuspenseWrapper>

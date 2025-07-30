@@ -131,6 +131,19 @@ export const Footer = () => {
                                     Programa de Embaixadores
                                 </span>
                             </LinkNext>
+
+                            <LinkNext
+                                href="/visitante/em-desenvolvimento"
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                }}
+                            >
+                                <span style={{ fontWeight: '200' }}>
+                                    Em Desenvolvimento
+                                </span>
+                            </LinkNext>
                         </SocialSection>
 
                     </MainContent>

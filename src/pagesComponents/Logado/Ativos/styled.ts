@@ -1,11 +1,35 @@
 import { styled } from "@mui/material/styles";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Container } from "@mui/material";
 import { motion } from "framer-motion";
 
 export const AtivosPageContainer = styled(Box)(({ theme }) => ({
-  minHeight: "calc(100vh - 200px)",
-  padding: "2rem 0 4rem",
-  background: theme.palette.background.default,
+  height: "100vh",
+  marginTop: "-64px",
+  position: "relative",
+  backgroundImage:
+    theme.palette.mode === "dark"
+      ? 'url("/assets/images/background/Ativos-Dark.jpg")'
+      : 'url("/assets/images/background/Ativos-Light.jpg")',
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundAttachment: "fixed",
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backgroundColor:
+      theme.palette.mode === "dark"
+        ? "rgba(18, 24, 38, 0.4)"
+        : "rgba(255, 255, 255, 0.7)",
+  },
+}));
+
+export const Page = styled(Container)(({ theme }) => ({
+  zIndex: 1,
+  position: "relative",
+  paddingTop: "24px",
   "& .text-gradient": {
     background: "linear-gradient(90deg, #0d95f9 0%, #8411cc 100%)",
     WebkitBackgroundClip: "text",
@@ -55,7 +79,7 @@ export const AtivoCard = styled(motion.div)<{ available: string }>(
   ({ theme, available }) => ({
     background:
       theme.palette.mode === "dark"
-        ? "linear-gradient(145deg, rgba(26, 34, 52, 0.8), rgba(26, 34, 52, 0.6))"
+        ? "linear-gradient(145deg, rgba(26, 34, 52, 0.95), rgba(26, 34, 52, 0.85))"
         : "linear-gradient(145deg, #ffffff, #f5f8fa)",
     borderRadius: "16px",
     overflow: "hidden",
@@ -70,11 +94,12 @@ export const AtivoCard = styled(motion.div)<{ available: string }>(
     }`,
     boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
     transition: "all 0.3s ease",
-    opacity: available === "true" ? 1 : 0.7,
+    opacity: available === "true" ? 1 : 0.85,
     "&:hover": {
-      borderColor: available === "true"
-        ? theme.palette.primary.main
-        : "rgba(255, 255, 255, 0.1)",
+      borderColor:
+        available === "true"
+          ? theme.palette.primary.main
+          : "rgba(255, 255, 255, 0.3)",
     },
   })
 );
