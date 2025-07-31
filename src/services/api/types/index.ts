@@ -12,3 +12,4 @@ export * from "./etf";
 export * from "./etfbdr";
 export * from "./dictionary";
 export * from "./sumario";
+export * from "./transaction";

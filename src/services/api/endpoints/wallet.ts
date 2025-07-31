@@ -1,18 +1,15 @@
 import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
-import { Wallet, Transaction, Position } from "../types";
+import {
+  Wallet,
+  Transaction,
+  Position,
+  CreateWalletPayload,
+  UpdateTransactionPayload,
+  CreateTransactionPayload,
+  UpdateWalletPayload,
+} from "../types";
 import { handleApiError, ErrorCode } from "../errorHandler";
-
-interface CreateWalletPayload {
-  name: string;
-  description: string;
-  userId: string;
-}
-
-interface UpdateWalletPayload {
-  name?: string;
-  description?: string;
-}
 
 export class WalletApiService extends BaseApiService {
   constructor() {
@@ -76,21 +73,53 @@ export class WalletApiService extends BaseApiService {
     }
   }
 
-  // Transaction methods (placeholders for future implementation)
-  public async createTransaction(): Promise<Transaction> {
-    throw new Error("Not implemented");
+  // Transaction methods
+  public async createTransaction(
+    payload: CreateTransactionPayload
+  ): Promise<Transaction> {
+    try {
+      const response = await this.post<Transaction>(
+        API_ENDPOINTS.TRANSACTION.CREATE,
+        payload
+      );
+      return response;
+    } catch (error) {
+      throw handleApiError(error, ErrorCode.TRANSACTION_CREATION_FAILED);
+    }
   }
 
-  public async updateTransaction(): Promise<Transaction> {
-    throw new Error("Not implemented");
+  public async updateTransaction(
+    id: string,
+    payload: UpdateTransactionPayload
+  ): Promise<Transaction> {
+    try {
+      const response = await this.put<Transaction>(
+        `${API_ENDPOINTS.TRANSACTION.UPDATE}/${id}`,
+        payload
+      );
+      return response;
+    } catch (error) {
+      throw handleApiError(error, ErrorCode.TRANSACTION_UPDATE_FAILED);
+    }
   }
 
-  public async deleteTransaction(): Promise<void> {
-    throw new Error("Not implemented");
+  public async deleteTransaction(id: string): Promise<void> {
+    try {
+      await this.delete<void>(`${API_ENDPOINTS.TRANSACTION.DELETE}/${id}`);
+    } catch (error) {
+      throw handleApiError(error, ErrorCode.TRANSACTION_DELETION_FAILED);
+    }
   }
 
-  public async getTransaction(): Promise<Transaction> {
-    throw new Error("Not implemented");
+  public async getTransaction(id: string): Promise<Transaction> {
+    try {
+      const response = await this.get<Transaction>(
+        `${API_ENDPOINTS.TRANSACTION.GET}/${id}`
+      );
+      return response;
+    } catch (error) {
+      throw handleApiError(error, ErrorCode.TRANSACTION_NOT_FOUND);
+    }
   }
 
   // Position method (placeholder for future implementation)

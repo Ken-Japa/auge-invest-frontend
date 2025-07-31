@@ -77,6 +77,13 @@ export const API_ENDPOINTS = {
     GET_USER_WALLETS: "/portfolios/user",
     GET_WALLET: "/portfolios",
   },
+  // Transaction endpoints
+  TRANSACTION: {
+    CREATE: "/transaction",
+    UPDATE: "/transaction",
+    DELETE: "/transaction",
+    GET: "/transaction",
+  },
   // Outros grupos de endpoints...
 };
 

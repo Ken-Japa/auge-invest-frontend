@@ -23,6 +23,10 @@ export enum ErrorCode {
   WALLET_UPDATE_FAILED = "wallet/update-failed",
   WALLET_DELETION_FAILED = "wallet/deletion-failed",
   WALLET_DATA_ERROR = "wallet/data-error",
+  TRANSACTION_CREATION_FAILED = "transaction/creation-failed",
+  TRANSACTION_UPDATE_FAILED = "transaction/update-failed",
+  TRANSACTION_DELETION_FAILED = "transaction/deletion-failed",
+  TRANSACTION_NOT_FOUND = "transaction/not-found",
 }
 
 // Mapeamento de mensagens de erro amigáveis
@@ -62,6 +66,10 @@ const ERROR_MESSAGES: Record<ErrorCode, string> = {
   [ErrorCode.WALLET_UPDATE_FAILED]: "Falha ao atualizar carteira. Por favor, tente novamente.",
   [ErrorCode.WALLET_DELETION_FAILED]: "Falha ao deletar carteira. Por favor, tente novamente.",
   [ErrorCode.WALLET_DATA_ERROR]: "Erro ao processar dados da carteira. Por favor, tente novamente.",
+  [ErrorCode.TRANSACTION_CREATION_FAILED]: "Falha ao criar transação. Por favor, tente novamente.",
+  [ErrorCode.TRANSACTION_UPDATE_FAILED]: "Falha ao atualizar transação. Por favor, tente novamente.",
+  [ErrorCode.TRANSACTION_DELETION_FAILED]: "Falha ao deletar transação. Por favor, tente novamente.",
+  [ErrorCode.TRANSACTION_NOT_FOUND]: "Transação não encontrada. Por favor, verifique as informações fornecidas.",
 
 };
 
