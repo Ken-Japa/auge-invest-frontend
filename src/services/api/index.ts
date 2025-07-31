@@ -14,6 +14,7 @@ export const api = {
   etfbdr: endpoints.etfbdrApi,
   dictionary: endpoints.dictionaryApi,
   sumario: endpoints.sumarioApi,
+  wallet: endpoints.walletApi,
 };
 
 export * from "./types";

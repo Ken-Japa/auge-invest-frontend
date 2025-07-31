@@ -18,6 +18,11 @@ export enum ErrorCode {
   ETF_NOT_FOUND = "etf/not-found",
   ETF_DATA_ERROR = "etf/data-error",
   DICTIONARY_DATA_ERROR = "dictionary/data-error",
+  WALLET_NOT_FOUND = "wallet/not-found",
+  WALLET_CREATION_FAILED = "wallet/creation-failed",
+  WALLET_UPDATE_FAILED = "wallet/update-failed",
+  WALLET_DELETION_FAILED = "wallet/deletion-failed",
+  WALLET_DATA_ERROR = "wallet/data-error",
 }
 
 // Mapeamento de mensagens de erro amigáveis
@@ -52,6 +57,12 @@ const ERROR_MESSAGES: Record<ErrorCode, string> = {
     "ETF não encontrado. Por favor, verifique as informações fornecidas.",
   [ErrorCode.ETF_DATA_ERROR]: "Erro ao carregar dados de ETF.",
   [ErrorCode.DICTIONARY_DATA_ERROR]: "Erro ao carregar dados do dicionário.",
+  [ErrorCode.WALLET_NOT_FOUND]: "Carteira não encontrada. Por favor, verifique as informações fornecidas.",
+  [ErrorCode.WALLET_CREATION_FAILED]: "Falha ao criar carteira. Por favor, tente novamente.",
+  [ErrorCode.WALLET_UPDATE_FAILED]: "Falha ao atualizar carteira. Por favor, tente novamente.",
+  [ErrorCode.WALLET_DELETION_FAILED]: "Falha ao deletar carteira. Por favor, tente novamente.",
+  [ErrorCode.WALLET_DATA_ERROR]: "Erro ao processar dados da carteira. Por favor, tente novamente.",
+
 };
 
 export function getErrorMessage(code: ErrorCode): string {

@@ -86,7 +86,7 @@ export const PositionsList = ({ type }: PositionsListProps) => {
                     startIcon={<AddIcon />}
                     onClick={() => {/* Add new position logic */ }}
                 >
-                    Nova Posição
+                    Nova Carteira
                 </Button>
             </Box>
 

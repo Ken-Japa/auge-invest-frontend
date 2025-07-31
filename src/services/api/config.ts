@@ -69,6 +69,14 @@ export const API_ENDPOINTS = {
   SUMARIO: {
     PAGINATION: "/sumario/pagination",
   },
+  // Wallet endpoints
+  WALLET: {
+    CREATE: "/portfolios",
+    DELETE: "/portfolios",
+    UPDATE: "/portfolios",
+    GET_USER_WALLETS: "/portfolios/user",
+    GET_WALLET: "/portfolios",
+  },
   // Outros grupos de endpoints...
 };
 
