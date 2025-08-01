@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import { api } from "@/services/api";
-import { Wallet } from "@/services/api/types";
+import { Wallet, WalletTransactions } from "@/services/api/types";
 
 export const useWalletData = () => {
   const { data: session } = useSession();
@@ -10,6 +10,9 @@ export const useWalletData = () => {
   const [wallets, setWallets] = useState<Wallet[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [walletPositions, setWalletPositions] = useState<WalletTransactions | null>(null);
+  const [loadingPositions, setLoadingPositions] = useState<boolean>(false);
+  const [errorPositions, setErrorPositions] = useState<string | null>(null);
 
   const fetchWallets = useCallback(async () => {
     if (!userId) {
@@ -106,6 +109,19 @@ export const useWalletData = () => {
     [fetchWallets]
   );
 
+  const fetchWalletPositions = useCallback(async (walletId: string) => {
+    setLoadingPositions(true);
+    setErrorPositions(null);
+    try {
+      const response = await api.wallet.getWalletPosition(walletId);
+      setWalletPositions(response);
+    } catch (err: any) {
+      setErrorPositions(err.message || "Failed to fetch wallet positions.");
+    } finally {
+      setLoadingPositions(false);
+    }
+  }, []);
+
   return {
     wallets,
     loading,
@@ -114,5 +130,9 @@ export const useWalletData = () => {
     handleCreateWallet,
     handleUpdateWallet,
     handleConfirmDelete,
+    walletPositions,
+    loadingPositions,
+    errorPositions,
+    fetchWalletPositions,
   };
 };

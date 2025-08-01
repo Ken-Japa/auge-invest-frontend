@@ -4,6 +4,7 @@ import { AddWalletDialog } from '../AddWalletDialog';
 import { EditWalletDialog } from '../EditWalletDialog';
 import { DeleteWalletConfirmDialog } from '../DeleteWalletConfirmDialog';
 import { Wallet } from '@/services/api/types';
+import { WalletTransactions } from '@/services/api/types';
 
 interface WalletContentProps {
     wallets: Wallet[];
@@ -23,6 +24,10 @@ interface WalletContentProps {
     openDeleteConfirm: boolean;
     onCloseDeleteConfirm: () => void;
     onConfirmDelete: () => Promise<void>;
+    walletPositions: WalletTransactions | null;
+    loadingPositions: boolean;
+    errorPositions: string | null;
+    fetchWalletPositions: (walletId: string) => Promise<void>;
 }
 
 export const WalletContent: React.FC<WalletContentProps> = ({
@@ -43,6 +48,10 @@ export const WalletContent: React.FC<WalletContentProps> = ({
     openDeleteConfirm,
     onCloseDeleteConfirm,
     onConfirmDelete,
+    walletPositions,
+    loadingPositions,
+    errorPositions,
+    fetchWalletPositions,
 }) => {
     return (
         <Box>
@@ -78,6 +87,10 @@ export const WalletContent: React.FC<WalletContentProps> = ({
                         onAccordionChange={onAccordionChange}
                         onEdit={onEdit}
                         onDelete={onDelete}
+                        walletPositions={walletPositions}
+                        loadingPositions={loadingPositions}
+                        errorPositions={errorPositions}
+                        fetchWalletPositions={fetchWalletPositions}
                     />
                 ))
             )}

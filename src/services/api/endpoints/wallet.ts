@@ -11,7 +11,7 @@ import {
 } from "../types";
 import { handleApiError, ErrorCode } from "../errorHandler";
 
-export class WalletApiService extends BaseApiService {
+class WalletApiService extends BaseApiService {
   constructor() {
     super();
   }
@@ -133,5 +133,4 @@ export class WalletApiService extends BaseApiService {
     }
   }
 }
-
 export const walletApi = new WalletApiService();

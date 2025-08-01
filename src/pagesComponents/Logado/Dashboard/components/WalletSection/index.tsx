@@ -16,7 +16,7 @@ interface WalletSectionProps {
 }
 
 export const WalletSection: React.FC<WalletSectionProps> = ({ title }) => {
-    const { wallets, loading, error, fetchWallets, handleCreateWallet, handleUpdateWallet, handleConfirmDelete } = useWalletData();
+    const { wallets, loading, error, fetchWallets, handleCreateWallet, handleUpdateWallet, handleConfirmDelete, walletPositions, loadingPositions, errorPositions, fetchWalletPositions } = useWalletData();
 
     const [openAddDialog, setOpenAddDialog] = useState<boolean>(false);
     const [expanded, setExpanded] = useState<string | false>(false);
@@ -132,6 +132,10 @@ export const WalletSection: React.FC<WalletSectionProps> = ({ title }) => {
                                     openDeleteConfirm={openDeleteConfirm}
                                     onCloseDeleteConfirm={handleCloseDeleteConfirm}
                                     onConfirmDelete={handleConfirmDeleteAndCloseDialog}
+                                    walletPositions={walletPositions}
+                                    loadingPositions={loadingPositions}
+                                    errorPositions={errorPositions}
+                                    fetchWalletPositions={fetchWalletPositions}
                                 />
                             </Box>
                         )}
