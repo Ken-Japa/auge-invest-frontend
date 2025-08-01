@@ -18,13 +18,11 @@ export const BDRTabs: React.FC<BDRTabsProps> = ({ viewMode, onChangeView, onErro
 
     const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
         setTabValue(newValue);
-        // Atualiza o modo de visualização com base na tab selecionada
         if (newValue === 0) onChangeView('cartao');
         else if (newValue === 1) onChangeView('tabela');
         else if (newValue === 2) onChangeView('grid');
     };
 
-    // Use useEffect to update tabValue when viewMode changes externally
     useEffect(() => {
         if (viewMode === 'cartao') setTabValue(0);
         else if (viewMode === 'tabela') setTabValue(1);
@@ -51,7 +49,6 @@ export const BDRTabs: React.FC<BDRTabsProps> = ({ viewMode, onChangeView, onErro
                     mode="card"
                     filter={{}}
                     onError={onError}
-                    viewMode={viewMode}
                     defaultPageSize={defaultPageSize}
                 />
             </TabPanel>
@@ -61,7 +58,6 @@ export const BDRTabs: React.FC<BDRTabsProps> = ({ viewMode, onChangeView, onErro
                     mode="table"
                     filter={{}}
                     onError={onError}
-                    viewMode={viewMode}
                     defaultPageSize={defaultPageSize}
                 />
             </TabPanel>
@@ -71,7 +67,6 @@ export const BDRTabs: React.FC<BDRTabsProps> = ({ viewMode, onChangeView, onErro
                     mode="grid"
                     filter={{}}
                     onError={onError}
-                    viewMode={viewMode}
                     defaultPageSize={defaultPageSize}
                 />
             </TabPanel>

@@ -63,6 +63,11 @@ export interface BDRDividendResponse {
   };
 }
 
+export interface BDRDividendResponseData {
+  result: BDRDividendData;
+  pagination: Pagination;
+}
+
 export interface BDRDividendFilter {
   nomeEmpresa?: string;
   page?: number;
