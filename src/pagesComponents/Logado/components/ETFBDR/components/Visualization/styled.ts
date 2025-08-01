@@ -1,49 +1,63 @@
 import { styled } from "@mui/material/styles";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, FormControl } from "@mui/material";
 
 export const VisualizationContainer = styled(Box)(({ theme }) => ({
   flexGrow: 1,
   padding: theme.spacing(2),
 }));
 
-export const LoadingContainer = styled(Box)({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  minHeight: "200px",
-});
-
-export const ErrorContainer = styled(Box)({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  minHeight: "200px",
-  color: "red",
-});
-
-export const EmptyResultsContainer = styled(Box)({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  minHeight: "200px",
-  color: "gray",
-});
-
-export const PaginationContainer = styled(Stack)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  marginTop: theme.spacing(3),
-  padding: theme.spacing(2),
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[1],
-  flexWrap: "wrap",
-  gap: theme.spacing(2),
+export const LoadingContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  minHeight: '200px',
+  padding: theme.spacing(4),
 }));
 
-export const PageSizeSelector = styled(Box)(({ theme }) => ({
+export const ErrorContainer = styled(Box)(({ theme }) => ({
   display: "flex",
+  justifyContent: "center",
   alignItems: "center",
-  gap: theme.spacing(1),
+  minHeight: "200px",
+  color: theme.palette.error.main,
+}));
+
+export const EmptyResultsContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  minHeight: "200px",
+  color: theme.palette.text.secondary,
+}));
+
+export const PaginationContainer = styled(Stack)(({ theme }) => ({
+  marginTop: theme.spacing(3),
+  alignItems: 'center',
+  justifyContent: 'center',
+  [theme.breakpoints.up('sm')]: {
+    justifyContent: 'space-between',
+  },
+}));
+
+export const PageSizeSelector = styled(FormControl)(({ theme }) => ({
+  minWidth: 120,
+  '& .MuiInputLabel-root': {
+    color: theme.palette.text.primary,
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: theme.palette.divider,
+    },
+    '&:hover fieldset': {
+      borderColor: theme.palette.primary.main,
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: theme.palette.primary.main,
+    },
+    '& .MuiSelect-icon': {
+      color: theme.palette.text.primary,
+    },
+    color: theme.palette.text.primary,
+  },
 }));
