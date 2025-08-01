@@ -3,9 +3,9 @@ import {
   CircularProgress,
   Typography,
 } from '@mui/material';
+import { PaginationControls } from '@/components/Data-Display/PaginationControls';
 import { VisualizacaoBDRsProps } from '../../types/index';
 import { BDRVisualizationRenderer } from './utils/BDRVisualizationRenderer';
-import { PaginationControls } from './utils/PaginationControls';
 import { BDRFilterControls } from './utils/BDRFilterControls';
 import { useBDRs } from './utils/useBDRs';
 import {
@@ -61,8 +61,6 @@ export const VisualizacaoBDRs = ({
       </EmptyResultsContainer>
     );
   }
-
-
 
   return (
     <VisualizationContainer ref={containerRef}>

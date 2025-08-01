@@ -42,3 +42,24 @@ export interface BDRFilter {
 export type VisualizationMode = "card" | "table" | "grid";
 
 export type BDRType = "patrocinado" | "nao-patrocinado" | "todos";
+
+export interface BDRFilterControlsProps {
+  bdrType: BDRType;
+  handleBDRTypeChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface BDRVisualizationRendererProps {
+  mode: VisualizationMode;
+  bdrs: UnifiedBDR[];
+}
+
+export interface UseBDRsProps {
+  filter?: {
+    segmento?: string;
+    nome?: string;
+    isPatrocinado?: boolean;
+    searchQuery?: string;
+  };
+  onError?: (message: string) => void;
+  defaultPageSize?: number;
+}

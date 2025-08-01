@@ -1,13 +1,8 @@
 import React from 'react';
-import { UnifiedBDR, VisualizationMode } from '../../../types';
+import { BDRVisualizationRendererProps } from '../../../types';
 import CardView from '../Cards';
 import TableView from '../Table';
 import GridView from '../Grid';
-
-interface BDRVisualizationRendererProps {
-  mode: VisualizationMode;
-  bdrs: UnifiedBDR[];
-}
 
 export const BDRVisualizationRenderer: React.FC<BDRVisualizationRendererProps> = ({
   mode,

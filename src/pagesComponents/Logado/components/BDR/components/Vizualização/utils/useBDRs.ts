@@ -1,18 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { SelectChangeEvent } from "@mui/material";
 import { fetchBDRs } from "../../../services/bdrsService";
-import { UnifiedBDR, BDRType } from "../../../types";
-
-interface UseBDRsProps {
-  filter?: {
-    segmento?: string;
-    nome?: string;
-    isPatrocinado?: boolean;
-    searchQuery?: string;
-  };
-  onError?: (message: string) => void;
-  defaultPageSize?: number;
-}
+import { UnifiedBDR, BDRType, UseBDRsProps } from "../../../types";
 
 export const useBDRs = ({
   filter = {},

@@ -11,8 +11,6 @@ interface CardViewProps {
   bdrs: UnifiedBDR[];
 }
 
-
-
 export const CardView = ({ bdrs }: CardViewProps) => {
 
   return (
