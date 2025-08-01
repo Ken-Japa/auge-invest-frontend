@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { DetailPageContainer } from './styled';
 import { useETFBDRDetails } from './hooks/useETFBDRDetails';
 import { ETFBDRLoadingState } from './utils/ETFBDRLoadingState';
