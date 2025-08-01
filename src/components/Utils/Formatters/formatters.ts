@@ -18,6 +18,21 @@ export const formatNumber = (num: number | string): string => {
   return new Intl.NumberFormat("pt-BR").format(Number(num));
 };
 
+export const formatDate2 = (dateStr: string): string => {
+  if (!dateStr) return "N/A";
+
+  try {
+    const date = new Date(dateStr);
+    return new Intl.DateTimeFormat("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "2-digit",
+    }).format(date);
+  } catch (e) {
+    return dateStr;
+  }
+};
+
 export const formatDate = (dateStr: string): string => {
   if (!dateStr) return "N/A";
 

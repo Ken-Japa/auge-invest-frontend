@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { WalletTransactions, WalletTransaction } from '@/services/api/types/transaction';
 import { Box, Typography, IconButton, Accordion, AccordionSummary, AccordionDetails, Button, CircularProgress, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
 import { Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Wallet } from '@/services/api/types';
-import { formatDate } from '@/components/Utils/Formatters/formatters'
-import { AddTransactionDialog } from '../Dialogs/Transactions/AddTransactionDialog';
+import { formatDate2 as formatDate } from '@/components/Utils/Formatters/formatters'
+import { AddTransactionDialog, assetTypes } from '../Dialogs/Transactions/AddTransactionDialog';
 import { EditTransactionDialog } from '../Dialogs/Transactions/EditTransactionDialog';
 import { DeleteTransactionConfirmDialog } from '../Dialogs/Transactions/DeleteTransactionConfirmDialog';
 
@@ -62,6 +63,7 @@ export const WalletItem: React.FC<WalletItemProps> = ({
     return (
         <Accordion expanded={expanded} onChange={onAccordionChange(wallet._id)} key={wallet._id}>
             <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
                 aria-controls={`panel-${wallet._id}-content`}
                 id={`panel-${wallet._id}-header`}
             >
@@ -133,7 +135,10 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                 <TableRow>
                                     <TableCell>Ativo</TableCell>
                                     <TableCell align="center">Quantidade</TableCell>
-                                    <TableCell align="center">Preço Médio</TableCell>
+                                    <TableCell align="center">Preço</TableCell>
+                                    <TableCell align="center">Valor Gasto</TableCell>
+                                    <TableCell align="center">Valor Atual</TableCell>
+                                    <TableCell align="center">Diferença</TableCell>
                                     <TableCell align="center">Tipo</TableCell>
                                     <TableCell align="center">Data Início</TableCell>
                                     <TableCell align="right">Ações</TableCell>
@@ -145,7 +150,10 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                         <TableCell>{position.assetCode}</TableCell>
                                         <TableCell align="center">{position.quantity}</TableCell>
                                         <TableCell align="center">{position.averagePrice}</TableCell>
-                                        <TableCell align="center">{position.assetType}</TableCell>
+                                        <TableCell align="center">{(position.quantity * position.averagePrice)}</TableCell>
+                                        <TableCell align="center">Implementar</TableCell>
+                                        <TableCell align="center">Implementar</TableCell>
+                                        <TableCell align="center">{assetTypes.find(type => type.value === position.assetType)?.label || position.assetType}</TableCell>
                                         <TableCell align="center">{formatDate(position.createdAt)}</TableCell>
                                         <TableCell align="right">
                                             <IconButton

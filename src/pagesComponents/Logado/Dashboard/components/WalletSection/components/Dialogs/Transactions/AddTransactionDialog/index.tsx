@@ -21,6 +21,7 @@ interface AddTransactionDialogProps {
     onClose: () => void;
     positionId: string | null;
     userId: string;
+    onSave: () => void;
 }
 
 const transactionTypes = [
@@ -28,7 +29,7 @@ const transactionTypes = [
     { value: 'sell', label: 'Venda' },
 ];
 
-const assetTypes = [
+export const assetTypes = [
     { value: 'acao', label: 'Ação' },
     { value: 'derivativo', label: 'Derivativo' },
     { value: 'etf', label: 'ETF' },
@@ -38,7 +39,7 @@ const assetTypes = [
     { value: 'tesouro', label: 'Tesouro Direto' },
 ];
 
-export const AddTransactionDialog = ({ open, onClose, positionId, userId }: AddTransactionDialogProps) => {
+export const AddTransactionDialog = ({ open, onClose, positionId, userId, onSave }: AddTransactionDialogProps) => {
     const [transactionType, setTransactionType] = useState('');
     const [assetType, setAssetType] = useState('');
     const [symbol, setSymbol] = useState('');
@@ -51,6 +52,7 @@ export const AddTransactionDialog = ({ open, onClose, positionId, userId }: AddT
         mutationFn: (payload: CreateTransactionPayload) => api.wallet.createTransaction(payload),
         onSuccess: () => {
             onClose();
+            onSave();
             // Optionally, you can invalidate queries here to refetch wallet data
             // queryClient.invalidateQueries(['wallets']);
         },
