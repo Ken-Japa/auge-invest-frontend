@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from 'react';
 import { Tabs, Tab } from '@mui/material';
+import { ETFFilter } from '@/services/api/types/etf';
+import { TabPanel } from '@/components/Data-Display/TabPanel';
 import { VisualizacaoFIIs } from '../../../components/FIIs/components/Vizualização';
 import { FIITabsContainer } from '../../styled';
-import { TabPanel } from '../TabPanel';
-import { ETFFilter } from '@/services/api/types/etf';
 
 interface FIITabsProps {
     defaultPageSize?: number;

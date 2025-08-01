@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Tabs, Tab } from '@mui/material';
 import VisualizacaoBDRs from '../../../components/BDR/components/Vizualização';
 import { BDRTabsContainer } from '../../styled';
-import { TabPanel } from '../TabPanel';
+import { TabPanel } from '@/components/Data-Display/TabPanel';
 
 
 interface BDRTabsProps {

@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { TabPanelContainer } from '../../styled';
+import { TabPanelContainer } from '../../../pagesComponents/Logado/BDR/styled';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -13,8 +13,8 @@ export const TabPanel: React.FC<TabPanelProps> = ({ children, value, index, ...o
         <div
             role="tabpanel"
             hidden={value !== index}
-            id={`fii-tabpanel-${index}`}
-            aria-labelledby={`fii-tab-${index}`}
+            id={`bdr-tabpanel-${index}`}
+            aria-labelledby={`bdr-tab-${index}`}
             {...other}
         >
             {value === index && <TabPanelContainer>{children}</TabPanelContainer>}

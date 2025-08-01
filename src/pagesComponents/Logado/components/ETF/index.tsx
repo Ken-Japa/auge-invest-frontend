@@ -10,11 +10,11 @@ import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { PageTransition } from '@/components/Utils/PageTransition';
+import { TabPanel } from '@/components/Data-Display/TabPanel';
 
 import { ETFFilter } from '@/services/api/types/etf';
 
 import ETFSearchBar from './components/SearchBar';
-import { TabPanel } from './components/TabPanel';
 import { VisualizationETFs } from './components/Visualization';
 import { useETFTabsLogic } from './hooks/useETFTabsLogic';
 

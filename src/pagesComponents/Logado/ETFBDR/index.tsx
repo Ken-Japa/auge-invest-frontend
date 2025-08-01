@@ -6,12 +6,13 @@ import { PageTransition } from '@/components/Utils/PageTransition';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
-
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+import { TabPanel } from '@/components/Data-Display/TabPanel';
+
 import ETFBDRSearchBar from '../components/ETFBDR/components/SearchBar';
 import { VisualizationETFBDRs } from '../components/ETFBDR/components/Visualization';
 import { ETFBDRFilter } from '@/services/api/types/etfbdr';
-import { TabPanel } from '../components/ETFBDR/components/TabPanel';
+
 import { ETFBDRTabsContainer, Title } from './styled';
 
 export const ETFBDRPage = () => {
