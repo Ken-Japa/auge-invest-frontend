@@ -1,3 +1,6 @@
+import { api } from '@/services/api';
+import { useMutation } from '@tanstack/react-query';
+import { CreateTransactionPayload } from '@/services/api/types/transaction';
 import { useState } from 'react';
 import {
     Dialog,
@@ -13,35 +16,72 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
 
-interface AddAssetDialogProps {
+interface AddTransactionDialogProps {
     open: boolean;
     onClose: () => void;
     positionId: string | null;
+    userId: string;
 }
 
-const assetTypes = [
-    { value: 'stocks', label: 'Ações' },
-    { value: 'derivatives', label: 'Derivativos' },
-    { value: 'indices', label: 'Índices' },
-    { value: 'bdrs', label: 'BDRs' },
-    { value: 'fiis', label: 'Fundos Imobiliários' },
+const transactionTypes = [
+    { value: 'buy', label: 'Compra' },
+    { value: 'sell', label: 'Venda' },
 ];
 
-export const AddAssetDialog = ({ open, onClose, positionId }: AddAssetDialogProps) => {
+const assetTypes = [
+    { value: 'stocks', label: 'Ação' },
+    { value: 'derivatives', label: 'Derivativo' },
+    { value: 'etfs', label: 'ETF' },
+    { value: 'bdrs', label: 'BDR' },
+    { value: 'fiis', label: 'FII' },
+    { value: 'treasury', label: 'Tesouro Direto' },
+];
+
+export const AddTransactionDialog = ({ open, onClose, positionId, userId }: AddTransactionDialogProps) => {
+    const [transactionType, setTransactionType] = useState('');
     const [assetType, setAssetType] = useState('');
     const [symbol, setSymbol] = useState('');
     const [quantity, setQuantity] = useState('');
     const [price, setPrice] = useState('');
     const [date, setDate] = useState<Dayjs | null>(dayjs());
 
+
+    const createTransactionMutation = useMutation({
+        mutationFn: (payload: CreateTransactionPayload) => api.wallet.createTransaction(payload),
+        onSuccess: () => {
+            onClose();
+            // Optionally, you can invalidate queries here to refetch wallet data
+            // queryClient.invalidateQueries(['wallets']);
+        },
+        onError: (error) => {
+            console.error('Error creating transaction:', error);
+            // Handle error, e.g., show a toast message
+        },
+    });
+
     const handleSubmit = () => {
-        // Add asset logic will be implemented
-        onClose();
+        if (!positionId || !transactionType || !assetType || !symbol || !quantity || !price || !date) {
+            // Handle validation error
+            return;
+        }
+
+        const payload: CreateTransactionPayload = {
+            userId: userId,
+            portfolioId: positionId,
+            type: transactionType as 'buy' | 'sell',
+            assetType: assetType as 'stocks' | 'derivatives' | 'etfs' | 'bdrs' | 'fiis' | 'treasury',
+            assetCode: symbol,
+            quantity: parseInt(quantity),
+            price: parseFloat(price),
+            executedAt: date ? date.toISOString() : new Date().toISOString(),
+        };
+
+        createTransactionMutation.mutate(payload);
     };
 
     return (
         <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-            <DialogTitle>Adicionar Ativo</DialogTitle>
+            <DialogTitle>Adicionar Transação</DialogTitle>
             <DialogContent>
                 <Grid container spacing={2} sx={{ mt: 1 }}>
                     <Grid item xs={12}>
@@ -53,6 +93,21 @@ export const AddAssetDialog = ({ open, onClose, positionId }: AddAssetDialogProp
                             onChange={(e) => setAssetType(e.target.value)}
                         >
                             {assetTypes.map((type) => (
+                                <MenuItem key={type.value} value={type.value}>
+                                    {type.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            select
+                            fullWidth
+                            label="Tipo de Operação"
+                            value={transactionType}
+                            onChange={(e) => setTransactionType(e.target.value)}
+                        >
+                            {transactionTypes.map((type) => (
                                 <MenuItem key={type.value} value={type.value}>
                                     {type.label}
                                 </MenuItem>
@@ -91,7 +146,7 @@ export const AddAssetDialog = ({ open, onClose, positionId }: AddAssetDialogProp
 
                     <Grid item xs={12}>
                         <DatePicker
-                            label="Data da Compra"
+                            label="Data da Operação"
                             value={date}
                             onChange={(newValue) => setDate(newValue)}
                             slotProps={{ textField: { fullWidth: true } }}
@@ -101,8 +156,8 @@ export const AddAssetDialog = ({ open, onClose, positionId }: AddAssetDialogProp
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose}>Cancelar</Button>
-                <Button onClick={handleSubmit} variant="contained">
-                    Adicionar
+                <Button onClick={handleSubmit} variant="contained" disabled={createTransactionMutation.isPending}>
+                    {createTransactionMutation.isPending ? 'Cadastrando...' : 'Cadastrar'}
                 </Button>
             </DialogActions>
         </Dialog>

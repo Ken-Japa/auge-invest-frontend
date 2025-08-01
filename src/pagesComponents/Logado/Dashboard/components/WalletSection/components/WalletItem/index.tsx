@@ -5,7 +5,8 @@ import { Box, Typography, IconButton, Accordion, AccordionSummary, AccordionDeta
 import { Edit as EditIcon, Delete as DeleteIcon, ExpandMore as ExpandMoreIcon, Add as AddIcon } from '@mui/icons-material';
 import { Wallet } from '@/services/api/types';
 
-import { AddAssetDialog } from '../AddAssetDialog';
+import { AddTransactionDialog } from '../AddTransactionDialog';
+
 
 interface WalletItemProps {
     wallet: Wallet;
@@ -22,7 +23,7 @@ export const WalletItem: React.FC<WalletItemProps> = ({
     onEdit,
     onDelete,
 }) => {
-    const [isAddAssetOpen, setIsAddAssetOpen] = useState(false);
+    const [isAddTransactionOpen, setIsAddTransactionOpen] = useState(false);
 
     const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
     return (
@@ -44,48 +45,44 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                             {wallet.description}
                         </Typography>
                     </Typography>
-                    <Box sx={{ display: 'flex', gap: 1 }}>
-                        <IconButton
-                            aria-label="edit"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                onEdit(wallet);
-                            }}
-                            size="small"
-                        >
-                            <EditIcon fontSize="small" />
-                        </IconButton>
-                        <IconButton
-                            aria-label="delete"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                onDelete(wallet._id);
-                            }}
-                            size="small"
-                            color="error"
-                        >
-                            <DeleteIcon fontSize="small" />
-                        </IconButton>
-                    </Box>
+
                 </Box>
             </AccordionSummary>
             <AccordionDetails>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1, mb: 2 }}>
+                    <IconButton
+                        aria-label="edit"
+                        onClick={() => onEdit(wallet)}
+                        size="small"
+                    >
+                        <EditIcon fontSize="small" />
+                    </IconButton>
+                    <IconButton
+                        aria-label="delete"
+                        onClick={() => onDelete(wallet._id)}
+                        size="small"
+                        color="error"
+                    >
+                        <DeleteIcon fontSize="small" />
+                    </IconButton>
+                </Box>
                 <Box sx={{ mb: 2, alignItems: 'right' }}>
                     <Button
                         variant="outlined"
                         startIcon={<AddIcon />}
                         onClick={() => {
                             setSelectedPosition(wallet._id);
-                            setIsAddAssetOpen(true);
+                            setIsAddTransactionOpen(true);
                         }}
                     >
-                        Adicionar Ativo
+                        Cadastrar Operação
                     </Button>
                 </Box>
-                <AddAssetDialog
-                    open={isAddAssetOpen}
-                    onClose={() => setIsAddAssetOpen(false)}
+                <AddTransactionDialog
+                    open={isAddTransactionOpen}
+                    onClose={() => setIsAddTransactionOpen(false)}
                     positionId={selectedPosition}
+                    userId={wallet.userId}
                 />
             </AccordionDetails>
         </Accordion>
