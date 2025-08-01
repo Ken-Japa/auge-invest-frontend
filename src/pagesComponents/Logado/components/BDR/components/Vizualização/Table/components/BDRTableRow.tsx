@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import { Tooltip } from '@mui/material';
 import { formatDate } from '@/components/Utils/Formatters/formatters';
-import { UnifiedBDR } from '../../../types';
+import { UnifiedBDR } from '../../../../types';
 import {
   DataRow,
   DataCell,
   BDRName,
   CodeChip,
   DataText
-} from './styled';
+} from '../styled';
 
 interface BDRTableRowProps {
   bdr: UnifiedBDR;

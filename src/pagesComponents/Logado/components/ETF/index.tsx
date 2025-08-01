@@ -1,19 +1,24 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { Tabs, Tab } from '@mui/material';
+
+import { Box, Tab, Tabs, Tooltip } from '@mui/material';
 import PublicIcon from '@mui/icons-material/Public';
-import { Box, Tooltip } from '@mui/material';
-import { PageTransition } from '@/components/Utils/PageTransition';
-import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
+
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
+import { PageTransition } from '@/components/Utils/PageTransition';
+
 import { ETFFilter } from '@/services/api/types/etf';
-import { VisualizationETFs } from './components/Visualization';
-import { TabPanel } from './components/TabPanel';
+
 import ETFSearchBar from './components/SearchBar';
-import { ETFTabsContainer, BoxVizualizationControl, Title, SubTitle } from './styled';
+import { TabPanel } from './components/TabPanel';
+import { VisualizationETFs } from './components/Visualization';
+import { useETFTabsLogic } from './hooks/useETFTabsLogic';
+
+import { BoxVizualizationControl, ETFTabsContainer, SubTitle, Title } from './styled';
 
 function a11yProps(index: number) {
     return {
@@ -27,12 +32,8 @@ interface ETFProps {
 }
 
 const ETF: React.FC<ETFProps> = ({ defaultPageSize }) => {
-    const [value, setValue] = useState(0);
-    const [filters, setFilters] = useState<ETFFilter>({});
-
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
+    const [filters, setFilters] = React.useState<ETFFilter>({});
+    const { value, handleChange } = useETFTabsLogic();
 
     return (
         <ErrorBoundary>

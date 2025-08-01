@@ -1,70 +1,21 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import { ETFExtended } from '../../../types';
-import {
-  CardContainer,
-  CardHeader,
-  CardTitle,
-  CardSubtitle,
-  CardInfo,
-  CardInfoLabel,
-  CardInfoValue,
-  CodeChip,
-} from './styled';
-import { formatNumber, formatCNPJ } from '@/components/Utils/Formatters/formatters';
-import { useRouter } from 'next/navigation';
+import { useETFCardLogic } from '../../../hooks/useETFCardLogic';
+import ETFCard from './ETFCard';
 
 interface CardViewProps {
   etfs: ETFExtended[];
 }
 
-
 const CardView: React.FC<CardViewProps> = ({ etfs }) => {
-  const router = useRouter();
-
-  const sortedEtfs = [...etfs].sort((a, b) => {
-    const quotaA = Number(a.quotaCount) || 0;
-    const quotaB = Number(b.quotaCount) || 0;
-    return quotaB - quotaA;
-  });
-
-  const handleCardClick = (nomeETF: string) => {
-    router.push(`/etf/${nomeETF}`);
-  };
+  const { sortedEtfs, handleCardClick } = useETFCardLogic(etfs);
 
   return (
     <Grid container spacing={3}>
       {sortedEtfs.map((etf) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={etf._id}>
-          <CardContainer onClick={() => handleCardClick(etf.nomeETF)} style={{ cursor: 'pointer' }}>
-
-            <CardHeader>
-              <CardTitle variant="h6">{etf.nomeETF}</CardTitle>
-              {etf.codigo && (
-                <CodeChip label={etf.codigo} color="primary" size="small" />
-              )}
-            </CardHeader>
-            <CardSubtitle variant="body2">
-              {etf.nomeCompletoETF}
-            </CardSubtitle>
-
-
-            <CardInfo>
-              <CardInfoLabel variant="body2">Cotas:</CardInfoLabel>
-              <CardInfoValue variant="body1">{formatNumber(etf.quotaCount) || 'N/A'}</CardInfoValue>
-            </CardInfo>
-
-            <CardInfo>
-              <CardInfoLabel variant="body2">Aprovado em:</CardInfoLabel>
-              <CardInfoValue variant="body1">{etf.quotaDateApproved || 'N/A'}</CardInfoValue>
-            </CardInfo>
-
-            <CardInfo>
-              <CardInfoLabel variant="body2">CNPJ:</CardInfoLabel>
-              <CardInfoValue variant="body1">{formatCNPJ(etf.informações?.cnpj)}</CardInfoValue>
-            </CardInfo>
-
-          </CardContainer>
+          <ETFCard etf={etf} handleCardClick={handleCardClick} />
         </Grid>
       ))}
     </Grid>

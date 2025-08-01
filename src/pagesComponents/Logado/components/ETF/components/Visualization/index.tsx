@@ -1,31 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { ETFFilter } from '@/services/api/types/etf';
-import {
-  Typography,
-  CircularProgress,
-  Pagination,
-  PaginationItem,
-  InputLabel,
-  Select,
-  MenuItem,
-  SelectChangeEvent
-} from '@mui/material';
-import {
-  FirstPage as FirstPageIcon,
-  LastPage as LastPageIcon
-} from '@mui/icons-material';
-import { fetchETFs } from '../../services/etfsService';
-import { ETFExtended } from '../../types';
+import { Typography, CircularProgress } from '@mui/material';
 import CardView from './Cards';
 import TableView from './Table';
 import GridView from './Grid';
+import { PaginationControls } from '@/components/Data-Display/PaginationControls';
+import { useETFVisualizationLogic } from './hooks/useETFVisualizationLogic';
 import {
   VisualizationContainer,
   LoadingContainer,
   ErrorContainer,
-  EmptyResultsContainer,
-  PaginationContainer,
-  PageSizeSelector
+  EmptyResultsContainer
 } from './styled';
 
 interface VisualizationETFsProps {
@@ -39,89 +24,18 @@ export const VisualizationETFs = ({
   filters,
   defaultPageSize = 20
 }: VisualizationETFsProps) => {
-  const validPageSizes = [10, 20, 50, 100];
-  const initialPageSize = validPageSizes.includes(defaultPageSize) ? defaultPageSize : 20;
-
-  const [allEtfs, setAllEtfs] = useState<ETFExtended[]>([]);
-  const [etfs, setETFs] = useState<ETFExtended[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [page, setPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
-  const [pageSize, setPageSize] = useState(initialPageSize);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const loadETFs = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const result = await fetchETFs({
-          ...filters,
-
-        });
-
-        setAllEtfs(result.result);
-        setPage(0);
-      } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : 'Ocorreu um erro desconhecido';
-        setError(errorMessage);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadETFs();
-  }, [filters]);
-
-  useEffect(() => {
-    if (allEtfs.length > 0) {
-
-      const sortedEtfs = [...allEtfs].sort((a, b) => {
-        const quotaA = Number(a.quotaCount);
-        const quotaB = Number(b.quotaCount);
-        return quotaB - quotaA;
-      });
-
-      const newTotalPages = Math.ceil(sortedEtfs.length / pageSize);
-      setTotalPages(newTotalPages);
-
-      const startIndex = page * pageSize;
-      const endIndex = startIndex + pageSize;
-      setETFs(sortedEtfs.slice(startIndex, endIndex));
-    } else {
-      setETFs([]);
-      setTotalPages(0);
-    }
-  }, [allEtfs, page, pageSize]);
-
-  const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
-    setPage(newPage - 1);
-
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-
-    if (containerRef.current) {
-      containerRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  };
-
-  const handlePageSizeChange = (event: SelectChangeEvent<number>) => {
-    const newPageSize = Number(event.target.value);
-    setPageSize(newPageSize);
-    setPage(0);
-
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
+  const {
+    etfs,
+    loading,
+    error,
+    page,
+    totalPages,
+    pageSize,
+    validPageSizes,
+    containerRef,
+    handlePageChange,
+    handlePageSizeChange
+  } = useETFVisualizationLogic({ filters, defaultPageSize });
 
   if (loading) {
     return (
@@ -165,47 +79,16 @@ export const VisualizationETFs = ({
       {renderVisualization()}
 
       {totalPages > 1 && (
-        <PaginationContainer
-          direction={{ xs: 'column', sm: 'row' }}
-          spacing={2}
-        >
-          <Pagination
-            count={totalPages}
-            page={page + 1}
-            onChange={handlePageChange}
-            color="primary"
-            renderItem={(item) => (
-              <PaginationItem
-                slots={{
-                  first: FirstPageIcon,
-                  last: LastPageIcon
-                }}
-                {...item}
-              />
-            )}
-            showFirstButton
-            showLastButton
-          />
-
-          <PageSizeSelector>
-            <InputLabel id="page-size-select-label">Por página</InputLabel>
-            <Select
-              labelId="page-size-select-label"
-              id="page-size-select"
-              value={pageSize}
-              onChange={handlePageSizeChange}
-              label="Por página"
-              displayEmpty={false}
-              renderValue={(value) => `${value}`}
-            >
-              <MenuItem value={10}>10</MenuItem>
-              <MenuItem value={20}>20</MenuItem>
-              <MenuItem value={50}>50</MenuItem>
-              <MenuItem value={100}>100</MenuItem>
-            </Select>
-          </PageSizeSelector>
-        </PaginationContainer>
+        <PaginationControls
+          page={page}
+          totalPages={totalPages}
+          pageSize={pageSize}
+          validPageSizes={validPageSizes}
+          handlePageChange={handlePageChange}
+          handlePageSizeChange={handlePageSizeChange}
+        />
       )}
+
     </VisualizationContainer>
   );
 };
