@@ -3,7 +3,7 @@ import { BoxBody, BoxContent, BoxHeader } from '../styled';
 import { formatCNPJ, formatLink, formatNumber } from '@/components/Utils/Formatters/formatters';
 
 interface ETFInfoSectionProps {
-  etf: any; // Consider defining a more specific type for etf
+  etf: any;
 }
 
 const ETFInfoSection = ({ etf }: ETFInfoSectionProps) => {

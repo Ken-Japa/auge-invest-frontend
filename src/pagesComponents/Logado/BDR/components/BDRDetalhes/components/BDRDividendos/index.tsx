@@ -28,19 +28,6 @@ interface BDRDividendosProps {
 const BDRDividendos = ({ codigoEmpresa }: BDRDividendosProps) => {
   const { dividends, loading, error, summary } = useBDRDividendosLogic(codigoEmpresa);
 
-  const getStatusColor = (tipoDividendo: string) => {
-    switch (tipoDividendo.toUpperCase()) {
-      case 'DIVIDENDO':
-        return 'success';
-      case 'RENDIMENTO':
-        return 'warning';
-      case 'AMORTIZAÇÃO':
-        return 'info';
-      default:
-        return 'default';
-    }
-  };
-
   if (loading) {
     return (
       <DividendContainer>

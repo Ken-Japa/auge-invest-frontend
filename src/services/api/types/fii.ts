@@ -59,6 +59,11 @@ export interface FIIDividendResponse {
   };
 }
 
+export interface FIIDividendResponseData {
+  result: FIIDividendData;
+  pagination: Pagination;
+}
+
 export interface FIIDividendFilter {
   nomeFII?: string;
   page?: number;
