@@ -160,7 +160,18 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                                 aria-label="edit transaction"
                                                 onClick={(event) => {
                                                     event.stopPropagation();
-                                                    handleEditTransaction(position);
+                                                    const transactionToEdit: WalletTransaction = {
+                                                        _id: position._id,
+                                                        positionId: position._id,
+                                                        assetCode: position.assetCode,
+                                                        assetType: position.assetType,
+                                                        quantity: position.quantity,
+                                                        averagePrice: position.averagePrice,
+                                                        executedAt: position.createdAt,
+                                                        createdAt: position.createdAt,
+                                                        updatedAt: position.updatedAt,
+                                                    };
+                                                    handleEditTransaction(transactionToEdit);
                                                 }}
                                                 size="small"
                                             >
