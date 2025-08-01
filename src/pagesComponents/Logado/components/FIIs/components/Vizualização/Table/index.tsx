@@ -1,69 +1,21 @@
-import { useState } from 'react';
 import { TableBody, TableSortLabel, Tooltip } from '@mui/material';
-import Link from 'next/link';
 import { FIIExtended } from '../../../types';
-import { formatCNPJ, formatNumber, formatDate } from '@/components/Utils/Formatters/formatters';
 import {
   StyledTableContainer,
   StyledTable,
   StyledTableHead,
   HeaderRow,
-  HeaderCell,
-  DataRow,
-  DataCell,
-  CodeChip,
-  FIIName,
-  DataText
+  HeaderCell
 } from './styled';
+import { useFIITableLogic } from '../../../hooks/useFIITableLogic';
+import { FIITableRow } from './FIITableRow';
 
 interface TableViewProps {
   fiis: FIIExtended[];
 }
 
-type Order = 'asc' | 'desc';
-type OrderBy = 'quotaCount' | 'quotaDateApproved';
-
 export const TableView = ({ fiis }: TableViewProps) => {
-  const [order, setOrder] = useState<Order>('desc');
-  const [orderBy, setOrderBy] = useState<OrderBy>('quotaCount');
-
-
-  const handleRequestSort = (property: OrderBy) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
-
-  const sortedFiis = [...fiis].sort((a, b) => {
-    if (orderBy === 'quotaCount') {
-      const aValue = a.quotaCount ? Number(a.quotaCount) : 0;
-      const bValue = b.quotaCount ? Number(b.quotaCount) : 0;
-      return order === 'asc' ? aValue - bValue : bValue - aValue;
-    } else if (orderBy === 'quotaDateApproved') {
-
-      let aDate = 0;
-      let bDate = 0;
-
-      if (a.quotaDateApproved) {
-        try {
-          aDate = new Date(a.quotaDateApproved).getTime();
-        } catch (e) {
-          aDate = 0;
-        }
-      }
-
-      if (b.quotaDateApproved) {
-        try {
-          bDate = new Date(b.quotaDateApproved).getTime();
-        } catch (e) {
-          bDate = 0;
-        }
-      }
-
-      return order === 'asc' ? aDate - bDate : bDate - aDate;
-    }
-    return 0;
-  });
+  const { sortedFiis, order, orderBy, handleRequestSort } = useFIITableLogic(fiis);
 
   return (
     <StyledTableContainer>
@@ -95,31 +47,7 @@ export const TableView = ({ fiis }: TableViewProps) => {
         </StyledTableHead>
         <TableBody>
           {sortedFiis.map((fii) => (
-            <DataRow key={fii._id}>
-              <DataCell>
-                <Tooltip title={fii.nomeCompletoFII || ''} placement="top">
-                  <Link href={`/fii/${fii.nomeFII}`} style={{ textDecoration: 'none' }}>
-                    <FIIName>{fii.nomeFII}</FIIName>
-                  </Link>
-                </Tooltip>
-              </DataCell>
-              <DataCell>
-                {fii.codigo.map((code) => (
-                  <Link key={code} href={`/fii/${code}`} style={{ textDecoration: 'none' }}>
-                    <CodeChip>{code}</CodeChip>
-                  </Link>
-                ))}
-              </DataCell>
-              <DataCell>
-                <DataText>{formatNumber(fii.quotaCount)}</DataText>
-              </DataCell>
-              <DataCell>
-                <DataText>{formatDate(fii.quotaDateApproved)}</DataText>
-              </DataCell>
-              <DataCell>
-                <DataText>{formatCNPJ(fii.informacoes?.cnpj)}</DataText>
-              </DataCell>
-            </DataRow>
+            <FIITableRow key={fii._id} fii={fii} />
           ))}
         </TableBody>
       </StyledTable>
