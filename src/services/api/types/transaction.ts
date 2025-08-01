@@ -1,3 +1,5 @@
+import { Pagination } from "./common";
+
 export interface Transaction {
   _id: string;
   positionId: string;
@@ -9,21 +11,24 @@ export interface Transaction {
   updatedAt: string;
 }
 
-export interface Position {
+export interface Positions {
   _id: string;
-  walletId: string;
+  portfolioId: string;
   assetCode: string;
   assetType: string;
   quantity: number;
   averagePrice: number;
-  totalCost: number;
   currentPrice: number;
-  currentValue: number;
-  profitOrLoss: number;
-  profitOrLossPercentage: number;
-  transactions: Transaction[];
+  simulationType: string;
+  userId: string;
   createdAt: string;
   updatedAt: string;
+  __v: number;
+}
+
+export interface WalletTransactions {
+  result: Positions[];
+  pagination: Pagination;
 }
 
 export interface CreateTransactionPayload {

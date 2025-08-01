@@ -1,7 +1,9 @@
 // Initial content for WalletItem.tsx
-import React from 'react';
-import { useState } from 'react';
-import { Box, Typography, IconButton, Accordion, AccordionSummary, AccordionDetails, Button } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { useApi } from '@/hooks/useApi';
+import { api } from '@/services/api';
+import { WalletTransactions, Positions } from '@/services/api/types/transaction';
+import { Box, Typography, IconButton, Accordion, AccordionSummary, AccordionDetails, Button, CircularProgress, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
 import { Edit as EditIcon, Delete as DeleteIcon, ExpandMore as ExpandMoreIcon, Add as AddIcon } from '@mui/icons-material';
 import { Wallet } from '@/services/api/types';
 
@@ -24,8 +26,9 @@ export const WalletItem: React.FC<WalletItemProps> = ({
     onDelete,
 }) => {
     const [isAddTransactionOpen, setIsAddTransactionOpen] = useState(false);
-
     const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
+
+
     return (
         <Accordion expanded={expanded} onChange={onAccordionChange(wallet._id)} key={wallet._id}>
             <AccordionSummary
@@ -47,8 +50,6 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                     </Typography>
 
                 </Box>
-            </AccordionSummary>
-            <AccordionDetails>
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1, mb: 2 }}>
                     <IconButton
                         aria-label="edit"
@@ -66,7 +67,10 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                         <DeleteIcon fontSize="small" />
                     </IconButton>
                 </Box>
-                <Box sx={{ mb: 2, alignItems: 'right' }}>
+            </AccordionSummary>
+            <AccordionDetails>
+
+                <Box sx={{ mb: 2, display: 'flex', justifyContent: 'flex-end' }}>
                     <Button
                         variant="outlined"
                         startIcon={<AddIcon />}
@@ -78,6 +82,8 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                         Cadastrar Operação
                     </Button>
                 </Box>
+
+
                 <AddTransactionDialog
                     open={isAddTransactionOpen}
                     onClose={() => setIsAddTransactionOpen(false)}

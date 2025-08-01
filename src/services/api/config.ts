@@ -74,6 +74,7 @@ export const API_ENDPOINTS = {
     CREATE: "/portfolios",
     DELETE: "/portfolios",
     UPDATE: "/portfolios",
+    GET_WALLET_POSITION: "/positions",
     GET_USER_WALLETS: "/portfolios/user",
     GET_WALLET: "/portfolios",
   },

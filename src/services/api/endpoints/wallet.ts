@@ -3,11 +3,11 @@ import { API_ENDPOINTS } from "../config";
 import {
   Wallet,
   Transaction,
-  Position,
   CreateWalletPayload,
   UpdateTransactionPayload,
   CreateTransactionPayload,
   UpdateWalletPayload,
+  WalletTransactions,
 } from "../types";
 import { handleApiError, ErrorCode } from "../errorHandler";
 
@@ -48,6 +48,17 @@ export class WalletApiService extends BaseApiService {
       return response;
     } catch (error) {
       throw handleApiError(error, ErrorCode.WALLET_UPDATE_FAILED);
+    }
+  }
+
+  public async getWalletPosition(id: string): Promise<WalletTransactions> {
+    try {
+      const response = await this.get<WalletTransactions>(
+        `${API_ENDPOINTS.WALLET.GET_WALLET_POSITION}/${id}`
+      );
+      return response;
+    } catch (error) {
+      throw handleApiError(error, ErrorCode.WALLET_NOT_FOUND);
     }
   }
 
@@ -120,11 +131,6 @@ export class WalletApiService extends BaseApiService {
     } catch (error) {
       throw handleApiError(error, ErrorCode.TRANSACTION_NOT_FOUND);
     }
-  }
-
-  // Position method (placeholder for future implementation)
-  public async getPosition(): Promise<Position> {
-    throw new Error("Not implemented");
   }
 }
 
