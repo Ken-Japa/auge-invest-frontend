@@ -1,5 +1,5 @@
-import { Configuracoes } from "@/pagesComponents/Logado/Configuracoes";
 import { Metadata } from "next";
+import { Configuracoes } from "@/pagesComponents/Logado/Configuracoes";
 
 export const metadata: Metadata = {
     title: "Configurações da Conta | Personalização | AugeInvest",
