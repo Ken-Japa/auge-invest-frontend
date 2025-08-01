@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Dashboard } from "@/pagesComponents/Logado/Dashboard";
+import { Dashboard } from "@/pagesComponents/Logado/Carteira";
 
 
 export const metadata: Metadata = {
