@@ -2,10 +2,9 @@ import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 
-import { PerformanceChart } from './components/PerformanceChart';
-import { PositionSummary } from './components/PositionSummary';
-import { RecentActivities } from './components/RecentActivities';
-import { PositionsList } from './components/PositionsList';
+import { PerformanceChart } from './PerformanceChart';
+import { PositionSummary } from './PositionSummary';
+import { RecentActivities } from './RecentActivities';
 import { SectionTitle, StyledPaper, GridContainer, GridItem } from './styled';
 
 interface PositionSectionProps {
@@ -56,14 +55,6 @@ export const PositionSection = ({ title, type }: PositionSectionProps) => {
                     </GridContainer>
                 </GridItem>
 
-                {/* Lista de Posições */}
-                <GridItem item xs={12}>
-                    <SuspenseWrapper fallback={<ContentSkeleton type="card" cardHeight={200} />}>
-                        <ProgressiveLoad delay={0.6}>
-                            <PositionsList type={type} />
-                        </ProgressiveLoad>
-                    </SuspenseWrapper>
-                </GridItem>
             </GridContainer>
         </div>
     );

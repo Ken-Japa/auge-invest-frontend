@@ -37,9 +37,6 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     width: '100%',
-                    border: '1px solid #ccc',
-                    borderRadius: '8px',
-                    padding: '8px',
                 }}>
                     <Typography variant="h4" sx={{ flexGrow: 1 }}>
                         {wallet.name}
@@ -73,7 +70,7 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                 </Box>
             </AccordionSummary>
             <AccordionDetails>
-                <Box sx={{ mb: 2 }}>
+                <Box sx={{ mb: 2, alignItems: 'right' }}>
                     <Button
                         variant="outlined"
                         startIcon={<AddIcon />}

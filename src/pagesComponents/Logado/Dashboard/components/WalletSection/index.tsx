@@ -185,7 +185,7 @@ export const WalletSection: React.FC<WalletSectionProps> = ({ title }) => {
             <SuspenseWrapper>
                 <ProgressiveLoad delay={0.2}>
                     <Box sx={{ mb: 4 }}>
-                        <Typography variant="h4" gutterBottom>{title}</Typography>
+                        <Typography variant="h3" gutterBottom>{title}</Typography>
                         <Button
                             variant="contained"
                             startIcon={<AddIcon />}
