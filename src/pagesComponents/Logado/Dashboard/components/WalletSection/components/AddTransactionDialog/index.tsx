@@ -29,12 +29,13 @@ const transactionTypes = [
 ];
 
 const assetTypes = [
-    { value: 'stocks', label: 'Ação' },
-    { value: 'derivatives', label: 'Derivativo' },
-    { value: 'etfs', label: 'ETF' },
-    { value: 'bdrs', label: 'BDR' },
-    { value: 'fiis', label: 'FII' },
-    { value: 'treasury', label: 'Tesouro Direto' },
+    { value: 'acao', label: 'Ação' },
+    { value: 'derivativo', label: 'Derivativo' },
+    { value: 'etf', label: 'ETF' },
+    { value: 'etfbdr', label: 'ETF de BDR' },
+    { value: 'bdr', label: 'BDR' },
+    { value: 'fii', label: 'FII' },
+    { value: 'tesouro', label: 'Tesouro Direto' },
 ];
 
 export const AddTransactionDialog = ({ open, onClose, positionId, userId }: AddTransactionDialogProps) => {
@@ -55,6 +56,7 @@ export const AddTransactionDialog = ({ open, onClose, positionId, userId }: AddT
         },
         onError: (error) => {
             console.error('Error creating transaction:', error);
+            console.log("error:", error)
             // Handle error, e.g., show a toast message
         },
     });
@@ -77,6 +79,7 @@ export const AddTransactionDialog = ({ open, onClose, positionId, userId }: AddT
         };
 
         createTransactionMutation.mutate(payload);
+        console.log("payload:", payload)
     };
 
     return (
