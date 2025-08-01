@@ -3,10 +3,10 @@ import { Dashboard } from "@/pagesComponents/Logado/Dashboard";
 
 
 export const metadata: Metadata = {
-    title: "Dashboard | Acompanhamento de Carteira | AugeInvest",
+    title: "Acompanhamento de Carteira | AugeInvest",
     description: "Monitore a evolução da sua carteira de investimentos em tempo real. Acompanhe posições reais e simuladas, análise de performance, indicadores personalizados e histórico completo de suas operações na plataforma AugeInvest.",
     openGraph: {
-        title: 'Dashboard de Investimentos | AugeInvest',
+        title: 'Acompanhamento da Carteira | AugeInvest',
         description: 'Acompanhamento completo da sua carteira: posições reais, simulações, análise de performance e indicadores personalizados.',
         type: 'website',
         siteName: 'AugeInvest',
