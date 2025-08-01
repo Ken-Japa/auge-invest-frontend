@@ -1,68 +1,30 @@
-import { useState } from 'react';
-import { TableBody, TableSortLabel, Tooltip } from '@mui/material';
-import Link from 'next/link';
-import { formatDate } from '@/components/Utils/Formatters/formatters';
+import { TableBody, TableSortLabel } from '@mui/material';
 import { UnifiedBDR } from '../../../types';
+import { useTableSort, getComparator } from './useTableSort';
+import { BDRTableRow } from './BDRTableRow';
 import {
-  StyledTableContainer,
-  StyledTable,
-  StyledTableHead,
-  HeaderRow,
   HeaderCell,
-  DataRow,
-  DataCell,
-  CodeChip,
-  BDRName,
-  DataText
+  HeaderRow,
+  StyledTable,
+  StyledTableContainer,
+  StyledTableHead
 } from './styled';
 
 interface TableViewProps {
   bdrs: UnifiedBDR[];
 }
 
-type Order = 'asc' | 'desc';
-type OrderBy = 'quotaCount' | 'quotaDateApproved';
+type OrderBy = 'dataInicio';
+
+
 
 export const TableView = ({ bdrs }: TableViewProps) => {
-  const [order, setOrder] = useState<Order>('desc');
-  const [orderBy, setOrderBy] = useState<OrderBy>('quotaCount');
+  const { order, orderBy, handleRequestSort, sortedData } = useTableSort<UnifiedBDR, OrderBy>('dataInicio');
 
-  const handleRequestSort = (property: OrderBy) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
-
-  const sortedBdrs = [...bdrs].sort((a, b) => {
-    if (orderBy === 'quotaCount') {
-      const aValue = a.dataInicio ? Number(a.dataInicio) : 0;
-      const bValue = b.dataInicio ? Number(b.dataInicio) : 0;
-      return order === 'asc' ? aValue - bValue : bValue - aValue;
-    } else if (orderBy === 'quotaDateApproved') {
-
-      let aDate = 0;
-      let bDate = 0;
-
-      if (a.dataInicio) {
-        try {
-          aDate = new Date(a.dataInicio).getTime();
-        } catch (e) {
-          aDate = 0;
-        }
-      }
-
-      if (b.dataInicio) {
-        try {
-          bDate = new Date(b.dataInicio).getTime();
-        } catch (e) {
-          bDate = 0;
-        }
-      }
-
-      return order === 'asc' ? aDate - bDate : bDate - aDate;
-    }
-    return 0;
-  });
+  const sortedBdrs = sortedData(bdrs, getComparator({
+    order,
+    orderBy,
+  }));
 
   return (
     <StyledTableContainer>
@@ -73,9 +35,9 @@ export const TableView = ({ bdrs }: TableViewProps) => {
             <HeaderCell>Código</HeaderCell>
             <HeaderCell>
               <TableSortLabel
-                active={orderBy === 'quotaDateApproved'}
-                direction={orderBy === 'quotaDateApproved' ? order : 'asc'}
-                onClick={() => handleRequestSort('quotaDateApproved')}
+                active={orderBy === 'dataInicio'}
+                direction={orderBy === 'dataInicio' ? order : 'asc'}
+                onClick={() => handleRequestSort('dataInicio')}
               >
                 Data Início
               </TableSortLabel>
@@ -85,29 +47,7 @@ export const TableView = ({ bdrs }: TableViewProps) => {
         </StyledTableHead>
         <TableBody>
           {sortedBdrs.map((bdr) => (
-            <DataRow key={bdr._id}>
-              <DataCell>
-                <Tooltip title={bdr.nomeEmpresaCompleto || ''} placement="top">
-                  <Link href={`/bdr/${bdr.nomeEmpresa}`} style={{ textDecoration: 'none' }}>
-                    <BDRName>{bdr.nomeEmpresa}</BDRName>
-                  </Link>
-                </Tooltip>
-              </DataCell>
-              <DataCell>
-
-                <Link key={bdr.codigo} href={`/bdr/${bdr.codigo}`} style={{ textDecoration: 'none' }}>
-                  <CodeChip>{bdr.codigo}</CodeChip>
-                </Link>
-
-              </DataCell>
-              <DataCell>
-                <DataText>{formatDate(bdr.dataInicio)}</DataText>
-              </DataCell>
-              <DataCell>
-                <DataText>{(bdr.informações?.market)}</DataText>
-              </DataCell>
-
-            </DataRow>
+            <BDRTableRow key={bdr._id} bdr={bdr} />
           ))}
         </TableBody>
       </StyledTable>

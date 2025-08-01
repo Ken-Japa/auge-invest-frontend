@@ -18,6 +18,18 @@ export interface BDRNPExtended extends BDRNP {
 // Tipo unificado para representar tanto BDRs patrocinados quanto não patrocinados
 export type UnifiedBDR = BDRExtended | BDRNPExtended;
 
+export interface VisualizacaoBDRsProps {
+  mode?: VisualizationMode;
+  filter?: {
+    segmento?: string;
+    nome?: string;
+    isPatrocinado?: boolean;
+    searchQuery?: string;
+  };
+  onError?: (message: string) => void;
+  defaultPageSize?: number;
+}
+
 export interface BDRFilter {
   segmento?: string;
   nomeEmpresa?: string;

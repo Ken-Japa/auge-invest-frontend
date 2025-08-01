@@ -1,11 +1,11 @@
 import { styled } from "@mui/material/styles";
 import {
-  TableContainer as MuiTableContainer,
+  Paper,
   Table as MuiTable,
+  TableCell as MuiTableCell,
+  TableContainer as MuiTableContainer,
   TableHead as MuiTableHead,
   TableRow as MuiTableRow,
-  TableCell as MuiTableCell,
-  Paper as MuiPaper,
   Typography,
 } from "@mui/material";
 

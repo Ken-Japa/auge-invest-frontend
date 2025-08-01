@@ -43,16 +43,6 @@ export const StyledCardContent = styled(MuiCardContent)(({ theme }) => ({
   padding: spacing.md,
 }));
 
-export const CardHeader = styled(Box)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "flex-end",
-  padding: theme.spacing(1, 1, 0, 1),
-  position: "absolute",
-  top: 0,
-  right: 0,
-  zIndex: 1,
-}));
-
 export const CardTitle = styled(Typography)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightBold,
   fontSize: "1.25rem",

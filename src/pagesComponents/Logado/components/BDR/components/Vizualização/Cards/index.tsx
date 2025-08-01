@@ -1,24 +1,17 @@
-import { Grid, Chip, IconButton } from '@mui/material';
-import { OpenInNew as OpenInNewIcon, Star } from '@mui/icons-material';
+import { Grid, IconButton } from '@mui/material';
+import { OpenInNew as OpenInNewIcon } from '@mui/icons-material';
 import Link from 'next/link';
+
 import { UnifiedBDR } from '../../../types';
-import { formatDate } from '@/components/Utils/Formatters/formatters';
-import {
-  StyledCard,
-  StyledCardContent,
-  CardTitle,
-  CardSubtitle,
-  ChipsContainer,
-  InfoContainer,
-  InfoItem,
-  InfoLabel,
-  InfoValue,
-  CardHeader
-} from './styled';
+
+import { StyledCard } from './styled';
+import { BDRCardContent } from './BDRCardContent';
 
 interface CardViewProps {
   bdrs: UnifiedBDR[];
 }
+
+
 
 export const CardView = ({ bdrs }: CardViewProps) => {
 
@@ -27,71 +20,17 @@ export const CardView = ({ bdrs }: CardViewProps) => {
       {bdrs.map((bdr) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={bdr._id}>
           <StyledCard>
-            <CardHeader>
-
-              <IconButton
-                component={Link}
-                href={`/bdr/${bdr.nomeEmpresa}`}
-                aria-label="Ver detalhes do BDR"
-                color="primary"
-                size="small"
-              >
-                <OpenInNewIcon />
-              </IconButton>
-            </CardHeader>
-            <StyledCardContent>
-              <Link href={`/bdr/${bdr.nomeEmpresa}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                <CardTitle variant="h4">
-                  {bdr.nomeEmpresa}
-                </CardTitle>
-              </Link>
-
-
-              <CardSubtitle variant="body2" color="text.secondary">
-                {bdr.nomeEmpresaCompleto}
-              </CardSubtitle>
-
-
-              <ChipsContainer>
-
-                <Link href={`/bdr/${bdr.nomeEmpresa}`} style={{ textDecoration: 'none' }}>
-                  <Chip
-                    label={bdr.codigo || 'N/A'}
-                    size="small"
-                    color="primary"
-                    variant="outlined"
-                    clickable
-                  />
-                </Link>
-
-                {(bdr.tipoBDR || bdr.informações?.market) && (
-                  <Chip
-                    label={bdr.tipoBDR || bdr.informações?.market || `Mercado ${bdr.tipoBDR || bdr.informações?.market}`}
-                    size="small"
-                    color="primary"
-                  />
-                )}
-
-                {bdr.isPatrocinado ? <Star color="warning" /> : ''}
-
-              </ChipsContainer>
-
-
-              <InfoContainer>
-                {bdr.indústria !== 'Não Classificados' && (
-                  <InfoItem>
-                    <InfoLabel>Segmento:</InfoLabel>
-                    <InfoValue>{bdr.indústria || 'N/A'}</InfoValue>
-                  </InfoItem>
-                )}
-
-                <InfoItem>
-                  <InfoLabel>Desde:</InfoLabel>
-                  <InfoValue>{formatDate(bdr.dataInicio)}</InfoValue>
-                </InfoItem>
-
-              </InfoContainer>
-            </StyledCardContent>
+            <IconButton
+              component={Link}
+              href={`/bdr/${bdr.nomeEmpresa}`}
+              aria-label="Ver detalhes do BDR"
+              color="primary"
+              size="small"
+              sx={{ position: 'absolute', top: 8, right: 8 }}
+            >
+              <OpenInNewIcon />
+            </IconButton>
+            <BDRCardContent bdr={bdr} />
           </StyledCard>
         </Grid>
       ))}
