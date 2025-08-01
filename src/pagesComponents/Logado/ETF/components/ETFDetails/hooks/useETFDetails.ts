@@ -31,9 +31,7 @@ export const useETFDetails = ({
 
         const searchParam = codigo || slug;
 
-        // Assuming ETF codes also follow a similar pattern or can be identified
-        // This part might need adjustment based on actual ETF code patterns
-        const isETFCode = isCode; // Use the provided isCode prop
+        const isETFCode = isCode;
 
         let result: ETFExtended | null;
         if (isETFCode) {
@@ -42,7 +40,6 @@ export const useETFDetails = ({
           result = await fetchETFBySlugOrCode(searchParam, false);
 
           if (!result) {
-            // Fallback to search by code if slug search fails
             result = await fetchETFBySlugOrCode(searchParam, true);
           }
         }
