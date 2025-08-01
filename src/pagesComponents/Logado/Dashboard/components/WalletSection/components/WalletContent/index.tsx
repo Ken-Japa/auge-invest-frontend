@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import { WalletItem } from '../WalletItem';
-import { AddWalletDialog } from '../AddWalletDialog';
-import { EditWalletDialog } from '../EditWalletDialog';
-import { DeleteWalletConfirmDialog } from '../DeleteWalletConfirmDialog';
+import { AddWalletDialog } from '../Dialogs/Wallet/AddWalletDialog';
+import { EditWalletDialog } from '../Dialogs/Wallet/EditWalletDialog';
+import { DeleteWalletConfirmDialog } from '../Dialogs/Wallet/DeleteWalletConfirmDialog';
 import { Wallet } from '@/services/api/types';
 import { WalletTransactions } from '@/services/api/types';
 

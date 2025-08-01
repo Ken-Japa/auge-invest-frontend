@@ -1,11 +1,12 @@
-// Initial content for WalletItem.tsx
 import React, { useState, useEffect } from 'react';
-import { WalletTransactions } from '@/services/api/types/transaction';
+import { WalletTransactions, WalletTransaction } from '@/services/api/types/transaction';
 import { Box, Typography, IconButton, Accordion, AccordionSummary, AccordionDetails, Button, CircularProgress, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
-import { Edit as EditIcon, Delete as DeleteIcon, ExpandMore as ExpandMoreIcon, Add as AddIcon } from '@mui/icons-material';
+import { Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { Wallet } from '@/services/api/types';
 import { formatDate } from '@/components/Utils/Formatters/formatters'
-import { AddTransactionDialog } from '../AddTransactionDialog';
+import { AddTransactionDialog } from '../Dialogs/Transactions/AddTransactionDialog';
+import { EditTransactionDialog } from '../Dialogs/Transactions/EditTransactionDialog';
+import { DeleteTransactionConfirmDialog } from '../Dialogs/Transactions/DeleteTransactionConfirmDialog';
 
 
 interface WalletItemProps {
@@ -33,6 +34,10 @@ export const WalletItem: React.FC<WalletItemProps> = ({
 }) => {
     const [isAddTransactionOpen, setIsAddTransactionOpen] = useState(false);
     const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
+    const [isEditTransactionOpen, setIsEditTransactionOpen] = useState(false);
+    const [selectedTransaction, setSelectedTransaction] = useState<WalletTransaction | null>(null);
+    const [isDeleteTransactionOpen, setIsDeleteTransactionOpen] = useState(false);
+    const [transactionToDeleteId, setTransactionToDeleteId] = useState<string | null>(null);
 
     useEffect(() => {
         if (expanded) {
@@ -40,10 +45,23 @@ export const WalletItem: React.FC<WalletItemProps> = ({
         }
     }, [expanded, wallet._id, fetchWalletPositions]);
 
+    const handleEditTransaction = (transaction: WalletTransaction) => {
+        setSelectedTransaction(transaction);
+        setIsEditTransactionOpen(true);
+    };
+
+    const handleDeleteTransaction = (transactionId: string) => {
+        setTransactionToDeleteId(transactionId);
+        setIsDeleteTransactionOpen(true);
+    };
+
+    const handleTransactionSavedOrDeleted = () => {
+        fetchWalletPositions(wallet._id);
+    };
+
     return (
         <Accordion expanded={expanded} onChange={onAccordionChange(wallet._id)} key={wallet._id}>
             <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
                 aria-controls={`panel-${wallet._id}-content`}
                 id={`panel-${wallet._id}-header`}
             >
@@ -118,6 +136,7 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                     <TableCell align="center">Preço Médio</TableCell>
                                     <TableCell align="center">Tipo</TableCell>
                                     <TableCell align="center">Data Início</TableCell>
+                                    <TableCell align="right">Ações</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -128,6 +147,29 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                         <TableCell align="center">{position.averagePrice}</TableCell>
                                         <TableCell align="center">{position.assetType}</TableCell>
                                         <TableCell align="center">{formatDate(position.createdAt)}</TableCell>
+                                        <TableCell align="right">
+                                            <IconButton
+                                                aria-label="edit transaction"
+                                                onClick={(event) => {
+                                                    event.stopPropagation();
+                                                    handleEditTransaction(position);
+                                                }}
+                                                size="small"
+                                            >
+                                                <EditIcon fontSize="small" />
+                                            </IconButton>
+                                            <IconButton
+                                                aria-label="delete transaction"
+                                                onClick={(event) => {
+                                                    event.stopPropagation();
+                                                    handleDeleteTransaction(position._id);
+                                                }}
+                                                size="small"
+                                                color="error"
+                                            >
+                                                <DeleteIcon fontSize="small" />
+                                            </IconButton>
+                                        </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
@@ -142,6 +184,21 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                     onClose={() => setIsAddTransactionOpen(false)}
                     positionId={selectedPosition}
                     userId={wallet.userId}
+                    onSave={handleTransactionSavedOrDeleted}
+                />
+
+                <EditTransactionDialog
+                    open={isEditTransactionOpen}
+                    onClose={() => setIsEditTransactionOpen(false)}
+                    transaction={selectedTransaction}
+                    onSave={handleTransactionSavedOrDeleted}
+                />
+
+                <DeleteTransactionConfirmDialog
+                    open={isDeleteTransactionOpen}
+                    onClose={() => setIsDeleteTransactionOpen(false)}
+                    transactionId={transactionToDeleteId}
+                    onConfirm={handleTransactionSavedOrDeleted}
                 />
             </AccordionDetails>
         </Accordion>
