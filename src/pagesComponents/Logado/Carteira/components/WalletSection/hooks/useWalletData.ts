@@ -10,7 +10,8 @@ export const useWalletData = () => {
   const [wallets, setWallets] = useState<Wallet[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [walletPositions, setWalletPositions] = useState<WalletTransactions | null>(null);
+  const [walletPositions, setWalletPositions] =
+    useState<WalletTransactions | null>(null);
   const [loadingPositions, setLoadingPositions] = useState<boolean>(false);
   const [errorPositions, setErrorPositions] = useState<string | null>(null);
 
@@ -25,6 +26,7 @@ export const useWalletData = () => {
     try {
       const userWallets = await api.wallet.getUserWallets(userId);
       setWallets(userWallets);
+      console.log(userId);
     } catch (err: any) {
       if (
         err.code === "wallet/not-found" &&
@@ -112,6 +114,7 @@ export const useWalletData = () => {
   const fetchWalletPositions = useCallback(async (walletId: string) => {
     setLoadingPositions(true);
     setErrorPositions(null);
+    console.log(walletId);
     try {
       const response = await api.wallet.getWalletPosition(walletId);
       setWalletPositions(response);

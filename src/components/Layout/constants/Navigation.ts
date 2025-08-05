@@ -24,7 +24,7 @@ export const publicNavigation: NavigationItem[] = [
 
 export const authNavigation: NavigationItem[] = [
   { name: "Visão Economia", path: "/visao-economia" },
-  { name: "Posições", path: "/dashboard" },
+  { name: "Posições", path: "/carteira" },
   { name: "Empresas", path: "/empresa" },
   { name: "Alertas", path: "/alertas" },
   {
