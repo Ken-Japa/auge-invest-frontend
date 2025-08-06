@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo, useEffect, useState, useRef } from 'react';
+import { Network } from 'vis-network/standalone';
 import { Box, Typography, CircularProgress } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
@@ -12,6 +13,7 @@ import { createCentralNode } from './components/CentralNode';
 import { createIndustriaNode } from './components/IndustriaNode';
 import { createSegmentoNode } from './components/SegmentoNode';
 import { createEmpresaNode } from './components/EmpresaNode';
+import { IndustryDropdown } from './components/IndustryDropdown';
 
 // Utils
 import { generateSegmentColors, adjustColorHSL } from './utils/graphUtils';
@@ -49,6 +51,9 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
   const [graphData, setGraphData] = useState<GraphData>({ nodes: [], edges: [] });
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedIndustryId, setSelectedIndustryId] = useState<string | null>(null);
+  const [industriesForDropdown, setIndustriesForDropdown] = useState<{ id: string; label: string; color: string }[]>([]);
+  const networkRef = useRef<Network | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -77,6 +82,13 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
 
         // Construir o grafo
         const transformedData: RedeNeuralSumarioData = transformSumarioData(data as TabelaViewSumarioData);
+        const dropdownIndustries: { id: string; label: string; color: string }[] = [];
+        transformedData.sumario.forEach((industria, index) => {
+          const color = adjustColorHSL(CORES_INDUSTRIAS[index % CORES_INDUSTRIAS.length], { s: 0.15, l: 0.05 });
+          dropdownIndustries.push({ id: `industria-${industria.industria}`, label: industria.industria, color: color });
+        });
+        setIndustriesForDropdown(dropdownIndustries);
+
         buildGraphData(transformedData, nodes, edges, maxIndustriaValue, maxSegmentoValue, maxEmpresaValue);
 
         setGraphData({ nodes, edges });
@@ -181,6 +193,21 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
     });
   };
 
+  const memoizedEvents = useMemo(() => ({
+    doubleClick: (params: any) => {
+      if (params.nodes && params.nodes.length > 0) {
+        const nodeId = params.nodes[0];
+        const node = graphData.nodes.find((n: any) => n.id === nodeId);
+
+        if (node && nodeId.startsWith('empresa-')) {
+          if (node.url) {
+            router.push(node.url);
+          }
+        }
+      }
+    }
+  }), [graphData, router]);
+
   if (isLoading) {
     return (
       <LoadingContainer>
@@ -193,26 +220,34 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
     return <Box sx={{ p: 2 }}><Typography color="error">{error}</Typography></Box>;
   }
 
+  const handleSelectIndustry = (industryId: string) => {
+    setSelectedIndustryId(industryId);
+    if (networkRef.current && industryId) {
+      const nodeIdToFocus = industryId.startsWith('industria-') ? industryId : `industria-${industryId}`;
+
+      networkRef.current?.focus(nodeIdToFocus, { scale: 0.55, animation: { duration: 700, easingFunction: 'linear' } })
+      networkRef.current?.selectNodes([nodeIdToFocus])
+
+    } else if (networkRef.current && !industryId) {
+      networkRef.current.fit({
+        animation: { duration: 1000, easingFunction: 'easeInOutQuad' },
+      });
+    }
+  };
+
   return (
     <GraphContainer>
+      <IndustryDropdown
+        industries={industriesForDropdown}
+        onSelectIndustry={handleSelectIndustry}
+        selectedIndustryId={selectedIndustryId}
+      />
       {graphData.nodes.length > 0 && (
         <CustomGraph
           graph={graphData}
+          networkRef={networkRef}
           options={DEFAULT_GRAPH_OPTIONS}
-          events={{
-            doubleClick: (params) => {
-              if (params.nodes && params.nodes.length > 0) {
-                const nodeId = params.nodes[0];
-                const node = graphData.nodes.find((n: any) => n.id === nodeId);
-
-                if (node && nodeId.startsWith('empresa-')) {
-                  if (node.url) {
-                    router.push(node.url);
-                  }
-                }
-              }
-            }
-          }}
+          events={memoizedEvents}
         />
       )}
     </GraphContainer>

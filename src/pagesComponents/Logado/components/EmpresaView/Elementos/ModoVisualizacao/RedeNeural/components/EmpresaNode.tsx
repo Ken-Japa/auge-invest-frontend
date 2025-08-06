@@ -50,6 +50,6 @@ export const createEmpresaNode = (
             highlight: { background: empresaColor, border: '#FFFFFF' }
         },
         url: companyUrl,
-        title: `Clique para ver detalhes de ${empresa.empresa} (${empresa.codigos?.[0]?.codigo || ''})`
+        title: `Duplo clique para ver os detalhes de ${empresa.empresa} (${empresa.codigos?.[0]?.codigo || ''})`
     };
 };

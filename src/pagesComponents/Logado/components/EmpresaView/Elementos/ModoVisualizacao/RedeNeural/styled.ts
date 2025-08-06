@@ -2,10 +2,21 @@ import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 
 export const GraphContainer = styled("div")(({ theme }) => ({
+  position: 'relative',
   flex: 1,
   height: "calc(100vh - 64px)",
   minHeight: "calc(100vh - 64px)",
   width: "100%",
+  '& .MuiFormControl-root': {
+    position: 'absolute',
+    top: theme.spacing(2),
+    right: theme.spacing(2),
+    zIndex: 1000,
+    backgroundColor: theme.palette.background.paper,
+    borderRadius: theme.shape.borderRadius,
+    padding: theme.spacing(1),
+    boxShadow: theme.shadows[3],
+  },
   background:
     theme.palette.mode === "dark"
       ? theme.palette.background.default

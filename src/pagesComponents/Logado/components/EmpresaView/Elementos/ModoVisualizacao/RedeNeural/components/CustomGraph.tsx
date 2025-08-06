@@ -13,13 +13,15 @@ interface GraphProps {
   events: {
     [key in NetworkEvents]?: (params: any) => void;
   };
+  networkRef?: React.MutableRefObject<Network | null>;
 }
 
-export const CustomGraph: React.FC<GraphProps> = ({ graph, options, events }) => {
+export const CustomGraph: React.FC<GraphProps> = ({ graph, options, events, networkRef: propNetworkRef }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const networkRef = useRef<Network | null>(null);
+  const internalNetworkRef = useRef<Network | null>(null);
 
   useEffect(() => {
+    console.log('CustomGraph useEffect triggered. Dependencies:', { graph, options, events, propNetworkRef });
     if (!containerRef.current) return;
 
     const initNetwork = async () => {
@@ -49,7 +51,10 @@ export const CustomGraph: React.FC<GraphProps> = ({ graph, options, events }) =>
           });
         }
 
-        networkRef.current = network;
+        internalNetworkRef.current = network;
+        if (propNetworkRef) {
+          propNetworkRef.current = network;
+        }
       } catch (error) {
         console.error('Erro ao inicializar rede:', error);
       }
@@ -59,12 +64,15 @@ export const CustomGraph: React.FC<GraphProps> = ({ graph, options, events }) =>
 
     // Cleanup function
     return () => {
-      if (networkRef.current) {
-        networkRef.current.destroy();
-        networkRef.current = null;
+      if (internalNetworkRef.current) {
+        internalNetworkRef.current.destroy();
+        internalNetworkRef.current = null;
+      }
+      if (propNetworkRef) {
+        propNetworkRef.current = null;
       }
     };
-  }, [graph, options, events]);
+  }, [graph, options, events, propNetworkRef]);
 
   return (
     <div
