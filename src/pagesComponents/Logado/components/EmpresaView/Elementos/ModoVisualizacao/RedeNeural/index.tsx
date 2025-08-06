@@ -61,6 +61,7 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
     color: string;
     segments: { id: string; label: string; }[];
   }[]>([]);
+  const [isGraphReady, setIsGraphReady] = useState(false);
   const networkRef = useRef<Network | null>(null);
   const router = useRouter();
 
@@ -264,8 +265,6 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
       const nodeIdToFocus = segmentId.startsWith('segmento-') ? segmentId : `segmento-${segmentId}`;
       networkRef.current?.focus(nodeIdToFocus, { scale: 0.5, animation: { duration: 700, easingFunction: 'linear' } })
       networkRef.current?.selectNodes([nodeIdToFocus])
-    } else if (!networkRef.current) {
-      console.log('networkRef.current is not available.');
     } else if (networkRef.current && !segmentId) {
       networkRef.current.fit({
         animation: { duration: 1000, easingFunction: 'easeInOutQuad' },
@@ -275,25 +274,28 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
 
   return (
     <GraphContainer>
-      <MenuContainer>
-        <IndustryDropdown
-          industries={industriesForDropdown}
-          onSelectIndustry={handleSelectIndustry}
-          selectedIndustryId={selectedIndustryId}
-        />
-        <SegmentDropdown
-          segmentsByIndustry={segmentsForDropdown}
-          onSelectSegment={handleSelectSegment}
-          selectedSegmentId={selectedSegmentId}
-        />
-      </MenuContainer>
       {graphData.nodes.length > 0 && (
         <CustomGraph
           graph={graphData}
           networkRef={networkRef}
           options={DEFAULT_GRAPH_OPTIONS}
           events={memoizedEvents}
+          onGraphReady={() => setIsGraphReady(true)}
         />
+      )}
+      {isGraphReady && (
+        <MenuContainer>
+          <IndustryDropdown
+            industries={industriesForDropdown}
+            onSelectIndustry={handleSelectIndustry}
+            selectedIndustryId={selectedIndustryId}
+          />
+          <SegmentDropdown
+            segmentsByIndustry={segmentsForDropdown}
+            onSelectSegment={handleSelectSegment}
+            selectedSegmentId={selectedSegmentId}
+          />
+        </MenuContainer>
       )}
     </GraphContainer>
   );

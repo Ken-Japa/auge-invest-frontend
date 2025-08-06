@@ -14,9 +14,10 @@ interface GraphProps {
     [key in NetworkEvents]?: (params: any) => void;
   };
   networkRef?: React.MutableRefObject<Network | null>;
+  onGraphReady?: () => void;
 }
 
-export const CustomGraph: React.FC<GraphProps> = ({ graph, options, events, networkRef: propNetworkRef }) => {
+export const CustomGraph: React.FC<GraphProps> = ({ graph, options, events, networkRef: propNetworkRef, onGraphReady }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const internalNetworkRef = useRef<Network | null>(null);
 
@@ -53,6 +54,10 @@ export const CustomGraph: React.FC<GraphProps> = ({ graph, options, events, netw
         internalNetworkRef.current = network;
         if (propNetworkRef) {
           propNetworkRef.current = network;
+        }
+
+        if (onGraphReady) {
+          network.once('afterDrawing', onGraphReady);
         }
       } catch (error) {
         console.error('Erro ao inicializar rede:', error);
