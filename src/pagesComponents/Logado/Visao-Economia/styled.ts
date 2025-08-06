@@ -7,7 +7,7 @@ export const PageContainer = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   minHeight: "100vh",
   marginTop: "-64px",
-  zIndex: -1,
+  zIndex: 0,
   backgroundImage:
     theme.palette.mode === "dark"
       ? 'url("/assets/images/background/VisaoEconomia-Dark.jpg")'
