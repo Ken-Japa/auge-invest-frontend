@@ -1,8 +1,8 @@
-import React, { useMemo, useEffect, useState, useRef } from 'react';
 import { Network } from 'vis-network/standalone';
 import { Box, Typography, CircularProgress } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 
 // Constants
 import { DEFAULT_GRAPH_OPTIONS } from './constants/graphOptions';
@@ -62,6 +62,7 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
     segments: { id: string; label: string; }[];
   }[]>([]);
   const [isGraphReady, setIsGraphReady] = useState(false);
+  const [selectedNodePath, setSelectedNodePath] = useState<string[]>([]);
   const networkRef = useRef<Network | null>(null);
   const router = useRouter();
 
@@ -126,6 +127,36 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
 
     fetchData();
   }, [onLoadingChange]);
+
+  const findPathToNode = useCallback((nodeId: string, nodes: any[], edges: any[]): string[] => {
+    const path: string[] = [];
+    let currentNodeId: string | undefined = nodeId;
+
+    while (currentNodeId) {
+      const currentNode = nodes.find(n => n.id === currentNodeId);
+      if (currentNode) {
+        path.unshift(currentNode.label);
+      }
+
+      const incomingEdge = edges.find(edge => edge.to === currentNodeId);
+      if (incomingEdge) {
+        currentNodeId = incomingEdge.from;
+      } else {
+        currentNodeId = undefined;
+      }
+    }
+    return path;
+  }, []);
+
+  const handleNodeSelection = useCallback((params: any) => {
+    if (params.nodes.length > 0) {
+      const selectedId = params.nodes[0];
+      const path = findPathToNode(selectedId, graphData.nodes, graphData.edges);
+      setSelectedNodePath(path);
+    } else {
+      setSelectedNodePath([]);
+    }
+  }, [findPathToNode, graphData.nodes, graphData.edges]);
 
   // Função auxiliar para construir os dados do grafo
   const buildGraphData = (
@@ -216,6 +247,9 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
   };
 
   const memoizedEvents = useMemo(() => ({
+    deselectNode: () => {
+      setSelectedNodePath([]);
+    },
     doubleClick: (params: any) => {
       if (params.nodes && params.nodes.length > 0) {
         const nodeId = params.nodes[0];
@@ -227,8 +261,9 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
           }
         }
       }
-    }
-  }), [graphData, router]);
+    },
+    selectNode: handleNodeSelection,
+  }), [graphData, router, handleNodeSelection]);
 
   if (isLoading) {
     return (
@@ -274,6 +309,13 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
 
   return (
     <GraphContainer>
+      {selectedNodePath.length > 0 && (
+        <Box sx={{ position: 'absolute', top: 10, left: 10, zIndex: 2, backgroundColor: 'rgba(10,15,30,0.8)', padding: '5px 10px', borderRadius: '5px' }}>
+          <Typography variant="h5" sx={{ color: 'white' }}>
+            {selectedNodePath.join(' > ')}
+          </Typography>
+        </Box>
+      )}
       {graphData.nodes.length > 0 && (
         <CustomGraph
           graph={graphData}
