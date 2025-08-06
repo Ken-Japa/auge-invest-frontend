@@ -54,3 +54,13 @@ export const MenuContainer = styled(Box)(({ theme }) => ({
   gap: 8,
   zIndex: 1,
 }));
+
+export const SelectedNodePathContainer = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  top: 10,
+  left: 10,
+  zIndex: 2,
+  backgroundColor: 'rgba(10,15,30,0.8)',
+  padding: '5px 10px',
+  borderRadius: '5px',
+}));

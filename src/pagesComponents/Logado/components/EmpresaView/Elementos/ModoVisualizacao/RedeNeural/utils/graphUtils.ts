@@ -91,20 +91,3 @@ export const adjustColorHSL = (
 
   return `#${toHex(r1)}${toHex(g1)}${toHex(b1)}`;
 };
-
-export const generateSegmentColors = (
-  baseColor: string,
-  count: number
-): string[] => {
-  const colors: string[] = [];
-  for (let i = 0; i < count; i++) {
-    colors.push(
-      adjustColorHSL(baseColor, {
-        h: i * 5 - 2,
-        s: 0.05,
-        l: -0.01 + i * 0.02,
-      })
-    );
-  }
-  return colors;
-};
