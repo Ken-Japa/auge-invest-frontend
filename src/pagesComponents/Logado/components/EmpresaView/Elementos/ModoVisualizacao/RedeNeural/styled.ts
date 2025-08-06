@@ -2,12 +2,12 @@ import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 
 export const GraphContainer = styled("div")(({ theme }) => ({
-  position: 'relative',
+  position: "relative",
   flex: 1,
   height: "calc(100vh - 64px)",
   minHeight: "calc(100vh - 64px)",
   width: "100%",
-  '& .MuiFormControl-root': {
+  "& .MuiFormControl-root": {
     zIndex: 1000,
     backgroundColor: theme.palette.background.paper,
     borderRadius: theme.shape.borderRadius,
@@ -43,4 +43,14 @@ export const LoadingContainer = styled(Box)(({ theme }) => ({
     theme.palette.mode === "dark"
       ? theme.palette.background.default
       : theme.palette.background.paper,
+}));
+
+export const MenuContainer = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  top: 16,
+  right: 16,
+  display: "flex",
+  flexDirection: "column",
+  gap: 8,
+  zIndex: 1,
 }));

@@ -18,7 +18,7 @@ import { SegmentDropdown } from './components/SegmentDropdown';
 
 // Utils
 import { generateSegmentColors, adjustColorHSL } from './utils/graphUtils';
-import { GraphContainer, LoadingContainer } from './styled';
+import { GraphContainer, LoadingContainer, MenuContainer } from './styled';
 import { sumarioService } from '../utils/sumarioService';
 
 // Types
@@ -58,6 +58,7 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
   const [segmentsForDropdown, setSegmentsForDropdown] = useState<{
     industryId: string;
     industryLabel: string;
+    color: string;
     segments: { id: string; label: string; }[];
   }[]>([]);
   const networkRef = useRef<Network | null>(null);
@@ -96,12 +97,14 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
         });
         setIndustriesForDropdown(dropdownIndustries);
 
-        const segmentsGroupedByIndustry: { industryId: string; industryLabel: string; segments: { id: string; label: string; }[]; }[] = [];
-        transformedData.sumario.forEach(industria => {
+        const segmentsGroupedByIndustry: { industryId: string; industryLabel: string; color: string; segments: { id: string; label: string; }[]; }[] = [];
+        transformedData.sumario.forEach((industria, index) => {
           const industrySegments = industria.segmentos.map(seg => ({ id: `segmento-${seg.segmento}`, label: seg.segmento }));
+          const industryColor = dropdownIndustries.find(di => di.id === `industria-${industria.industria}`)?.color || '#CCCCCC'; // Default color if not found
           segmentsGroupedByIndustry.push({
             industryId: `industria-${industria.industria}`,
             industryLabel: industria.industria,
+            color: industryColor,
             segments: industrySegments,
           });
         });
@@ -261,6 +264,8 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
       const nodeIdToFocus = segmentId.startsWith('segmento-') ? segmentId : `segmento-${segmentId}`;
       networkRef.current?.focus(nodeIdToFocus, { scale: 0.5, animation: { duration: 700, easingFunction: 'linear' } })
       networkRef.current?.selectNodes([nodeIdToFocus])
+    } else if (!networkRef.current) {
+      console.log('networkRef.current is not available.');
     } else if (networkRef.current && !segmentId) {
       networkRef.current.fit({
         animation: { duration: 1000, easingFunction: 'easeInOutQuad' },
@@ -270,7 +275,7 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
 
   return (
     <GraphContainer>
-      <Box sx={{ position: 'absolute', top: 16, right: 16, display: 'flex', flexDirection: 'column', gap: 2, zIndex: 1000 }}>
+      <MenuContainer>
         <IndustryDropdown
           industries={industriesForDropdown}
           onSelectIndustry={handleSelectIndustry}
@@ -281,7 +286,7 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
           onSelectSegment={handleSelectSegment}
           selectedSegmentId={selectedSegmentId}
         />
-      </Box>
+      </MenuContainer>
       {graphData.nodes.length > 0 && (
         <CustomGraph
           graph={graphData}
