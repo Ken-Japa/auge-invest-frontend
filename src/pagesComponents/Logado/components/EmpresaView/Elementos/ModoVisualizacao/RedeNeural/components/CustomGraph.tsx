@@ -21,7 +21,6 @@ export const CustomGraph: React.FC<GraphProps> = ({ graph, options, events, netw
   const internalNetworkRef = useRef<Network | null>(null);
 
   useEffect(() => {
-    console.log('CustomGraph useEffect triggered. Dependencies:', { graph, options, events, propNetworkRef });
     if (!containerRef.current) return;
 
     const initNetwork = async () => {

@@ -25,7 +25,7 @@ export const createSegmentoNode = (
     );
 
     return {
-        id: `segmento-${segmento.segmento}-${segIndex}`,
+        id: `segmento-${segmento.segmento}`,
         label: `${segmento.segmento}\n${formatCurrency(segmento.valorMercado)}`,
         x: position.x,
         y: position.y,

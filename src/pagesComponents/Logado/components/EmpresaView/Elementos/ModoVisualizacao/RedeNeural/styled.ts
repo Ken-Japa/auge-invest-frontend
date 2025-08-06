@@ -8,9 +8,6 @@ export const GraphContainer = styled("div")(({ theme }) => ({
   minHeight: "calc(100vh - 64px)",
   width: "100%",
   '& .MuiFormControl-root': {
-    position: 'absolute',
-    top: theme.spacing(2),
-    right: theme.spacing(2),
     zIndex: 1000,
     backgroundColor: theme.palette.background.paper,
     borderRadius: theme.shape.borderRadius,

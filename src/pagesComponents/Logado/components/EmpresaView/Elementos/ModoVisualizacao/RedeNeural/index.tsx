@@ -14,6 +14,7 @@ import { createIndustriaNode } from './components/IndustriaNode';
 import { createSegmentoNode } from './components/SegmentoNode';
 import { createEmpresaNode } from './components/EmpresaNode';
 import { IndustryDropdown } from './components/IndustryDropdown';
+import { SegmentDropdown } from './components/SegmentDropdown';
 
 // Utils
 import { generateSegmentColors, adjustColorHSL } from './utils/graphUtils';
@@ -52,7 +53,13 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedIndustryId, setSelectedIndustryId] = useState<string | null>(null);
+  const [selectedSegmentId, setSelectedSegmentId] = useState<string | null>(null);
   const [industriesForDropdown, setIndustriesForDropdown] = useState<{ id: string; label: string; color: string }[]>([]);
+  const [segmentsForDropdown, setSegmentsForDropdown] = useState<{
+    industryId: string;
+    industryLabel: string;
+    segments: { id: string; label: string; }[];
+  }[]>([]);
   const networkRef = useRef<Network | null>(null);
   const router = useRouter();
 
@@ -88,6 +95,17 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
           dropdownIndustries.push({ id: `industria-${industria.industria}`, label: industria.industria, color: color });
         });
         setIndustriesForDropdown(dropdownIndustries);
+
+        const segmentsGroupedByIndustry: { industryId: string; industryLabel: string; segments: { id: string; label: string; }[]; }[] = [];
+        transformedData.sumario.forEach(industria => {
+          const industrySegments = industria.segmentos.map(seg => ({ id: `segmento-${seg.segmento}`, label: seg.segmento }));
+          segmentsGroupedByIndustry.push({
+            industryId: `industria-${industria.industria}`,
+            industryLabel: industria.industria,
+            segments: industrySegments,
+          });
+        });
+        setSegmentsForDropdown(segmentsGroupedByIndustry);
 
         buildGraphData(transformedData, nodes, edges, maxIndustriaValue, maxSegmentoValue, maxEmpresaValue);
 
@@ -222,13 +240,28 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
 
   const handleSelectIndustry = (industryId: string) => {
     setSelectedIndustryId(industryId);
+    setSelectedSegmentId(null);
     if (networkRef.current && industryId) {
       const nodeIdToFocus = industryId.startsWith('industria-') ? industryId : `industria-${industryId}`;
-
-      networkRef.current?.focus(nodeIdToFocus, { scale: 0.55, animation: { duration: 700, easingFunction: 'linear' } })
+      networkRef.current?.focus(nodeIdToFocus, { scale: 0.6, animation: { duration: 700, easingFunction: 'linear' } })
       networkRef.current?.selectNodes([nodeIdToFocus])
 
     } else if (networkRef.current && !industryId) {
+
+      networkRef.current.fit({
+        animation: { duration: 1000, easingFunction: 'easeInOutQuad' },
+      });
+    }
+  };
+
+  const handleSelectSegment = (segmentId: string) => {
+    setSelectedSegmentId(segmentId);
+    setSelectedIndustryId(null);
+    if (networkRef.current && segmentId) {
+      const nodeIdToFocus = segmentId.startsWith('segmento-') ? segmentId : `segmento-${segmentId}`;
+      networkRef.current?.focus(nodeIdToFocus, { scale: 0.5, animation: { duration: 700, easingFunction: 'linear' } })
+      networkRef.current?.selectNodes([nodeIdToFocus])
+    } else if (networkRef.current && !segmentId) {
       networkRef.current.fit({
         animation: { duration: 1000, easingFunction: 'easeInOutQuad' },
       });
@@ -237,11 +270,18 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
 
   return (
     <GraphContainer>
-      <IndustryDropdown
-        industries={industriesForDropdown}
-        onSelectIndustry={handleSelectIndustry}
-        selectedIndustryId={selectedIndustryId}
-      />
+      <Box sx={{ position: 'absolute', top: 16, right: 16, display: 'flex', flexDirection: 'column', gap: 2, zIndex: 1000 }}>
+        <IndustryDropdown
+          industries={industriesForDropdown}
+          onSelectIndustry={handleSelectIndustry}
+          selectedIndustryId={selectedIndustryId}
+        />
+        <SegmentDropdown
+          segmentsByIndustry={segmentsForDropdown}
+          onSelectSegment={handleSelectSegment}
+          selectedSegmentId={selectedSegmentId}
+        />
+      </Box>
       {graphData.nodes.length > 0 && (
         <CustomGraph
           graph={graphData}
