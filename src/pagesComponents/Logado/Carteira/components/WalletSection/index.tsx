@@ -13,10 +13,11 @@ import { WalletContent } from './components/WalletContent';
 
 interface WalletSectionProps {
     title: string;
+    isSimulated?: boolean;
 }
 
-export const WalletSection: React.FC<WalletSectionProps> = ({ title }) => {
-    const { wallets, loading, error, fetchWallets, handleCreateWallet, handleUpdateWallet, handleConfirmDelete, walletPositions, loadingPositions, errorPositions, fetchWalletPositions } = useWalletData();
+export const WalletSection: React.FC<WalletSectionProps> = ({ title, isSimulated }) => {
+    const { wallets, loading, error, fetchWallets, handleCreateWallet, handleUpdateWallet, handleConfirmDelete, walletPositions, loadingPositions, errorPositions, fetchWalletPositions } = useWalletData(isSimulated);
 
     const [openAddDialog, setOpenAddDialog] = useState<boolean>(false);
     const [expanded, setExpanded] = useState<string | false>(false);
@@ -100,13 +101,13 @@ export const WalletSection: React.FC<WalletSectionProps> = ({ title }) => {
         <ErrorBoundary>
             <SuspenseWrapper>
                 <ProgressiveLoad delay={0.2}>
-                    <Box sx={{ mb: 4 }}>
+                    <Box sx={{ my: 8 }}>
                         <Typography variant="h3" gutterBottom>{title}</Typography>
                         <Button
                             variant="contained"
                             startIcon={<AddIcon />}
                             onClick={handleOpenAddDialog}
-                            sx={{ mb: 2 }}
+                            sx={{ my: 4 }}
                         >
                             Nova Carteira
                         </Button>

@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import { api } from "@/services/api";
 import { Wallet, WalletTransactions } from "@/services/api/types";
 
-export const useWalletData = () => {
+export const useWalletData = (isSimulated?: boolean) => {
   const { data: session } = useSession();
   const userId = session?.user?.id;
 
@@ -25,7 +25,8 @@ export const useWalletData = () => {
     setError(null);
     try {
       const userWallets = await api.wallet.getUserWallets(userId);
-      setWallets(userWallets);
+      const filteredWallets = userWallets.filter(wallet => wallet.simulated === isSimulated);
+      setWallets(filteredWallets);
       console.log(userId);
     } catch (err: any) {
       if (

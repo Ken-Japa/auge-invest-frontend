@@ -36,11 +36,33 @@ export const Dashboard = () => {
                                 <ProgressiveLoad delay={0.6}>
                                     <WalletSection
                                         title="Minhas Carteiras"
+                                        isSimulated={false}
                                     />
                                 </ProgressiveLoad>
 
                             </SuspenseWrapper>
                         </SectionContainer>
+
+                        <SectionContainer>
+                            <SuspenseWrapper>
+                                {/* Posições Simuladas */}
+                                <ProgressiveLoad delay={0.2}>
+                                    <PositionSection
+                                        title="Simulações"
+                                        type="mock"
+                                    />
+                                </ProgressiveLoad>
+
+                                <ProgressiveLoad delay={0.6}>
+                                    <WalletSection
+                                        title="Simulaçoes"
+                                        isSimulated={true}
+                                    />
+                                </ProgressiveLoad>
+
+                            </SuspenseWrapper>
+                        </SectionContainer>
+
                     </Container>
                 </BackgroundContainer>
             </ErrorBoundary>
