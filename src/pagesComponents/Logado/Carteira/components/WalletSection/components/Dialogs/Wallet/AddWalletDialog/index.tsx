@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Switch, FormControlLabel } from '@mui/material';
 
 interface AddWalletDialogProps {
     open: boolean;
@@ -20,11 +20,20 @@ export const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
 }) => {
     const [newWalletName, setNewWalletName] = useState<string>('');
     const [newWalletDescription, setNewWalletDescription] = useState<string>('');
+    const [simulatedState, setSimulatedState] = useState<boolean>(isSimulated);
+
+    useEffect(() => {
+        setSimulatedState(isSimulated);
+    }, [isSimulated]);
 
     const handleCreate = () => {
-        onCreate(newWalletName, newWalletDescription, isSimulated);
+        onCreate(newWalletName, newWalletDescription, simulatedState);
         setNewWalletName('');
         setNewWalletDescription('');
+    };
+
+    const handleSimulatedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSimulatedState(event.target.checked);
     };
 
     return (
@@ -51,16 +60,16 @@ export const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
                     value={newWalletDescription}
                     onChange={(e) => setNewWalletDescription(e.target.value)}
                 />
-                <TextField
-                    margin="dense"
-                    label="Tipo"
-                    type="text"
-                    fullWidth
-                    variant="outlined"
-                    value={isSimulated ? 'Simulada' : 'Real'}
-                    InputProps={{
-                        readOnly: true,
-                    }}
+                <FormControlLabel
+                    control={
+                        <Switch
+                            checked={simulatedState}
+                            onChange={handleSimulatedChange}
+                            name="simulated"
+                            color="primary"
+                        />
+                    }
+                    label={simulatedState ? 'Carteira Simulada' : 'Carteira Real'}
                 />
                 {error && <p style={{ color: 'red' }}>{error}</p>}
             </DialogContent>
