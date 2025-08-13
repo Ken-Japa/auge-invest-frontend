@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Wallet } from '@/services/api/types';
+
 import { Box, Typography, Button, CircularProgress } from '@mui/material';
-import {
-    Add as AddIcon,
-} from '@mui/icons-material';
+import { Add as AddIcon } from '@mui/icons-material';
 
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+
+import { Wallet } from '@/services/api/types';
+
 import { useWalletData } from './hooks/useWalletData';
 import { WalletContent } from './components/WalletContent';
 import { AddWalletDialog } from './components/Dialogs/Wallet/AddWalletDialog';

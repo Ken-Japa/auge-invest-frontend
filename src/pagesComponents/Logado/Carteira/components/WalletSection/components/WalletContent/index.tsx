@@ -1,10 +1,12 @@
 import { Box, Typography } from '@mui/material';
+
+import { Wallet } from '@/services/api/types';
+import { WalletTransactions } from '@/services/api/types/transaction';
+
 import { WalletItem } from '../WalletItem';
 import { AddWalletDialog } from '../Dialogs/Wallet/AddWalletDialog';
 import { EditWalletDialog } from '../Dialogs/Wallet/EditWalletDialog';
 import { DeleteWalletConfirmDialog } from '../Dialogs/Wallet/DeleteWalletConfirmDialog';
-import { Wallet } from '@/services/api/types';
-import { WalletTransactions } from '@/services/api/types/transaction';
 
 interface WalletContentProps {
     wallets: Wallet[];

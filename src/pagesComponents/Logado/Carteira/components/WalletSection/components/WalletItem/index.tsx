@@ -1,18 +1,22 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-import { WalletTransactions, Transaction } from '@/services/api/types/transaction';
-import { walletApi } from '@/services/api/endpoints/wallet';
 import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, Button, CircularProgress, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from '@mui/material';
 import { Add as AddIcon, KeyboardArrowDown, KeyboardArrowUp, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 import { Wallet } from '@/services/api/types';
-import { formatDate2 as formatDate } from '@/components/Utils/Formatters/formatters'
+import { WalletTransactions, Transaction } from '@/services/api/types/transaction';
+import { walletApi } from '@/services/api/endpoints/wallet';
+
+import { formatDate2 as formatDate } from '@/components/Utils/Formatters/formatters';
+
 import { AddTransactionDialog, assetTypes } from '../Dialogs/Transactions/AddTransactionDialog';
 import { AddSameTransactionDialog } from '../Dialogs/Transactions/AddTransactionSameAsset';
-
 import { EditTransactionDialog } from '../Dialogs/Transactions/EditTransactionDialog';
 import { DeleteTransactionConfirmDialog } from '../Dialogs/Transactions/DeleteTransactionConfirmDialog';
 import { TransactionsDialog } from '../Dialogs/Transactions/TransactionsDialog';
+
+import { StyledAccordionSummary, StyledAssetTableContainer, StyledAssetTable, StyledAssetTableHead, StyledTransactionTableCell, StyledTransactionTableRow, StyledAssetTableCell, StyledAssetTableRow, StyledTransactionTable, StyledTransactionTableHead } from './styled';
 
 
 interface WalletItemProps {
@@ -96,7 +100,7 @@ export const WalletItem: React.FC<WalletItemProps> = ({
 
     return (
         <Accordion expanded={expanded} onChange={onAccordionChange(wallet._id)} key={wallet._id}>
-            <AccordionSummary
+            <StyledAccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls={`panel-${wallet._id}-content`}
                 id={`panel-${wallet._id}-header`}
@@ -116,10 +120,11 @@ export const WalletItem: React.FC<WalletItemProps> = ({
 
                 </Box>
 
-            </AccordionSummary>
+            </StyledAccordionSummary>
             <AccordionDetails>
 
                 <Box sx={{ my: 2, display: 'flex', justifyContent: 'flex-start' }}>
+
                     <Button
                         variant="outlined"
                         startIcon={<AddIcon />}
@@ -139,28 +144,28 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                 ) : errorPositions ? (
                     <Typography color="error">Erro ao carregar operações: {errorPositions}</Typography>
                 ) : walletPositions && walletPositions.result.length > 0 ? (
-                    <TableContainer component={Paper}>
-                        <Table size="small">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Ativo</TableCell>
-                                    <TableCell align="center">Quantidade</TableCell>
-                                    <TableCell align="center">Preço</TableCell>
-                                    <TableCell align="center">Valor Gasto</TableCell>
-                                    <TableCell align="center">Valor Atual</TableCell>
-                                    <TableCell align="center">Diferença</TableCell>
-                                    <TableCell align="center">Tipo</TableCell>
-                                    <TableCell align="center">Data Início</TableCell>
-                                    <TableCell />
-                                </TableRow>
-                            </TableHead>
+                    <StyledAssetTableContainer>
+                        <StyledAssetTable size="small">
+                            <StyledAssetTableHead>
+                                <StyledAssetTableRow>
+                                    <StyledAssetTableCell>Ativo</StyledAssetTableCell>
+                                    <StyledAssetTableCell align="center">Quantidade</StyledAssetTableCell>
+                                    <StyledAssetTableCell align="center">Preço</StyledAssetTableCell>
+                                    <StyledAssetTableCell align="center">Valor Gasto</StyledAssetTableCell>
+                                    <StyledAssetTableCell align="center">Valor Atual</StyledAssetTableCell>
+                                    <StyledAssetTableCell align="center">Diferença</StyledAssetTableCell>
+                                    <StyledAssetTableCell align="center">Tipo</StyledAssetTableCell>
+                                    <StyledAssetTableCell align="center">Data Início</StyledAssetTableCell>
+                                    <StyledAssetTableCell align="center">Ações</StyledAssetTableCell>
+                                </StyledAssetTableRow>
+                            </StyledAssetTableHead>
                             <TableBody>
                                 {walletPositions.result.map((position) => {
                                     const isRowExpanded = expandedRows.includes(position._id);
                                     return (
                                         <React.Fragment key={position._id}>
-                                            <TableRow>
-                                                <TableCell
+                                            <StyledAssetTableRow>
+                                                <StyledAssetTableCell
                                                     onClick={() => {
                                                         setSelectedAssetPositionId(position._id);
                                                         setIsTransactionsDialogOpen(true);
@@ -170,15 +175,15 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                                     sx={{ cursor: 'pointer', textDecoration: 'underline' }}
                                                 >
                                                     {position.assetCode}
-                                                </TableCell>
-                                                <TableCell align="center">{position.quantity}</TableCell>
-                                                <TableCell align="center">{position.averagePrice.toFixed(2)}</TableCell>
-                                                <TableCell align="center">{(position.quantity * position.averagePrice).toFixed(2)}</TableCell>
-                                                <TableCell align="center">Implementar</TableCell>
-                                                <TableCell align="center">Implementar</TableCell>
-                                                <TableCell align="center">{assetTypes.find(type => type.value === position.assetType)?.label || position.assetType}</TableCell>
-                                                <TableCell align="center">{formatDate(position.createdAt)}</TableCell>
-                                                <TableCell>
+                                                </StyledAssetTableCell>
+                                                <StyledAssetTableCell align="center">{position.quantity}</StyledAssetTableCell>
+                                                <StyledAssetTableCell align="center">{position.averagePrice.toFixed(2)}</StyledAssetTableCell>
+                                                <StyledAssetTableCell align="center">{(position.quantity * position.averagePrice).toFixed(2)}</StyledAssetTableCell>
+                                                <StyledAssetTableCell align="center">Implementar</StyledAssetTableCell>
+                                                <StyledAssetTableCell align="center">Implementar</StyledAssetTableCell>
+                                                <StyledAssetTableCell align="center">{assetTypes.find(type => type.value === position.assetType)?.label || position.assetType}</StyledAssetTableCell>
+                                                <StyledAssetTableCell align="center">{formatDate(position.createdAt)}</StyledAssetTableCell>
+                                                <StyledAssetTableCell>
                                                     <IconButton
                                                         aria-label="expand row"
                                                         size="small"
@@ -203,54 +208,54 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                                     >
                                                         <AddIcon />
                                                     </IconButton>
-                                                </TableCell>
+                                                </StyledAssetTableCell>
 
-                                            </TableRow>
+                                            </StyledAssetTableRow>
                                             {isRowExpanded && (
                                                 loadingTransactions ? (
-                                                    <TableRow>
-                                                        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
+                                                    <StyledTransactionTableRow>
+                                                        <StyledAssetTableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
                                                             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50px' }}>
                                                                 <CircularProgress size={20} />
                                                             </Box>
-                                                        </TableCell>
-                                                    </TableRow>
+                                                        </StyledAssetTableCell>
+                                                    </StyledTransactionTableRow>
                                                 ) : errorTransactions ? (
-                                                    <TableRow>
-                                                        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
+                                                    <StyledTransactionTableRow>
+                                                        <StyledTransactionTableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
                                                             <Box sx={{ margin: 1 }}>
                                                                 <Typography color="error">Erro ao carregar transações: {errorTransactions}</Typography>
                                                             </Box>
-                                                        </TableCell>
-                                                    </TableRow>
+                                                        </StyledTransactionTableCell>
+                                                    </StyledTransactionTableRow>
                                                 ) : transactions.length > 0 ? (
-                                                    <TableRow>
-                                                        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
+                                                    <StyledTransactionTableRow>
+                                                        <StyledTransactionTableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
                                                             <Box sx={{ margin: 1 }}>
                                                                 <Typography variant="h4" gutterBottom component="div">
                                                                     Transações de {assetCode}
 
                                                                 </Typography>
-                                                                <Table size="small" aria-label="purchases">
-                                                                    <TableHead>
+                                                                <StyledTransactionTable size="small" aria-label="purchases">
+                                                                    <StyledTransactionTableHead>
                                                                         <TableRow>
-                                                                            <TableCell>Tipo</TableCell>
-                                                                            <TableCell>Quantidade</TableCell>
-                                                                            <TableCell align="right">Preço</TableCell>
-                                                                            <TableCell align="right">Data</TableCell>
-                                                                            <TableCell align="right" >Ações</TableCell>
+                                                                            <StyledTransactionTableCell>Tipo</StyledTransactionTableCell>
+                                                                            <StyledTransactionTableCell>Quantidade</StyledTransactionTableCell>
+                                                                            <StyledTransactionTableCell align="right">Preço</StyledTransactionTableCell>
+                                                                            <StyledTransactionTableCell align="right">Data</StyledTransactionTableCell>
+                                                                            <StyledTransactionTableCell align="right" >Ações</StyledTransactionTableCell>
                                                                         </TableRow>
-                                                                    </TableHead>
+                                                                    </StyledTransactionTableHead>
                                                                     <TableBody>
                                                                         {transactions.map((transaction) => (
-                                                                            <TableRow key={transaction._id}>
-                                                                                <TableCell component="th" scope="row">
+                                                                            <StyledTransactionTableRow key={transaction._id}>
+                                                                                <StyledTransactionTableCell component="th" scope="row">
                                                                                     {transaction.type === 'buy' ? 'Compra' : 'Venda'}
-                                                                                </TableCell>
-                                                                                <TableCell>{transaction.quantity}</TableCell>
-                                                                                <TableCell align="right">{transaction.price.toFixed(2)}</TableCell>
-                                                                                <TableCell align="right">{formatDate(transaction.executedAt)}</TableCell>
-                                                                                <TableCell align="right">
+                                                                                </StyledTransactionTableCell>
+                                                                                <StyledTransactionTableCell>{transaction.quantity}</StyledTransactionTableCell>
+                                                                                <StyledTransactionTableCell align="right">{transaction.price.toFixed(2)}</StyledTransactionTableCell>
+                                                                                <StyledTransactionTableCell align="right">{formatDate(transaction.executedAt)}</StyledTransactionTableCell>
+                                                                                <StyledTransactionTableCell align="right">
                                                                                     <IconButton
                                                                                         color="primary"
                                                                                         onClick={() => {
@@ -269,17 +274,17 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                                                                     >
                                                                                         <DeleteIcon />
                                                                                     </IconButton>
-                                                                                </TableCell>
+                                                                                </StyledTransactionTableCell>
 
-                                                                            </TableRow>
+                                                                            </StyledTransactionTableRow>
                                                                         ))}
                                                                     </TableBody>
-                                                                </Table>
+                                                                </StyledTransactionTable>
                                                             </Box>
-                                                        </TableCell>
-                                                    </TableRow>
+                                                        </StyledTransactionTableCell>
+                                                    </StyledTransactionTableRow>
                                                 ) : (
-                                                    <TableRow>
+                                                    <StyledAssetTableRow>
                                                         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
                                                             <Box sx={{ margin: 1 }}>
                                                                 <Typography variant="body2" color="text.secondary">
@@ -287,14 +292,15 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                                                 </Typography>
                                                             </Box>
                                                         </TableCell>
-                                                    </TableRow>
+                                                    </StyledAssetTableRow>
+
                                                 ))}
                                         </React.Fragment>
                                     );
                                 })}
                             </TableBody>
-                        </Table>
-                    </TableContainer>
+                        </StyledAssetTable>
+                    </StyledAssetTableContainer>
                 ) : (
                     <Typography>Nenhuma operação encontrada para esta carteira.</Typography>
                 )}
