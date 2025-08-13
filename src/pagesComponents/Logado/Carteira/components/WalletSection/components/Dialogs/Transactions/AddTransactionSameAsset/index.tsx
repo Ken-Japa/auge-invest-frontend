@@ -16,12 +16,15 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
 
-interface AddTransactionDialogProps {
+interface AddSameTransactionDialogProps {
     open: boolean;
     onClose: () => void;
     positionId: string | null;
     userId: string;
     onSave: () => void;
+    assetCode: string | null;
+    assetType: string | null;
+
 
 }
 
@@ -40,32 +43,27 @@ export const assetTypes = [
     { value: 'tesouro', label: 'Tesouro Direto' },
 ];
 
-export const AddTransactionDialog = ({ open, onClose, positionId, onSave, userId }: AddTransactionDialogProps) => {
+export const AddSameTransactionDialog = ({ open, onClose, positionId, onSave, userId, assetCode, assetType }: AddSameTransactionDialogProps) => {
 
     const [transactionType, setTransactionType] = useState('');
-    const [assetType, setAssetType] = useState('');
-    const [symbol, setSymbol] = useState('');
     const [quantity, setQuantity] = useState('');
     const [price, setPrice] = useState('');
     const [date, setDate] = useState<Dayjs | null>(dayjs());
-
 
     const createTransactionMutation = useMutation({
         mutationFn: (payload: CreateTransactionPayload) => api.wallet.createTransaction(payload),
         onSuccess: () => {
             onClose();
             onSave();
-            // Optionally, you can invalidate queries here to refetch wallet data
-            // queryClient.invalidateQueries(['wallets']);
+
         },
         onError: (error) => {
             console.error('Erro criando a transação:', error);
-
         },
     });
 
     const handleSubmit = () => {
-        if (!positionId || !transactionType || !assetType || !symbol || !quantity || !price || !date) {
+        if (!positionId || !transactionType || !assetType || !assetCode || !quantity || !price || !date) {
 
             return;
         }
@@ -75,7 +73,7 @@ export const AddTransactionDialog = ({ open, onClose, positionId, onSave, userId
             portfolioId: positionId,
             type: transactionType as 'buy' | 'sell',
             assetType: assetType as 'stocks' | 'derivatives' | 'etfs' | 'bdrs' | 'fiis' | 'treasury',
-            assetCode: symbol,
+            assetCode: assetCode,
             quantity: parseInt(quantity),
             price: parseFloat(price),
             executedAt: date ? date.toISOString() : new Date().toISOString(),
@@ -91,18 +89,28 @@ export const AddTransactionDialog = ({ open, onClose, positionId, onSave, userId
                 <Grid container spacing={2} sx={{ mt: 1 }}>
                     <Grid item xs={12}>
                         <TextField
-                            select
+                            margin="dense"
+                            label={assetCode}
+                            type="text"
                             fullWidth
+                            variant="outlined"
+                            value=""
+                            disabled
+                            sx={{ mb: 2 }}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <TextField
+                            margin="dense"
                             label="Tipo de Ativo"
-                            value={assetType}
-                            onChange={(e) => setAssetType(e.target.value)}
-                        >
-                            {assetTypes.map((type) => (
-                                <MenuItem key={type.value} value={type.value}>
-                                    {type.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
+                            type="text"
+                            fullWidth
+                            variant="outlined"
+                            value={assetTypes.find(type => type.value === assetType)?.label || assetType}
+                            disabled
+                            sx={{ mb: 2 }}
+                        />
                     </Grid>
                     <Grid item xs={12}>
                         <TextField
@@ -120,14 +128,7 @@ export const AddTransactionDialog = ({ open, onClose, positionId, onSave, userId
                         </TextField>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            label="Símbolo"
-                            value={symbol}
-                            onChange={(e) => setSymbol(e.target.value)}
-                        />
-                    </Grid>
+
 
                     <Grid item xs={12} sm={6}>
                         <TextField

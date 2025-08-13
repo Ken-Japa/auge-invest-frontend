@@ -2,9 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography, Box, CircularProgress, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from '@mui/material';
 import { Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { walletApi } from '@/services/api/endpoints/wallet';
-import { Transaction, WalletTransaction } from '@/services/api/types/transaction';
+import { Transaction } from '@/services/api/types/transaction';
 import { formatDate2 as formatDate } from '@/components/Utils/Formatters/formatters';
-import { AddTransactionDialog } from '../AddTransactionDialog';
+import { AddSameTransactionDialog } from '../AddTransactionSameAsset';
 import { EditTransactionDialog } from '../EditTransactionDialog';
 import { DeleteTransactionConfirmDialog } from '../DeleteTransactionConfirmDialog';
 
@@ -90,7 +90,7 @@ export const TransactionsDialog: React.FC<TransactionsDialogProps> = ({
                                     <TableCell>Tipo</TableCell>
                                     <TableCell align="center">Quantidade</TableCell>
                                     <TableCell align="center">Preço</TableCell>
-                                    <TableCell align="center">Data de Execução</TableCell>
+                                    <TableCell align="center">Data</TableCell>
                                     <TableCell align="center">Ações</TableCell>
                                 </TableRow>
                             </TableHead>
@@ -130,11 +130,13 @@ export const TransactionsDialog: React.FC<TransactionsDialogProps> = ({
                     <Typography>Nenhuma transação encontrada para este ativo.</Typography>
                 )}
 
-                <AddTransactionDialog
+                <AddSameTransactionDialog
                     open={isAddTransactionOpen}
                     onClose={() => setIsAddTransactionOpen(false)}
                     userId={userId}
                     positionId={assetId}
+                    assetCode={assetCode}
+                    assetType={assetType}
                     onSave={handleTransactionSavedOrDeleted}
                 />
 
