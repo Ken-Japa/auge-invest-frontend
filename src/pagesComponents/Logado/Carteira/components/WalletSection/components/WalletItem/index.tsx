@@ -8,6 +8,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Wallet } from '@/services/api/types';
 import { formatDate2 as formatDate } from '@/components/Utils/Formatters/formatters'
 import { AddTransactionDialog, assetTypes } from '../Dialogs/Transactions/AddTransactionDialog';
+import { AddSameTransactionDialog } from '../Dialogs/Transactions/AddTransactionSameAsset';
+
 import { EditTransactionDialog } from '../Dialogs/Transactions/EditTransactionDialog';
 import { DeleteTransactionConfirmDialog } from '../Dialogs/Transactions/DeleteTransactionConfirmDialog';
 import { TransactionsDialog } from '../Dialogs/Transactions/TransactionsDialog';
@@ -37,6 +39,7 @@ export const WalletItem: React.FC<WalletItemProps> = ({
     fetchWalletPositions,
 }) => {
     const [isAddTransactionOpen, setIsAddTransactionOpen] = useState(false);
+    const [isAddSameTransactionOpen, setIsAddSameTransactionOpen] = useState(false);
     const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
     const [expandedRows, setExpandedRows] = useState<string[]>([]);
 
@@ -106,7 +109,7 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                 }}>
                     <Typography variant="h4" sx={{ flexGrow: 1 }}>
                         {wallet.name}
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
                             {wallet.description}
                         </Typography>
                     </Typography>
@@ -116,7 +119,7 @@ export const WalletItem: React.FC<WalletItemProps> = ({
             </AccordionSummary>
             <AccordionDetails>
 
-                <Box sx={{ mb: 2, display: 'flex', justifyContent: 'flex-start' }}>
+                <Box sx={{ my: 2, display: 'flex', justifyContent: 'flex-start' }}>
                     <Button
                         variant="outlined"
                         startIcon={<AddIcon />}
@@ -140,7 +143,6 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                         <Table size="small">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell />
                                     <TableCell>Ativo</TableCell>
                                     <TableCell align="center">Quantidade</TableCell>
                                     <TableCell align="center">Preço</TableCell>
@@ -149,6 +151,7 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                     <TableCell align="center">Diferença</TableCell>
                                     <TableCell align="center">Tipo</TableCell>
                                     <TableCell align="center">Data Início</TableCell>
+                                    <TableCell />
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -157,19 +160,6 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                     return (
                                         <React.Fragment key={position._id}>
                                             <TableRow>
-                                                <TableCell>
-                                                    <IconButton
-                                                        aria-label="expand row"
-                                                        size="small"
-                                                        onClick={() => {
-                                                            handleToggleRow(position._id);
-                                                            setSelectedAssetPositionId(position._id);
-                                                            setAssetCode(position.assetCode);
-                                                        }}
-                                                    >
-                                                        {isRowExpanded ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
-                                                    </IconButton>
-                                                </TableCell>
                                                 <TableCell
                                                     onClick={() => {
                                                         setSelectedAssetPositionId(position._id);
@@ -188,6 +178,33 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                                 <TableCell align="center">Implementar</TableCell>
                                                 <TableCell align="center">{assetTypes.find(type => type.value === position.assetType)?.label || position.assetType}</TableCell>
                                                 <TableCell align="center">{formatDate(position.createdAt)}</TableCell>
+                                                <TableCell>
+                                                    <IconButton
+                                                        aria-label="expand row"
+                                                        size="small"
+                                                        onClick={() => {
+                                                            handleToggleRow(position._id);
+                                                            setSelectedAssetPositionId(position._id);
+                                                            setAssetCode(position.assetCode);
+                                                            setAssetType(position.assetType);
+                                                        }}
+                                                    >
+                                                        {isRowExpanded ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+                                                    </IconButton>
+                                                    <IconButton
+                                                        aria-label="expand row"
+                                                        size="small"
+                                                        onClick={() => {
+                                                            setIsAddSameTransactionOpen(true)
+                                                            setSelectedAssetPositionId(position._id);
+                                                            setAssetCode(position.assetCode);
+                                                            setAssetType(position.assetType);
+                                                        }}
+                                                    >
+                                                        <AddIcon />
+                                                    </IconButton>
+                                                </TableCell>
+
                                             </TableRow>
                                             {isRowExpanded && (
                                                 loadingTransactions ? (
@@ -210,8 +227,8 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                                     <TableRow>
                                                         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
                                                             <Box sx={{ margin: 1 }}>
-                                                                <Typography variant="h5" gutterBottom component="div">
-                                                                    Transações {assetCode}
+                                                                <Typography variant="h4" gutterBottom component="div">
+                                                                    Transações de {assetCode}
 
                                                                 </Typography>
                                                                 <Table size="small" aria-label="purchases">
@@ -315,6 +332,15 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                     onSave={handleTransactionSavedOrDeleted}
                     assetCode={assetCode}
                     assetType={assetType}
+                />
+                <AddSameTransactionDialog
+                    open={isAddSameTransactionOpen}
+                    onClose={() => setIsAddSameTransactionOpen(false)}
+                    userId={wallet.userId}
+                    positionId={selectedAssetPositionId}
+                    assetCode={assetCode}
+                    assetType={assetType}
+                    onSave={handleTransactionSavedOrDeleted}
                 />
             </AccordionDetails>
         </Accordion>
