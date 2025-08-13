@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { WalletTransactions, WalletTransaction } from '@/services/api/types/transaction';
-import { Box, Typography, IconButton, Accordion, AccordionSummary, AccordionDetails, Button, CircularProgress, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
-import { Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
+import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, Button, CircularProgress, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
+import { Add as AddIcon } from '@mui/icons-material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Wallet } from '@/services/api/types';
 import { formatDate2 as formatDate } from '@/components/Utils/Formatters/formatters'
 import { AddTransactionDialog, assetTypes } from '../Dialogs/Transactions/AddTransactionDialog';
 import { EditTransactionDialog } from '../Dialogs/Transactions/EditTransactionDialog';
 import { DeleteTransactionConfirmDialog } from '../Dialogs/Transactions/DeleteTransactionConfirmDialog';
+import { TransactionsDialog } from '../Dialogs/Transactions/TransactionsDialog';
 
 
 interface WalletItemProps {
@@ -35,10 +36,14 @@ export const WalletItem: React.FC<WalletItemProps> = ({
 }) => {
     const [isAddTransactionOpen, setIsAddTransactionOpen] = useState(false);
     const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
-    const [isEditTransactionOpen, setIsEditTransactionOpen] = useState(false);
-    const [selectedTransaction, setSelectedTransaction] = useState<WalletTransaction | null>(null);
+
     const [isDeleteTransactionOpen, setIsDeleteTransactionOpen] = useState(false);
     const [transactionToDeleteId, setTransactionToDeleteId] = useState<string | null>(null);
+    const [isTransactionsDialogOpen, setIsTransactionsDialogOpen] = useState(false);
+    const [selectedAssetPositionId, setSelectedAssetPositionId] = useState<string | null>(null);
+    const [assetCode, setAssetCode] = useState<string | null>(null);
+    const [assetType, setAssetType] = useState<string | null>(null);
+
 
     useEffect(() => {
         if (expanded) {
@@ -46,15 +51,6 @@ export const WalletItem: React.FC<WalletItemProps> = ({
         }
     }, [expanded, wallet._id, fetchWalletPositions]);
 
-    const handleEditTransaction = (transaction: WalletTransaction) => {
-        setSelectedTransaction(transaction);
-        setIsEditTransactionOpen(true);
-    };
-
-    const handleDeleteTransaction = (transactionId: string) => {
-        setTransactionToDeleteId(transactionId);
-        setIsDeleteTransactionOpen(true);
-    };
 
     const handleTransactionSavedOrDeleted = () => {
         fetchWalletPositions(wallet._id);
@@ -81,31 +77,7 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                     </Typography>
 
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1, mb: 2 }}>
-                    <IconButton
-                        aria-label="edit"
-                        onClick={(event) => {
-                            event.stopPropagation();
-                            onEdit(wallet);
-                        }}
-                        size="small"
-                        component="div"
-                    >
-                        <EditIcon fontSize="small" />
-                    </IconButton>
-                    <IconButton
-                        aria-label="delete"
-                        onClick={(event) => {
-                            event.stopPropagation();
-                            onDelete(wallet._id);
-                        }}
-                        size="small"
-                        color="error"
-                        component="div"
-                    >
-                        <DeleteIcon fontSize="small" />
-                    </IconButton>
-                </Box>
+
             </AccordionSummary>
             <AccordionDetails>
 
@@ -141,13 +113,24 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                     <TableCell align="center">Diferença</TableCell>
                                     <TableCell align="center">Tipo</TableCell>
                                     <TableCell align="center">Data Início</TableCell>
-                                    <TableCell align="right">Ações</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {walletPositions.result.map((position) => (
                                     <TableRow key={position._id}>
-                                        <TableCell>{position.assetCode}</TableCell>
+                                        <TableCell
+                                            onClick={() => {
+                                                setSelectedAssetPositionId(position._id);
+                                                setIsTransactionsDialogOpen(true);
+                                                setAssetCode(position.assetCode);
+                                                setAssetType(position.assetType);
+
+
+                                            }}
+                                            sx={{ cursor: 'pointer', textDecoration: 'underline' }}
+                                        >
+                                            {position.assetCode}
+                                        </TableCell>
                                         <TableCell align="center">{position.quantity}</TableCell>
                                         <TableCell align="center">{position.averagePrice}</TableCell>
                                         <TableCell align="center">{(position.quantity * position.averagePrice)}</TableCell>
@@ -155,40 +138,6 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                                         <TableCell align="center">Implementar</TableCell>
                                         <TableCell align="center">{assetTypes.find(type => type.value === position.assetType)?.label || position.assetType}</TableCell>
                                         <TableCell align="center">{formatDate(position.createdAt)}</TableCell>
-                                        <TableCell align="right">
-                                            <IconButton
-                                                aria-label="edit transaction"
-                                                onClick={(event) => {
-                                                    event.stopPropagation();
-                                                    const transactionToEdit: WalletTransaction = {
-                                                        _id: position._id,
-                                                        positionId: position._id,
-                                                        assetCode: position.assetCode,
-                                                        assetType: position.assetType,
-                                                        quantity: position.quantity,
-                                                        averagePrice: position.averagePrice,
-                                                        executedAt: position.createdAt,
-                                                        createdAt: position.createdAt,
-                                                        updatedAt: position.updatedAt,
-                                                    };
-                                                    handleEditTransaction(transactionToEdit);
-                                                }}
-                                                size="small"
-                                            >
-                                                <EditIcon fontSize="small" />
-                                            </IconButton>
-                                            <IconButton
-                                                aria-label="delete transaction"
-                                                onClick={(event) => {
-                                                    event.stopPropagation();
-                                                    handleDeleteTransaction(position._id);
-                                                }}
-                                                size="small"
-                                                color="error"
-                                            >
-                                                <DeleteIcon fontSize="small" />
-                                            </IconButton>
-                                        </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
@@ -206,18 +155,24 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                     onSave={handleTransactionSavedOrDeleted}
                 />
 
-                <EditTransactionDialog
-                    open={isEditTransactionOpen}
-                    onClose={() => setIsEditTransactionOpen(false)}
-                    transaction={selectedTransaction}
-                    onSave={handleTransactionSavedOrDeleted}
-                />
+
 
                 <DeleteTransactionConfirmDialog
                     open={isDeleteTransactionOpen}
                     onClose={() => setIsDeleteTransactionOpen(false)}
                     transactionId={transactionToDeleteId}
+                    positionId={selectedPosition}
                     onConfirm={handleTransactionSavedOrDeleted}
+                />
+
+                <TransactionsDialog
+                    open={isTransactionsDialogOpen}
+                    onClose={() => setIsTransactionsDialogOpen(false)}
+                    userId={wallet.userId}
+                    assetId={selectedAssetPositionId}
+                    onSave={handleTransactionSavedOrDeleted}
+                    assetCode={assetCode}
+                    assetType={assetType}
                 />
             </AccordionDetails>
         </Accordion>

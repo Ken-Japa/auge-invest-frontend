@@ -8,6 +8,7 @@ import {
   CreateTransactionPayload,
   UpdateWalletPayload,
   WalletTransactions,
+  PaginatedTransactions,
 } from "../types";
 import { handleApiError, ErrorCode } from "../errorHandler";
 
@@ -100,12 +101,12 @@ class WalletApiService extends BaseApiService {
   }
 
   public async updateTransaction(
-    id: string,
+    positionId: string,
     payload: UpdateTransactionPayload
   ): Promise<Transaction> {
     try {
       const response = await this.put<Transaction>(
-        `${API_ENDPOINTS.TRANSACTION.UPDATE}/${id}`,
+        `${API_ENDPOINTS.TRANSACTION.UPDATE}/${positionId}`,
         payload
       );
       return response;
@@ -114,18 +115,35 @@ class WalletApiService extends BaseApiService {
     }
   }
 
-  public async deleteTransaction(id: string): Promise<void> {
+  public async deleteTransaction(transactionId: string): Promise<void> {
     try {
-      await this.delete<void>(`${API_ENDPOINTS.TRANSACTION.DELETE}/${id}`);
+      await this.delete<void>(
+        `${API_ENDPOINTS.TRANSACTION.DELETE}/${transactionId}`
+      );
     } catch (error) {
       throw handleApiError(error, ErrorCode.TRANSACTION_DELETION_FAILED);
     }
   }
 
-  public async getTransaction(id: string): Promise<Transaction> {
+  public async getTransaction(transactionId: string): Promise<Transaction> {
     try {
       const response = await this.get<Transaction>(
-        `${API_ENDPOINTS.TRANSACTION.GET}/${id}`
+        `${API_ENDPOINTS.TRANSACTION.GET}/${transactionId}`
+      );
+      return response;
+    } catch (error) {
+      throw handleApiError(error, ErrorCode.TRANSACTION_NOT_FOUND);
+    }
+  }
+
+  public async getTransactionsByPositionId(
+    positionId: string,
+    page: number = 0,
+    pageSize: number = 10
+  ): Promise<PaginatedTransactions> {
+    try {
+      const response = await this.get<PaginatedTransactions>(
+        `${API_ENDPOINTS.TRANSACTION.PAGINATION}?positionId=${positionId}&page=${page}&pageSize=${pageSize}`
       );
       return response;
     } catch (error) {

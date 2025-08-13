@@ -46,6 +46,7 @@ export interface UpdateTransactionPayload {
   quantity?: number;
   price?: number;
   type?: "buy" | "sell";
+  executedAt?: string;
 }
 
 export interface CreateWalletPayload {
@@ -76,4 +77,9 @@ export interface WalletTransaction {
   executedAt: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface PaginatedTransactions {
+  result: Transaction[];
+  pagination: Pagination;
 }

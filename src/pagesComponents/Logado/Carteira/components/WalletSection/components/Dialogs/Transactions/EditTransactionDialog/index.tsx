@@ -1,37 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, CircularProgress, MenuItem, Select, FormControl, InputLabel } from '@mui/material';
-import { TransactionType, WalletTransaction } from '@/services/api/types/transaction';
+import dayjs, { Dayjs } from 'dayjs';
+import 'dayjs/locale/pt-br';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, CircularProgress, MenuItem, Select, FormControl, InputLabel, Box, Grid } from '@mui/material';
+import { TransactionType } from '@/services/api/types/transaction';
 import { api } from '@/services/api';
+
+import { Transaction } from '@/services/api/types/transaction';
 
 interface EditTransactionDialogProps {
     open: boolean;
     onClose: () => void;
-    transaction: WalletTransaction | null;
+    transaction: Transaction | null;
     onSave: () => void;
+    assetCode: string | null;
+    assetType: string | null;
 }
+
+export const assetTypes = [
+    { value: 'acao', label: 'Ação' },
+    { value: 'derivativo', label: 'Derivativo' },
+    { value: 'etf', label: 'ETF' },
+    { value: 'etfbdr', label: 'ETF de BDR' },
+    { value: 'bdr', label: 'BDR' },
+    { value: 'fii', label: 'FII' },
+    { value: 'tesouro', label: 'Tesouro Direto' },
+];
 
 export const EditTransactionDialog: React.FC<EditTransactionDialogProps> = ({
     open,
     onClose,
     transaction,
     onSave,
+    assetCode,
+    assetType,
 }) => {
-    const [quantity, setQuantity] = useState<number>(0);
-    const [price, setPrice] = useState<number>(0);
-    const [type, setType] = useState<TransactionType>(TransactionType.BUY);
+    const [quantity, setQuantity] = useState<number>(transaction?.quantity || 0);
+    const [price, setPrice] = useState<number>(transaction?.price || 0);
+    const [type, setType] = useState<TransactionType>(transaction?.type as TransactionType || TransactionType.BUY);
+    const [executedAt, setExecutedAt] = useState<Dayjs | null>(transaction?.executedAt ? dayjs(transaction.executedAt) : dayjs());
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         if (transaction) {
             setQuantity(transaction.quantity);
-            setPrice(transaction.averagePrice);
-
+            setPrice(transaction.price);
+            setType(transaction.type as TransactionType);
+            setExecutedAt(dayjs(transaction.executedAt));
         }
     }, [transaction]);
 
     const handleSave = async () => {
-        if (!transaction) return;
+        if (!transaction || !executedAt) return;
 
         setLoading(true);
         setError(null);
@@ -42,6 +63,7 @@ export const EditTransactionDialog: React.FC<EditTransactionDialogProps> = ({
                     quantity,
                     price,
                     type,
+                    executedAt: executedAt.toISOString(),
                 }
             );
             onSave();
@@ -57,15 +79,31 @@ export const EditTransactionDialog: React.FC<EditTransactionDialogProps> = ({
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>Editar Operação</DialogTitle>
             <DialogContent>
-                {transaction && (
+                {loading ? (
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
+                        <CircularProgress />
+                    </Box>
+                ) : error ? (
+                    <Typography color="error">Erro ao carregar transação: {error}</Typography>
+                ) : (
                     <>
                         <TextField
                             margin="dense"
-                            label="Ativo"
+                            label={assetCode}
                             type="text"
                             fullWidth
                             variant="outlined"
-                            value={transaction.assetCode}
+                            value=""
+                            disabled
+                            sx={{ mb: 2 }}
+                        />
+                        <TextField
+                            margin="dense"
+                            label="Tipo de Ativo"
+                            type="text"
+                            fullWidth
+                            variant="outlined"
+                            value={assetTypes.find(type => type.value === assetType)?.label || assetType}
                             disabled
                             sx={{ mb: 2 }}
                         />
@@ -101,9 +139,15 @@ export const EditTransactionDialog: React.FC<EditTransactionDialogProps> = ({
                                 <MenuItem value={TransactionType.SELL}>Venda</MenuItem>
                             </Select>
                         </FormControl>
+                        <DatePicker
+                            label="Data da Operação"
+                            value={executedAt}
+                            onChange={(newValue) => setExecutedAt(newValue)}
+                            slotProps={{ textField: { fullWidth: true } }}
+                        />
                     </>
                 )}
-                {loading && <CircularProgress size={24} sx={{ mt: 2 }} />}
+
                 {error && <Typography color="error" sx={{ mt: 2 }}>{error}</Typography>}
             </DialogContent>
             <DialogActions>

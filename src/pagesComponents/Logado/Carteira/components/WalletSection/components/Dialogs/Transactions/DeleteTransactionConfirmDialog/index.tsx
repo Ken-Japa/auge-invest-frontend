@@ -6,6 +6,7 @@ interface DeleteTransactionConfirmDialogProps {
     open: boolean;
     onClose: () => void;
     transactionId: string | null;
+    positionId: string | null;
     onConfirm: () => void;
 }
 
@@ -39,7 +40,8 @@ export const DeleteTransactionConfirmDialog: React.FC<DeleteTransactionConfirmDi
             <DialogTitle>Confirmar Exclusão</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    Tem certeza que deseja excluir esta operação? Esta ação não poderá ser desfeita.
+                    <Typography>Tem certeza que deseja excluir esta operação?</Typography>
+                    <Typography>Esta ação não poderá ser desfeita.</Typography>
                 </DialogContentText>
                 {error && <Typography color="error" sx={{ mt: 2 }}>{error}</Typography>}
             </DialogContent>

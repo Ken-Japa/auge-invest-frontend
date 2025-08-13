@@ -22,6 +22,7 @@ interface AddTransactionDialogProps {
     positionId: string | null;
     userId: string;
     onSave: () => void;
+
 }
 
 const transactionTypes = [
@@ -39,7 +40,8 @@ export const assetTypes = [
     { value: 'tesouro', label: 'Tesouro Direto' },
 ];
 
-export const AddTransactionDialog = ({ open, onClose, positionId, userId, onSave }: AddTransactionDialogProps) => {
+export const AddTransactionDialog = ({ open, onClose, positionId, onSave, userId }: AddTransactionDialogProps) => {
+
     const [transactionType, setTransactionType] = useState('');
     const [assetType, setAssetType] = useState('');
     const [symbol, setSymbol] = useState('');
@@ -57,15 +59,14 @@ export const AddTransactionDialog = ({ open, onClose, positionId, userId, onSave
             // queryClient.invalidateQueries(['wallets']);
         },
         onError: (error) => {
-            console.error('Error creating transaction:', error);
-            console.log("error:", error)
-            // Handle error, e.g., show a toast message
+            console.error('Erro criando a transação:', error);
+
         },
     });
 
     const handleSubmit = () => {
         if (!positionId || !transactionType || !assetType || !symbol || !quantity || !price || !date) {
-            // Handle validation error
+
             return;
         }
 
