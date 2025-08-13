@@ -58,6 +58,7 @@ export interface CreateWalletPayload {
 export interface UpdateWalletPayload {
   name?: string;
   description?: string;
+  simulated?: boolean;
 }
 
 export enum TransactionType {

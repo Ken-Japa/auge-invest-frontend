@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { api } from "@/services/api";
-import { Wallet, WalletTransactions } from "@/services/api/types";
+import { Wallet } from '@/services/api/types';
+import { WalletTransactions } from '@/services/api/types/transaction';
 
 export const useWalletData = (isSimulated?: boolean) => {
   const { data: session } = useSession();
@@ -27,7 +28,7 @@ export const useWalletData = (isSimulated?: boolean) => {
       const userWallets = await api.wallet.getUserWallets(userId);
       const filteredWallets = userWallets.filter(wallet => wallet.simulated === isSimulated);
       setWallets(filteredWallets);
-      console.log(userId);
+      console.log('fetchWallets - userId:', userId, 'isSimulated:', isSimulated, 'filteredWallets:', filteredWallets);
     } catch (err: any) {
       if (
         err.code === "wallet/not-found" &&
@@ -42,7 +43,7 @@ export const useWalletData = (isSimulated?: boolean) => {
     } finally {
       setLoading(false);
     }
-  }, [userId]);
+  }, [userId, isSimulated]);
 
   useEffect(() => {
     fetchWallets();
@@ -74,7 +75,7 @@ export const useWalletData = (isSimulated?: boolean) => {
   );
 
   const handleUpdateWallet = useCallback(
-    async (walletId: string, name: string, description: string) => {
+    async (walletId: string, name: string, description: string, simulated: boolean) => {
       if (!walletId || !name) {
         setError("Wallet name and wallet ID are required for update.");
         return;
@@ -85,6 +86,7 @@ export const useWalletData = (isSimulated?: boolean) => {
         await api.wallet.updateWallet(walletId, {
           name: name,
           description: description,
+          simulated: simulated,
         });
         fetchWallets();
       } catch (err: any) {

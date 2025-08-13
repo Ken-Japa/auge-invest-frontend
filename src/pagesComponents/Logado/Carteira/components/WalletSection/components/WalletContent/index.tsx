@@ -4,7 +4,7 @@ import { AddWalletDialog } from '../Dialogs/Wallet/AddWalletDialog';
 import { EditWalletDialog } from '../Dialogs/Wallet/EditWalletDialog';
 import { DeleteWalletConfirmDialog } from '../Dialogs/Wallet/DeleteWalletConfirmDialog';
 import { Wallet } from '@/services/api/types';
-import { WalletTransactions } from '@/services/api/types';
+import { WalletTransactions } from '@/services/api/types/transaction';
 
 interface WalletContentProps {
     wallets: Wallet[];
@@ -20,7 +20,7 @@ interface WalletContentProps {
     error: string | null;
     openEditDialog: boolean;
     onCloseEditDialog: () => void;
-    onUpdateWallet: (walletId: string, name: string, description: string) => Promise<void>;
+    onUpdateWallet: (walletId: string, name: string, description: string, simulated: boolean) => Promise<void>;
     editingWallet: Wallet | null;
     openDeleteConfirm: boolean;
     onCloseDeleteConfirm: () => void;

@@ -10,6 +10,9 @@ import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { useWalletData } from './hooks/useWalletData';
 import { WalletContent } from './components/WalletContent';
+import { AddWalletDialog } from './components/Dialogs/Wallet/AddWalletDialog';
+import { EditWalletDialog } from './components/Dialogs/Wallet/EditWalletDialog';
+
 
 interface WalletSectionProps {
     title: string;
@@ -38,8 +41,8 @@ export const WalletSection: React.FC<WalletSectionProps> = ({ title, isSimulated
         setOpenAddDialog(false);
     };
 
-    const handleCreateWalletAndCloseDialog = async (name: string, description: string) => {
-        await handleCreateWallet(name, description, isSimulated as boolean);
+    const handleCreateWalletAndCloseDialog = async (name: string, description: string, simulated: boolean) => {
+        await handleCreateWallet(name, description, simulated);
         handleCloseAddDialog();
     };
 
@@ -52,8 +55,8 @@ export const WalletSection: React.FC<WalletSectionProps> = ({ title, isSimulated
         setOpenEditDialog(true);
     };
 
-    const handleUpdateWalletAndCloseDialog = async (walletId: string, name: string, description: string) => {
-        await handleUpdateWallet(walletId, name, description);
+    const handleUpdateWalletAndCloseDialog = async (walletId: string, name: string, description: string, simulated: boolean) => {
+        await handleUpdateWallet(walletId, name, description, simulated);
         setOpenEditDialog(false);
         setEditingWallet(null);
     };
@@ -79,72 +82,82 @@ export const WalletSection: React.FC<WalletSectionProps> = ({ title, isSimulated
         setWalletToDelete(null);
     };
 
-    if (loading) {
-        return (
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
-                <CircularProgress />
-            </Box>
-        );
-    }
-
-    // Render the error message if an error exists, but still allow the button to be displayed
-    const errorMessageDisplay = error ? (
-        <Box sx={{ color: 'error.main', textAlign: 'center', mt: 4, mb: 2 }}>
-            <Typography variant="h6">Error: {error}</Typography>
-            <Button onClick={fetchWallets} variant="outlined" sx={{ mt: 2 }}>
-                Retry
-            </Button>
-        </Box>
-    ) : null;
-
     return (
         <ErrorBoundary>
             <SuspenseWrapper>
                 <ProgressiveLoad delay={0.2}>
-                    <Box sx={{ my: 8 }}>
-                        <Typography variant="h3" gutterBottom>{title}</Typography>
-                        <Button
-                            variant="contained"
-                            startIcon={<AddIcon />}
-                            onClick={handleOpenAddDialog}
-                            sx={{ my: 4 }}
-                        >
-                            {isSimulated ? 'Nova Simulação' : 'Nova Carteira'}
-                        </Button>
-                        {wallets.length === 0 ? (
-                            <Typography>Nenhuma carteira encontrada.</Typography>
-                        ) : (
-                            <Box>
-                                <WalletContent
-                                    wallets={wallets}
-                                    expanded={expanded}
-                                    onAccordionChange={handleAccordionChange}
-                                    onEdit={handleEditWallet}
-                                    onDelete={handleDeleteWallet}
-                                    openAddDialog={openAddDialog}
-                                    onCloseAddDialog={handleCloseAddDialog}
-                                    onCreateWallet={handleCreateWalletAndCloseDialog}
-                                    loading={loading}
-                                    error={error}
-                                    isSimulated={isSimulated}
-                                    openEditDialog={openEditDialog}
-                                    onCloseEditDialog={handleCloseEditDialog}
-                                    onUpdateWallet={handleUpdateWalletAndCloseDialog}
-                                    editingWallet={editingWallet}
-                                    openDeleteConfirm={openDeleteConfirm}
-                                    onCloseDeleteConfirm={handleCloseDeleteConfirm}
-                                    onConfirmDelete={handleConfirmDeleteAndCloseDialog}
-                                    walletPositions={walletPositions}
-                                    loadingPositions={loadingPositions}
-                                    errorPositions={errorPositions}
-                                    fetchWalletPositions={fetchWalletPositions}
-                                />
+                    <Box sx={{ my: 4 }}>
+                        {loading && (
+                            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
+                                <CircularProgress />
                             </Box>
                         )}
 
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 4 }}>
+                            <Typography variant="h3" component="h2" sx={{ fontWeight: 'bold' }}>
+                                {title}
+                            </Typography>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                startIcon={<AddIcon />}
+                                onClick={handleOpenAddDialog}
+                            >
+                                {isSimulated ? 'Nova Simulação' : 'Nova Carteira'}
+                            </Button>
+                        </Box>
+                        {wallets.length === 0 && !loading && !error ? (
+                            <Typography variant="body1" color="textSecondary" sx={{ textAlign: 'center', my: 4 }}>
+                                Nenhuma carteira encontrada. Crie uma nova para começar!
+                            </Typography>
+                        ) : (
+                            <WalletContent
+                                wallets={wallets}
+                                expanded={expanded}
+                                onAccordionChange={handleAccordionChange}
+                                onEdit={handleEditWallet}
+                                onDelete={handleDeleteWallet}
+                                openAddDialog={openAddDialog}
+                                onCloseAddDialog={handleCloseAddDialog}
+                                onCreateWallet={handleCreateWalletAndCloseDialog}
+                                isSimulated={isSimulated}
+                                loading={loading}
+                                error={error}
+                                openEditDialog={openEditDialog}
+                                onCloseEditDialog={handleCloseEditDialog}
+                                onUpdateWallet={handleUpdateWalletAndCloseDialog}
+                                editingWallet={editingWallet}
+                                openDeleteConfirm={openDeleteConfirm}
+                                onCloseDeleteConfirm={handleCloseDeleteConfirm}
+                                onConfirmDelete={handleConfirmDeleteAndCloseDialog}
+                                walletPositions={walletPositions}
+                                loadingPositions={loadingPositions}
+                                errorPositions={errorPositions}
+                                fetchWalletPositions={fetchWalletPositions}
+                            />
+                        )}
+
+                        <AddWalletDialog
+                            open={openAddDialog}
+                            onClose={handleCloseAddDialog}
+                            onCreate={handleCreateWalletAndCloseDialog}
+                            loading={loading}
+                            error={error}
+                            isSimulated={isSimulated}
+                        />
+
+                        <EditWalletDialog
+                            open={openEditDialog}
+                            onClose={handleCloseEditDialog}
+                            onUpdate={handleUpdateWalletAndCloseDialog}
+                            loading={loading}
+                            error={error}
+                            editingWallet={editingWallet}
+                        />
                     </Box>
                 </ProgressiveLoad>
             </SuspenseWrapper>
-        </ErrorBoundary >
+        </ErrorBoundary>
+
     );
 };
