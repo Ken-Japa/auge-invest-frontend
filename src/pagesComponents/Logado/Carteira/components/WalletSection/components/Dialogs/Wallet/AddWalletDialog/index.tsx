@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Switch, FormControlLabel } from '@mui/material';
 
 interface AddWalletDialogProps {
@@ -15,11 +15,11 @@ export const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
     onClose,
     onCreate,
     loading,
-    error,
     isSimulated = false,
 }) => {
     const [newWalletName, setNewWalletName] = useState<string>('');
     const [newWalletDescription, setNewWalletDescription] = useState<string>('');
+    const nameInputRef = useRef<HTMLInputElement>(null);
     const [simulatedState, setSimulatedState] = useState<boolean>(isSimulated);
 
     useEffect(() => {
@@ -32,17 +32,24 @@ export const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
         setNewWalletDescription('');
     };
 
+    const handleCloseDialog = () => {
+        if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
+        }
+        onClose();
+    };
+
     const handleSimulatedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSimulatedState(event.target.checked);
     };
 
     return (
-        <Dialog open={open} onClose={onClose}>
+        <Dialog open={open} onClose={handleCloseDialog}>
             <DialogTitle>{isSimulated ? 'Criar Nova Simulação' : 'Criar Nova Carteira'}</DialogTitle>
             <DialogContent>
 
                 <TextField
-                    autoFocus
+                    inputRef={nameInputRef}
                     margin="dense"
                     label="Nome da Carteira"
                     type="text"
@@ -53,7 +60,7 @@ export const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
                 />
                 <TextField
                     margin="dense"
-                    label="Descrição (Opcional)"
+                    label="Descrição"
                     type="text"
                     fullWidth
                     variant="outlined"
@@ -71,10 +78,10 @@ export const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
                     }
                     label={simulatedState ? 'Carteira Simulada' : 'Carteira Real'}
                 />
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+
             </DialogContent>
             <DialogActions>
-                <Button onClick={onClose} color="primary">
+                <Button onClick={handleCloseDialog} color="primary">
                     Cancelar
                 </Button>
                 <Button onClick={handleCreate} color="primary" disabled={loading || !newWalletName}>

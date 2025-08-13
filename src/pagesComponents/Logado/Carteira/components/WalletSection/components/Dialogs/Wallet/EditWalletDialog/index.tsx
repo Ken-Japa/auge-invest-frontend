@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Switch, FormControlLabel } from '@mui/material';
 import { Wallet } from '@/services/api/types';
 
@@ -17,11 +17,11 @@ export const EditWalletDialog: React.FC<EditWalletDialogProps> = ({
     onClose,
     onUpdate,
     loading,
-    error,
     editingWallet,
 }) => {
     const [name, setName] = useState<string>('');
     const [description, setDescription] = useState<string>('');
+    const nameInputRef = useRef<HTMLInputElement>(null);
     const [simulatedState, setSimulatedState] = useState<boolean>(false);
 
     useEffect(() => {
@@ -38,16 +38,23 @@ export const EditWalletDialog: React.FC<EditWalletDialogProps> = ({
         }
     };
 
+    const handleCloseDialog = () => {
+        if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
+        }
+        onClose();
+    };
+
     const handleSimulatedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSimulatedState(event.target.checked);
     };
 
     return (
-        <Dialog open={open} onClose={onClose}>
+        <Dialog open={open} onClose={handleCloseDialog}>
             <DialogTitle>Editar Carteira</DialogTitle>
             <DialogContent>
                 <TextField
-                    autoFocus
+                    inputRef={nameInputRef}
                     margin="dense"
                     label="Nome da Carteira"
                     type="text"
@@ -58,7 +65,7 @@ export const EditWalletDialog: React.FC<EditWalletDialogProps> = ({
                 />
                 <TextField
                     margin="dense"
-                    label="Descrição (Opcional)"
+                    label="Descrição"
                     type="text"
                     fullWidth
                     variant="outlined"
@@ -76,10 +83,9 @@ export const EditWalletDialog: React.FC<EditWalletDialogProps> = ({
                     }
                     label={simulatedState ? 'Carteira Simulada' : 'Carteira Real'}
                 />
-                {error && <p style={{ color: 'red' }}>{error}</p>}
             </DialogContent>
             <DialogActions>
-                <Button onClick={onClose} color="primary">
+                <Button onClick={handleCloseDialog} color="primary">
                     Cancelar
                 </Button>
                 <Button onClick={handleUpdate} color="primary" disabled={loading || !name}>
