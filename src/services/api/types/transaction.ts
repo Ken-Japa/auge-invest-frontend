@@ -52,6 +52,7 @@ export interface CreateWalletPayload {
   name: string;
   description: string;
   userId: string;
+  simulated: boolean;
 }
 
 export interface UpdateWalletPayload {

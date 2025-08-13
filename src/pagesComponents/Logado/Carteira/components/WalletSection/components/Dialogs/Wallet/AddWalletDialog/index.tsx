@@ -4,9 +4,10 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } 
 interface AddWalletDialogProps {
     open: boolean;
     onClose: () => void;
-    onCreate: (name: string, description: string) => void;
+    onCreate: (name: string, description: string, simulated: boolean) => void;
     loading: boolean;
     error: string | null;
+    isSimulated?: boolean;
 }
 
 export const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
@@ -15,20 +16,22 @@ export const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
     onCreate,
     loading,
     error,
+    isSimulated = false,
 }) => {
     const [newWalletName, setNewWalletName] = useState<string>('');
     const [newWalletDescription, setNewWalletDescription] = useState<string>('');
 
     const handleCreate = () => {
-        onCreate(newWalletName, newWalletDescription);
+        onCreate(newWalletName, newWalletDescription, isSimulated);
         setNewWalletName('');
         setNewWalletDescription('');
     };
 
     return (
         <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Criar Nova Carteira</DialogTitle>
+            <DialogTitle>{isSimulated ? 'Criar Nova Simulação' : 'Criar Nova Carteira'}</DialogTitle>
             <DialogContent>
+
                 <TextField
                     autoFocus
                     margin="dense"
@@ -47,6 +50,17 @@ export const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
                     variant="outlined"
                     value={newWalletDescription}
                     onChange={(e) => setNewWalletDescription(e.target.value)}
+                />
+                <TextField
+                    margin="dense"
+                    label="Tipo"
+                    type="text"
+                    fullWidth
+                    variant="outlined"
+                    value={isSimulated ? 'Simulada' : 'Real'}
+                    InputProps={{
+                        readOnly: true,
+                    }}
                 />
                 {error && <p style={{ color: 'red' }}>{error}</p>}
             </DialogContent>

@@ -55,7 +55,7 @@ export const Dashboard = () => {
 
                                 <ProgressiveLoad delay={0.6}>
                                     <WalletSection
-                                        title="Simulaçoes"
+                                        title="Simulações"
                                         isSimulated={true}
                                     />
                                 </ProgressiveLoad>

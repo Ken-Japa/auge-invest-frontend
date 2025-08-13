@@ -49,7 +49,7 @@ export const useWalletData = (isSimulated?: boolean) => {
   }, [userId, fetchWallets]);
 
   const handleCreateWallet = useCallback(
-    async (name: string, description: string) => {
+    async (name: string, description: string, simulated: boolean) => {
       if (!userId || !name) {
         setError("Wallet name and user ID are required.");
         return;
@@ -61,6 +61,7 @@ export const useWalletData = (isSimulated?: boolean) => {
           name: name,
           description: description,
           userId: userId,
+          simulated: simulated,
         });
         fetchWallets(); // Refresh the list of wallets
       } catch (err: any) {

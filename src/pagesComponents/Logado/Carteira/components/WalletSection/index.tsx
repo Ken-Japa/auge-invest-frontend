@@ -39,7 +39,7 @@ export const WalletSection: React.FC<WalletSectionProps> = ({ title, isSimulated
     };
 
     const handleCreateWalletAndCloseDialog = async (name: string, description: string) => {
-        await handleCreateWallet(name, description);
+        await handleCreateWallet(name, description, isSimulated as boolean);
         handleCloseAddDialog();
     };
 
@@ -109,7 +109,7 @@ export const WalletSection: React.FC<WalletSectionProps> = ({ title, isSimulated
                             onClick={handleOpenAddDialog}
                             sx={{ my: 4 }}
                         >
-                            Nova Carteira
+                            {isSimulated ? 'Nova Simulação' : 'Nova Carteira'}
                         </Button>
                         {wallets.length === 0 ? (
                             <Typography>Nenhuma carteira encontrada.</Typography>
@@ -126,6 +126,7 @@ export const WalletSection: React.FC<WalletSectionProps> = ({ title, isSimulated
                                     onCreateWallet={handleCreateWalletAndCloseDialog}
                                     loading={loading}
                                     error={error}
+                                    isSimulated={isSimulated}
                                     openEditDialog={openEditDialog}
                                     onCloseEditDialog={handleCloseEditDialog}
                                     onUpdateWallet={handleUpdateWalletAndCloseDialog}

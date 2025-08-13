@@ -14,7 +14,8 @@ interface WalletContentProps {
     onDelete: (walletId: string) => void;
     openAddDialog: boolean;
     onCloseAddDialog: () => void;
-    onCreateWallet: (name: string, description: string) => Promise<void>;
+    onCreateWallet: (name: string, description: string, simulated: boolean) => Promise<void>;
+    isSimulated?: boolean;
     loading: boolean;
     error: string | null;
     openEditDialog: boolean;
@@ -41,6 +42,7 @@ export const WalletContent: React.FC<WalletContentProps> = ({
     onCreateWallet,
     loading,
     error,
+    isSimulated,
     openEditDialog,
     onCloseEditDialog,
     onUpdateWallet,
@@ -61,6 +63,7 @@ export const WalletContent: React.FC<WalletContentProps> = ({
                 onCreate={onCreateWallet}
                 loading={loading}
                 error={error}
+                isSimulated={isSimulated}
             />
             <EditWalletDialog
                 open={openEditDialog}
