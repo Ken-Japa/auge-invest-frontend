@@ -10,7 +10,7 @@ const mockChartData = {
         data: [10000, 11200, 10800, 12000, 12500],
         performance: 25
     },
-    mock: {
+    virtual: {
         labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai'],
         data: [5000, 5300, 5100, 5600, 5800],
         performance: 16
@@ -18,7 +18,7 @@ const mockChartData = {
 };
 
 interface PerformanceChartProps {
-    type: 'real' | 'mock';
+    type: 'real' | 'virtual';
 }
 
 export const PerformanceChart = ({ type }: PerformanceChartProps) => {

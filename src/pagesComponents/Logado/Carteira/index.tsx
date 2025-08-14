@@ -49,7 +49,7 @@ export const Dashboard = () => {
                                 <ProgressiveLoad delay={0.2}>
                                     <PositionSection
                                         title="Simulações"
-                                        type="mock"
+                                        type="virtual"
                                     />
                                 </ProgressiveLoad>
 

@@ -1,58 +1,98 @@
-import { Typography, ListItemText } from '@mui/material';
-import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 import { ActivityContainer, ActivityList, ActivityItem } from './styled';
+import { useSearchRecentActivities } from './hooks/searchRecentActivites';
+import { Typography, ListItemText, CircularProgress, Box } from '@mui/material';
+import dayjs from 'dayjs';
 
-// Dados simulados - serão substituídos por dados da API
-const mockActivities = {
-    real: [
-        { id: 1, type: 'buy', asset: 'PETR4', quantity: 100, price: 34.25, date: new Date('2024-01-15') },
-        { id: 2, type: 'sell', asset: 'VALE3', quantity: 50, price: 72.80, date: new Date('2024-01-14') },
-        { id: 3, type: 'buy', asset: 'ITUB4', quantity: 200, price: 28.45, date: new Date('2024-01-13') },
-    ],
-    mock: [
-        { id: 1, type: 'buy', asset: 'BBAS3', quantity: 150, price: 45.30, date: new Date('2024-01-15') },
-        { id: 2, type: 'buy', asset: 'WEGE3', quantity: 80, price: 36.75, date: new Date('2024-01-14') },
-        { id: 3, type: 'sell', asset: 'MGLU3', quantity: 300, price: 2.45, date: new Date('2024-01-13') },
-    ]
-};
+export const RecentActivities = ({ type }: { type: 'real' | 'virtual' }) => {
+    const { recentRealActivities, recentVirtualActivities, loading, error } = useSearchRecentActivities();
 
-interface RecentActivitiesProps {
-    type: 'real' | 'mock';
-}
-
-export const RecentActivities = ({ type }: RecentActivitiesProps) => {
-    const activities = mockActivities[type];
-
-    const getActivityText = (activity: typeof activities[0]) => {
-        const action = activity.type === 'buy' ? 'Compra' : 'Venda';
-        const value = (activity.quantity * activity.price).toLocaleString('pt-BR', {
+    const getActivityText = (activity: any) => {
+        const isBuy = activity.type === 'buy';
+        const actionText = isBuy ? 'Compra' : 'Venda';
+        const actionColor = isBuy ? 'success.main' : 'error.main';
+        const valueSign = isBuy ? '-' : '+';
+        const valueColor = isBuy ? 'error.main' : 'success.main';
+        const price = activity.price.toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL'
         });
 
-        return `${action} de ${activity.quantity} ${activity.asset} - ${value}`;
+        const formattedValue = (activity.quantity * activity.price).toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        });
+
+        return (
+            <Typography component="span">
+                <Typography component="span" color={actionColor}>
+                    {actionText}
+                </Typography>
+                <Typography component="span" color="text.primary">
+                    {` de ${activity.quantity} `}
+                    <Typography component="span" fontWeight="bold">
+                        {activity.assetCode}
+                    </Typography>
+                    {` por ${price}. \nTotal: `}
+                </Typography>
+                <Typography component="span" color={valueColor} fontWeight="bold">
+                    {`${valueSign} ${formattedValue}`}
+                </Typography>
+            </Typography>
+        );
     };
 
     return (
         <ActivityContainer>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
                 Atividades Recentes
             </Typography>
 
-            <ActivityList dense>
-                {activities.map((activity) => (
-                    <ActivityItem key={activity.id}>
-                        <ListItemText
-                            primary={getActivityText(activity)}
-                            secondary={dayjs(activity.date).locale('pt-br').format('DD [de] MMMM')}
-                            primaryTypographyProps={{
-                                color: activity.type === 'buy' ? 'success.main' : 'error.main'
-                            }}
-                        />
-                    </ActivityItem>
-                ))}
-            </ActivityList>
+            {loading && (
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
+                    <CircularProgress />
+                </Box>
+            )}
+
+            {error && (
+                <Typography color="error">Erro ao carregar atividades: {error}</Typography>
+            )}
+
+            {!loading && !error && recentRealActivities.length === 0 && (
+                <Typography>Nenhuma atividade recente encontrada.</Typography>
+            )}
+
+            {!loading && !error && type === 'real' && recentRealActivities.length > 0 && (
+                <>
+                    <ActivityList dense>
+                        {recentRealActivities.map((activity, index) => (
+                            <ActivityItem key={index}>
+                                <ListItemText
+                                    primary={getActivityText(activity)}
+                                    secondary={dayjs(activity.executedAt).locale('pt-br').format('DD [de] MMMM [de] YYYY')}
+                                />
+                            </ActivityItem>
+                        ))}
+                    </ActivityList>
+                </>
+            )}
+            {!loading && !error && recentVirtualActivities.length === 0 && (
+                <Typography>Nenhuma atividade recente encontrada.</Typography>
+            )}
+            {!loading && !error && type === 'virtual' && recentVirtualActivities.length > 0 && (
+                <>
+                    <ActivityList dense>
+                        {recentVirtualActivities.map((activity, index) => (
+                            <ActivityItem key={index}>
+                                <ListItemText
+                                    primary={getActivityText(activity)}
+                                    secondary={dayjs(activity.executedAt).locale('pt-br').format('DD [de] MMMM [de] YYYY')}
+                                />
+                            </ActivityItem>
+                        ))}
+                    </ActivityList>
+                </>
+            )}
         </ActivityContainer>
     );
 };

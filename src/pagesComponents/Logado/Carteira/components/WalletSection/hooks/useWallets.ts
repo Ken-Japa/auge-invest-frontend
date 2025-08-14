@@ -25,14 +25,6 @@ export const useWallets = (isSimulated?: boolean) => {
         (wallet) => wallet.simulated === isSimulated
       );
       setWallets(filteredWallets);
-      console.log(
-        "fetchWallets - userId:",
-        userId,
-        "isSimulated:",
-        isSimulated,
-        "filteredWallets:",
-        filteredWallets
-      );
     } catch (err: any) {
       if (
         err.code === "wallet/not-found" &&
@@ -68,7 +60,7 @@ export const useWallets = (isSimulated?: boolean) => {
           userId: userId,
           simulated: simulated,
         });
-        fetchWallets(); // Refresh the list of wallets
+        fetchWallets();
       } catch (err: any) {
         setError(err.message || "Failed to create wallet.");
       } finally {

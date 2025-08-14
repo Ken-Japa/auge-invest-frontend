@@ -9,6 +9,7 @@ export interface Transaction {
   executedAt: string;
   createdAt: string;
   updatedAt: string;
+  __v: number;
 }
 
 export interface Positions {

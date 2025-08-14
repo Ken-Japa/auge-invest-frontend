@@ -9,7 +9,7 @@ const mockSummaryData = {
         result: 2500,
         performance: 25
     },
-    mock: {
+    virtual: {
         totalValue: 5800,
         invested: 5000,
         result: 800,
@@ -18,7 +18,7 @@ const mockSummaryData = {
 };
 
 interface PositionSummaryProps {
-    type: 'real' | 'mock';
+    type: 'real' | 'virtual';
 }
 
 export const PositionSummary = ({ type }: PositionSummaryProps) => {

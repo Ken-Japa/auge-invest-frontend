@@ -9,7 +9,7 @@ import { SectionTitle, StyledPaper, GridContainer, GridItem } from './styled';
 
 interface PositionSectionProps {
     title: string;
-    type: 'real' | 'mock';
+    type: 'real' | 'virtual';
 }
 
 export const PositionSection = ({ title, type }: PositionSectionProps) => {
