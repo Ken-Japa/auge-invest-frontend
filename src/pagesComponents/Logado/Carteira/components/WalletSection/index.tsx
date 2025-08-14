@@ -48,14 +48,9 @@ export const WalletSection: React.FC<WalletSectionProps> = ({ title, isSimulated
             <SuspenseWrapper>
                 <ProgressiveLoad delay={0.2}>
                     <WalletSectionContainer>
-                        {loading && (
-                            <LoadingContainer>
-                                <CircularProgress />
-                            </LoadingContainer>
-                        )}
 
                         <WalletSectionHeader>
-                            <Typography variant="h3" component="h2" sx={{ fontWeight: 'bold' }}>
+                            <Typography variant="h3" component="h2" sx={{ fontWeight: 'bold', my: 4 }}>
                                 {title}
                             </Typography>
                             <Button
@@ -67,6 +62,11 @@ export const WalletSection: React.FC<WalletSectionProps> = ({ title, isSimulated
                                 {isSimulated ? 'Nova Simulação' : 'Nova Carteira'}
                             </Button>
                         </WalletSectionHeader>
+                        {loading && (
+                            <LoadingContainer>
+                                <CircularProgress />
+                            </LoadingContainer>
+                        )}
                         {wallets.length === 0 && !loading && !error ? (
                             <NoWalletsMessage>
                                 <Typography variant="body1" color="textSecondary">

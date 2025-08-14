@@ -1,9 +1,10 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 
 import { Wallet } from '@/services/api/types';
 import { WalletTransactions } from '@/services/api/types/transaction';
 
 import { WalletItem } from '../WalletItem';
+
 
 interface WalletContentProps {
     wallets: Wallet[];

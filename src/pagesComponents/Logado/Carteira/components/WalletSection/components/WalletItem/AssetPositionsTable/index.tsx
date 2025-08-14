@@ -6,7 +6,7 @@ import { Add as AddIcon, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-m
 import { WalletTransactions } from '@/services/api/types/transaction';
 import { formatDate2 as formatDate } from '@/components/Utils/Formatters/formatters';
 
-import { StyledAssetTableContainer, StyledAssetTable, StyledAssetTableHead, StyledAssetTableRow, StyledAssetTableCell } from './styled';
+import { StyledAssetTableContainer, StyledAssetTable, StyledAssetTableHead, StyledAssetTableRow, StyledAssetTableCell, StyledAssetTableHeaderCell } from './styled';
 
 import { assetTypes } from '../../Dialogs/Transactions/AddTransactionDialog';
 
@@ -51,15 +51,15 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
                     <StyledAssetTable size="small">
                         <StyledAssetTableHead>
                             <StyledAssetTableRow>
-                                <StyledAssetTableCell>Ativo</StyledAssetTableCell>
-                                <StyledAssetTableCell align="center">Quantidade</StyledAssetTableCell>
-                                <StyledAssetTableCell align="center">Preço</StyledAssetTableCell>
-                                <StyledAssetTableCell align="center">Valor Gasto</StyledAssetTableCell>
-                                <StyledAssetTableCell align="center">Valor Atual</StyledAssetTableCell>
-                                <StyledAssetTableCell align="center">Diferença</StyledAssetTableCell>
-                                <StyledAssetTableCell align="center">Tipo</StyledAssetTableCell>
-                                <StyledAssetTableCell align="center">Data Início</StyledAssetTableCell>
-                                <StyledAssetTableCell align="center">Ações</StyledAssetTableCell>
+                                <StyledAssetTableHeaderCell>Ativo</StyledAssetTableHeaderCell>
+                                <StyledAssetTableHeaderCell align="center">Quantidade</StyledAssetTableHeaderCell>
+                                <StyledAssetTableHeaderCell align="center">Preço</StyledAssetTableHeaderCell>
+                                <StyledAssetTableHeaderCell align="center">Valor Gasto</StyledAssetTableHeaderCell>
+                                <StyledAssetTableHeaderCell align="center">Valor Atual</StyledAssetTableHeaderCell>
+                                <StyledAssetTableHeaderCell align="center">Diferença</StyledAssetTableHeaderCell>
+                                <StyledAssetTableHeaderCell align="center">Tipo</StyledAssetTableHeaderCell>
+                                <StyledAssetTableHeaderCell align="center">Data Início</StyledAssetTableHeaderCell>
+                                <StyledAssetTableHeaderCell align="center">Ações</StyledAssetTableHeaderCell>
                             </StyledAssetTableRow>
                         </StyledAssetTableHead>
                         <TableBody>

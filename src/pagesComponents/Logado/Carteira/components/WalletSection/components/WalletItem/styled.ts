@@ -6,11 +6,24 @@ export const WalletContainer = styled(Box)(({ theme }) => ({}));
 
 export const WalletItemContainer = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2),
-  padding: theme.spacing(2),
-  border: `1px solid ${theme.palette.grey[300]}`,
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: theme.palette.background.paper,
   boxShadow: theme.shadows[1],
+  overflow: "hidden",
+}));
+
+export const WalletSummaryContainer = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(2),
+  color: theme.palette.common.white,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  width: "100%",
+  flexGrow: 1,
+}));
+
+export const WalletDetailsContainer = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(2),
+  color: theme.palette.common.white,
 }));
 
 export const WalletActions = styled(Box)(({ theme }) => ({
