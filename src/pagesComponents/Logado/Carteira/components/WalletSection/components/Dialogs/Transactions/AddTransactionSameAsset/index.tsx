@@ -3,15 +3,11 @@ import { useMutation } from '@tanstack/react-query';
 import { CreateTransactionPayload } from '@/services/api/types/transaction';
 import { useState } from 'react';
 import {
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-    Button,
     TextField,
     MenuItem,
     Grid
 } from '@mui/material';
+import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, SaveButton } from './styled';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
@@ -83,9 +79,9 @@ export const AddSameTransactionDialog = ({ open, onClose, positionId, onSave, us
     };
 
     return (
-        <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-            <DialogTitle>Adicionar Transação</DialogTitle>
-            <DialogContent>
+        <StyledDialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+            <StyledDialogTitle>Adicionar Transação</StyledDialogTitle>
+            <StyledDialogContent>
                 <Grid container spacing={2} sx={{ mt: 1 }}>
                     <Grid item xs={12}>
                         <TextField
@@ -159,13 +155,13 @@ export const AddSameTransactionDialog = ({ open, onClose, positionId, onSave, us
                         />
                     </Grid>
                 </Grid>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={onClose}>Cancelar</Button>
-                <Button onClick={handleSubmit} variant="contained" disabled={createTransactionMutation.isPending}>
+            </StyledDialogContent>
+            <StyledDialogActions>
+                <CancelButton onClick={onClose}>Cancelar</CancelButton>
+                <SaveButton onClick={handleSubmit} variant="contained" disabled={createTransactionMutation.isPending}>
                     {createTransactionMutation.isPending ? 'Cadastrando...' : 'Cadastrar'}
-                </Button>
-            </DialogActions>
-        </Dialog>
+                </SaveButton>
+            </StyledDialogActions>
+        </StyledDialog>
     );
 };

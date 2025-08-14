@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography, Box, CircularProgress, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from '@mui/material';
+import { Typography, Box, CircularProgress, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from '@mui/material';
+import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CloseButton, AddButton } from './styled';
 import { Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { walletApi } from '@/services/api/endpoints/wallet';
 import { Transaction } from '@/services/api/types/transaction';
@@ -63,17 +64,17 @@ export const TransactionsDialog: React.FC<TransactionsDialogProps> = ({
     };
 
     return (
-        <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
-            <DialogTitle>Transações do Ativo {assetCode}</DialogTitle>
-            <DialogContent>
+        <StyledDialog open={open} onClose={onClose} maxWidth="md" fullWidth>
+            <StyledDialogTitle>Transações do Ativo {assetCode}</StyledDialogTitle>
+            <StyledDialogContent>
                 <Box sx={{ mb: 2, display: 'flex', justifyContent: 'flex-end' }}>
-                    <Button
+                    <AddButton
                         variant="outlined"
                         startIcon={<AddIcon />}
                         onClick={() => setIsAddTransactionOpen(true)}
                     >
                         Adicionar Transação
-                    </Button>
+                    </AddButton>
                 </Box>
 
                 {loading ? (
@@ -156,10 +157,10 @@ export const TransactionsDialog: React.FC<TransactionsDialogProps> = ({
                     transactionId={transactionToDeleteId}
                     onConfirm={handleTransactionSavedOrDeleted}
                 />
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={onClose}>Fechar</Button>
-            </DialogActions>
-        </Dialog>
+            </StyledDialogContent>
+            <StyledDialogActions>
+                <CloseButton onClick={onClose}>Fechar</CloseButton>
+            </StyledDialogActions>
+        </StyledDialog>
     );
 };

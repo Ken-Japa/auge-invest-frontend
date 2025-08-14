@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Switch, FormControlLabel } from '@mui/material';
+import { TextField, Switch, FormControlLabel } from '@mui/material';
+import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, UpdateButton } from './styled';
 import { Wallet } from '@/services/api/types';
 
 
@@ -50,9 +51,9 @@ export const EditWalletDialog: React.FC<EditWalletDialogProps> = ({
     };
 
     return (
-        <Dialog open={open} onClose={handleCloseDialog}>
-            <DialogTitle>Editar Carteira</DialogTitle>
-            <DialogContent>
+        <StyledDialog open={open} onClose={handleCloseDialog}>
+            <StyledDialogTitle>Editar Carteira</StyledDialogTitle>
+            <StyledDialogContent>
                 <TextField
                     inputRef={nameInputRef}
                     margin="dense"
@@ -82,16 +83,17 @@ export const EditWalletDialog: React.FC<EditWalletDialogProps> = ({
                         />
                     }
                     label={simulatedState ? 'Carteira Simulada' : 'Carteira Real'}
+                    sx={{ alignSelf: 'flex-end', mt: 2 }}
                 />
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={handleCloseDialog} color="primary">
+            </StyledDialogContent>
+            <StyledDialogActions>
+                <CancelButton onClick={handleCloseDialog}>
                     Cancelar
-                </Button>
-                <Button onClick={handleUpdate} color="primary" disabled={loading || !name}>
+                </CancelButton>
+                <UpdateButton onClick={handleUpdate} disabled={loading || !name}>
                     {loading ? 'Atualizando...' : 'Atualizar'}
-                </Button>
-            </DialogActions>
-        </Dialog>
+                </UpdateButton>
+            </StyledDialogActions>
+        </StyledDialog>
     );
 };

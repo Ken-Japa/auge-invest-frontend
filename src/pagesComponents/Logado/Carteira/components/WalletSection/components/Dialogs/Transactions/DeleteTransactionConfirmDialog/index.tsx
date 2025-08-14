@@ -1,5 +1,6 @@
 import React from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, CircularProgress, Typography } from '@mui/material';
+import { DialogContentText, Button, CircularProgress, Typography } from '@mui/material';
+import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions } from './styled';
 import { api } from '@/services/api';
 
 interface DeleteTransactionConfirmDialogProps {
@@ -36,23 +37,23 @@ export const DeleteTransactionConfirmDialog: React.FC<DeleteTransactionConfirmDi
     };
 
     return (
-        <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Confirmar Exclusão</DialogTitle>
-            <DialogContent>
+        <StyledDialog open={open} onClose={onClose}>
+            <StyledDialogTitle>Confirmar Exclusão</StyledDialogTitle>
+            <StyledDialogContent>
                 <DialogContentText>
                     <Typography component="span">Tem certeza que deseja excluir esta operação?</Typography>
                     <Typography component="span">Esta ação não poderá ser desfeita.</Typography>
                 </DialogContentText>
                 {error && <Typography color="error" sx={{ mt: 2 }}>{error}</Typography>}
-            </DialogContent>
-            <DialogActions>
+            </StyledDialogContent>
+            <StyledDialogActions>
                 <Button onClick={onClose} color="primary" disabled={loading}>
                     Cancelar
                 </Button>
                 <Button onClick={handleDelete} color="error" disabled={loading}>
                     {loading ? <CircularProgress size={24} /> : 'Excluir'}
                 </Button>
-            </DialogActions>
-        </Dialog>
+            </StyledDialogActions>
+        </StyledDialog>
     );
 };

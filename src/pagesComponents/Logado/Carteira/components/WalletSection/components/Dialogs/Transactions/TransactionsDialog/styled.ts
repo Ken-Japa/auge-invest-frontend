@@ -27,7 +27,7 @@ export const StyledDialogActions = styled(DialogActions)(({ theme }) => ({
   borderTop: `1px solid ${theme.palette.divider}`,
 }));
 
-export const CancelButton = styled(Button)(({ theme }) => ({
+export const CloseButton = styled(Button)(({ theme }) => ({
   color: theme.palette.text.secondary,
   transition: transitions.medium,
   
@@ -36,7 +36,7 @@ export const CancelButton = styled(Button)(({ theme }) => ({
   }
 }));
 
-export const SaveButton = styled(Button)(({ theme }) => ({
+export const AddButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.primary.contrastText,
   transition: transitions.medium,

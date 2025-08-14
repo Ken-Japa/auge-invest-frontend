@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Switch, FormControlLabel } from '@mui/material';
+import { TextField, Switch, FormControlLabel } from '@mui/material';
+import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, CreateButton } from './styled';
 
 interface AddWalletDialogProps {
     open: boolean;
@@ -44,9 +45,9 @@ export const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
     };
 
     return (
-        <Dialog open={open} onClose={handleCloseDialog}>
-            <DialogTitle>{isSimulated ? 'Criar Nova Simulação' : 'Criar Nova Carteira'}</DialogTitle>
-            <DialogContent>
+        <StyledDialog open={open} onClose={handleCloseDialog}>
+            <StyledDialogTitle>{isSimulated ? 'Criar Nova Simulação' : 'Criar Nova Carteira'}</StyledDialogTitle>
+            <StyledDialogContent>
 
                 <TextField
                     inputRef={nameInputRef}
@@ -77,17 +78,18 @@ export const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
                         />
                     }
                     label={simulatedState ? 'Carteira Simulada' : 'Carteira Real'}
+                    sx={{ alignSelf: 'flex-end', mt: 2 }}
                 />
 
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={handleCloseDialog} color="primary">
+            </StyledDialogContent>
+            <StyledDialogActions>
+                <CancelButton onClick={handleCloseDialog} color="primary">
                     Cancelar
-                </Button>
-                <Button onClick={handleCreate} color="primary" disabled={loading || !newWalletName}>
+                </CancelButton>
+                <CreateButton onClick={handleCreate} disabled={loading}>
                     {loading ? 'Criando...' : 'Criar'}
-                </Button>
-            </DialogActions>
-        </Dialog>
+                </CreateButton>
+            </StyledDialogActions>
+        </StyledDialog>
     );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
+import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, DeleteButton } from './styled';
 
 interface DeleteWalletConfirmDialogProps {
     open: boolean;
@@ -15,20 +16,20 @@ export const DeleteWalletConfirmDialog: React.FC<DeleteWalletConfirmDialogProps>
     loading,
 }) => {
     return (
-        <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Confirmar Exclusão</DialogTitle>
-            <DialogContent>
+        <StyledDialog open={open} onClose={onClose}>
+            <StyledDialogTitle>Confirmar Exclusão</StyledDialogTitle>
+            <StyledDialogContent>
                 <Typography>Tem certeza de que deseja excluir esta carteira? </Typography>
-                <Typography>Esta ação não pode ser desfeita.</Typography>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={onClose} color="primary" disabled={loading}>
+                <Typography>Esta ação não poderá ser desfeita.</Typography>
+            </StyledDialogContent>
+            <StyledDialogActions>
+                <CancelButton onClick={onClose} color="primary" disabled={loading}>
                     Cancelar
-                </Button>
-                <Button onClick={onConfirm} color="error" disabled={loading}>
+                </CancelButton>
+                <DeleteButton onClick={onConfirm} color="error" disabled={loading}>
                     {loading ? 'Excluindo...' : 'Excluir'}
-                </Button>
-            </DialogActions>
-        </Dialog>
+                </DeleteButton>
+            </StyledDialogActions>
+        </StyledDialog>
     );
 };

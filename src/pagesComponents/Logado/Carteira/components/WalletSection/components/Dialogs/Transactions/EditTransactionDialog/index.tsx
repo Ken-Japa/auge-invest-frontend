@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, CircularProgress, MenuItem, Select, FormControl, InputLabel, Box, Grid } from '@mui/material';
+import { Typography, TextField, CircularProgress, MenuItem, Select, FormControl, InputLabel, Box, Grid } from '@mui/material';
+import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, SaveButton } from './styled';
 import { TransactionType } from '@/services/api/types/transaction';
 import { api } from '@/services/api';
 
@@ -76,9 +77,9 @@ export const EditTransactionDialog: React.FC<EditTransactionDialogProps> = ({
     };
 
     return (
-        <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Editar Operação</DialogTitle>
-            <DialogContent>
+        <StyledDialog open={open} onClose={onClose}>
+            <StyledDialogTitle>Editar Operação</StyledDialogTitle>
+            <StyledDialogContent>
                 {loading ? (
                     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
                         <CircularProgress />
@@ -149,15 +150,15 @@ export const EditTransactionDialog: React.FC<EditTransactionDialogProps> = ({
                 )}
 
                 {error && <Typography color="error" sx={{ mt: 2 }}>{error}</Typography>}
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={onClose} color="primary" disabled={loading}>
+            </StyledDialogContent>
+            <StyledDialogActions>
+                <CancelButton onClick={onClose} color="primary" disabled={loading}>
                     Cancelar
-                </Button>
-                <Button onClick={handleSave} color="primary" disabled={loading}>
+                </CancelButton>
+                <SaveButton onClick={handleSave} color="primary" disabled={loading}>
                     Salvar
-                </Button>
-            </DialogActions>
-        </Dialog>
+                </SaveButton>
+            </StyledDialogActions>
+        </StyledDialog>
     );
 };
