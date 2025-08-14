@@ -4,7 +4,7 @@ import { TransactionTable } from '../TransactionTable';
 import { Add as AddIcon, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 
 import { WalletTransactions } from '@/services/api/types/transaction';
-import { formatDate2 as formatDate } from '@/components/Utils/Formatters/formatters';
+import { formatDate2 as formatDate, formatCurrency } from '@/components/Utils/Formatters/formatters';
 
 import { StyledAssetHeaderTableRow, StyledAssetTableContainer, StyledAssetTable, StyledAssetTableHead, StyledAssetTableRow, StyledAssetTableCell, StyledAssetTableHeaderCell } from './styled';
 
@@ -81,7 +81,7 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
                                             </StyledAssetTableCell>
                                             <StyledAssetTableCell align="center">{position.quantity}</StyledAssetTableCell>
                                             <StyledAssetTableCell align="center">{position.averagePrice.toFixed(2)}</StyledAssetTableCell>
-                                            <StyledAssetTableCell align="center">{(position.quantity * position.averagePrice).toFixed(2)}</StyledAssetTableCell>
+                                            <StyledAssetTableCell align="center">{formatCurrency((position.quantity * position.averagePrice).toFixed(2))}</StyledAssetTableCell>
                                             <StyledAssetTableCell align="center">Implementar</StyledAssetTableCell>
                                             <StyledAssetTableCell align="center">Implementar</StyledAssetTableCell>
                                             <StyledAssetTableCell align="center">{assetTypes.find(type => type.value === position.assetType)?.label || position.assetType}</StyledAssetTableCell>

@@ -4,7 +4,7 @@ import { EditTransactionDialog } from '../../Dialogs/Transactions/EditTransactio
 import { DeleteTransactionConfirmDialog } from '../../Dialogs/Transactions/DeleteTransactionConfirmDialog';
 import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { Transaction } from '@/services/api/types/transaction';
-import { formatDate2 as formatDate } from '@/components/Utils/Formatters/formatters';
+import { formatDate2 as formatDate, formatCurrency } from '@/components/Utils/Formatters/formatters';
 import { StyledTransactionTable, StyledTransactionTableHead, StyledTransactionTableCell, StyledTransactionTableRow } from './styled';
 
 import { walletApi } from '@/services/api/endpoints/wallet';
@@ -37,7 +37,10 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
             setErrorTransactions(null);
             try {
                 const response = await walletApi.getTransactionsByPositionId(positionId);
-                setTransactions(response.result);
+                const orderedTransactions = response.result.sort((a, b) =>
+                    new Date(b.executedAt).getTime() - new Date(a.executedAt).getTime()
+                );
+                setTransactions(orderedTransactions);
             } catch (error: any) {
                 setErrorTransactions(error.message);
             } finally {
@@ -103,6 +106,7 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
                         <StyledTransactionTableCell>Tipo</StyledTransactionTableCell>
                         <StyledTransactionTableCell>Quantidade</StyledTransactionTableCell>
                         <StyledTransactionTableCell align="right">Preço</StyledTransactionTableCell>
+                        <StyledTransactionTableCell align="right">Valor Total</StyledTransactionTableCell>
                         <StyledTransactionTableCell align="right">Data</StyledTransactionTableCell>
                         <StyledTransactionTableCell align="right">Ações</StyledTransactionTableCell>
                     </TableRow>
@@ -115,6 +119,7 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
                             </StyledTransactionTableCell>
                             <StyledTransactionTableCell>{transaction.quantity}</StyledTransactionTableCell>
                             <StyledTransactionTableCell align="right">{transaction.price.toFixed(2)}</StyledTransactionTableCell>
+                            <StyledTransactionTableCell align="right">{formatCurrency((transaction.price * transaction.quantity).toFixed(2))}</StyledTransactionTableCell>
                             <StyledTransactionTableCell align="right">{formatDate(transaction.executedAt)}</StyledTransactionTableCell>
                             <StyledTransactionTableCell align="right">
                                 <IconButton

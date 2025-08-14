@@ -2,45 +2,10 @@ import 'dayjs/locale/pt-br';
 import { ActivityContainer, ActivityList, ActivityItem } from './styled';
 import { useSearchRecentActivities } from './hooks/searchRecentActivites';
 import { Typography, ListItemText, CircularProgress, Box } from '@mui/material';
-import dayjs from 'dayjs';
+import { ActivityText, ActivityText2 } from './components/ActivityText';
 
 export const RecentActivities = ({ type }: { type: 'real' | 'virtual' }) => {
     const { recentRealActivities, recentVirtualActivities, loading, error } = useSearchRecentActivities();
-
-    const getActivityText = (activity: any) => {
-        const isBuy = activity.type === 'buy';
-        const actionText = isBuy ? 'Compra' : 'Venda';
-        const actionColor = isBuy ? 'success.main' : 'error.main';
-        const valueSign = isBuy ? '-' : '+';
-        const valueColor = isBuy ? 'error.main' : 'success.main';
-        const price = activity.price.toLocaleString('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-        });
-
-        const formattedValue = (activity.quantity * activity.price).toLocaleString('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-        });
-
-        return (
-            <Typography component="span">
-                <Typography component="span" color={actionColor}>
-                    {actionText}
-                </Typography>
-                <Typography component="span" color="text.primary">
-                    {` de ${activity.quantity} `}
-                    <Typography component="span" fontWeight="bold">
-                        {activity.assetCode}
-                    </Typography>
-                    {` por ${price}. \nTotal: `}
-                </Typography>
-                <Typography component="span" color={valueColor} fontWeight="bold">
-                    {`${valueSign} ${formattedValue}`}
-                </Typography>
-            </Typography>
-        );
-    };
 
     return (
         <ActivityContainer>
@@ -68,8 +33,8 @@ export const RecentActivities = ({ type }: { type: 'real' | 'virtual' }) => {
                         {recentRealActivities.map((activity, index) => (
                             <ActivityItem key={index}>
                                 <ListItemText
-                                    primary={getActivityText(activity)}
-                                    secondary={dayjs(activity.executedAt).locale('pt-br').format('DD [de] MMMM [de] YYYY')}
+                                    primary={<ActivityText activity={activity} />}
+                                    secondary={<ActivityText2 activity={activity} />}
                                 />
                             </ActivityItem>
                         ))}
@@ -85,8 +50,8 @@ export const RecentActivities = ({ type }: { type: 'real' | 'virtual' }) => {
                         {recentVirtualActivities.map((activity, index) => (
                             <ActivityItem key={index}>
                                 <ListItemText
-                                    primary={getActivityText(activity)}
-                                    secondary={dayjs(activity.executedAt).locale('pt-br').format('DD [de] MMMM [de] YYYY')}
+                                    primary={<ActivityText activity={activity} />}
+                                    secondary={<ActivityText2 activity={activity} />}
                                 />
                             </ActivityItem>
                         ))}
