@@ -80,17 +80,17 @@ export const AddSameTransactionDialog = ({ open, onClose, positionId, onSave, us
 
     return (
         <StyledDialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-            <StyledDialogTitle>Adicionar Transação</StyledDialogTitle>
+            <StyledDialogTitle>Adicionar Transação de {assetCode} </StyledDialogTitle>
             <StyledDialogContent>
-                <Grid container spacing={2} sx={{ mt: 1 }}>
+                <Grid container spacing={4} sx={{ mt: 1 }}>
                     <Grid item xs={12}>
                         <TextField
                             margin="dense"
-                            label={assetCode}
+                            label="Ativo"
                             type="text"
                             fullWidth
                             variant="outlined"
-                            value=""
+                            value={assetCode}
                             disabled
                             sx={{ mb: 2 }}
                         />

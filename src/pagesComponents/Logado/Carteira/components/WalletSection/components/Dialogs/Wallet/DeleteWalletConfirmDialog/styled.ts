@@ -6,6 +6,7 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
+import { transitions } from "@/theme/variables";
 
 export const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialog-paper": {
@@ -48,6 +49,7 @@ export const StyledDialogActions = styled(DialogActions)(({ theme }) => ({
 export const CancelButton = styled(Button)(({ theme }) => ({
   border: `1px solid`,
   color: theme.palette.text.secondary,
+  transition: transitions.medium,
   "&:hover": {
     backgroundColor: theme.palette.action.hover,
   },
@@ -63,4 +65,5 @@ export const DeleteButton = styled(Button)(({ theme }) => ({
   "&:hover": {
     backgroundColor: theme.palette.error.main,
   },
+  transition: transitions.medium,
 }));

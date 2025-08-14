@@ -84,7 +84,7 @@ export const AddTransactionDialog = ({ open, onClose, positionId, onSave, userId
         <StyledDialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
             <StyledDialogTitle>Adicionar Transação</StyledDialogTitle>
             <StyledDialogContent>
-                <Grid container spacing={2} sx={{ mt: 1 }}>
+                <Grid container spacing={4} sx={{ mt: 1 }}>
                     <Grid item xs={12}>
                         <TextField
                             select

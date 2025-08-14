@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Typography, Box, CircularProgress, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from '@mui/material';
-import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CloseButton, AddButton } from './styled';
+import { Typography, Box, CircularProgress, TableContainer, Paper, Table, TableRow, TableCell, TableBody, IconButton } from '@mui/material';
+import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CloseButton, AddButton, StyledAssetTableHead, StyledAssetTableHeaderCell, StyledAssetTableRow } from './styled';
 import { Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { walletApi } from '@/services/api/endpoints/wallet';
 import { Transaction } from '@/services/api/types/transaction';
@@ -86,18 +86,18 @@ export const TransactionsDialog: React.FC<TransactionsDialogProps> = ({
                 ) : transactions.length > 0 ? (
                     <TableContainer component={Paper}>
                         <Table size="small">
-                            <TableHead>
+                            <StyledAssetTableHead>
                                 <TableRow>
-                                    <TableCell>Tipo</TableCell>
-                                    <TableCell align="center">Quantidade</TableCell>
-                                    <TableCell align="center">Preço</TableCell>
-                                    <TableCell align="center">Data</TableCell>
-                                    <TableCell align="center">Ações</TableCell>
+                                    <StyledAssetTableHeaderCell>Tipo</StyledAssetTableHeaderCell>
+                                    <StyledAssetTableHeaderCell align="center">Quantidade</StyledAssetTableHeaderCell>
+                                    <StyledAssetTableHeaderCell align="center">Preço</StyledAssetTableHeaderCell>
+                                    <StyledAssetTableHeaderCell align="center">Data</StyledAssetTableHeaderCell>
+                                    <StyledAssetTableHeaderCell align="center">Ações</StyledAssetTableHeaderCell>
                                 </TableRow>
-                            </TableHead>
+                            </StyledAssetTableHead>
                             <TableBody>
                                 {transactions.map((transaction) => (
-                                    <TableRow key={transaction._id}>
+                                    <StyledAssetTableRow key={transaction._id}>
                                         <TableCell>{transaction.type === 'buy' ? 'Compra' : 'Venda'}</TableCell>
                                         <TableCell align="center">{transaction.quantity}</TableCell>
                                         <TableCell align="center">{transaction.price}</TableCell>
@@ -122,7 +122,7 @@ export const TransactionsDialog: React.FC<TransactionsDialogProps> = ({
                                                 <DeleteIcon />
                                             </IconButton>
                                         </TableCell>
-                                    </TableRow>
+                                    </StyledAssetTableRow>
                                 ))}
                             </TableBody>
                         </Table>

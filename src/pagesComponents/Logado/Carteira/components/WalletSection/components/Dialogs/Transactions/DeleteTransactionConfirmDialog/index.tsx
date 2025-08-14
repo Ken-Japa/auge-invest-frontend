@@ -1,6 +1,6 @@
 import React from 'react';
 import { DialogContentText, Button, CircularProgress, Typography } from '@mui/material';
-import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions } from './styled';
+import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, DeleteButton } from './styled';
 import { api } from '@/services/api';
 
 interface DeleteTransactionConfirmDialogProps {
@@ -47,12 +47,12 @@ export const DeleteTransactionConfirmDialog: React.FC<DeleteTransactionConfirmDi
                 {error && <Typography color="error" sx={{ mt: 2 }}>{error}</Typography>}
             </StyledDialogContent>
             <StyledDialogActions>
-                <Button onClick={onClose} color="primary" disabled={loading}>
+                <CancelButton onClick={onClose} disabled={loading}>
                     Cancelar
-                </Button>
-                <Button onClick={handleDelete} color="error" disabled={loading}>
+                </CancelButton>
+                <DeleteButton onClick={handleDelete} disabled={loading}>
                     {loading ? <CircularProgress size={24} /> : 'Excluir'}
-                </Button>
+                </DeleteButton>
             </StyledDialogActions>
         </StyledDialog>
     );

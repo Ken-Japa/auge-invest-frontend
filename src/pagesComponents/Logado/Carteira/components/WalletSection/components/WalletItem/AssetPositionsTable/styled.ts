@@ -6,6 +6,7 @@ import {
   TableRow,
   TableCell,
 } from "@mui/material";
+import { transitions } from "@/theme/variables";
 
 export const StyledAssetTableContainer = styled(TableContainer)(
   ({ theme }) => ({
@@ -25,6 +26,7 @@ export const StyledAssetTableHead = styled(TableHead)(({ theme }) => ({
 }));
 
 export const StyledAssetTableRow = styled(TableRow)(({ theme }) => ({
+  transition: transitions.medium,
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.mode === "dark" ? "#1A2234" : "#F5F5F5",
   },

@@ -87,16 +87,16 @@ export const EditTransactionDialog: React.FC<EditTransactionDialogProps> = ({
                 ) : error ? (
                     <Typography color="error">Erro ao carregar transação: {error}</Typography>
                 ) : (
-                    <>
+                    <Grid spacing={4} padding={4}>
                         <TextField
                             margin="dense"
-                            label={assetCode}
+                            label="Ativo"
                             type="text"
                             fullWidth
                             variant="outlined"
-                            value=""
+                            value={assetCode}
                             disabled
-                            sx={{ mb: 2 }}
+                            sx={{ mb: 4 }}
                         />
                         <TextField
                             margin="dense"
@@ -106,7 +106,7 @@ export const EditTransactionDialog: React.FC<EditTransactionDialogProps> = ({
                             variant="outlined"
                             value={assetTypes.find(type => type.value === assetType)?.label || assetType}
                             disabled
-                            sx={{ mb: 2 }}
+                            sx={{ mb: 4 }}
                         />
                         <TextField
                             autoFocus
@@ -117,7 +117,7 @@ export const EditTransactionDialog: React.FC<EditTransactionDialogProps> = ({
                             variant="outlined"
                             value={quantity}
                             onChange={(e) => setQuantity(Number(e.target.value))}
-                            sx={{ mb: 2 }}
+                            sx={{ mb: 4 }}
                         />
                         <TextField
                             margin="dense"
@@ -127,9 +127,9 @@ export const EditTransactionDialog: React.FC<EditTransactionDialogProps> = ({
                             variant="outlined"
                             value={price}
                             onChange={(e) => setPrice(Number(e.target.value))}
-                            sx={{ mb: 2 }}
+                            sx={{ mb: 4 }}
                         />
-                        <FormControl fullWidth margin="dense" sx={{ mb: 2 }}>
+                        <FormControl fullWidth margin="dense" sx={{ mb: 4 }}>
                             <InputLabel>Tipo</InputLabel>
                             <Select
                                 value={type}
@@ -146,16 +146,16 @@ export const EditTransactionDialog: React.FC<EditTransactionDialogProps> = ({
                             onChange={(newValue) => setExecutedAt(newValue)}
                             slotProps={{ textField: { fullWidth: true } }}
                         />
-                    </>
+                    </Grid>
                 )}
 
                 {error && <Typography color="error" sx={{ mt: 2 }}>{error}</Typography>}
             </StyledDialogContent>
             <StyledDialogActions>
-                <CancelButton onClick={onClose} color="primary" disabled={loading}>
+                <CancelButton onClick={onClose} disabled={loading}>
                     Cancelar
                 </CancelButton>
-                <SaveButton onClick={handleSave} color="primary" disabled={loading}>
+                <SaveButton onClick={handleSave} disabled={loading}>
                     Salvar
                 </SaveButton>
             </StyledDialogActions>

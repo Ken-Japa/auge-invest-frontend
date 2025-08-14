@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { Table, TableHead, TableCell, TableRow } from "@mui/material";
+import { transitions } from "@/theme/variables";
 
 export const StyledTransactionTable = styled(Table)(({ theme }) => ({
   minWidth: 650,
@@ -15,6 +16,7 @@ export const StyledTransactionTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 export const StyledTransactionTableRow = styled(TableRow)(({ theme }) => ({
+  transition: transitions.medium,
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.mode === "dark" ? "#242C3E" : "#F5F5F5",
   },
