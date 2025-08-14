@@ -4,9 +4,8 @@ import { Wallet } from '@/services/api/types';
 import { WalletTransactions } from '@/services/api/types/transaction';
 
 import { WalletItem } from '../WalletItem';
-import { AddWalletDialog } from '../Dialogs/Wallet/AddWalletDialog';
-import { EditWalletDialog } from '../Dialogs/Wallet/EditWalletDialog';
-import { DeleteWalletConfirmDialog } from '../Dialogs/Wallet/DeleteWalletConfirmDialog';
+import { WalletDialogs } from '../Dialogs/Wallet/WalletDialogs';
+import { WalletDeleteDialog } from '../Dialogs/Wallet/WalletDeleteDialog';
 
 interface WalletContentProps {
     wallets: Wallet[];
@@ -14,19 +13,9 @@ interface WalletContentProps {
     onAccordionChange: (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => void;
     onEdit: (wallet: Wallet) => void;
     onDelete: (walletId: string) => void;
-    openAddDialog: boolean;
-    onCloseAddDialog: () => void;
-    onCreateWallet: (name: string, description: string, simulated: boolean) => Promise<void>;
     isSimulated?: boolean;
     loading: boolean;
     error: string | null;
-    openEditDialog: boolean;
-    onCloseEditDialog: () => void;
-    onUpdateWallet: (walletId: string, name: string, description: string, simulated: boolean) => Promise<void>;
-    editingWallet: Wallet | null;
-    openDeleteConfirm: boolean;
-    onCloseDeleteConfirm: () => void;
-    onConfirmDelete: () => Promise<void>;
     walletPositions: WalletTransactions | null;
     loadingPositions: boolean;
     errorPositions: string | null;
@@ -39,19 +28,9 @@ export const WalletContent: React.FC<WalletContentProps> = ({
     onAccordionChange,
     onEdit,
     onDelete,
-    openAddDialog,
-    onCloseAddDialog,
-    onCreateWallet,
     loading,
     error,
     isSimulated,
-    openEditDialog,
-    onCloseEditDialog,
-    onUpdateWallet,
-    editingWallet,
-    openDeleteConfirm,
-    onCloseDeleteConfirm,
-    onConfirmDelete,
     walletPositions,
     loadingPositions,
     errorPositions,
@@ -59,28 +38,8 @@ export const WalletContent: React.FC<WalletContentProps> = ({
 }) => {
     return (
         <Box>
-            <AddWalletDialog
-                open={openAddDialog}
-                onClose={onCloseAddDialog}
-                onCreate={onCreateWallet}
-                loading={loading}
-                error={error}
-                isSimulated={isSimulated}
-            />
-            <EditWalletDialog
-                open={openEditDialog}
-                onClose={onCloseEditDialog}
-                onUpdate={onUpdateWallet}
-                loading={loading}
-                error={error}
-                editingWallet={editingWallet}
-            />
-            <DeleteWalletConfirmDialog
-                open={openDeleteConfirm}
-                onClose={onCloseDeleteConfirm}
-                onConfirm={onConfirmDelete}
-                loading={loading}
-            />
+
+
             {wallets.length === 0 ? (
                 <Typography>Nenhuma carteira encontrada.</Typography>
             ) : (

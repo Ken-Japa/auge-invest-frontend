@@ -11,8 +11,8 @@ import { Wallet } from '@/services/api/types';
 
 import { useWalletData } from './hooks/useWalletData';
 import { WalletContent } from './components/WalletContent';
-import { AddWalletDialog } from './components/Dialogs/Wallet/AddWalletDialog';
-import { EditWalletDialog } from './components/Dialogs/Wallet/EditWalletDialog';
+import { WalletDialogs } from './components/Dialogs/Wallet/WalletDialogs';
+import { WalletDeleteDialog } from './components/Dialogs/Wallet/WalletDeleteDialog';
 
 
 interface WalletSectionProps {
@@ -118,19 +118,10 @@ export const WalletSection: React.FC<WalletSectionProps> = ({ title, isSimulated
                                 onAccordionChange={handleAccordionChange}
                                 onEdit={handleEditWallet}
                                 onDelete={handleDeleteWallet}
-                                openAddDialog={openAddDialog}
-                                onCloseAddDialog={handleCloseAddDialog}
-                                onCreateWallet={handleCreateWalletAndCloseDialog}
                                 isSimulated={isSimulated}
                                 loading={loading}
                                 error={error}
-                                openEditDialog={openEditDialog}
-                                onCloseEditDialog={handleCloseEditDialog}
-                                onUpdateWallet={handleUpdateWalletAndCloseDialog}
-                                editingWallet={editingWallet}
-                                openDeleteConfirm={openDeleteConfirm}
-                                onCloseDeleteConfirm={handleCloseDeleteConfirm}
-                                onConfirmDelete={handleConfirmDeleteAndCloseDialog}
+
                                 walletPositions={walletPositions}
                                 loadingPositions={loadingPositions}
                                 errorPositions={errorPositions}
@@ -138,22 +129,24 @@ export const WalletSection: React.FC<WalletSectionProps> = ({ title, isSimulated
                             />
                         )}
 
-                        <AddWalletDialog
-                            open={openAddDialog}
-                            onClose={handleCloseAddDialog}
-                            onCreate={handleCreateWalletAndCloseDialog}
+                        <WalletDialogs
+                            openAddDialog={openAddDialog}
+                            onCloseAddDialog={handleCloseAddDialog}
+                            onCreateWallet={handleCreateWalletAndCloseDialog}
+                            openEditDialog={openEditDialog}
+                            onCloseEditDialog={handleCloseEditDialog}
+                            onUpdateWallet={handleUpdateWalletAndCloseDialog}
+                            editingWallet={editingWallet}
                             loading={loading}
                             error={error}
                             isSimulated={isSimulated}
                         />
 
-                        <EditWalletDialog
-                            open={openEditDialog}
-                            onClose={handleCloseEditDialog}
-                            onUpdate={handleUpdateWalletAndCloseDialog}
+                        <WalletDeleteDialog
+                            openDeleteConfirm={openDeleteConfirm}
+                            onCloseDeleteConfirm={handleCloseDeleteConfirm}
+                            onConfirmDelete={handleConfirmDeleteAndCloseDialog}
                             loading={loading}
-                            error={error}
-                            editingWallet={editingWallet}
                         />
                     </Box>
                 </ProgressiveLoad>
