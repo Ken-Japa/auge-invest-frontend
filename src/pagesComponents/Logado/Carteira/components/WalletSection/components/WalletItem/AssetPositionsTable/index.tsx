@@ -47,8 +47,8 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
             ) : errorPositions ? (
                 <Typography color="error">Erro ao carregar operações: {errorPositions}</Typography>
             ) : walletPositions && walletPositions.result.length > 0 ? (
-                <StyledAssetTableContainer>
-                    <StyledAssetTable size="small">
+                <StyledAssetTableContainer sx={{ borderRadius: 3 }}>
+                    <StyledAssetTable size="small" >
                         <StyledAssetTableHead>
                             <StyledAssetHeaderTableRow>
                                 <StyledAssetTableHeaderCell>Ativo</StyledAssetTableHeaderCell>

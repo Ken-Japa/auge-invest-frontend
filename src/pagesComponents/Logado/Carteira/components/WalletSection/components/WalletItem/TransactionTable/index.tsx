@@ -94,7 +94,7 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
 
     return (
         <Box sx={{ margin: 1 }}>
-            <Typography variant="h4" align="center" gutterBottom component="div" sx={{ fontWeight: 'bold', my: 2 }}>
+            <Typography variant="h4" align="center" gutterBottom component="div" sx={{ fontWeight: 'bold', my: 3 }}>
                 Transações de {assetCode}
             </Typography>
             <StyledTransactionTable size="small" aria-label="purchases" sx={{ mt: 2, mb: 4 }}>

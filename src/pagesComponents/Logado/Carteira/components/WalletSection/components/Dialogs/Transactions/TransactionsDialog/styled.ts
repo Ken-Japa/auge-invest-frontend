@@ -47,15 +47,6 @@ export const CloseButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const AddButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.dark,
-  color: theme.palette.primary.contrastText,
-  transition: transitions.medium,
-  "&:hover": {
-    backgroundColor: theme.palette.primary.A400,
-  },
-}));
-
 export const StyledAssetTableHead = styled(TableHead)(({ theme }) => ({
   backgroundColor: "#000000",
 }));

@@ -1,10 +1,10 @@
 import { styled } from "@mui/material/styles";
 import { Table, TableHead, TableCell, TableRow } from "@mui/material";
-import { transitions } from "@/theme/variables";
+import { borderRadius, transitions } from "@/theme/variables";
 
 export const StyledTransactionTable = styled(Table)(({ theme }) => ({
   minWidth: 650,
-  marginTop: theme.spacing(2),
+  borderRadius: borderRadius.md,
 }));
 
 export const StyledTransactionTableHead = styled(TableHead)(({ theme }) => ({

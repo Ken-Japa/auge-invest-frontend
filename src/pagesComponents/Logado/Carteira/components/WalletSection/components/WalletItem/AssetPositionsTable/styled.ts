@@ -16,9 +16,6 @@ export const StyledAssetTableContainer = styled(TableContainer)(
 
 export const StyledAssetTable = styled(Table)(({ theme }) => ({
   minWidth: 650,
-  border: "5px solid #1A3A5B",
-  borderRadius: 8,
-  boxShadow: theme.shadows[1],
 }));
 
 export const StyledAssetTableHead = styled(TableHead)(({ theme }) => ({

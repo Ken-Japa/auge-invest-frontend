@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Typography, Box, CircularProgress, TableContainer, Paper, Table, TableRow, TableCell, TableBody, IconButton } from '@mui/material';
-import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CloseButton, AddButton, StyledAssetTableHead, StyledAssetTableHeaderCell, StyledAssetTableRow } from './styled';
+import { Typography, Box, CircularProgress, TableContainer, Paper, Table, TableRow, TableCell, TableBody, IconButton, Button } from '@mui/material';
+import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CloseButton, StyledAssetTableHead, StyledAssetTableHeaderCell, StyledAssetTableRow } from './styled';
 import { Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { walletApi } from '@/services/api/endpoints/wallet';
 import { Transaction } from '@/services/api/types/transaction';
@@ -68,13 +68,23 @@ export const TransactionsDialog: React.FC<TransactionsDialogProps> = ({
             <StyledDialogTitle>Transações do Ativo {assetCode}</StyledDialogTitle>
             <StyledDialogContent>
                 <Box sx={{ mb: 2, display: 'flex', justifyContent: 'flex-end' }}>
-                    <AddButton
+                    <Button
                         variant="outlined"
                         startIcon={<AddIcon />}
                         onClick={() => setIsAddTransactionOpen(true)}
+                        sx={{
+                            backgroundColor: '#0A1929',
+                            color: 'white',
+                            '&:hover': {
+                                backgroundColor: '#1A3A5B',
+                            },
+                            '.MuiButton-startIcon': {
+                                color: 'white',
+                            },
+                        }}
                     >
                         Adicionar Transação
-                    </AddButton>
+                    </Button>
                 </Box>
 
                 {loading ? (
@@ -84,7 +94,7 @@ export const TransactionsDialog: React.FC<TransactionsDialogProps> = ({
                 ) : error ? (
                     <Typography color="error">Erro ao carregar transações: {error}</Typography>
                 ) : transactions.length > 0 ? (
-                    <TableContainer component={Paper}>
+                    <TableContainer component={Paper} >
                         <Table size="small">
                             <StyledAssetTableHead>
                                 <TableRow>
