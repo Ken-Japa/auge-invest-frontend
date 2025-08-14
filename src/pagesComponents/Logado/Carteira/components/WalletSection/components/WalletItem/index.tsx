@@ -111,7 +111,7 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                     sx={{ background: "#223B54" }}>
                     <WalletDetailsContainer>
 
-                        <Box sx={{ my: 2, display: 'flex', justifyContent: 'flex-start' }}>
+                        <Box sx={{ mb: 4, display: 'flex', justifyContent: 'flex-end' }}>
                             <Button
                                 sx={{
                                     backgroundColor: '#0A1929',
