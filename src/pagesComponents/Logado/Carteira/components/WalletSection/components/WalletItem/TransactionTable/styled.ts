@@ -7,7 +7,7 @@ export const StyledTransactionTable = styled(Table)(({ theme }) => ({
 }));
 
 export const StyledTransactionTableHead = styled(TableHead)(({ theme }) => ({
-  background: `linear-gradient(to right, #0A1929, #1A3A5B 80%)`,
+  background: "#121820",
 }));
 
 export const StyledTransactionTableCell = styled(TableCell)(({ theme }) => ({
@@ -16,12 +16,14 @@ export const StyledTransactionTableCell = styled(TableCell)(({ theme }) => ({
 
 export const StyledTransactionTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.mode === "dark" ? "#20283A" : "#F5F5F5",
+    backgroundColor: theme.palette.mode === "dark" ? "#242C3E" : "#F5F5F5",
   },
   "&:nth-of-type(even)": {
-    backgroundColor: theme.palette.mode === "dark" ? "#30384A" : "#F5F5F5",
+    backgroundColor: theme.palette.mode === "dark" ? "#343C4E" : "#F5F5F5",
   },
-  // hide last border
+  "&:hover": {
+    backgroundColor: theme.palette.background.default,
+  },
   "&:last-child td, &:last-child th": {
     border: 0,
   },

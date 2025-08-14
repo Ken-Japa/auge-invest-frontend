@@ -40,8 +40,8 @@ export const DeleteTransactionConfirmDialog: React.FC<DeleteTransactionConfirmDi
             <DialogTitle>Confirmar Exclusão</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    <Typography>Tem certeza que deseja excluir esta operação?</Typography>
-                    <Typography>Esta ação não poderá ser desfeita.</Typography>
+                    <Typography component="span">Tem certeza que deseja excluir esta operação?</Typography>
+                    <Typography component="span">Esta ação não poderá ser desfeita.</Typography>
                 </DialogContentText>
                 {error && <Typography color="error" sx={{ mt: 2 }}>{error}</Typography>}
             </DialogContent>

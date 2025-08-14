@@ -6,7 +6,7 @@ import { Add as AddIcon, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-m
 import { WalletTransactions } from '@/services/api/types/transaction';
 import { formatDate2 as formatDate } from '@/components/Utils/Formatters/formatters';
 
-import { StyledAssetTableContainer, StyledAssetTable, StyledAssetTableHead, StyledAssetTableRow, StyledAssetTableCell, StyledAssetTableHeaderCell } from './styled';
+import { StyledAssetHeaderTableRow, StyledAssetTableContainer, StyledAssetTable, StyledAssetTableHead, StyledAssetTableRow, StyledAssetTableCell, StyledAssetTableHeaderCell } from './styled';
 
 import { assetTypes } from '../../Dialogs/Transactions/AddTransactionDialog';
 
@@ -50,7 +50,7 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
                 <StyledAssetTableContainer>
                     <StyledAssetTable size="small">
                         <StyledAssetTableHead>
-                            <StyledAssetTableRow>
+                            <StyledAssetHeaderTableRow>
                                 <StyledAssetTableHeaderCell>Ativo</StyledAssetTableHeaderCell>
                                 <StyledAssetTableHeaderCell align="center">Quantidade</StyledAssetTableHeaderCell>
                                 <StyledAssetTableHeaderCell align="center">Preço</StyledAssetTableHeaderCell>
@@ -60,7 +60,7 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
                                 <StyledAssetTableHeaderCell align="center">Tipo</StyledAssetTableHeaderCell>
                                 <StyledAssetTableHeaderCell align="center">Data Início</StyledAssetTableHeaderCell>
                                 <StyledAssetTableHeaderCell align="center">Ações</StyledAssetTableHeaderCell>
-                            </StyledAssetTableRow>
+                            </StyledAssetHeaderTableRow>
                         </StyledAssetTableHead>
                         <TableBody>
                             {walletPositions.result.map((position) => {

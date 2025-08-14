@@ -16,12 +16,12 @@ export const StyledAssetTableContainer = styled(TableContainer)(
 export const StyledAssetTable = styled(Table)(({ theme }) => ({
   minWidth: 650,
   border: "5px solid #1A3A5B",
-  borderRadius: 100,
+  borderRadius: 8,
   boxShadow: theme.shadows[1],
 }));
 
 export const StyledAssetTableHead = styled(TableHead)(({ theme }) => ({
-  backgroundColor: "#1A3A5B",
+  backgroundColor: "#000000",
 }));
 
 export const StyledAssetTableRow = styled(TableRow)(({ theme }) => ({
@@ -31,12 +31,18 @@ export const StyledAssetTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(even)": {
     backgroundColor: theme.palette.mode === "dark" ? "#2A3244" : "#F5F5F5",
   },
+
   "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
 
+export const StyledAssetHeaderTableRow = styled(TableRow)(({ theme }) => ({
+  borderBottom: `1px solid ${theme.palette.primary.main}`,
+}));
+
 export const StyledAssetTableHeaderCell = styled(TableCell)(({ theme }) => ({
+  borderBottom: `1px solid ${theme.palette.divider}`,
   fontWeight: "bold",
 }));
 
