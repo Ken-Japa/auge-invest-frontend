@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, TableRow, TableBody, IconButton, CircularProgress } from '@mui/material';
+import { Box, Typography, TableRow, TableBody, IconButton, CircularProgress, Tooltip } from '@mui/material';
 import { EditTransactionDialog } from '../../Dialogs/Transactions/EditTransactionDialog';
 import { DeleteTransactionConfirmDialog } from '../../Dialogs/Transactions/DeleteTransactionConfirmDialog';
 import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { Transaction } from '@/services/api/types/transaction';
 import { formatDate2 as formatDate, formatCurrency } from '@/components/Utils/Formatters/formatters';
-import { StyledTransactionTable, StyledTransactionTableHead, StyledTransactionTableCell, StyledTransactionTableRow } from './styled';
+import { StyledTransactionTable, StyledTransactionTableHead, StyledTransactionTableCell, StyledTransactionTableRow, StyledTransactionHeaderTableCell } from './styled';
 
 import { walletApi } from '@/services/api/endpoints/wallet';
 
@@ -103,12 +103,12 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
             <StyledTransactionTable size="small" aria-label="purchases" sx={{ mt: 2, mb: 4 }}>
                 <StyledTransactionTableHead>
                     <TableRow>
-                        <StyledTransactionTableCell>Tipo</StyledTransactionTableCell>
-                        <StyledTransactionTableCell>Quantidade</StyledTransactionTableCell>
-                        <StyledTransactionTableCell align="right">Preço</StyledTransactionTableCell>
-                        <StyledTransactionTableCell align="right">Valor Total</StyledTransactionTableCell>
-                        <StyledTransactionTableCell align="right">Data</StyledTransactionTableCell>
-                        <StyledTransactionTableCell align="right">Ações</StyledTransactionTableCell>
+                        <StyledTransactionHeaderTableCell>Tipo</StyledTransactionHeaderTableCell>
+                        <StyledTransactionHeaderTableCell>Quantidade</StyledTransactionHeaderTableCell>
+                        <StyledTransactionHeaderTableCell align="right">Preço</StyledTransactionHeaderTableCell>
+                        <StyledTransactionHeaderTableCell align="right">Valor Total</StyledTransactionHeaderTableCell>
+                        <StyledTransactionHeaderTableCell align="right">Data</StyledTransactionHeaderTableCell>
+                        <StyledTransactionHeaderTableCell align="right">Ações</StyledTransactionHeaderTableCell>
                     </TableRow>
                 </StyledTransactionTableHead>
                 <TableBody>
@@ -122,18 +122,22 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
                             <StyledTransactionTableCell align="right">{formatCurrency((transaction.price * transaction.quantity).toFixed(2))}</StyledTransactionTableCell>
                             <StyledTransactionTableCell align="right">{formatDate(transaction.executedAt)}</StyledTransactionTableCell>
                             <StyledTransactionTableCell align="right">
-                                <IconButton
-                                    color="primary"
-                                    onClick={() => handleEditClick(transaction)}
-                                >
-                                    <EditIcon />
-                                </IconButton>
-                                <IconButton
-                                    color="error"
-                                    onClick={() => handleDeleteClick(transaction._id)}
-                                >
-                                    <DeleteIcon />
-                                </IconButton>
+                                <Tooltip title="Editar Transação">
+                                    <IconButton
+                                        color="primary"
+                                        onClick={() => handleEditClick(transaction)}
+                                    >
+                                        <EditIcon />
+                                    </IconButton>
+                                </Tooltip>
+                                <Tooltip title="Deletar Transação">
+                                    <IconButton
+                                        color="error"
+                                        onClick={() => handleDeleteClick(transaction._id)}
+                                    >
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </Tooltip>
                             </StyledTransactionTableCell>
                         </StyledTransactionTableRow>
                     ))}

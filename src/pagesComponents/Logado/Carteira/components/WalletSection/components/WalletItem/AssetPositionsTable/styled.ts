@@ -25,10 +25,10 @@ export const StyledAssetTableHead = styled(TableHead)(({ theme }) => ({
 export const StyledAssetTableRow = styled(TableRow)(({ theme }) => ({
   transition: transitions.medium,
   "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2234" : "#F5F5F5",
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2234" : "#edf1f5",
   },
   "&:nth-of-type(even)": {
-    backgroundColor: theme.palette.mode === "dark" ? "#2A3244" : "#F5F5F5",
+    backgroundColor: theme.palette.mode === "dark" ? "#2A3244" : "#f5f7fa",
   },
 
   "&:last-child td, &:last-child th": {
@@ -43,6 +43,7 @@ export const StyledAssetHeaderTableRow = styled(TableRow)(({ theme }) => ({
 export const StyledAssetTableHeaderCell = styled(TableCell)(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,
   fontWeight: "bold",
+  color: "#ffffff",
 }));
 
 export const StyledAssetTableCell = styled(TableCell)(({ theme }) => ({

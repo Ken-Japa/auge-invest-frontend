@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Typography, CircularProgress, TableBody, IconButton, TableCell } from '@mui/material';
+import { Box, Typography, CircularProgress, TableBody, IconButton, TableCell, Tooltip } from '@mui/material';
+
 import { TransactionTable } from '../TransactionTable';
 import { Add as AddIcon, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 
@@ -99,18 +100,21 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
                                                 >
                                                     {isRowExpanded ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
                                                 </IconButton>
-                                                <IconButton
-                                                    aria-label="add same transaction"
-                                                    size="small"
-                                                    onClick={() => {
-                                                        setIsAddSameTransactionOpen(true);
-                                                        setSelectedAssetPositionId(position._id);
-                                                        setAssetCode(position.assetCode);
-                                                        setAssetType(position.assetType);
-                                                    }}
-                                                >
-                                                    <AddIcon />
-                                                </IconButton>
+                                                <Tooltip title="Adicionar Transação">
+
+                                                    <IconButton
+                                                        aria-label="add same transaction"
+                                                        size="small"
+                                                        onClick={() => {
+                                                            setIsAddSameTransactionOpen(true);
+                                                            setSelectedAssetPositionId(position._id);
+                                                            setAssetCode(position.assetCode);
+                                                            setAssetType(position.assetType);
+                                                        }}
+                                                    >
+                                                        <AddIcon />
+                                                    </IconButton>
+                                                </Tooltip>
                                             </StyledAssetTableCell>
                                         </StyledAssetTableRow>
                                         {isRowExpanded && (

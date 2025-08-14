@@ -129,4 +129,8 @@ export const customColors = {
     light: "#637381", // Corpo de acordeão em tema claro (Cinza azulado médio)
     dark: "#FFFFFF", // Corpo de acordeão em tema escuro (Branco puro)
   },
+  walletItemBackground: {
+    light: "#E0E0E0", // Fundo claro para o WalletItem
+    dark: "#0A1929", // Fundo escuro para o WalletItem
+  },
 };

@@ -9,19 +9,19 @@ import {
   TableRow,
   TableCell,
 } from "@mui/material";
-import { spacing, borderRadius, transitions } from "@/theme/variables";
+import { spacing, transitions } from "@/theme/variables";
 
 export const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
     backgroundColor: theme.palette.background.paper,
-    borderRadius: borderRadius.md,
+    borderRadius: 18,
   },
 }));
 
 export const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
-  color: theme.palette.text.primary,
-  fontSize: "1.05rem",
+  color: theme.palette.mode === "dark" ? theme.palette.text.primary : "#fff",
+  fontSize: "1.1rem",
   fontWeight: 600,
   padding: spacing.md,
   textAlign: "center",
@@ -68,4 +68,5 @@ export const StyledAssetTableRow = styled(TableRow)(({ theme }) => ({
 export const StyledAssetTableHeaderCell = styled(TableCell)(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,
   fontWeight: "bold",
+  color: "#fff",
 }));

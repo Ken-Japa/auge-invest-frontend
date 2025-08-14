@@ -40,7 +40,8 @@ export const PositionsContainer = styled(Box)(({ theme }) => ({
 export const EditButton = styled(Box)(({ theme }) => ({
   cursor: "pointer",
   transition: transitions.medium,
+  color: theme.palette.mode === "dark" ? "#ffffff" : theme.palette.primary.main,
   "&:hover": {
-    color: theme.palette.primary.main,
+    color: theme.palette.primary.dark,
   },
 }));

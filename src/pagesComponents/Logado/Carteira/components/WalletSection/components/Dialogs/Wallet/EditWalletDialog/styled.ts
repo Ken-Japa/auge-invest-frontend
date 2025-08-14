@@ -12,7 +12,7 @@ export const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialog-paper": {
     width: "100%",
     maxWidth: "500px",
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: 16,
     boxShadow: theme.shadows[5],
   },
 }));
@@ -21,7 +21,7 @@ export const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.primary.contrastText,
   padding: theme.spacing(2),
-  fontSize: "1.15rem",
+  fontSize: "1.1rem",
   fontWeight: "bold",
   textAlign: "center",
 }));

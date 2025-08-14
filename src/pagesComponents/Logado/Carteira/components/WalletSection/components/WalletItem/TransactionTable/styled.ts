@@ -11,17 +11,24 @@ export const StyledTransactionTableHead = styled(TableHead)(({ theme }) => ({
   background: "#121820",
 }));
 
-export const StyledTransactionTableCell = styled(TableCell)(({ theme }) => ({
-  fontWeight: "bold",
-}));
+export const StyledTransactionHeaderTableCell = styled(TableCell)(
+  ({ theme }) => ({
+    color: "#ffffff",
+    fontWeight: "bold",
+  })
+);
+
+export const StyledTransactionTableCell = styled(TableCell)(
+  ({ theme }) => ({})
+);
 
 export const StyledTransactionTableRow = styled(TableRow)(({ theme }) => ({
   transition: transitions.medium,
   "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.mode === "dark" ? "#242C3E" : "#F5F5F5",
+    backgroundColor: theme.palette.mode === "dark" ? "#242C3E" : "#edf1f5",
   },
   "&:nth-of-type(even)": {
-    backgroundColor: theme.palette.mode === "dark" ? "#343C4E" : "#F5F5F5",
+    backgroundColor: theme.palette.mode === "dark" ? "#343C4E" : "#f5f7fa",
   },
   "&:hover": {
     backgroundColor: theme.palette.background.default,

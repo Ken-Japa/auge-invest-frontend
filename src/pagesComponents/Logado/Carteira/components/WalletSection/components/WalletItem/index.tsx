@@ -11,6 +11,7 @@ import { AddSameTransactionDialog } from '../Dialogs/Transactions/AddTransaction
 import { TransactionsDialog } from '../Dialogs/Transactions/TransactionsDialog';
 
 import { WalletItemContainer, WalletActions, EditButton, WalletSummaryContainer, WalletDetailsContainer } from './styled';
+import { useTheme } from '@/theme/ThemeContext';
 import { AssetPositionsTable } from './AssetPositionsTable';
 
 
@@ -37,6 +38,9 @@ export const WalletItem: React.FC<WalletItemProps> = ({
     onEdit,
     onDelete,
 }) => {
+    const { isDarkMode } = useTheme();
+    const accordionSummaryBackground = isDarkMode ? "linear-gradient(to right, #0A1929, #163451 95%)" : "linear-gradient(to right, #ffffff, #f5f7fa 95%)";
+    const accordionDetailsBackground = isDarkMode ? "#223B54" : "#faf6f0";
     const [isAddTransactionOpen, setIsAddTransactionOpen] = useState(false);
     const [isAddSameTransactionOpen, setIsAddSameTransactionOpen] = useState(false);
     const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
@@ -73,14 +77,14 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls={`panel-${wallet._id}-content`}
                     id={`panel-${wallet._id}-header`}
-                    sx={{ background: "linear-gradient(to right, #0A1929, #163451 95%)" }}
+                    sx={{ background: accordionSummaryBackground }}
                 >
                     <WalletSummaryContainer >
                         <Box sx={{
                             display: 'flex',
                             width: '100%',
                         }}>
-                            <Typography variant="h4" sx={{ flexGrow: 1 }}>
+                            <Typography variant="h4" color="text.primary" sx={{ flexGrow: 1 }}>
                                 {wallet.name}
                                 <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
                                     {wallet.description}
@@ -108,7 +112,7 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                     </WalletSummaryContainer>
                 </AccordionSummary>
                 <AccordionDetails
-                    sx={{ background: "#223B54" }}>
+                    sx={{ background: accordionDetailsBackground }}>
                     <WalletDetailsContainer>
 
                         <Box sx={{ mb: 4, display: 'flex', justifyContent: 'flex-end' }}>

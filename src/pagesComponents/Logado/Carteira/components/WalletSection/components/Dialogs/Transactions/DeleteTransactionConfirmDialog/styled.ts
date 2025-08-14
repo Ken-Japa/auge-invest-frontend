@@ -10,15 +10,12 @@ import { transitions } from "@/theme/variables";
 
 export const StyledDialog = styled(Dialog)(({ theme }) => ({
   boxShadow: theme.shadows[5],
+  borderRadius: 18,
 }));
 
 export const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === "dark" ? theme.palette.error.dark : "#fff0f5",
-  color:
-    theme.palette.mode === "dark"
-      ? theme.palette.primary.contrastText
-      : "#660033",
+  backgroundColor: theme.palette.error.dark,
+  color: theme.palette.primary.contrastText,
   padding: theme.spacing(2),
   fontSize: "1.1rem",
   fontWeight: "bold",
@@ -38,8 +35,9 @@ export const StyledDialogActions = styled(DialogActions)(({ theme }) => ({
 export const CancelButton = styled(Button)(({ theme }) => ({
   border: `1px solid`,
   backgroundColor:
-    theme.palette.mode === "dark" ? theme.palette.primary.main : "#fff0f5",
-  color: theme.palette.text.primary,
+    theme.palette.mode === "dark" ? theme.palette.primary.main : "#0D95F9",
+  color: theme.palette.mode === "dark" ? "#fff" : "#fff",
+
   transition: transitions.medium,
   "&:hover": {
     backgroundColor: theme.palette.primary.dark,
@@ -48,13 +46,12 @@ export const CancelButton = styled(Button)(({ theme }) => ({
 
 export const DeleteButton = styled(Button)(({ theme }) => ({
   backgroundColor:
-    theme.palette.mode === "dark" ? theme.palette.error.dark : "#fff0f5",
+    theme.palette.mode === "dark" ? theme.palette.error.dark : "#FF0000",
   color:
-    theme.palette.mode === "dark"
-      ? theme.palette.primary.contrastText
-      : "#660033",
+    theme.palette.mode === "dark" ? theme.palette.primary.contrastText : "#fff",
   "&:hover": {
-    backgroundColor: theme.palette.error.main,
+    backgroundColor:
+      theme.palette.mode === "dark" ? theme.palette.error.main : "#B80404",
   },
   transition: transitions.medium,
 }));

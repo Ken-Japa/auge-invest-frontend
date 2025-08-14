@@ -18,9 +18,9 @@ export const DeleteWalletConfirmDialog: React.FC<DeleteWalletConfirmDialogProps>
     return (
         <StyledDialog open={open} onClose={onClose}>
             <StyledDialogTitle>Confirmar Exclusão</StyledDialogTitle>
-            <StyledDialogContent>
-                <Typography>Tem certeza de que deseja excluir esta carteira? </Typography>
-                <Typography>Esta ação não poderá ser desfeita.</Typography>
+            <StyledDialogContent sx={{ textAlign: 'center' }}>
+                <Typography>Tem certeza de que deseja excluir esta carteira? <br /></Typography>
+                <Typography><br />Esta ação não poderá ser desfeita.</Typography>
             </StyledDialogContent>
             <StyledDialogActions>
                 <CancelButton onClick={onClose} color="primary" disabled={loading}>

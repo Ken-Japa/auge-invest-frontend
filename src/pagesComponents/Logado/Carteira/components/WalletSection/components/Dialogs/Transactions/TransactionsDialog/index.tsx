@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Typography, Box, CircularProgress, TableContainer, Paper, Table, TableRow, TableCell, TableBody, IconButton, Button } from '@mui/material';
+import { Typography, Box, CircularProgress, TableContainer, Paper, Table, TableRow, TableCell, TableBody, IconButton, Button, Tooltip } from '@mui/material';
 import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CloseButton, StyledAssetTableHead, StyledAssetTableHeaderCell, StyledAssetTableRow } from './styled';
 import { Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { walletApi } from '@/services/api/endpoints/wallet';
@@ -44,7 +44,10 @@ export const TransactionsDialog: React.FC<TransactionsDialogProps> = ({
         setError(null);
         try {
             const response = await walletApi.getTransactionsByPositionId(assetId);
-            setTransactions(response.result);
+            const orderedTransactions = response.result.sort((a, b) =>
+                new Date(b.executedAt).getTime() - new Date(a.executedAt).getTime()
+            );
+            setTransactions(orderedTransactions);
         } catch (err: any) {
             setError(err.message || 'Failed to fetch transactions');
         } finally {
@@ -113,24 +116,28 @@ export const TransactionsDialog: React.FC<TransactionsDialogProps> = ({
                                         <TableCell align="center">{transaction.price}</TableCell>
                                         <TableCell align="center">{formatDate(transaction.executedAt)}</TableCell>
                                         <TableCell align="center">
-                                            <IconButton
-                                                color="primary"
-                                                onClick={() => {
-                                                    setSelectedTransactionForEdit(transaction);
-                                                    setIsEditTransactionOpen(true);
-                                                }}
-                                            >
-                                                <EditIcon />
-                                            </IconButton>
-                                            <IconButton
-                                                color="error"
-                                                onClick={() => {
-                                                    setTransactionToDeleteId(transaction._id);
-                                                    setIsDeleteTransactionOpen(true);
-                                                }}
-                                            >
-                                                <DeleteIcon />
-                                            </IconButton>
+                                            <Tooltip title="Editar Transação">
+                                                <IconButton
+                                                    color="primary"
+                                                    onClick={() => {
+                                                        setSelectedTransactionForEdit(transaction);
+                                                        setIsEditTransactionOpen(true);
+                                                    }}
+                                                >
+                                                    <EditIcon />
+                                                </IconButton>
+                                            </Tooltip>
+                                            <Tooltip title="Deletar Transação">
+                                                <IconButton
+                                                    color="error"
+                                                    onClick={() => {
+                                                        setTransactionToDeleteId(transaction._id);
+                                                        setIsDeleteTransactionOpen(true);
+                                                    }}
+                                                >
+                                                    <DeleteIcon />
+                                                </IconButton>
+                                            </Tooltip>
                                         </TableCell>
                                     </StyledAssetTableRow>
                                 ))}
