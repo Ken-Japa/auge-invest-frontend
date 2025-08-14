@@ -4,8 +4,6 @@ import { Wallet } from '@/services/api/types';
 import { WalletTransactions } from '@/services/api/types/transaction';
 
 import { WalletItem } from '../WalletItem';
-import { WalletDialogs } from '../Dialogs/Wallet/WalletDialogs';
-import { WalletDeleteDialog } from '../Dialogs/Wallet/WalletDeleteDialog';
 
 interface WalletContentProps {
     wallets: Wallet[];
@@ -28,9 +26,6 @@ export const WalletContent: React.FC<WalletContentProps> = ({
     onAccordionChange,
     onEdit,
     onDelete,
-    loading,
-    error,
-    isSimulated,
     walletPositions,
     loadingPositions,
     errorPositions,

@@ -2,21 +2,38 @@ import { styled } from "@mui/material/styles";
 import { Box, Accordion as MuiAccordion } from "@mui/material";
 import { spacing, borderRadius, transitions } from "@/theme/variables";
 
-export const WalletContainer = styled(Box)(({ theme }) => ({
-  // Add any specific styles for the wallet section container here
-  // For example:
-  // padding: theme.spacing(2),
-  // border: `1px solid ${theme.palette.divider}`,
-  // borderRadius: theme.shape.borderRadius,
-}));
+export const WalletSectionContainer = styled(Box)({
+  my: 4,
+});
+
+export const WalletSectionHeader = styled(Box)({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  my: 4,
+});
+
+export const LoadingContainer = styled(Box)({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "200px",
+});
+
+export const NoWalletsMessage = styled(Box)({
+  textAlign: "center",
+  my: 4,
+});
+
+export const WalletContainer = styled(Box)(({ theme }) => ({}));
 
 export const WalletItem = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2),
   padding: theme.spacing(2),
-  border: `1px solid ${theme.palette.grey[300]}`, // Example border color
+  border: `1px solid ${theme.palette.grey[300]}`,
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: theme.palette.background.paper, // Example background color
-  boxShadow: theme.shadows[1], // Example shadow
+  backgroundColor: theme.palette.background.paper,
+  boxShadow: theme.shadows[1],
 }));
 
 export const WalletActions = styled(Box)(({ theme }) => ({
