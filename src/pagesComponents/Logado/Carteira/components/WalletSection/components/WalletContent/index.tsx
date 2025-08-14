@@ -33,26 +33,20 @@ export const WalletContent: React.FC<WalletContentProps> = ({
 }) => {
     return (
         <Box>
-
-
-            {wallets.length === 0 ? (
-                <Typography>Nenhuma carteira encontrada.</Typography>
-            ) : (
-                wallets.map((wallet) => (
-                    <WalletItem
-                        key={wallet._id}
-                        wallet={wallet}
-                        expanded={expanded === wallet._id}
-                        onAccordionChange={onAccordionChange}
-                        onEdit={onEdit}
-                        onDelete={onDelete}
-                        walletPositions={walletPositions}
-                        loadingPositions={loadingPositions}
-                        errorPositions={errorPositions}
-                        fetchWalletPositions={fetchWalletPositions}
-                    />
-                ))
-            )}
+            {wallets.map((wallet) => (
+                <WalletItem
+                    key={wallet._id}
+                    wallet={wallet}
+                    expanded={expanded === wallet._id}
+                    onAccordionChange={onAccordionChange}
+                    onEdit={onEdit}
+                    onDelete={onDelete}
+                    walletPositions={walletPositions}
+                    loadingPositions={loadingPositions}
+                    errorPositions={errorPositions}
+                    fetchWalletPositions={fetchWalletPositions}
+                />
+            ))}
         </Box>
     );
 };

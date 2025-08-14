@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Box, Typography, Accordion, AccordionDetails, Button } from '@mui/material';
+import { Box, Typography, Accordion, AccordionDetails, Button, AccordionSummary } from '@mui/material';
 import { Add as AddIcon } from '@mui/icons-material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -10,7 +10,7 @@ import { AddTransactionDialog } from '../Dialogs/Transactions/AddTransactionDial
 import { AddSameTransactionDialog } from '../Dialogs/Transactions/AddTransactionSameAsset';
 import { TransactionsDialog } from '../Dialogs/Transactions/TransactionsDialog';
 
-import { StyledAccordionSummary } from './styled';
+import { WalletItemContainer, WalletActions, EditButton } from './styled';
 import { AssetPositionsTable } from './AssetPositionsTable';
 
 
@@ -34,6 +34,8 @@ export const WalletItem: React.FC<WalletItemProps> = ({
     loadingPositions,
     errorPositions,
     fetchWalletPositions,
+    onEdit,
+    onDelete,
 }) => {
     const [isAddTransactionOpen, setIsAddTransactionOpen] = useState(false);
     const [isAddSameTransactionOpen, setIsAddSameTransactionOpen] = useState(false);
@@ -65,86 +67,100 @@ export const WalletItem: React.FC<WalletItemProps> = ({
     };
 
     return (
-        <Accordion expanded={expanded} onChange={onAccordionChange(wallet._id)} key={wallet._id}>
-            <StyledAccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls={`panel-${wallet._id}-content`}
-                id={`panel-${wallet._id}-header`}
-            >
-                <Box sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    width: '100%',
-                }}>
-                    <Typography variant="h4" sx={{ flexGrow: 1 }}>
-                        {wallet.name}
-                        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                            {wallet.description}
+        <WalletItemContainer>
+            <Accordion expanded={expanded} onChange={onAccordionChange(wallet._id)} key={wallet._id}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls={`panel-${wallet._id}-content`}
+                    id={`panel-${wallet._id}-header`}
+                >
+                    <Box sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        width: '100%',
+                    }}>
+                        <Typography variant="h4" sx={{ flexGrow: 1 }}>
+                            {wallet.name}
+                            <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                                {wallet.description}
+                            </Typography>
                         </Typography>
-                    </Typography>
+                        <WalletActions>
+                            <EditButton onClick={(e) => {
+                                e.stopPropagation();
+                                onEdit(wallet);
+                            }}>
+                                <Typography variant="button">Editar</Typography>
+                            </EditButton>
+                            <EditButton onClick={(e) => {
+                                e.stopPropagation();
+                                onDelete(wallet._id);
+                            }} sx={{ ml: 2 }}>
+                                <Typography variant="button" color="error">Excluir</Typography>
+                            </EditButton>
+                        </WalletActions>
+                    </Box>
+                </AccordionSummary>
+                <AccordionDetails>
 
-                </Box>
+                    <Box sx={{ my: 2, display: 'flex', justifyContent: 'flex-start' }}>
 
-            </StyledAccordionSummary>
-            <AccordionDetails>
+                        <Button
+                            variant="outlined"
+                            startIcon={<AddIcon />}
+                            onClick={() => {
+                                setSelectedPosition(wallet._id);
+                                setIsAddTransactionOpen(true);
+                            }}
+                        >
+                            Cadastrar Operação
+                        </Button>
+                    </Box>
 
-                <Box sx={{ my: 2, display: 'flex', justifyContent: 'flex-start' }}>
+                    <AssetPositionsTable
+                        walletPositions={walletPositions}
+                        loadingPositions={loadingPositions}
+                        errorPositions={errorPositions}
+                        expandedRows={expandedRows}
+                        handleToggleRow={handleToggleRow}
+                        setSelectedAssetPositionId={setSelectedAssetPositionId}
+                        setIsTransactionsDialogOpen={setIsTransactionsDialogOpen}
+                        setAssetCode={setAssetCode}
+                        setAssetType={setAssetType}
+                        setIsAddSameTransactionOpen={setIsAddSameTransactionOpen}
+                        onTransactionChange={handleTransactionSavedOrDeleted}
+                    />
 
-                    <Button
-                        variant="outlined"
-                        startIcon={<AddIcon />}
-                        onClick={() => {
-                            setSelectedPosition(wallet._id);
-                            setIsAddTransactionOpen(true);
-                        }}
-                    >
-                        Cadastrar Operação
-                    </Button>
-                </Box>
+                    <AddTransactionDialog
+                        open={isAddTransactionOpen}
+                        onClose={() => setIsAddTransactionOpen(false)}
+                        positionId={selectedPosition}
+                        userId={wallet.userId}
+                        onSave={handleTransactionSavedOrDeleted}
+                    />
 
-                <AssetPositionsTable
-                    walletPositions={walletPositions}
-                    loadingPositions={loadingPositions}
-                    errorPositions={errorPositions}
-                    expandedRows={expandedRows}
-                    handleToggleRow={handleToggleRow}
-                    setSelectedAssetPositionId={setSelectedAssetPositionId}
-                    setIsTransactionsDialogOpen={setIsTransactionsDialogOpen}
-                    setAssetCode={setAssetCode}
-                    setAssetType={setAssetType}
-                    setIsAddSameTransactionOpen={setIsAddSameTransactionOpen}
-                    onTransactionChange={handleTransactionSavedOrDeleted}
-                />
-
-                <AddTransactionDialog
-                    open={isAddTransactionOpen}
-                    onClose={() => setIsAddTransactionOpen(false)}
-                    positionId={selectedPosition}
-                    userId={wallet.userId}
-                    onSave={handleTransactionSavedOrDeleted}
-                />
-
-                <TransactionsDialog
-                    open={isTransactionsDialogOpen}
-                    onClose={() => setIsTransactionsDialogOpen(false)}
-                    userId={wallet.userId}
-                    assetId={selectedAssetPositionId}
-                    onSave={handleTransactionSavedOrDeleted}
-                    assetCode={assetCode}
-                    assetType={assetType}
-                />
-                <AddSameTransactionDialog
-                    open={isAddSameTransactionOpen}
-                    onClose={() => setIsAddSameTransactionOpen(false)}
-                    userId={wallet.userId}
-                    positionId={selectedAssetPositionId}
-                    assetCode={assetCode}
-                    assetType={assetType}
-                    onSave={handleTransactionSavedOrDeleted}
-                />
-            </AccordionDetails>
-        </Accordion>
+                    <TransactionsDialog
+                        open={isTransactionsDialogOpen}
+                        onClose={() => setIsTransactionsDialogOpen(false)}
+                        userId={wallet.userId}
+                        assetId={selectedAssetPositionId}
+                        onSave={handleTransactionSavedOrDeleted}
+                        assetCode={assetCode}
+                        assetType={assetType}
+                    />
+                    <AddSameTransactionDialog
+                        open={isAddSameTransactionOpen}
+                        onClose={() => setIsAddSameTransactionOpen(false)}
+                        userId={wallet.userId}
+                        positionId={selectedAssetPositionId}
+                        assetCode={assetCode}
+                        assetType={assetType}
+                        onSave={handleTransactionSavedOrDeleted}
+                    />
+                </AccordionDetails>
+            </Accordion>
+        </WalletItemContainer>
 
     );
 };

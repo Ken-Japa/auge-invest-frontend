@@ -1,13 +1,14 @@
 import React from 'react';
 import { Box, Typography, CircularProgress, TableBody, IconButton, TableCell } from '@mui/material';
-import { TransactionTable } from './TransactionTable';
+import { TransactionTable } from '../TransactionTable';
 import { Add as AddIcon, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 
 import { WalletTransactions } from '@/services/api/types/transaction';
 import { formatDate2 as formatDate } from '@/components/Utils/Formatters/formatters';
 
 import { StyledAssetTableContainer, StyledAssetTable, StyledAssetTableHead, StyledAssetTableRow, StyledAssetTableCell } from './styled';
-import { assetTypes } from '../Dialogs/Transactions/AddTransactionDialog';
+
+import { assetTypes } from '../../Dialogs/Transactions/AddTransactionDialog';
 
 
 interface AssetPositionsTableProps {

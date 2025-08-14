@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, TableRow, TableBody, IconButton, CircularProgress } from '@mui/material';
-import { EditTransactionDialog } from '../Dialogs/Transactions/EditTransactionDialog';
-import { DeleteTransactionConfirmDialog } from '../Dialogs/Transactions/DeleteTransactionConfirmDialog';
+import { EditTransactionDialog } from '../../Dialogs/Transactions/EditTransactionDialog';
+import { DeleteTransactionConfirmDialog } from '../../Dialogs/Transactions/DeleteTransactionConfirmDialog';
 import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { Transaction } from '@/services/api/types/transaction';
 import { formatDate2 as formatDate } from '@/components/Utils/Formatters/formatters';
 import { StyledTransactionTable, StyledTransactionTableHead, StyledTransactionTableCell, StyledTransactionTableRow } from './styled';
+
 import { walletApi } from '@/services/api/endpoints/wallet';
 
 interface TransactionTableProps {
