@@ -1,7 +1,7 @@
 import { Network } from 'vis-network/standalone';
 import { Box, Typography, CircularProgress } from '@mui/material';
 import dynamic from 'next/dynamic';
-import { useRef, useMemo, useState } from 'react';
+import { useRef, useMemo, useState, useCallback } from 'react';
 
 // Constants
 import { DEFAULT_GRAPH_OPTIONS } from './constants/graphOptions';
@@ -15,7 +15,6 @@ import { GraphContainer, LoadingContainer, MenuContainer, SelectedNodePathContai
 import { useGraphInteractions } from './utils/hooks';
 import { useGraphData } from './utils/useGraphData';
 
-// Import our custom graph component with SSR disabled
 const CustomGraph = dynamic(
   () => import('./components/CustomGraph').then(mod => mod.CustomGraph),
   {
@@ -36,6 +35,10 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
   const [selectedIndustryId, setSelectedIndustryId] = useState<string | null>(null);
   const [selectedSegmentId, setSelectedSegmentId] = useState<string | null>(null);
   const [isGraphReady, setIsGraphReady] = useState(false);
+
+  const memoizedOnGraphReady = useCallback(() => {
+    setIsGraphReady(true);
+  }, []);
   const [selectedNodePath, setSelectedNodePath] = useState<string[]>([]);
   const networkRef = useRef<Network | null>(null);
 
@@ -84,7 +87,7 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
           networkRef={networkRef}
           options={DEFAULT_GRAPH_OPTIONS}
           events={memoizedEvents}
-          onGraphReady={() => setIsGraphReady(true)}
+          onGraphReady={memoizedOnGraphReady}
         />
       )}
       {isGraphReady && (
