@@ -76,7 +76,7 @@ export const CustomGraph: React.FC<GraphProps> = ({ graph, options, events, netw
         propNetworkRef.current = null;
       }
     };
-  }, [graph, options, events, propNetworkRef]);
+  }, [graph, options, events, propNetworkRef, onGraphReady]);
 
   return (
     <div

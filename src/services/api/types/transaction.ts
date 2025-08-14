@@ -50,19 +50,6 @@ export interface UpdateTransactionPayload {
   executedAt?: string;
 }
 
-export interface CreateWalletPayload {
-  name: string;
-  description: string;
-  userId: string;
-  simulated: boolean;
-}
-
-export interface UpdateWalletPayload {
-  name?: string;
-  description?: string;
-  simulated?: boolean;
-}
-
 export enum TransactionType {
   BUY = "buy",
   SELL = "sell",
