@@ -17,8 +17,8 @@ export const formatCNPJ = (cnpj: string): string => {
       5
     )}.${numericCNPJ.slice(5, 8)}/${numericCNPJ.slice(
       8,
-      12
-    )}-${numericCNPJ.slice(12)}`;
+      11
+    )}-${numericCNPJ.slice(11)}`;
   } else {
     return cnpj;
   }
