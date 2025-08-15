@@ -23,9 +23,11 @@ interface SearchOption {
 
 interface GlobalSearchBarProps {
     type?: 'BDR' | 'Empresa' | 'ETF' | 'ETFBDR' | 'FII' | 'Todos' | 'ETFUnificada' | 'TodosSimplificado' | 'Select';
+    onSelect?: (option: SearchOption) => void;
+    filterAssetType?: 'BDR' | 'Empresa' | 'ETF' | 'ETFBDR' | 'FII';
 }
 
-const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type }) => {
+const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filterAssetType }) => {
     const router = useRouter();
     const [searchQuery, setSearchQuery] = useState('');
     const [options, setOptions] = useState<SearchOption[]>([]);
@@ -247,71 +249,82 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type }) => {
                     break;
 
                 case 'Select':
-                    const allBDRsSelect = await api.bdrs.getAllBDRs();
-                    if (allBDRsSelect?.result?.length) {
-                        allBDRsSelect.result.forEach((bdr: BDR) => {
-                            searchOptions.push({
-                                label: `${bdr.codigo} (${bdr.nomeEmpresa})`,
-                                value: bdr.codigo || '',
-                                id: bdr.nomeEmpresa || '',
-                                assetType: 'BDR',
+
+                    if (!filterAssetType || filterAssetType === 'BDR') {
+                        const allBDRsSelect = await api.bdrs.getAllBDRs();
+                        if (allBDRsSelect?.result?.length) {
+                            allBDRsSelect.result.forEach((bdr: BDR) => {
+                                searchOptions.push({
+                                    label: `${bdr.codigo} (${bdr.nomeEmpresa})`,
+                                    value: bdr.codigo || '',
+                                    id: bdr.nomeEmpresa || '',
+                                    assetType: 'BDR',
+                                });
                             });
-                        });
+                        }
                     }
 
-                    const allETFBDRsSelect = await api.etfbdr.getAllETFBDRs();
-                    if (allETFBDRsSelect?.result?.length) {
-                        allETFBDRsSelect.result.forEach((etfbdr: ETFBDR) => {
-                            searchOptions.push({
-                                label: `${etfbdr.codigo} (${etfbdr.nomeETF})`,
-                                value: etfbdr.codigo || '',
-                                id: etfbdr.nomeETF || '',
-                                assetType: 'ETFBDR',
+                    if (!filterAssetType || filterAssetType === 'ETFBDR') {
+                        const allETFBDRsSelect = await api.etfbdr.getAllETFBDRs();
+                        if (allETFBDRsSelect?.result?.length) {
+                            allETFBDRsSelect.result.forEach((etfbdr: ETFBDR) => {
+                                searchOptions.push({
+                                    label: `${etfbdr.codigo} (${etfbdr.nomeETF})`,
+                                    value: etfbdr.codigo || '',
+                                    id: etfbdr.nomeETF || '',
+                                    assetType: 'ETFBDR',
+                                });
                             });
-                        });
+                        }
                     }
 
-                    const allFIIsSelect = await api.fiis.getFIIs({ pageSize: 1000 });
-                    if (allFIIsSelect?.result?.length) {
-                        allFIIsSelect.result.forEach((fii: FII) => {
-                            searchOptions.push({
-                                label: `${fii.codigo} (${fii.nomeFII})`,
-                                value: `${fii.codigo}` || '',
-                                id: `${fii.codigoFII}` || '',
-                                assetType: 'FII',
+                    if (!filterAssetType || filterAssetType === 'FII') {
+                        const allFIIsSelect = await api.fiis.getFIIs({ pageSize: 1000 });
+                        if (allFIIsSelect?.result?.length) {
+                            allFIIsSelect.result.forEach((fii: FII) => {
+                                searchOptions.push({
+                                    label: `${fii.codigo} (${fii.nomeFII})`,
+                                    value: `${fii.codigo}` || '',
+                                    id: `${fii.codigoFII}` || '',
+                                    assetType: 'FII',
+                                });
                             });
-                        });
+                        }
                     }
 
-                    const allETFsSelect = await api.etf.getAllETFs();
-                    if (allETFsSelect?.result?.length) {
-                        const mappedETFs = allETFsSelect.result.map((etf: ETF) => ({
-                            label: `${etf.nomeETF} (${etf.codigo})`,
-                            value: etf.nomeETF || '',
-                            id: etf.codigo || '',
-                            assetType: 'ETF' as const,
-                        }));
-                        searchOptions = [...searchOptions, ...mappedETFs];
+                    if (!filterAssetType || filterAssetType === 'ETF') {
+                        const allETFsSelect = await api.etf.getAllETFs();
+                        if (allETFsSelect?.result?.length) {
+                            const mappedETFs = allETFsSelect.result.map((etf: ETF) => ({
+                                label: `${etf.codigo} (${etf.nomeETF})`,
+                                value: etf.codigo || '',
+                                id: etf.codigo || '',
+                                assetType: 'ETF' as const,
+                            }));
+                            searchOptions = [...searchOptions, ...mappedETFs];
+                        }
                     }
 
-                    const { sumario: allSumarioSelect } = await sumarioService.getSumarioData();
+                    if (!filterAssetType || filterAssetType === 'Empresa') {
+                        const { sumario: allSumarioSelect } = await sumarioService.getSumarioData();
 
-                    allSumarioSelect.forEach(industria => {
-                        industria.segmentos.forEach(segmento => {
-                            segmento.empresasDetalhes.forEach(empresa => {
-                                if (empresa.codigos && empresa.codigos.length > 0) {
-                                    empresa.codigos.forEach(codigo => {
-                                        searchOptions.push({
-                                            label: `${codigo.codigo} (${empresa.empresa})`,
-                                            value: codigo.codigo,
-                                            id: codigo.codigo,
-                                            assetType: 'Empresa',
+                        allSumarioSelect.forEach(industria => {
+                            industria.segmentos.forEach(segmento => {
+                                segmento.empresasDetalhes.forEach(empresa => {
+                                    if (empresa.codigos && empresa.codigos.length > 0) {
+                                        empresa.codigos.forEach(codigo => {
+                                            searchOptions.push({
+                                                label: `${codigo.codigo} (${empresa.empresa})`,
+                                                value: codigo.codigo,
+                                                id: codigo.codigo,
+                                                assetType: 'Empresa',
+                                            });
                                         });
-                                    });
-                                }
+                                    }
+                                });
                             });
                         });
-                    });
+                    }
                     break;
 
                 case 'TodosSimplificado':
@@ -390,7 +403,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type }) => {
             console.error(`Error fetching ${type}s:`, error);
         }
         return searchOptions;
-    }, [type]);
+    }, [type, filterAssetType]);
 
     useEffect(() => {
         const loadOptions = async () => {
@@ -409,7 +422,13 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type }) => {
 
     const handleOptionSelect = (option: SearchOption | null) => {
         if (option) {
-            handleSearch(option);
+            if (onSelect) {
+                onSelect(option);
+                setInputValue(option.value);
+                setSearchQuery(option.value);
+            } else {
+                handleSearch(option);
+            }
         }
     };
 
@@ -542,6 +561,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type }) => {
                         handleOptionSelect(newValue);
                     }
                 }}
+                value={options.find(option => option.value === inputValue) || null}
                 onInputChange={(_, newInputValue) => {
                     setInputValue(newInputValue);
                     setSearchQuery(newInputValue);

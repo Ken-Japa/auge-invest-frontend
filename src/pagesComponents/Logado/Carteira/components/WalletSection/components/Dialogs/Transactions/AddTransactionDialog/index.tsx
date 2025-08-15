@@ -1,4 +1,5 @@
 import { api } from '@/services/api';
+import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar/Global';
 import { useMutation } from '@tanstack/react-query';
 import { CreateTransactionPayload } from '@/services/api/types/transaction';
 import { useState } from 'react';
@@ -34,6 +35,7 @@ export const assetTypes = [
     { value: 'bdr', label: 'BDR' },
     { value: 'fii', label: 'FII' },
     { value: 'tesouro', label: 'Tesouro Direto' },
+    { value: 'ficticio', label: 'Fictício' },
 ];
 
 export const AddTransactionDialog = ({ open, onClose, positionId, onSave, userId }: AddTransactionDialogProps) => {
@@ -51,8 +53,7 @@ export const AddTransactionDialog = ({ open, onClose, positionId, onSave, userId
         onSuccess: () => {
             onClose();
             onSave();
-            // Optionally, you can invalidate queries here to refetch wallet data
-            // queryClient.invalidateQueries(['wallets']);
+
         },
         onError: (error) => {
             console.error('Erro criando a transação:', error);
@@ -70,7 +71,7 @@ export const AddTransactionDialog = ({ open, onClose, positionId, onSave, userId
             userId: userId,
             portfolioId: positionId,
             type: transactionType as 'buy' | 'sell',
-            assetType: assetType as 'stocks' | 'derivatives' | 'etfs' | 'bdrs' | 'fiis' | 'treasury',
+            assetType: assetType as 'stocks' | 'derivatives' | 'etfs' | 'bdrs' | 'fiis' | 'treasury' | 'ficticio',
             assetCode: symbol,
             quantity: parseInt(quantity),
             price: parseFloat(price),
@@ -117,12 +118,22 @@ export const AddTransactionDialog = ({ open, onClose, positionId, onSave, userId
                     </Grid>
 
                     <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            label="Símbolo"
-                            value={symbol}
-                            onChange={(e) => setSymbol(e.target.value)}
-                        />
+                        {['derivativo', 'tesouro', 'ficticio'].includes(assetType) ? (
+                            <TextField
+                                fullWidth
+                                label="Símbolo"
+                                value={symbol}
+                                onChange={(e) => setSymbol(e.target.value)}
+                            />
+                        ) : (
+                            <GlobalSearchBar
+                                type={'Select'}
+                                filterAssetType={assetType === 'acao' ? 'Empresa' : assetType === 'etf' ? 'ETF' : assetType === 'etfbdr' ? 'ETFBDR' : assetType === 'bdr' ? 'BDR' : assetType === 'fii' ? 'FII' : undefined}
+                                onSelect={(option) => {
+                                    setSymbol(option.value);
+                                }}
+                            />
+                        )}
                     </Grid>
 
                     <Grid item xs={12} sm={6}>
