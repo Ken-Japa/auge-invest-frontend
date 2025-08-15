@@ -112,7 +112,13 @@ export const useGraphInteractions = (
         networkRef.current.focus(industryId, { scale: 0.65 });
       }
     },
-    [networkRef, industriesForDropdown, segmentsForDropdown, setSelectedNodePath]
+    [
+      networkRef,
+      industriesForDropdown,
+      segmentsForDropdown,
+      setSelectedNodePath,
+      graphData.nodes,
+    ]
   );
 
   const handleSelectSegment = useCallback(
@@ -144,7 +150,7 @@ export const useGraphInteractions = (
         networkRef.current.focus(segmentId, { scale: 0.65 });
       }
     },
-    [networkRef, setSelectedNodePath]
+    [networkRef, setSelectedNodePath, graphData.nodes]
   );
 
   const handleDoubleClick = useCallback(
