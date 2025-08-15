@@ -3,14 +3,25 @@ export const formatCNPJ = (cnpj: string): string => {
 
   const numericCNPJ = cnpj.replace(/\D/g, "");
 
-  if (numericCNPJ.length !== 14) return cnpj;
-
-  return `${numericCNPJ.slice(0, 2)}.${numericCNPJ.slice(
-    2,
-    5
-  )}.${numericCNPJ.slice(5, 8)}/${numericCNPJ.slice(8, 12)}-${numericCNPJ.slice(
-    12
-  )}`;
+  if (numericCNPJ.length === 14) {
+    return `${numericCNPJ.slice(0, 2)}.${numericCNPJ.slice(
+      2,
+      5
+    )}.${numericCNPJ.slice(5, 8)}/${numericCNPJ.slice(
+      8,
+      12
+    )}-${numericCNPJ.slice(12)}`;
+  } else if (numericCNPJ.length === 13) {
+    return `${numericCNPJ.slice(0, 2)}.${numericCNPJ.slice(
+      2,
+      5
+    )}.${numericCNPJ.slice(5, 8)}/${numericCNPJ.slice(
+      8,
+      12
+    )}-${numericCNPJ.slice(12)}`;
+  } else {
+    return cnpj;
+  }
 };
 
 export const formatNumber = (num: number | string): string => {

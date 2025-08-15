@@ -9,7 +9,7 @@ import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 
 // Componentes da página - Carregando os componentes principais imediatamente
-import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar/Global';
+import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar';
 
 import { Empresas } from './components/Empresas';
 import { Indices } from './components/Indices';

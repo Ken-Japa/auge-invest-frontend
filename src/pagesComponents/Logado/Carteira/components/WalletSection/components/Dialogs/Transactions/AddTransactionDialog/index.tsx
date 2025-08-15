@@ -1,5 +1,5 @@
 import { api } from '@/services/api';
-import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar/Global';
+import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar';
 import { useMutation } from '@tanstack/react-query';
 import { CreateTransactionPayload } from '@/services/api/types/transaction';
 import { useState } from 'react';

@@ -23,14 +23,6 @@ export const ETFBDRPage = () => {
     setCurrentTab(newValue);
   };
 
-  const handleSearch = (newFilters: ETFBDRFilter) => {
-    setFilters(newFilters);
-  };
-
-  const handleClear = () => {
-    setFilters({});
-  };
-
   return (
     <ErrorBoundary>
       <PageTransition direction="up" duration={0.4} distance={30}>

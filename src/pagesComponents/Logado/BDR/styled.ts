@@ -65,14 +65,6 @@ export const BDRSubTitle = styled(Typography)(({ theme }) => ({
       : theme.palette.text.secondary,
 }));
 
-export const SearchBox = styled(Box)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  mb: "3",
-  padding: theme.spacing(2),
-}));
-
 export const BDRTabsContainer = styled(Paper)(({ theme }) => ({
   width: "100%",
   marginBottom: theme.spacing(2),

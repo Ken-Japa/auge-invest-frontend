@@ -1,5 +1,5 @@
 import React from 'react';
-import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar/Global';
+import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar';
 
 const ETFBDRSearchBar: React.FC = () => {
   return (

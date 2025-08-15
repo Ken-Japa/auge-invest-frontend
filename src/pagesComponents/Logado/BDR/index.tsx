@@ -14,7 +14,6 @@ import {
     ContentBox,
     BDRTitle,
     BDRSubTitle,
-    SearchBox
 } from './styled';
 
 export const BDR = () => {
@@ -36,9 +35,9 @@ export const BDR = () => {
                                         Recebíveis de Depósitos Brasileiros
                                     </BDRSubTitle>
 
-                                    <SearchBox >
-                                        <BDRSearchBar />
-                                    </SearchBox>
+
+                                    <BDRSearchBar />
+
 
                                     <Snackbar
                                         open={!!error}

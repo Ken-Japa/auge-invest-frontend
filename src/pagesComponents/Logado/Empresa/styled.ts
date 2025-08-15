@@ -34,10 +34,7 @@ export const EmpresasContainer = styled(Box)(({ theme }) => ({
 }));
 
 export const SearchBarWrapper = styled(Box)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
   width: "100%",
-  padding: theme.spacing(2),
 }));
 
 export const ContentContainer = styled(Container)(({ theme }) => ({

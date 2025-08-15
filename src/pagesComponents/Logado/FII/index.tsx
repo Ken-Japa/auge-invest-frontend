@@ -32,9 +32,9 @@ export const FII = () => {
                                         Fundos Imobiliários
                                     </FIITitle>
 
-                                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 3 }}>
-                                        <FIISearchBar />
-                                    </Box>
+
+                                    <FIISearchBar />
+
 
                                     <Snackbar
                                         open={!!error}

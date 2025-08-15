@@ -1,7 +1,7 @@
 import { Grid, Typography, Chip } from '@mui/material';
 import { CalendarToday as CalendarIcon, Business as BusinessIcon } from '@mui/icons-material';
 import { UnifiedBDR } from '../../../../../components/BDR/types';
-import { formatCNPJ, formatDate, formatNumber } from '@/components/Utils/Formatters/formatters';
+import { formatCNPJ, formatDate } from '@/components/Utils/Formatters/formatters';
 import {
   DetailContainer,
   DetailPaper,
