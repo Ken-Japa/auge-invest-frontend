@@ -53,7 +53,9 @@ const ETF: React.FC<ETFProps> = ({ defaultPageSize }) => {
                                     </Link>
                                 </Tooltip>
                             </Box>
-                            <ETFSearchBar />
+                            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 3 }}>
+                                <ETFSearchBar />
+                            </Box>
                             <BoxVizualizationControl >
                                 <Tabs value={value} onChange={handleChange} aria-label="ETF visualization tabs">
                                     <Tab label="Cartões" {...a11yProps(0)} />

@@ -9,6 +9,8 @@ import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 
 // Componentes da página - Carregando os componentes principais imediatamente
+import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar/Global';
+
 import { Empresas } from './components/Empresas';
 import { Indices } from './components/Indices';
 import { Bdr } from './components/BDR';
@@ -69,6 +71,7 @@ export const VisaoEconomia = () => {
                             <Title>
                                 Visão Geral da Economia
                             </Title>
+
                             <BackgroundContainer
                                 style={{
                                     paddingTop: `${headerHeight}px`,
@@ -76,6 +79,7 @@ export const VisaoEconomia = () => {
                                     minHeight: '100vh'
                                 }}
                             >
+
 
                                 <Container
                                     maxWidth="xl"
@@ -85,6 +89,10 @@ export const VisaoEconomia = () => {
                                         transition: 'opacity 0.3s ease-in-out'
                                     }}
                                 >
+                                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 3 }}>
+                                        <GlobalSearchBar type="TodosSimplificado" />
+                                    </Box>
+
                                     <Grid container spacing={3}>
                                         {/* Coluna Esquerda - 8/12 da largura */}
                                         <Grid item xs={12} lg={8}>

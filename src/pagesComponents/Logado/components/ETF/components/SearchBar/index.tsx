@@ -1,16 +1,9 @@
 import React from 'react';
-import SearchBar from '@/pagesComponents/Logado/components/SearchBar';
-import { useETFSearchBarLogic } from './hooks/useETFSearchBarLogic';
+import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar/Global';
 
 const ETFSearchBar: React.FC = () => {
-  const { fetchETFs, handleETFSearch } = useETFSearchBarLogic();
-
   return (
-    <SearchBar
-      placeholder="Buscar ETFs..."
-      fetchOptions={fetchETFs}
-      onSearch={handleETFSearch}
-    />
+    <GlobalSearchBar type="ETF" />
   );
 };
 
