@@ -50,7 +50,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                             });
                             searchOptions.push({
                                 label: `${bdr.codigo} (${bdr.nomeEmpresa})`,
-                                value: bdr.codigo || '',
+                                value: bdr.nomeEmpresa || '',
                                 id: bdr.nomeEmpresa || '',
                                 assetType: 'BDR',
                             });
@@ -76,13 +76,13 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                         fiiResponse.result.forEach((fii: FII) => {
                             searchOptions.push({
                                 label: `${fii.nomeFII} (${fii.codigoFII})`,
-                                value: fii.nomeFII || '',
+                                value: fii.codigoFII || '',
                                 id: `${fii.codigoFII}` || '',
                                 assetType: 'FII',
                             });
                             searchOptions.push({
                                 label: `${fii.codigo} (${fii.nomeFII})`,
-                                value: `${fii.codigo}` || '',
+                                value: `${fii.codigoFII}` || '',
                                 id: `${fii.codigoFII}` || '',
                                 assetType: 'FII',
                             });
@@ -95,7 +95,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                         etfResponse.result.forEach((etf: ETF) => {
                             searchOptions.push({
                                 label: `${etf.nomeETF} (${etf.codigo})`,
-                                value: etf.nomeETF || '',
+                                value: etf.codigo || '',
                                 id: etf.codigo || '',
                                 assetType: 'ETF',
                             });
@@ -140,7 +140,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                     if (etfUnifiedResponse?.result?.length) {
                         const mappedETFs = etfUnifiedResponse.result.map((etf: ETF) => ({
                             label: `${etf.nomeETF} (${etf.codigo})`,
-                            value: etf.nomeETF || '',
+                            value: etf.codigo || '',
                             id: etf.codigo || '',
                             assetType: 'ETF' as const,
                         }));
@@ -169,7 +169,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                             });
                             searchOptions.push({
                                 label: `${bdr.codigo} (${bdr.nomeEmpresa})`,
-                                value: bdr.codigo || '',
+                                value: bdr.nomeEmpresa || '',
                                 id: bdr.nomeEmpresa || '',
                                 assetType: 'BDR',
                             });
@@ -187,7 +187,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                             });
                             searchOptions.push({
                                 label: `${etfbdr.codigo} (${etfbdr.nomeETF})`,
-                                value: etfbdr.codigo || '',
+                                value: etfbdr.nomeETF || '',
                                 id: etfbdr.nomeETF || '',
                                 assetType: 'ETFBDR',
                             });
@@ -199,13 +199,13 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                         allFIIs.result.forEach((fii: FII) => {
                             searchOptions.push({
                                 label: `${fii.nomeFII} (${fii.codigoFII})`,
-                                value: fii.nomeFII || '',
+                                value: fii.codigoFII || '',
                                 id: `${fii.codigoFII}` || '',
                                 assetType: 'FII',
                             });
                             searchOptions.push({
                                 label: `${fii.codigo} (${fii.nomeFII})`,
-                                value: `${fii.codigo}` || '',
+                                value: `${fii.codigoFII}` || '',
                                 id: `${fii.codigoFII}` || '',
                                 assetType: 'FII',
                             });
@@ -216,7 +216,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                     if (allETFs?.result?.length) {
                         const mappedETFs = allETFs.result.map((etf: ETF) => ({
                             label: `${etf.nomeETF} (${etf.codigo})`,
-                            value: etf.nomeETF || '',
+                            value: etf.codigo || '',
                             id: etf.codigo || '',
                             assetType: 'ETF' as const,
                         }));
@@ -257,7 +257,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                                 searchOptions.push({
                                     label: `${bdr.codigo} (${bdr.nomeEmpresa})`,
                                     value: bdr.codigo || '',
-                                    id: bdr.nomeEmpresa || '',
+                                    id: `${bdr.nomeEmpresa} - ${bdr.codigo}` || '',
                                     assetType: 'BDR',
                                 });
                             });
@@ -271,7 +271,8 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                                 searchOptions.push({
                                     label: `${etfbdr.codigo} (${etfbdr.nomeETF})`,
                                     value: etfbdr.codigo || '',
-                                    id: etfbdr.nomeETF || '',
+                                    id: `${etfbdr.nomeETF} - ${etfbdr.codigo}` || '',
+
                                     assetType: 'ETFBDR',
                                 });
                             });
@@ -284,8 +285,8 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                             allFIIsSelect.result.forEach((fii: FII) => {
                                 searchOptions.push({
                                     label: `${fii.codigo} (${fii.nomeFII})`,
-                                    value: `${fii.codigo}` || '',
-                                    id: `${fii.codigoFII}` || '',
+                                    value: `${fii.codigoFII}` || '',
+                                    id: `${fii.nomeFII} - ${fii.codigoFII}` || '',
                                     assetType: 'FII',
                                 });
                             });
@@ -298,7 +299,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                             const mappedETFs = allETFsSelect.result.map((etf: ETF) => ({
                                 label: `${etf.codigo} (${etf.nomeETF})`,
                                 value: etf.codigo || '',
-                                id: etf.codigo || '',
+                                id: `${etf.nomeETF} - ${etf.codigo}` || '',
                                 assetType: 'ETF' as const,
                             }));
                             searchOptions = [...searchOptions, ...mappedETFs];
@@ -316,7 +317,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                                             searchOptions.push({
                                                 label: `${codigo.codigo} (${empresa.empresa})`,
                                                 value: codigo.codigo,
-                                                id: codigo.codigo,
+                                                id: `${empresa.empresa} - ${codigo.codigo}`,
                                                 assetType: 'Empresa',
                                             });
                                         });
@@ -333,7 +334,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                         allBDRsSimples.result.forEach((bdr: BDR) => {
                             searchOptions.push({
                                 label: `${bdr.codigo} (${bdr.nomeEmpresa})`,
-                                value: bdr.codigo || '',
+                                value: bdr.nomeEmpresa || '',
                                 id: bdr.nomeEmpresa || '',
                                 assetType: 'BDR',
                             });
@@ -345,7 +346,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                         allETFBDRsSimples.result.forEach((etfbdr: ETFBDR) => {
                             searchOptions.push({
                                 label: `${etfbdr.codigo} (${etfbdr.nomeETF})`,
-                                value: etfbdr.codigo || '',
+                                value: etfbdr.nomeETF || '',
                                 id: etfbdr.nomeETF || '',
                                 assetType: 'ETFBDR',
                             });
@@ -357,7 +358,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                         allFIIsSimples.result.forEach((fii: FII) => {
                             searchOptions.push({
                                 label: `${fii.codigo} (${fii.nomeFII})`,
-                                value: `${fii.codigo}` || '',
+                                value: `${fii.codigoFII}` || '',
                                 id: `${fii.codigoFII}` || '',
                                 assetType: 'FII',
                             });
@@ -368,7 +369,7 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                     if (allETFsSimples?.result?.length) {
                         const mappedETFs = allETFsSimples.result.map((etf: ETF) => ({
                             label: `${etf.nomeETF} (${etf.codigo})`,
-                            value: etf.nomeETF || '',
+                            value: etf.codigo || '',
                             id: etf.codigo || '',
                             assetType: 'ETF' as const,
                         }));
@@ -436,51 +437,51 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
         if (option && option.id) {
             switch (type) {
                 case 'BDR':
-                    router.push(`/bdr/${option.id}`);
+                    router.push(`/bdr/${option.value}`);
                     break;
                 case 'ETFBDR':
-                    router.push(`/etfbdr/${option.id}`);
+                    router.push(`/etfbdr/${option.value}`);
                     break;
                 case 'FII':
-                    router.push(`/fii/${option.id}`);
+                    router.push(`/fii/${option.value}`);
                     break;
                 case 'ETF':
-                    router.push(`/etf/${option.id}`);
+                    router.push(`/etf/${option.value}`);
                     break;
                 case 'Empresa':
-                    router.push(`/empresa/${option.id}`);
+                    router.push(`/empresa/${option.value}`);
                     break;
                 case 'ETFUnificada':
                     if (option.assetType === 'ETF') {
-                        router.push(`/etf/${option.id}`);
+                        router.push(`/etf/${option.value}`);
                     } else if (option.assetType === 'ETFBDR') {
-                        router.push(`/etfbdr/${option.id}`);
+                        router.push(`/etfbdr/${option.value}`);
                     }
                     break;
                 case 'Todos':
                     if (option.assetType === 'BDR') {
-                        router.push(`/bdr/${option.id}`);
+                        router.push(`/bdr/${option.value}`);
                     } else if (option.assetType === 'Empresa') {
-                        router.push(`/empresa/${option.id}`);
+                        router.push(`/empresa/${option.value}`);
                     } else if (option.assetType === 'ETF') {
-                        router.push(`/etf/${option.id}`);
+                        router.push(`/etf/${option.value}`);
                     } else if (option.assetType === 'ETFBDR') {
-                        router.push(`/etfbdr/${option.id}`);
+                        router.push(`/etfbdr/${option.value}`);
                     } else if (option.assetType === 'FII') {
-                        router.push(`/fii/${option.id}`);
+                        router.push(`/fii/${option.value}`);
                     }
                     break;
                 case 'TodosSimplificado':
                     if (option.assetType === 'BDR') {
-                        router.push(`/bdr/${option.id}`);
+                        router.push(`/bdr/${option.value}`);
                     } else if (option.assetType === 'Empresa') {
-                        router.push(`/empresa/${option.id}`);
+                        router.push(`/empresa/${option.value}`);
                     } else if (option.assetType === 'ETF') {
-                        router.push(`/etf/${option.id}`);
+                        router.push(`/etf/${option.value}`);
                     } else if (option.assetType === 'ETFBDR') {
-                        router.push(`/etfbdr/${option.id}`);
+                        router.push(`/etfbdr/${option.value}`);
                     } else if (option.assetType === 'FII') {
-                        router.push(`/fii/${option.id}`);
+                        router.push(`/fii/${option.value}`);
                     }
                     break;
                 default:
@@ -523,6 +524,9 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
                 getOptionLabel={(option) => {
                     if (typeof option === 'string') {
                         return option;
+                    }
+                    if (type === 'Select') {
+                        return option.value;
                     }
                     return option.label;
                 }}
