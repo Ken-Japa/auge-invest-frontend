@@ -1,6 +1,7 @@
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+import { RecentActivitiesProvider } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
 
 import { PerformanceChart } from './PerformanceChart';
 import { PositionSummary } from './PositionSummary';

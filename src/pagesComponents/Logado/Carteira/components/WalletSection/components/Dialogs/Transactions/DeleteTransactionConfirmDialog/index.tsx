@@ -1,7 +1,8 @@
 import React from 'react';
-import { DialogContentText, Button, CircularProgress, Typography } from '@mui/material';
+import { DialogContentText, CircularProgress, Typography } from '@mui/material';
 import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, DeleteButton } from './styled';
 import { api } from '@/services/api';
+import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
 
 interface DeleteTransactionConfirmDialogProps {
     open: boolean;
@@ -19,6 +20,7 @@ export const DeleteTransactionConfirmDialog: React.FC<DeleteTransactionConfirmDi
 }) => {
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState<string | null>(null);
+    const { triggerRefresh } = useRecentActivitiesRefresh();
 
     const handleDelete = async () => {
         if (!transactionId) return;
@@ -29,6 +31,7 @@ export const DeleteTransactionConfirmDialog: React.FC<DeleteTransactionConfirmDi
             await api.wallet.deleteTransaction(transactionId);
             onConfirm();
             onClose();
+            triggerRefresh();
         } catch (err: any) {
             setError(err.message || 'Failed to delete transaction.');
         } finally {

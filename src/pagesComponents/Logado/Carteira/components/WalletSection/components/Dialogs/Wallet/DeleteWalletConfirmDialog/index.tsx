@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, DeleteButton } from './styled';
+import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
 
 interface DeleteWalletConfirmDialogProps {
     open: boolean;
@@ -15,6 +16,13 @@ export const DeleteWalletConfirmDialog: React.FC<DeleteWalletConfirmDialogProps>
     onConfirm,
     loading,
 }) => {
+    const { triggerRefresh } = useRecentActivitiesRefresh();
+
+    const handleDeleteConfirm = () => {
+        onConfirm();
+        triggerRefresh();
+    };
+
     return (
         <StyledDialog open={open} onClose={onClose}>
             <StyledDialogTitle>Confirmar Exclusão</StyledDialogTitle>
@@ -26,7 +34,7 @@ export const DeleteWalletConfirmDialog: React.FC<DeleteWalletConfirmDialogProps>
                 <CancelButton onClick={onClose} color="primary" disabled={loading}>
                     Cancelar
                 </CancelButton>
-                <DeleteButton onClick={onConfirm} color="error" disabled={loading}>
+                <DeleteButton onClick={handleDeleteConfirm} color="error" disabled={loading}>
                     {loading ? 'Excluindo...' : 'Excluir'}
                 </DeleteButton>
             </StyledDialogActions>

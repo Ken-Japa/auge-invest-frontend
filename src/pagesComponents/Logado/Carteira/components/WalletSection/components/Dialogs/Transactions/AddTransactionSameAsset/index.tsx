@@ -11,6 +11,7 @@ import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActio
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
+import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
 
 interface AddSameTransactionDialogProps {
     open: boolean;
@@ -45,12 +46,14 @@ export const AddSameTransactionDialog = ({ open, onClose, positionId, onSave, us
     const [quantity, setQuantity] = useState('');
     const [price, setPrice] = useState('');
     const [date, setDate] = useState<Dayjs | null>(dayjs());
+    const { triggerRefresh } = useRecentActivitiesRefresh();
 
     const createTransactionMutation = useMutation({
         mutationFn: (payload: CreateTransactionPayload) => api.wallet.createTransaction(payload),
         onSuccess: () => {
             onClose();
             onSave();
+            triggerRefresh();
 
         },
         onError: (error) => {

@@ -8,6 +8,7 @@ import { TransactionType } from '@/services/api/types/transaction';
 import { api } from '@/services/api';
 
 import { Transaction } from '@/services/api/types/transaction';
+import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
 
 interface EditTransactionDialogProps {
     open: boolean;
@@ -42,6 +43,7 @@ export const EditTransactionDialog: React.FC<EditTransactionDialogProps> = ({
     const [executedAt, setExecutedAt] = useState<Dayjs | null>(transaction?.executedAt ? dayjs(transaction.executedAt) : dayjs());
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+    const { triggerRefresh } = useRecentActivitiesRefresh();
 
     useEffect(() => {
         if (transaction) {
@@ -69,6 +71,7 @@ export const EditTransactionDialog: React.FC<EditTransactionDialogProps> = ({
             );
             onSave();
             onClose();
+            triggerRefresh();
         } catch (err: any) {
             setError(err.message || 'Failed to update transaction.');
         } finally {

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { TextField, Switch, FormControlLabel } from '@mui/material';
 import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, UpdateButton } from './styled';
 import { Wallet } from '@/services/api/types';
+import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
 
 
 interface EditWalletDialogProps {
@@ -24,6 +25,7 @@ export const EditWalletDialog: React.FC<EditWalletDialogProps> = ({
     const [description, setDescription] = useState<string>('');
     const nameInputRef = useRef<HTMLInputElement>(null);
     const [simulatedState, setSimulatedState] = useState<boolean>(false);
+    const { triggerRefresh } = useRecentActivitiesRefresh();
 
     useEffect(() => {
         if (editingWallet) {
@@ -36,6 +38,7 @@ export const EditWalletDialog: React.FC<EditWalletDialogProps> = ({
     const handleUpdate = () => {
         if (editingWallet) {
             onUpdate(editingWallet._id, name, description, simulatedState);
+            triggerRefresh();
         }
     };
 

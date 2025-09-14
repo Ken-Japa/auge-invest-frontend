@@ -12,6 +12,7 @@ import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActio
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
+import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
 
 interface AddTransactionDialogProps {
     open: boolean;
@@ -46,6 +47,7 @@ export const AddTransactionDialog = ({ open, onClose, positionId, onSave, userId
     const [quantity, setQuantity] = useState('');
     const [price, setPrice] = useState('');
     const [date, setDate] = useState<Dayjs | null>(dayjs());
+    const { triggerRefresh } = useRecentActivitiesRefresh();
 
 
     const createTransactionMutation = useMutation({
@@ -53,6 +55,7 @@ export const AddTransactionDialog = ({ open, onClose, positionId, onSave, userId
         onSuccess: () => {
             onClose();
             onSave();
+            triggerRefresh();
 
         },
         onError: (error) => {

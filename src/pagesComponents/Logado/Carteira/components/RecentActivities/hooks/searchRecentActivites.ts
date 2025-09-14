@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { api } from "@/services/api";
 import { Wallet } from "@/services/api/types/wallet";
 import { Transaction, Positions } from "@/services/api/types/transaction";
+import { useRecentActivitiesRefresh } from "@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext";
 
 interface RecentActivity {
   assetCode: string;
@@ -14,6 +15,7 @@ interface RecentActivity {
 
 export function useSearchRecentActivities() {
   const { data: session } = useSession();
+  const { refreshTrigger } = useRecentActivitiesRefresh();
   const [recentRealActivities, setRecentRealActivities] = useState<
     RecentActivity[]
   >([]);
@@ -81,7 +83,7 @@ export function useSearchRecentActivities() {
 
   useEffect(() => {
     fetchRecentActivities();
-  }, [fetchRecentActivities]);
+  }, [fetchRecentActivities, refreshTrigger]);
 
   const sortedRealActivities = useMemo(() => {
     return recentRealActivities

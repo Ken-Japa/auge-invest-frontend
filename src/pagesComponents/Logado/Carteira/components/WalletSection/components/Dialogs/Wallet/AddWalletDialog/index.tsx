@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { TextField, Switch, FormControlLabel } from '@mui/material';
 import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, CreateButton } from './styled';
+import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
 
 interface AddWalletDialogProps {
     open: boolean;
@@ -22,6 +23,7 @@ export const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
     const [newWalletDescription, setNewWalletDescription] = useState<string>('');
     const nameInputRef = useRef<HTMLInputElement>(null);
     const [simulatedState, setSimulatedState] = useState<boolean>(isSimulated);
+    const { triggerRefresh } = useRecentActivitiesRefresh();
 
     useEffect(() => {
         setSimulatedState(isSimulated);
@@ -31,6 +33,7 @@ export const AddWalletDialog: React.FC<AddWalletDialogProps> = ({
         onCreate(newWalletName, newWalletDescription, simulatedState);
         setNewWalletName('');
         setNewWalletDescription('');
+        triggerRefresh();
     };
 
     const handleCloseDialog = () => {
