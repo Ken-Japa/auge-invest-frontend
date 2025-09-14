@@ -13,7 +13,7 @@ import { TransactionsDialog } from '../Dialogs/Transactions/TransactionsDialog';
 import { WalletItemContainer, WalletActions, EditButton, WalletSummaryContainer, WalletDetailsContainer } from './styled';
 import { useTheme } from '@/theme/ThemeContext';
 import { AssetPositionsTable } from './AssetPositionsTable';
-import { useFocus } from '../../../../components/FocusContext/FocusContext';
+import { useFocus } from '../../../RecentActivities/components/FocusContext/FocusContext';
 
 
 interface WalletItemProps {

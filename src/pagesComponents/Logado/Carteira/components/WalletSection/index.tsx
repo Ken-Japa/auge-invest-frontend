@@ -10,7 +10,7 @@ import { WalletContent } from './components/WalletContent';
 import { WalletDialogs } from './components/Dialogs/Wallet/WalletDialogs';
 import { WalletDeleteDialog } from './components/Dialogs/Wallet/WalletDeleteDialog';
 import { useWalletSectionLogic } from './hooks/useWalletSectionLogic';
-import { useFocus } from '../FocusContext/FocusContext';
+import { useFocus } from '../RecentActivities/components/FocusContext/FocusContext';
 import { useEffect } from 'react';
 
 

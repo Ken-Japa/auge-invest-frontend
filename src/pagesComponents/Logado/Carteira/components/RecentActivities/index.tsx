@@ -3,7 +3,7 @@ import { ActivityContainer, ActivityList, ActivityItem } from './styled';
 import { useSearchRecentActivities } from './hooks/searchRecentActivites';
 import { Typography, ListItemText, CircularProgress, Box, Divider } from '@mui/material';
 import { ActivityText, ActivityText2 } from './components/ActivityText';
-import { useFocus } from '../FocusContext/FocusContext';
+import { useFocus } from './components/FocusContext/FocusContext';
 
 export const RecentActivities = ({ type }: { type: 'real' | 'virtual' }) => {
     const { recentRealActivities, recentVirtualActivities, loading, error } = useSearchRecentActivities();

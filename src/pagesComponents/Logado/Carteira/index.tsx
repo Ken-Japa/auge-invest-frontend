@@ -7,7 +7,7 @@ import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { RecentActivitiesProvider } from './context/RecentActivitiesContext';
-import { FocusProvider } from './components/FocusContext/FocusContext';
+import { FocusProvider } from './components/RecentActivities/components/FocusContext/FocusContext';
 
 import { PositionSection } from './components';
 import { WalletSection } from './components/WalletSection';
