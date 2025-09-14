@@ -23,7 +23,7 @@ export const RecentActivities = ({ type }: { type: 'real' | 'virtual' }) => {
                 <Typography color="error">Erro ao carregar atividades: {error}</Typography>
             )}
 
-            {!loading && !error && recentRealActivities.length === 0 && (
+            {!loading && !error && type === 'real' && recentRealActivities.length === 0 && (
                 <Typography>Nenhuma atividade recente encontrada.</Typography>
             )}
 
@@ -41,7 +41,7 @@ export const RecentActivities = ({ type }: { type: 'real' | 'virtual' }) => {
                     </ActivityList>
                 </>
             )}
-            {!loading && !error && recentVirtualActivities.length === 0 && (
+            {!loading && !error && type === 'virtual' && recentVirtualActivities.length === 0 && (
                 <Typography>Nenhuma atividade recente encontrada.</Typography>
             )}
             {!loading && !error && type === 'virtual' && recentVirtualActivities.length > 0 && (
