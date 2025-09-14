@@ -87,7 +87,7 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
                                             <StyledAssetTableCell align="center">Implementar</StyledAssetTableCell>
                                             <StyledAssetTableCell align="center">{assetTypes.find(type => type.value === position.assetType)?.label || position.assetType}</StyledAssetTableCell>
                                             <StyledAssetTableCell align="center">{formatDate(position.createdAt)}</StyledAssetTableCell>
-                                            <StyledAssetTableCell>
+                                            <StyledAssetTableCell align="center">
                                                 <IconButton
                                                     aria-label="expand row"
                                                     size="small"

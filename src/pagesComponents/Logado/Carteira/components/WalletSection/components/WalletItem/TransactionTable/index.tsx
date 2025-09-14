@@ -103,25 +103,25 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
             <StyledTransactionTable size="small" aria-label="purchases" sx={{ mt: 2, mb: 4 }}>
                 <StyledTransactionTableHead>
                     <TableRow>
-                        <StyledTransactionHeaderTableCell>Tipo</StyledTransactionHeaderTableCell>
-                        <StyledTransactionHeaderTableCell>Quantidade</StyledTransactionHeaderTableCell>
-                        <StyledTransactionHeaderTableCell align="right">Preço</StyledTransactionHeaderTableCell>
-                        <StyledTransactionHeaderTableCell align="right">Valor Total</StyledTransactionHeaderTableCell>
-                        <StyledTransactionHeaderTableCell align="right">Data</StyledTransactionHeaderTableCell>
-                        <StyledTransactionHeaderTableCell align="right">Ações</StyledTransactionHeaderTableCell>
+                        <StyledTransactionHeaderTableCell align="center">Tipo</StyledTransactionHeaderTableCell>
+                        <StyledTransactionHeaderTableCell align="center">Quantidade</StyledTransactionHeaderTableCell>
+                        <StyledTransactionHeaderTableCell align="center">Preço</StyledTransactionHeaderTableCell>
+                        <StyledTransactionHeaderTableCell align="center">Valor Total</StyledTransactionHeaderTableCell>
+                        <StyledTransactionHeaderTableCell align="center">Data</StyledTransactionHeaderTableCell>
+                        <StyledTransactionHeaderTableCell align="center">Ações</StyledTransactionHeaderTableCell>
                     </TableRow>
                 </StyledTransactionTableHead>
                 <TableBody>
                     {transactions.map((transaction) => (
                         <StyledTransactionTableRow key={transaction._id}>
-                            <StyledTransactionTableCell component="th" scope="row">
+                            <StyledTransactionTableCell align="center" component="th" scope="row">
                                 {transaction.type === 'buy' ? 'Compra' : 'Venda'}
                             </StyledTransactionTableCell>
-                            <StyledTransactionTableCell>{transaction.quantity}</StyledTransactionTableCell>
-                            <StyledTransactionTableCell align="right">{transaction.price.toFixed(2)}</StyledTransactionTableCell>
-                            <StyledTransactionTableCell align="right">{formatCurrency((transaction.price * transaction.quantity).toFixed(2))}</StyledTransactionTableCell>
-                            <StyledTransactionTableCell align="right">{formatDate(transaction.executedAt)}</StyledTransactionTableCell>
-                            <StyledTransactionTableCell align="right">
+                            <StyledTransactionTableCell align="center">{transaction.quantity}</StyledTransactionTableCell>
+                            <StyledTransactionTableCell align="center">{transaction.price.toFixed(2)}</StyledTransactionTableCell>
+                            <StyledTransactionTableCell align="center">{formatCurrency((transaction.price * transaction.quantity).toFixed(2))}</StyledTransactionTableCell>
+                            <StyledTransactionTableCell align="center">{formatDate(transaction.executedAt)}</StyledTransactionTableCell>
+                            <StyledTransactionTableCell align="center">
                                 <Tooltip title="Editar Transação">
                                     <IconButton
                                         color="primary"

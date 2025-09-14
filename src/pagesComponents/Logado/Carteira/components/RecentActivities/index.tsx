@@ -1,7 +1,7 @@
 import 'dayjs/locale/pt-br';
 import { ActivityContainer, ActivityList, ActivityItem } from './styled';
 import { useSearchRecentActivities } from './hooks/searchRecentActivites';
-import { Typography, ListItemText, CircularProgress, Box } from '@mui/material';
+import { Typography, ListItemText, CircularProgress, Box, Divider } from '@mui/material';
 import { ActivityText, ActivityText2 } from './components/ActivityText';
 
 export const RecentActivities = ({ type }: { type: 'real' | 'virtual' }) => {
@@ -9,9 +9,10 @@ export const RecentActivities = ({ type }: { type: 'real' | 'virtual' }) => {
 
     return (
         <ActivityContainer>
-            <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
+            <Typography variant="h3" gutterBottom sx={{ textAlign: 'center' }}>
                 Atividades Recentes
             </Typography>
+            <Divider />
 
             {loading && (
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
@@ -53,7 +54,9 @@ export const RecentActivities = ({ type }: { type: 'real' | 'virtual' }) => {
                                     primary={<ActivityText activity={activity} />}
                                     secondary={<ActivityText2 activity={activity} />}
                                 />
+
                             </ActivityItem>
+
                         ))}
                     </ActivityList>
                 </>
