@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography, CircularProgress, TableBody, IconButton, TableCell, Tooltip } from '@mui/material';
 
 import { TransactionTable } from '../TransactionTable';
 import { Add as AddIcon, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 
-import { WalletTransactions } from '@/services/api/types/transaction';
+import { Transaction, WalletTransactions } from '@/services/api/types/transaction';
+import { walletApi } from '@/services/api/endpoints/wallet';
 import { formatDate2 as formatDate, formatCurrency } from '@/components/Utils/Formatters/formatters';
 
 import { StyledAssetHeaderTableRow, StyledAssetTableContainer, StyledAssetTable, StyledAssetTableHead, StyledAssetTableRow, StyledAssetTableCell, StyledAssetTableHeaderCell } from './styled';
@@ -41,6 +42,61 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
     onTransactionChange,
     focusedAssetCode,
 }) => {
+    const [calculatedAssetData, setCalculatedAssetData] = useState<{
+        [positionId: string]: { averagePrice: number; spentValue: number; quantity: number; netSpentValue: number };
+    }>({});
+
+    useEffect(() => {
+        const calculateAssetData = async () => {
+            if (!walletPositions || walletPositions.result.length === 0) {
+                setCalculatedAssetData({});
+                return;
+            }
+
+            const newCalculatedData: { [positionId: string]: { averagePrice: number; spentValue: number; quantity: number; netSpentValue: number } } = {};
+
+            for (const position of walletPositions.result) {
+                try {
+                    const response = await walletApi.getTransactionsByPositionId(position._id);
+                    const transactions = response.result;
+
+                    let totalQuantity = 0;
+                    let totalSpent = 0;
+
+                    transactions.forEach((transaction: Transaction) => {
+                        if (transaction.type === 'buy') {
+                            totalQuantity += transaction.quantity;
+                            totalSpent -= transaction.quantity * transaction.price;
+                        } else if (transaction.type === 'sell') {
+                            totalQuantity -= transaction.quantity;
+                            totalSpent += transaction.quantity * transaction.price;
+                        }
+                    });
+
+                    const averagePrice = totalQuantity !== 0 ? totalSpent / totalQuantity : 0;
+
+                    newCalculatedData[position._id] = {
+                        averagePrice: averagePrice,
+                        spentValue: Math.abs(totalSpent),
+                        quantity: totalQuantity,
+                        netSpentValue: totalSpent,
+                    };
+                } catch (error) {
+                    console.error(`Error calculating asset data for position ${position._id}:`, error);
+                    newCalculatedData[position._id] = {
+                        averagePrice: 0,
+                        spentValue: 0,
+                        quantity: 0,
+                        netSpentValue: 0,
+                    };
+                }
+            }
+            setCalculatedAssetData(newCalculatedData);
+        };
+
+        calculateAssetData();
+    }, [walletPositions, onTransactionChange]);
+
     useEffect(() => {
         if (focusedAssetCode && walletPositions) {
             const element = document.getElementById(`asset-row-${focusedAssetCode}`);
@@ -98,9 +154,34 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
                                             >
                                                 {position.assetCode}
                                             </StyledAssetTableCell>
-                                            <StyledAssetTableCell align="center">{position.quantity}</StyledAssetTableCell>
-                                            <StyledAssetTableCell align="center">{position.averagePrice.toFixed(2)}</StyledAssetTableCell>
-                                            <StyledAssetTableCell align="center">{formatCurrency((position.quantity * position.averagePrice).toFixed(2))}</StyledAssetTableCell>
+                                            <StyledAssetTableCell align="center">
+                                                <Typography variant="body2">
+                                                    {calculatedAssetData[position._id]?.quantity !== undefined
+                                                        ? calculatedAssetData[position._id]?.quantity.toFixed(2)
+                                                        : 'N/A'}
+                                                </Typography>
+                                            </StyledAssetTableCell>
+                                            <StyledAssetTableCell align="center">
+                                                <Typography variant="body2">
+                                                    {calculatedAssetData[position._id]?.averagePrice !== undefined
+                                                        ? formatCurrency(Math.abs(calculatedAssetData[position._id]?.averagePrice))
+                                                        : 'N/A'}
+                                                </Typography>
+                                            </StyledAssetTableCell>
+                                            <StyledAssetTableCell align="center">
+                                                <Typography
+                                                    variant="body2"
+                                                    sx={{
+                                                        color: calculatedAssetData[position._id]?.netSpentValue !== undefined
+                                                            ? (calculatedAssetData[position._id]?.netSpentValue > 0 ? 'success.main' : 'error.main')
+                                                            : 'inherit',
+                                                    }}
+                                                >
+                                                    {calculatedAssetData[position._id]?.netSpentValue !== undefined
+                                                        ? formatCurrency(calculatedAssetData[position._id]?.netSpentValue)
+                                                        : 'N/A'}
+                                                </Typography>
+                                            </StyledAssetTableCell>
                                             <StyledAssetTableCell align="center">Implementar</StyledAssetTableCell>
                                             <StyledAssetTableCell align="center">Implementar</StyledAssetTableCell>
                                             <StyledAssetTableCell align="center">{assetTypes.find(type => type.value === position.assetType)?.label || position.assetType}</StyledAssetTableCell>

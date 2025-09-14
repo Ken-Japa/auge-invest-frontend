@@ -119,7 +119,19 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
                             </StyledTransactionTableCell>
                             <StyledTransactionTableCell align="center">{transaction.quantity}</StyledTransactionTableCell>
                             <StyledTransactionTableCell align="center">{transaction.price.toFixed(2)}</StyledTransactionTableCell>
-                            <StyledTransactionTableCell align="center">{formatCurrency((transaction.price * transaction.quantity).toFixed(2))}</StyledTransactionTableCell>
+                            <StyledTransactionTableCell
+                                align="center"
+                                sx={{
+                                    color: transaction.type === 'buy' ? 'error.main' : 'success.main',
+                                }}
+                            >
+                                {formatCurrency(
+                                    (transaction.type === 'buy'
+                                        ? -(transaction.price * transaction.quantity)
+                                        : transaction.price * transaction.quantity
+                                    ).toFixed(2)
+                                )}
+                            </StyledTransactionTableCell>
                             <StyledTransactionTableCell align="center">{formatDate(transaction.executedAt)}</StyledTransactionTableCell>
                             <StyledTransactionTableCell align="center">
                                 <Tooltip title="Editar Transação">
