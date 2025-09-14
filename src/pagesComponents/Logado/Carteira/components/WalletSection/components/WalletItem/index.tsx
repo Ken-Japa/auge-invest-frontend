@@ -13,6 +13,7 @@ import { TransactionsDialog } from '../Dialogs/Transactions/TransactionsDialog';
 import { WalletItemContainer, WalletActions, EditButton, WalletSummaryContainer, WalletDetailsContainer } from './styled';
 import { useTheme } from '@/theme/ThemeContext';
 import { AssetPositionsTable } from './AssetPositionsTable';
+import { useFocus } from '../../../../components/FocusContext/FocusContext';
 
 
 interface WalletItemProps {
@@ -49,6 +50,8 @@ export const WalletItem: React.FC<WalletItemProps> = ({
     const [selectedAssetPositionId, setSelectedAssetPositionId] = useState<string | null>(null);
     const [assetCode, setAssetCode] = useState<string | null>(null);
     const [assetType, setAssetType] = useState<string | null>(null);
+
+    const { focusedAssetCode } = useFocus();
 
 
     useEffect(() => {
@@ -150,6 +153,7 @@ export const WalletItem: React.FC<WalletItemProps> = ({
                             setAssetType={setAssetType}
                             setIsAddSameTransactionOpen={setIsAddSameTransactionOpen}
                             onTransactionChange={handleTransactionSavedOrDeleted}
+                            focusedAssetCode={focusedAssetCode}
                         />
 
                         <AddTransactionDialog

@@ -30,7 +30,6 @@ export const StyledAssetTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(even)": {
     backgroundColor: theme.palette.mode === "dark" ? "#2A3244" : "#f5f7fa",
   },
-
   "&:last-child td, &:last-child th": {
     border: 0,
   },

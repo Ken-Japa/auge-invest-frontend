@@ -11,6 +11,8 @@ interface RecentActivity {
   quantity: number;
   price: number;
   executedAt: string;
+  walletId: string;
+  positionId: string;
 }
 
 export function useSearchRecentActivities() {
@@ -42,6 +44,8 @@ export function useSearchRecentActivities() {
           quantity: tx.quantity,
           price: tx.price,
           executedAt: tx.executedAt,
+          walletId: wallet._id,
+          positionId: position._id,
         }));
         allTransactions.push(...mappedTransactions);
       }

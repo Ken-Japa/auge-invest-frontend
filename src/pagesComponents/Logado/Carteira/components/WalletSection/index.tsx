@@ -10,6 +10,8 @@ import { WalletContent } from './components/WalletContent';
 import { WalletDialogs } from './components/Dialogs/Wallet/WalletDialogs';
 import { WalletDeleteDialog } from './components/Dialogs/Wallet/WalletDeleteDialog';
 import { useWalletSectionLogic } from './hooks/useWalletSectionLogic';
+import { useFocus } from '../FocusContext/FocusContext';
+import { useEffect } from 'react';
 
 
 interface WalletSectionProps {
@@ -41,7 +43,34 @@ export const WalletSection: React.FC<WalletSectionProps> = ({ title, isSimulated
         handleConfirmDeleteAndCloseDialog,
         handleCloseEditDialog,
         handleCloseDeleteConfirm,
+        collapseAccordion,
     } = useWalletSectionLogic({ isSimulated });
+
+
+    const { focusedWalletId, focusedAssetCode, setFocusedItem } = useFocus();
+
+    useEffect(() => {
+        let timer: NodeJS.Timeout | undefined;
+        if (focusedWalletId && wallets.length > 0) {
+            const walletToFocus = wallets.find(wallet => wallet._id === focusedWalletId);
+            if (walletToFocus) {
+                if (expanded !== focusedWalletId) {
+                    handleAccordionChange(focusedWalletId)({} as React.SyntheticEvent, true);
+                }
+                fetchWalletPositions(focusedWalletId);
+
+                timer = setTimeout(() => {
+                    setFocusedItem(null, null);
+                }, 2000);
+            }
+        }
+
+        return () => {
+            if (timer) {
+                clearTimeout(timer);
+            }
+        };
+    }, [focusedWalletId, wallets, expanded, handleAccordionChange, fetchWalletPositions, collapseAccordion, setFocusedItem]);
 
     return (
         <ErrorBoundary>

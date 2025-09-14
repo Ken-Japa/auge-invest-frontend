@@ -37,6 +37,10 @@ export const useWalletSectionLogic = ({ isSimulated }: UseWalletSectionLogicProp
         setExpanded(isExpanded ? panel : false);
     }, []);
 
+    const collapseAccordion = useCallback(() => {
+        setExpanded(false);
+    }, []);
+
     const handleEditWallet = useCallback((wallet: Wallet) => {
         setEditingWallet(wallet);
         setOpenEditDialog(true);
@@ -92,5 +96,6 @@ export const useWalletSectionLogic = ({ isSimulated }: UseWalletSectionLogicProp
         handleConfirmDeleteAndCloseDialog,
         handleCloseEditDialog,
         handleCloseDeleteConfirm,
+        collapseAccordion,
     };
 };

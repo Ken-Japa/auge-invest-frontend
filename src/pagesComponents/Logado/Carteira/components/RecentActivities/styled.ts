@@ -38,6 +38,8 @@ export const ActivityList = styled(List)(({ theme }) => ({
 }));
 
 export const ActivityItem = styled(ListItem)(({ theme }) => ({
+    cursor: 'pointer',
+
   padding: 2,
   paddingLeft: 8,
   borderRadius: borderRadius.sm,

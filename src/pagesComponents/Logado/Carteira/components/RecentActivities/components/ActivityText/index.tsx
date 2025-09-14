@@ -1,4 +1,4 @@
-import { Typography, Divider } from '@mui/material';
+import { Typography } from '@mui/material';
 import dayjs from 'dayjs';
 
 interface ActivityTextProps {
@@ -48,17 +48,15 @@ export const ActivityText2 = ({ activity }: ActivityTextProps) => {
   const date = dayjs(activity.executedAt).locale('pt-br').format('DD [de] MMMM [de] YYYY')
 
   return (
-    <>
-      <Typography component="span" sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography component="span" >
-          {`${date}`}
-        </Typography>
-        <Typography component="span" color={valueColor} fontWeight="bold" sx={{ paddingRight: 4 }}>
-          {`${valueSign} ${formattedValue}`}
-        </Typography>
 
+    <Typography component="span" sx={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Typography component="span" >
+        {`${date}`}
       </Typography>
-      <Divider orientation="horizontal" />
-    </>
+      <Typography component="span" color={valueColor} fontWeight="bold" sx={{ paddingRight: 4 }}>
+        {`${valueSign} ${formattedValue}`}
+      </Typography>
+    </Typography>
+
   );
 };

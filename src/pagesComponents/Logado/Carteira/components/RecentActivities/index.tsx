@@ -3,9 +3,19 @@ import { ActivityContainer, ActivityList, ActivityItem } from './styled';
 import { useSearchRecentActivities } from './hooks/searchRecentActivites';
 import { Typography, ListItemText, CircularProgress, Box, Divider } from '@mui/material';
 import { ActivityText, ActivityText2 } from './components/ActivityText';
+import { useFocus } from '../FocusContext/FocusContext';
 
 export const RecentActivities = ({ type }: { type: 'real' | 'virtual' }) => {
     const { recentRealActivities, recentVirtualActivities, loading, error } = useSearchRecentActivities();
+    const { setFocusedItem, focusedWalletId, focusedAssetCode } = useFocus();
+
+    const handleActivityClick = (walletId: string, assetCode: string | null) => {
+        if (focusedWalletId === walletId && focusedAssetCode === assetCode) {
+            setFocusedItem(null, null)
+        } else {
+            setFocusedItem(walletId, assetCode);
+        }
+    };
 
     return (
         <ActivityContainer>
@@ -32,12 +42,16 @@ export const RecentActivities = ({ type }: { type: 'real' | 'virtual' }) => {
                 <>
                     <ActivityList dense>
                         {recentRealActivities.map((activity, index) => (
-                            <ActivityItem key={index}>
-                                <ListItemText
-                                    primary={<ActivityText activity={activity} />}
-                                    secondary={<ActivityText2 activity={activity} />}
-                                />
-                            </ActivityItem>
+                            <div key={index}>
+                                <ActivityItem onClick={() => handleActivityClick(activity.walletId, activity.assetCode)}>
+                                    <ListItemText
+                                        primary={<ActivityText activity={activity} />}
+                                        secondary={<ActivityText2 activity={activity} />}
+                                    />
+                                </ActivityItem>
+                                <Divider component="li" />
+
+                            </div>
                         ))}
                     </ActivityList>
                 </>
@@ -49,14 +63,16 @@ export const RecentActivities = ({ type }: { type: 'real' | 'virtual' }) => {
                 <>
                     <ActivityList dense>
                         {recentVirtualActivities.map((activity, index) => (
-                            <ActivityItem key={index}>
-                                <ListItemText
-                                    primary={<ActivityText activity={activity} />}
-                                    secondary={<ActivityText2 activity={activity} />}
-                                />
+                            <div key={index}>
+                                <ActivityItem onClick={() => handleActivityClick(activity.walletId, activity.positionId)}>
+                                    <ListItemText
+                                        primary={<ActivityText activity={activity} />}
+                                        secondary={<ActivityText2 activity={activity} />}
+                                    />
+                                </ActivityItem>
+                                <Divider component="li" />
 
-                            </ActivityItem>
-
+                            </div>
                         ))}
                     </ActivityList>
                 </>

@@ -7,6 +7,7 @@ import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { RecentActivitiesProvider } from './context/RecentActivitiesContext';
+import { FocusProvider } from './components/FocusContext/FocusContext';
 
 import { PositionSection } from './components';
 import { WalletSection } from './components/WalletSection';
@@ -24,45 +25,47 @@ export const Dashboard = () => {
                             Posição de {session?.user?.name}
                         </PageTitle>
                         <RecentActivitiesProvider>
-                            <SectionContainer>
-                                <SuspenseWrapper>
-                                    {/* Posições Reais */}
-                                    <ProgressiveLoad delay={0.2}>
-                                        <PositionSection
-                                            title="Posições Reais"
-                                            type="real"
-                                        />
-                                    </ProgressiveLoad>
+                            <FocusProvider>
+                                <SectionContainer>
+                                    <SuspenseWrapper>
+                                        {/* Posições Reais */}
+                                        <ProgressiveLoad delay={0.2}>
+                                            <PositionSection
+                                                title="Posições Reais"
+                                                type="real"
+                                            />
+                                        </ProgressiveLoad>
 
-                                    <ProgressiveLoad delay={0.6}>
-                                        <WalletSection
-                                            title="Minhas Carteiras"
-                                            isSimulated={false}
-                                        />
-                                    </ProgressiveLoad>
+                                        <ProgressiveLoad delay={0.6}>
+                                            <WalletSection
+                                                title="Minhas Carteiras"
+                                                isSimulated={false}
+                                            />
+                                        </ProgressiveLoad>
 
-                                </SuspenseWrapper>
-                            </SectionContainer>
+                                    </SuspenseWrapper>
+                                </SectionContainer>
 
-                            <SectionContainer>
-                                <SuspenseWrapper>
-                                    {/* Posições Simuladas */}
-                                    <ProgressiveLoad delay={0.2}>
-                                        <PositionSection
-                                            title="Simulações"
-                                            type="virtual"
-                                        />
-                                    </ProgressiveLoad>
+                                <SectionContainer>
+                                    <SuspenseWrapper>
+                                        {/* Posições Simuladas */}
+                                        <ProgressiveLoad delay={0.2}>
+                                            <PositionSection
+                                                title="Simulações"
+                                                type="virtual"
+                                            />
+                                        </ProgressiveLoad>
 
-                                    <ProgressiveLoad delay={0.6}>
-                                        <WalletSection
-                                            title="Simulações"
-                                            isSimulated={true}
-                                        />
-                                    </ProgressiveLoad>
+                                        <ProgressiveLoad delay={0.6}>
+                                            <WalletSection
+                                                title="Simulações"
+                                                isSimulated={true}
+                                            />
+                                        </ProgressiveLoad>
 
-                                </SuspenseWrapper>
-                            </SectionContainer>
+                                    </SuspenseWrapper>
+                                </SectionContainer>
+                            </FocusProvider>
                         </RecentActivitiesProvider>
                     </Container>
                 </BackgroundContainer>

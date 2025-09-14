@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Typography, CircularProgress, TableBody, IconButton, TableCell, Tooltip } from '@mui/material';
 
 import { TransactionTable } from '../TransactionTable';
@@ -24,6 +24,7 @@ interface AssetPositionsTableProps {
     setAssetType: (type: string | null) => void;
     setIsAddSameTransactionOpen: (isOpen: boolean) => void;
     onTransactionChange: () => void;
+    focusedAssetCode: string | null;
 }
 
 export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
@@ -38,7 +39,22 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
     setAssetType,
     setIsAddSameTransactionOpen,
     onTransactionChange,
+    focusedAssetCode,
 }) => {
+    useEffect(() => {
+        if (focusedAssetCode && walletPositions) {
+            const element = document.getElementById(`asset-row-${focusedAssetCode}`);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            const positionToExpand = walletPositions.result.find(position => position.assetCode === focusedAssetCode);
+            if (positionToExpand && !expandedRows.includes(positionToExpand._id)) {
+                handleToggleRow(positionToExpand._id);
+            }
+        }
+    }, [focusedAssetCode, walletPositions, expandedRows, handleToggleRow]);
+
     return (
         <>
             {loadingPositions ? (
@@ -68,7 +84,9 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
                                 const isRowExpanded = expandedRows.includes(position._id);
                                 return (
                                     <React.Fragment key={position._id}>
-                                        <StyledAssetTableRow>
+                                        <StyledAssetTableRow
+                                            id={`asset-row-${position.assetCode}`}
+                                        >
                                             <StyledAssetTableCell
                                                 onClick={() => {
                                                     setSelectedAssetPositionId(position._id);
