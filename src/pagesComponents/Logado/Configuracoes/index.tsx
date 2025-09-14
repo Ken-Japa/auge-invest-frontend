@@ -11,6 +11,7 @@ import { PageBackground } from '@/components/Layout/PageBackground';
 import { AppearanceSettings } from './components/AppearanceSettings/index';
 import { NotificationSettings } from './components/NotificationSettings/index';
 import { AlertPreferences } from './components/AlertPreferences/index';
+import { FavoritesManagement } from './components/FavoritesManagement/index';
 import { useSettings } from './hooks/useSettings';
 import { SettingsTitle } from './styled';
 
@@ -85,6 +86,13 @@ export const Configuracoes = () => {
                                         />
                                     </ProgressiveLoad>
                                 </SuspenseWrapper>
+
+                                <SuspenseWrapper fallback={<ContentSkeleton type="form" formFields={2} />}>
+                                    <ProgressiveLoad delay={0.8}>
+                                        <FavoritesManagement />
+                                    </ProgressiveLoad>
+                                </SuspenseWrapper>
+
                                 <Snackbar
                                     open={snackbar.open}
                                     autoHideDuration={3000}
