@@ -84,7 +84,11 @@ export const API_ENDPOINTS = {
     UPDATE: "/transaction",
     DELETE: "/transaction",
     GET: "/transaction",
-    PAGINATION: "/transaction/pagination"
+    PAGINATION: "/transaction/pagination",
+  },
+  // Alert endpoints
+  ALERTS: {
+    BASE: "/alerts",
   },
   // Outros grupos de endpoints...
 };

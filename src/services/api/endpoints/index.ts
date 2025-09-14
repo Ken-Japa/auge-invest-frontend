@@ -11,3 +11,4 @@ export { etfbdrApi } from "./etfbdr";
 export { dictionaryApi } from "./dictionary";
 export { sumarioApi } from "./sumario";
 export { walletApi } from "./wallet";
+export { alertsApi } from "./alerts";
