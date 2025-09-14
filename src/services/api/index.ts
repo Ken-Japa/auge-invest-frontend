@@ -15,6 +15,8 @@ export const api = {
   dictionary: endpoints.dictionaryApi,
   sumario: endpoints.sumarioApi,
   wallet: endpoints.walletApi,
+  alerts: endpoints.alertsApi,
+  favorites: endpoints.favoritesApi,
 };
 
 export * from "./types";

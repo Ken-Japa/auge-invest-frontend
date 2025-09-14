@@ -1,43 +1,27 @@
-import { Alert } from '../types';
-import { mockAlerts } from '../mocks/alerts';
+import { alertsApi } from "@/services/api/endpoints/alerts";
+import { Alert } from "@/services/api/types";
 
 export const alertsService = {
-    getAlerts: async (): Promise<Alert[]> => {
-        // TODO: Replace with actual API call
-        return new Promise((resolve) => {
-            setTimeout(() => resolve(mockAlerts), 1000);
-        });
-    },
+  getAlerts: async (userId: string): Promise<Alert[]> => {
+    const response = await alertsApi.getAlertsByUser(userId);
+    return response.data as Alert[];
+  },
 
-    createAlert: async (alert: Omit<Alert, 'id'>): Promise<Alert> => {
-        // TODO: Replace with actual API call
-        return new Promise((resolve) => {
-            const newAlert = {
-                ...alert,
-                id: Math.random(),
-            };
-            setTimeout(() => resolve(newAlert), 1000);
-        });
-    },
+  createAlert: async (alert: Omit<Alert, "id">): Promise<Alert> => {
+    const response = await alertsApi.createAlert(alert as Alert);
+    return response.data as Alert;
+  },
 
-    updateAlert: async (alert: Alert): Promise<Alert> => {
-        // TODO: Replace with actual API call
-        return new Promise((resolve) => {
-            setTimeout(() => resolve(alert), 1000);
-        });
-    },
+  updateAlert: async (id: string, alert: Partial<Alert>): Promise<Alert> => {
+    const response = await alertsApi.updateAlert(id, alert);
+    return response.data as Alert;
+  },
 
-    deleteAlert: async (id: number): Promise<void> => {
-        // TODO: Replace with actual API call
-        return new Promise((resolve) => {
-            setTimeout(resolve, 1000);
-        });
-    },
+  deleteAlert: async (id: string): Promise<void> => {
+    await alertsApi.deleteAlert(id);
+  },
 
-    toggleAlert: async (id: number, active: boolean): Promise<void> => {
-        // TODO: Replace with actual API call
-        return new Promise((resolve) => {
-            setTimeout(resolve, 1000);
-        });
-    }
+  toggleAlert: async (id: string, active: boolean): Promise<void> => {
+    await alertsApi.updateAlert(id, { triggered: active });
+  },
 };

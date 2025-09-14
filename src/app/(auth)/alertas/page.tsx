@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { Alertas } from "@/pagesComponents/Logado/Alertas";
 
 export const metadata: Metadata = {
-    title: "Alertas de Investimentos | AugeInvest",
+    title: "Alertas | AugeInvest",
     description: "Configure e gerencie alertas personalizados para suas oportunidades de investimento. Acompanhe preços, tendências e receba notificações em tempo real.",
     openGraph: {
         title: 'Alertas de Investimentos | AugeInvest',

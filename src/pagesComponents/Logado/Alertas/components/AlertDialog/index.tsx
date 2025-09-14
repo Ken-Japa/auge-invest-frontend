@@ -2,10 +2,19 @@ import { useState, useEffect } from 'react';
 import {
     TextField,
     Grid,
-    InputAdornment
+    InputAdornment,
+    Switch,
+    FormControlLabel,
+    Checkbox,
+    FormGroup,
+    FormLabel,
+    RadioGroup,
+    Radio
 } from '@mui/material';
 
-import { Alert } from '../../types';
+import { useSession } from "next-auth/react";
+
+import { Alert } from '@/services/api/types';
 import { useAlerts } from '../../hooks/useAlerts';
 import { StyledDialog } from '@/components/Feedback/Dialog/StyledDialog';
 
@@ -17,73 +26,103 @@ interface AlertDialogProps {
 
 export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
     const { createAlert, updateAlert } = useAlerts();
+    const { data: session } = useSession();
+    const userId = session?.user?.id;
+
     const [formData, setFormData] = useState({
-        symbol: '',
-        name: '',
-        buyPrice: 0,
-        buyPercentage: 5,
-        sellPrice: 0,
-        sellPercentage: 5,
+        asset: '',
+        type: 'buy',
+        targetPrice: 0,
+        currentPrice: 0,
+        percentageDistance: 0,
+        notificationMethods: [] as string[],
+        expiresAt: '',
+        recurring: false,
+        comments: '',
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
         if (alert) {
             setFormData({
-                symbol: alert.symbol,
-                name: alert.name,
-                buyPrice: alert.buyAlert.price,
-                buyPercentage: alert.buyAlert.percentage,
-                sellPrice: alert.sellAlert.price,
-                sellPercentage: alert.sellAlert.percentage,
+                asset: alert.asset,
+                type: alert.type,
+                targetPrice: alert.targetPrice,
+                currentPrice: alert.currentPrice || 0,
+                percentageDistance: alert.percentageDistance || 0,
+                notificationMethods: alert.notificationMethods || [],
+                expiresAt: alert.expiresAt ? new Date(alert.expiresAt).toISOString().split('T')[0] : '',
+                recurring: alert.recurring || false,
+                comments: alert.comments || '',
             });
         } else {
             setFormData({
-                symbol: '',
-                name: '',
-                buyPrice: 0,
-                buyPercentage: 5,
-                sellPrice: 0,
-                sellPercentage: 5,
+                asset: '',
+                type: 'buy',
+                targetPrice: 0,
+                currentPrice: 0,
+                percentageDistance: 0,
+                notificationMethods: [],
+                expiresAt: '',
+                recurring: false,
+                comments: '',
             });
         }
     }, [alert, open]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: name.includes('Percentage') || name.includes('Price')
-                ? parseFloat(value) || 0
-                : value
+        const type = (e.target as HTMLInputElement).type;
+        const checked = (e.target as HTMLInputElement).checked;
+
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]:
+                type === "checkbox"
+                    ? checked
+                    : name.includes("Price") || name.includes("Distance")
+                        ? parseFloat(value) || 0
+                        : value,
         }));
+    };
+
+    const handleNotificationMethodsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { value, checked } = e.target;
+        setFormData((prevData) => {
+            const newMethods = checked
+                ? [...prevData.notificationMethods, value]
+                : prevData.notificationMethods.filter((method) => method !== value);
+            return {
+                ...prevData,
+                notificationMethods: newMethods,
+            };
+        });
     };
 
     const handleSubmit = async () => {
         try {
             setIsSubmitting(true);
 
+            if (!userId) {
+                console.error('User not authenticated.');
+                return;
+            }
+
             const alertData = {
-                symbol: formData.symbol,
-                name: formData.name || formData.symbol,
-                currentPrice: (formData.buyPrice + formData.sellPrice) / 2,
-                buyAlert: {
-                    price: formData.buyPrice,
-                    percentage: formData.buyPercentage
-                },
-                sellAlert: {
-                    price: formData.sellPrice,
-                    percentage: formData.sellPercentage
-                },
-                active: true
+                asset: formData.asset,
+                type: formData.type as "buy" | "sell",
+                targetPrice: formData.targetPrice,
+                currentPrice: formData.currentPrice,
+                percentageDistance: formData.percentageDistance,
+                notificationMethods: formData.notificationMethods,
+                expiresAt: formData.expiresAt ? new Date(formData.expiresAt) : undefined,
+                comments: formData.comments,
+                triggered: false, // Default to false as per requirements
+                userId: userId,
             };
 
             if (alert) {
-                await updateAlert({
-                    ...alertData,
-                    id: alert.id,
-                    active: alert.active
-                });
+                await updateAlert(alert.id, alertData);
             } else {
                 await createAlert(alertData);
             }
@@ -104,81 +143,152 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
             fullWidth
             title={alert ? 'Editar Alerta' : 'Novo Alerta'}
             onSave={handleSubmit}
-            disableSave={isSubmitting || !formData.symbol}
+            disableSave={isSubmitting || !formData.asset || !formData.targetPrice || formData.notificationMethods.length === 0}
             loading={isSubmitting}
         >
             <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                     <TextField
                         fullWidth
-                        label="Símbolo"
-                        name="symbol"
-                        value={formData.symbol}
+                        label="Ativo"
+                        name="asset"
+                        value={formData.asset}
                         onChange={handleChange}
-                        placeholder="Código Ativo"
+                        placeholder="Ex: PETR4"
                         required
                     />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
+                    <FormLabel component="legend">Tipo de Alerta</FormLabel>
+                    <RadioGroup
+                        row
+                        name="type"
+                        value={formData.type}
+                        onChange={handleChange}
+                    >
+                        <FormControlLabel value="buy" control={<Radio />} label="Compra" />
+                        <FormControlLabel value="sell" control={<Radio />} label="Venda" />
+                    </RadioGroup>
+                </Grid>
+                <Grid item xs={12}>
                     <TextField
                         fullWidth
-                        label="Nome do Ativo"
-                        name="name"
-                        value={formData.name}
+                        label="Preço Alvo"
+                        name="targetPrice"
+                        type="number"
+                        value={formData.targetPrice}
                         onChange={handleChange}
-                        placeholder=""
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">R$</InputAdornment>
+                        }}
+                        required
                     />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                     <TextField
                         fullWidth
-                        label="Preço de Compra"
-                        name="buyPrice"
+                        label="Preço Atual"
+                        name="currentPrice"
                         type="number"
-                        value={formData.buyPrice}
+                        value={formData.currentPrice}
                         onChange={handleChange}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">R$</InputAdornment>
                         }}
                     />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                     <TextField
                         fullWidth
-                        label="Distância para Compra"
-                        name="buyPercentage"
+                        label="Distância Percentual"
+                        name="percentageDistance"
                         type="number"
-                        value={formData.buyPercentage}
+                        value={formData.percentageDistance}
                         onChange={handleChange}
                         InputProps={{
                             endAdornment: <InputAdornment position="end">%</InputAdornment>
                         }}
                     />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
+                    <FormLabel component="legend">Métodos de Notificação</FormLabel>
+                    <FormGroup row>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={formData.notificationMethods.includes('email')}
+                                    onChange={handleNotificationMethodsChange}
+                                    value="email"
+                                />
+                            }
+                            label="Email"
+                        />
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={formData.notificationMethods.includes('app_notification')}
+                                    onChange={handleNotificationMethodsChange}
+                                    value="app_notification"
+                                />
+                            }
+                            label="Notificação no App"
+                        />
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={formData.notificationMethods.includes('sms')}
+                                    onChange={handleNotificationMethodsChange}
+                                    value="sms"
+                                />
+                            }
+                            label="SMS"
+                        />
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={formData.notificationMethods.includes('whatsapp')}
+                                    onChange={handleNotificationMethodsChange}
+                                    value="whatsapp"
+                                />
+                            }
+                            label="WhatsApp"
+                        />
+                    </FormGroup>
+                </Grid>
+                <Grid item xs={12}>
                     <TextField
                         fullWidth
-                        label="Preço de Venda"
-                        name="sellPrice"
-                        type="number"
-                        value={formData.sellPrice}
+                        label="Expira em (opcional)"
+                        name="expiresAt"
+                        type="date"
+                        value={formData.expiresAt}
                         onChange={handleChange}
-                        InputProps={{
-                            startAdornment: <InputAdornment position="start">R$</InputAdornment>
+                        InputLabelProps={{
+                            shrink: true,
                         }}
                     />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={formData.recurring}
+                                onChange={handleChange}
+                                name="recurring"
+                            />
+                        }
+                        label="Recorrente"
+                    />
+                </Grid>
+                <Grid item xs={12}>
                     <TextField
                         fullWidth
-                        label="Distância para Venda"
-                        name="sellPercentage"
-                        type="number"
-                        value={formData.sellPercentage}
+                        label="Comentários (opcional)"
+                        name="comments"
+                        multiline
+                        rows={4}
+                        value={formData.comments}
                         onChange={handleChange}
-                        InputProps={{
-                            endAdornment: <InputAdornment position="end">%</InputAdornment>
-                        }}
                     />
                 </Grid>
             </Grid>

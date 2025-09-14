@@ -12,3 +12,4 @@ export { dictionaryApi } from "./dictionary";
 export { sumarioApi } from "./sumario";
 export { walletApi } from "./wallet";
 export { alertsApi } from "./alerts";
+export { favoritesApi } from "./favorites";

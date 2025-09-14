@@ -1,4 +1,5 @@
 export interface Alert {
+  id: string;
   type: 'buy' | 'sell';
   asset: string;
   targetPrice: number;

@@ -27,6 +27,9 @@ export enum ErrorCode {
   TRANSACTION_UPDATE_FAILED = "transaction/update-failed",
   TRANSACTION_DELETION_FAILED = "transaction/deletion-failed",
   TRANSACTION_NOT_FOUND = "transaction/not-found",
+  FAVORITE_NOT_FOUND = "favorite/not-found",
+  FAVORITE_CREATION_FAILED = "favorite/creation-failed",
+  FAVORITE_DELETION_FAILED = "favorite/deletion-failed",
 }
 
 // Mapeamento de mensagens de erro amigáveis
@@ -70,6 +73,9 @@ const ERROR_MESSAGES: Record<ErrorCode, string> = {
   [ErrorCode.TRANSACTION_UPDATE_FAILED]: "Falha ao atualizar transação. Por favor, tente novamente.",
   [ErrorCode.TRANSACTION_DELETION_FAILED]: "Falha ao deletar transação. Por favor, tente novamente.",
   [ErrorCode.TRANSACTION_NOT_FOUND]: "Transação não encontrada. Por favor, verifique as informações fornecidas.",
+  [ErrorCode.FAVORITE_NOT_FOUND]: "Favorito não encontrado. Por favor, verifique as informações fornecidas.",
+  [ErrorCode.FAVORITE_CREATION_FAILED]: "Falha ao criar favorito. Por favor, tente novamente.",
+  [ErrorCode.FAVORITE_DELETION_FAILED]: "Falha ao deletar favorito. Por favor, tente novamente.",
 
 };
 
