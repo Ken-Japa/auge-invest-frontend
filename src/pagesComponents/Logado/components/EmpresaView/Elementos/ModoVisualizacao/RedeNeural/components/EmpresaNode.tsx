@@ -43,7 +43,7 @@ export const createEmpresaNode = (
         x: position.x,
         y: position.y,
         size: calculateNodeSize(empresa.valorMercado, 10, maxValue, 10 * 0.8, 10 * 2.5),
-        font: { size: 40 },
+        font: { size: 60 },
         color: {
             background: empresaColor,
             border: empresaColor,

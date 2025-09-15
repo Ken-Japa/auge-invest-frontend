@@ -109,7 +109,7 @@ export const useGraphInteractions = (
           }
         }
         networkRef.current.selectNodes(nodesToSelect);
-        networkRef.current.focus(industryId, { scale: 0.65 });
+        networkRef.current.focus(industryId, { scale: 0.08 });
       }
     },
     [
@@ -147,7 +147,7 @@ export const useGraphInteractions = (
           }
         });
         networkRef.current.selectNodes(nodesToSelect);
-        networkRef.current.focus(segmentId, { scale: 0.65 });
+        networkRef.current.focus(segmentId, { scale: 0.155 });
       }
     },
     [networkRef, setSelectedNodePath, graphData.nodes]
