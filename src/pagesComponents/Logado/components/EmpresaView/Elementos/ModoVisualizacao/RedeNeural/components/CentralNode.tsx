@@ -5,8 +5,8 @@ export const createCentralNode = (valorTotal: number, sizeMultiplier: number = 1
   label: `Mercado Total\n${formatCurrency(valorTotal)}`,
   x: 0,
   y: 0,
-  size: 30 * sizeMultiplier,
-  font: { size: 24, bold: true },
+  size: 100 * sizeMultiplier,
+  font: { size: 640, bold: true },
   color: {
     background: '#FFFFFF',
     border: '#000000',

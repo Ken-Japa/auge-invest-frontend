@@ -6,6 +6,7 @@ export const DEFAULT_GRAPH_OPTIONS = {
     shadow: false,
     font: {
       color: "#FFFFFF",
+      size: 500,
       strokeWidth: 3,
       strokeColor: "#000000",
     },
@@ -35,10 +36,10 @@ export const DEFAULT_GRAPH_OPTIONS = {
     },
     repulsion: {
       centralGravity: 0.0,
-      springLength: 300,
-      springConstant: 0.05,
-      nodeDistance: 1250,
-      damping: 0.09,
+      springLength: 2000,
+      springConstant: 2.0,
+      nodeDistance: 4000,
+      damping: 0.1,
     },
     solver: "repulsion",
   },

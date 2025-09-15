@@ -16,10 +16,10 @@ export const calculatePosition = (
 export const calculateNodeSize = (
   value: number,
   baseSize: number,
-  maxValue: number
+  maxValue: number,
+  minSize: number,
+  maxSize: number
 ) => {
-  const minSize = baseSize * 0.4;
-  const maxSize = baseSize * 1.1;
   return minSize + (value / maxValue) * (maxSize - minSize);
 };
 

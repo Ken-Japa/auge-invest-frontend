@@ -29,8 +29,8 @@ export const createSegmentoNode = (
         label: `${segmento.segmento}\n${formatCurrency(segmento.valorMercado)}`,
         x: position.x,
         y: position.y,
-        size: calculateNodeSize(segmento.valorMercado, 40, maxValue),
-        font: { size: 16 },
+        size: calculateNodeSize(segmento.valorMercado, 50, maxValue, 50 * 1.5, 50 * 4.0),
+        font: { size: 80 },
         color: {
             background: segmentColor,
             border: segmentColor,

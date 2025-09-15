@@ -42,8 +42,8 @@ export const createEmpresaNode = (
         label: `${empresa.empresa}\n${formatCurrency(empresa.valorMercado)}`,
         x: position.x,
         y: position.y,
-        size: calculateNodeSize(empresa.valorMercado, 25, maxValue),
-        font: { size: 14 },
+        size: calculateNodeSize(empresa.valorMercado, 10, maxValue, 10 * 0.8, 10 * 2.5),
+        font: { size: 40 },
         color: {
             background: empresaColor,
             border: empresaColor,

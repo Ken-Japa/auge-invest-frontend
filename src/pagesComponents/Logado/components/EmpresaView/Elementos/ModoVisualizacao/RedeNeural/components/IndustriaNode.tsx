@@ -19,13 +19,13 @@ export const createIndustriaNode = (
         label: `${industria.industria}\n${formatCurrency(industria.valorMercadoTotal)}`,
         x: position.x,
         y: position.y,
-        size: calculateNodeSize(industria.valorMercadoTotal, 60, maxValue),
-        font: { size: 18, bold: true },
+        size: calculateNodeSize(industria.valorMercadoTotal, 100, maxValue, 100 * 2.5, 100 * 5.5),
+        font: { size: 160, bold: true },
         color: {
             background: corIndustria,
             border: adjustColorHSL(corIndustria, { l: -0.3 }),
             highlight: { background: corIndustria, border: '#FFFFFF' }
         },
-        borderWidth: 3
+        borderWidth: 2
     };
 };
