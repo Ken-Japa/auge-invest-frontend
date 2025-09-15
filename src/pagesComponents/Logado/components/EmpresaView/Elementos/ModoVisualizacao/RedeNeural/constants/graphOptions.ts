@@ -9,6 +9,10 @@ export const DEFAULT_GRAPH_OPTIONS = {
       strokeWidth: 3,
       strokeColor: "#000000",
     },
+    scaling: {
+      min: 10,
+      max: 1000,
+    },
   },
   edges: {
     arrows: {
@@ -33,7 +37,7 @@ export const DEFAULT_GRAPH_OPTIONS = {
       centralGravity: 0.0,
       springLength: 300,
       springConstant: 0.05,
-      nodeDistance: 500,
+      nodeDistance: 1250,
       damping: 0.09,
     },
     solver: "repulsion",

@@ -126,8 +126,8 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
                             <StyledAssetHeaderTableRow>
                                 <StyledAssetTableHeaderCell>Ativo</StyledAssetTableHeaderCell>
                                 <StyledAssetTableHeaderCell align="center">Quantidade</StyledAssetTableHeaderCell>
-                                <StyledAssetTableHeaderCell align="center">Preço</StyledAssetTableHeaderCell>
-                                <StyledAssetTableHeaderCell align="center">Valor Gasto</StyledAssetTableHeaderCell>
+                                <StyledAssetTableHeaderCell align="center">Preço Médio</StyledAssetTableHeaderCell>
+                                <StyledAssetTableHeaderCell align="center">Total</StyledAssetTableHeaderCell>
                                 <StyledAssetTableHeaderCell align="center">Valor Atual</StyledAssetTableHeaderCell>
                                 <StyledAssetTableHeaderCell align="center">Diferença</StyledAssetTableHeaderCell>
                                 <StyledAssetTableHeaderCell align="center">Tipo</StyledAssetTableHeaderCell>
@@ -155,7 +155,12 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
                                                 {position.assetCode}
                                             </StyledAssetTableCell>
                                             <StyledAssetTableCell align="center">
-                                                <Typography variant="body2">
+                                                <Typography variant="body2"
+                                                    sx={{
+                                                        color: calculatedAssetData[position._id]?.quantity !== undefined
+                                                            ? (calculatedAssetData[position._id]?.quantity > 0 ? 'success.main' : 'error.main')
+                                                            : 'inherit',
+                                                    }}>
                                                     {calculatedAssetData[position._id]?.quantity !== undefined
                                                         ? calculatedAssetData[position._id]?.quantity.toFixed(2)
                                                         : 'N/A'}
