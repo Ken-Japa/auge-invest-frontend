@@ -48,13 +48,13 @@ export const Header = () => {
                             {session ?
                                 <Logo width={60} height={60} />
                                 :
-                                <Link href="/">
+                                <Link href="/" aria-label="Go to homepage">
                                     <Logo width={60} height={60} />
                                 </Link>
                             }
                         </motion.div>
 
-                        {!isMobile && <Navbar />}
+                        {!isMobile && <div id="navigation"><Navbar /></div>}
                     </div>
 
                     {isMobile ? (

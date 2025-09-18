@@ -1,3 +1,5 @@
+'use client';
+
 export function getAuthToken(): string | null {
   const localToken = localStorage.getItem("authToken");
   if (localToken) return localToken;

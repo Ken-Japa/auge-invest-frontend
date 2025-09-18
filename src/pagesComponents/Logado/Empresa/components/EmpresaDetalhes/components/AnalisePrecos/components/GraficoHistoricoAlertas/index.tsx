@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect, useMemo } from 'react';
 import { Typography, CircularProgress } from '@mui/material';
 import { ResponsiveLine } from '@nivo/line';
