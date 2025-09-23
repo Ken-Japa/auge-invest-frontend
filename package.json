@@ -14,15 +14,7 @@
     "test": "jest",
     "blog-summary": "node ./src/content/utils/blogSummary.js"
   },
-  "overrides": {
-    "@humanwhocodes/config-array": "npm:@eslint/config-array@latest",
-    "@humanwhocodes/object-schema": "npm:@eslint/object-schema@latest",
-    "uuid": "^9.0.1",
-    "inflight": "npm:lru-cache@latest",
-    "glob": "^10.3.10",
-    "eslint": "9.36.0",
-    "rimraf": "^4.4.1"
-  },
+
   "dependencies": {
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.3",
