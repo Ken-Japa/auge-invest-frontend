@@ -69,11 +69,13 @@ export const NavDropdown = ({ name, path, items, onClick }: NavDropdownProps) =>
                     flex items-center gap-1
                 `}
                 onClick={handleMainClick}
+                aria-label={name}
             >
                 {name}
                 <span 
                     className="dropdown-arrow" 
                     onClick={handleArrowClick}
+                    aria-label={`Abrir/Fechar menu ${name}`}
                 >
                     <KeyboardArrowDownIcon
                         fontSize="small"

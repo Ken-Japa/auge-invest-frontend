@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useSession } from "next-auth/react";
 
-import { Drawer, IconButton, useMediaQuery, useTheme } from "@mui/material";
+import { Drawer, useMediaQuery, useTheme } from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
 import { motion } from "framer-motion";
 
@@ -13,6 +13,8 @@ import { LoginsButtons } from "./LoginRegisterButtons";
 import { PerfilButtons } from "./PerfilButtons";
 import { useDrawer } from "../../hooks/useDrawer";
 import { HeaderContainer, HeaderContent, DrawerContent } from "./styled";
+import React, { useRef, useEffect } from 'react';
+import { AppBar, Box, IconButton, Toolbar } from '@mui/material';
 
 export const Header = () => {
     const theme = useTheme();
@@ -20,46 +22,36 @@ export const Header = () => {
     const { isOpen, toggle } = useDrawer();
     const { data: session, status } = useSession();
     const isLoading = status === "loading";
+    const iconButtonRef = useRef<HTMLButtonElement>(null);
+    const drawerContentRef = useRef<HTMLDivElement>(null);
 
+    useEffect(() => {
+        if (!isMobile && isOpen) {
+            toggle();
+        }
+    }, [isMobile, isOpen, toggle]);
 
-    if (isLoading) {
-        return (
-            <HeaderContainer>
-                <HeaderContent className="container mx-auto">
+    const handleDrawerOpen = () => {
+        if (drawerContentRef.current) {
+            drawerContentRef.current.focus();
+        }
+    };
 
-                </HeaderContent>
-            </HeaderContainer>
-        );
-    }
+    const handleDrawerClose = () => {
+        if (iconButtonRef.current) {
+            iconButtonRef.current.focus();
+        }
+    };
 
     return (
-        <motion.div
-            initial={{ y: -50 }}
-            animate={{ y: 0 }}
-            transition={{ type: "spring", stiffness: 70, damping: 20 }}
-        >
-            <HeaderContainer>
-                <HeaderContent className="container mx-auto">
-                    <div className="flex items-center gap-12">
-                        <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ type: "spring", stiffness: 400 }}
-                        >
-                            {session ?
-                                <Logo width={60} height={60} />
-                                :
-                                <Link href="/">
-                                    <Logo width={60} height={60} />
-                                </Link>
-                            }
-                        </motion.div>
-
-                        {!isMobile && <Navbar />}
-                    </div>
-
+        <HeaderContainer>
+            <Toolbar className="flex justify-between items-center w-full">
+                <Logo />
+                <div className="flex items-center">
                     {isMobile ? (
                         <>
                             <IconButton
+                                ref={iconButtonRef}
                                 color="inherit"
                                 aria-label="open menu"
                                 edge="start"
@@ -73,8 +65,9 @@ export const Header = () => {
                                 open={isOpen}
                                 onClose={toggle}
                                 ModalProps={{ keepMounted: true }}
+                                onTransitionExited={handleDrawerClose}
                             >
-                                <DrawerContent>
+                                <DrawerContent ref={drawerContentRef} tabIndex={-1}>
                                     <Navbar />
                                     <div className="mt-4">
                                         {session ?
@@ -87,16 +80,15 @@ export const Header = () => {
                             </Drawer>
                         </>
                     ) : (
-                        <div className="flex items-center">
-                            {session ?
-                                <PerfilButtons />
-                                :
-                                <LoginsButtons />
-                            }
-                        </div>
+                        <>
+                            <Navbar />
+                            {session ? <PerfilButtons /> : <LoginsButtons />}
+                        </>
                     )}
-                </HeaderContent>
-            </HeaderContainer>
-        </motion.div>
+                </div>
+            </Toolbar>
+        </HeaderContainer>
     );
 };
+
+export default Header;

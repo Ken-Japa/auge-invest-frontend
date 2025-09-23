@@ -25,6 +25,7 @@ export const LoginsButtons = ({ onButtonClick, isFullWidth }: AuthButtonsProps) 
                     textColor="#FFFFFF"
                     onClick={onButtonClick}
                     fullWidth={isFullWidth}
+                    ariaLabel="Login"
                 />
             </Link>
             <Link href="/register" className={isFullWidth ? 'w-full' : ''}>
@@ -35,6 +36,7 @@ export const LoginsButtons = ({ onButtonClick, isFullWidth }: AuthButtonsProps) 
                     textColor="#000000"
                     onClick={onButtonClick}
                     fullWidth={isFullWidth}
+                    ariaLabel="Registrar"
                 />
             </Link>
         </motion.div>

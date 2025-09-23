@@ -12,3 +12,16 @@ export interface Alert {
   comments?: string;
   triggered?: boolean;
 }
+
+export interface AlertFilter {
+  page?: number;
+  pageSize?: number;
+}
+
+export interface AlertListResponseApi {
+  content: Alert[];
+  totalElements: number;
+  totalPages: number;
+  size: number;
+  number: number;
+}

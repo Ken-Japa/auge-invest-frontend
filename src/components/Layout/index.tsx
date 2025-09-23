@@ -15,9 +15,9 @@ export const Layout = ({ children }: Props) => {
     return (
         <>
             <Header />
-            <div className="border-t border-b border-infoContrastText">
+            <main role="main" className="border-t border-b border-infoContrastText">
                 {children}
-            </div>
+            </main>
             <Footer />
         </>
     );

@@ -6,17 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lhci:collect": "lhci collect",
+    "lhci:assert": "lhci assert",
+    "lhci:upload": "lhci upload",
+    "lhci": "npm run lhci:collect && npm run lhci:assert && npm run lhci:upload",
     "lint": "next lint",
+    "test": "jest",
     "blog-summary": "node ./src/content/utils/blogSummary.js"
   },
   "overrides": {
-    "punycode": "npm:@jupyterlab/punycode@latest",
     "@humanwhocodes/config-array": "npm:@eslint/config-array@latest",
     "@humanwhocodes/object-schema": "npm:@eslint/object-schema@latest",
     "uuid": "^9.0.1",
     "inflight": "npm:lru-cache@latest",
     "glob": "^10.3.10",
-    "eslint": "8.57.1",
+    "eslint": "9.36.0",
     "rimraf": "^4.4.1"
   },
   "dependencies": {
@@ -37,8 +41,6 @@
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.8.4",
-    "d3": "^7.9.0",
-    "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
     "framer-motion": "^12.5.0",
     "jspdf": "^3.0.1",
@@ -47,7 +49,6 @@
     "notistack": "^3.0.2",
     "react": "^18",
     "react-dom": "^18",
-    "react-graph-vis": "^1.0.7",
     "react-hook-form": "^7.54.2",
     "react-intersection-observer": "^9.16.0",
     "react-markdown": "^10.1.0",
@@ -59,13 +60,20 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@axe-core/react": "^4.10.2",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",
     "eslint-config-next": "14.2.7",
+    "jest": "^30.1.3",
+    "jest-axe": "^10.0.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
     "typescript": "^5"
   }
-}
+  }
+

@@ -13,5 +13,5 @@ export * from "./etfbdr";
 export * from "./dictionary";
 export * from "./sumario";
 export * from "./transaction";
-export * from "./alert";
+export * from "./alert-types";
 export * from "./favorite";

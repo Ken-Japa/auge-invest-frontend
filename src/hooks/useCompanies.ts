@@ -25,6 +25,7 @@ export const useCompanies = (filters?: CompanyFilter) => {
   return useQuery({
     queryKey: companyKeys.list(filters || {}),
     queryFn: () => companiesApi.getCompanies(filters),
+    staleTime: 1000 * 60 * 30, // 30 minutes
   });
 };
 
@@ -34,6 +35,7 @@ export const useCompany = (id: string) => {
     queryKey: companyKeys.detail(id),
     queryFn: () => companiesApi.getCompany(id),
     enabled: !!id,
+    staleTime: 1000 * 60 * 30, // 30 minutes
   });
 };
 
@@ -43,5 +45,6 @@ export const useSearchCompanies = (nome: string) => {
     queryKey: companyKeys.search(nome),
     queryFn: () => companiesApi.searchCompanies(nome),
     enabled: nome.length > 2, // Só busca se tiver pelo menos 3 caracteres
+    staleTime: 1000 * 60 * 30, // 30 minutes
   });
 };

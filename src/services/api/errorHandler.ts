@@ -30,6 +30,11 @@ export enum ErrorCode {
   FAVORITE_NOT_FOUND = "favorite/not-found",
   FAVORITE_CREATION_FAILED = "favorite/creation-failed",
   FAVORITE_DELETION_FAILED = "favorite/deletion-failed",
+  ALERT_CREATION_ERROR = "alert/creation-error",
+  ALERT_DATA_ERROR = "alert/data-error",
+  ALERT_NOT_FOUND = "alert/not-found",
+  ALERT_UPDATE_ERROR = "alert/update-error",
+  ALERT_DELETE_ERROR = "alert/delete-error",
 }
 
 // Mapeamento de mensagens de erro amigáveis
@@ -76,7 +81,11 @@ const ERROR_MESSAGES: Record<ErrorCode, string> = {
   [ErrorCode.FAVORITE_NOT_FOUND]: "Favorito não encontrado. Por favor, verifique as informações fornecidas.",
   [ErrorCode.FAVORITE_CREATION_FAILED]: "Falha ao criar favorito. Por favor, tente novamente.",
   [ErrorCode.FAVORITE_DELETION_FAILED]: "Falha ao deletar favorito. Por favor, tente novamente.",
-
+  [ErrorCode.ALERT_CREATION_ERROR]: "Erro ao criar alerta. Por favor, tente novamente.",
+  [ErrorCode.ALERT_DATA_ERROR]: "Erro ao buscar dados de alerta. Por favor, tente novamente.",
+  [ErrorCode.ALERT_NOT_FOUND]: "Alerta não encontrado. Por favor, verifique as informações fornecidas.",
+  [ErrorCode.ALERT_UPDATE_ERROR]: "Erro ao atualizar alerta. Por favor, tente novamente.",
+  [ErrorCode.ALERT_DELETE_ERROR]: "Erro ao deletar alerta. Por favor, tente novamente.",
 };
 
 export function getErrorMessage(code: ErrorCode): string {

@@ -26,6 +26,7 @@ interface CustomButtonProps extends Omit<ButtonProps, 'variant' | 'color' | 'siz
     initial?: HTMLMotionProps<"button">["initial"];
     animate?: HTMLMotionProps<"button">["animate"];
     transition?: HTMLMotionProps<"button">["transition"];
+    ariaLabel?: string;
 }
 
 export const CustomButton = ({
@@ -53,6 +54,7 @@ export const CustomButton = ({
     initial,
     animate,
     transition,
+    ariaLabel,
     ...props
 }: CustomButtonProps) => {
     const customStyles: SxProps<Theme> = {
@@ -94,6 +96,7 @@ export const CustomButton = ({
             initial={initial}
             animate={animate}
             transition={transition}
+            aria-label={ariaLabel}
             {...props}
         >
             {children || value}

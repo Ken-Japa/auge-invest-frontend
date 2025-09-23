@@ -32,7 +32,7 @@ export const OptimizedImage = ({
     const handleLoad = useCallback(() => {
         setLoading(false);
         if (props.onLoad) {
-            // @ts-ignore - Call the onLoad prop if it exists
+            // @ts-expect-error - Call the onLoad prop if it exists
             props.onLoad();
         }
     }, [props]);

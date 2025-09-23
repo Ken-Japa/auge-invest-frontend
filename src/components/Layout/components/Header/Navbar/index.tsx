@@ -52,6 +52,8 @@ export const Navbar = () => {
                         color: 'rgba(255, 255, 255, 0.7)',
                         '&:hover': { color: 'rgba(255, 255, 255, 0.9)' }
                     }}
+                    aria-controls="mobile-menu"
+                    aria-expanded={isOpen}
                 >
                     <MenuIcon />
                 </IconButton>
@@ -100,7 +102,7 @@ export const Navbar = () => {
 
             {/* Mobile Navigation */}
             {isOpen && (
-                <MobileNavContainer>
+                <MobileNavContainer id="mobile-menu">
                     <motion.nav
                         variants={container}
                         initial="hidden"
@@ -124,6 +126,7 @@ export const Navbar = () => {
                                                             router.push(item.path);
                                                             toggle();
                                                         }}
+                                                        aria-label={item.name}
                                                     >
                                                         {item.name}
                                                     </LinkNavbar>
@@ -157,6 +160,7 @@ export const Navbar = () => {
                                                             router.push(item.path);
                                                             toggle();
                                                         }}
+                                                        aria-label={item.name}
                                                     >
                                                         {item.name}
                                                     </LinkNavbar>
