@@ -7,21 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "blog-summary": "node ./src/content/utils/blogSummary.js",
-    "bench:web": "lhci autorun",
-    "bench:web:quick": "lighthouse http://localhost:3000/ --output=html,json --output-path=./lighthouse-reports/quick --chrome-flags=\"--no-sandbox --headless\"",
-    "bench:bundle": "node scripts/analyze-bundle.js",
-    "bench:bundle:serve": "npx webpack-bundle-analyzer .next/static/chunks/*.js -p 8888 -h 0.0.0.0",
-    "bench:all": "npm run bench:bundle && npm run bench:web",
-    "audit:fix": "npm audit fix",
-    "optimize:deps": "npm uninstall dayjs && npm install --save-dev @axe-core/react jest-axe",
-    "optimize:accessibility": "node scripts/implement-accessibility-fixes.js",
-    "test:accessibility": "jest --testPathPattern=accessibility",
-    "analyze:deps": "npx depcheck",
-    "analyze:security": "npm audit --audit-level moderate",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "blog-summary": "node ./src/content/utils/blogSummary.js"
   },
   "overrides": {
     "punycode": "npm:@jupyterlab/punycode@latest",
@@ -53,6 +39,7 @@
     "axios": "^1.8.4",
     "d3": "^7.9.0",
     "date-fns": "^4.1.0",
+    "dayjs": "^1.11.13",
     "framer-motion": "^12.5.0",
     "jspdf": "^3.0.1",
     "next": ">=14.2.30",
@@ -72,31 +59,13 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
-    "@axe-core/react": "^4.10.2",
-    "@lhci/cli": "^0.15.1",
-    "@next/bundle-analyzer": "^15.5.3",
-    "@testing-library/jest-dom": "^6.8.0",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/jest": "^30.0.0",
-    "@types/jest-axe": "^3.5.9",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",
-    "babel-jest": "^30.1.2",
-    "cross-env": "^10.0.0",
-    "depcheck": "^1.4.7",
     "eslint-config-next": "14.2.7",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^30.1.3",
-    "jest-axe": "^10.0.0",
-    "jest-environment-jsdom": "^30.1.2",
-    "lighthouse": "^12.8.2",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
-    "ts-jest": "^29.4.3",
-    "typescript": "^5",
-    "webpack-bundle-analyzer": "^4.10.2"
+    "typescript": "^5"
   }
 }

@@ -61,16 +61,6 @@ export const CustomButton = ({
         padding,
         borderRadius,
         textTransform: 'none',
-        '&:focus-visible': {
-            outline: '2px solid',
-            outlineColor: 'primary.main',
-            outlineOffset: '2px',
-        },
-        '&:focus': {
-            outline: '2px solid',
-            outlineColor: 'primary.main',
-            outlineOffset: '2px',
-        },
         '&.Mui-disabled': {
             opacity: 0.7,
         },

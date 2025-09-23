@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { StatisticalData, StdDevLine } from '../../utils/types';

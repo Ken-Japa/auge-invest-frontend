@@ -1,4 +1,4 @@
-import { OptimizedApiService } from "../optimizedApiService";
+import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
 import {
   Company,
@@ -9,23 +9,22 @@ import {
 } from "../types";
 import { ErrorCode, handleApiError } from "../errorHandler";
 
-class CompaniesApiService extends OptimizedApiService {
+class CompaniesApiService extends BaseApiService {
   getCompanies = async (
     filters?: CompanyFilter
   ): Promise<CompanyListResponseApi> => {
+    const params = {
+      page: filters?.page !== undefined ? filters.page : 0,
+      pageSize: filters?.pageSize || 10,
+      ...(filters?.nome && { nome: filters.nome }),
+      ...(filters?.setor && { setor: filters.setor }),
+      ...(filters?.subsetor && { subsetor: filters.subsetor }),
+    };
+
     try {
-      return await this.getPaginatedData<CompanyListResponseApi>(
+      return await this.get<CompanyListResponseApi>(
         API_ENDPOINTS.COMPANY.PAGINATION,
-        {
-          page: filters?.page ?? 0,
-          pageSize: filters?.pageSize ?? 20, // Reduced page size
-          filters: {
-            ...(filters?.nome && { nome: filters.nome }),
-            ...(filters?.setor && { setor: filters.setor }),
-            ...(filters?.subsetor && { subsetor: filters.subsetor }),
-          },
-          cacheTTL: 10 * 60 * 1000, // Cache for 10 minutes - companies data doesn't change frequently
-        }
+        params
       );
     } catch (error) {
       console.error("Erro ao buscar companhias:", error);
@@ -37,10 +36,10 @@ class CompaniesApiService extends OptimizedApiService {
     id: string
   ): Promise<{ success: boolean; data: Company }> => {
     try {
-      return await this.cachedGet<{ success: boolean; data: Company }>(
+      return await this.get<{ success: boolean; data: Company }>(
         `${API_ENDPOINTS.COMPANY.DETAIL}/${id}`,
         undefined,
-        15 * 60 * 1000 // Cache company details for 15 minutes
+        ErrorCode.COMPANY_NOT_FOUND
       );
     } catch (error) {
       console.error(`Erro ao buscar empresa com ID ${id}:`, error);
@@ -63,17 +62,16 @@ class CompaniesApiService extends OptimizedApiService {
   getCompanyDividends = async (
     filters: CompanyDividendFilter
   ): Promise<CompanyDividendResponseApi> => {
+    const params = {
+      page: filters.page !== undefined ? filters.page : 0,
+      pageSize: filters.pageSize || 100,
+      ...(filters.nomeEmpresa && { nomeEmpresa: filters.nomeEmpresa }),
+    };
+
     try {
-      return await this.getPaginatedData<CompanyDividendResponseApi>(
+      return await this.get<CompanyDividendResponseApi>(
         API_ENDPOINTS.COMPANY.DIVIDENDS,
-        {
-          page: filters.page ?? 0,
-          pageSize: filters.pageSize ?? 50, // Reduced from 100 to 50
-          filters: {
-            ...(filters.nomeEmpresa && { nomeEmpresa: filters.nomeEmpresa }),
-          },
-          cacheTTL: 60 * 60 * 1000, // Cache dividends for 1 hour - historical data changes less frequently
-        }
+        params
       );
     } catch (error) {
       console.error(
@@ -83,23 +81,6 @@ class CompaniesApiService extends OptimizedApiService {
       throw handleApiError(error, ErrorCode.COMPANY_DATA_ERROR);
     }
   };
-
-  // Method to invalidate company-related cache
-  invalidateCompanyCache(companyId?: string): void {
-    if (companyId) {
-      this.invalidateCache(`/company/${companyId}`);
-    } else {
-      this.invalidateCache('/company');
-    }
-  }
-
-  // Prefetch company data for better UX
-  async prefetchCompanyData(companyId: string): Promise<void> {
-    await Promise.all([
-      this.prefetch(`${API_ENDPOINTS.COMPANY.DETAIL}/${companyId}`),
-      this.prefetch(API_ENDPOINTS.COMPANY.DIVIDENDS, { nomeEmpresa: companyId, pageSize: 20 })
-    ]);
-  }
 }
 
 export const companiesApi = new CompaniesApiService();
