@@ -14,14 +14,14 @@ npm run bench:web:quick
 # Check build health
 npm run build
 
-# Security scan (Pulado)
+# Security scan (Ainda não implementado)
 # npm run analyze:security
 ```
 
 ### Code Quality
 ```bash
-# Run accessibility tests
-npm run test:accessibility
+# Run accessibility tests (Ainda não implementado)
+# npm run test:accessibility
 
 # Code linting
 npm run lint
@@ -38,7 +38,7 @@ npm outdated
 # Security audit
 npm audit
 
-# Unused dependency check (Pulado)
+# Unused dependency check (Ainda não implementado)
 # npm run analyze:deps
 ```
 
@@ -49,11 +49,11 @@ npm audit
 # Suíte completa de benchmark
 npm run bench:all
 
-# Análise de bundle (Pulada)
+# Análise de bundle (Ainda não implementado)
 # npm run bench:bundle
 
-# Gerar relatório de performance
-node scripts/generate-performance-report.js
+# Gerar relatório de performance (Ainda não implementado)
+# node scripts/generate-performance-report.js
 ```
 
 ### Code Quality Review
@@ -61,23 +61,23 @@ node scripts/generate-performance-report.js
 # Full test suite
 npm test
 
-# Coverage report
-npm run test:coverage
+# Coverage report (Ainda não implementado)
+# npm run test:coverage
 
-# Visual regression tests (if configured)
-npm run test:visual
+# Visual regression tests (Ainda não implementado)
+# npm run test:visual
 ```
 
 ### Dependency Management
 ```bash
-# Update non-breaking dependencies
-npm update
+# Update non-breaking dependencies (Requer revisão manual)
+# npm update
 
-# Clean unused dependencies
-npm prune
+# Clean unused dependencies (Ainda não implementado)
+# npm prune
 
-# Rebuild node_modules (monthly)
-rm -rf node_modules package-lock.json && npm install
+# Rebuild node_modules (mensalmente, requer revisão manual)
+# rm -rf node_modules package-lock.json && npm install
 ```
 
 ## 🚀 Optimization Patterns Documentation
@@ -86,113 +86,64 @@ rm -rf node_modules package-lock.json && npm install
 
 #### 1. **Caching Strategy**
 ```typescript
-// Use the OptimizedApiService for all API calls
-import { optimizedApiService } from '@/services/api/optimizedApiService';
-
-// Pattern: Short-term cache for frequently changing data
-const stockPrices = await optimizedApiService.cachedGet(
-  '/api/stocks/price',
-  { symbol: 'PETR4' },
-  30000 // 30 seconds for price data
-);
-
-// Pattern: Long-term cache for stable data
-const companyInfo = await optimizedApiService.cachedGet(
-  '/api/company/info',
-  { symbol: 'PETR4' },
-  24 * 60 * 60 * 1000 // 24 hours for company info
-);
-
-// Pattern: Invalidate cache when data changes
-optimizedApiService.invalidateCache('/api/portfolio');
+// Atualmente, não há um OptimizedApiService implementado.
+// A estratégia de cache deve ser implementada usando bibliotecas como @tanstack/react-query ou similar.
+// Exemplo de como seria a implementação:
+// import { queryClient } from '@/lib/react-query';
+// queryClient.setQueryData(['stocks', 'PETR4'], stockPrices, { updatedAt: Date.now() });
+// queryClient.invalidateQueries(['portfolio']);
 ```
 
 #### 2. **Request Deduplication**
 ```typescript
-// Multiple components requesting the same data will share the request
-const CompanyPriceDisplay = ({ symbol }) => {
-  // This request is automatically deduplicated
-  const { data } = useQuery(['price', symbol], 
-    () => optimizedApiService.cachedGet('/api/price', { symbol })
-  );
-};
+// A deduplicação de requisições pode ser gerenciada por bibliotecas como @tanstack/react-query.
+// Exemplo de como seria a implementação:
+// const { data } = useQuery(['price', symbol], 
+//   () => fetch(`/api/price?symbol=${symbol}`).then(res => res.json())
+// );
 ```
 
 #### 3. **Pagination Optimization**
 ```typescript
-// Use optimized pagination with smaller page sizes
-const { data } = await optimizedApiService.getPaginatedData('/api/companies', {
-  page: 0,
-  pageSize: 20, // Reduced from 100 for better performance
-  filters: { sector: 'technology' },
-  cacheTTL: 10 * 60 * 1000, // 10 minutes
-});
+// A otimização de paginação deve ser implementada no serviço de API e no frontend.
+// Exemplo de como seria a implementação:
+// const { data } = useInfiniteQuery(
+//   ['companies', filters],
+//   ({ pageParam = 0 }) => fetch(`/api/companies?page=${pageParam}&pageSize=20&${new URLSearchParams(filters)}`).then(res => res.json()),
+//   { getNextPageParam: (lastPage) => lastPage.nextPage }
+// );
 ```
 
 ### Component Optimization Patterns
 
 #### 1. **Image Optimization**
 ```typescript
-// Use specialized image components
-import { LogoImage, CardImage, AvatarImage } from '@/components/Utils/OptimizedImage/specialized';
-
-// Logo (high priority, high quality)
-<LogoImage 
-  src="/logo.png" 
-  alt="Company logo" 
-  width={60} 
-  height={60} 
-/>
-
-// Card images (lazy loading, responsive)
-<CardImage 
-  src="/company-photo.jpg" 
-  alt="Company headquarters" 
-/>
-
-// Profile images (optimized for avatars)
-<AvatarImage 
-  src="/user-avatar.jpg" 
-  alt="User profile"
-  size={40}
-/>
+// O Next.js já oferece otimização de imagem com o componente next/image.
+// Certifique-se de usar o componente Image do Next.js para todas as imagens.
+// Exemplo:
+// import Image from 'next/image';
+// <Image src="/logo.png" alt="Company logo" width={60} height={60} priority />
 ```
 
 #### 2. **Dynamic Loading**
 ```typescript
-// Use dynamic imports for code splitting
-import { createDynamicComponent } from '@/components/Utils/DynamicImport';
-
-// Create dynamic components for heavy features
-const DynamicChartComponent = createDynamicComponent({
-  loader: () => import('./HeavyChartComponent'),
-  ssr: false // Disable for client-only components
-});
-
-// Use in component
-<DynamicChartComponent data={chartData} />
+// O Next.js suporta carregamento dinâmico (code splitting) com dynamic imports.
+// Exemplo:
+// import dynamic from 'next/dynamic';
+// const DynamicChartComponent = dynamic(() => import('./HeavyChartComponent'), {
+//   ssr: false, // Desabilita SSR para componentes client-only
+// });
+// <DynamicChartComponent data={chartData} />
 ```
 
 #### 3. **Accessibility Patterns**
 ```typescript
-// Use accessibility utilities
-import { focusStyles, getAriaLabel, generateId } from '@/utils/accessibility';
-
-// Consistent focus management
-const Button = styled.button`
-  ${focusStyles}
-  // Other styles...
-`;
-
-// Proper ARIA labels
-<input
-  id={generateId('email')}
-  aria-label={getAriaLabel('Email', 'login form')}
-/>
-
-// Skip links for navigation
-import { SkipLinks } from '@/components/Layout/SkipLinks';
-<SkipLinks /> // Include at top of layout
+// Padrões de acessibilidade devem ser aplicados diretamente nos componentes.
+// Utilize atributos ARIA, gerenciamento de foco e testes de acessibilidade.
+// Exemplo:
+// <button aria-label="Fechar" onClick={handleClose}>X</button>
+// Para skip links, pode-se criar um componente simples:
+// <a href="#main-content" className="skip-link">Pular para o conteúdo principal</a>
 ```
 
 ## 🔍 Monitoring & Alerting
@@ -215,39 +166,34 @@ import { SkipLinks } from '@/components/Layout/SkipLinks';
 - **Lighthouse Accessibility**: > 95%
 - **WCAG Compliance**: AA level minimum
 - **Color Contrast**: 4.5:1 minimum
-- **Keyboard Navigation**: 100% functional
+- **Keyboard Navigation**: 100% funcional
 
 ### Automated Alerts
 ```javascript
-// GitHub Actions workflow for monitoring
-// .github/workflows/performance-monitor.yml
-name: Performance Monitoring
-
-on:
-  schedule:
-    - cron: '0 9 * * 1' # Weekly on Mondays
-  
-jobs:
-  performance-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Performance Audit
-        run: |
-          npm install
-          npm run bench:all
-          
-      - name: Check Thresholds
-        run: |
-          node scripts/check-performance-thresholds.js
-          
-      - name: Alert on Failure
-        if: failure()
-        uses: 8398a7/action-slack@v3
-        with:
-          status: failure
-          text: 'Performance regression detected in Auge Invest platform'
+// Atualmente, não há um workflow de GitHub Actions configurado para monitoramento de performance.
+// Exemplo de como seria a implementação em .github/workflows/performance-monitor.yml:
+// name: Performance Monitoring
+// on:
+//   schedule:
+//     - cron: '0 9 * * 1' # Semanalmente às segundas-feiras
+// jobs:
+//   performance-check:
+//     runs-on: ubuntu-latest
+//     steps:
+//       - uses: actions/checkout@v4
+//       - name: Performance Audit
+//         run: |
+//           npm install
+//           npm run bench:all
+//       - name: Check Thresholds
+//         run: |
+//           node scripts/check-performance-thresholds.js
+//       - name: Alert on Failure
+//         if: failure()
+//         uses: 8398a7/action-slack@v3
+//         with:
+//           status: failure
+//           text: 'Performance regression detected in Auge Invest platform'
 ```
 
 ## 🐛 Troubleshooting Guide
@@ -256,80 +202,61 @@ jobs:
 
 #### 1. **SSR "self is not defined" Error**
 ```javascript
-// Problem: Client-only libraries causing SSR issues
-// Solution: Add 'use client' directive
-'use client';
-import { ClientOnlyComponent } from './ClientOnlyComponent';
-
-// Or use dynamic imports
-import dynamic from 'next/dynamic';
-const ClientComponent = dynamic(() => import('./ClientComponent'), {
-  ssr: false
-});
+// Problema: Bibliotecas client-only causando problemas de SSR.
+// Solução: Adicionar 'use client' directive ou usar dynamic imports com ssr: false.
+// Exemplo:
+// 'use client';
+// import { ClientOnlyComponent } from './ClientOnlyComponent';
+// import dynamic from 'next/dynamic';
+// const ClientComponent = dynamic(() => import('./ClientComponent'), {
+//   ssr: false
+// });
 ```
 
 #### 2. **Large Bundle Size**
 ```bash
-# Diagnose large bundles (Pulado)
+# Diagnóstico de bundles grandes (Ainda não implementado)
 # npm run bench:bundle
 
-# Check for duplicate dependencies
+# Verificar dependências duplicadas
 npm ls --depth=0 | grep -E "WARN|ERR"
 ```
 
 #### 3. **Slow API Responses**
 ```javascript
-// Check cache hit rates
-console.log('Cache stats:', optimizedApiService.getCacheStats());
-
-// Monitor API response times
-const start = performance.now();
-const data = await apiCall();
-const duration = performance.now() - start;
-console.log(`API call took ${duration}ms`);
-
-// Implement request timeout
-const controller = new AbortController();
-setTimeout(() => controller.abort(), 5000);
-fetch(url, { signal: controller.signal });
+// Monitorar tempos de resposta da API e implementar timeouts.
+// Exemplo:
+// const start = performance.now();
+// const data = await apiCall();
+// const duration = performance.now() - start;
+// console.log(`API call took ${duration}ms`);
+// const controller = new AbortController();
+// setTimeout(() => controller.abort(), 5000);
+// fetch(url, { signal: controller.signal });
 ```
 
 #### 4. **Memory Leaks**
 ```javascript
-// Use React DevTools Profiler to identify leaks
-// Common causes and solutions:
-
-// 1. Event listeners not cleaned up
-useEffect(() => {
-  const handleResize = () => {};
-  window.addEventListener('resize', handleResize);
-  
-  return () => window.removeEventListener('resize', handleResize);
-}, []);
-
-// 2. Timers not cleared
-useEffect(() => {
-  const timer = setInterval(() => {}, 1000);
-  return () => clearInterval(timer);
-}, []);
-
-// 3. Subscriptions not unsubscribed
-useEffect(() => {
-  const subscription = observable.subscribe();
-  return () => subscription.unsubscribe();
-}, []);
+// Usar React DevTools Profiler para identificar leaks.
+// Garantir que event listeners, timers e subscriptions sejam limpos.
+// Exemplo:
+// useEffect(() => {
+//   const handleResize = () => {};
+//   window.addEventListener('resize', handleResize);
+//   return () => window.removeEventListener('resize', handleResize);
+// }, []);
 ```
 
 #### 5. **Accessibility Issues**
 ```bash
-# Run accessibility tests
-npm run test:accessibility
+# Testes de acessibilidade (Ainda não implementado)
+# npm run test:accessibility
 
-# Manual testing checklist:
-# 1. Keyboard navigation (Tab, Enter, Space, Arrow keys)
-# 2. Screen reader testing (NVDA, JAWS, VoiceOver)
-# 3. Color contrast validation
-# 4. Focus management in modals/dropdowns
+# Checklist de testes manuais:
+# 1. Navegação por teclado (Tab, Enter, Space, Setas)
+# 2. Teste com leitores de tela (NVDA, JAWS, VoiceOver)
+# 3. Validação de contraste de cores
+# 4. Gerenciamento de foco em modais/dropdowns
 ```
 
 ## 📈 Performance Optimization Checklist
@@ -338,35 +265,35 @@ npm run test:accessibility
 
 - [x] Implementar otimizações de imagem (Next/Image, WebP/AVIF)
 - [x] Otimizar chamadas de API (cache, paginação)
-- [ ] Implementar code splitting e lazy loading
-- [ ] Otimizar fontes e ícones
-- [ ] Reduzir o tamanho do bundle (Pulado)
-- [ ] Otimizar dependências (Pulado)
-- [ ] Implementar Service Workers para caching avançado
-- [ ] Monitorar Core Web Vitals com Lighthouse CI
+- [ ] Implementar code splitting e lazy loading (Ainda não totalmente implementado)
+- [ ] Otimizar fontes e ícones (Ainda não implementado)
+- [ ] Reduzir o tamanho do bundle (Ainda não implementado)
+- [ ] Otimizar dependências (Ainda não implementado)
+- [ ] Implementar Service Workers para caching avançado (Ainda não implementado)
+- [ ] Monitorar Core Web Vitals com Lighthouse CI (Lighthouse CI configurado, mas monitoramento contínuo pode ser melhorado)
 
 ### Before Each Release
 - [ ] Run full performance audit: `npm run bench:all`
-- [ ] Check bundle size (Pulado): `# npm run bench:bundle`
-- [ ] Accessibility audit: `npm run test:accessibility`
-- [ ] Security scan: `npm run analyze:security`
+- [ ] Check bundle size (Ainda não implementado): `# npm run bench:bundle`
+- [ ] Accessibility audit (Ainda não implementado): `# npm run test:accessibility`
+- [ ] Security scan (Ainda não implementado): `# npm run analyze:security`
 - [ ] Type checking: `npx tsc --noEmit`
 - [ ] Test suite: `npm test`
 
 ### Monthly Reviews
-- [ ] Dependency updates: `npm update && npm audit fix`
-- [ ] Performance trend analysis
-- [ ] Bundle size trend monitoring
-- [ ] User experience metrics review
-- [ ] Error rate monitoring
-- [ ] Core Web Vitals assessment
+- [ ] Dependency updates (Requer revisão manual): `npm update && npm audit fix`
+- [ ] Performance trend analysis (Ainda não implementado)
+- [ ] Bundle size trend monitoring (Ainda não implementado)
+- [ ] User experience metrics review (Ainda não implementado)
+- [ ] Error rate monitoring (Ainda não implementado)
+- [ ] Core Web Vitals assessment (Ainda não implementado)
 
 ### Quarterly Deep Dives
 - [ ] Architecture review and refactoring opportunities
 - [ ] Technology stack evaluation
 - [ ] Performance baseline updates
-- [ ] Accessibility compliance audit
-- [ ] Security penetration testing
+- [ ] Accessibility compliance audit (Ainda não implementado)
+- [ ] Security penetration testing (Ainda não implementado)
 - [ ] User feedback integration
 
 ## 🔄 Continuous Improvement Process
@@ -407,8 +334,9 @@ graph TD
 - **LCP**: Measures loading performance (should be < 2.5s)
 - **CLS**: Measures visual stability (should be < 0.1)
 - **INP**: Measures interactivity (should be < 200ms)
-- **TTI**: Time to Interactive (should be < 5s)
-- **TBT**: Total Blocking Time (should be < 300ms)
+- **TTFB (Time to First Byte)**: < 800ms
+- **TTI (Time to Interactive)**: < 5s (Adicionado)
+- **TBT (Total Blocking Time)**: < 300ms (Adicionado)
 
 ### Optimization Priorities
 1. **Critical Path**: Above-the-fold content loading
@@ -418,11 +346,11 @@ graph TD
 5. **Visual Effects**: Animations and transitions
 
 ### Emergency Contacts
-- **Performance Issues**: Check Vercel/hosting platform status
-- **Security Issues**: Immediate dependency updates required
-- **Accessibility Issues**: May require immediate attention for compliance
-- **API Issues**: Check backend service status and logs
+- **Performance Issues**: Verificar status da plataforma de hospedagem (Vercel/similar)
+- **Security Issues**: Atualizações de dependência imediatas necessárias
+- **Accessibility Issues**: Pode exigir atenção imediata para conformidade
+- **API Issues**: Verificar status e logs do serviço de backend
 
 ---
 
-*This maintenance guide provides a comprehensive framework for keeping the Auge Invest platform optimized, secure, and accessible. Regular adherence to these practices will ensure long-term stability and performance.*
+*Este guia de manutenção fornece uma estrutura para manter a plataforma Auge Invest otimizada, segura e acessível. A adesão regular a essas práticas garantirá estabilidade e desempenho a longo prazo.*

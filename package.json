@@ -10,16 +10,19 @@
     "lhci:assert": "lhci assert",
     "lhci:upload": "lhci upload",
     "lhci": "npm run lhci:collect && npm run lhci:assert && npm run lhci:upload",
+    "bench:web": "lhci autorun",
+    "bench:web:quick": "lighthouse http://localhost:3000/ --output=html,json --output-path=./lighthouse-reports/quick --chrome-flags=\"--no-sandbox --headless\"",
+    "bench:all": "npm run bench:web",
     "lint": "next lint",
     "test": "jest",
     "blog-summary": "node ./src/content/utils/blogSummary.js"
   },
-
   "dependencies": {
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@hookform/resolvers": "^4.1.3",
+    "@lhci/cli": "^0.15.1",
     "@mui/icons-material": "^6.4.7",
     "@mui/material": "^6.4.8",
     "@mui/material-nextjs": "^6.4.3",
@@ -34,7 +37,11 @@
     "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.8.4",
     "dayjs": "^1.11.13",
+    "eslint": "^9.36.0",
+    "external-editor": "^3.1.0",
     "framer-motion": "^12.5.0",
+    "glob": "^11.0.3",
+    "inquirer": "^12.9.6",
     "jspdf": "^3.0.1",
     "next": ">=14.2.30",
     "next-auth": "^4.24.11",
@@ -46,6 +53,8 @@
     "react-markdown": "^10.1.0",
     "recharts": "^2.15.1",
     "remark-gfm": "^4.0.1",
+    "rimraf": "^6.0.1",
+    "tmp": "^0.2.5",
     "vis-data": "^7.1.9",
     "vis-network": "^9.1.9",
     "zod": "^3.24.2",
@@ -60,13 +69,11 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",
-    "eslint-config-next": "14.2.7",
+    "eslint-config-next": "^15.5.4",
     "jest": "^30.1.3",
     "jest-axe": "^10.0.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
-    "typescript": "^5",
-    "@lhci/cli": "^0.12.0"
+    "typescript": "^5"
   }
-  }
-
+}

@@ -22,6 +22,9 @@ export interface ApiError {
   code?: ErrorCode;
 }
 
+const cache = new Map<string, { data: any; timestamp: number }>();
+const CACHE_DURATION = 30 * 60 * 1000; // 30 minutes
+
 class ApiClient {
   private client: AxiosInstance;
 
@@ -56,7 +59,24 @@ class ApiClient {
     url: string,
     config?: AxiosRequestConfig
   ): Promise<AxiosResponse<T>> {
-    return this.client.get<T>(url, config);
+    const cacheKey = JSON.stringify({ url, params: config?.params });
+    const cached = cache.get(cacheKey);
+
+    if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+      console.log(`Cache hit for ${url}`);
+      return Promise.resolve({
+        data: cached.data,
+        status: 200,
+        statusText: "OK",
+        headers: {},
+        config: config || {},
+      } as AxiosResponse<T>);
+    }
+
+    console.log(`Cache miss for ${url}`);
+    const response = await this.client.get<T>(url, config);
+    cache.set(cacheKey, { data: response.data, timestamp: Date.now() });
+    return response;
   }
 
   async post<T>(
@@ -64,6 +84,8 @@ class ApiClient {
     data?: any,
     config?: AxiosRequestConfig
   ): Promise<AxiosResponse<T>> {
+    // Invalidate cache for any POST request to ensure fresh data
+    cache.clear();
     return this.client.post<T>(url, data, config);
   }
 
@@ -72,6 +94,8 @@ class ApiClient {
     data?: any,
     config?: AxiosRequestConfig
   ): Promise<AxiosResponse<T>> {
+    // Invalidate cache for any PUT request to ensure fresh data
+    cache.clear();
     return this.client.put<T>(url, data, config);
   }
 
@@ -79,6 +103,8 @@ class ApiClient {
     url: string,
     config?: AxiosRequestConfig
   ): Promise<AxiosResponse<T>> {
+    // Invalidate cache for any DELETE request to ensure fresh data
+    cache.clear();
     return this.client.delete<T>(url, config);
   }
 
@@ -87,6 +113,8 @@ class ApiClient {
     data?: any,
     config?: AxiosRequestConfig
   ): Promise<AxiosResponse<T>> {
+    // Invalidate cache for any PATCH request to ensure fresh data
+    cache.clear();
     return this.client.patch<T>(url, data, config);
   }
 }

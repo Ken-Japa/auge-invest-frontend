@@ -1,0 +1,431 @@
+[
+  {
+    "id": "TC001",
+    "title": "User Registration Success",
+    "description": "Verify that a new user can register successfully with valid credentials.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the registration page."
+      },
+      {
+        "type": "action",
+        "description": "Input valid username, email, and password."
+      },
+      {
+        "type": "action",
+        "description": "Submit the registration form."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user is redirected to the login page or authenticated session starts."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm a success message is displayed."
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "User Registration Failure with Invalid Data",
+    "description": "Ensure registration fails with invalid or incomplete information.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the registration page."
+      },
+      {
+        "type": "action",
+        "description": "Input invalid email format, weak password, or missing fields."
+      },
+      {
+        "type": "action",
+        "description": "Attempt to submit the registration form."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that descriptive validation error messages are shown and registration is blocked."
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "User Login Success",
+    "description": "Check that users can log in successfully with correct credentials.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the login page."
+      },
+      {
+        "type": "action",
+        "description": "Input valid username/email and password."
+      },
+      {
+        "type": "action",
+        "description": "Click the login button."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm user is redirected to the authenticated home or dashboard."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the session is initiated and maintained."
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "User Login Failure with Incorrect Credentials",
+    "description": "Verify login fails with incorrect username/email or password.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the login page."
+      },
+      {
+        "type": "action",
+        "description": "Enter invalid username/email and/or password."
+      },
+      {
+        "type": "action",
+        "description": "Click the login button."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an error message is displayed indicating login failure."
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure no session is initiated."
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Session Persistence and Expiry",
+    "description": "Validate session persists across app usage and expires appropriately when logged out or timed out.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in successfully."
+      },
+      {
+        "type": "action",
+        "description": "Navigate through user dashboard and refresh the page."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify user remains logged in and session persists."
+      },
+      {
+        "type": "action",
+        "description": "Perform logout action."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm session ends and user is redirected to public/home page."
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Access Control for Company Management",
+    "description": "Confirm only authenticated users can access and manage company-related data.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Attempt to access company management pages when not authenticated."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify redirection to login or access denied message."
+      },
+      {
+        "type": "action",
+        "description": "Log in as a valid user."
+      },
+      {
+        "type": "action",
+        "description": "Access company management pages."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify pages and features load correctly for managing company data."
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Company Data CRUD Operations",
+    "description": "Verify create, read, update, and delete operations function correctly in the company management feature.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in and navigate to company management section."
+      },
+      {
+        "type": "action",
+        "description": "Create a new company entry with valid data."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the new company is listed with correct details."
+      },
+      {
+        "type": "action",
+        "description": "Update the company information."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updates are saved and displayed."
+      },
+      {
+        "type": "action",
+        "description": "Delete the company entry."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the company is removed from the list."
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Company Data Validation and Error Handling",
+    "description": "Ensure validation catches invalid inputs for company data and application handles API errors gracefully.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Attempt to submit company data with invalid or missing fields."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify appropriate validation messages are shown, and submission is blocked."
+      },
+      {
+        "type": "action",
+        "description": "Simulate backend API failure during create/update/delete operations."
+      },
+      {
+        "type": "assertion",
+        "description": "Check the application shows user-friendly error messages and maintains stable UI."
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Public Home Page Content and Accessibility",
+    "description": "Check that the public home page loads for all users and displays accurate content representing product value.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the application root URL as an unauthenticated user."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the home page loads successfully without errors."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm key informational content and calls to action are present and correct."
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure page is responsive and UI follows expected theme and styles."
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Blog Posts Load and Display",
+    "description": "Validate blog section loads and displays the latest blog posts with related content correctly.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the blog section of the application."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the list of blog posts loads successfully."
+      },
+      {
+        "type": "assertion",
+        "description": "Check each blog post displays correct title, excerpt, and date."
+      },
+      {
+        "type": "action",
+        "description": "Select a blog post to view full content."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm full post content loads and related posts are displayed."
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Blog Section Error Handling",
+    "description": "Ensure the blog gracefully handles missing or corrupted content files and load errors.",
+    "category": "error handling",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate corrupted or missing blog content files."
+      },
+      {
+        "type": "action",
+        "description": "Navigate to the blog list and attempt to open posts."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify error messages or placeholder content is shown without crashing."
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "API Integration Data Fetching Success",
+    "description": "Test API integrations retrieve data correctly using Axios/Fetch and custom hooks.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Trigger data fetching actions for user profile, company data, and blog posts."
+      },
+      {
+        "type": "assertion",
+        "description": "Validate API calls succeed and data displays correctly in UI components."
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "API Integration Error Handling",
+    "description": "Validate application gracefully handles API request failures, network errors, and invalid data.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate API failures/errors such as 500 server error, 401 unauthorized, and timeouts."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify user receives meaningful error feedback without app crash or inconsistent state."
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Reusable UI Components Rendering",
+    "description": "Confirm core, data-display, feedback, form, layout, theme, and utility components render consistently and respond to props correctly.",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Render each reusable component with typical valid properties and states."
+      },
+      {
+        "type": "assertion",
+        "description": "Check components visually match design specifications and function as expected."
+      },
+      {
+        "type": "action",
+        "description": "Test components with edge case props and missing optional props."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm layout and behavior degrade gracefully or show useful defaults."
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Application Theming and Styles Consistency",
+    "description": "Verify the application-wide theming and global styles apply correctly across all pages and components.",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load various pages and dynamic UI components."
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure Tailwind CSS styles, CSS Modules, and theme providers are applied consistently."
+      },
+      {
+        "type": "action",
+        "description": "Change theme settings if available (e.g. light/dark mode)."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm UI updates in real time and style rules persist."
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Middleware Request Processing",
+    "description": "Validate middleware correctly intercepts and processes requests, enforcing authentication and routing rules.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Attempt to access protected endpoints or pages without authentication."
+      },
+      {
+        "type": "assertion",
+        "description": "Check middleware redirects to login or blocks access."
+      },
+      {
+        "type": "action",
+        "description": "Perform authenticated requests and verify middleware allows passage."
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Automated Test Coverage Validation",
+    "description": "Ensure automated tests with Jest cover critical functions: authentication, company management, API integration, UI components, and theming.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Run the full automated test suite."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm all critical modules have sufficient test coverage and tests pass."
+      }
+    ]
+  }
+]

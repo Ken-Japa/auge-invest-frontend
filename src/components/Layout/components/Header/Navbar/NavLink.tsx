@@ -30,6 +30,8 @@ export const NavLink = ({ path, name, highlight, onClick }: NavLinkProps) => {
                 ${highlight ? 'text-[#0D95F9] hover:text-[#0D95F9]' : ''}
             `}
             onClick={handleClick}
+            role="link"
+            aria-current={isActive ? "page" : undefined}
         >
             {name}
             {isActive && (

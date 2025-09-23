@@ -1,13 +1,13 @@
 "use client";
 
 import { type FC, useState, useEffect, useRef, lazy } from 'react';
-import Image from 'next/image';
 import { Container } from "@mui/material";
 
 import { PageTransition } from "@/components/Utils/PageTransition";
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { ProgressiveLoad } from "@/components/Feedback/ProgressiveLoad";
 import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
+import { OptimizedImage } from "@/components/Utils/OptimizedImage";
 
 import { SectionSolutions, ContentWrapper } from "./styled";
 
@@ -79,7 +79,7 @@ export const Solutions: FC = () => {
                         </>
                     ) : (
                         <>
-                            <Image
+                            <OptimizedImage
                                 src="/assets/images/background/Recursos.jpg"
                                 alt="Recursos background"
                                 className="video-background"

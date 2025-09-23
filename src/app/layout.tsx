@@ -7,6 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Providers } from "@/providers/Providers";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
@@ -76,8 +77,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    <html suppressHydrationWarning>
       <head>
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />

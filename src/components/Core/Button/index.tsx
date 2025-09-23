@@ -96,7 +96,7 @@ export const CustomButton = ({
             initial={initial}
             animate={animate}
             transition={transition}
-            aria-label={ariaLabel}
+            aria-label={ariaLabel || children?.toString() || value}
             {...props}
         >
             {children || value}

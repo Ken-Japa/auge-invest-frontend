@@ -66,8 +66,9 @@ export const Header = () => {
                                 onClose={toggle}
                                 ModalProps={{ keepMounted: true }}
                                 onTransitionExited={handleDrawerClose}
+                                onTransitionEnter={handleDrawerOpen}
                             >
-                                <DrawerContent ref={drawerContentRef} tabIndex={-1}>
+                                <DrawerContent ref={drawerContentRef} tabIndex={-1} role="dialog" aria-modal="true">
                                     <Navbar />
                                     <div className="mt-4">
                                         {session ?

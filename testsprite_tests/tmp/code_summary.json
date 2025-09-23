@@ -1,0 +1,99 @@
+{
+  "tech_stack": [
+    "TypeScript",
+    "Next.js",
+    "Tailwind CSS",
+    "CSS Modules",
+    "Zustand (inferred)",
+    "Axios/Fetch API (inferred)",
+    "NextAuth.js",
+    "Jest"
+  ],
+  "features": [
+    {
+      "name": "Authentication",
+      "description": "Handles user login, registration, and session management.",
+      "files": [
+        "src/app/(auth)",
+        "src/app/login",
+        "src/app/register",
+        "src/utils/auth.ts",
+        "src/providers/AuthProvider.tsx",
+        "src/types/next-auth.d.ts"
+      ]
+    },
+    {
+      "name": "Company Management",
+      "description": "Functionality for managing company-related data, likely in a logged-in area.",
+      "files": [
+        "src/pagesComponents/Logado/Empresa",
+        "src/store/companyStore.ts",
+        "src/hooks/useCompanies.ts"
+      ]
+    },
+    {
+      "name": "Home Page (Public)",
+      "description": "The main landing page for non-logged-in users.",
+      "files": [
+        "src/pagesComponents/Nao-Logado/Home",
+        "src/app/page.tsx"
+      ]
+    },
+    {
+      "name": "Blog",
+      "description": "Displays blog posts and related content.",
+      "files": [
+        "src/app/blog",
+        "src/pagesComponents/Blog",
+        "src/content/blog"
+      ]
+    },
+    {
+      "name": "API Integration",
+      "description": "Handles communication with backend APIs.",
+      "files": [
+        "src/services/api",
+        "src/hooks/useApi.ts",
+        "src/providers/ApiProvider.tsx",
+        "src/types/api.ts"
+      ]
+    },
+    {
+      "name": "UI Components",
+      "description": "Reusable UI components categorized by their purpose (Core, Data-Display, Feedback, Form, Layout, Theme, Utils).",
+      "files": [
+        "src/components/Core",
+        "src/components/Data-Display",
+        "src/components/Effects",
+        "src/components/Feedback",
+        "src/components/Form",
+        "src/components/Layout",
+        "src/components/Theme",
+        "src/components/Utils"
+      ]
+    },
+    {
+      "name": "Theming",
+      "description": "Manages the application's visual theme and styling.",
+      "files": [
+        "src/theme",
+        "src/providers/Providers.tsx"
+      ]
+    },
+    {
+      "name": "Global Styles and Effects",
+      "description": "Contains global CSS styles and effects.",
+      "files": [
+        "src/app/globals.css",
+        "src/app/effects.css"
+      ]
+    },
+    {
+      "name": "Middleware",
+      "description": "Handles request processing before they are completed.",
+      "files": [
+        "src/middleware.ts"
+      ]
+    }
+  ]
+}

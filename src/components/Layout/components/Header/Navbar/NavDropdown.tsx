@@ -70,6 +70,8 @@ export const NavDropdown = ({ name, path, items, onClick }: NavDropdownProps) =>
                 `}
                 onClick={handleMainClick}
                 aria-label={name}
+                aria-haspopup="true"
+                aria-expanded={isOpen}
             >
                 {name}
                 <span 
@@ -92,12 +94,14 @@ export const NavDropdown = ({ name, path, items, onClick }: NavDropdownProps) =>
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
                         className="absolute top-full left-0 mt-1 bg-[#1A1A1A] rounded-md shadow-lg z-50 min-w-[200px] border border-white/10"
+                        role="menu"
                     >
                         {items.map((item) => (
                             <div
                                 key={item.name}
                                 className="px-4 py-2 text-white/70 hover:text-white hover:bg-white/5 cursor-pointer transition-colors"
                                 onClick={() => handleItemClick(item.path)}
+                                role="menuitem"
                             >
                                 {item.name}
                             </div>
