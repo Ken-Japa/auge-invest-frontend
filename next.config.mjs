@@ -50,15 +50,17 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: `
               default-src 'self';
-              script-src 'self' 'unsafe-eval' 'unsafe-inline'; report-uri /api/report-csp;
+              script-src 'self' 'unsafe-eval' 'unsafe-inline' https://va.vercel-scripts.com https://s3.tradingview.com; report-uri /api/report-csp;
               style-src 'self' 'unsafe-inline';
               img-src 'self' data: https://*;
               font-src 'self' data:;
               object-src 'none';
               base-uri 'self';
               form-action 'self';
-              frame-ancestors 'self';
+              frame-ancestors 'self' https://s.tradingview.com https://www.tradingview-widget.com;
               upgrade-insecure-requests;
+              connect-src 'self' https://api-servidor-yupg.onrender.com;
+              frame-src https://s.tradingview.com https://www.tradingview-widget.com;
             `.replace(/\s{2,}/g, ' ').trim(),
           },
           {

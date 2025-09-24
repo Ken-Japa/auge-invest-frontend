@@ -6,16 +6,15 @@ import { useSession } from "next-auth/react";
 import { Drawer, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Menu as MenuIcon } from "@mui/icons-material";
-import { motion } from "framer-motion";
 
 import { Logo } from "../../Logo";
 import { Navbar } from "./Navbar";
 import { LoginsButtons } from "./LoginRegisterButtons";
 import { PerfilButtons } from "./PerfilButtons";
 import { useDrawer } from "../../hooks/useDrawer";
-import { HeaderContainer, HeaderContent, DrawerContent } from "./styled";
+import { HeaderContainer, DrawerContent } from "./styled";
 import React, { useRef, useEffect } from 'react';
-import { AppBar, Box, IconButton, Toolbar } from '@mui/material';
+import { IconButton, Toolbar } from '@mui/material';
 
 export const Header = () => {
     const theme = useTheme();
@@ -46,11 +45,12 @@ export const Header = () => {
 
     return (
         <HeaderContainer>
-            <Toolbar className="flex justify-between items-center w-full">
-                <Logo />
-                <div className="flex items-center">
-                    {isMobile ? (
-                        <>
+
+            <Toolbar className="flex justify-between items-center ">
+                {isMobile ? (
+                    <>
+                        <Logo />
+                        <div className="flex items-center">
                             <IconButton
                                 ref={iconButtonRef}
                                 color="inherit"
@@ -80,14 +80,21 @@ export const Header = () => {
                                     </div>
                                 </DrawerContent>
                             </Drawer>
-                        </>
-                    ) : (
-                        <>
-                            <Navbar />
-                            {session ? <PerfilButtons /> : <LoginsButtons />}
-                        </>
-                    )}
-                </div>
+                        </div>
+                    </>
+                ) : (
+                    <div className="flex items-center gap-32">
+                        <Link href="/">
+                            <Logo />
+                        </Link>
+                        <Navbar />
+                    </div>
+                )}
+                {isMobile ? (
+                    <></>
+                ) : (
+                    session ? <PerfilButtons /> : <LoginsButtons />
+                )}
             </Toolbar>
         </HeaderContainer>
     );

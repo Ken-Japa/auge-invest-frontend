@@ -17,7 +17,8 @@
         "errors-in-console": "off",
         "heading-order": "off",
         "legacy-javascript-insight": "off",
-        "network-dependency-tree-insight": "off"
+        "network-dependency-tree-insight": "off",
+        "forced-reflow-insight": "off"
       }
     },
     "upload": {
