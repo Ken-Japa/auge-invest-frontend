@@ -80,7 +80,7 @@ export default function RootLayout({
 }) {
 
   return (
-    <html suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
       <head>
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />

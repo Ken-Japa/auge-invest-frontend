@@ -36,10 +36,6 @@ export const Pricing = () => {
                             className="object-cover"
                             quality={90}
                             onLoad={() => setImageLoaded(true)}
-                            style={{
-                                filter: !imageLoaded ? 'grayscale(1)' : 'none',
-                                transition: 'filter 0.5s ease-in-out'
-                            }}
                         />
                     </div>
                     <div className="opacity">

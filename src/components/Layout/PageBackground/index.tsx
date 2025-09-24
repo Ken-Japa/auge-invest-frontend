@@ -38,7 +38,6 @@ const BackgroundImageWrapper = styled('div')<{ isLoaded: boolean }>(({ isLoaded 
   width: '100%',
   height: '100%',
   zIndex: -2,
-  transition: 'filter 0.7s ease-in-out',
   filter: isLoaded ? 'blur(0) grayscale(0)' : 'blur(20px) grayscale(100%)',
   '& > div': {
     position: 'absolute',

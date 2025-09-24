@@ -102,6 +102,7 @@ export const Footer = () => {
                                             href={social.href}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            aria-label={social.label}
                                             sx={{
                                                 color: 'white',
                                                 transition: 'transform 0.2s',

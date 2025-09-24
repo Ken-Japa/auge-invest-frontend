@@ -50,10 +50,6 @@ export const Home: FC = () => {
                                 loadingClassName="scale-100 blur-xl grayscale opacity-50"
                                 quality={90}
                                 onLoad={() => setImageLoaded(true)}
-                                style={{
-                                    filter: !imageLoaded ? 'grayscale(1)' : 'none',
-                                    transition: 'filter 0.5s ease-in-out'
-                                }}
                             />
                             <BackgroundOverlay />
                         </BackgroundImageWrapper>

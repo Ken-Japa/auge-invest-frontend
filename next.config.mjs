@@ -41,5 +41,37 @@ const nextConfig = {
       transform: "@mui/icons-material/{{ matches.[1] }}/{{member}}",
     },
   },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: `
+              default-src 'self';
+              script-src 'self' 'unsafe-eval' 'unsafe-inline'; report-uri /api/report-csp;
+              style-src 'self' 'unsafe-inline';
+              img-src 'self' data: https://*;
+              font-src 'self' data:;
+              object-src 'none';
+              base-uri 'self';
+              form-action 'self';
+              frame-ancestors 'self';
+              upgrade-insecure-requests;
+            `.replace(/\s{2,}/g, ' ').trim(),
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload',
+          },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
+          },
+        ],
+      },
+    ];
+  },
 };
 export default nextConfig;

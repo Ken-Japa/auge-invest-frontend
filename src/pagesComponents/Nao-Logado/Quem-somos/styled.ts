@@ -83,7 +83,7 @@ export const ContentContainer = styled("div")(({ theme }) => ({
   },
 }));
 
-export const Subtitle = styled("p")({
+export const Subtitle = styled("div")({
   color: visitorColors.textSecondary,
   marginBottom: spacing.xl,
 });

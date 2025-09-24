@@ -48,10 +48,6 @@ export const FAQ: FC = () => {
                         <OptimizedImage
                             {...IMAGE_PROPS}
                             onLoad={() => setImageLoaded(true)}
-                            style={{
-                                filter: !imageLoaded ? 'grayscale(1)' : 'none',
-                                transition: 'filter 0.5s ease-in-out'
-                            }}
                         />
                     </div>
                     <div className="content-container">

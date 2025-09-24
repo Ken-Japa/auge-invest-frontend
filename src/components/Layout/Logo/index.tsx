@@ -15,12 +15,12 @@ export const Logo = ({
     return (
         <LogoContainer onClick={onClick} style={{ cursor: onClick ? 'pointer' : 'default' }}>
             <OptimizedImage
-                src="/assets/images/logo/icon-48.png"
+                src="/assets/images/logo/icon-48.webp"
                 alt="Auge Invest"
                 width={width}
                 height={height}
                 priority
-                quality={75}
+                quality={60}
                 style={{
                     maxWidth: '100%',
                     width: 'auto',

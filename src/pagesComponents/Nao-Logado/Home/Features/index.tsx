@@ -90,7 +90,7 @@ export const Features: FC<FeaturesProps> = ({ isLoading }) => {
                                                 <Icon sx={ICON_STYLES} />
                                             </div>
                                             <div>
-                                                <Typography variant="h6" className="text-white mb-2">
+                                                <Typography variant="h5" className="text-white mb-2">
                                                     {feature.title}
                                                 </Typography>
                                                 <Typography className="text-white/70 mb-3">

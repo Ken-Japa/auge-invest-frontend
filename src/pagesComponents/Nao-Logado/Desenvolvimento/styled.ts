@@ -2,15 +2,17 @@ import { styled } from "@mui/material/styles";
 import { Box, Typography, Card, Container } from "@mui/material";
 import { PageTransition } from "@/components/Utils/PageTransition";
 
-export const BackgroundImageStyle = styled(Box)<{ isloaded: boolean }>(
-  ({ isloaded }) => ({
+export const BackgroundImageStyle = styled(Box, {
+  shouldForwardProp: (prop) => prop !== '$isloaded'
+})<{ $isloaded: boolean }>(
+  ({ $isloaded }) => ({
     position: "absolute",
     top: 0,
     left: 0,
     width: "100%",
     height: "100%",
     transition: "filter 0.7s ease-in-out",
-    filter: isloaded ? "blur(0) grayscale(0)" : "blur(20px) grayscale(100%)",
+    filter: $isloaded ? "blur(0) grayscale(0)" : "blur(20px) grayscale(100%)",
     "& > div": {
       position: "absolute",
       top: 0,

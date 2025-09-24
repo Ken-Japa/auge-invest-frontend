@@ -125,7 +125,7 @@ export const Welcome: FC<WelcomeProps> = ({ isLoading }) => {
                                                     <Typography variant="h3" className="text-[#0D95F9] font-bold">
                                                         {item.value}
                                                     </Typography>
-                                                    <Typography variant="subtitle1" className="text-white">
+                                                    <Typography variant="h4" className="text-white">
                                                         {item.title}
                                                     </Typography>
                                                     <Typography variant="body2" className="text-white/60">

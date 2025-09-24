@@ -34,7 +34,7 @@ const FerramentasPage = () => {
                 <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
                     <ProgressiveLoad threshold={0.1} delay={0.2}>
                         <PageContainer>
-                            <BackgroundImageStyle isloaded={imageLoaded}>
+                            <BackgroundImageStyle $isloaded={imageLoaded}>
                                 <OptimizedImage {...imageProps} />
                             </BackgroundImageStyle>
                             <Page >

@@ -24,7 +24,7 @@ const commonOptions = {
       fontWeight: typography.fontWeights.medium,
     },
     h5: {
-      fontSize: typography.fontSizes.sm,
+      fontSize: typography.fontSizes.md,
       fontWeight: typography.fontWeights.medium,
     },
     h6: {
