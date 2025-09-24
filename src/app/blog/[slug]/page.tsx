@@ -4,13 +4,13 @@ import { BlogPost as BlogPostType } from "@/pagesComponents/Blog/constants/blogP
 import BlogPost from "@/pagesComponents/Blog/components/BlogPost";
 
 interface BlogPostPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: BlogPostPageProps): Promise<Metadata> {
-  const { slug } = params;
+export async function generateMetadata(
+  { params }: BlogPostPageProps,
+): Promise<Metadata> {
+  const { slug } = await params;
   let blogPostsModule;
   try {
     blogPostsModule = await import(`@/content/blog/${slug}.ts`);
@@ -43,7 +43,7 @@ export async function generateMetadata({
 }
 
 const BlogPostPage = async ({ params }: BlogPostPageProps) => {
-  const { slug } = params;
+  const { slug } = await params;
 
   let blogPostsModule;
   try {

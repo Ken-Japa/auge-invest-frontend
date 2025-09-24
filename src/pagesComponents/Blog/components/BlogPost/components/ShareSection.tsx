@@ -15,15 +15,23 @@ export const ShareSection = ({ title, description }: ShareSectionProps) => {
         const url = window.location.href;
 
         if (navigator.share) {
+            const shareData = {
+                title: title || '',
+                text: description || '',
+                url,
+            };
+
+            if (navigator.canShare && !navigator.canShare(shareData)) {
+                enqueueSnackbar('Não é possível compartilhar este conteúdo.', { variant: 'warning' });
+                return;
+            }
+
             try {
-                await navigator.share({
-                    title: title ?? undefined,
-                    text: description ?? undefined,
-                    url,
-                });
+                await navigator.share(shareData);
             } catch (err) {
                 if (err instanceof Error && err.name !== 'AbortError') {
-                    enqueueSnackbar('Error sharing the article', { variant: 'error' });
+                    enqueueSnackbar('Erro ao compartilhar o artigo', { variant: 'error' });
+                    console.error('Erro ao compartilhar:', err);
                 }
             }
         } else {

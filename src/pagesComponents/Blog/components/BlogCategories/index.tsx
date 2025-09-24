@@ -50,7 +50,7 @@ export const BlogCategories = ({
                             {category.label}
                             {selectedCategory === category.id && (
                                 <span className="ml-2">({posts.filter(post =>
-                                    selectedCategory === 'all' ? true : post.category.includes(selectedCategory)
+                                    selectedCategory === 'all' ? true : (post.category && (Array.isArray(post.category) ? post.category.includes(selectedCategory) : post.category === selectedCategory))
                                 ).length})</span>
                             )}
                         </CategoryButton>

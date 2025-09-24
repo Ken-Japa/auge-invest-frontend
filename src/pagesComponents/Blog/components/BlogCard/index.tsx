@@ -6,18 +6,18 @@ import { CardContainer, CardOverlay } from "./styled";
 import { BlogCardSkeleton } from "./BlogCardSkeleton";
 
 interface BlogCardProps {
-    title: string;
-    description: string;
-    image?: string;
-    category: string;
-    author: string;
-    date: string;
+    title: string | null;
+    description: string | null;
+    image?: string | null;
+    category: string | string[] | null;
+    author: string | null;
+    date: string | null;
     slug: string;
     isLoading?: boolean;
 }
 
 export const BlogCard = ({ title, description, image, author, date, slug, isLoading }: BlogCardProps) => {
-    const formattedDate = new Date(date).toLocaleDateString('pt-BR');
+    const formattedDate = date ? new Date(date).toLocaleDateString('pt-BR') : '';
     if (isLoading) {
         return <BlogCardSkeleton />;
     }

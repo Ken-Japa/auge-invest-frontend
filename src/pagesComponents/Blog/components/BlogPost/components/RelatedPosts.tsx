@@ -3,7 +3,7 @@ import { BlogCard } from "../../BlogCard";
 import type { BlogPost } from "../../../constants/blogPosts";
 
 interface RelatedPostsProps {
-    posts: BlogPost[]; // Changed from BlogPost to BlogPost[]
+    posts: BlogPost[];
 }
 
 export const RelatedPosts = ({ posts }: RelatedPostsProps) => {
