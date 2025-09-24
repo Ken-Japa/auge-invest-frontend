@@ -1,3 +1,4 @@
+import { customColors } from "./palette";
 // Variáveis de tema centralizadas para uso em styled components e componentes MUI
 
 // Espaçamento - Sistema de espaçamento consistente para margens e paddings
@@ -84,10 +85,8 @@ export const getThemeColor = (theme: any, colorPath: string) => {
   const mode = theme.palette.mode; // 'light' ou 'dark'
   const parts = colorPath.split(".");
 
-  // Importar customColors diretamente para evitar dependência circular
-  const { customColors } = require("./palette");
 
-  let color = customColors;
+  let color: any = customColors;
   for (let i = 0; i < parts.length - 1; i++) {
     color = color[parts[i]];
   }

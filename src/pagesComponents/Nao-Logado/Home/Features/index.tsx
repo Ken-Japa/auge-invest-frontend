@@ -2,7 +2,7 @@ import { type FC, useState } from 'react';
 import { Stack, Box, Container, Typography, Grid } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 
-import { MatrixRainText } from "@/components/Effects/MatrixRainText";
+import dynamic from "next/dynamic";
 import { OptimizedImage } from "@/components/Utils/OptimizedImage";
 
 import { FEATURES_DATA, ICON_STYLES } from './constants';
@@ -11,6 +11,11 @@ import { FeaturesSkeleton } from "./FeaturesSkeleton";
 interface FeaturesProps {
     isLoading?: boolean;
 }
+
+const DynamicMatrixRainText = dynamic(() => import("@/components/Effects/MatrixRainText").then(mod => mod.MatrixRainText), {
+    ssr: false,
+    loading: () => <span className="title">Carregando...</span>,
+});
 
 export const Features: FC<FeaturesProps> = ({ isLoading }) => {
     const [activeFeature, setActiveFeature] = useState(0);
@@ -23,7 +28,7 @@ export const Features: FC<FeaturesProps> = ({ isLoading }) => {
         <Container maxWidth="xl">
             <Box className="text-center mb-12">
                 <Stack className="gap-2">
-                    <MatrixRainText
+                    <DynamicMatrixRainText
                         text="Por que escolher a Auge Invest?"
                         className="text-4xl font-bold text-white mb-4"
                     />

@@ -10,7 +10,7 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import { motion } from "framer-motion";
 
 import { CustomButton } from "@/components/Core/Button";
-import { MatrixRainText } from "@/components/Effects/MatrixRainText";
+import dynamic from 'next/dynamic';
 
 import { SectionWelcome } from "./styled";
 import { WelcomeSkeleton } from "./WelcomeSkeleton";
@@ -18,6 +18,12 @@ import { WelcomeSkeleton } from "./WelcomeSkeleton";
 interface WelcomeProps {
     isLoading?: boolean;
 }
+
+const DynamicMatrixRainText = dynamic(() => import('@/components/Effects/MatrixRainText').then(mod => mod.MatrixRainText), {
+    ssr: false,
+    loading: () => <span className="title">Carregando...</span>,
+});
+
 export const Welcome: FC<WelcomeProps> = ({ isLoading }) => {
     const [showAnimation, setShowAnimation] = useState(false);
 
@@ -58,13 +64,13 @@ export const Welcome: FC<WelcomeProps> = ({ isLoading }) => {
             <div className="home">
                 <div className="welcome mb-20">
                     <div className="title-left">
-                        <MatrixRainText
+                        <DynamicMatrixRainText
                             text="Seja bem vindo a"
                             className="text-white"
                         />
                     </div>
                     <div className="title-right">
-                        <MatrixRainText
+                        <DynamicMatrixRainText
                             text="Auge Invest"
                             className="text-white font-bold text-5xl"
                         />

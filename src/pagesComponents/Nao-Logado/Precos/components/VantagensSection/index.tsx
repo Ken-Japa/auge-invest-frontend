@@ -1,4 +1,4 @@
-import { MatrixRainText } from "@/components/Effects/MatrixRainText";
+import dynamic from "next/dynamic";
 import { BaseSection, ContentWrapper } from "../../styled";
 import { VantagensGrid, VantagemCard } from "./styled";
 import { VantagensSkeleton } from "./VantagensSkeleton";
@@ -6,7 +6,10 @@ import { VantagensSkeleton } from "./VantagensSkeleton";
 interface VantagensSectionProps {
     isLoading?: boolean;
 }
-
+const DynamicMatrixRainText = dynamic(() => import("@/components/Effects/MatrixRainText").then(mod => mod.MatrixRainText), {
+    ssr: false,
+    loading: () => <span className="title">Carregando...</span>,
+});
 export const VantagensSection = ({ isLoading }: VantagensSectionProps) => {
     if (isLoading) {
         return <VantagensSkeleton />;
@@ -14,7 +17,7 @@ export const VantagensSection = ({ isLoading }: VantagensSectionProps) => {
     return (
         <BaseSection>
             <ContentWrapper spacing={6}>
-                <MatrixRainText
+                <DynamicMatrixRainText
                     text="Por que escolher a Auge Invest?"
                     className="text-[#FF4081] text-4xl font-bold"
                 />

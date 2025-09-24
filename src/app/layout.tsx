@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
-import { AnimatePresence } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Providers } from "@/providers/Providers";
 
@@ -106,16 +105,9 @@ export default function RootLayout({
           href="https://fonts.googleapis.com"
         />
       </head>
-      <body className={inter.className} suppressHydrationWarning>
+      <body className={inter.className}>
         <Providers>
-          <Layout>
-            <AnimatePresence mode="sync">
-              {children}
-            </AnimatePresence>
-            <SpeedInsights />
-            <Analytics />
-
-          </Layout>
+          {children}
         </Providers>
       </body>
     </html>

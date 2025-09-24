@@ -8,7 +8,8 @@ const __dirname = path.dirname(__filename);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
+
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
@@ -28,6 +29,13 @@ const nextConfig = {
       },
     ],
   },
+  modularizeImports: {
+    '@mui/material/?(((\w*)?/?)*)': {
+      transform: '@mui/material/{{ matches.[1] }}/{{member}}',
+    },
+    '@mui/icons-material/?(((\w*)?/?)*)': {
+      transform: '@mui/icons-material/{{ matches.[1] }}/{{member}}',
+    },
+  },
 };
-
 export default nextConfig;

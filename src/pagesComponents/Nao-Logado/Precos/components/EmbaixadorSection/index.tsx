@@ -1,4 +1,4 @@
-import { MatrixRainText } from "@/components/Effects/MatrixRainText";
+import dynamic from "next/dynamic";
 import { CustomButton } from "@/components/Core/Button";
 import { EMBAIXADOR_BENEFICIOS } from "../../constants/embaixador";
 import { BaseSection, ContentWrapper } from "../../styled";
@@ -9,7 +9,10 @@ import { visitorColors } from "@/theme/palette/visitor";
 interface EmbaixadorSectionProps {
     isLoading?: boolean;
 }
-
+const DynamicMatrixRainText = dynamic(() => import("@/components/Effects/MatrixRainText").then(mod => mod.MatrixRainText), {
+    ssr: false,
+    loading: () => <span className="title">Carregando...</span>,
+});
 export const EmbaixadorSection = ({ isLoading }: EmbaixadorSectionProps) => {
     if (isLoading) {
         return <EmbaixadorSkeleton />;
@@ -17,7 +20,7 @@ export const EmbaixadorSection = ({ isLoading }: EmbaixadorSectionProps) => {
     return (
         <BaseSection>
             <ContentWrapper spacing={4}>
-                <MatrixRainText
+                <DynamicMatrixRainText
                     text="Seja um Embaixador"
                     className="text-[#FF4081] text-4xl font-bold"
                 />

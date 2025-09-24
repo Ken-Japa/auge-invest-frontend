@@ -1,12 +1,17 @@
 import { type FC } from 'react';
 import { Typography } from "@mui/material";
-import { MatrixRainText } from "@/components/Effects/MatrixRainText";
+import dynamic from "next/dynamic";
 import { HeaderContainer } from "./styled";
+
+const DynamicMatrixRainText = dynamic(() => import("@/components/Effects/MatrixRainText").then(mod => mod.MatrixRainText), {
+  ssr: false,
+  loading: () => <span className="title">Carregando...</span>,
+});
 
 export const RegisterHeader: FC = () => {
   return (
     <HeaderContainer>
-      <MatrixRainText
+      <DynamicMatrixRainText
         text="Criar Conta"
         className="matrix-title"
       />

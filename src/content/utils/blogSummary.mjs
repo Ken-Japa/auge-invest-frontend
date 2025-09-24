@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 async function getAllBlogPosts() {
     const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');

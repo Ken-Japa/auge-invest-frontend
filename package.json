@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lhci:collect": "lhci collect",
@@ -11,11 +11,11 @@
     "lhci:upload": "lhci upload",
     "lhci": "npm run lhci:collect && npm run lhci:assert && npm run lhci:upload",
     "bench:web": "lhci autorun",
-    "bench:web:quick": "lighthouse http://localhost:3000/ --output=html,json --output-path=./lighthouse-reports/quick --chrome-flags=\"--no-sandbox --headless\"",
+    "bench:web:quick": "npx lighthouse http://localhost:3000 --output html --output json --output-path ./lighthouse-reports/report.html --view --preset=desktop --throttling.cpuSlowdownMultiplier=2.4 --no-enable-error-reporting",
     "bench:all": "npm run bench:web",
     "lint": "next lint",
     "test": "jest",
-    "blog-summary": "node ./src/content/utils/blogSummary.js"
+    "blog-summary": "node ./src/content/utils/blogSummary.mjs"
   },
   "dependencies": {
     "@emotion/cache": "^11.13.1",
@@ -44,7 +44,7 @@
     "inquirer": "^12.9.6",
     "jest-environment-jsdom": "^30.1.2",
     "jspdf": "^3.0.1",
-    "next": ">=14.2.30",
+    "next": "^15.5.4",
     "next-auth": "^4.24.11",
     "notistack": "^3.0.2",
     "react": "^18",

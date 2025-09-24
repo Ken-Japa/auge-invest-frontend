@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MatrixRainText } from "@/components/Effects/MatrixRainText";
+import dynamic from "next/dynamic";
 import { RECURSOS_LIST } from "../../constants/recursos";
 import { BaseSection, ContentWrapper } from "../../styled";
 import { RecursosContainer } from "./styled";
@@ -8,7 +8,10 @@ import { RecursosSkeleton } from "./RecursosSkeleton";
 interface RecursosSectionProps {
     isLoading?: boolean;
 }
-
+const DynamicMatrixRainText = dynamic(() => import("@/components/Effects/MatrixRainText").then(mod => mod.MatrixRainText), {
+    ssr: false,
+    loading: () => <span className="title">Carregando...</span>,
+});
 export const RecursosSection = ({ isLoading }: RecursosSectionProps) => {
     if (isLoading) {
         return <RecursosSkeleton />;
@@ -16,7 +19,7 @@ export const RecursosSection = ({ isLoading }: RecursosSectionProps) => {
     return (
         <BaseSection>
             <ContentWrapper spacing={4}>
-                <MatrixRainText
+                <DynamicMatrixRainText
                     text="Recursos Principais"
                     className="text-3xl text-[#FF4081]"
                 />

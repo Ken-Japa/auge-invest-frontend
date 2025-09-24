@@ -1,10 +1,15 @@
-import { MatrixRainText } from "@/components/Effects/MatrixRainText";
+import dynamic from "next/dynamic";
 import { HeaderContainer } from "./styled";
 import { HeaderSkeleton } from "./HeaderSkeleton";
 
 interface HeaderProps {
     isLoading?: boolean;
 }
+
+const DynamicMatrixRainText = dynamic(() => import("@/components/Effects/MatrixRainText").then(mod => mod.MatrixRainText), {
+    ssr: false,
+    loading: () => <span className="title">Carregando...</span>,
+});
 
 export const Header = ({ isLoading }: HeaderProps) => {
     if (isLoading) {
@@ -13,7 +18,7 @@ export const Header = ({ isLoading }: HeaderProps) => {
     return (
 
         <HeaderContainer>
-            <MatrixRainText
+            <DynamicMatrixRainText
                 text="Quem Somos"
                 className="title"
             />
