@@ -7,6 +7,7 @@ export const HeaderSkeleton = () => (
             type="text"
             textLines={1}
             className="title bg-[#ffffff0a] backdrop-blur-sm"
+            style={{ minHeight: '48px' }}
         />
     </ContentContainer>
 );

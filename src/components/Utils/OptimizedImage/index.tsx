@@ -68,7 +68,6 @@ export const OptimizedImage = ({
             priority={priority}
             fetchPriority={fetchPriority}
             className={`
-                duration-300 ease-in-out 
                 ${isLoading && !priority ? loadingClassName : 'scale-100 blur-0 grayscale-0'}
                 ${className}
             `}

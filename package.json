@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "clean": "rimraf .next",
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
@@ -11,7 +12,7 @@
     "lhci:upload": "lhci upload",
     "lhci": "npm run lhci:collect && npm run lhci:assert && npm run lhci:upload",
     "bench:web": "lhci autorun",
-    "bench:web:quick": "npx lighthouse http://localhost:3000 --output html --output json --output-path ./lighthouse-reports/report.html --view --preset=desktop --throttling.cpuSlowdownMultiplier=2.4 --no-enable-error-reporting",
+    "bench:web:quick": "npx lighthouse http://localhost:3000/visitante/recursos --output html --output json --output-path ./lighthouse-reports/report.html --view --preset=desktop --throttling.cpuSlowdownMultiplier=2.4 --no-enable-error-reporting",
     "bench:all": "npm run bench:web",
     "lint": "next lint",
     "test": "jest",

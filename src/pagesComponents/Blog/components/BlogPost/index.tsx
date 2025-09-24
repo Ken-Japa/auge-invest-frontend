@@ -25,13 +25,13 @@ const BlogPost: FC<BlogPostProps> = ({ post, relatedPostsData }) => {
 
   return (
     <PostContainer>
-      <div className="absolute inset-0 w-full h-full">
+      <div className="absolute inset-0 h-full">
         <OptimizedImage
           src="/assets/images/background/BlogPost.jpg"
           alt="Blog Post Background"
           fill
           priority
-          sizes="100vw"
+          sizes="100vh"
           className="object-cover opacity-15"
           loadingClassName="scale-100 blur-sm"
           quality={85}

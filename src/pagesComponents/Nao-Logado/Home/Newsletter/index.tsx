@@ -1,23 +1,10 @@
 import { type FC, useState } from 'react';
-import { Stack, Typography, TextField, Alert, Snackbar } from "@mui/material";
+import { Stack, Typography, Alert, Snackbar } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import { NewsletterContainer, SubmitButton, StyledTextField } from "./styled";
 import { NewsletterSkeleton } from "./NewsletterSkeleton";
 import { visitorColors } from "@/theme/palette/visitor";
 
-const TEXT_FIELD_STYLES = {
-    "& .MuiOutlinedInput-root": {
-        color: visitorColors.text,
-        backgroundColor: visitorColors.backgroundLight,
-    }
-} as const;
-
-const BUTTON_PROPS = {
-    value: "Cadastrar",
-    customColor: visitorColors.buttonPrimary,
-    textColor: visitorColors.text,
-    sx: { minWidth: { xs: '100%', sm: '120px' } }
-} as const;
 
 interface NewsletterProps {
     isLoading?: boolean;

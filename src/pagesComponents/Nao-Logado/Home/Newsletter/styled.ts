@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { spacing, borderRadius } from "@/theme/variables";
+import { spacing, borderRadius, transitions } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 
 export const NewsletterContainer = styled("div")({
@@ -56,7 +56,18 @@ export const SubmitButton = styled(Button)({
   paddingRight: "2rem",
   fontWeight: 600,
   whiteSpace: "nowrap",
+  backgroundColor: visitorColors.buttonPrimary,
+  color: visitorColors.buttonText,
+  transition: transitions.medium,
 
+  "&:hover": {
+    backgroundColor: visitorColors.primary,
+  },
+
+  "&:disabled": {
+    backgroundColor: `${visitorColors.primary}80`,
+    color: `${visitorColors.buttonText}cc`,
+  },
   "@media (max-width: 600px)": {
     width: "100%",
   },

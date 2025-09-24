@@ -10,17 +10,19 @@ interface ContentSkeletonProps {
   variant?: 'rectangular' | 'circular' | 'rounded' | 'text';
   cardHeight?: number;
   formFields?: number;
+  style?: React.CSSProperties;
 }
 
 export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
   type = 'text',
-  textLines = 3,
+  textLines = 1,
   height,
   width,
-  className = '',
+  className,
   variant,
   cardHeight,
-  formFields = 3,
+  formFields = 1,
+  style
 }) => {
   const getDefaultHeight = () => {
     switch (type) {
@@ -63,7 +65,7 @@ export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
 
   if (type === 'text') {
     return (
-      <Box className={className} sx={{ width: getDefaultWidth() }}>
+      <Box className={className} sx={{ width: getDefaultWidth(), ...style }}>
         {Array(textLines)
           .fill(0)
           .map((_, index) => (
@@ -82,7 +84,7 @@ export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
 
   if (type === 'form') {
     return (
-      <Box className={className} sx={{ width: getDefaultWidth() }}>
+      <Box className={className} sx={{ width: getDefaultWidth(), ...style }}>
         {Array(formFields)
           .fill(0)
           .map((_, index) => (
@@ -120,7 +122,8 @@ export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
       animation="wave"
       sx={{
         transform: 'none',
-        transformOrigin: 'center'
+        transformOrigin: 'center',
+        ...style
       }}
     />
   );

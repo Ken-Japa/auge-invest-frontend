@@ -18,6 +18,7 @@ export const ValoresSkeleton = () => (
                         type="text"
                         textLines={3}
                         className="bg-[#ffffff0a] backdrop-blur-sm"
+                        style={{ minHeight: '100px' }}
                     />
                 </ValorCard>
             ))}

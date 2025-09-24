@@ -9,6 +9,7 @@ export const TestimonialsSkeleton = () => (
                 type="text"
                 textLines={1}
                 className="w-64 bg-[#ffffff0a] backdrop-blur-sm"
+                style={{ minHeight: '48px' }}
             />
             <Grid container spacing={4} justifyContent="center">
                 {Array(3).fill(0).map((_, index) => (
@@ -18,16 +19,19 @@ export const TestimonialsSkeleton = () => (
                                 type="text"
                                 textLines={3}
                                 className="testimonial-text bg-[#ffffff0a] backdrop-blur-sm"
+                                style={{ minHeight: '72px' }}
                             />
                             <ContentSkeleton
                                 type="text"
                                 textLines={1}
                                 className="w-32 mt-4 bg-[#ffffff0a] backdrop-blur-sm"
+                                style={{ minHeight: '24px' }}
                             />
                             <ContentSkeleton
                                 type="text"
                                 textLines={1}
                                 className="w-48 mt-2 bg-[#ffffff0a] backdrop-blur-sm"
+                                style={{ minHeight: '24px' }}
                             />
                         </TestimonialCard>
                     </Grid>

@@ -12,16 +12,19 @@ export const FeaturesGridSkeleton = () => (
                             type="text"
                             textLines={1}
                             className="w-16 h-16 mb-6 bg-[#ffffff0a] backdrop-blur-sm"
+                            style={{ minHeight: '48px' }}
                         />
                         <ContentSkeleton
                             type="text"
                             textLines={1}
                             className="w-48 mb-4 bg-[#ffffff0a] backdrop-blur-sm"
+                            style={{ minHeight: '24px' }}
                         />
                         <ContentSkeleton
                             type="text"
                             textLines={3}
                             className="bg-[#ffffff0a] backdrop-blur-sm"
+                            style={{ minHeight: '72px' }}
                         />
                     </FeatureCard>
                 </Grid>
