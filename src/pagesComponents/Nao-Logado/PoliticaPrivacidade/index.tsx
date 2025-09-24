@@ -17,6 +17,7 @@ const IMAGE_PROPS = {
   alt: "Imagem de Fundo da Política de Privacidade",
   fill: true,
   priority: true,
+  fetchPriority: "high",
   sizes: "100vw",
   className: "object-cover",
   loadingClassName: "scale-100 blur-xl grayscale",

@@ -9,24 +9,6 @@ import {
 import { styled } from "@mui/material/styles";
 import { transitions } from "@/theme/variables";
 
-export const ProfileContainer = styled(Box)(({ theme }) => ({
-  minHeight: "100vh",
-  backgroundImage:
-    theme.palette.mode === "dark"
-      ? 'url("/assets/images/background/Perfil-Dark.jpg")'
-      : 'url("/assets/images/background/Perfil-Light.jpg")',
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundAttachment: "fixed",
-  transition: transitions.medium,
-  padding: theme.spacing(4, 2),
-  marginTop: "-64px",
-  paddingTop: "84px",
-  display: "flex",
-  flexDirection: "column",
-  flexGrow: 1,
-}));
-
 export const ProfileCard = styled(Paper)(({ theme }) => ({
   maxWidth: 1000,
   width: "100%",

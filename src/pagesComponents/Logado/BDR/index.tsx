@@ -8,8 +8,8 @@ import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import BDRSearchBar from '../components/BDR/components/SearchBar';
 import { BDRTabs } from './components/BDRTabs';
+import { PageBackground } from '@/components/Layout/PageBackground';
 import {
-    BDRPageContainer,
     ContentWrapper,
     ContentBox,
     BDRTitle,
@@ -25,7 +25,7 @@ export const BDR = () => {
             <PageTransition direction="up" duration={0.4} distance={30}>
                 <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
                     <ProgressiveLoad threshold={0.1} delay={0.2}>
-                        <BDRPageContainer>
+                        <PageBackground imageName="BDRs">
                             <ContentWrapper maxWidth="xl">
                                 <ContentBox>
                                     <BDRTitle variant="h2" gutterBottom>
@@ -60,7 +60,7 @@ export const BDR = () => {
                                     />
                                 </ContentBox>
                             </ContentWrapper>
-                        </BDRPageContainer>
+                        </PageBackground>
                     </ProgressiveLoad>
                 </SuspenseWrapper>
             </PageTransition>

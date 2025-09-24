@@ -2,30 +2,6 @@ import { styled } from "@mui/material/styles";
 import { Box, Typography, Container } from "@mui/material";
 import { motion } from "framer-motion";
 
-export const AtivosPageContainer = styled(Box)(({ theme }) => ({
-  height: "100vh",
-  marginTop: "-64px",
-  position: "relative",
-  backgroundImage:
-    theme.palette.mode === "dark"
-      ? 'url("/assets/images/background/Ativos-Dark.jpg")'
-      : 'url("/assets/images/background/Ativos-Light.jpg")',
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  backgroundAttachment: "fixed",
-  "&::before": {
-    content: '""',
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    backgroundColor:
-      theme.palette.mode === "dark"
-        ? "rgba(18, 24, 38, 0.4)"
-        : "rgba(255, 255, 255, 0.7)",
-  },
-}));
-
 export const Page = styled(Container)(({ theme }) => ({
   zIndex: 1,
   position: "relative",

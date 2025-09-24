@@ -2,15 +2,34 @@ import { styled } from "@mui/material/styles";
 import { Box, Typography, Card, Container } from "@mui/material";
 import { PageTransition } from "@/components/Utils/PageTransition";
 
+export const BackgroundImageStyle = styled(Box)<{ isloaded: boolean }>(
+  ({ isloaded }) => ({
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    transition: "filter 0.7s ease-in-out",
+    filter: isloaded ? "blur(0) grayscale(0)" : "blur(20px) grayscale(100%)",
+    "& > div": {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+    },
+  })
+);
+
 export const PageContainer = styled(Box)(({ theme }) => ({
   position: "relative",
   padding: theme.spacing(8, 0),
   backgroundColor: theme.palette.background.default,
   minHeight: "100vh",
-  backgroundImage:
-    theme.palette.mode === "dark"
-      ? 'url("/assets/images/background/Desenvolvimento-Dark.jpg")'
-      : 'url("/assets/images/background/Desenvolvimento-Light.jpg")',
+  // backgroundImage:
+  //   theme.palette.mode === "dark"
+  //     ? 'url("/assets/images/background/Desenvolvimento-Dark.jpg")'
+  //     : 'url("/assets/images/background/Desenvolvimento-Light.jpg")',
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",

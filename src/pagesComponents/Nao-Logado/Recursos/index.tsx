@@ -85,7 +85,8 @@ export const Solutions: FC = () => {
                                 className="video-background"
                                 fill
                                 sizes="100vw"
-                                priority={false}
+                                priority
+                                fetchPriority="high"
                                 loading="eager"
                                 quality={70}
                                 style={{

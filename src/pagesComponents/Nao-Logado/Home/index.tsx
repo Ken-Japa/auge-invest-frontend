@@ -44,6 +44,7 @@ export const Home: FC = () => {
                                 alt="Home Background"
                                 fill
                                 priority
+                                fetchPriority="high"
                                 sizes="100vw"
                                 className="object-cover"
                                 loadingClassName="scale-100 blur-xl grayscale opacity-50"

@@ -18,6 +18,7 @@ const IMAGE_PROPS = {
     alt: "Imagem de Fundo dos Termos de Serviço",
     fill: true,
     priority: true,
+    fetchPriority: "high",
     sizes: "100vw",
     className: "object-cover",
     loadingClassName: "scale-100 blur-xl grayscale",

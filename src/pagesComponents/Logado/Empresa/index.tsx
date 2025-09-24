@@ -9,6 +9,7 @@ import { PageTransition } from '@/components/Utils/PageTransition';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+import { PageBackground } from '@/components/Layout/PageBackground';
 
 // Componentes específicos
 import { SearchBar } from '../components/EmpresaView/Elementos/SearchBar';
@@ -18,7 +19,6 @@ import { ViewMode } from '../components/EmpresaView/Elementos/ModoVisualizacao/t
 
 // Estilos
 import {
-    EmpresasContainer,
     SearchBarWrapper,
     ControlsWrapper,
     ContentContainer
@@ -33,7 +33,7 @@ export const Empresa = () => {
             <PageTransition>
                 <SuspenseWrapper fallback={<ContentSkeleton height={600} />}>
                     <ProgressiveLoad threshold={0.1} delay={0.2}>
-                        <EmpresasContainer>
+                        <PageBackground imageName="Empresas">
                             <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                                 <SearchBarWrapper>
                                     <SearchBar />
@@ -54,7 +54,7 @@ export const Empresa = () => {
                                     />
                                 </ContentContainer>
                             </Box>
-                        </EmpresasContainer>
+                        </PageBackground>
                     </ProgressiveLoad>
                 </SuspenseWrapper>
             </PageTransition>

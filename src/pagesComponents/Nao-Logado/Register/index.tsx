@@ -25,10 +25,11 @@ const IMAGE_PROPS = {
     alt: "Fundo da página de Registro",
     fill: true,
     priority: true,
+    fetchPriority: "high",
     sizes: "(max-width: 600px) 100vw, (max-width: 900px) 900px, 1200px",
     className: "object-cover",
     quality: 60,
-};
+} as const;
 
 const RegisterFormContent = lazy(() =>
     import('./components/RegisterForm').then(mod => ({

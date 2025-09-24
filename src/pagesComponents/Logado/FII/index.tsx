@@ -1,5 +1,5 @@
 "use client";
-import { Box, Alert, Snackbar } from '@mui/material';
+import { Alert, Snackbar } from '@mui/material';
 import { PageTransition } from '@/components/Utils/PageTransition';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
@@ -7,9 +7,9 @@ import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import FIISearchBar from '../components/FIIs/components/SearchBar';
 import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
+import { PageBackground } from '@/components/Layout/PageBackground';
 import { FIITabs } from './components/FIITabs';
 import {
-    FIIPageContainer,
     ContentWrapper,
     ContentBox,
     FIITitle,
@@ -25,7 +25,7 @@ export const FII = () => {
 
                 <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
                     <ProgressiveLoad threshold={0.1} delay={0.2}>
-                        <FIIPageContainer>
+                        <PageBackground imageName="FII">
                             <ContentWrapper maxWidth="xl">
                                 <ContentBox>
                                     <FIITitle variant="h2" gutterBottom>
@@ -50,7 +50,7 @@ export const FII = () => {
                                     <FIITabs onError={setError} defaultPageSize={50} />
                                 </ContentBox>
                             </ContentWrapper>
-                        </FIIPageContainer>
+                        </PageBackground>
                     </ProgressiveLoad>
                 </SuspenseWrapper>
             </PageTransition>

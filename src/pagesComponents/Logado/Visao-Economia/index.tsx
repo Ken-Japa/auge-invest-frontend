@@ -10,6 +10,7 @@ import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton
 
 // Componentes da página - Carregando os componentes principais imediatamente
 import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar';
+import { PageBackground } from '@/components/Layout/PageBackground';
 
 import { Empresas } from './components/Empresas';
 import { Indices } from './components/Indices';
@@ -26,7 +27,7 @@ const Commodities = lazy(() => import('./components/Outros/Commodities').then(mo
 const Debentures = lazy(() => import('./components/Outros/Debentures').then(mod => ({ default: mod.Debentures })));
 const Calendario = lazy(() => import('../components/Calendario').then(mod => ({ default: mod.Calendario })));
 
-import { BackgroundContainer, DashboardItem, Title, Subtitle, PageContainer } from './styled';
+import { BackgroundContainer, DashboardItem, Title, Subtitle } from './styled';
 
 export const VisaoEconomia = () => {
     const [headerHeight, setHeaderHeight] = useState(0);
@@ -67,7 +68,7 @@ export const VisaoEconomia = () => {
             <PageTransition direction="up" duration={0.4} distance={30}>
                 <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
                     <ProgressiveLoad threshold={0.1} delay={0.2}>
-                        <PageContainer>
+                        <PageBackground imageName="VisaoEconomia">
                             <Title>
                                 Visão Geral da Economia
                             </Title>
@@ -206,7 +207,7 @@ export const VisaoEconomia = () => {
                                     </Grid>
                                 </Container>
                             </BackgroundContainer>
-                        </PageContainer>
+                        </PageBackground>
                     </ProgressiveLoad>
                 </SuspenseWrapper>
             </PageTransition>

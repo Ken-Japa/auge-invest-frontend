@@ -14,9 +14,10 @@ import { DadosAnaliseFundamental, MetricasCalculadas } from './types';
 import { DataInputForm } from './components/DataInputForm';
 import { MetricsDisplay } from './components/MetricsDisplay';
 import { HelpDialog } from './components/HelpDialog';
-import { BackgroundContainer, ContentContainer, StyledPaper } from './styled';
+import { ContentContainer, StyledPaper } from './styled';
 import { ValuationSection } from './components/ValuationSection';
 import { SaveReportSection } from './components/SaveReportSection';
+import { PageBackground } from '@/components/Layout/PageBackground';
 
 import { generateReport } from './components/SaveReportSection/utils/reportGenerator';
 import { ValuationResults, SensitivityResults } from './components/ValuationSection/types';
@@ -83,7 +84,7 @@ export const AnaliseFundamentalista = () => {
     return (
         <PageTransition>
             <ErrorBoundary>
-                <BackgroundContainer>
+                <PageBackground imageName="Fundamentalista">
                     <Container maxWidth="lg">
                         <ContentContainer>
                             <SuspenseWrapper>
@@ -148,7 +149,7 @@ export const AnaliseFundamentalista = () => {
                             </SuspenseWrapper>
                         </ContentContainer>
                     </Container>
-                </BackgroundContainer>
+                </PageBackground>
             </ErrorBoundary>
         </PageTransition>
     );

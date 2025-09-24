@@ -5,12 +5,13 @@ import { useState, useCallback } from "react";
 import { ReactEventHandler } from "react";
 import { ErrorContainer } from "./styled";
 
-interface OptimizedImageProps extends Omit<ImageProps, 'src' | 'alt'> {
+interface OptimizedImageProps extends Omit<ImageProps, 'src' | 'alt' | 'fetchPriority'> {
     src: string;
     alt: string;
     className?: string;
     loadingClassName?: string;
     onImageError?: (error: Error) => void;
+    fetchPriority?: 'high' | 'low' | 'auto';
 
 }
 
@@ -22,7 +23,8 @@ export const OptimizedImage = ({
     quality = 75,
     sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
     onImageError,
-    priority,
+    priority = false, // Default to false if not provided
+    fetchPriority,
     onError,
     ...props
 }: OptimizedImageProps) => {
@@ -64,9 +66,10 @@ export const OptimizedImage = ({
             quality={quality}
             sizes={sizes}
             priority={priority}
+            fetchPriority={fetchPriority}
             className={`
-                duration-300 ease-in-out // Reduced from 500ms for better performance
-                ${isLoading ? loadingClassName : 'scale-100 blur-0 grayscale-0'}
+                duration-300 ease-in-out 
+                ${isLoading && !priority ? loadingClassName : 'scale-100 blur-0 grayscale-0'}
                 ${className}
             `}
             onLoad={handleLoad}

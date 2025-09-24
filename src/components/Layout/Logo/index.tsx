@@ -20,7 +20,7 @@ export const Logo = ({
                 width={width}
                 height={height}
                 priority
-                quality={100}
+                quality={75}
                 style={{
                     maxWidth: '100%',
                     width: 'auto',

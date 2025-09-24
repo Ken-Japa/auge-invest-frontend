@@ -8,9 +8,9 @@ import { PageTransition } from '@/components/Utils/PageTransition';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { PageBackground } from '@/components/Layout/PageBackground';
 import { ativosList } from "./constants";
 import {
-    AtivosPageContainer,
     AtivosHeader,
     AtivosGrid,
     AtivoCard,
@@ -59,7 +59,7 @@ export const AtivosPage = () => {
             <PageTransition direction="up" duration={0.4} distance={30}>
                 <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
                     <ProgressiveLoad threshold={0.1} delay={0.2}>
-                        <AtivosPageContainer>
+                        <PageBackground imageName="Ativos">
                             <Page>
                                 <AtivosHeader>
                                     <Typography variant="h1" component="h1" className="text-gradient">
@@ -104,7 +104,7 @@ export const AtivosPage = () => {
                                     </AtivosGrid>
                                 </motion.div>
                             </Page>
-                        </AtivosPageContainer>
+                        </PageBackground>
                     </ProgressiveLoad>
                 </SuspenseWrapper>
             </PageTransition>

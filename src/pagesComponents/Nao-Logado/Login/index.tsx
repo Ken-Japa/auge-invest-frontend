@@ -24,7 +24,7 @@ const BlockTimerComponent = lazy(() =>
     }))
 );
 
-const LoginFormSkeleton = lazy(() => 
+const LoginFormSkeleton = lazy(() =>
     import('./components/LoginForm/LoginFormSkeleton').then(mod => ({
         default: mod.LoginFormSkeleton
     }))
@@ -35,10 +35,11 @@ const IMAGE_PROPS = {
     alt: "Fundo da página de Login",
     fill: true,
     priority: true,
+    fetchPriority: "high",
     sizes: "(max-width: 600px) 100vw, (max-width: 900px) 900px, 1200px",
     className: "object-cover",
     quality: 60,
-};
+} as const;
 
 export const Login = () => {
     const [imageLoaded, setImageLoaded] = useState(false);
@@ -63,9 +64,9 @@ export const Login = () => {
             const formPromise = import('./components/LoginForm');
             const timerPromise = import('./components/BlockTimer');
             const skeletonPromise = import('./components/LoginForm/LoginFormSkeleton');
-            
+
             await Promise.all([
-                formPromise, 
+                formPromise,
                 timerPromise,
                 skeletonPromise
             ]);
@@ -75,7 +76,7 @@ export const Login = () => {
 
         const imgPreload = new Image();
         imgPreload.src = IMAGE_PROPS.src;
-        
+
         return () => {
             imgPreload.onload = null;
             imgPreload.onerror = null;

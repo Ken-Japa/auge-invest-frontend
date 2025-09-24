@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { Suspense } from 'react';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
@@ -7,15 +7,36 @@ import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 import { Typography, Grid, CardContent } from '@mui/material';
 import { tools } from './constants'
-import { PageContainer, Page, SectionTitle, ToolCard, ToolIconContainer, StyledPageTransition } from './styled';
+import { OptimizedImage } from '@/components/Utils/OptimizedImage';
+import { PageContainer, Page, SectionTitle, ToolCard, ToolIconContainer, StyledPageTransition, BackgroundImageStyle } from './styled';
+import { useTheme } from '@mui/material/styles';
 
 const FerramentasPage = () => {
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const theme = useTheme();
+
+    const imageProps = {
+        src: theme.palette.mode === "dark" ? "/assets/images/background/Desenvolvimento-Dark.jpg" : "/assets/images/background/Desenvolvimento-Light.jpg",
+        alt: "Imagem de Fundo de Desenvolvimento",
+        fill: true,
+        priority: true,
+        fetchPriority: "high",
+        className: "object-cover",
+        sizes: "100vw",
+        quality: 100,
+        loadingClassName: "scale-100 blur-sm grayscale-0",
+        onLoad: () => setImageLoaded(true)
+    } as const;
+
     return (
         <ErrorBoundary>
             <StyledPageTransition direction="up" duration={0.4} distance={30}>
                 <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
                     <ProgressiveLoad threshold={0.1} delay={0.2}>
                         <PageContainer>
+                            <BackgroundImageStyle isloaded={imageLoaded}>
+                                <OptimizedImage {...imageProps} />
+                            </BackgroundImageStyle>
                             <Page >
                                 <SectionTitle variant="h2">
                                     Ferramentas em Desenvolvimento

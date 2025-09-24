@@ -17,6 +17,7 @@ const IMAGE_PROPS = {
     alt: "Fundo da página de Embaixadores",
     fill: true,
     priority: true,
+    fetchPriority: "high",
     sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw",
     className: "object-cover object-center",
     quality: 70,

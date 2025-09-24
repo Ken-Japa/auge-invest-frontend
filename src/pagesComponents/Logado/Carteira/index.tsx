@@ -8,10 +8,11 @@ import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { RecentActivitiesProvider } from './context/RecentActivitiesContext';
 import { FocusProvider } from './components/RecentActivities/components/FocusContext/FocusContext';
+import { PageBackground } from '@/components/Layout/PageBackground';
 
 import { PositionSection } from './components';
 import { WalletSection } from './components/WalletSection';
-import { BackgroundContainer, PageTitle, SectionContainer } from './styled';
+import { PageTitle, SectionContainer } from './styled';
 
 export const Dashboard = () => {
     const { data: session } = useSession();
@@ -19,7 +20,7 @@ export const Dashboard = () => {
     return (
         <PageTransition direction="up" duration={0.4} distance={30}>
             <ErrorBoundary>
-                <BackgroundContainer>
+                <PageBackground imageName="Dashboard">
                     <Container maxWidth="xl">
                         <PageTitle variant="h2" >
                             Posição de {session?.user?.name}
@@ -68,7 +69,7 @@ export const Dashboard = () => {
                             </FocusProvider>
                         </RecentActivitiesProvider>
                     </Container>
-                </BackgroundContainer>
+                </PageBackground>
             </ErrorBoundary>
         </PageTransition>
     );

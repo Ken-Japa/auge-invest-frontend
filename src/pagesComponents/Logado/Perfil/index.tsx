@@ -10,6 +10,7 @@ import { PageTransition } from '@/components/Utils/PageTransition';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+import { PageBackground } from '@/components/Layout/PageBackground';
 import { SubscriptionInfo } from './components/SubscriptionInfo';
 import { ProfileSkeleton } from './components/ProfileSkeleton';
 import { AdditionalInfo } from './components/AdditionalInfo';
@@ -18,7 +19,6 @@ import { useProfileData } from './hooks/useProfileData';
 import { useProfileActions } from './hooks/useProfileActions';
 
 import {
-    ProfileContainer,
     ProfileCard,
     ContactButton,
     StyledContactButton
@@ -66,7 +66,7 @@ export const Perfil = () => {
             <PageTransition direction="up" duration={0.4} distance={30}>
                 <SuspenseWrapper fallback={<ProfileSkeleton />}>
                     <ProgressiveLoad threshold={0.1} delay={0.2}>
-                        <ProfileContainer>
+                        <PageBackground imageName="Perfil">
                             <Typography
                                 variant="h1"
                                 sx={{
@@ -156,7 +156,7 @@ export const Perfil = () => {
                                     {notification.message}
                                 </Alert>
                             </Snackbar>
-                        </ProfileContainer>
+                        </PageBackground>
                     </ProgressiveLoad>
                 </SuspenseWrapper>
             </PageTransition>
