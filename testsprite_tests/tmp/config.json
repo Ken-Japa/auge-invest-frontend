@@ -7,12 +7,14 @@
   "loginPassword": "sansao57",
   "executionArgs": {
     "projectName": "front-trae",
-    "projectPath": "c:/Users/Ken/Desktop/Programacao/Frontend/front-trae",
-    "testIds": [],
+    "projectPath": "C:\\Users\\Ken\\Desktop\\Programacao\\Frontend\\front-trae",
+    "testIds": [
+      "TC013"
+    ],
     "additionalInstruction": "",
     "envs": {
       "API_KEY": "sk-user-_BUjK4s3-YBb3AbJqrxehLBsEAV6-ZI7NhGHtQOp-FOQ4puKdxF7mZKcIfUZUSiVRiTfoTqWG7ggBabM37483-B9j_e2shr8q6YiP9__uPscr-INm-WFZSOARDHOUFBkPMY"
     }
   },
-  "proxy": "http://d26aae8f-ab9d-415d-9de4-826c337e5ed0:hSyLKiT5dJPzI04jsRYh4w5dRwME4DOz@tun.testsprite.com:8080"
+  "proxy": "http://fba23772-3ff1-45d7-8ede-ceaaa173f55f:8tUjLNK8ElP9wHClnJQWG9KmA3Wd1zBN@tun.testsprite.com:8080"
 }
