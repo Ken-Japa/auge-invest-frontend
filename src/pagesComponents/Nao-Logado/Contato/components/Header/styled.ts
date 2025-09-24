@@ -1,4 +1,5 @@
-import { styled, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { MatrixRainText } from "@/components/Effects/MatrixRainText";
 import { spacing } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";

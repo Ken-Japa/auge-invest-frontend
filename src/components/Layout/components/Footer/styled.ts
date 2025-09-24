@@ -1,4 +1,5 @@
-import { Box, styled, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { motion } from "framer-motion";
 
 export const FooterContainer = styled(motion.footer)`

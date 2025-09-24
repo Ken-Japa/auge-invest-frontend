@@ -1,4 +1,5 @@
-import { styled, Button } from "@mui/material";
+import { Button } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { visitorColors } from "@/theme/palette/visitor";
 import { spacing, transitions } from "@/theme/variables";
 
@@ -58,7 +59,7 @@ export const LoginFormStyled = styled("form")({
 
       "&.Mui-focused fieldset": {
         borderColor: visitorColors.primary,
-      }
+      },
     },
 
     "& .MuiInputLabel-root": {
@@ -71,7 +72,7 @@ export const LoginFormStyled = styled("form")({
     fontFamily: '"Roboto Mono", monospace',
     letterSpacing: "0.5px",
     textAlign: "center",
-  }
+  },
 });
 
 export const SubmitButton = styled(Button)({
@@ -79,49 +80,49 @@ export const SubmitButton = styled(Button)({
   backgroundColor: visitorColors.primary,
   color: visitorColors.buttonText,
   transition: transitions.medium,
-  
+
   "&:hover": {
     backgroundColor: visitorColors.buttonPrimary,
   },
-  
+
   "&:disabled": {
     backgroundColor: `${visitorColors.primary}80`,
     color: `${visitorColors.buttonText}cc`,
   },
 });
 
-export const ForgotPasswordLink = styled('div')({
-  width: '100%',
-  textAlign: 'right',
+export const ForgotPasswordLink = styled("div")({
+  width: "100%",
+  textAlign: "right",
   marginBottom: spacing.sm,
-  
-  '& a': {
+
+  "& a": {
     color: visitorColors.primary,
-    textDecoration: 'none',
-    fontSize: '0.875rem',
+    textDecoration: "none",
+    fontSize: "0.875rem",
     transition: transitions.medium,
-    
-    '&:hover': {
+
+    "&:hover": {
       opacity: 0.8,
-      textDecoration: 'underline',
-    }
-  }
+      textDecoration: "underline",
+    },
+  },
 });
 
-export const RememberMeContainer = styled('div')({
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'flex-start',
+export const RememberMeContainer = styled("div")({
+  width: "100%",
+  display: "flex",
+  justifyContent: "flex-start",
   marginBottom: spacing.md,
-  
+
   "& .MuiCheckbox-root": {
     color: `${visitorColors.text}b3`,
-    '&.Mui-checked': {
-      color: visitorColors.primary
-    }
+    "&.Mui-checked": {
+      color: visitorColors.primary,
+    },
   },
-  
+
   "& .MuiTypography-root": {
     color: `${visitorColors.text}b3`,
-  }
+  },
 });

@@ -1,6 +1,7 @@
-import { styled, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { visitorColors } from "@/theme/palette/visitor";
-import { spacing, borderRadius, transitions } from "@/theme/variables";
+import { spacing } from "@/theme/variables";
 
 export const RegisterPageContainer = styled("div")({
   position: "fixed",

@@ -14,6 +14,7 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "styles")],
   },
   images: {
+    qualities: [75, 80, 85, 90, 95, 100],
     remotePatterns: [
       {
         protocol: "https",
@@ -30,11 +31,11 @@ const nextConfig = {
     ],
   },
   modularizeImports: {
-    '@mui/material/?(((\w*)?/?)*)': {
-      transform: '@mui/material/{{ matches.[1] }}/{{member}}',
+    "@mui/material/?(((w*)?/?)*)": {
+      transform: "@mui/material/{{ matches.[1] }}/{{member}}",
     },
-    '@mui/icons-material/?(((\w*)?/?)*)': {
-      transform: '@mui/icons-material/{{ matches.[1] }}/{{member}}',
+    "@mui/icons-material/?(((w*)?/?)*)": {
+      transform: "@mui/icons-material/{{ matches.[1] }}/{{member}}",
     },
   },
 };

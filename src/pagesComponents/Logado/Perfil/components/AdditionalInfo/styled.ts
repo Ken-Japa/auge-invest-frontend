@@ -1,4 +1,5 @@
-import { Box, Paper, styled, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { transitions } from "@/theme/variables";
 
 export const ProfileCard = styled(Paper)`
@@ -43,9 +44,11 @@ export const HeaderContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  borderBottom: `1px solid ${theme.palette.mode === "dark"
-    ? "rgba(255, 255, 255, 0.1)"
-    : "rgba(0, 0, 0, 0.1)"}`,
+  borderBottom: `1px solid ${
+    theme.palette.mode === "dark"
+      ? "rgba(255, 255, 255, 0.1)"
+      : "rgba(0, 0, 0, 0.1)"
+  }`,
   transition: transitions.medium,
 }));
 

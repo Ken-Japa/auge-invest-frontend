@@ -1,5 +1,5 @@
-import { styled } from "@mui/material";
-import { spacing, transitions } from '@/theme/variables';
+import { styled } from "@mui/material/styles";
+import { spacing, transitions } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 
 export const SectionWelcome = styled("section")({
@@ -40,7 +40,7 @@ export const SectionWelcome = styled("section")({
     fontWeight: "bold",
     color: visitorColors.primary,
   },
-  
+
   "& .highlight-card": {
     backgroundColor: visitorColors.backgroundLight,
     borderRadius: "8px",
@@ -48,26 +48,26 @@ export const SectionWelcome = styled("section")({
     height: "100%",
     transition: transitions.medium,
     backdropFilter: visitorColors.blur,
-    
+
     "&:hover": {
       backgroundColor: visitorColors.backgroundMedium,
       transform: "translateY(-5px)",
     },
-    
+
     "& h3": {
       color: visitorColors.text,
       marginBottom: spacing.sm,
     },
-    
+
     "& .value": {
       color: visitorColors.primary,
       fontSize: "1.5rem",
       fontWeight: "bold",
       marginBottom: spacing.sm,
     },
-    
+
     "& p": {
       color: visitorColors.textSecondary,
-    }
-  }
+    },
+  },
 });

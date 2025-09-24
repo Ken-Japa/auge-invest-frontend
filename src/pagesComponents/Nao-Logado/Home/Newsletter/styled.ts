@@ -1,4 +1,5 @@
-import { styled, Button, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { spacing, borderRadius } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 

@@ -1,11 +1,11 @@
-import { styled } from '@mui/material';
+import { styled } from "@mui/material/styles";
 import { spacing, borderRadius, transitions } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 
-export const ContactFormSkeletonStyled = styled('div')({
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'column',
+export const ContactFormSkeletonStyled = styled("div")({
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
   gap: spacing.md,
 });
 
@@ -54,11 +54,11 @@ export const ContactFormStyled = styled("form")({
   },
 });
 
-export const AutocompletePaper = styled('div')({
+export const AutocompletePaper = styled("div")({
   backgroundColor: visitorColors.backgroundLight,
   color: visitorColors.text,
   borderRadius: borderRadius.sm,
-  
+
   "& .MuiAutocomplete-option": {
     "&:hover": {
       backgroundColor: visitorColors.backgroundOverlay,

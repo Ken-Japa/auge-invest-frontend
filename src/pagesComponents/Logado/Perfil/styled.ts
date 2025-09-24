@@ -1,12 +1,12 @@
 import { ElementType } from "react";
 import {
-  styled,
   Paper,
   Box,
   Typography,
   Button as MuiButton,
   ButtonProps,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { transitions } from "@/theme/variables";
 
 export const ProfileContainer = styled(Box)(({ theme }) => ({

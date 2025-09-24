@@ -1,6 +1,6 @@
-import { styled } from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
-import CloseIcon from '@mui/icons-material/Close';
+import { styled } from "@mui/material/styles";
+import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from "@mui/icons-material/Close";
 import { spacing, borderRadius, transitions } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 
@@ -9,14 +9,14 @@ export const SearchContainer = styled("div")({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  
+
   "& .search-wrapper": {
     position: "relative",
     width: "100%",
     maxWidth: "500px",
     marginBottom: spacing.xl,
   },
-  
+
   "& .search-input": {
     width: "100%",
     padding: `${spacing.md} ${spacing.xl}`,
@@ -27,25 +27,25 @@ export const SearchContainer = styled("div")({
     borderRadius: borderRadius.md,
     fontSize: "1rem",
     transition: transitions.medium,
-    
+
     "&:focus": {
       outline: "none",
       borderColor: visitorColors.primary,
       backgroundColor: visitorColors.backgroundMedium,
     },
-    
+
     "&::placeholder": {
       color: visitorColors.textMuted,
-    }
+    },
   },
-  
+
   "& .search-icon": {
     position: "absolute",
     left: spacing.md,
     top: "50%",
     transform: "translateY(-50%)",
   },
-  
+
   "& .clear-button": {
     position: "absolute",
     right: spacing.md,
@@ -58,15 +58,15 @@ export const SearchContainer = styled("div")({
     alignItems: "center",
     justifyContent: "center",
     padding: 0,
-  }
+  },
 });
 
 export const StyledSearchIcon = styled(SearchIcon)({
   fontSize: 24,
-  color: visitorColors.textMuted
+  color: visitorColors.textMuted,
 });
 
 export const StyledCloseIcon = styled(CloseIcon)({
   fontSize: 24,
-  color: visitorColors.textMuted
+  color: visitorColors.textMuted,
 });

@@ -1,4 +1,5 @@
-import { Card, Chip, styled } from "@mui/material";
+import { Card, Chip } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const CardContainer = styled(Card)`
   background: #1a1a2a;

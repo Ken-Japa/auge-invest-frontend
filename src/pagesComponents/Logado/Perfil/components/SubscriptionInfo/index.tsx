@@ -1,5 +1,5 @@
-import { Chip, useTheme } from "@mui/material";
-import { motion } from "framer-motion";
+import { Chip } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { CustomAccordion } from "@/components/Core/Accordion";
 import { CustomButton } from "@/components/Core/Button";
 import {

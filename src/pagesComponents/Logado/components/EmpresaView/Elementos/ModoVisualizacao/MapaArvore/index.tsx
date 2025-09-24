@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, memo, useState } from 'react';
-import { Box, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 interface MapaArvoreProps {
     onLoadingChange?: (loading: boolean) => void;

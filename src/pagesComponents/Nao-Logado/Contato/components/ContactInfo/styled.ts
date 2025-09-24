@@ -1,4 +1,5 @@
-import { Stack, styled } from "@mui/material";
+import { Stack } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { spacing, borderRadius } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 
@@ -9,28 +10,28 @@ export const InfoContainer = styled(Stack)({
   backdropFilter: visitorColors.blur,
 });
 
-export const InfoItem = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
+export const InfoItem = styled("div")({
+  display: "flex",
+  flexDirection: "column",
   gap: spacing.xs,
 });
 
-export const InfoHeader = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
+export const InfoHeader = styled("div")({
+  display: "flex",
+  alignItems: "center",
   gap: spacing.sm,
 
-  '& .info-icon': {
+  "& .info-icon": {
     color: visitorColors.primary,
   },
 
-  '& .info-title': {
+  "& .info-title": {
     fontWeight: 600,
     color: visitorColors.text,
-  }
+  },
 });
 
 export const ContactInfoSkeletonStyled = styled(Stack)({
-  width: '100%',
-  minHeight: '200px',
+  width: "100%",
+  minHeight: "200px",
 });

@@ -107,8 +107,12 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Providers>
-          {children}
+          <Layout>
+            {children}
+          </Layout>
         </Providers>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

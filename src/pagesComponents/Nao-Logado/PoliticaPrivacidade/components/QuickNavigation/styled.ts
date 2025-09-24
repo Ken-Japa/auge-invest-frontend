@@ -1,4 +1,5 @@
-import { styled, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { spacing, borderRadius, transitions } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 
@@ -8,12 +9,12 @@ export const NavigationContainer = styled("div")({
   borderRadius: borderRadius.md,
   marginBottom: spacing.xl,
   backdropFilter: visitorColors.blur,
-  
+
   "& .navigation-grid": {
     display: "grid",
     gap: spacing.md,
     zIndex: 2,
-    
+
     "@media (min-width: 600px)": {
       gridTemplateColumns: "repeat(2, 1fr)",
     },
@@ -35,7 +36,7 @@ export const NavigationContainer = styled("div")({
     borderRadius: borderRadius.sm,
     textAlign: "center",
     backgroundColor: "rgba(255, 255, 255, 0.05)",
-    
+
     "&:hover": {
       color: visitorColors.primary,
       backgroundColor: "rgba(255, 255, 255, 0.1)",

@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { visitorColors } from "@/theme/palette/visitor";
 
 export const SectionSolutions = styled("section")({

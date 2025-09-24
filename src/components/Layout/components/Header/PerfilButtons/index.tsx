@@ -3,7 +3,8 @@ import Link from "next/link";
 import { useSession, signOut } from 'next-auth/react';
 import { clearAuthData } from '@/utils/auth';
 
-import { IconButton, Menu, MenuItem, Avatar, useTheme } from '@mui/material';
+import { IconButton, Menu, MenuItem, Avatar } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { motion } from "framer-motion";
 
 interface AuthButtonsProps {

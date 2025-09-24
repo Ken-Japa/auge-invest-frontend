@@ -1,4 +1,5 @@
-import { styled, Box, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { transitions } from "@/theme/variables";

@@ -1,4 +1,5 @@
-import { Typography, styled, Box, Button } from "@mui/material";
+import { Typography, Box, Button } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { transitions } from "@/theme/variables";
 
 export const SectionContainer = styled(Box)(({ theme }) => ({

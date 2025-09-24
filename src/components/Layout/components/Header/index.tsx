@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { useSession } from "next-auth/react";
 
-import { Drawer, useMediaQuery, useTheme } from "@mui/material";
+import { Drawer, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { Menu as MenuIcon } from "@mui/icons-material";
 import { motion } from "framer-motion";
 

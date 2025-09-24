@@ -1,6 +1,6 @@
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { motion } from "framer-motion";
-import { transitions } from "@/theme/variables";
 
 export const SubscriptionContainer = styled(motion.div)({
   width: "100%",
@@ -27,20 +27,24 @@ interface StyledTextProps {
   darkMode?: boolean;
 }
 
-export const StyledProfileLabel = styled(Typography)<StyledTextProps>(({ theme, darkMode }) => ({
-  fontWeight: 500,
-  color: darkMode ? "rgba(0, 0, 0, 0.7)" : theme.palette.text.secondary,
-  variant: "body2",
-  fontSize: "0.95rem",
-}));
+export const StyledProfileLabel = styled(Typography)<StyledTextProps>(
+  ({ theme, darkMode }) => ({
+    fontWeight: 500,
+    color: darkMode ? "rgba(0, 0, 0, 0.7)" : theme.palette.text.secondary,
+    variant: "body2",
+    fontSize: "0.95rem",
+  })
+);
 
-export const StyledProfileValue = styled(Typography)<StyledTextProps>(({ theme, darkMode }) => ({
-  color: darkMode ? "rgba(0, 0, 0, 0.9)" : theme.palette.text.primary,
-  fontWeight: 500,
-  variant: "body1",
-  marginLeft: theme.spacing(0.5),
-  fontSize: "1.05rem",
-}));
+export const StyledProfileValue = styled(Typography)<StyledTextProps>(
+  ({ theme, darkMode }) => ({
+    color: darkMode ? "rgba(0, 0, 0, 0.9)" : theme.palette.text.primary,
+    fontWeight: 500,
+    variant: "body1",
+    marginLeft: theme.spacing(0.5),
+    fontSize: "1.05rem",
+  })
+);
 
 export const ButtonContainer = styled(Box)(({ theme }) => ({
   marginTop: theme.spacing(3),

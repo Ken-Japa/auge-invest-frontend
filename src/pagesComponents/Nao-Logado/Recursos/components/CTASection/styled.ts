@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { spacing } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 
@@ -26,5 +26,5 @@ export const CTAContainer = styled("section")(({ theme }) => ({
 
   [theme.breakpoints.down("sm")]: {
     padding: `${spacing.xl} ${spacing.md}`,
-  }
+  },
 }));

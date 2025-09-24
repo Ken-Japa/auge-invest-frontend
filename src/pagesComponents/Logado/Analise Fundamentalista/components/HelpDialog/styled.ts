@@ -1,4 +1,5 @@
-import { Dialog, DialogTitle, styled } from "@mui/material";
+import { Dialog, DialogTitle } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {

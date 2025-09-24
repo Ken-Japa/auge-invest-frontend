@@ -1,4 +1,5 @@
-import { styled, Button } from "@mui/material";
+import { Button } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { transitions } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 
@@ -12,5 +13,5 @@ export const StyledSubmitButton = styled(Button)({
   "&:disabled": {
     backgroundColor: "rgba(255, 255, 255, 0.12)",
     color: "rgba(255, 255, 255, 0.3)",
-  }
+  },
 });

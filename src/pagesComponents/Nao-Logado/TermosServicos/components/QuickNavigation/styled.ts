@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { spacing, borderRadius, transitions } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 
@@ -27,7 +27,7 @@ export const NavigationContainer = styled("div")({
 
     "@media (min-width: 1200px)": {
       gridTemplateColumns: "repeat(4, 1fr)",
-    }
+    },
   },
 
   "& .navigation-link": {
@@ -37,6 +37,6 @@ export const NavigationContainer = styled("div")({
 
     "&:hover": {
       color: visitorColors.primary,
-    }
-  }
+    },
+  },
 });

@@ -1,4 +1,5 @@
-import { styled, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { spacing } from "@/theme/variables";
 
 export const ContentContainer = styled(Stack)({
@@ -10,7 +11,7 @@ export const ContentContainer = styled(Stack)({
 
 export const FormContainer = styled(Stack)({
   alignItems: "flex-start",
-  
+
   "@media (max-width: 900px)": {
     gap: spacing.lg,
   },

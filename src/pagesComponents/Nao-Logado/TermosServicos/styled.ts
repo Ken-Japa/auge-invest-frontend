@@ -1,5 +1,5 @@
-import { styled } from "@mui/material";
-import { spacing, borderRadius } from "@/theme/variables";
+import { styled } from "@mui/material/styles";
+import { spacing } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 
 export const SectionTermsServices = styled("section")({

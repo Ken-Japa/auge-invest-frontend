@@ -1,4 +1,5 @@
-import { styled, Box, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { spacing, borderRadius } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 

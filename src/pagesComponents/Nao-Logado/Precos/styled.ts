@@ -1,4 +1,5 @@
-import { styled, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { spacing } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 

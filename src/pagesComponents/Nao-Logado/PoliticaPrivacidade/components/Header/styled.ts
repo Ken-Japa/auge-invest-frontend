@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { spacing } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 
@@ -28,5 +28,5 @@ export const HeaderContainer = styled("div")({
 
   "@media (max-width: 600px)": {
     marginBottom: spacing.lg,
-  }
+  },
 });

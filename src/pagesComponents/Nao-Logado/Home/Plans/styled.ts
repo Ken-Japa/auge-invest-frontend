@@ -1,5 +1,6 @@
-import { Stack, styled } from "@mui/material";
-import { spacing, borderRadius, shadows, transitions } from '@/theme/variables';
+import { Stack } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { spacing, borderRadius, shadows, transitions } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 
 export const SectionPlans = styled("section")({
@@ -45,22 +46,22 @@ export const CardContainer = styled(Stack)({
     maxWidth: "100%",
     margin: "0 auto",
   },
-  
+
   "&:hover": {
     transform: "translateY(-5px)",
     boxShadow: shadows.md,
   },
-  
-  "ul": {
+
+  ul: {
     fontSize: "13px",
     listStyleType: "none",
     padding: 0,
     margin: 0,
-    
-    "li": {
+
+    li: {
       marginBottom: spacing.sm,
       display: "flex",
       alignItems: "flex-start",
-    }
-  }
+    },
+  },
 });

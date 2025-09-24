@@ -1,5 +1,5 @@
-import { styled } from "@mui/material";
-import { spacing, borderRadius, transitions } from '@/theme/variables';
+import { styled } from "@mui/material/styles";
+import { spacing, borderRadius, transitions } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 
 export const ValoresGrid = styled("div")(({ theme }) => ({
@@ -9,7 +9,7 @@ export const ValoresGrid = styled("div")(({ theme }) => ({
 
   [theme.breakpoints.down("md")]: {
     gridTemplateColumns: "1fr",
-  }
+  },
 }));
 
 export const ValorCard = styled("div")({
@@ -32,5 +32,5 @@ export const ValorCard = styled("div")({
 
   "& p": {
     color: visitorColors.text,
-  }
+  },
 });

@@ -1,4 +1,5 @@
-import { styled, Box, Typography, Button, alpha } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
+import { styled, alpha } from "@mui/material/styles";
 import { CustomButton } from "@/components/Core/Button";
 import { transitions } from "@/theme/variables";
 

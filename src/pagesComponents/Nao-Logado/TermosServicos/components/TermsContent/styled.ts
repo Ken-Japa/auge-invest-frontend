@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { spacing, borderRadius } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
 
@@ -17,7 +17,7 @@ export const ContentContainer = styled("div")({
 
     "@media (max-width: 600px)": {
       padding: spacing.sm,
-    }
+    },
   },
 
   "& .section-title": {
@@ -42,5 +42,5 @@ export const ContentContainer = styled("div")({
 
   "& li": {
     marginBottom: spacing.xs,
-  }
+  },
 });
