@@ -2,10 +2,10 @@ import { Box, Typography, Chip } from "@mui/material";
 import PersonIcon from '@mui/icons-material/Person';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import Link from "next/link";
-import type { BlogPost } from "../../../constants/blogPosts";
+import type { BlogPost as BlogPostType } from "../../../constants/blogPosts";
 
 interface BlogPostHeaderProps {
-    post: BlogPost;
+    post: BlogPostType;
 }
 
 export const BlogPostHeader = ({ post }: BlogPostHeaderProps) => (
@@ -35,7 +35,7 @@ export const BlogPostHeader = ({ post }: BlogPostHeaderProps) => (
                 color: 'rgba(255, 255, 255, 0.8)'
             }}>
                 <PersonIcon fontSize="small" />
-                {post.author} em {new Date(post.date).toLocaleDateString('pt-BR')}
+                {post.author} em {new Date(post.date || '').toLocaleDateString('pt-BR')}
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 1 }}>
                 {post.readTime && (

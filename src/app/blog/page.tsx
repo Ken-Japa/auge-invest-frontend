@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Blog from "@/pagesComponents/Blog";
+import { BlogPost as BlogPostType } from "@/pagesComponents/Blog/constants/blogPosts";
 
 export const metadata: Metadata = {
     title: "Blog | Auge Invest",
@@ -23,6 +24,27 @@ export const metadata: Metadata = {
     keywords: 'blog financeiro, análise de mercado, investimentos, educação financeira, trading',
 };
 
-export default function BlogPage() {
-    return <Blog />;
+interface BlogPageProps {
+  posts: BlogPostType[];
 }
+
+const BlogPage = async () => {
+  const fs = require('fs');
+  const path = require('path');
+  const postsDirectory = path.join(process.cwd(), 'src/content/blog');
+  const filenames = fs.readdirSync(postsDirectory);
+
+  const posts = await Promise.all(
+    filenames.map(async (filename: string) => {
+      const { post } = await import(`@/content/blog/${filename}`);
+      return {
+        ...post,
+        slug: filename.replace(/\.ts$/, ''),
+      };
+    })
+  );
+
+  return <Blog posts={posts} />;
+};
+
+export default BlogPage;

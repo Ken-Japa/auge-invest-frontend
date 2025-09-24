@@ -1,4 +1,5 @@
-import { Box, styled } from "@mui/material";
+import { Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const PostContainer = styled(Box)`
   padding: 4rem 0;

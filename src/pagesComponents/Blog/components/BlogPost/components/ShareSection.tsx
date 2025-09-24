@@ -1,10 +1,11 @@
+'use client';
 import { Box, Typography, IconButton, Tooltip } from "@mui/material";
 import ShareIcon from '@mui/icons-material/Share';
 import { useSnackbar } from 'notistack';
 
 interface ShareSectionProps {
-    title: string;
-    description?: string;
+    title: string | null;
+    description: string | null;
 }
 
 export const ShareSection = ({ title, description }: ShareSectionProps) => {
@@ -16,8 +17,8 @@ export const ShareSection = ({ title, description }: ShareSectionProps) => {
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title,
-                    text: description,
+                    title: title ?? undefined,
+                    text: description ?? undefined,
                     url,
                 });
             } catch (err) {

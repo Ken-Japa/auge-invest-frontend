@@ -1,5 +1,4 @@
 "use client";
-
 import { type FC, useState, useMemo, useEffect, lazy, ChangeEvent } from "react";
 
 import { Container, Grid, Box } from "@mui/material";
@@ -10,14 +9,18 @@ import { ProgressiveLoad } from "@/components/Feedback/ProgressiveLoad";
 import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
 
 import { BlogContainer, BlogContent } from "./styled";
-import { blogPosts } from "./constants/blogPosts";
+import { BlogPost } from "./constants/blogPosts";
 
 const BlogHeader = lazy(() => import('./components/BlogHeader').then(mod => ({ default: mod.BlogHeader })));
 const BlogSearch = lazy(() => import('./components/BlogSearch').then(mod => ({ default: mod.BlogSearch })));
 const BlogCategories = lazy(() => import('./components/BlogCategories').then(mod => ({ default: mod.BlogCategories })));
 const BlogCardList = lazy(() => import('./components/BlogCardList').then(mod => ({ default: mod.BlogCardList })));
 
-const Blog: FC = () => {
+interface BlogProps {
+  posts: BlogPost[];
+}
+
+const Blog: FC<BlogProps> = ({ posts }) => {
     const [searchQuery, setSearchQuery] = useState("");
     const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("all");
@@ -47,15 +50,15 @@ const Blog: FC = () => {
     };
 
     const filteredPosts = useMemo(() =>
-        blogPosts
+        posts
             .filter(post => {
-                const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    post.description.toLowerCase().includes(searchQuery.toLowerCase());
-                const matchesCategory = selectedCategory === "all" || post.category.includes(selectedCategory);
+                const matchesSearch = (post.title?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+                    (post.description?.toLowerCase() || '').includes(searchQuery.toLowerCase());
+                const matchesCategory = selectedCategory === "all" || post.category?.includes(selectedCategory);
                 return matchesSearch && matchesCategory;
             })
-            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
-        [searchQuery, selectedCategory]
+            .sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime()),
+        [searchQuery, selectedCategory, posts]
     );
 
     return (
@@ -106,7 +109,7 @@ const Blog: FC = () => {
                                             selectedCategory={selectedCategory}
                                             onCategoryChange={setSelectedCategory}
                                             isLoading={!imageLoaded}
-                                            posts={blogPosts} // Add this prop
+                                            posts={posts} // Add this prop
                                         />
                                     </SuspenseWrapper>
                                 </ProgressiveLoad>

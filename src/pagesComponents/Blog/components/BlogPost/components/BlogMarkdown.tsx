@@ -2,7 +2,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 interface BlogMarkdownProps {
-    content: string;
+    content: string | null;
 }
 
 export const BlogMarkdown = ({ content }: BlogMarkdownProps) => (
