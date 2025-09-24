@@ -30,7 +30,11 @@ npm run blog-summary
 ```
 
 ### Testing Commands
-- No test framework is currently configured in the project
+- Testsprite is being configured for comprehensive testing.
+- Current status:
+    - Persistent low-severity vulnerabilities related to `@lhci/cli` (tmp, external-editor, inquirer).
+    - Deprecation warnings for `inflight`, `rimraf`, and `glob`.
+    - `npm audit fix --force` is not viable due to potential breaking changes with `@lhci/cli` and a Git issue with the `master` branch.
 
 ### Development Server
 - Development server runs on `http://localhost:3000`

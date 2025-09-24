@@ -21,7 +21,12 @@
   - Image optimization (WebP/AVIF support)
   - Static asset caching headers
 
-### 3. **Ferramentas de Desenvolvimento**
+### 3. **Dependency Updates and Management**
+- ✅ **Updated `rimraf` to latest version** to address deprecation warnings and vulnerabilities.
+- ✅ **Updated `glob` to latest version** to address deprecation warnings and vulnerabilities.
+- ✅ **Clean reinstallation of all project dependencies** performed multiple times to ensure updated versions are applied.
+
+### 4. **Ferramentas de Desenvolvimento**
 - ✅ **Suporte a variáveis de ambiente multiplataforma** (cross-env) adicionado
 - ✅ **Script de automação de correção de acessibilidade** criado
 - ❌ **Ferramentas de otimização de dependências** (Pulado)
@@ -41,15 +46,15 @@
 
 ## 📊 Melhorias de Performance Esperadas
 
-### Otimização do Tamanho do Bundle (Pulada)
+### Otimização do Tamanho do Bundle (Ainda Pendente)
 ```
 Antes: ~2.5MB tamanho total do bundle
-Depois: ~2.5MB tamanho total do bundle (Nenhuma alteração devido à otimização pulada)
+Depois: ~2.5MB tamanho total do bundle (Nenhuma alteração significativa devido à otimização de bundle ainda não implementada)
 
-- Otimização do chunk de vendor (Pulada)
-- Divisão da biblioteca MUI (Pulada)
-- Oportunidade de consolidação da biblioteca de gráficos (Pulada)
-- Dependências duplicadas removidas (Pulada)
+- Otimização do chunk de vendor (Pendente)
+- Divisão da biblioteca MUI (Pendente)
+- Oportunidade de consolidação da biblioteca de gráficos (Pendente)
+- Dependências duplicadas removidas (Pendente)
 ```
 
 ### Accessibility Score
@@ -109,8 +114,18 @@ After:  95%+ target with implemented fixes
 3. **🖼️ Image optimization** - Missing Next.js Image usage
    - **Status:** ✅ Configured, requires implementation
 
+### Vulnerabilidades e Warnings de Depreciação Persistentes
+1. **⚠️ 4 Vulnerabilidades de Baixa Severidade**
+   - **Causa:** Relacionadas a `tmp`, `external-editor`, e `inquirer`, todas provenientes de `@lhci/cli`.
+   - **Status:** ❌ Pendente. `npm audit fix --force` sugere downgrade para `@lhci/cli@0.1.0`, o que pode ser uma breaking change. `npm audit fix` sem `--force` não resolve.
+
+2. **⚠️ Warnings de Depreciação**
+   - **Causa:** `inflight@1.0.6`, `rimraf@2.7.1`, `rimraf@3.0.2`, e `glob@7.2.3`.
+   - **Status:** ❌ Pendente. Apesar das atualizações de `rimraf` e `glob` e reinstalações limpas, os warnings persistem, indicando que são dependências transitivas que ainda não foram resolvidas.
+
 ## Próximos Passos Imediatos
 
+- **Resolver Vulnerabilidades e Warnings:** Investigar a fundo as dependências transitivas e encontrar uma solução para as vulnerabilidades e warnings de depreciação sem causar breaking changes.
 - **Refatoração de Componentes:** Continuar a refatoração de componentes legados para React moderno e TypeScript.
 - **Otimização de Imagens:** Implementar otimização de imagens em todas as páginas.
 - **Cache de API:** Explorar e implementar estratégias de cache de API mais agressivas.

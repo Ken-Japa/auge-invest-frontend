@@ -94,7 +94,7 @@ export const Register = () => {
                         />
                     </div>
                     <div className="content">
-                        <StyledCloseButton onClick={handleClose}>
+                        <StyledCloseButton onClick={handleClose} aria-label="Fechar">
                             <CloseIcon />
                         </StyledCloseButton>
 

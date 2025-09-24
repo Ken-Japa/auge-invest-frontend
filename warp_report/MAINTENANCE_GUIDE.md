@@ -30,6 +30,25 @@ npm run lint
 npx tsc --noEmit
 ```
 
+### Testing
+```bash
+# Run specific integration test
+npm test src/app/login/login.integration.test.tsx
+
+# Run Register component accessibility test
+npm test src/pagesComponents/Nao-Logado/Register/Register.test.tsx
+
+# Run Login component accessibility test
+npm test src/pagesComponents/Nao-Logado/Login/Login.test.tsx
+
+# Run Auth utilities tests
+npm test src/utils/__tests__/auth.test.ts
+
+# Jest configuration for module transpilation
+# Ensure next-auth/react is correctly transpiled by adding it to transformIgnorePatterns in jest.config.js
+# Example: transformIgnorePatterns: ['/node_modules/(?!next-auth/react)/']
+```
+
 ### Dependency Health
 ```bash
 # Check for outdated dependencies
@@ -77,7 +96,7 @@ npm test
 # npm prune
 
 # Rebuild node_modules (mensalmente, requer revisão manual)
-# rm -rf node_modules package-lock.json && npm install
+# Remove-Item -Recurse -Force node_modules, package-lock.json && npm install
 ```
 
 ## 🚀 Optimization Patterns Documentation

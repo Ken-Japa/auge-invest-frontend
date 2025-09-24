@@ -7,11 +7,15 @@ Este documento lista as melhorias planejadas para o projeto, categorizadas por p
 - **Implementação do Lighthouse CI**: Configuração e integração do Lighthouse CI no fluxo de trabalho de CI/CD para auditorias automatizadas de desempenho, acessibilidade, melhores práticas e SEO.
 - **Implementação de atributos ARIA adequados para navegação e elementos interativos**: Adicionados atributos `aria-label`, `aria-haspopup`, `aria-expanded`, `role="menu"`, `role="menuitem"` e `aria-current` aos componentes `CustomButton`, `NavDropdown` e `NavLink` para melhorar a acessibilidade.
 - **Gerenciamento de Foco**: Garantido que o foco do teclado seja gerenciado corretamente em modais, menus e outros componentes interativos, e implementado `focus traps` para modais e `skip links` para navegação.
+- **Atualização de Dependências**: Atualização de `inquirer`, `external-editor`, `rimraf` e `glob` para as versões mais recentes.
+- **Reinstalação Limpa de Dependências**: Remoção de `node_modules` e `package-lock.json` seguida de `npm install` para garantir a instalação de dependências limpas e atualizadas.
 
 ## Melhorias Pendentes
 
 ### Alta Prioridade
 
+- [ ] **Resolução de Vulnerabilidades Persistentes**: Investigar e resolver as 4 vulnerabilidades de baixa severidade relacionadas a `tmp`, `external-editor` e `inquirer` que persistem mesmo após as atualizações, especialmente as que se originam de `@lhci/cli`.
+- [ ] **Resolução de Warnings de Depreciação**: Abordar os warnings de depreciação para `inflight@1.0.6`, `rimraf@2.7.1`, `rimraf@3.0.2` e `glob@7.2.3`, que são dependências transitivas e ainda causam avisos.
 - [ ] **Checklist de Otimização de Performance**: Desenvolver um checklist para otimização contínua de performance, cobrindo aspectos como carregamento de recursos, renderização e uso de cache.
 - [ ] **Processo de Melhoria Contínua**: Estabelecer um processo para revisar regularmente o desempenho da aplicação, coletar feedback e implementar melhorias iterativas.
 - [ ] **Base de Conhecimento**: Criar e manter uma base de conhecimento com documentação técnica, decisões de arquitetura e melhores práticas.
