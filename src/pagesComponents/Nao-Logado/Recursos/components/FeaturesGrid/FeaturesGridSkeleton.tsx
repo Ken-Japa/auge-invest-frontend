@@ -7,7 +7,7 @@ export const FeaturesGridSkeleton = () => (
         <Grid container spacing={4}>
             {Array(8).fill(0).map((_, index) => (
                 <Grid item xs={12} md={6} lg={4} key={index}>
-                    <FeatureCard style={{ height: '280px', minHeight: '280px' }}>
+                    <FeatureCard style={{ height: '350px', minHeight: '350px' }}>
                         <ContentSkeleton
                             type="text"
                             textLines={1}

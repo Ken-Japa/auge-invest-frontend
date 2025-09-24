@@ -5,10 +5,11 @@ import { visitorColors } from "@/theme/palette/visitor";
 
 export const StyledSubmitButton = styled(Button)({
   height: "56px",
-  backgroundColor: visitorColors.primary,
+  backgroundColor: visitorColors.buttonPrimary,
+  color: visitorColors.buttonText,
   transition: transitions.medium,
   "&:hover": {
-    backgroundColor: visitorColors.buttonPrimary,
+    backgroundColor: "#004a9e",
   },
   "&:disabled": {
     backgroundColor: "rgba(255, 255, 255, 0.12)",

@@ -61,7 +61,7 @@ export const SubmitButton = styled(Button)({
   transition: transitions.medium,
 
   "&:hover": {
-    backgroundColor: visitorColors.primary,
+    backgroundColor: "#004a9e",
   },
 
   "&:disabled": {

@@ -91,6 +91,7 @@ export const Login = () => {
                     maxWidth="md"
                     fullWidth
                     disableEscapeKeyDown
+                    aria-labelledby="login-dialog-title"
                     transitionDuration={{
                         enter: 300,
                         exit: 200
@@ -109,7 +110,7 @@ export const Login = () => {
                         />
                     </div>
                     <div className="content">
-                        <StyledCloseButton onClick={handleClose}>
+                        <StyledCloseButton onClick={handleClose} aria-label="Fechar">
                             <CloseIcon />
                         </StyledCloseButton>
 

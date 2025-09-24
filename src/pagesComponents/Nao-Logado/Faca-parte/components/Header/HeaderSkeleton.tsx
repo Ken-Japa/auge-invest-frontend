@@ -11,6 +11,7 @@ export const HeaderSkeleton: FC = () => (
             type="text"
             textLines={2}
             className={`${visitorColors.skeletonBackground} backdrop-blur-sm`}
+            style={{ minHeight: "100px" }}
         />
     </Stack>
 );

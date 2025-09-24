@@ -9,7 +9,7 @@ const DynamicMatrixRainText = dynamic(() => import('@/components/Effects/MatrixR
 export const FormHeader = () => {
     return (
         <HeaderContainer>
-            <Title>
+            <Title id="login-dialog-title">
                 <DynamicMatrixRainText
                     text="Bem-vindo de volta"
                     className="matrix-title"

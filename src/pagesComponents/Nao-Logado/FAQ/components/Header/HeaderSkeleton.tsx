@@ -9,7 +9,7 @@ const SKELETON_PROPS = {
     type: "text" as const,
     textLines: 2,
     className: `p-4 ${visitorColors.skeletonBackground} rounded-lg backdrop-blur-sm`,
-    style: { minHeight: "48px" }
+    style: { minHeight: "100px" }
 } as const;
 
 export const HeaderSkeleton: FC = () => (

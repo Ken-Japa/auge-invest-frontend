@@ -12,7 +12,7 @@
     "lhci:upload": "lhci upload",
     "lhci": "npm run lhci:collect && npm run lhci:assert && npm run lhci:upload",
     "bench:web": "lhci autorun",
-    "bench:web:quick": "npx lighthouse http://localhost:3000/visitante/contato --output html --output json --output-path ./lighthouse-reports/report.html --view --preset=desktop --throttling.cpuSlowdownMultiplier=2.4 --no-enable-error-reporting",
+    "bench:web:quick": "npx lighthouse http://localhost:3000/register --output html --output json --output-path ./lighthouse-reports/report.html --view --preset=desktop --throttling.cpuSlowdownMultiplier=2.4 --no-enable-error-reporting",
     "bench:all": "npm run bench:web",
     "lint": "next lint",
     "test": "jest",

@@ -25,6 +25,7 @@ export const ApplicationFormSkeleton: FC = () => (
                 type="text"
                 textLines={field.lines}
                 className={`${visitorColors.skeletonBackground} backdrop-blur-sm`}
+                style={{ minHeight: `${field.lines * 24 + 16}px` }}
             />
         ))}
     </Stack>

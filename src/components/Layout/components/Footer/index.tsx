@@ -64,7 +64,7 @@ export const Footer = () => {
                                 }
                             </motion.div>
 
-                            <Typography variant="body1" className="text-white/80 mb-2">
+                            <Typography variant="body1" className="text-white/80 mb-2" style={{ minHeight: "50px" }}>
                                 Inovações tecnológicas com o objetivo de fornecer ao investidor a melhor visão do mercado.
                             </Typography>
                             <Link
@@ -89,7 +89,7 @@ export const Footer = () => {
                         </NavigationSection>
 
                         <SocialSection>
-                            <Typography variant="h5">
+                            <Typography variant="h4">
                                 Redes Sociais
                             </Typography>
                             <Box sx={{ display: 'flex', gap: 3 }}>

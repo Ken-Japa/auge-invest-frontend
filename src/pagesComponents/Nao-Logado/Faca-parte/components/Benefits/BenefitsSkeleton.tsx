@@ -11,6 +11,7 @@ export const BenefitsSkeleton: FC = () => (
             type="card"
             cardHeight={300}
             className={`${visitorColors.skeletonBackground} backdrop-blur-sm`}
+            style={{ minHeight: "300px" }}
         />
     </Stack>
 );

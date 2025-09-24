@@ -17,10 +17,6 @@ export const metadata: Metadata = {
         ],
     },
     keywords: 'criar conta, registro, cadastro, investimentos, análise financeira',
-    robots: {
-        index: false,
-        follow: false
-    },
     alternates: {
         canonical: 'https://augeinvest.com.br/register'
     }
