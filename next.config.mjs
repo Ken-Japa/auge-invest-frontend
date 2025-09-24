@@ -53,7 +53,7 @@ const nextConfig = {
               script-src 'self' 'unsafe-eval' 'unsafe-inline' https://va.vercel-scripts.com https://s3.tradingview.com; report-uri /api/report-csp;
               style-src 'self' 'unsafe-inline';
               img-src 'self' data: https://*;
-              font-src 'self' data:;
+              font-src 'self' data: 'unsafe-inline' https://s.tradingview.com;
               object-src 'none';
               base-uri 'self';
               form-action 'self';

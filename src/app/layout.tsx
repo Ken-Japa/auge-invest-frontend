@@ -92,7 +92,6 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="preload" href="/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
 
       </head>
       <body >
