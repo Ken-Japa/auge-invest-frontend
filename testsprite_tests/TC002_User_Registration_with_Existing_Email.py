@@ -45,13 +45,13 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Click the 'Registrar' button to go to the registration page
+        # Click on the 'Registrar' button to go to the registration page.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/header/div/div[2]/a[2]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Fill the registration form with the provided existing email and other required fields
+        # Fill the registration form with the provided user data including the already registered email.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/div[2]/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('Test User')
@@ -59,7 +59,7 @@ async def run_test():
 
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/div[3]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('12345678901')
+        await page.wait_for_timeout(3000); await elem.fill('12345678900')
         
 
         frame = context.pages[-1]
@@ -77,43 +77,13 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.fill('sansao57')
         
 
-        # Fill the password confirmation, check the terms checkbox, and submit the form
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/div[8]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('sansao57')
-        
-
+        # Check the terms and conditions checkbox and submit the registration form.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/label/span/input').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # Correct the CPF field with a valid CPF number and resubmit the form to test duplicate email registration failure
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/div[3]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('12345678909')
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # Click the 'Criar Conta' button to submit the registration form and check for duplicate email error message
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        page.on("dialog", lambda dialog: dialog.accept())
-        await page.wait_for_event("dialog")
-        assert "Server Error!" in page.evaluate("() => alertMessage"), "Expected 'Server Error!' alert not found."
-        print("Alert with 'Server Error!' found.")
+        assert False, 'Test failed: Registration should not succeed with an already registered email.'
         await asyncio.sleep(5)
     
     finally:

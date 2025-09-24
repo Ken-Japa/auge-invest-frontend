@@ -51,7 +51,7 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Enter valid email and password
+        # Enter valid email and password into the login form
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div[2]/div[3]/div/div[2]/form/div[2]/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('capitalauge2@gmail.com')
@@ -62,14 +62,18 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.fill('sansao57')
         
 
-        # Click the login button to attempt login
+        # Click the login button to submit the form and attempt login
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div[2]/div[3]/div/div[2]/form/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        await page.wait_for_url("http://localhost:3000/visao-economia", timeout=10000)
-        print("Login successful and redirected to home page.")
+        # Assert that the user is authenticated and redirected to the main application page
+        frame = context.pages[-1]
+        # Check the page title to confirm redirection to main application page
+        assert await frame.title() == "Visão Geral da Economia | Análise de Mercado | AugeInvest"
+        # Optionally, check for presence of a known element on the main page to confirm successful login
+        assert await frame.locator('text=Visão Economia').count() > 0
         await asyncio.sleep(5)
     
     finally:

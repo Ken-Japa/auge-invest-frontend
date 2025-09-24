@@ -45,18 +45,13 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Click the 'Registrar' button to go to the registration page
+        # Click the 'Registrar' button to go to the registration page.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/header/div/div[2]/a[2]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Fill in the registration form with valid user details
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/div[2]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('Teste Usuario')
-        
-
+        # Fill in the registration form with valid user details.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/div[3]/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('12345678901')
@@ -77,7 +72,12 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.fill('sansao57')
         
 
-        # Input confirm password, check the terms acceptance box, and submit the registration form
+        # Fill in the 'Nome completo' field, confirm the password, check the terms acceptance checkbox, and submit the registration form.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/div[2]/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('Test User')
+        
+
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/div[8]/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('sansao57')
@@ -89,34 +89,17 @@ async def run_test():
         
 
         frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/button').nth(0)
+        elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/button[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Clear the CPF field, input a valid CPF number, and submit the registration form again
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/div[3]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('')
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/div[3]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('111.444.777-35')
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # Try to submit the form again or check for any hidden or subtle validation issues preventing registration
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/main/div/div/div[2]/form/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        await page.wait_for_url("http://localhost:3000/login", timeout=10000)
-        print("Redirection to /login successful.")
+        # Assertion: Verify registration success by checking for a success message or redirection to a welcome/dashboard page.
+        # Since the extracted page content shows a sign-in page, check if the page URL or title has changed from the registration page.
+        current_url = frame.url
+        assert 'register' not in current_url.lower(), 'Still on registration page, registration might have failed'
+        # Alternatively, check for a success notification element or welcome message if available
+        success_message = frame.locator('text=Registration successful').first
+        assert await success_message.is_visible() or 'welcome' in current_url.lower() or 'dashboard' in current_url.lower(), 'Registration success message or redirection not detected'
         await asyncio.sleep(5)
     
     finally:

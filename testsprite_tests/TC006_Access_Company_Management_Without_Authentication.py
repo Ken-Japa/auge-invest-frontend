@@ -45,13 +45,14 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Attempt to navigate directly to the company management section without logging in.
+        # Attempt to navigate directly to the company management section without logging in
         await page.goto('http://localhost:3000/company-management', timeout=10000)
         
 
-        assert '404' in await page.title(), 'Expected to be on a 404 page indicating access is denied or page not found', "Actual title: {await page.title()}"
+        assert '404' in await page.title(), 'Expected to be on a 404 page indicating access is denied or page not found',
         content = await page.content()
-        assert 'This page could not be found' in content, 'Expected to see a message indicating the page could not be found'
+        assert 'This page could not be found.' in content, 'Expected message indicating the page could not be found'
+        assert 'login' in page.url or 'signin' in page.url or '404' in page.url, 'Expected to be redirected to login or 404 page'
         await asyncio.sleep(5)
     
     finally:

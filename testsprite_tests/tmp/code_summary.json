@@ -1,2 +1,68 @@
-{\n  \"tech_stack\": [\n    \"TypeScript\",\n    \"JavaScript\",\n    \"Next.js\",\n    \"React\",\n    \"Tailwind CSS\",\n    \"PostCSS\",\n    \"Emotion\",\n    \"Zustand\",\n    \"Axios\",\n    \"React Query\",\n    \"Next-Auth\",\n    \"Google OAuth\",\n    \"Jest\",\n    \"React Testing Library\",\n    \"Jest-axe\",\n    \"Lighthouse CLI\",\n    \"Nivo\",\n    \"Framer Motion\",\n    \"Day.js\",\n    \"jsPDF\",\n    \"Vis.js\",\n    \"Zod\"\n  ],\n  \"features\": [\n    {\n      \"name\": \"Authentication and Authorization\",\n      \"description\": \"Handles user login, registration, and session management using Next-Auth and Google OAuth.\",\n      \"files\": [\n        \"src/app/(auth)/page.tsx\",\n        \"src/app/login/page.tsx\",\n        \"src/app/register/page.tsx\",\n        \"src/providers/AuthProvider.tsx\",\n        \"src/middleware.ts\",\n        \"src/utils/auth.ts\"\n      ]\n    },\n    {\n      \"name\": \"API Interaction\",\n      \"description\": \"Manages communication with backend APIs using Axios and React Query for data fetching and caching.\",\n      \"files\": [\n        \"src/app/api/route.ts\",\n        \"src/hooks/useApi.ts\",\n        \"src/services/api/index.ts\",\n        \"src/providers/ApiProvider.tsx\"\n      ]\n    },\n    {\n      \"name\": \"Blog Functionality\",\n      \"description\": \"Displays blog posts and generates summaries.\",\n      \"files\": [\n        \"src/app/blog/page.tsx\",\n        \"src/content/blog/index.ts\",\n        \"src/content/utils/blogSummary.mjs\"\n      ]\n    },\n    {\n      \"name\": \"Company Management\",\n      \"description\": \"Manages company-related data and state using Zustand.\",\n      \"files\": [\n        \"src/hooks/useCompanies.ts\",\n        \"src/store/companyStore.ts\"\n      ]\n    },\n    {\n      \"name\": \"UI Components\",\n      \"description\": \"Reusable UI components built with Material-UI and custom styling.\",\n      \"files\": [\n        \"src/components/Core/index.tsx\",\n        \"src/components/Data-Display/index.tsx\",\n        \"src/components/Feedback/index.tsx\",\n        \"src/components/Form/index.tsx\",\n        \"src/components/Layout/index.tsx\",\n        \"src/components/Theme/index.tsx\",\n        \"src/components/Utils/index.tsx\"\n      ]\n    },\
-    {\n      \"name\": \"Theming and Styling\",\n      \"description\": \"Manages application themes and styles using Tailwind CSS, PostCSS, and Emotion.\",\n      \"files\": [\n        \"src/theme/ThemeContext.tsx\",\n        \"src/theme/mui.ts\",\n        \"src/app/custom-styles.css\",\n        \"src/app/globals.css\",\n        \"tailwind.config.js\",\n        \"postcss.config.js\"\n      ]\n    },\n    {\n      \"name\": \"Data Visualization\",\n      \"description\": \"Includes components and utilities for rendering charts and network graphs.\",\n      \"files\": []\n    },\n    {\n      \"name\": \"Utility Functions\",\n      \"description\": \"General utility functions for various tasks like date manipulation and data validation.\",\n      \"files\": [\n        \"src/utils/index.ts\",\n        \"src/utils/auth.ts\"\n      ]\n    },\n    {\n      \"name\": \"Performance Monitoring\",\n      \"description\": \"Tools and configurations for monitoring application performance with Lighthouse and Vercel analytics.\",\n      \"files\": [\n        \".lighthouseci/flags-*.json\",\n        \"lighthouse-reports/report.html\",\n        \".lighthouserc.json\"\n      ]\n    },\n    {\n      \"name\": \"Testing Infrastructure\",\n      \"description\": \"Configuration and setup for Jest, React Testing Library, and accessibility testing with Jest-axe.\",\n      \"files\": [\n        \"jest.config.js\",\n        \"jest.setup.ts\",\n        \"src/utils/__tests__/index.test.ts\"\n      ]\n    }\n  ]\n}
+{
+  "tech_stack": ["TypeScript", "JavaScript", "Next.js", "Tailwind CSS", "CSS Modules", "Zustand (potential)"],
+  "features": [
+    {
+      "name": "Authentication",
+      "description": "Handles user login, registration, and session management.",
+      "files": [
+        "src/app/(auth)/page.tsx",
+        "src/app/login/page.tsx",
+        "src/app/register/page.tsx",
+        "src/providers/AuthProvider.tsx",
+        "src/utils/auth.ts"
+      ]
+    },
+    {
+      "name": "UI Components",
+      "description": "Reusable UI components for various parts of the application.",
+      "files": [
+        "src/components/Core",
+        "src/components/Data-Display",
+        "src/components/Form",
+        "src/components/Layout",
+        "src/components/Theme",
+        "src/components/Utils"
+      ]
+    },
+    {
+      "name": "API Integration",
+      "description": "Logic for interacting with backend APIs.",
+      "files": [
+        "src/app/api",
+        "src/services/api",
+        "src/hooks/useApi.ts"
+      ]
+    },
+    {
+      "name": "Company Management",
+      "description": "Logic related to company data and management.",
+      "files": [
+        "src/hooks/useCompanies.ts",
+        "src/store/companyStore.ts"
+      ]
+    },
+    {
+      "name": "Blog",
+      "description": "Functionality for displaying blog posts.",
+      "files": [
+        "src/app/blog",
+        "src/content/blog"
+      ]
+    },
+    {
+      "name": "Middleware",
+      "description": "Request processing logic.",
+      "files": [
+        "src/middleware.ts"
+      ]
+    },
+    {
+      "name": "Theming",
+      "description": "Application theme management.",
+      "files": [
+        "src/theme",
+        "src/theme/ThemeContext.tsx"
+      ]
+    }
+  ]
+}

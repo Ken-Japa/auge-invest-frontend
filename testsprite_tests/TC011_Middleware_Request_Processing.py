@@ -46,54 +46,36 @@ async def run_test():
         
         # Interact with the page elements to simulate user flow
         # Send requests as unauthenticated user to protected routes to verify middleware blocks or redirects unauthorized access.
-        # Expect unauthenticated users to be redirected to the login page when trying to access protected routes.
-        await page.goto('http://localhost:3000/carteira', timeout=10000)
-        await async_api.expect(page).to_have_url(f"http://localhost:3000/login?callbackUrl={page.url}")
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/header/div/div[2]/a/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
 
-        await page.goto('http://localhost:3000/visao-economia', timeout=10000)
-        await async_api.expect(page).to_have_url(f"http://localhost:3000/login?callbackUrl={page.url}")
+        # Send unauthenticated request to a protected route to verify middleware blocks or redirects unauthorized access.
+        await page.goto('http://localhost:3000/protected-route', timeout=10000)
+        
 
-        await page.goto('http://localhost:3000/alertas', timeout=10000)
-        await async_api.expect(page).to_have_url(f"http://localhost:3000/login?callbackUrl={page.url}")
-
-        # Proceed to send requests as authenticated user to verify middleware allows passage and proper processing.
-        await page.goto('http://localhost:3000/login', timeout=10000)
-
-        # Click the 'Login' button to access the login page
-        await page.locator('button:has-text("Login")').click()
-
-        # Input email and password to attempt login and trigger API call.
-        await page.locator('input[name="email"]').fill('capitalauge2@gmail.com')
-        await page.locator('input[name="password"]').fill('sansao57')
-
-        # Click the "Entrar" button to submit the login form.
-        await page.locator('button:has-text("Entrar")').click()
-
-        # Wait for navigation after login (e.g., to the dashboard or profile page)
-        await page.wait_for_url("http://localhost:3000/visao-economia", timeout=10000)
-
-        # Assert that the user is on the dashboard page after successful login
-        await async_api.expect(page).to_have_url("http://localhost:3000/visao-economia")
-
-        # Test authenticated access to protected routes
+        # Send another unauthenticated request to a different protected route or resource to further verify middleware behavior.
         await page.goto('http://localhost:3000/dashboard', timeout=10000)
-        await async_api.expect(page).to_have_url("http://localhost:3000/dashboard")
+        
 
-        await page.goto('http://localhost:3000/alertas', timeout=10000)
-        await async_api.expect(page).to_have_url("http://localhost:3000/alertas")
+        # Input email and password, then submit the login form to authenticate the user.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div[2]/div[3]/div/div[2]/form/div[2]/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('capitalauge2@gmail.com')
+        
 
-        await page.goto('http://localhost:3000/perfil', timeout=10000)
-        await async_api.expect(page).to_have_url("http://localhost:3000/perfil")
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div[2]/div[3]/div/div[2]/form/div[3]/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('sansao57')
+        
 
-        # Test authenticated user redirection from auth pages
-        await page.goto('http://localhost:3000/login', timeout=10000)
-        await async_api.expect(page).to_have_url("http://localhost:3000/visao-economia")
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div[2]/div[3]/div/div[2]/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
 
-        await page.goto('http://localhost:3000/register', timeout=10000)
-        await async_api.expect(page).to_have_url("http://localhost:3000/visao-economia")
-
-        print("TC017: Middleware Request Processing test completed successfully.")
-        assert False, 'Test plan execution failed: generic failure assertion.'
+        assert False, 'Test plan execution failed: generic failure assertion as expected result is unknown.'
         await asyncio.sleep(5)
     
     finally:

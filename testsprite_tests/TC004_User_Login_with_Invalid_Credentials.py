@@ -51,28 +51,30 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Enter invalid email and password
+        # Enter invalid email and password into the login form
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div[2]/div[3]/div/div[2]/form/div[2]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('invalid@example.com')
+        await page.wait_for_timeout(3000); await elem.fill('capitalauge2@gmail.com')
         
 
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div[2]/div[3]/div/div[2]/form/div[3]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('wrongpassword')
+        await page.wait_for_timeout(3000); await elem.fill('sansao57')
         
 
-        # Click the login button to submit invalid credentials
+        # Click the login button to attempt login with invalid credentials
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div[2]/div[3]/div/div[2]/form/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Assert that an error message for invalid credentials is displayed
-        error_message_locator = page.locator('text="Email ou senha inválidos"')
-        await error_message_locator.wait_for(state="visible", timeout=5000)
-        assert await error_message_locator.is_visible(), "Error message 'Email ou senha inválidos' not displayed."
-        print("Error message 'Email ou senha inválidos' found.")
+        # Navigate back to login page to verify login failure behavior again or check for error messages on login page
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/header/div/div[2]/div/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        assert False, 'Test failed: Expected login failure error message not verified.'
         await asyncio.sleep(5)
     
     finally:

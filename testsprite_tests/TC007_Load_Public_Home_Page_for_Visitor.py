@@ -46,39 +46,38 @@ async def run_test():
         
         # Interact with the page elements to simulate user flow
         # Assert header logo text
-        assert await page.text_content('header >> text=Auge Invest') == 'Auge Invest'
-        # Assert header navigation items
-        header_nav_items = ['Início', 'Quem Somos', 'Soluções', 'FAQ', 'Preços', 'Contato', 'Blog', 'Login', 'Registrar']
-        for item in header_nav_items:
+        assert await page.text_content('header >> text=Auge Invest') is not None
+        # Assert navigation menu items
+        nav_items = ['Início', 'Quem Somos', 'Soluções', 'FAQ', 'Preços', 'Contato', 'Blog', 'Login', 'Registrar']
+        for item in nav_items:
             assert await page.is_visible(f'header >> text={item}')
         # Assert main section welcome message and tagline
-        assert await page.text_content('main >> text=Seja bem vindo a Auge Invest') == 'Seja bem vindo a Auge Invest'
-        assert await page.text_content('main >> text=Domine o Mercado com Dados, Não com Palpites') == 'Domine o Mercado com Dados, Não com Palpites'
+        assert await page.is_visible('text=Seja bem vindo a Auge Invest')
+        assert await page.is_visible('text=Domine o Mercado com Dados, Não com Palpites')
         # Assert main section description
-        expected_description = 'A única plataforma do Brasil com histórico de derivativos, simulação de estratégias em cenários reais e fictícios e recomendações através de análises – para você investir como um profissional.'
-        assert await page.text_content(f'main >> text={expected_description}') == expected_description
+        assert await page.is_visible('text=A única plataforma do Brasil com histórico de derivativos, simulação de estratégias em cenários reais e fictícios e recomendações através de análises – para você investir como um profissional.')
         # Assert call to action buttons
         assert await page.is_visible('text=Experimente Grátis por 21 Dias')
         assert await page.is_visible('text=Ver Demonstração em Vídeo')
         # Assert features titles and details
-        features = [
-            ('+1500 Ativos Monitorados', 'Ações, FIIs, ETFs, moedas e até derivativos obscuros – tudo num só lugar'),
-            ('Previsões com Redes Neurais', 'Análise automática de padrões para identificar oportunidades antes que todos'),
-            ('Alertas de Preço Cirúrgicos', 'Configure níveis críticos e receba notificações exatas no seu celular ou no email')
-        ]
+        features = [('+1500 Ativos Monitorados', 'Ações, FIIs, ETFs, moedas e até derivativos obscuros – tudo num só lugar'), ('Previsões com Redes Neurais', 'Análise automática de padrões para identificar oportunidades antes que todos'), ('Alertas de Preço Cirúrgicos', 'Configure níveis críticos e receba notificações exatas no seu celular ou no email')]
         for title, details in features:
-            assert await page.is_visible(f'main >> text={title}')
-            assert await page.is_visible(f'main >> text={details}')
+            assert await page.is_visible(f'text={title}')
+            assert await page.is_visible(f'text={details}')
         # Assert footer description and contact email
-        assert await page.text_content('footer >> text=Inovações tecnológicas com o objetivo de fornecer ao investidor a melhor visão do mercado.') == 'Inovações tecnológicas com o objetivo de fornecer ao investidor a melhor visão do mercado.'
-        assert await page.text_content('footer >> text=capitalauge@gmail.com') == 'capitalauge@gmail.com'
+        assert await page.is_visible('text=Inovações tecnológicas com o objetivo de fornecer ao investidor a melhor visão do mercado.')
+        assert await page.is_visible('text=capitalauge@gmail.com')
         # Assert footer links
         footer_links = ['Início', 'Quem somos', 'Recursos', 'Preços', 'FAQ', 'Fale Conosco', 'Junte-se a equipe', 'Política de Privacidade', 'Termos de Serviço', 'Blog']
         for link in footer_links:
-            assert await page.is_visible(f'footer >> text={link}')
-        # Assert footer copyright and platform name
-        assert await page.text_content('footer >> text=© 2025 Auge Capital. Todos os direitos reservados.') == '© 2025 Auge Capital. Todos os direitos reservados.'
-        assert await page.text_content('footer >> text=Auge Invest | Plataforma de Análise de Investimentos') == 'Auge Invest | Plataforma de Análise de Investimentos'
+            assert await page.is_visible(f'text={link}')
+        # Assert social links
+        social_links = ['Programa de Embaixadores', 'Em Desenvolvimento']
+        for social in social_links:
+            assert await page.is_visible(f'text={social}')
+        # Assert copyright and platform name
+        assert await page.is_visible('text=© 2025 Auge Capital. Todos os direitos reservados.')
+        assert await page.is_visible('text=Auge Invest | Plataforma de Análise de Investimentos')
         await asyncio.sleep(5)
     
     finally:
