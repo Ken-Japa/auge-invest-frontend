@@ -23,8 +23,6 @@ export const Logo = ({
                 quality={60}
                 style={{
                     maxWidth: '100%',
-                    width: 'auto',
-                    height: 'auto',
                     aspectRatio: `${width}/${height}`
                 }}
             />

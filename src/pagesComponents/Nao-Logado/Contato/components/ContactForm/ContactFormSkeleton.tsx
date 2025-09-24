@@ -14,6 +14,7 @@ export const ContactFormSkeleton: FC = () => (
                 type="form"
                 formFields={5}
                 className={`p-6 ${visitorColors.skeletonBackground} rounded-lg backdrop-blur-sm`}
+                style={{ minHeight: "300px" }}
             />
         </Box>
     </ContactFormSkeletonStyled>

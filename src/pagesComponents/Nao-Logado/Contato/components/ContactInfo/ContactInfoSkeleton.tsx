@@ -11,6 +11,7 @@ export const ContactInfoSkeleton: FC = () => (
             type="text"
             textLines={3}
             className={`p-4 ${visitorColors.skeletonBackground} rounded-lg backdrop-blur-sm`}
+            style={{ minHeight: "100px" }}
         />
     </ContactInfoSkeletonStyled>
 );

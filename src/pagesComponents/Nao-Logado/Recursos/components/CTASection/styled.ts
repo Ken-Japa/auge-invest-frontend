@@ -15,6 +15,7 @@ export const CTAContainer = styled("section")(({ theme }) => ({
   "& .cta-title": {
     color: visitorColors.text,
     marginBottom: spacing.md,
+    minHeight: "48px",
   },
 
   "& .cta-description": {
@@ -22,6 +23,7 @@ export const CTAContainer = styled("section")(({ theme }) => ({
     maxWidth: "600px",
     margin: "0 auto",
     marginBottom: spacing.lg,
+    minHeight: "24px",
   },
 
   [theme.breakpoints.down("sm")]: {

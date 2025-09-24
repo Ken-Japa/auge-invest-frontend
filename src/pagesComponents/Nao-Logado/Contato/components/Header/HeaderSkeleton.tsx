@@ -12,6 +12,7 @@ export const HeaderSkeleton: FC = () => (
             type="text"
             textLines={3}
             className="p-4 bg-[#ffffff0a] backdrop-blur-sm"
+            style={{ minHeight: "150px" }}
         />
     </HeaderSkeletonStyled>
 );

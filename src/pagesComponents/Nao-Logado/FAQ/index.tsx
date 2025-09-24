@@ -30,6 +30,9 @@ const CategoryTabs = lazy(() => import('./components/CategoryTabs').then(mod => 
 const QuestionList = lazy(() => import('./components/QuestionList').then(mod => ({ default: mod.QuestionList })));
 const ContactSupport = lazy(() => import('./components/ContactSupport').then(mod => ({ default: mod.ContactSupport })));
 
+const CategoryTabsSkeleton = lazy(() => import('./components/CategoryTabs/CategoryTabsSkeleton').then(mod => ({ default: mod.CategoryTabsSkeleton })));
+const ContactSupportSkeleton = lazy(() => import('./components/ContactSupport/ContactSupportSkeleton').then(mod => ({ default: mod.ContactSupportSkeleton })));
+
 export const FAQ: FC = () => {
     const [imageLoaded, setImageLoaded] = useState(false);
     const {
@@ -63,12 +66,16 @@ export const FAQ: FC = () => {
                             />
                         </SuspenseWrapper>
 
-                        {!searchTerm && (
+                        {!searchTerm ? (
                             <SuspenseWrapper>
                                 <CategoryTabs
                                     activeCategory={activeCategory}
                                     setActiveCategory={setActiveCategory}
                                 />
+                            </SuspenseWrapper>
+                        ) : (
+                            <SuspenseWrapper>
+                                <CategoryTabsSkeleton />
                             </SuspenseWrapper>
                         )}
 
@@ -83,7 +90,7 @@ export const FAQ: FC = () => {
 
                         <ProgressiveLoad>
                             <SuspenseWrapper>
-                                <ContactSupport />
+                                {imageLoaded ? <ContactSupport /> : <ContactSupportSkeleton />}
                             </SuspenseWrapper>
                         </ProgressiveLoad>
                     </div>

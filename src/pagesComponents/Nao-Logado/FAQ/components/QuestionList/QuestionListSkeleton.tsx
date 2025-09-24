@@ -10,7 +10,8 @@ const SKELETON_COUNT = 8;
 const SKELETON_PROPS = {
     type: "card" as const,
     cardHeight: 120,
-    className: `${visitorColors.skeletonBackground} backdrop-blur-sm`
+    className: `${visitorColors.skeletonBackground} backdrop-blur-sm`,
+    style: { minHeight: "120px" }
 } as const;
 
 export const QuestionListSkeleton: FC = () => (
