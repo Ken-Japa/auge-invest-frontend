@@ -41,7 +41,7 @@ export const BlogCard = ({ title, description, image, author, date, slug, isLoad
                     )}
                     <CardContent sx={{ pt: image ? 2 : 3, pb: 3 }}>
                         <Typography
-                            variant="h5"
+                            variant="h3"
                             sx={{
                                 fontSize: { xs: '1.25rem', md: '1.5rem' },
                                 fontWeight: 700,

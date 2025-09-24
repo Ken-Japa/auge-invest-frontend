@@ -45,11 +45,11 @@ export const ContactFormStyled = styled("form")({
 
   "& .submit-button": {
     marginTop: spacing.lg,
-    backgroundColor: visitorColors.primary,
-    color: visitorColors.text,
+    backgroundColor: visitorColors.buttonPrimary,
+    color: visitorColors.buttonText,
     transition: transitions.medium,
     "&:hover": {
-      backgroundColor: visitorColors.buttonPrimary,
+      backgroundColor: "#004a9e",
     },
   },
 });

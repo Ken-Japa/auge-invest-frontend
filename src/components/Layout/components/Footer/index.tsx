@@ -81,7 +81,7 @@ export const Footer = () => {
                         {/* Middle Section */}
                         <NavigationSection>
                             <Box sx={{ width: '100%', textAlign: 'center' }}>
-                                <SectionTitle variant="h4">
+                                <SectionTitle variant="h3">
                                     Links
                                 </SectionTitle>
                                 <FooterNavigation />
@@ -89,7 +89,7 @@ export const Footer = () => {
                         </NavigationSection>
 
                         <SocialSection>
-                            <Typography variant="h4">
+                            <Typography variant="h3">
                                 Redes Sociais
                             </Typography>
                             <Box sx={{ display: 'flex', gap: 3 }}>

@@ -20,8 +20,8 @@ export async function generateMetadata(
   const { post } = blogPostsModule;
 
   return {
-    title: post.title,
-    description: post.description,
+    title: `${post.title} - Blog Post Auge Invest`,
+    description: post.description || "Artigos, análises e insights sobre o mercado financeiro. Mantenha-se atualizado com as últimas tendências e estratégias de investimento.",
     openGraph: {
       title: post.title,
       description: post.description,
@@ -31,17 +31,18 @@ export async function generateMetadata(
       siteName: "Auge Invest",
       images: [
         {
-          url: post.image || "/assets/images/blog/blog-cover.jpg",
+          url: post.image || "/assets/images/background/BlogPost.jpg",
           width: 1200,
           height: 630,
           alt: post.title,
         },
       ],
     },
-    keywords: post.keywords,
+    keywords: post.keywords?.join(', ') || 'blog, Auge Invest, Blog Post',
   };
 }
 
+export const revalidate = 36000;
 const BlogPostPage = async ({ params }: BlogPostPageProps) => {
   const { slug } = await params;
 
@@ -56,16 +57,16 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 
   const relatedPostsData: BlogPostType[] = post.relatedPosts
     ? (await Promise.all(
-        post.relatedPosts.map(async (relatedSlug: string) => {
-          try {
-            const relatedPostModule = await import(`@/content/blog/${relatedSlug}.ts`);
-            return relatedPostModule.post;
-          } catch (error) {
-            console.error(`Error importing related post ${relatedSlug}:`, error);
-            return null;
-          }
-        })
-      )).filter(Boolean) as BlogPostType[]
+      post.relatedPosts.map(async (relatedSlug: string) => {
+        try {
+          const relatedPostModule = await import(`@/content/blog/${relatedSlug}.ts`);
+          return relatedPostModule.post;
+        } catch (error) {
+          console.error(`Error importing related post ${relatedSlug}:`, error);
+          return null;
+        }
+      })
+    )).filter(Boolean) as BlogPostType[]
     : [];
 
   return <BlogPost post={post} relatedPostsData={relatedPostsData} />;

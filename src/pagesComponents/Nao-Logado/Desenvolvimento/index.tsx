@@ -41,7 +41,7 @@ const FerramentasPage = () => {
                                 <SectionTitle variant="h2">
                                     Ferramentas em Desenvolvimento
                                 </SectionTitle>
-                                <Typography variant="h4" align="center" color="text.secondary" sx={{ mb: 4 }}>
+                                <Typography variant="h3" align="center" color="text.secondary" sx={{ mb: 4 }}>
                                     Estamos constantemente trabalhando para trazer as melhores ferramentas para você. Confira abaixo o que está por vir!
                                 </Typography>
                                 <Grid container spacing={4}>

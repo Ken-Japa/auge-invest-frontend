@@ -31,6 +31,7 @@ const BlogPost: FC<BlogPostProps> = ({ post, relatedPostsData }) => {
           alt="Blog Post Background"
           fill
           priority
+          fetchPriority="high"
           sizes="100vh"
           className="object-cover opacity-15"
           loadingClassName="scale-100 blur-sm"
