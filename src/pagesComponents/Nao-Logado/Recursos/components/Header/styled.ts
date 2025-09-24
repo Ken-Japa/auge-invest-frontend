@@ -6,10 +6,11 @@ export const HeaderContainer = styled("div")(({ theme }) => ({
   textAlign: "center",
   maxWidth: "48rem",
   margin: "0 auto",
-  marginTop: spacing.md,
+  marginTop: spacing.xxl,
+  marginBottom: spacing.xl,
 
-  "& .header-title": {
-    color: visitorColors.text,
+  "& .title": {
+    color: visitorColors.primary,
     fontSize: "2.5rem",
     fontWeight: "bold",
     marginBottom: spacing.md,
