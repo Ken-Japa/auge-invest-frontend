@@ -49,7 +49,7 @@ export const AlertButton = () => {
     <div>
       <IconButton
         onClick={handleMenu}
-        color="inherit"
+        color={Boolean(anchorEl) ? 'primary' : 'inherit'}
         aria-label="alert menu"
         aria-controls="alert-appbar"
         aria-haspopup="true"
@@ -75,11 +75,21 @@ export const AlertButton = () => {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
         PaperProps={{
           sx: {
             bgcolor: theme.palette.mode === 'light' ? 'rgba(255, 255, 255)' : 'rgba(33, 33, 33, 0.95)',
             color: theme.palette.mode === 'light' ? 'text.primary' : 'inherit',
-            maxHeight: 300, // Limita a altura do dropdown
+            maxHeight: 300,
+            borderRadius: '8px',
+            boxShadow: theme.shadows[3],
           }
         }}
       >
@@ -94,17 +104,31 @@ export const AlertButton = () => {
         ) : alerts.length === 0 ? (
           <MenuItem onClick={handleClose} disabled>Nenhum alerta encontrado.</MenuItem>
         ) : (
-          alerts.slice(0, MAX_DISPLAY_ITEMS).map((alert) => (
-            <AlertMenuItem
-              key={alert._id}
-              alert={alert}
-              onClose={handleClose}
-              markAlertAsRead={handleAlertMarkAsRead}
-            />
+          alerts.slice(0, MAX_DISPLAY_ITEMS).map((alert, index) => (
+            <div key={alert._id}>
+              <AlertMenuItem
+                alert={alert}
+                onClose={handleClose}
+                markAlertAsRead={handleAlertMarkAsRead}
+              />
+              {index < alerts.slice(0, MAX_DISPLAY_ITEMS).length - 1 && (
+                <Divider variant="middle" sx={{ borderStyle: 'dotted' }} />
+              )}
+            </div>
           ))
         )}
         <Divider />
-        <MenuItem component={Link} href="/alertas" onClick={handleClose}>
+        <MenuItem
+          component={Link}
+          href="/alertas"
+          onClick={handleClose}
+          sx={{
+            justifyContent: 'center',
+            '&:hover': {
+              backgroundColor: 'action.selected',
+            },
+          }}
+        >
           Configurar Alertas
         </MenuItem>
       </Menu>

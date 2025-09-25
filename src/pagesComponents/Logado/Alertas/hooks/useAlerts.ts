@@ -21,7 +21,7 @@ export const useAlerts = () => {
     } finally {
       setLoading(false);
     }
-  }, [revalidateAlerts]);
+  }, []);
 
   const createAlert = async (
     alertData: Omit<Alert, "_id" | "userId" | "createdAt" | "updatedAt" | "__v">

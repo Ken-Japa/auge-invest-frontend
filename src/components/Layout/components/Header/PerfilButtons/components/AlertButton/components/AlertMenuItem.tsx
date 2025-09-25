@@ -23,19 +23,25 @@ export const AlertMenuItem = ({ alert, onClose, markAlertAsRead }: AlertMenuItem
       key={alert._id}
       onClick={handleClick}
       sx={{
+        paddingY: 1,
+        paddingX: 2,
         bgcolor: alert.triggered ? theme.palette.action.selected : 'inherit',
+        textAlign: 'center',
         '&:hover': {
-          bgcolor: alert.triggered ? theme.palette.action.hover : 'inherit',
+          bgcolor: alert.triggered ? theme.palette.action.focus : theme.palette.action.hover,
         },
       }}
     >
       <Box>
-        <Typography variant="subtitle1">{alert.asset}</Typography>
+        <Typography variant="subtitle1" sx={{ marginBottom: 0.5 }}>{alert.asset}</Typography>
         <Typography
           variant="body2"
           color={alert.type === ALERT_TYPES.SELL ? theme.palette.error.main : theme.palette.success.main}
         >
-          {alert.type === ALERT_TYPES.SELL ? 'Venda' : 'Compra'} no valor de R$ {alert.targetPrice}
+          <Typography component="span" >
+            {alert.type === ALERT_TYPES.SELL ? 'Venda' : 'Compra'}
+          </Typography> no valor de
+          <Typography component="span" fontWeight="italic"> R$ {alert.targetPrice}</Typography>
         </Typography>
       </Box>
     </MenuItem>

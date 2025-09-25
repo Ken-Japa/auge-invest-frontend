@@ -90,7 +90,7 @@ export const FavoritesManagement: React.FC<FavoritesManagementProps> = () => {
 
         <List>
           {favorites.map((favorite) => (
-            <Card key={favorite._id} sx={{ marginBottom: 2 }}>
+            <Card key={favorite._id} sx={{ marginBottom: 2, boxShadow: 3, border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.05)' }}>
               <CardContent>
                 <ListItem
                   onClick={() => navigateToFavorite(favorite)}
@@ -110,8 +110,8 @@ export const FavoritesManagement: React.FC<FavoritesManagementProps> = () => {
                   }
                 >
                   <ListItemText
-                    primary={favorite.asset}
-                    secondary={favorite.type}
+                    primary={<Typography variant="h4" component="span" >{favorite.asset}</Typography>}
+                    secondary={<Typography variant="body2" color="text.secondary">{favorite.type}</Typography>}
                   />
                 </ListItem>
               </CardContent>
@@ -119,6 +119,6 @@ export const FavoritesManagement: React.FC<FavoritesManagementProps> = () => {
           ))}
         </List>
       </SettingsControlContainer>
-    </SettingsCard>
+    </SettingsCard >
   );
 };

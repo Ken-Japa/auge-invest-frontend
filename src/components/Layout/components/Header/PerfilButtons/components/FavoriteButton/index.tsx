@@ -26,7 +26,7 @@ export const FavoriteButton = () => {
     <div>
       <IconButton
         onClick={handleMenu}
-        color="inherit"
+        color={Boolean(anchorEl) ? "primary" : "inherit"}
         aria-label="favorite menu"
         aria-controls="favorite-appbar"
         aria-haspopup="true"
@@ -38,11 +38,21 @@ export const FavoriteButton = () => {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
         PaperProps={{
           sx: {
             bgcolor: theme.palette.mode === 'light' ? 'rgba(255, 255, 255)' : 'rgba(33, 33, 33, 0.95)',
             color: theme.palette.mode === 'light' ? 'text.primary' : 'inherit',
             maxHeight: 300, // Limita a altura do dropdown
+            borderRadius: '8px',
+            boxShadow: theme.shadows[3],
           }
         }}
       >
@@ -62,7 +72,17 @@ export const FavoriteButton = () => {
           ))
         )}
         <Divider />
-        <MenuItem component={Link} href="/perfil/configuracoes" onClick={handleClose}>
+        <MenuItem
+          component={Link}
+          href="/perfil/configuracoes"
+          onClick={handleClose}
+          sx={{
+            justifyContent: 'center',
+            '&:hover': {
+              backgroundColor: 'action.selected',
+            },
+          }}
+        >
           Configurar favoritos
         </MenuItem>
       </Menu>

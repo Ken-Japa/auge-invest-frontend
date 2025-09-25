@@ -1,4 +1,4 @@
-import { MenuItem, Typography } from '@mui/material';
+import { ListItemText, MenuItem, Typography } from '@mui/material';
 import { useFavoriteNavigation } from '@/hooks/useFavoriteNavigation';
 import { Favorite } from '@/services/api/types/favorite';
 
@@ -17,10 +17,15 @@ export const FavoriteMenuItem = ({ favorite, onClose }: FavoriteMenuItemProps) =
   };
 
   return (
-    <MenuItem onClick={handleClick}>
-      <Typography variant="inherit" noWrap>
-        {favorite.asset} ({favorite.type})
-      </Typography>
+    <MenuItem onClick={handleClick} sx={{ paddingY: 1, paddingX: 2, textAlign: 'center', '&:hover': { backgroundColor: 'action.hover' } }}>
+      <ListItemText
+        primary={
+          <Typography variant="body1" >
+            {favorite.asset}
+          </Typography>
+        }
+        secondary={favorite.type}
+      />
     </MenuItem>
   );
 };
