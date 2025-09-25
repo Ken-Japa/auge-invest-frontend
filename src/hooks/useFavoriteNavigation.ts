@@ -27,6 +27,7 @@ export const useFavoriteNavigation = () => {
         return;
     }
     router.push(path);
+    window.scrollTo(0, 0);
   };
 
   return { navigateToFavorite };

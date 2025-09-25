@@ -26,12 +26,14 @@ export const AlertButton = () => {
     setAnchorEl(null);
   };
 
-  const handleAlertMarkAsRead = async (alertId: string) => {
+  const handleAlertMarkAsRead = async (alert: any) => {
     try {
-      await markAlertAsRead(alertId);
-      setSnackbarMessage('Alerta marcado como lido!');
-      setSnackbarSeverity('success');
-      setSnackbarOpen(true);
+      await markAlertAsRead(alert._id);
+      if (alert.triggered) {
+        setSnackbarMessage('Alerta marcado como lido!');
+        setSnackbarSeverity('success');
+        setSnackbarOpen(true);
+      }
     } catch (err) {
       setSnackbarMessage('Erro ao marcar alerta como lido.');
       setSnackbarSeverity('error');

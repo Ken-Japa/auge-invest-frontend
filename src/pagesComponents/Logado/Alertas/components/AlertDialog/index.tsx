@@ -65,7 +65,7 @@ export const AlertDialog = ({ open, onClose, alert, refreshAlerts }: AlertDialog
                 targetPrice: 0,
                 currentPrice: 0,
                 percentageDistance: 0,
-                notificationMethods: [],
+                notificationMethods: ['app_notification'],
                 expiresAt: '',
                 recurring: false,
                 comments: ' ',

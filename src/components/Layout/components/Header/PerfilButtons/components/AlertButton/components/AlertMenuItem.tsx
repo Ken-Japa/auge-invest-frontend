@@ -7,14 +7,14 @@ import { Alert } from '@/services/api/types/alert-types';
 interface AlertMenuItemProps {
   alert: Alert;
   onClose: () => void;
-  markAlertAsRead: (alertId: string) => void;
+  markAlertAsRead: (alert: Alert) => void;
 }
 
 export const AlertMenuItem = ({ alert, onClose, markAlertAsRead }: AlertMenuItemProps) => {
   const theme = useTheme();
 
   const handleClick = () => {
-    markAlertAsRead(alert._id);
+    markAlertAsRead(alert);
     onClose();
   };
 

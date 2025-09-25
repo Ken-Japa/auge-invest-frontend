@@ -26,6 +26,7 @@ const baseColors = {
     main: "#8411CC", // Roxo principal para elementos secundários (Roxo violeta intenso)
     A100: "#A45AD3", // Roxo claro para hover (Lilás médio)
     A200: "#510083", // Roxo escuro para elementos ativos (Roxo escuro profundo)
+    A300: "#3f0069", // Roxo mais escuro para hover (Roxo violeta escuro)
     contrastText: "#502E6C", // Texto sobre fundo roxo (Roxo acinzentado escuro)
   },
   info: {

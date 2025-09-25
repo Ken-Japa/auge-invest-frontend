@@ -47,7 +47,15 @@ const TableContent = ({
     return (
         <>
             {alerts.map((alert) => (
-                <TableRow key={alert._id} sx={{ backgroundColor: alert.triggered ? theme.palette.secondary.A200 : 'inherit' }}>
+                <TableRow
+                    key={alert._id}
+                    sx={{
+                        backgroundColor: alert.triggered ? theme.palette.secondary.A200 : 'inherit',
+                        '&:hover': {
+                            backgroundColor: alert.triggered ? theme.palette.secondary.A300 : theme.palette.action.hover,
+                        },
+                    }}
+                >
                     <TableCell align="center">
                         <Typography variant="body1" component="strong">
                             {alert.asset}

@@ -62,7 +62,7 @@ export const FavoriteButton = () => {
           ))
         )}
         <Divider />
-        <MenuItem component={Link} href="/perfil/configuracoes?tab=favorites" onClick={handleClose}>
+        <MenuItem component={Link} href="/perfil/configuracoes" onClick={handleClose}>
           Configurar favoritos
         </MenuItem>
       </Menu>
