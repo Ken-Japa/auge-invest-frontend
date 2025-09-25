@@ -1,9 +1,13 @@
 export function getAuthToken(): string | null {
   const localToken = localStorage.getItem("authToken");
-  if (localToken) return localToken;
+  if (localToken) {
+    return localToken;
+  }
 
-  const cookieToken = getCookie("authToken") || getCookie("clientAuthToken");
-  if (cookieToken) return cookieToken;
+  const cookieToken = getCookie("clientAuthToken");
+  if (cookieToken) {
+    return cookieToken;
+  }
 
   const userId = getUserIdNoConsole();
   if (userId && userId.includes("@") === false) {
@@ -11,28 +15,27 @@ export function getAuthToken(): string | null {
     localStorage.setItem("authToken", tempToken);
     return tempToken;
   }
-
   return null;
 }
 
 // Função centralizada para definir dados de autenticação
 export function setAuthData(token: string, userId?: string): void {
   if (!token) return;
-  
+
   // Armazenar no localStorage (para acesso do cliente)
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     localStorage.setItem("authToken", token);
-    
+
     if (userId) {
       localStorage.setItem("userId", userId);
     }
   }
-  
+
   // Também definir em cookies para acesso entre abas
   if (typeof document !== "undefined") {
     const maxAge = 30 * 24 * 60 * 60; // 30 dias em segundos
     document.cookie = `authToken=${token}; path=/; max-age=${maxAge}; SameSite=Lax`;
-    
+
     if (userId) {
       document.cookie = `userId=${userId}; path=/; max-age=${maxAge}; SameSite=Lax`;
     }
@@ -88,12 +91,13 @@ export function clearAuthData(): void {
   localStorage.removeItem("userId");
 
   if (typeof document !== "undefined") {
-    document.cookie = "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie =
+      "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "clientAuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie =
+      "clientAuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   }
 }
-
 
 /**
  * Checks if the current auth token is valid
@@ -101,12 +105,12 @@ export function clearAuthData(): void {
  */
 export function hasValidToken(): boolean {
   const token = getAuthToken();
-  
+
   if (!token) return false;
-  
+
   // If it's a Google token, assume it's valid (we can't easily check)
-  if (token.startsWith('google_')) return true;
-  
+  if (token.startsWith("google_")) return true;
+
   // For JWT tokens, we could check expiration if the token is decoded
   // This is a simplified check - in a real app, you might want to decode the JWT
   // and check its expiration date

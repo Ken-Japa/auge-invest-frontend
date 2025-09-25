@@ -20,7 +20,7 @@ export const Logo = ({
                 width={width}
                 height={height}
                 priority
-                quality={60}
+                quality={100}
                 style={{
                     maxWidth: '100%',
                     aspectRatio: `${width}/${height}`

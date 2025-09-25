@@ -58,4 +58,5 @@ export interface User {
         defaultDashboard: 'visao-economia' | 'dashboard';
         defaultPositionType: 'real' | 'simulated';
     };
+    token?: string;
 }

@@ -90,7 +90,10 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null;
+        if (!credentials?.email || !credentials?.password) {
+          console.log("No credentials provided for CredentialsProvider.");
+          return null;
+        }
 
         try {
           const response = await fetch(
@@ -108,6 +111,10 @@ const handler = NextAuth({
           );
 
           if (!response.ok) {
+            console.error(
+              "Credentials login API response not OK.",
+              response.status
+            );
             return null;
           }
 
@@ -122,12 +129,12 @@ const handler = NextAuth({
               id: data.data.user?._id || "",
               email: data.data.user?.email || "",
               name: data.data.user?.name || "",
+              token: data.data.token || "",
             };
           }
-
           return null;
         } catch (error) {
-          console.error("Authentication error:", error);
+          console.error("Authentication error in CredentialsProvider:", error);
           return null;
         }
       },
@@ -150,19 +157,25 @@ const handler = NextAuth({
           // Send the Google token to our backend
           const apiResponse = await handleGoogleLogin(account.id_token);
 
-          if (apiResponse && apiResponse.user && apiResponse.user._id) {
+          if (apiResponse && apiResponse.data && apiResponse.data.token) {
             // Store user ID for profile fetching
-            user.id = apiResponse.user._id;
+            user.id = apiResponse.data._id;
+            // If your backend returns a token, set it here
+            if (apiResponse.success && apiResponse.data.token) {
+              await setAuthCookies(apiResponse.data.token, user.id);
+            }
           }
 
           return true;
         } catch (error) {
-          console.error("Google authentication error:", error);
+          console.error(
+            "Google authentication error in signIn callback:",
+            error
+          );
           // Still allow sign in even if our API fails
           return true;
         }
       }
-
       return true;
     },
 
@@ -170,6 +183,10 @@ const handler = NextAuth({
       // Add user ID to the token when signing in
       if (user) {
         token.userId = user.id;
+        // Add the token from credentials provider if available
+        if (user.token) {
+          token.accessToken = user.token;
+        }
       }
 
       // Add the auth token from Google sign-in
@@ -184,6 +201,11 @@ const handler = NextAuth({
       // Add user ID to the session
       if (token.userId) {
         session.user.id = token.userId as string;
+      }
+
+      // Add the access token to the session
+      if (token.accessToken) {
+        session.accessToken = token.accessToken as string;
       }
 
       return session;
