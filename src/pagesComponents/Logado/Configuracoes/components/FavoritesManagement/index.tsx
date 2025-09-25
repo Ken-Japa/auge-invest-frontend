@@ -9,6 +9,7 @@ import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar';
 import { SettingsCard } from '@/components/Core/Card/SettingsCard';
 import { SettingsControlContainer } from '../../styled';
 import StarIcon from '@mui/icons-material/Star';
+import { useApi } from '@/providers/ApiProvider';
 
 interface FavoritesManagementProps {
   // Adicione props se necessário
@@ -20,6 +21,7 @@ export const FavoritesManagement: React.FC<FavoritesManagementProps> = () => {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { revalidateFavorites } = useApi();
 
   const fetchFavorites = useCallback(async () => {
     if (userId) {
@@ -45,6 +47,7 @@ export const FavoritesManagement: React.FC<FavoritesManagementProps> = () => {
     try {
       await api.favorites.createFavorite({ asset: symbol, type });
       fetchFavorites();
+      revalidateFavorites();
     } catch (err) {
       console.error('Erro ao adicionar favorito:', err);
       setError('Não foi possível adicionar o favorito.');
@@ -55,6 +58,7 @@ export const FavoritesManagement: React.FC<FavoritesManagementProps> = () => {
     try {
       await api.favorites.deleteFavorite(id);
       fetchFavorites();
+      revalidateFavorites();
     } catch (err) {
       console.error('Erro ao remover favorito:', err);
       setError('Não foi possível remover o favorito.');

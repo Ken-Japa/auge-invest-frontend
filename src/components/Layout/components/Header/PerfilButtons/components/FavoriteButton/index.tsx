@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Link from "next/link";
-import { IconButton, Menu, MenuItem, Divider, CircularProgress } from '@mui/material';
+import { IconButton, Menu, MenuItem, Divider } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useTheme } from '@mui/material/styles';
 import { useUserFavorites } from '@/components/Layout/components/Header/PerfilButtons/components/FavoriteButton/hooks/useUserFavorites';

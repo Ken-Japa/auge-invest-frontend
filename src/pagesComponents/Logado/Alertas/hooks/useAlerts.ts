@@ -1,11 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { Alert } from "@/services/api/types";
 import { alertsService } from "../services/alertsService";
-import { useSession } from "next-auth/react";
+import { useApi } from "@/providers/ApiProvider";
 
 export const useAlerts = () => {
-  const { data: session } = useSession();
-  const userId = session?.user?.id;
+  const { revalidateAlerts } = useApi();
 
   const [alerts, setAlerts] = useState<Alert[]>([]);
   const [loading, setLoading] = useState(true);
@@ -24,12 +23,15 @@ export const useAlerts = () => {
     }
   }, []);
 
-  const createAlert = async (alertData: Omit<Alert, "_id" | "userId" | "createdAt" | "updatedAt" | "__v">) => {
+  const createAlert = async (
+    alertData: Omit<Alert, "_id" | "userId" | "createdAt" | "updatedAt" | "__v">
+  ) => {
     try {
       const newAlert = await alertsService.createAlert({
         ...alertData,
       });
-      setAlerts((prev) => [...prev, newAlert]);
+      fetchAlerts();
+      revalidateAlerts(); // Trigger revalidation for header alerts
       return newAlert;
     } catch (err) {
       setError("Falha ao criar alerta");
@@ -40,7 +42,8 @@ export const useAlerts = () => {
   const updateAlert = async (id: string, alertData: Partial<Alert>) => {
     try {
       const updatedAlert = await alertsService.updateAlert(id, alertData);
-      setAlerts((prev) => prev.map((a) => (a._id === id ? updatedAlert : a)));
+      fetchAlerts();
+      revalidateAlerts(); // Trigger revalidation for header alerts
       return updatedAlert;
     } catch (err) {
       setError("Falha ao atualizar alerta");
@@ -51,19 +54,23 @@ export const useAlerts = () => {
   const deleteAlert = async (id: string) => {
     try {
       await alertsService.deleteAlert(id);
-      setAlerts((prev) => prev.filter((a) => a._id !== id));
+      fetchAlerts();
+      revalidateAlerts(); // Trigger revalidation for header alerts
     } catch (err) {
       setError("Falha ao deletar alerta");
       throw err;
     }
   };
 
-  const toggleAlert = async (id: string, key: 'recurring' | 'triggered', value: boolean) => {
+  const toggleAlert = async (
+    id: string,
+    key: "recurring" | "triggered",
+    value: boolean
+  ) => {
     try {
       await alertsService.toggleAlert(id, key, value);
-      setAlerts((prev) =>
-        prev.map((a) => (a._id === id ? { ...a, [key]: value } : a))
-      );
+      fetchAlerts();
+      revalidateAlerts(); // Trigger revalidation for header alerts
     } catch (err) {
       setError("Falha ao vizualizar alerta");
       throw err;

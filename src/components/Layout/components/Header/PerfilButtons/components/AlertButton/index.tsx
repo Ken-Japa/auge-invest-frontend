@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Link from "next/link";
-import { IconButton, Menu, Badge, Divider, CircularProgress, MenuItem } from '@mui/material';
+import { IconButton, Menu, Badge, Divider, MenuItem } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useTheme } from '@mui/material/styles';
 import { useUserAlerts } from '@/components/Layout/components/Header/PerfilButtons/components/AlertButton/hooks/useUserAlerts';
@@ -52,7 +52,19 @@ export const AlertButton = () => {
         aria-controls="alert-appbar"
         aria-haspopup="true"
       >
-        <Badge badgeContent={triggeredAlertCount} color="error">
+        <Badge
+          badgeContent={triggeredAlertCount}
+          color="primary"
+          sx={{
+            "& .MuiBadge-badge": {
+              height: 18,
+              minWidth: 18,
+              fontSize: 10,
+              padding: "0 4px",
+              backgroundColor: theme.palette.warning.main,
+            },
+          }}
+        >
           <NotificationsIcon />
         </Badge>
       </IconButton>

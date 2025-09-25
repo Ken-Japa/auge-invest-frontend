@@ -12,9 +12,21 @@ import { AlertsTable } from './components/AlertsTable';
 import { AddAlertButton } from './components/AddAlertButton';
 import { PageHeader, ActionContainer } from './styled';
 import { useAlerts } from './hooks/useAlerts';
+import { useApi } from '@/providers/ApiProvider';
 
 export const Alertas = () => {
     const { alerts, loading, error, refreshAlerts, toggleAlert, deleteAlert } = useAlerts();
+    const { revalidateAlerts } = useApi();
+
+    const handleDeleteAlert = async (alertId: string) => {
+        await deleteAlert(alertId);
+        revalidateAlerts();
+    };
+
+    const handleToggleAlert = async (alertId: string, field: 'recurring' | 'triggered', value: boolean) => {
+        await toggleAlert(alertId, field, value);
+        revalidateAlerts();
+    };
 
     return (
         <PageTransition direction="up" duration={0.4} distance={30}>
@@ -41,12 +53,13 @@ export const Alertas = () => {
                         >
                             <ProgressiveLoad delay={0.2}>
                                 <AlertsTable
+                                    key={alerts.length}
                                     alerts={alerts}
                                     loading={loading}
                                     error={error}
                                     refreshAlerts={refreshAlerts}
-                                    toggleAlert={toggleAlert}
-                                    deleteAlert={deleteAlert}
+                                    toggleAlert={handleToggleAlert}
+                                    deleteAlert={handleDeleteAlert}
                                 />
                             </ProgressiveLoad>
                         </SuspenseWrapper>

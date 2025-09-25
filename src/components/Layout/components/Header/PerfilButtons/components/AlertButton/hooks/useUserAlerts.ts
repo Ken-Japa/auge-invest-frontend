@@ -1,65 +1,61 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
-import { useSession } from 'next-auth/react';
-import { alertsApi } from '@/services/api/endpoints/alerts';
-import { Alert } from '@/services/api/types/alert-types';
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { api } from "@/services/api";
+import { useApi } from "@/providers/ApiProvider";
 
 export const useUserAlerts = () => {
-  const { data: session } = useSession();
-  const userId = session?.user?.id;
-  const [alerts, setAlerts] = useState<Alert[]>([]);
+  const [alerts, setAlerts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { revalidateAlerts } = useApi();
 
   const fetchAlerts = useCallback(async () => {
-    if (!userId) {
-      setLoading(false);
-      return;
-    }
     try {
       setLoading(true);
-      const response = await alertsApi.getAlertsByUser();
-      // Sort alerts: triggered first, then by createdAt (newest first)
-      const sortedAlerts = response.result.sort((a, b) => {
-        // Prioritize triggered alerts
-        if (a.triggered && !b.triggered) return -1;
-        if (!a.triggered && b.triggered) return 1;
-        
-        // If both are triggered or both are not triggered, sort by creation date
-        if (a.createdAt === undefined && b.createdAt === undefined) return 0;
-        if (a.createdAt === undefined) return 1; // 'a' comes after 'b' if 'a.createdAt' is undefined
-        if (b.createdAt === undefined) return -1; // 'b' comes after 'a' if 'b.createdAt' is undefined
-        
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(); // Newest first
+      const response = await api.alerts.getAlertsByUser();
+      const sortedAlerts = response.result.sort((a: any, b: any) => {
+        if (a.triggered === b.triggered) {
+          return (
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+        }
+        return a.triggered ? 1 : -1;
       });
-      setAlerts(sortedAlerts || []);
+      setAlerts(sortedAlerts);
     } catch (err) {
-      setError('Falha ao carregar alertas.');
-      console.error('Falha ao carregar alertas:', err);
+      setError("Failed to fetch alerts.");
+      console.error("Failed to fetch alerts:", err);
     } finally {
       setLoading(false);
-    }
-  }, [userId]);
-
-  const markAlertAsRead = useCallback(async (alertId: string) => {
-    try {
-      await alertsApi.updateAlert(alertId, { triggered: false });
-      setAlerts((prevAlerts) =>
-        prevAlerts.map((alert) =>
-          alert._id === alertId ? { ...alert, triggered: false } : alert
-        )
-      );
-    } catch (err) {
-      console.error(`Erro ao marcar alerta ${alertId} como lido:`, err);
     }
   }, []);
 
   useEffect(() => {
     fetchAlerts();
-  }, [fetchAlerts]);
+  }, [fetchAlerts, revalidateAlerts]);
+
+  const markAlertAsRead = useCallback(async (alertId: string) => {
+    try {
+      await api.alerts.updateAlert(alertId, { triggered: true });
+      setAlerts((prevAlerts) =>
+        prevAlerts.map((alert) =>
+          alert._id === alertId ? { ...alert, triggered: true } : alert
+        )
+      );
+    } catch (err) {
+      console.error("Failed to mark alert as read:", err);
+    }
+  }, []);
 
   const triggeredAlertCount = useMemo(() => {
     return alerts.filter((alert) => alert.triggered).length;
   }, [alerts]);
 
-  return { alerts, loading, error, triggeredAlertCount, fetchAlerts, markAlertAsRead };
+  return {
+    alerts,
+    loading,
+    error,
+    markAlertAsRead,
+    triggeredAlertCount,
+    fetchAlerts,
+  };
 };
