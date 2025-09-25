@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Box, Typography, List, ListItem, ListItemText, IconButton, CircularProgress, Alert as MuiAlert } from '@mui/material';
+import { Box, Typography, List, ListItem, ListItemText, IconButton, CircularProgress, Alert as MuiAlert, Card, CardContent } from '@mui/material';
+import { useFavoriteNavigation } from '@/hooks/useFavoriteNavigation';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useSession } from 'next-auth/react';
 import { api } from '@/services/api';
@@ -24,8 +25,8 @@ export const FavoritesManagement: React.FC<FavoritesManagementProps> = () => {
     if (userId) {
       try {
         setLoading(true);
-        const response = await api.favorites.getFavoritesByUser(userId);
-        setFavorites(response.data.result);
+        const response = await api.favorites.getFavoritesByUser();
+        setFavorites(response.result || []);
       } catch (err) {
         setError("Failed to fetch favorites.");
         console.error("Failed to fetch favorites:", err);
@@ -42,8 +43,8 @@ export const FavoritesManagement: React.FC<FavoritesManagementProps> = () => {
   const handleAddFavorite = async (symbol: string, type: string) => {
     if (!userId) return;
     try {
-      await api.favorites.createFavorite({ asset: symbol, type, userId });
-      fetchFavorites(); 
+      await api.favorites.createFavorite({ asset: symbol, type });
+      fetchFavorites();
     } catch (err) {
       console.error('Erro ao adicionar favorito:', err);
       setError('Não foi possível adicionar o favorito.');
@@ -53,12 +54,14 @@ export const FavoritesManagement: React.FC<FavoritesManagementProps> = () => {
   const handleDeleteFavorite = async (id: string) => {
     try {
       await api.favorites.deleteFavorite(id);
-      fetchFavorites(); 
+      fetchFavorites();
     } catch (err) {
       console.error('Erro ao remover favorito:', err);
       setError('Não foi possível remover o favorito.');
     }
   };
+
+  const { navigateToFavorite } = useFavoriteNavigation();
 
   return (
     <SettingsCard
@@ -83,19 +86,29 @@ export const FavoritesManagement: React.FC<FavoritesManagementProps> = () => {
 
         <List>
           {favorites.map((favorite) => (
-            <ListItem
-              key={favorite._id}
-              secondaryAction={
-                <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteFavorite(favorite._id)}>
-                  <DeleteIcon />
-                </IconButton>
-              }
-            >
-              <ListItemText
-                primary={favorite.asset}
-                secondary={favorite.type}
-              />
-            </ListItem>
+            <Card key={favorite._id} sx={{ marginBottom: 2 }}>
+              <CardContent>
+                <ListItem
+                  onClick={() => navigateToFavorite(favorite)}
+                  sx={{
+                    cursor: 'pointer',
+                    '&:hover': {
+                      backgroundColor: 'action.hover',
+                    },
+                  }}
+                  secondaryAction={
+                    <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteFavorite(favorite._id)}>
+                      <DeleteIcon color="error" />
+                    </IconButton>
+                  }
+                >
+                  <ListItemText
+                    primary={favorite.asset}
+                    secondary={favorite.type}
+                  />
+                </ListItem>
+              </CardContent>
+            </Card>
           ))}
         </List>
       </SettingsControlContainer>

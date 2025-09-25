@@ -12,10 +12,9 @@ export const useAlerts = () => {
   const [error, setError] = useState<string | null>(null);
 
   const fetchAlerts = useCallback(async () => {
-    if (!userId) return;
     try {
       setLoading(true);
-      const data = await alertsService.getAlerts(userId);
+      const data = await alertsService.getAlerts();
       setAlerts(data);
       setError(null);
     } catch (err) {
@@ -23,15 +22,12 @@ export const useAlerts = () => {
     } finally {
       setLoading(false);
     }
-  }, [userId]);
+  }, []);
 
-  const createAlert = async (alertData: Omit<Alert, "id">) => {
-    if (!userId) return;
+  const createAlert = async (alertData: Omit<Alert, "_id" | "userId" | "createdAt" | "updatedAt" | "__v">) => {
     try {
-      console.log(userId);
       const newAlert = await alertsService.createAlert({
         ...alertData,
-        userId,
       });
       setAlerts((prev) => [...prev, newAlert]);
       return newAlert;
@@ -44,7 +40,7 @@ export const useAlerts = () => {
   const updateAlert = async (id: string, alertData: Partial<Alert>) => {
     try {
       const updatedAlert = await alertsService.updateAlert(id, alertData);
-      setAlerts((prev) => prev.map((a) => (a.id === id ? updatedAlert : a)));
+      setAlerts((prev) => prev.map((a) => (a._id === id ? updatedAlert : a)));
       return updatedAlert;
     } catch (err) {
       setError("Falha ao atualizar alerta");
@@ -55,18 +51,18 @@ export const useAlerts = () => {
   const deleteAlert = async (id: string) => {
     try {
       await alertsService.deleteAlert(id);
-      setAlerts((prev) => prev.filter((a) => a.id !== id));
+      setAlerts((prev) => prev.filter((a) => a._id !== id));
     } catch (err) {
       setError("Falha ao deletar alerta");
       throw err;
     }
   };
 
-  const toggleAlert = async (id: string, active: boolean) => {
+  const toggleAlert = async (id: string, key: 'recurring' | 'triggered', value: boolean) => {
     try {
-      await alertsService.toggleAlert(id, active);
+      await alertsService.toggleAlert(id, key, value);
       setAlerts((prev) =>
-        prev.map((a) => (a.id === id ? { ...a, triggered: active } : a))
+        prev.map((a) => (a._id === id ? { ...a, [key]: value } : a))
       );
     } catch (err) {
       setError("Falha ao vizualizar alerta");
@@ -75,10 +71,8 @@ export const useAlerts = () => {
   };
 
   useEffect(() => {
-    if (userId) {
-      fetchAlerts();
-    }
-  }, [fetchAlerts, userId]);
+    fetchAlerts();
+  }, [fetchAlerts]);
 
   return {
     alerts,

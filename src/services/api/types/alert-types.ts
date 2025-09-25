@@ -1,6 +1,8 @@
+import { Pagination } from "./common";
+
 export interface Alert {
-  id: string;
-  type: 'buy' | 'sell';
+  _id: string;
+  type: "buy" | "sell";
   asset: string;
   targetPrice: number;
   currentPrice: number;
@@ -11,6 +13,9 @@ export interface Alert {
   userId: string;
   comments?: string;
   triggered?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+  __v?: number;
 }
 
 export interface AlertFilter {
@@ -19,9 +24,6 @@ export interface AlertFilter {
 }
 
 export interface AlertListResponseApi {
-  content: Alert[];
-  totalElements: number;
-  totalPages: number;
-  size: number;
-  number: number;
+  result: Alert[];
+  pagination: Pagination;
 }

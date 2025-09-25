@@ -1,9 +1,48 @@
-import api from "../client";
-import { Favorite, CreateFavorite } from "../types/favorite";
+import { BaseApiService } from "../baseService";
+import { API_ENDPOINTS } from "../config";
+import {
+  Favorite,
+  CreateFavorite,
+  FavoriteFilter,
+  FavoriteListResponseApi,
+} from "../types/favorite";
+import { ErrorCode, handleApiError } from "../errorHandler";
 
-export const favoritesApi = {
-  getFavoritesByUser: (userId: string, page: number = 0, pageSize: number = 10): Promise<{ data: { result: Favorite[]; total: number; page: number; pages: number; }; }> =>
-    api.get(`/favorites/user/${userId}?page=${page}&pageSize=${pageSize}`),
-  createFavorite: (favorite: CreateFavorite) => api.post("/favorites", favorite),
-  deleteFavorite: (id: string) => api.delete(`/favorites/${id}`),
-};
+class FavoritesApiService extends BaseApiService {
+  getFavoritesByUser = async (
+    filters?: FavoriteFilter
+  ): Promise<FavoriteListResponseApi> => {
+    const params = {
+      page: filters?.page !== undefined ? filters.page : 0,
+      pageSize: filters?.pageSize || 10,
+    };
+    try {
+      return await this.get<FavoriteListResponseApi>(
+        `${API_ENDPOINTS.FAVORITES.BASE}/user`,
+        params
+      );
+    } catch (error) {
+      console.error(`Erro ao buscar alertas para o usuário:`, error);
+      throw handleApiError(error, ErrorCode.FAVORITE_NOT_FOUND);
+    }
+  };
+
+  createFavorite = async (favorite: CreateFavorite): Promise<Favorite> => {
+    try {
+      return await this.post<Favorite>(API_ENDPOINTS.FAVORITES.BASE, favorite);
+    } catch (error) {
+      console.error(`Erro ao criar favorito:`, error);
+      throw handleApiError(error, ErrorCode.FAVORITE_CREATION_FAILED);
+    }
+  };
+
+  deleteFavorite = async (id: string): Promise<void> => {
+    try {
+      await this.delete(`${API_ENDPOINTS.FAVORITES.BASE}/${id}`);
+    } catch (error) {
+      console.error(`Erro ao deletar favorito:`, error);
+      throw handleApiError(error, ErrorCode.FAVORITE_DELETION_FAILED);
+    }
+  };
+}
+export const favoritesApi = new FavoritesApiService();

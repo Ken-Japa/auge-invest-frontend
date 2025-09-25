@@ -1,5 +1,6 @@
 import React from 'react';
-import { ToggleButtonGroup, ToggleButton, styled } from '@mui/material';
+import { ToggleButtonGroup, ToggleButton } from '@mui/material';
+import { styled } from "@mui/material/styles";
 
 export type PeriodType = '1M' | '6M' | '1A' | '5A' | 'MAX';
 

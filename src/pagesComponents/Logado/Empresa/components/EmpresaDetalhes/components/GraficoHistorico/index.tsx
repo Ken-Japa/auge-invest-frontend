@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Typography, useTheme, CircularProgress } from '@mui/material';
+import { Typography, CircularProgress } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
 
 import { LineChart } from '@/components/Data-Display/Charts/LineChart';
 import { PeriodSelector, PeriodType } from './components/PeriodSelector';

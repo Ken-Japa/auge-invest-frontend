@@ -27,7 +27,7 @@ export const AlertsTable = () => {
     };
 
     const handleToggle = async (alert: Alert) => {
-        await toggleAlert(alert.id, !alert.triggered);
+        await toggleAlert(alert._id, 'recurring', !alert.recurring);
     };
 
     const handleDelete = async (id: string) => {
@@ -38,7 +38,7 @@ export const AlertsTable = () => {
         'Ativo',
         'Tipo',
         'Preço Alvo',
-        'Status',
+        'Recorrente',
         'Ações'
     ];
 
@@ -61,7 +61,7 @@ export const AlertsTable = () => {
                 noDataDescription="Clique em 'Adicionar Alerta' para criar seu primeiro alerta de preço."
             >
                 {alerts.map((alert) => (
-                    <TableRow key={alert.id}>
+                    <TableRow key={alert._id}>
                         <TableCell>
                             <Typography variant="body1" component="strong">
                                 {alert.asset}
@@ -79,7 +79,7 @@ export const AlertsTable = () => {
                         </TableCell>
                         <TableCell align="center">
                             <Switch
-                                checked={alert.triggered}
+                                checked={alert.recurring}
                                 onChange={() => handleToggle(alert)}
                             />
                         </TableCell>
@@ -97,13 +97,17 @@ export const AlertsTable = () => {
                                     <IconButton
                                         size="small"
                                         color="error"
-                                        onClick={() => handleDelete(alert.id)}
+                                        onClick={() => handleDelete(alert._id)}
                                     >
                                         <DeleteIcon />
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title="Notificações">
-                                    <IconButton size="small" color="primary">
+                                    <IconButton
+                                        size="small"
+                                        color={alert.triggered ? "primary" : "default"}
+                                        onClick={() => toggleAlert(alert._id, 'triggered', !alert.triggered)}
+                                    >
                                         <NotificationsActiveIcon />
                                     </IconButton>
                                 </Tooltip>

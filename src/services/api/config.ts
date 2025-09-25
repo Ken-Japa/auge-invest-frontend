@@ -89,7 +89,11 @@ export const API_ENDPOINTS = {
   // Alert endpoints
   ALERTS: {
     BASE: "/alerts",
-    USER_ALERTS: "/alerts/user",
+    USER_ALERTS: "/alerts",
+  },
+  // Favorite endpoints
+  FAVORITES: {
+    BASE: "/favorites",
   },
   // Outros grupos de endpoints...
 };

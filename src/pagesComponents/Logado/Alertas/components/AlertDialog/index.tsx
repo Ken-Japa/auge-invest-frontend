@@ -117,12 +117,11 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
                 notificationMethods: formData.notificationMethods,
                 expiresAt: formData.expiresAt ? new Date(formData.expiresAt) : undefined,
                 comments: formData.comments,
-                triggered: false, // Default to false as per requirements
-                userId: userId,
+                triggered: false,
             };
 
             if (alert) {
-                await updateAlert(alert.id, alertData);
+                await updateAlert(alert._id, alertData);
             } else {
                 await createAlert(alertData);
             }

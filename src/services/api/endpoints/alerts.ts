@@ -6,7 +6,8 @@ import { ErrorCode, handleApiError } from "../errorHandler";
 class AlertsApiService extends BaseApiService {
   createAlert = async (alert: Alert) => {
     try {
-      return await this.post<Alert>(API_ENDPOINTS.ALERTS.BASE, alert);
+      const { userId, ...alertWithoutUserId } = alert;
+      return await this.post<Alert>(API_ENDPOINTS.ALERTS.BASE, alertWithoutUserId);
     } catch (error) {
       console.error("Erro ao criar alerta:", error);
       throw handleApiError(error, ErrorCode.ALERT_CREATION_ERROR);
@@ -14,7 +15,6 @@ class AlertsApiService extends BaseApiService {
   };
 
   getAlertsByUser = async (
-    userId: string,
     filters?: AlertFilter
   ): Promise<AlertListResponseApi> => {
     const params = {
@@ -23,11 +23,11 @@ class AlertsApiService extends BaseApiService {
     };
     try {
       return await this.get<AlertListResponseApi>(
-        `${API_ENDPOINTS.ALERTS.USER_ALERTS}/${userId}`,
+        `${API_ENDPOINTS.ALERTS.USER_ALERTS}`,
         params
       );
     } catch (error) {
-      console.error(`Erro ao buscar alertas para o usuário ${userId}:`, error);
+      console.error(`Erro ao buscar alertas para o usuário:`, error);
       throw handleApiError(error, ErrorCode.ALERT_DATA_ERROR);
     }
   };
@@ -47,10 +47,7 @@ class AlertsApiService extends BaseApiService {
 
   updateAlert = async (id: string, alert: Partial<Alert>): Promise<Alert> => {
     try {
-      return await this.put<Alert>(
-        `${API_ENDPOINTS.ALERTS.BASE}/${id}`,
-        alert
-      );
+      return await this.put<Alert>(`${API_ENDPOINTS.ALERTS.BASE}/${id}`, alert);
     } catch (error) {
       console.error(`Erro ao atualizar alerta com ID ${id}:`, error);
       throw handleApiError(error, ErrorCode.ALERT_UPDATE_ERROR);
