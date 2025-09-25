@@ -23,6 +23,8 @@ export const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
   color: theme.palette.text.primary,
   fontWeight: 600,
   padding: spacing.md,
+  textAlign: 'center',
+  fontSize: theme.typography.h5.fontSize,
 }));
 
 export const StyledDialogContent = styled(DialogContent)(({ theme }) => ({

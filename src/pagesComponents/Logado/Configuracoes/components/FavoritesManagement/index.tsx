@@ -97,7 +97,10 @@ export const FavoritesManagement: React.FC<FavoritesManagementProps> = () => {
                     },
                   }}
                   secondaryAction={
-                    <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteFavorite(favorite._id)}>
+                    <IconButton edge="end" aria-label="delete" onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteFavorite(favorite._id);
+                    }}>
                       <DeleteIcon color="error" />
                     </IconButton>
                   }

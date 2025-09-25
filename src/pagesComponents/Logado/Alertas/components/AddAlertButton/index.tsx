@@ -4,11 +4,19 @@ import AddAlertIcon from '@mui/icons-material/AddAlert';
 import { AlertDialog } from '../AlertDialog';
 import { CustomButton } from '@/components/Core/Button';
 
-export const AddAlertButton = () => {
+interface AddAlertButtonProps {
+    refreshAlerts: () => void;
+}
+
+export const AddAlertButton = ({ refreshAlerts }: AddAlertButtonProps) => {
     const [openDialog, setOpenDialog] = useState(false);
 
     const handleAddAlert = () => {
         setOpenDialog(true);
+    };
+
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
     };
 
     return (
@@ -23,8 +31,9 @@ export const AddAlertButton = () => {
 
             <AlertDialog
                 open={openDialog}
-                onClose={() => setOpenDialog(false)}
+                onClose={handleCloseDialog}
                 alert={null}
+                refreshAlerts={refreshAlerts}
             />
         </>
     );

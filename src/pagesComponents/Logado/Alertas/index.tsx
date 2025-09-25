@@ -11,8 +11,11 @@ import { PageBackground } from '@/components/Layout/PageBackground';
 import { AlertsTable } from './components/AlertsTable';
 import { AddAlertButton } from './components/AddAlertButton';
 import { PageHeader, ActionContainer } from './styled';
+import { useAlerts } from './hooks/useAlerts';
 
 export const Alertas = () => {
+    const { alerts, loading, error, refreshAlerts, toggleAlert, deleteAlert } = useAlerts();
+
     return (
         <PageTransition direction="up" duration={0.4} distance={30}>
             <ErrorBoundary>
@@ -25,7 +28,7 @@ export const Alertas = () => {
                         </PageHeader>
 
                         <ActionContainer>
-                            <AddAlertButton />
+                            <AddAlertButton refreshAlerts={refreshAlerts} />
                         </ActionContainer>
 
                         <SuspenseWrapper
@@ -33,12 +36,18 @@ export const Alertas = () => {
                                 <ContentSkeleton
                                     type="card"
                                     cardHeight={400}
-                                    className="mt-4"
                                 />
                             }
                         >
                             <ProgressiveLoad delay={0.2}>
-                                <AlertsTable />
+                                <AlertsTable
+                                    alerts={alerts}
+                                    loading={loading}
+                                    error={error}
+                                    refreshAlerts={refreshAlerts}
+                                    toggleAlert={toggleAlert}
+                                    deleteAlert={deleteAlert}
+                                />
                             </ProgressiveLoad>
                         </SuspenseWrapper>
                     </Container>

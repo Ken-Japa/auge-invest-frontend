@@ -9,7 +9,8 @@ import {
     FormGroup,
     FormLabel,
     RadioGroup,
-    Radio
+    Radio,
+    Typography,
 } from '@mui/material';
 
 import { useSession } from "next-auth/react";
@@ -17,14 +18,16 @@ import { useSession } from "next-auth/react";
 import { Alert } from '@/services/api/types';
 import { useAlerts } from '../../hooks/useAlerts';
 import { StyledDialog } from '@/components/Feedback/Dialog/StyledDialog';
+import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar';
 
 interface AlertDialogProps {
     open: boolean;
     onClose: () => void;
     alert: Alert | null;
+    refreshAlerts?: () => void;
 }
 
-export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
+export const AlertDialog = ({ open, onClose, alert, refreshAlerts }: AlertDialogProps) => {
     const { createAlert, updateAlert } = useAlerts();
     const { data: session } = useSession();
     const userId = session?.user?.id;
@@ -53,7 +56,7 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
                 notificationMethods: alert.notificationMethods || [],
                 expiresAt: alert.expiresAt ? new Date(alert.expiresAt).toISOString().split('T')[0] : '',
                 recurring: alert.recurring || false,
-                comments: alert.comments || '',
+                comments: alert.comments || ' ',
             });
         } else {
             setFormData({
@@ -65,7 +68,7 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
                 notificationMethods: [],
                 expiresAt: '',
                 recurring: false,
-                comments: '',
+                comments: ' ',
             });
         }
     }, [alert, open]);
@@ -83,6 +86,13 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
                     : name.includes("Price") || name.includes("Distance")
                         ? parseFloat(value) || 0
                         : value,
+        }));
+    };
+
+    const handleAssetChange = (newValue: string | null) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            asset: newValue || '',
         }));
     };
 
@@ -127,6 +137,9 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
             }
 
             onClose();
+            if (refreshAlerts) {
+                await refreshAlerts();
+            }
         } catch (error) {
             console.error('Erro ao salvar alerta:', error);
         } finally {
@@ -147,15 +160,20 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
         >
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        label="Ativo"
-                        name="asset"
-                        value={formData.asset}
-                        onChange={handleChange}
-                        placeholder="Ex: PETR4"
-                        required
-                    />
+                    {alert ? (
+                        <Typography variant="h3" align="center">
+                            {formData.asset}
+                        </Typography>
+                    ) : (
+                        <GlobalSearchBar
+                            type="TodosSimplificado"
+                            onSelect={(item) => {
+                                if (item.id) {
+                                    handleAssetChange(item.id);
+                                }
+                            }}
+                        />
+                    )}
                 </Grid>
                 <Grid item xs={12}>
                     <FormLabel component="legend">Tipo de Alerta</FormLabel>
@@ -194,6 +212,7 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
                         InputProps={{
                             startAdornment: <InputAdornment position="start">R$</InputAdornment>
                         }}
+                        required
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -210,7 +229,7 @@ export const AlertDialog = ({ open, onClose, alert }: AlertDialogProps) => {
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    <FormLabel component="legend">Métodos de Notificação</FormLabel>
+                    <FormLabel component="legend">Métodos de Notificação*</FormLabel>
                     <FormGroup row>
                         <FormControlLabel
                             control={
