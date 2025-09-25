@@ -11,6 +11,8 @@ import { Logo } from "../../Logo";
 import { Navbar } from "./Navbar";
 import { LoginsButtons } from "./LoginRegisterButtons";
 import { PerfilButtons } from "./PerfilButtons";
+import { FavoriteButton } from "./PerfilButtons/components/FavoriteButton";
+import { AlertButton } from "./PerfilButtons/components/AlertButton";
 import { useDrawer } from "../../hooks/useDrawer";
 import { HeaderContainer, DrawerContent } from "./styled";
 import React, { useRef, useEffect } from 'react';
@@ -72,6 +74,8 @@ export const Header = () => {
                                 <DrawerContent ref={drawerContentRef} tabIndex={-1} role="dialog" aria-modal="true">
                                     <Navbar />
                                     <div className="mt-4">
+                                        <FavoriteButton />
+                                        <AlertButton />
                                         {session ?
                                             <PerfilButtons onButtonClick={toggle} isFullWidth />
                                             :
@@ -93,7 +97,11 @@ export const Header = () => {
                 {isMobile ? (
                     <></>
                 ) : (
-                    session ? <PerfilButtons /> : <LoginsButtons />
+                    <div className="flex items-center gap-2">
+                        <FavoriteButton />
+                        <AlertButton />
+                        {session ? <PerfilButtons /> : <LoginsButtons />}
+                    </div>
                 )}
             </Toolbar>
         </HeaderContainer>
