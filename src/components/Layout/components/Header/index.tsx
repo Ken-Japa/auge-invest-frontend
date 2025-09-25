@@ -98,9 +98,7 @@ export const Header = () => {
                     <></>
                 ) : (
                     <div className="flex items-center gap-2">
-                        <FavoriteButton />
-                        <AlertButton />
-                        {session ? <PerfilButtons /> : <LoginsButtons />}
+                        {session ? <> <FavoriteButton /> <AlertButton /> <PerfilButtons /> </> : <LoginsButtons />}
                     </div>
                 )}
             </Toolbar>
