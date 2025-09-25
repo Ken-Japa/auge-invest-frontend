@@ -33,3 +33,4 @@ export const useUserFavorites = () => {
 
   return { favorites, loading, error, fetchFavorites };
 };
+

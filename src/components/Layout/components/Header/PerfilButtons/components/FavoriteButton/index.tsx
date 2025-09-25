@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import Link from "next/link";
-import { IconButton, Menu, MenuItem, Divider, CircularProgress, Typography } from '@mui/material';
+import { IconButton, Menu, MenuItem, Divider, CircularProgress } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useTheme } from '@mui/material/styles';
 import { useUserFavorites } from '@/components/Layout/components/Header/PerfilButtons/components/FavoriteButton/hooks/useUserFavorites';
-import { useFavoriteNavigation } from '@/hooks/useFavoriteNavigation';
+import { MAX_DISPLAY_ITEMS } from '../constants';
+import { FavoriteMenuItem } from './components/FavoriteMenuItem';
+import { ErrorDisplay } from '@/components/Feedback/ErrorDisplay';
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 
 export const FavoriteButton = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const theme = useTheme();
-  const { favorites, loading, error } = useUserFavorites();
-  const { navigateToFavorite } = useFavoriteNavigation();
+  const { favorites, loading, error, fetchFavorites } = useUserFavorites();
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -19,13 +21,6 @@ export const FavoriteButton = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const handleFavoriteClick = (favorite: any) => {
-    navigateToFavorite(favorite);
-    handleClose();
-  };
-
-  const displayedFavorites = favorites.slice(0, 5); // Limita a 5 favoritos no dropdown
 
   return (
     <div>
@@ -52,21 +47,19 @@ export const FavoriteButton = () => {
         }}
       >
         {loading ? (
-          <MenuItem disabled>
-            <CircularProgress size={20} sx={{ mr: 1 }} /> Carregando...
+          <MenuItem disabled sx={{ display: 'block' }}>
+            <ContentSkeleton type="text" textLines={3} />
           </MenuItem>
         ) : error ? (
           <MenuItem disabled>
-            <Typography color="error">{error}</Typography>
+            <ErrorDisplay message="Erro ao carregar favoritos." onRetry={fetchFavorites} />
           </MenuItem>
-        ) : displayedFavorites.length > 0 ? (
-          displayedFavorites.map((favorite) => (
-            <MenuItem key={favorite._id} onClick={() => handleFavoriteClick(favorite)}>
-              {favorite.asset} ({favorite.type})
-            </MenuItem>
-          ))
+        ) : favorites.length === 0 ? (
+          <MenuItem onClick={handleClose} disabled>Nenhum favorito encontrado.</MenuItem>
         ) : (
-          <MenuItem onClick={handleClose}>Nenhum favorito adicionado</MenuItem>
+          favorites.slice(0, MAX_DISPLAY_ITEMS).map((fav) => (
+            <FavoriteMenuItem key={fav._id} favorite={fav} onClose={handleClose} />
+          ))
         )}
         <Divider />
         <MenuItem component={Link} href="/perfil/configuracoes?tab=favorites" onClick={handleClose}>

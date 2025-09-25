@@ -1,14 +1,22 @@
 import { useState } from 'react';
 import Link from "next/link";
-import { IconButton, Menu, MenuItem, Badge, Divider, CircularProgress, Typography, Box } from '@mui/material';
+import { IconButton, Menu, Badge, Divider, CircularProgress, MenuItem } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useTheme } from '@mui/material/styles';
 import { useUserAlerts } from '@/components/Layout/components/Header/PerfilButtons/components/AlertButton/hooks/useUserAlerts';
+import { MAX_DISPLAY_ITEMS } from '../constants';
+import { AlertMenuItem } from './components/AlertMenuItem';
+import { Snackbar } from '@/components/Feedback/Snackbar';
+import { ErrorDisplay } from '@/components/Feedback/ErrorDisplay';
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 
 export const AlertButton = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'info' | 'warning'>('info');
   const theme = useTheme();
-  const { alerts, loading, error, triggeredAlertCount, markAlertAsRead } = useUserAlerts();
+  const { alerts, loading, error, triggeredAlertCount, markAlertAsRead, fetchAlerts } = useUserAlerts();
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -18,13 +26,22 @@ export const AlertButton = () => {
     setAnchorEl(null);
   };
 
-  const handleAlertClick = (alertId: string) => {
-    markAlertAsRead(alertId);
-    // Optionally navigate or show alert details
-    handleClose();
+  const handleAlertMarkAsRead = async (alertId: string) => {
+    try {
+      await markAlertAsRead(alertId);
+      setSnackbarMessage('Alerta marcado como lido!');
+      setSnackbarSeverity('success');
+      setSnackbarOpen(true);
+    } catch (err) {
+      setSnackbarMessage('Erro ao marcar alerta como lido.');
+      setSnackbarSeverity('error');
+      setSnackbarOpen(true);
+    }
   };
 
-  const displayedAlerts = alerts.slice(0, 5); // Limita a 5 alertas no dropdown
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
 
   return (
     <div>
@@ -53,44 +70,36 @@ export const AlertButton = () => {
         }}
       >
         {loading ? (
-          <MenuItem disabled>
-            <CircularProgress size={20} sx={{ mr: 1 }} /> Carregando...
+          <MenuItem disabled sx={{ display: 'block' }}>
+            <ContentSkeleton type="text" textLines={3} />
           </MenuItem>
         ) : error ? (
           <MenuItem disabled>
-            <Typography color="error">{error}</Typography>
+            <ErrorDisplay message="Erro ao carregar alertas." onRetry={fetchAlerts} />
           </MenuItem>
-        ) : displayedAlerts.length > 0 ? (
-          displayedAlerts.map((alert) => (
-            <MenuItem
-              key={alert._id}
-              onClick={() => handleAlertClick(alert._id)}
-              sx={{
-                bgcolor: alert.triggered ? theme.palette.action.selected : 'inherit',
-                '&:hover': {
-                  bgcolor: alert.triggered ? theme.palette.action.hover : 'inherit',
-                },
-              }}
-            >
-              <Box>
-                <Typography variant="subtitle1">{alert.asset}</Typography>
-                <Typography
-                  variant="body2"
-                  color={alert.type === 'sell' ? theme.palette.error.main : theme.palette.success.main}
-                >
-                  {alert.type === 'sell' ? 'Venda' : 'Compra'} no valor de R$ {alert.targetPrice}
-                </Typography>
-              </Box>
-            </MenuItem>
-          ))
+        ) : alerts.length === 0 ? (
+          <MenuItem onClick={handleClose} disabled>Nenhum alerta encontrado.</MenuItem>
         ) : (
-          <MenuItem onClick={handleClose}>Nenhum alerta</MenuItem>
+          alerts.slice(0, MAX_DISPLAY_ITEMS).map((alert) => (
+            <AlertMenuItem
+              key={alert._id}
+              alert={alert}
+              onClose={handleClose}
+              markAlertAsRead={handleAlertMarkAsRead}
+            />
+          ))
         )}
         <Divider />
         <MenuItem component={Link} href="/alertas" onClick={handleClose}>
           Configurar Alertas
         </MenuItem>
       </Menu>
+      <Snackbar
+        open={snackbarOpen}
+        message={snackbarMessage}
+        severity={snackbarSeverity}
+        onClose={handleSnackbarClose}
+      />
     </div>
   );
 };
