@@ -51,7 +51,9 @@ export const Header = () => {
             <Toolbar className="flex justify-between items-center ">
                 {isMobile ? (
                     <>
-                        <Logo />
+                        <Link href="/">
+                            <Logo />
+                        </Link>
                         <div className="flex items-center">
                             <IconButton
                                 ref={iconButtonRef}

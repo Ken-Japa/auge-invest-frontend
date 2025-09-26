@@ -20,7 +20,7 @@ export const OptimizedImage = ({
     alt,
     className = '',
     loadingClassName = 'scale-110 blur-2xl grayscale',
-    quality = 75,
+    quality = 90,
     sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
     onImageError,
     priority = false, // Default to false if not provided

@@ -57,6 +57,7 @@ export const BlogCardList = ({ posts, isLoading }: BlogCardListProps) => {
                 ))}
             </Grid>
 
+
             {totalPages > 1 && (
                 <Box sx={{
                     display: 'flex',
@@ -77,6 +78,7 @@ export const BlogCardList = ({ posts, isLoading }: BlogCardListProps) => {
                         siblingCount={1}
                         boundaryCount={1}
                         sx={{
+
                             '& .MuiPaginationItem-root': {
                                 color: 'white',
                                 '&.Mui-selected': {
