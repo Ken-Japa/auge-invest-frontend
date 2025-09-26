@@ -1,6 +1,7 @@
 "use client";
 
 import { type FC, useState, useEffect, useRef, lazy } from 'react';
+import Head from "next/head";
 import { Container } from "@mui/material";
 
 import { PageTransition } from "@/components/Utils/PageTransition";
@@ -55,6 +56,14 @@ export const Solutions: FC = () => {
 
     return (
         <PageTransition direction="up" duration={0.4} distance={30} className="w-full">
+            <Head>
+                <link
+                    rel="preload"
+                    as="video"
+                    href="/assets/video/Recursos.mp4"
+                    type="video/mp4"
+                />
+            </Head>
             <ErrorBoundary>
                 <SectionSolutions>
                     {!videoError ? (
@@ -67,10 +76,25 @@ export const Solutions: FC = () => {
                                 playsInline
                                 className="video-background"
                                 crossOrigin="anonymous"
-                                preload="metadata"
+                                preload="auto"
+                                poster="/assets/video/Recursos-poster.jpg"
                             >
                                 <source
-                                    src="/assets/video/Recursos.mp4"
+                                    src="/assets/video/Recursos480.webm"
+                                    type="video/webm"
+                                    media="(max-width: 768px)"
+                                />
+                                <source
+                                    src="/assets/video/Recursos480.mp4"
+                                    type="video/mp4"
+                                    media="(max-width: 768px)"
+                                />
+                                <source
+                                    src="/assets/video/Recursos720.webm"
+                                    type="video/webm"
+                                />
+                                <source
+                                    src="/assets/video/Recursos720.mp4"
                                     type="video/mp4"
                                 />
                                 Your browser does not support the video tag.
