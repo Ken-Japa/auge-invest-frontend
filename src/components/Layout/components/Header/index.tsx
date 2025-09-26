@@ -46,7 +46,7 @@ export const Header = () => {
     };
 
     return (
-        <HeaderContainer>
+        <HeaderContainer inert={isOpen ? true : undefined}>
 
             <Toolbar className="flex justify-between items-center ">
                 {isMobile ? (
@@ -76,12 +76,15 @@ export const Header = () => {
                                 <DrawerContent ref={drawerContentRef} tabIndex={-1} role="dialog" aria-modal="true">
                                     <Navbar />
                                     <div className="mt-4">
-                                        <FavoriteButton />
-                                        <AlertButton />
+
                                         {session ?
-                                            <PerfilButtons onButtonClick={toggle} isFullWidth />
+                                            <>
+                                                <FavoriteButton />
+                                                <AlertButton />
+                                                <PerfilButtons onButtonClick={toggle} isFullWidth />
+                                            </>
                                             :
-                                            <LoginsButtons onButtonClick={toggle} isFullWidth />
+                                            <LoginsButtons onButtonClick={toggle} isFullWidth direction="column" />
                                         }
                                     </div>
                                 </DrawerContent>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Link from "next/link";
 import { useSession, signOut } from 'next-auth/react';
 import { clearAuthData } from '@/utils/auth';
+import { useRouter } from "next/navigation";
 
 import { IconButton, Menu, MenuItem, Avatar } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -17,6 +17,7 @@ export const PerfilButtons = ({ onButtonClick, isFullWidth }: AuthButtonsProps) 
     const { data: session } = useSession();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const theme = useTheme();
+    const router = useRouter();
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -24,6 +25,23 @@ export const PerfilButtons = ({ onButtonClick, isFullWidth }: AuthButtonsProps) 
 
     const handleClose = () => {
         setAnchorEl(null);
+    };
+
+    const handleMenuItemClick = (path: string) => {
+        handleClose();
+        if (onButtonClick) {
+            onButtonClick();
+        }
+        router.push(path);
+    };
+
+    const handleLogout = () => {
+        handleClose();
+        if (onButtonClick) {
+            onButtonClick();
+        }
+        clearAuthData();
+        signOut({ callbackUrl: '/' });
     };
 
     return (
@@ -65,18 +83,14 @@ export const PerfilButtons = ({ onButtonClick, isFullWidth }: AuthButtonsProps) 
                         }
                     }}
                 >
-                    <MenuItem component={Link} href="/perfil" onClick={handleClose}>
+                    <MenuItem onClick={() => handleMenuItemClick("/perfil")}>
                         Perfil
                     </MenuItem>
 
-                    <MenuItem component={Link} href="/perfil/configuracoes" onClick={handleClose}>
+                    <MenuItem onClick={() => handleMenuItemClick("/perfil/configuracoes")}>
                         Configurações
                     </MenuItem>
-                    <MenuItem onClick={() => {
-                        handleClose();
-                        clearAuthData();
-                        signOut({ callbackUrl: '/' });
-                    }}>
+                    <MenuItem onClick={handleLogout}>
                         Sair
                     </MenuItem>
                 </Menu>

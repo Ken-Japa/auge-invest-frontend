@@ -1,8 +1,12 @@
 "use client"
 import { ReactNode } from "react";
-import { useSession } from "next-auth/react";
+
+import { usePathname } from "next/navigation";
+import { Box } from "@mui/material";
+
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+
 
 
 type Props = {
@@ -10,15 +14,20 @@ type Props = {
 }
 
 export const Layout = ({ children }: Props) => {
-    const { data: session } = useSession();
+
+    const pathname = usePathname();
+
+    const isLoginPage = pathname === "/login";
 
     return (
-        <>
-            <Header />
-            <main role="main" className="border-t border-b border-infoContrastText">
+        <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+            {!isLoginPage && (
+                <Header />
+            )}
+            <Box component="main" sx={{ flexGrow: 1 }}>
                 {children}
-            </main>
+            </Box>
             <Footer />
-        </>
+        </Box>
     );
-}
+};
