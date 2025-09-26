@@ -3,7 +3,8 @@ import { Typography, Link, Box } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
 
 import { EmpresaDetalhada } from '../../../../types';
-import { empresasInfoDicionario } from '../../../../../constants/empresasInfo';
+import { dictionaryApi } from '@/services/api/endpoints/dictionary';
+import { DictionaryItem } from '@/services/api/types/dictionary';
 
 import { EmpresaChips } from './components/EmpresaChips';
 import { FatosRelevantes } from './components/FatosRelevantes';
@@ -24,30 +25,33 @@ export const EmpresaHeader: React.FC<EmpresaHeaderProps> = ({
     codigoAtivo,
     onCodigoChange
 }) => {
-    const [empresaInfo, setEmpresaInfo] = useState<any>(null);
+    const [empresaInfo, setEmpresaInfo] = useState<DictionaryItem | null>(null);
 
-    const encontrarInfoEmpresa = () => {
-
+    /**
+     * @function encontrarInfoEmpresa
+     * @description Busca as informações detalhadas da empresa na API de dicionário.
+     * @returns {Promise<DictionaryItem | null>} As informações da empresa ou null se não for encontrada ou ocorrer um erro.
+     */
+    const encontrarInfoEmpresa = async (): Promise<DictionaryItem | null> => {
         const empresaNomeUpperCase = empresa.nome.toUpperCase();
-
-        let infoFromDictionary = empresasInfoDicionario[empresaNomeUpperCase];
-
-        if (!infoFromDictionary) {
-            const matchingEntry = Object.entries(empresasInfoDicionario).find(
-                ([_, info]) => info.nome.toUpperCase() === empresa.nome.toUpperCase()
-            );
-
-            if (matchingEntry) {
-                infoFromDictionary = matchingEntry[1];
+        try {
+            const response = await dictionaryApi.getDictionaryItems({ name: empresaNomeUpperCase, pageSize: 1 });
+            if (response.result.length > 0) {
+                return response.result[0];
             }
+        } catch (error) {
+            console.error("Erro ao buscar informações da empresa na API:", error);
         }
-
-        return infoFromDictionary;
+        return null;
     };
 
     useEffect(() => {
-        const fetchEmpresaInfo = () => {
-            const infoEmpresa = encontrarInfoEmpresa();
+        /**
+         * @function fetchEmpresaInfo
+         * @description Função assíncrona para buscar as informações da empresa e atualizar o estado.
+         */
+        const fetchEmpresaInfo = async () => {
+            const infoEmpresa = await encontrarInfoEmpresa();
             setEmpresaInfo(infoEmpresa);
         };
         fetchEmpresaInfo();
@@ -79,7 +83,7 @@ export const EmpresaHeader: React.FC<EmpresaHeaderProps> = ({
                     </Box>
                     <Box>
                         <EmpresaTitulo variant="h2" >
-                            {empresaInfo?.nome || empresa.nome}
+                            {empresaInfo?.name || empresa.nome}
                         </EmpresaTitulo>
 
                         <EmpresaSubtitulo variant="subtitle1">
@@ -104,7 +108,7 @@ export const EmpresaHeader: React.FC<EmpresaHeaderProps> = ({
                 )}
 
                 <EmpresaDescricao variant="body1">
-                    {empresaInfo?.descricao}
+                    {empresaInfo?.description}
                 </EmpresaDescricao>
 
                 <EmpresaChips
@@ -116,12 +120,12 @@ export const EmpresaHeader: React.FC<EmpresaHeaderProps> = ({
                 {empresaInfo && (
                     <>
                         <FatosRelevantes
-                            fatos={empresaInfo.fatos_relevantes || []}
+                            fatos={empresaInfo.relevant_facts || []}
                         />
 
                         <VantagensRiscos
-                            vantagens={empresaInfo.vantagens_competitivas || []}
-                            riscos={empresaInfo.riscos_negocio || []}
+                            vantagens={empresaInfo.competitive_advantages || []}
+                            riscos={empresaInfo.business_risks || []}
                         />
 
                         <InformacoesAdicionais
