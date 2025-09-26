@@ -75,6 +75,7 @@ class ApiClient {
     const cached = cache.get(cacheKey);
 
     if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+      console.log(`Cache hit for ${url}`);
       return Promise.resolve({
         data: cached.data,
         status: 200,
@@ -84,6 +85,7 @@ class ApiClient {
       } as AxiosResponse<T>);
     }
 
+    console.log(`Cache miss for ${url}`);
     const response = await this.client.get<T>(url, config);
     cache.set(cacheKey, { data: response.data, timestamp: Date.now() });
     return response;
