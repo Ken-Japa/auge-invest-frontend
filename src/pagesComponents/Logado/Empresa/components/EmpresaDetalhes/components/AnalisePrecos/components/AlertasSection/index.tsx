@@ -3,6 +3,8 @@ import { Grid, SelectChangeEvent } from '@mui/material';
 import GraficoHistoricoAlertas from '../GraficoHistoricoAlertas';
 import { PriceDataPoint } from '../../../GraficoHistorico/services/historicalService';
 import { AnalysisPeriod } from '../../utils/types';
+import { AlertDialog } from '@/pagesComponents/Logado/Alertas/components/AlertDialog';
+import { Alert } from '@/services/api/types';
 import {
     AlertasSectionContainer,
     AlertasSectionTitle,
@@ -26,22 +28,55 @@ export const AlertasSection: React.FC<AlertasSectionProps> = ({ codigoAtivo, low
     const [buyPrice, setBuyPrice] = useState('');
     const [sellPrice, setSellPrice] = useState('');
     const [activeAlert, setActiveAlert] = useState<{ type: 'compra' | 'venda', price: number } | null>(null);
+    const [showAlertDialog, setShowAlertDialog] = useState(false);
+    const [alertToEdit, setAlertToEdit] = useState<Alert | null>(null);
 
 
     const handleCreateBuyAlert = () => {
-        // Implementar criação de alerta de compra
         const price = parseFloat(buyPrice || lowAlert.toFixed(2));
-        console.log(`Criando alerta de compra para ${codigoAtivo} a R$ ${price}`);
-        setActiveAlert({ type: 'compra', price });
-        // Aqui futuramente será implementada a lógica para salvar o alerta no backend
+        setAlertToEdit({
+            _id: '',
+            asset: codigoAtivo,
+            type: 'buy',
+            targetPrice: price,
+            currentPrice: 0,
+            percentageDistance: 0,
+            notificationMethods: ['app_notification'],
+            expiresAt: undefined,
+            recurring: false,
+            comments: '',
+            triggered: false,
+            userId: '',
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        });
+        setShowAlertDialog(true);
     };
 
     const handleCreateSellAlert = () => {
-        // Implementar criação de alerta de venda
         const price = parseFloat(sellPrice || highAlert.toFixed(2));
-        console.log(`Criando alerta de venda para ${codigoAtivo} a R$ ${price}`);
-        setActiveAlert({ type: 'venda', price });
-        // Aqui futuramente será implementada a lógica para salvar o alerta no backend
+        setAlertToEdit({
+            _id: '',
+            asset: codigoAtivo,
+            type: 'sell',
+            targetPrice: price,
+            currentPrice: 0,
+            percentageDistance: 0,
+            notificationMethods: [],
+            expiresAt: undefined,
+            recurring: false,
+            comments: '',
+            triggered: false,
+            userId: '',
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        });
+        setShowAlertDialog(true);
+    };
+
+    const handleCloseAlertDialog = () => {
+        setShowAlertDialog(false);
+        setAlertToEdit(null);
     };
 
 
@@ -102,6 +137,12 @@ export const AlertasSection: React.FC<AlertasSectionProps> = ({ codigoAtivo, low
                     />
                 </AlertHistoryContainer>
             )}
+
+            <AlertDialog
+                open={showAlertDialog}
+                onClose={handleCloseAlertDialog}
+                alert={alertToEdit}
+            />
         </AlertasSectionContainer>
     );
 };
