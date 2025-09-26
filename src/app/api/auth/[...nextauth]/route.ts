@@ -27,7 +27,7 @@ async function setAuthCookies(token: string, userId?: string) {
 
   // Set user ID cookie if available
   if (userId) {
-    cookieStore.set("userId", userId, {
+    cookieStore.set("userId2", userId, {
       httpOnly: false,
       secure: process.env.NODE_ENV === "production",
       maxAge: 30 * 24 * 60 * 60,

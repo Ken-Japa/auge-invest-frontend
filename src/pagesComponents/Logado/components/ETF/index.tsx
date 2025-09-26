@@ -17,7 +17,7 @@ import ETFSearchBar from './components/SearchBar';
 import { VisualizationETFs } from './components/Visualization';
 import { useETFTabsLogic } from './hooks/useETFTabsLogic';
 
-import { BoxVizualizationControl, ETFTabsContainer, SubTitle, Title } from './styled';
+import { BoxVizualizationControl, ETFTabsContainer, SubTitle, Title, VIzualizerContainer } from './styled';
 
 function a11yProps(index: number) {
     return {
@@ -53,25 +53,27 @@ const ETF: React.FC<ETFProps> = ({ defaultPageSize }) => {
                                     </Link>
                                 </Tooltip>
                             </Box>
+                            <VIzualizerContainer>
+                                <ETFSearchBar />
 
-                            <ETFSearchBar />
 
-                            <BoxVizualizationControl >
-                                <Tabs value={value} onChange={handleChange} aria-label="ETF visualization tabs">
-                                    <Tab label="Cartões" {...a11yProps(0)} />
-                                    <Tab label="Tabela" {...a11yProps(1)} />
-                                    <Tab label="Grade" {...a11yProps(2)} />
-                                </Tabs>
-                            </BoxVizualizationControl>
-                            <TabPanel value={value} index={0}>
-                                <VisualizationETFs view="card" filters={filters} defaultPageSize={defaultPageSize} />
-                            </TabPanel>
-                            <TabPanel value={value} index={1}>
-                                <VisualizationETFs view="table" filters={filters} defaultPageSize={defaultPageSize} />
-                            </TabPanel>
-                            <TabPanel value={value} index={2}>
-                                <VisualizationETFs view="grid" filters={filters} defaultPageSize={defaultPageSize} />
-                            </TabPanel>
+                                <BoxVizualizationControl >
+                                    <Tabs value={value} onChange={handleChange} aria-label="ETF visualization tabs">
+                                        <Tab label="Cartões" {...a11yProps(0)} />
+                                        <Tab label="Tabela" {...a11yProps(1)} />
+                                        <Tab label="Grade" {...a11yProps(2)} />
+                                    </Tabs>
+                                </BoxVizualizationControl>
+                                <TabPanel value={value} index={0}>
+                                    <VisualizationETFs view="card" filters={filters} defaultPageSize={defaultPageSize} />
+                                </TabPanel>
+                                <TabPanel value={value} index={1}>
+                                    <VisualizationETFs view="table" filters={filters} defaultPageSize={defaultPageSize} />
+                                </TabPanel>
+                                <TabPanel value={value} index={2}>
+                                    <VisualizationETFs view="grid" filters={filters} defaultPageSize={defaultPageSize} />
+                                </TabPanel>
+                            </VIzualizerContainer>
                         </ETFTabsContainer>
                     </ProgressiveLoad>
                 </SuspenseWrapper>

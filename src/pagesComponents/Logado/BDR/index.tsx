@@ -6,7 +6,6 @@ import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
-import BDRSearchBar from '../components/BDR/components/SearchBar';
 import { BDRTabs } from './components/BDRTabs';
 import { PageBackground } from '@/components/Layout/PageBackground';
 import {
@@ -34,10 +33,6 @@ export const BDR = () => {
                                     <BDRSubTitle>
                                         Recebíveis de Depósitos Brasileiros
                                     </BDRSubTitle>
-
-
-                                    <BDRSearchBar />
-
 
                                     <Snackbar
                                         open={!!error}

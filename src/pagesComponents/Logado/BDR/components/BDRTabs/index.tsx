@@ -1,9 +1,11 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Tabs, Tab } from '@mui/material';
+import { TabPanel } from '@/components/Data-Display/TabPanel';
+
 import VisualizacaoBDRs from '../../../components/BDR/components/Vizualização';
 import { BDRTabsContainer } from '../../styled';
-import { TabPanel } from '@/components/Data-Display/TabPanel';
+import BDRSearchBar from '../../../components/BDR/components/SearchBar';
 
 
 interface BDRTabsProps {
@@ -31,6 +33,7 @@ export const BDRTabs: React.FC<BDRTabsProps> = ({ viewMode, onChangeView, onErro
 
     return (
         <BDRTabsContainer>
+            <BDRSearchBar />
             <Tabs
                 value={tabValue}
                 onChange={handleTabChange}

@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { PageBackground } from '@/components/Layout/PageBackground';
 import { DetailPageContainer } from './styled';
 import { useETFBDRDetails } from './hooks/useETFBDRDetails';
 import { ETFBDRLoadingState } from './utils/ETFBDRLoadingState';
@@ -36,9 +37,13 @@ const ETFDetails = ({ slug, codigo, isCode = false }: ETFBDRDetailsProps) => {
     }
 
     return (
-        <DetailPageContainer>
-            <ETFBDRDetailsContent etf={etf} onBack={handleBack} />
-        </DetailPageContainer>
+        <PageBackground imageName="ETFs">
+            <DetailPageContainer>
+
+                <ETFBDRDetailsContent etf={etf} onBack={handleBack} />
+
+            </DetailPageContainer>
+        </PageBackground>
     );
 };
 
