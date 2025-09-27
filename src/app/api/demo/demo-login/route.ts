@@ -24,10 +24,10 @@ export async function GET(req: NextRequest) {
   // Max-Age: o cookie expira em 600 segundos (10 minutos)
   // Secure: o cookie só será enviado em requisições HTTPS
   // SameSite: ajuda a prevenir ataques CSRF
-  response.cookies.set('token', token, {
+  response.cookies.set('authToken', token, {
     httpOnly: true,
     path: '/',
-    maxAge: 600, // 10 minutes
+    maxAge: 30 * 24 * 60 * 60, // 30 days, matching next-auth default
     secure: process.env.NODE_ENV === 'production', // Apenas em produção para HTTPS
     sameSite: 'lax',
   });
