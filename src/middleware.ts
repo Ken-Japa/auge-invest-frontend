@@ -1,6 +1,7 @@
-import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { cookies } from "next/headers";
+import jwt from 'jsonwebtoken';
 
 export async function middleware(request: NextRequest) {
   // Skip middleware for the demo-login route
@@ -8,7 +9,17 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const token = await getToken({ req: request });
+  const cookieStore = await cookies();
+  const authTokenCookie = cookieStore.get("authToken")?.value;
+
+  let token: any = null;
+  if (authTokenCookie && process.env.NEXTAUTH_SECRET) {
+    try {
+      token = jwt.verify(authTokenCookie, process.env.NEXTAUTH_SECRET);
+    } catch (error) {
+      console.error("Error decoding authToken in middleware:", error);
+    }
+  }
   const isHomePage = request.nextUrl.pathname === "/";
   const isAuthPage =
     request.nextUrl.pathname.startsWith("/login") ||
