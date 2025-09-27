@@ -206,9 +206,11 @@ const handler = NextAuth({
             const decoded = jwt.verify(authTokenCookie, process.env.NEXTAUTH_SECRET) as {
               id: string;
               email: string;
+              name?: string; // Adicionado para garantir que o nome também seja decodificado
             };
             token.userId = decoded.id;
             token.email = decoded.email;
+            token.name = decoded.name; // Preencher o nome do token
             token.accessToken = authTokenCookie;
           } catch (error) {
             console.error("Error decoding authToken from cookie:", error);
@@ -223,6 +225,14 @@ const handler = NextAuth({
       // Add user ID to the session
       if (token.userId) {
         session.user.id = token.userId as string;
+      }
+
+      if (token.email) {
+        session.user.email = token.email as string;
+      }
+
+      if (token.name) {
+        session.user.name = token.name as string;
       }
 
       // Add the access token to the session
