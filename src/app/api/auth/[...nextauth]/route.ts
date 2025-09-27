@@ -5,6 +5,7 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { cookies } from "next/headers";
 import { API_ENDPOINTS, getFullEndpointUrl } from "@/services/api/config";
+import jwt from 'jsonwebtoken';
 
 // Helper function to set auth cookies
 async function setAuthCookies(token: string, userId?: string) {
@@ -180,18 +181,39 @@ const handler = NextAuth({
     },
 
     async jwt({ token, user, account }) {
-      // Add user ID to the token when signing in
+      // If the user object is present (meaning a new sign-in or session update),
+      // add user ID and access token to the JWT token.
       if (user) {
         token.userId = user.id;
-        // Add the token from credentials provider if available
         if (user.token) {
           token.accessToken = user.token;
         }
       }
 
-      // Add the auth token from Google sign-in
+      // If it's a Google sign-in, add the Google token to the JWT token.
       if (account?.provider === "google" && account?.id_token) {
         token.googleToken = account.id_token;
+      }
+
+      // If the token is not yet populated (e.g., on subsequent requests after initial sign-in),
+      // try to read it from the 'authToken' cookie.
+      if (!token.accessToken) {
+        const cookieStore = await cookies();
+        const authTokenCookie = cookieStore.get("authToken")?.value;
+
+        if (authTokenCookie && process.env.NEXTAUTH_SECRET) {
+          try {
+            const decoded = jwt.verify(authTokenCookie, process.env.NEXTAUTH_SECRET) as {
+              id: string;
+              email: string;
+            };
+            token.userId = decoded.id;
+            token.email = decoded.email;
+            token.accessToken = authTokenCookie;
+          } catch (error) {
+            console.error("Error decoding authToken from cookie:", error);
+          }
+        }
       }
 
       return token;
