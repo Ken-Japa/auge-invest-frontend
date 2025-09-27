@@ -6,14 +6,14 @@ export async function GET(req: NextRequest) {
   // Dados mock do usuário para a demonstração
   const mockUser = { id: 'demo', email: 'demo@auge.com' };
 
-  // Verifica se a variável de ambiente JWT_SECRET está definida
-  if (!process.env.JWT_SECRET) {
-    console.error('JWT_SECRET is not defined in environment variables.');
+  // Verifica se a variável de ambiente NEXTAUTH_SECRET está definida
+  if (!process.env.NEXTAUTH_SECRET) {
+    console.error('NEXTAUTH_SECRET is not defined in environment variables.');
     return NextResponse.json({ error: 'Server configuration error.' }, { status: 500 });
   }
 
   // Gera um token JWT com os dados do usuário mock e um tempo de expiração de 10 minutos
-  const token = jwt.sign(mockUser, process.env.JWT_SECRET, { expiresIn: '10m' });
+  const token = jwt.sign(mockUser, process.env.NEXTAUTH_SECRET, { expiresIn: '10m' });
 
   // Cria uma resposta de redirecionamento para a dashboard
   const response = NextResponse.redirect(new URL('/visao-economia', req.url));
