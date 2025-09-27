@@ -3,6 +3,11 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
+  // Skip middleware for the demo-login route
+  if (request.nextUrl.pathname.startsWith("/api/demo/demo-login")) {
+    return NextResponse.next();
+  }
+
   const token = await getToken({ req: request });
   const isHomePage = request.nextUrl.pathname === "/";
   const isAuthPage =

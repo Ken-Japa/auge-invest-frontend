@@ -1,4 +1,4 @@
-export const maxDuration = 30;
+export const maxDuration = 50;
 
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
