@@ -1,9 +1,10 @@
 export const maxDuration = 30;
 
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import CredentialsProvider from "next-auth/providers/credentials";
 import { cookies } from "next/headers";
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+
 import { API_ENDPOINTS, getFullEndpointUrl } from "@/services/api/config";
 
 // Helper function to set auth cookies

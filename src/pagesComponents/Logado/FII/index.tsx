@@ -1,17 +1,19 @@
 "use client";
 import { Alert, Snackbar } from '@mui/material';
-import { PageTransition } from '@/components/Utils/PageTransition';
-import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
-import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
-import FIISearchBar from '../components/FIIs/components/SearchBar';
+
 import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
+import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
+import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { PageBackground } from '@/components/Layout/PageBackground';
+import { PageTransition } from '@/components/Utils/PageTransition';
+
+import FIISearchBar from '../components/FIIs/components/SearchBar';
 import { FIITabs } from './components/FIITabs';
 import {
-    ContentWrapper,
     ContentBox,
+    ContentWrapper,
     FIITitle,
 } from './styled';
 

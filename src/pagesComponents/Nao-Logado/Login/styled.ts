@@ -1,5 +1,5 @@
-import { styled } from "@mui/material/styles";
 import { Dialog, IconButton } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialog-paper": {

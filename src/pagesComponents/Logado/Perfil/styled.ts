@@ -1,12 +1,13 @@
-import { ElementType } from "react";
 import {
-  Paper,
   Box,
-  Typography,
   Button as MuiButton,
   ButtonProps,
+  Paper,
+  Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { ElementType } from "react";
+
 import { transitions } from "@/theme/variables";
 
 export const ProfileCard = styled(Paper)(({ theme }) => ({

@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from 'react';
 import {
+Checkbox, FormControlLabel,
     Table, TableBody, TableCell, TableHead, TableRow,
-    Typography, Checkbox, FormControlLabel
-} from '@mui/material';
+    Typography} from '@mui/material';
+import React, { useEffect, useState } from 'react';
+
 import { formatCurrency } from '../utils/currency';
+import { sumarioService } from '../utils/sumarioService';
+import { FlatTableView } from './components/FlatTableView';
+import { IndustriaRow } from './components/IndustriaRow';
+import { SegmentoSection } from './components/SegmentoSection';
+import { useSortableData } from './hooks/useSortableData';
 import {
-    TableContainer,
+    CheckboxesContainer,
     LoadingContainer,
     StyledCircularProgress,
+    TableContainer,
     TableControlsContainer,
-    CheckboxesContainer,
     TableTitle
 } from './styled';
 import { SumarioData } from './types';
-import { IndustriaRow } from './components/IndustriaRow';
-import { SegmentoSection } from './components/SegmentoSection';
-import { FlatTableView } from './components/FlatTableView';
-import { useSortableData } from './hooks/useSortableData';
-import { sumarioService } from '../utils/sumarioService';
 
 interface TabelaViewProps {
     onLoadingChange?: (loading: boolean) => void;

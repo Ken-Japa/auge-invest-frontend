@@ -1,20 +1,21 @@
 "use client";
 
-import { useState } from 'react';
-import { Tabs, Tab, IconButton } from '@mui/material';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { ContentSkeleton } from '../../../../../components/Feedback/Skeletons/ContentSkeleton';
 import AddIcon from '@mui/icons-material/Add';
-import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
+import SearchIcon from '@mui/icons-material/Search';
+import { IconButton,Tab, Tabs } from '@mui/material';
+import { useState } from 'react';
+
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
+
+import { ContentSkeleton } from '../../../../../components/Feedback/Skeletons/ContentSkeleton';
+import { SearchDialog } from './components/Elementos/SearchDialog';
 import {
-    IndicesContainer,
-    TabsContainer,
     ChartContainer,
     CustomTab,
-    TabActions
-} from './styled';
-import { SearchDialog } from './components/Elementos/SearchDialog';
+    IndicesContainer,
+    TabActions,
+    TabsContainer} from './styled';
 
 interface IndexTab {
     id: string;

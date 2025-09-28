@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect,useState } from "react";
+
 import { BLOCK_DURATION, BLOCK_TIMER_SECONDS } from "../constants";
 
 interface UseBlockTimerProps {

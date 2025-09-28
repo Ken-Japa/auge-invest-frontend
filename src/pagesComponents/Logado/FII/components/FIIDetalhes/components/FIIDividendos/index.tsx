@@ -1,5 +1,9 @@
 "use client";
 import { Alert, CircularProgress, Typography } from '@mui/material';
+
+import FIIDividendSummaryDisplay from './FIIDividendSummary';
+import FIIDividendTable from './FIIDividendTable';
+import { useFIIDividendosLogic } from './hooks/useFIIDividendosLogic';
 import {
   DividendContainer,
   DividendPaper,
@@ -7,9 +11,6 @@ import {
   ErrorContainer,
   LoadingContainer,
 } from './styled';
-import { useFIIDividendosLogic } from './hooks/useFIIDividendosLogic';
-import FIIDividendSummaryDisplay from './FIIDividendSummary';
-import FIIDividendTable from './FIIDividendTable';
 
 interface FIIDividendosProps {
   nomeFII: string;

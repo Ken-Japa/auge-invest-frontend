@@ -1,11 +1,10 @@
-import Link from 'next/link';
-
 import { OpenInNew as OpenInNewIcon } from '@mui/icons-material';
 import { Chip, Grid, IconButton } from '@mui/material';
+import Link from 'next/link';
 
 import { formatCNPJ, formatDate, formatNumber } from '@/components/Utils/Formatters/formatters';
-import { FIIExtended } from '../../../types';
 
+import { FIIExtended } from '../../../types';
 import {
   CardHeader,
   CardSubtitle,

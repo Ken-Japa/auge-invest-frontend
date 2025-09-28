@@ -1,16 +1,16 @@
-import { type FC, useState } from "react";
 import { Stack } from "@mui/material";
+import { type FC, useState } from "react";
 
-import { JoinTeamForm } from "./styled";
+import { MAX_JOIN_ATTEMPTS, MESSAGES } from '../../constants';
+import { useBlockTimer } from '../../hooks/useBlockTimer';
+import { useFormState } from '../../hooks/useFormState';
+import { useFormValidation } from '../../hooks/useFormValidation';
+import type { ApplicationFormProps } from '../../types';
 import { ApplicationFormSkeleton } from "./ApplicationFormSkeleton";
 import { FormFields } from './components/FormFields/index';
 import { FormSnackbar } from './components/FormSnackbar/index';
 import { SubmitButton } from './components/SubmitButton/index';
-import { useFormValidation } from '../../hooks/useFormValidation';
-import { useBlockTimer } from '../../hooks/useBlockTimer';
-import { useFormState } from '../../hooks/useFormState';
-import { MAX_JOIN_ATTEMPTS, MESSAGES } from '../../constants';
-import type { ApplicationFormProps } from '../../types';
+import { JoinTeamForm } from "./styled";
 
 export const ApplicationForm: FC<ApplicationFormProps> = ({ isLoading }) => {
     const [joinAttempts, setJoinAttempts] = useState(0);

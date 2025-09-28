@@ -1,4 +1,5 @@
 import { Skeleton } from "@mui/material";
+
 import { SearchContainer } from "./styled";
 
 export const BlogSearchSkeleton = () => {

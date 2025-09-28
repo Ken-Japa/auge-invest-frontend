@@ -1,4 +1,5 @@
 import { create } from "zustand";
+
 import { CompanyFilter } from "../services/api/types";
 
 interface CompanyState {

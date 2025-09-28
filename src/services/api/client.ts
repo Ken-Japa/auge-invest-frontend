@@ -1,12 +1,14 @@
 import axios, {
+  AxiosError,
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
-  AxiosError,
 } from "axios";
+
 import { getAuthToken } from "@/utils/auth";
-import { handleApiError, ErrorCode } from "./errorHandler";
+
 import { API_BASE_URL } from "./config";
+import { ErrorCode,handleApiError } from "./errorHandler";
 
 export interface ApiResponse<T> {
   data: T;

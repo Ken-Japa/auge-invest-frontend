@@ -1,14 +1,16 @@
 "use client";
 import { useRouter } from 'next/navigation';
-import { PageTransition } from '@/components/Utils/PageTransition';
+
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { useFIIDetails } from './hooks/useFIIDetails';
-import { LoadingState } from './components/LoadingState';
+import { PageTransition } from '@/components/Utils/PageTransition';
+
 import { ErrorState } from './components/ErrorState';
-import { NotFoundState } from './components/NotFoundState';
 import { FIIContent } from './components/FIIContent';
-import { DetailPageContainer, ContentWrapper } from './styled';
+import { LoadingState } from './components/LoadingState';
+import { NotFoundState } from './components/NotFoundState';
+import { useFIIDetails } from './hooks/useFIIDetails';
+import { ContentWrapper,DetailPageContainer } from './styled';
 
 interface FIIDetailsProps {
   slug: string;

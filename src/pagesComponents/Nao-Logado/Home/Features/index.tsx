@@ -1,8 +1,8 @@
-import { type FC, useState } from 'react';
-import { Stack, Box, Container, Typography, Grid } from "@mui/material";
-import { motion, AnimatePresence } from "framer-motion";
-
+import { Box, Container, Grid,Stack, Typography } from "@mui/material";
+import { AnimatePresence,motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import { type FC, useState } from 'react';
+
 import { OptimizedImage } from "@/components/Utils/OptimizedImage";
 
 import { FEATURES_DATA, ICON_STYLES } from './constants';

@@ -1,10 +1,9 @@
+import { Stack } from "@mui/material";
 import { type FC } from 'react';
 
-import { Stack } from "@mui/material";
-
-import { SectionPlans } from "./styled";
 import { Card } from "./Card";
 import { PlansSkeleton } from "./PlansSkeleton";
+import { SectionPlans } from "./styled";
 
 interface PlansProps {
     isLoading?: boolean;

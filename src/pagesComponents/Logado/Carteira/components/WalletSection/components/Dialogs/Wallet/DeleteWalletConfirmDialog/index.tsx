@@ -1,7 +1,9 @@
-import React from 'react';
 import { Typography } from '@mui/material';
-import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, DeleteButton } from './styled';
+import React from 'react';
+
 import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
+
+import { CancelButton, DeleteButton,StyledDialog, StyledDialogActions, StyledDialogContent, StyledDialogTitle } from './styled';
 
 interface DeleteWalletConfirmDialogProps {
     open: boolean;

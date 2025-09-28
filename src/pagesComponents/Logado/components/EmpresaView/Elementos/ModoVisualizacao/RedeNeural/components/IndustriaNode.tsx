@@ -1,6 +1,6 @@
-import { IndustriaNode } from '../types';
-import { calculatePosition, calculateNodeSize, adjustColorHSL } from '../utils/graphUtils';
 import { formatCurrency } from '../../utils/currency';
+import { IndustriaNode } from '../types';
+import { adjustColorHSL,calculateNodeSize, calculatePosition } from '../utils/graphUtils';
 
 export const createIndustriaNode = (
     industria: IndustriaNode,

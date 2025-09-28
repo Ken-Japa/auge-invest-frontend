@@ -1,7 +1,8 @@
 import { FormControlLabel, Link } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { transitions } from "@/theme/variables";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { transitions } from "@/theme/variables";
 
 export const StyledFormControlLabel = styled(FormControlLabel)({
   "& .MuiCheckbox-root": {

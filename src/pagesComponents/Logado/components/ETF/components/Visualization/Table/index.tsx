@@ -1,14 +1,15 @@
-import React from 'react';
 import {
+  Paper,
   Table,
   TableContainer,
   TableRow,
-  Paper,
 } from '@mui/material';
-import { ETFExtended } from '../../../types';
+import React from 'react';
+
 import { useETFTableLogic } from '../../../hooks/useETFTableLogic';
-import { StyledTableHead, StyledTableCell } from './styled';
+import { ETFExtended } from '../../../types';
 import ETFTableBody from './ETFTableBody';
+import { StyledTableCell,StyledTableHead } from './styled';
 
 interface TableViewProps {
   etfs: ETFExtended[];

@@ -1,8 +1,8 @@
-import { MetricItem, MetricName } from "../types";
-import { METRIC_DESCRIPTIONS, METRIC_FORMULAS } from "../constants";
-import { formatNumber, hasValue, formatCurrency } from "../helpers";
-import { SaveReportOptions } from "../../index";
 import { DadosAnaliseFundamental } from "../../../../types";
+import { SaveReportOptions } from "../../index";
+import { METRIC_DESCRIPTIONS, METRIC_FORMULAS } from "../constants";
+import { formatCurrency,formatNumber, hasValue } from "../helpers";
+import { MetricItem, MetricName } from "../types";
 
 export const generateDebt = (
   fundamentalData: DadosAnaliseFundamental,

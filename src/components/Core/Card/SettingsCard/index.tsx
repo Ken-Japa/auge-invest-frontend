@@ -1,12 +1,12 @@
-import { ReactNode } from 'react';
 import { Box, Typography } from '@mui/material';
+import { ReactNode } from 'react';
+
 import {
-  StyledCard,
+  ContentContainer,
   SectionHeader,
   SectionIcon,
   SectionTitle,
-  ContentContainer
-} from './styled';
+  StyledCard} from './styled';
 
 interface SettingsCardProps {
   icon: ReactNode;

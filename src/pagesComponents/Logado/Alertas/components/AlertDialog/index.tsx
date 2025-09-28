@@ -1,24 +1,24 @@
-import { useState, useEffect } from 'react';
 import {
-    TextField,
-    Grid,
-    InputAdornment,
-    Switch,
-    FormControlLabel,
     Checkbox,
+    FormControlLabel,
     FormGroup,
     FormLabel,
-    RadioGroup,
+    Grid,
+    InputAdornment,
     Radio,
+    RadioGroup,
+    Switch,
+    TextField,
     Typography,
 } from '@mui/material';
-
 import { useSession } from "next-auth/react";
+import { useEffect,useState } from 'react';
 
-import { Alert } from '@/services/api/types';
-import { useAlerts } from '../../hooks/useAlerts';
 import { StyledDialog } from '@/components/Feedback/Dialog/StyledDialog';
 import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar';
+import { Alert } from '@/services/api/types';
+
+import { useAlerts } from '../../hooks/useAlerts';
 
 interface AlertDialogProps {
     open: boolean;

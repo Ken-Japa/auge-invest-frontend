@@ -1,12 +1,12 @@
 import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
+import { ErrorCode, handleApiError } from "../errorHandler";
 import {
-  Favorite,
   CreateFavorite,
+  Favorite,
   FavoriteFilter,
   FavoriteListResponseApi,
 } from "../types/favorite";
-import { ErrorCode, handleApiError } from "../errorHandler";
 
 class FavoritesApiService extends BaseApiService {
   getFavoritesByUser = async (

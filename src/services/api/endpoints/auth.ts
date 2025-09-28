@@ -1,8 +1,9 @@
 import { clearAuthData, setAuthData } from "@/utils/auth";
-import { API_ENDPOINTS } from "../config";
-import { LoginRequest, LoginResponse, User } from "../types";
+
 import { BaseApiService } from "../baseService";
+import { API_ENDPOINTS } from "../config";
 import { ErrorCode, handleApiError } from "../errorHandler";
+import { LoginRequest, LoginResponse, User } from "../types";
 
 class AuthApiService extends BaseApiService {
   login = async (credentials: LoginRequest): Promise<LoginResponse> => {

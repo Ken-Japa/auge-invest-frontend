@@ -1,22 +1,21 @@
 "use client";
 
+import { Menu as MenuIcon } from "@mui/icons-material";
+import { Drawer, useMediaQuery } from "@mui/material";
+import { IconButton, Toolbar } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
 import Link from 'next/link';
 import { useSession } from "next-auth/react";
+import React, { useEffect,useRef } from 'react';
 
-import { Drawer, useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { Menu as MenuIcon } from "@mui/icons-material";
-
-import { Logo } from "../../Logo";
-import { Navbar } from "./Navbar";
-import { LoginsButtons } from "./LoginRegisterButtons";
-import { PerfilButtons } from "./PerfilButtons";
-import { FavoriteButton } from "./PerfilButtons/components/FavoriteButton";
-import { AlertButton } from "./PerfilButtons/components/AlertButton";
 import { useDrawer } from "../../hooks/useDrawer";
-import { HeaderContainer, DrawerContent } from "./styled";
-import React, { useRef, useEffect } from 'react';
-import { IconButton, Toolbar } from '@mui/material';
+import { Logo } from "../../Logo";
+import { LoginsButtons } from "./LoginRegisterButtons";
+import { Navbar } from "./Navbar";
+import { PerfilButtons } from "./PerfilButtons";
+import { AlertButton } from "./PerfilButtons/components/AlertButton";
+import { FavoriteButton } from "./PerfilButtons/components/FavoriteButton";
+import { DrawerContent,HeaderContainer } from "./styled";
 
 export const Header = () => {
     const theme = useTheme();

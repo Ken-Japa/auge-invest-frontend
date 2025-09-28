@@ -1,15 +1,16 @@
-import React from 'react';
 import {
+  Paper,
   Table,
   TableBody,
   TableContainer,
   TableRow,
-  Paper,
   Typography,
 } from '@mui/material';
-import { ETFBDRExtended } from '../../../types';
-import { StyledTableHead, StyledTableRow, StyledTableCell } from './styled';
 import { useRouter } from 'next/navigation';
+import React from 'react';
+
+import { ETFBDRExtended } from '../../../types';
+import { StyledTableCell,StyledTableHead, StyledTableRow } from './styled';
 
 interface TableViewProps {
   etfbdrs: ETFBDRExtended[];

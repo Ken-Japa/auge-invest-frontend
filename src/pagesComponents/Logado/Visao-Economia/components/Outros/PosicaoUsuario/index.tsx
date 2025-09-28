@@ -1,20 +1,21 @@
 "use client";
 
-import { useState } from 'react';
-import dynamic from 'next/dynamic';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { ContentSkeleton } from '../../../../../../components/Feedback/Skeletons/ContentSkeleton';
-import { IconButton, Menu, MenuItem } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import { IconButton, Menu, MenuItem } from '@mui/material';
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
+
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
+
+import { ContentSkeleton } from '../../../../../../components/Feedback/Skeletons/ContentSkeleton';
 import {
+    NegativeValue,
     PosicaoContainer,
     PosicaoHeader,
     PosicaoTitle,
-    PositiveValue,
-    NegativeValue
-} from './styled';
+    PositiveValue} from './styled';
 
 // Mock data - will be replaced with API data
 const mockPositions = [

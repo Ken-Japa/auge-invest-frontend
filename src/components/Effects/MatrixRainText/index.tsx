@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useCallback, memo } from 'react';
+import { memo,useCallback, useEffect, useRef } from 'react';
+
 import styles from './MatrixRainText.module.css';
 
 interface Props {

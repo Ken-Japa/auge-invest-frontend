@@ -1,5 +1,5 @@
+import { Box,Skeleton } from '@mui/material';
 import React from 'react';
-import { Skeleton, Box } from '@mui/material';
 
 interface ContentSkeletonProps {
   type?: 'text' | 'card' | 'avatar' | 'chart' | 'form';

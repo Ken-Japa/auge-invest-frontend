@@ -1,18 +1,20 @@
-import React from 'react';
 import { Grid, Typography } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+
+import { formatNumber } from '@/components/Utils/Formatters/formatters';
+
 import { ETFExtended } from '../../../types';
 import {
+  CodeChip,
   GridContainer,
-  GridItemPaper,
   GridHeader,
-  GridTitle,
   GridInfo,
   GridInfoLabel,
   GridInfoValue,
-  CodeChip,
+  GridItemPaper,
+  GridTitle,
 } from './styled';
-import { formatNumber } from '@/components/Utils/Formatters/formatters';
-import { useRouter } from 'next/navigation';
 
 interface GridViewProps {
   etfs: ETFExtended[];

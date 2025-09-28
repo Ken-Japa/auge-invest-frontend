@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect,useState } from "react";
+
+import { SumarioData as TabelaViewSumarioData } from "../../TabelaView/types";
 import { sumarioService } from "../../utils/sumarioService";
+import { CORES_INDUSTRIAS } from "../constants/colors";
+import { SumarioData as RedeNeuralSumarioData } from "../types";
 import { transformSumarioData } from "../utils/transformSumarioData";
 import { buildGraphData } from "./graphBuilder";
 import { adjustColorHSL } from "./graphUtils";
-import { CORES_INDUSTRIAS } from "../constants/colors";
-import { SumarioData as TabelaViewSumarioData } from "../../TabelaView/types";
-import { SumarioData as RedeNeuralSumarioData } from "../types";
 
 interface GraphData {
   nodes: any[];

@@ -1,4 +1,5 @@
 import { useRouter } from "next/navigation";
+
 import { ETFExtended } from "../types";
 
 export const useETFCardLogic = (etfs: ETFExtended[]) => {

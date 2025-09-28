@@ -1,21 +1,21 @@
-import { useState, useMemo } from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import {
-    TableCell,
-    TableRow,
+    Box,
     IconButton,
     Switch,
+    TableCell,
+    TableRow,
     Tooltip,
-    Typography,
-    Box
-} from '@mui/material';
+    Typography} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import { useMemo,useState } from 'react';
+
+import { StyledTable } from '@/components/Data-Display/Table';
+import { Alert } from '@/services/api/types';
 
 import { AlertDialog } from '../AlertDialog';
-import { Alert } from '@/services/api/types';
-import { StyledTable } from '@/components/Data-Display/Table';
 
 
 interface AlertsTableProps {

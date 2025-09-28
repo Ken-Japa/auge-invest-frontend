@@ -1,5 +1,6 @@
-import { createContext, useContext, ReactNode } from 'react';
-import { Position, Activity, ChartData, SummaryData } from '../types';
+import { createContext, ReactNode,useContext } from 'react';
+
+import { Activity, ChartData, Position, SummaryData } from '../types';
 
 interface DashboardContextType {
     positions: Position[];

@@ -1,6 +1,6 @@
+import { Typography } from "@mui/material";
 import { type FC } from 'react';
 
-import { Typography } from "@mui/material";
 import { HeaderSkeleton } from "./HeaderSkeleton";
 import { HeaderContainer, HeaderIcon } from "./styled";
 

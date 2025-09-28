@@ -1,7 +1,7 @@
-export type QuestionType = {
+export interface QuestionType {
   title: string;
   body: string;
-};
+}
 
 export type CategoryType = "todas" | keyof QuestionsType;
 
@@ -14,13 +14,13 @@ export const faqCategories = {
   suporte: "Suporte",
 };
 
-export type QuestionsType = {
+export interface QuestionsType {
   geral: QuestionType[];
   funcionalidades: QuestionType[];
   assinatura: QuestionType[];
   seguranca: QuestionType[];
   suporte: QuestionType[];
-};
+}
 
 export const categorizedQuestions: QuestionsType = {
   geral: [

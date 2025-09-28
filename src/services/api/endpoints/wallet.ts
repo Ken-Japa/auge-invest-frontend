@@ -1,16 +1,16 @@
 import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
+import { ErrorCode,handleApiError } from "../errorHandler";
 import {
-  Wallet,
-  Transaction,
-  CreateWalletPayload,
-  UpdateTransactionPayload,
   CreateTransactionPayload,
-  UpdateWalletPayload,
-  WalletTransactions,
+  CreateWalletPayload,
   PaginatedTransactions,
+  Transaction,
+  UpdateTransactionPayload,
+  UpdateWalletPayload,
+  Wallet,
+  WalletTransactions,
 } from "../types";
-import { handleApiError, ErrorCode } from "../errorHandler";
 
 class WalletApiService extends BaseApiService {
   constructor() {
@@ -138,8 +138,8 @@ class WalletApiService extends BaseApiService {
 
   public async getTransactionsByPositionId(
     positionId: string,
-    page: number = 0,
-    pageSize: number = 10
+    page = 0,
+    pageSize = 10
   ): Promise<PaginatedTransactions> {
     try {
       const response = await this.get<PaginatedTransactions>(

@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
+
 import {
-  StyledDialog as Dialog,
-  StyledDialogTitle,
-  StyledDialogContent,
-  StyledDialogActions,
   CancelButton,
-  SaveButton
-} from './styled';
+  SaveButton,
+  StyledDialog as Dialog,
+  StyledDialogActions,
+  StyledDialogContent,
+  StyledDialogTitle} from './styled';
 
 interface StyledDialogProps {
   open: boolean;

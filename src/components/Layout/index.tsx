@@ -1,15 +1,14 @@
 "use client"
+import { Box } from "@mui/material";
+import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 
-import { usePathname } from "next/navigation";
-import { Box } from "@mui/material";
-
-import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
 
 
 
-type Props = {
+interface Props {
     children: ReactNode;
 }
 

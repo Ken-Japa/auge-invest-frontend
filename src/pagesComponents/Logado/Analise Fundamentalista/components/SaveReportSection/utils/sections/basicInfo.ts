@@ -1,5 +1,5 @@
 import { DadosAnaliseFundamental } from "../../../../types";
-import { hasValue, formatCurrency } from "../helpers";
+import { formatCurrency,hasValue } from "../helpers";
 
 export const generateBasicInfo = (
   fundamentalData: DadosAnaliseFundamental

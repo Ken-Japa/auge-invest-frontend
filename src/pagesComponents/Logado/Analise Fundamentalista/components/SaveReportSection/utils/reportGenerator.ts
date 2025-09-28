@@ -1,15 +1,15 @@
-import { GenerateReportParams } from "./types";
 import {
-  generateBasicInfo,
-  generateOperationalMetrics,
-  generateMargins,
-  generateProfitability,
-  generateDebt,
-  generateMultiples,
-  generateValuation,
-  generateSensitivity,
   generateAdditionalInputs,
+  generateBasicInfo,
+  generateDebt,
+  generateMargins,
+  generateMultiples,
+  generateOperationalMetrics,
+  generateProfitability,
+  generateSensitivity,
+  generateValuation,
 } from "./sections";
+import { GenerateReportParams } from "./types";
 
 export const generateReport = ({
   options,

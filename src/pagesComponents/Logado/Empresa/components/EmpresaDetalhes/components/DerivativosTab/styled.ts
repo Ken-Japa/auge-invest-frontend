@@ -1,5 +1,5 @@
+import { Box, Paper, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Paper, Box, Typography } from '@mui/material';
 
 export const DerivativosContainer = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),

@@ -1,6 +1,8 @@
-import { Typography } from '@mui/material';
 import { Business as BusinessIcon, CalendarToday as CalendarIcon, Link as LinkIcon } from '@mui/icons-material';
-import { formatCNPJ, formatDate, formatNumber, formatLink } from '@/components/Utils/Formatters/formatters';
+import { Typography } from '@mui/material';
+
+import { formatCNPJ, formatDate, formatLink,formatNumber } from '@/components/Utils/Formatters/formatters';
+
 import { IconWrapper, InfoContainer } from '../../styled';
 
 interface FIIInfoSectionProps {

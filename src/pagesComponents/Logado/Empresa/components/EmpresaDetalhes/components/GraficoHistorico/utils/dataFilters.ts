@@ -6,7 +6,7 @@ export const filterDataByPeriod = (data: any[], period: PeriodType) => {
   }
 
   const today = new Date();
-  let startDate = new Date();
+  const startDate = new Date();
 
   switch (period) {
     case "1M":

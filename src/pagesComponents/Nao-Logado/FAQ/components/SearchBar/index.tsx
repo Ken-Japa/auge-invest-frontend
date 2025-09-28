@@ -1,6 +1,7 @@
 import { type FC } from 'react';
+
 import { SearchBarSkeleton } from "./SearchBarSkeleton";
-import { SearchContainer, StyledSearchIcon, StyledCloseIcon } from "./styled";
+import { SearchContainer, StyledCloseIcon,StyledSearchIcon } from "./styled";
 
 interface SearchBarProps {
     searchTerm: string;

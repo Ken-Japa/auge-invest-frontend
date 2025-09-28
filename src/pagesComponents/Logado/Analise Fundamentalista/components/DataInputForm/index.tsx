@@ -1,10 +1,11 @@
-import { Control } from 'react-hook-form';
 import { Grid } from '@mui/material';
+import { Control } from 'react-hook-form';
+
 import { DadosAnaliseFundamental } from '../../types';
-import { FormSection } from './components/FormSection';
 import { FormField } from './components/FormField';
-import { FormContainer } from './styled';
+import { FormSection } from './components/FormSection';
 import { FORM_SECTIONS } from './constants/constants';
+import { FormContainer } from './styled';
 
 const ALLOW_NEGATIVE_FIELDS = [
     'ebit',

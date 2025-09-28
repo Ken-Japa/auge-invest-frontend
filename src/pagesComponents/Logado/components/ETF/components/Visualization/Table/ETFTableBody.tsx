@@ -1,8 +1,10 @@
-import React from 'react';
 import { TableBody, Typography } from '@mui/material';
-import { ETFExtended } from '../../../types';
-import { StyledTableRow, StyledTableCell } from './styled';
+import React from 'react';
+
 import { formatNumber } from '@/components/Utils/Formatters/formatters';
+
+import { ETFExtended } from '../../../types';
+import { StyledTableCell,StyledTableRow } from './styled';
 
 interface ETFTableBodyProps {
   etfs: ETFExtended[];

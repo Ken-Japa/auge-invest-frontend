@@ -1,9 +1,10 @@
 import React from 'react';
-import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
-import { StatisticalData, StdDevLine } from '../../utils/types';
-import { useChartStyles } from '../../utils/chartConfig';
+import { Bar, CartesianGrid, ComposedChart, Legend, Line, ReferenceLine,ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+
 import { generateStdDevLines } from '../../services/analiseService';
-import { ChartContainer, ChartTitle, ChartDescription } from './styled';
+import { useChartStyles } from '../../utils/chartConfig';
+import { StatisticalData, StdDevLine } from '../../utils/types';
+import { ChartContainer, ChartDescription,ChartTitle } from './styled';
 
 
 interface GraficoAnalisePrecoProps {

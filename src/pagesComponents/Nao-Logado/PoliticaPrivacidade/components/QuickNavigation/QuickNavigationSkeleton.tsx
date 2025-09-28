@@ -1,6 +1,7 @@
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
-import { NavigationContainer } from "./styled";
 import { visitorColors } from "@/theme/palette/visitor";
+
+import { NavigationContainer } from "./styled";
 
 export const QuickNavigationSkeleton = () => (
   <NavigationContainer>

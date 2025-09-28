@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
-import { HeaderContainer, Title, Subtitle } from './styled';
+
+import { HeaderContainer, Subtitle,Title } from './styled';
 
 const DynamicMatrixRainText = dynamic(() => import('@/components/Effects/MatrixRainText').then(mod => mod.MatrixRainText), {
     ssr: false,

@@ -1,23 +1,25 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import { Typography } from "@mui/material";
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { PageTransition } from '@/components/Utils/PageTransition';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { PageBackground } from '@/components/Layout/PageBackground';
+import { PageTransition } from '@/components/Utils/PageTransition';
+
 import { ativosList } from "./constants";
 import {
-    AtivosHeader,
-    AtivosGrid,
     AtivoCard,
+    AtivosGrid,
+    AtivosHeader,
     CardContent,
+    CardDescription,
     CardIcon,
     CardTitle,
-    CardDescription,
     ComingSoonBadge,
     Page
 } from "./styled";

@@ -1,9 +1,10 @@
-import React from 'react';
-import { Box, Tooltip, Chip } from '@mui/material';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import BusinessIcon from '@mui/icons-material/Business';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { Box, Chip,Tooltip } from '@mui/material';
+import React from 'react';
+
 import { formatCurrency } from '../../../../utils/formatters';
 import { ChipsContainer, InfoChip, ValorMercadoChip } from './styled';
 

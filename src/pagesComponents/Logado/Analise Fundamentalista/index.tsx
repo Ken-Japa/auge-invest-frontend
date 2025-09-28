@@ -1,28 +1,27 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { Box, Container, Typography, Grid, IconButton } from '@mui/material';
 import HelpIcon from '@mui/icons-material/Help';
+import { Box, Container, Grid, IconButton,Typography } from '@mui/material';
+import { useEffect,useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
-import { PageTransition } from '@/components/Utils/PageTransition';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-
-import { DadosAnaliseFundamental, MetricasCalculadas } from './types';
-import { DataInputForm } from './components/DataInputForm';
-import { MetricsDisplay } from './components/MetricsDisplay';
-import { HelpDialog } from './components/HelpDialog';
-import { ContentContainer, StyledPaper } from './styled';
-import { ValuationSection } from './components/ValuationSection';
-import { SaveReportSection } from './components/SaveReportSection';
 import { PageBackground } from '@/components/Layout/PageBackground';
+import { PageTransition } from '@/components/Utils/PageTransition';
 
-import { generateReport } from './components/SaveReportSection/utils/reportGenerator';
-import { ValuationResults, SensitivityResults } from './components/ValuationSection/types';
-import { GenerateReportParams } from './components/SaveReportSection/utils/types';
+import { DataInputForm } from './components/DataInputForm';
+import { HelpDialog } from './components/HelpDialog';
+import { MetricsDisplay } from './components/MetricsDisplay';
+import { SaveReportSection } from './components/SaveReportSection';
 import { generatePDF } from './components/SaveReportSection/utils/pdfGenerator';
+import { generateReport } from './components/SaveReportSection/utils/reportGenerator';
+import { GenerateReportParams } from './components/SaveReportSection/utils/types';
+import { ValuationSection } from './components/ValuationSection';
+import { SensitivityResults,ValuationResults } from './components/ValuationSection/types';
+import { ContentContainer, StyledPaper } from './styled';
+import { DadosAnaliseFundamental, MetricasCalculadas } from './types';
 
 export const AnaliseFundamentalista = () => {
     const [helpOpen, setHelpOpen] = useState(false);

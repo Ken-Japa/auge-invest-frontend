@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect,useState } from 'react';
+
 import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar';
 
 interface SearchBarProps {

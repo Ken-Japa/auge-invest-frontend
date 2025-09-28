@@ -1,16 +1,17 @@
-import React from 'react';
-import { useRouter } from 'next/navigation';
-import { TextField, Autocomplete, InputAdornment, IconButton } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
+import SearchIcon from '@mui/icons-material/Search';
+import { Autocomplete, IconButton,InputAdornment, TextField } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+import { useCallback,useEffect, useState } from 'react';
+
+import { sumarioService } from '@/pagesComponents/Logado/components/EmpresaView/Elementos/ModoVisualizacao/utils/sumarioService';
 import { api } from '@/services/api';
 import { BDR } from '@/services/api/types/bdr';
+import { ETF } from '@/services/api/types/etf';
 import { ETFBDR } from '@/services/api/types/etfbdr';
 import { FII } from '@/services/api/types/fii';
-import { ETF } from '@/services/api/types/etf';
-import { sumarioService } from '@/pagesComponents/Logado/components/EmpresaView/Elementos/ModoVisualizacao/utils/sumarioService';
 
-import { useState, useEffect, useCallback } from 'react';
 import { GlobalSearchContainer } from './styled';
 
 interface SearchOption {

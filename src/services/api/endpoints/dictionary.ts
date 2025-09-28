@@ -1,7 +1,7 @@
 import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
 import { ErrorCode, handleApiError } from "../errorHandler";
-import { DictionaryListResponse, DictionaryFilter } from "../types";
+import { DictionaryFilter,DictionaryListResponse } from "../types";
 
 class DictionaryApiService extends BaseApiService {
   getDictionaryItems = async (filters?: DictionaryFilter): Promise<DictionaryListResponse> => {

@@ -1,5 +1,5 @@
-import { ViewMode } from "./types";
 import { VisualizationMode } from "../../../components/BDR/types";
+import { ViewMode } from "./types";
 
 // Mapeamento de ViewMode para VisualizationMode
 export const viewModeToVisualizationMode = (

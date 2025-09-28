@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useSortableData = (defaultOrderBy: string = '') => {
+export const useSortableData = (defaultOrderBy = '') => {
     const [orderBy, setOrderBy] = useState<string>(defaultOrderBy);
     const [order, setOrder] = useState<'asc' | 'desc'>('desc');
 

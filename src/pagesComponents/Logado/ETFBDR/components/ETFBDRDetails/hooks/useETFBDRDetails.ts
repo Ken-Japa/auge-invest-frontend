@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect,useState } from "react";
+
 import { fetchETFBDRBySlugOrCode } from "../../../../components/ETFBDR/services/etfbdrService";
 import { ETFBDRExtended } from "../../../../components/ETFBDR/types";
 

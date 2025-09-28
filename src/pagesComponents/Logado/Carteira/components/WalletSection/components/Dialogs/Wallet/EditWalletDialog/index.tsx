@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { TextField, Switch, FormControlLabel } from '@mui/material';
-import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, UpdateButton } from './styled';
-import { Wallet } from '@/services/api/types';
+import { FormControlLabel,Switch, TextField } from '@mui/material';
+import React, { useEffect, useRef,useState } from 'react';
+
 import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
+import { Wallet } from '@/services/api/types';
+
+import { CancelButton, StyledDialog, StyledDialogActions, StyledDialogContent, StyledDialogTitle, UpdateButton } from './styled';
 
 
 interface EditWalletDialogProps {

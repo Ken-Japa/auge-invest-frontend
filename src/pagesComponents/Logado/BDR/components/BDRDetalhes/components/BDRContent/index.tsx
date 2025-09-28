@@ -1,16 +1,17 @@
-import { Grid, Typography, Chip } from '@mui/material';
-import { CalendarToday as CalendarIcon, Business as BusinessIcon } from '@mui/icons-material';
-import { UnifiedBDR } from '../../../../../components/BDR/types';
+import { Business as BusinessIcon,CalendarToday as CalendarIcon } from '@mui/icons-material';
+import { Chip,Grid, Typography } from '@mui/material';
+
 import { formatCNPJ, formatDate } from '@/components/Utils/Formatters/formatters';
+
+import { UnifiedBDR } from '../../../../../components/BDR/types';
 import {
+  CodeChip,
   DetailContainer,
   DetailPaper,
   HeaderContainer,
-  CodeChip,
-  SectionDivider,
+  IconWrapper,
   InfoContainer,
-  IconWrapper
-} from '../../styled';
+  SectionDivider} from '../../styled';
 import BDRDividendos from '../BDRDividendos';
 
 interface BDRContentProps {

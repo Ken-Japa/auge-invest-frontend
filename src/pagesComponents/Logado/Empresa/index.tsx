@@ -1,28 +1,26 @@
 "use client";
 
-import { useState } from 'react';
 import { Box } from '@mui/material';
+import { useState } from 'react';
 
 // Componentes compartilhados
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { PageTransition } from '@/components/Utils/PageTransition';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { PageBackground } from '@/components/Layout/PageBackground';
+import { PageTransition } from '@/components/Utils/PageTransition';
 
+import { VisualizationContent } from '../components/EmpresaView';
+import { ModoVisualizacao } from '../components/EmpresaView/Elementos/ModoVisualizacao';
+import { ViewMode } from '../components/EmpresaView/Elementos/ModoVisualizacao/types';
 // Componentes específicos
 import { SearchBar } from '../components/EmpresaView/Elementos/SearchBar';
-import { ModoVisualizacao } from '../components/EmpresaView/Elementos/ModoVisualizacao';
-import { VisualizationContent } from '../components/EmpresaView';
-import { ViewMode } from '../components/EmpresaView/Elementos/ModoVisualizacao/types';
-
 // Estilos
 import {
-    SearchBarWrapper,
+    ContentContainer,
     ControlsWrapper,
-    ContentContainer
-} from './styled';
+    SearchBarWrapper} from './styled';
 
 export const Empresa = () => {
     const [isLoading, setIsLoading] = useState(true);

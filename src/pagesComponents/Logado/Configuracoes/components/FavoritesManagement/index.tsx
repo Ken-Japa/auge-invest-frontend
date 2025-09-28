@@ -1,15 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Box, Typography, List, ListItem, ListItemText, IconButton, CircularProgress, Alert as MuiAlert, Card, CardContent } from '@mui/material';
-import { useFavoriteNavigation } from '@/hooks/useFavoriteNavigation';
 import DeleteIcon from '@mui/icons-material/Delete';
+import StarIcon from '@mui/icons-material/Star';
+import { Alert as MuiAlert, Box, Card, CardContent,CircularProgress, IconButton, List, ListItem, ListItemText, Typography } from '@mui/material';
 import { useSession } from 'next-auth/react';
+import React, { useCallback,useEffect, useState } from 'react';
+
+import { SettingsCard } from '@/components/Core/Card/SettingsCard';
+import { useFavoriteNavigation } from '@/hooks/useFavoriteNavigation';
+import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar';
+import { useApi } from '@/providers/ApiProvider';
 import { api } from '@/services/api';
 import { Favorite } from '@/services/api/types/favorite';
-import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar';
-import { SettingsCard } from '@/components/Core/Card/SettingsCard';
+
 import { SettingsControlContainer } from '../../styled';
-import StarIcon from '@mui/icons-material/Star';
-import { useApi } from '@/providers/ApiProvider';
 
 interface FavoritesManagementProps {
   // Adicione props se necessário

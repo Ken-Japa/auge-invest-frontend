@@ -1,6 +1,6 @@
 import { DadosAnaliseFundamental } from "../../../../types";
+import { formatCurrency,formatNumber, hasValue } from "../helpers";
 import { MetricItem } from "../types";
-import { formatNumber, hasValue, formatCurrency } from "../helpers";
 
 export const generateOperationalMetrics = (
   fundamentalData: DadosAnaliseFundamental

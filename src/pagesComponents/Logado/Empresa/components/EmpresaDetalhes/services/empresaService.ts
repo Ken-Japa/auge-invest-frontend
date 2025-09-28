@@ -1,6 +1,7 @@
 import { companiesApi } from "@/services/api/endpoints/companies";
 import { sumarioApi } from "@/services/api/endpoints/sumario";
-import { EmpresaDetalhada, Codigo } from "../../../types";
+
+import { Codigo,EmpresaDetalhada } from "../../../types";
 
 // Função para buscar dados de uma empresa específica por slug (código ou nome)
 export const getEmpresaBySlug = async (
@@ -118,7 +119,7 @@ export const getAllEmpresas = async (): Promise<EmpresaDetalhada[]> => {
     });
     const sumario = sumarioResponse.result || [];
 
-    let dividendosData: any[] = [];
+    const dividendosData: any[] = [];
     const dividendosResponse = await companiesApi.getCompanyDividends({
       pageSize: 1000,
     });

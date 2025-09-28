@@ -1,12 +1,11 @@
-import { type FC } from 'react';
-
-import { Typography } from "@mui/material";
 import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
+import { Typography } from "@mui/material";
+import { type FC } from 'react';
 
 import { ContactInfoSkeleton } from "./ContactInfoSkeleton";
-import { InfoContainer, InfoItem, InfoHeader } from "./styled";
+import { InfoContainer, InfoHeader,InfoItem } from "./styled";
 
 interface ContactInfoProps {
     isLoading: boolean;

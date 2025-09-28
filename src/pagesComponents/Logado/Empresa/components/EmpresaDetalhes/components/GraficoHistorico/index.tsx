@@ -1,12 +1,13 @@
-import { useState, useEffect, useMemo } from 'react';
-import { Typography, CircularProgress } from '@mui/material';
+import { CircularProgress,Typography } from '@mui/material';
 import { useTheme } from "@mui/material/styles";
+import { useEffect, useMemo,useState } from 'react';
 
 import { LineChart } from '@/components/Data-Display/Charts/LineChart';
+
 import { PeriodSelector, PeriodType } from './components/PeriodSelector';
-import { filterDataByPeriod, getOptimalDataInterval, getOptimizedLabels } from './utils/dataFilters';
-import { GraficoContainer, GraficoHeader, ChartWrapper, LoadingContainer } from './styled';
 import { getHistoricalData } from './services/historicalService';
+import { ChartWrapper, GraficoContainer, GraficoHeader, LoadingContainer } from './styled';
+import { filterDataByPeriod, getOptimalDataInterval, getOptimizedLabels } from './utils/dataFilters';
 
 interface GraficoHistoricoProps {
     codigoAtivo: string;

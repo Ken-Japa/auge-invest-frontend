@@ -1,17 +1,17 @@
-import { Typography, Button, CircularProgress } from '@mui/material';
-import { WalletSectionContainer, WalletSectionHeader, LoadingContainer, NoWalletsMessage } from './styled';
 import { Add as AddIcon } from '@mui/icons-material';
+import { Button, CircularProgress,Typography } from '@mui/material';
+import { useEffect } from 'react';
 
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 
-import { WalletContent } from './components/WalletContent';
-import { WalletDialogs } from './components/Dialogs/Wallet/WalletDialogs';
-import { WalletDeleteDialog } from './components/Dialogs/Wallet/WalletDeleteDialog';
-import { useWalletSectionLogic } from './hooks/useWalletSectionLogic';
 import { useFocus } from '../RecentActivities/components/FocusContext/FocusContext';
-import { useEffect } from 'react';
+import { WalletDeleteDialog } from './components/Dialogs/Wallet/WalletDeleteDialog';
+import { WalletDialogs } from './components/Dialogs/Wallet/WalletDialogs';
+import { WalletContent } from './components/WalletContent';
+import { useWalletSectionLogic } from './hooks/useWalletSectionLogic';
+import { LoadingContainer, NoWalletsMessage,WalletSectionContainer, WalletSectionHeader } from './styled';
 
 
 interface WalletSectionProps {

@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useMemo } from 'react';
 import {
-  CircularProgress,
-  Alert
-} from '@mui/material';
+  Alert,
+  CircularProgress} from '@mui/material';
+import React, { useEffect, useMemo,useState } from 'react';
+
 import { api } from '@/services/api';
-import { VencimentoTabs } from './components/VencimentoTabs';
+
 import { OpcoesTable } from './components/OpcoesTable';
+import { VencimentoTabs } from './components/VencimentoTabs';
 import {
   DerivativosContainer,
-  VencimentoInfo,
-  TitleTypography,
+  LoadingContainer,
   SubtitleTypography,
-  LoadingContainer
-} from './styled';
+  TitleTypography,
+  VencimentoInfo} from './styled';
 
 interface DerivativoItem {
   "COD Opcao": string;

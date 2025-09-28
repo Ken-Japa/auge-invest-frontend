@@ -1,5 +1,6 @@
 import { Components } from "@mui/material";
-import { borderRadius, shadows, transitions, spacing } from '../variables';
+
+import { borderRadius, shadows, spacing,transitions } from '../variables';
 
 export const muiAccordion: Components["MuiAccordion"] = {
   styleOverrides: {

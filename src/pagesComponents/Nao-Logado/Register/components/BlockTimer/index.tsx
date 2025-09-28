@@ -1,11 +1,11 @@
 import { type FC, useEffect, useState } from 'react';
+
 import { 
   BlockTimerContainer, 
-  TimerTitle, 
-  TimerText, 
   TimerDisplay, 
-  TimerMessage 
-} from './styled';
+  TimerMessage, 
+  TimerText, 
+  TimerTitle} from './styled';
 
 interface BlockTimerProps {
   seconds: number;

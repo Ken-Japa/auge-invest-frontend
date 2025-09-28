@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { FII } from "@/pagesComponents/Logado/FII";
 
 export const metadata: Metadata = {

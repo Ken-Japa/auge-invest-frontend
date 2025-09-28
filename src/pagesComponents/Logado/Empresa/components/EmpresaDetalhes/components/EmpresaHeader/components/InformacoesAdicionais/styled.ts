@@ -1,5 +1,5 @@
+import { Accordion,Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Box, Accordion } from "@mui/material";
 
 export const CustomAccordion = styled(Accordion)(({ theme }) => ({
   marginTop: theme.spacing(3),

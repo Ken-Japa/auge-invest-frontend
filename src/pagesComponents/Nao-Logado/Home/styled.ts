@@ -1,7 +1,8 @@
-import { Typography, Divider } from "@mui/material";
+import { Divider,Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { spacing, borderRadius, transitions } from "@/theme/variables";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { borderRadius, spacing, transitions } from "@/theme/variables";
 
 export const MainContainer = styled("main")({
   background: visitorColors.backgroundGradient,

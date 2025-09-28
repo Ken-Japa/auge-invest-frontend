@@ -1,7 +1,7 @@
 import { Button, ButtonProps, Theme } from '@mui/material';
-import { OverridableStringUnion } from '@mui/types';
 import { ButtonPropsColorOverrides, ButtonPropsSizeOverrides } from '@mui/material';
 import { SxProps } from '@mui/system';
+import { OverridableStringUnion } from '@mui/types';
 import { HTMLMotionProps } from 'framer-motion';
 
 interface CustomButtonProps extends Omit<ButtonProps, 'variant' | 'color' | 'size'> {

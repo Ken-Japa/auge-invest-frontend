@@ -1,5 +1,6 @@
-import { styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
 import { spacing } from "@/theme/variables";
 
 export const ChartContainer = styled(Box)(({ theme }) => ({

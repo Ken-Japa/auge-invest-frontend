@@ -65,7 +65,7 @@ export const formatCurrency = (value: number | string): string => {
 
 export const formatLink = (
   url: string | undefined,
-  displayText: string = "Link"
+  displayText = "Link"
 ): string => {
   if (!url) return "N/A";
   return `<a href="${url}" target="_blank" rel="noopener noreferrer" style="color: #1976d2; text-decoration: underline;">${displayText}</a>`;

@@ -1,5 +1,5 @@
 import { SensitivityResults } from "../../../ValuationSection/types";
-import { hasValue, formatCurrency, formatPercentage } from "../helpers";
+import { formatCurrency, formatPercentage,hasValue } from "../helpers";
 
 export const generateSensitivity = (
   sensitivityResults: SensitivityResults | null

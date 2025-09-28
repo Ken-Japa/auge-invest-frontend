@@ -1,5 +1,6 @@
-import React from 'react';
 import { Grid } from '@mui/material';
+import React from 'react';
+
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 
 interface BlogCardListSkeletonProps {

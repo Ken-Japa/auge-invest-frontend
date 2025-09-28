@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
-import { SectionContainer } from "./styled";
+
 import { PrivacySectionSkeleton } from "./PrivacySectionSkeleton";
+import { SectionContainer } from "./styled";
 
 interface PrivacySectionProps {
     id: string;

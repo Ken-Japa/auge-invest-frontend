@@ -1,4 +1,3 @@
-import { styled } from "@mui/material/styles";
 import {
   Paper,
   Table as MuiTable,
@@ -8,6 +7,7 @@ import {
   TableRow as MuiTableRow,
   Typography,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const StyledTableContainer = styled(MuiTableContainer)(({ theme }) => ({
   boxShadow: theme.shadows[3],

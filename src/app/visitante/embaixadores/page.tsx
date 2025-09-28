@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import Ambassadors from "@/pagesComponents/Nao-Logado/Embaixadores";
 
 export const metadata: Metadata = {

@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, lazy } from "react";
+import { lazy,useState } from "react";
 
-import { OptimizedImage } from "@/components/Utils/OptimizedImage";
-import { PageTransition } from "@/components/Utils/PageTransition";
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { ProgressiveLoad } from "@/components/Feedback/ProgressiveLoad";
 import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
+import { OptimizedImage } from "@/components/Utils/OptimizedImage";
+import { PageTransition } from "@/components/Utils/PageTransition";
 import { visitorColors } from "@/theme/palette/visitor";
 
 import { SectionPricing } from "./styled";

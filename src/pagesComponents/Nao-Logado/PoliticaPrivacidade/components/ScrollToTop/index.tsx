@@ -1,5 +1,6 @@
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { Fade } from '@mui/material';
+
 import { ScrollButton } from "./styled";
 
 interface ScrollToTopProps {

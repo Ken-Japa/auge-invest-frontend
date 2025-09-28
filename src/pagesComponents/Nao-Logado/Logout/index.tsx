@@ -1,8 +1,9 @@
 'use client';
-import { useEffect } from 'react';
-import { signOut } from 'next-auth/react';
-import { clearAuthData } from '@/utils/auth';
 import { useRouter } from 'next/navigation';
+import { signOut } from 'next-auth/react';
+import { useEffect } from 'react';
+
+import { clearAuthData } from '@/utils/auth';
 
 export default function LogoutComponent() {
     const router = useRouter();

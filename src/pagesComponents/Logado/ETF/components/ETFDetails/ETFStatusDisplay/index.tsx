@@ -1,5 +1,6 @@
-import { Alert, CircularProgress, Button } from '@mui/material';
 import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
+import { Alert, Button,CircularProgress } from '@mui/material';
+
 import { BackButton, ContentWrapper, DetailPageContainer, ErrorContainer, LoadingContainer } from './styled';
 
 interface ETFStatusDisplayProps {

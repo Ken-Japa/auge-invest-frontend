@@ -1,7 +1,8 @@
-import { styled } from "@mui/material/styles";
 import HelpIcon from "@mui/icons-material/Help";
-import { spacing } from "@/theme/variables";
+import { styled } from "@mui/material/styles";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { spacing } from "@/theme/variables";
 
 export const HeaderContainer = styled("div")(({ theme }) => ({
   textAlign: "center",

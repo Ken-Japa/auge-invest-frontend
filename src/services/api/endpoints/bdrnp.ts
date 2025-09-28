@@ -1,7 +1,7 @@
 import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
 import { ErrorCode, handleApiError } from "../errorHandler";
-import { BDRNPListResponse, BDRNPFilter, BDRNP } from "../types";
+import { BDRNP,BDRNPFilter, BDRNPListResponse } from "../types";
 
 class BDRNPApiService extends BaseApiService {
   getBDRNPs = async (filters?: BDRNPFilter): Promise<any> => {

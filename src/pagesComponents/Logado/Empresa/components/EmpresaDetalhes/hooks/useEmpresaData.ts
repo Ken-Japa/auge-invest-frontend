@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
-import { EmpresaDetalhada, Codigo } from "../../../types";
+import { useEffect,useState } from "react";
+
+import { Codigo,EmpresaDetalhada } from "../../../types";
 import {
-  getEmpresaBySlug,
-  getCodigoPrincipal,
   getAllEmpresas,
+  getCodigoPrincipal,
+  getEmpresaBySlug,
 } from "../services/empresaService";
 
 interface UseEmpresaDataResult {

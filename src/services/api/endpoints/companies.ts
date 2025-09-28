@@ -1,13 +1,13 @@
 import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
+import { ErrorCode, handleApiError } from "../errorHandler";
 import {
   Company,
-  CompanyListResponseApi,
-  CompanyFilter,
   CompanyDividendFilter,
   CompanyDividendResponseApi,
+  CompanyFilter,
+  CompanyListResponseApi,
 } from "../types";
-import { ErrorCode, handleApiError } from "../errorHandler";
 
 class CompaniesApiService extends BaseApiService {
   getCompanies = async (

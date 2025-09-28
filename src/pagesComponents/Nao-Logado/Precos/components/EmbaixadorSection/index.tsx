@@ -1,10 +1,12 @@
 import dynamic from "next/dynamic";
+
 import { CustomButton } from "@/components/Core/Button";
+import { visitorColors } from "@/theme/palette/visitor";
+
 import { EMBAIXADOR_BENEFICIOS } from "../../constants/embaixador";
 import { BaseSection, ContentWrapper } from "../../styled";
-import { EmbaixadorCard, Description } from "./styled";
 import { EmbaixadorSkeleton } from "./EmbaixadorSkeleton";
-import { visitorColors } from "@/theme/palette/visitor";
+import { Description,EmbaixadorCard } from "./styled";
 
 interface EmbaixadorSectionProps {
     isLoading?: boolean;

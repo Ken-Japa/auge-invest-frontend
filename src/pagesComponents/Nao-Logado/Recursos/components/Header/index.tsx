@@ -1,7 +1,8 @@
 import { Typography } from "@mui/material";
 import dynamic from "next/dynamic";
-import { HeaderContainer } from "./styled";
+
 import { HeaderSkeleton } from "./HeaderSkeleton";
+import { HeaderContainer } from "./styled";
 
 interface HeaderProps {
     isLoading?: boolean;

@@ -1,5 +1,5 @@
+import { Alert, AlertProps,Snackbar as MuiSnackbar } from '@mui/material';
 import React from 'react';
-import { Snackbar as MuiSnackbar, Alert, AlertProps } from '@mui/material';
 
 interface SnackbarProps {
   open: boolean;

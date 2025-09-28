@@ -1,5 +1,5 @@
+import { Box, CircularProgress,Table as MuiTable } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Box, Table as MuiTable, CircularProgress } from "@mui/material";
 
 export const TableContainer = styled(Box)(({ theme }) => ({
   flex: 1,

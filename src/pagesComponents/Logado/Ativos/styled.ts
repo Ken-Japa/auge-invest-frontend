@@ -1,5 +1,5 @@
+import { Box, Container,Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Box, Typography, Container } from "@mui/material";
 import { motion } from "framer-motion";
 
 export const Page = styled(Container)(({ theme }) => ({

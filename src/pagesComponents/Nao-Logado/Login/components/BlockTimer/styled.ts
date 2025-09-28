@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
+
 import { visitorColors } from "@/theme/palette/visitor";
-import { spacing, borderRadius } from "@/theme/variables";
+import { borderRadius,spacing } from "@/theme/variables";
 
 export const BlockTimerContainer = styled("div")({
   display: "flex",

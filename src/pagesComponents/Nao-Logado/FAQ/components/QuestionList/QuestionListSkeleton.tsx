@@ -1,9 +1,8 @@
+import { Stack } from "@mui/material";
 import { type FC } from 'react';
 
-import { Stack } from "@mui/material";
-import { visitorColors } from "@/theme/palette/visitor";
-
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
+import { visitorColors } from "@/theme/palette/visitor";
 
 const SKELETON_COUNT = 8;
 

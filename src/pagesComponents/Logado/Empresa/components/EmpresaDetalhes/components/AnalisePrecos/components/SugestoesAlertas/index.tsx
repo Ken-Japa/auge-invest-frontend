@@ -1,29 +1,26 @@
-import React from 'react';
 import { SelectChangeEvent } from '@mui/material';
+import React from 'react';
 
+import { PriceDataPoint } from "../../../GraficoHistorico/services/historicalService";
 // Serviços e tipos
 import { calculateAlertSuggestions } from '../../services/analiseService';
-import { PriceDataPoint } from "../../../GraficoHistorico/services/historicalService";
 import { AnalysisPeriod } from '../../utils/types';
-
 // Componentes
 import { AlertasSection } from '../AlertasSection';
-
 // Estilos
 import {
-  Container,
+  AlertDivider,
   AlertGrid,
   BuyAlertPaper,
-  SellAlertPaper,
   BuyAlertTitle,
-  SellAlertTitle,
-  PriceContainer,
   BuyPriceValue,
-  SellPriceValue,
+  Container,
+  PriceContainer,
   PriceInfo,
-  AlertDivider,
-  SecondaryPriceContainer
-} from './styled';
+  SecondaryPriceContainer,
+  SellAlertPaper,
+  SellAlertTitle,
+  SellPriceValue} from './styled';
 
 interface SugestoesAlertasProps {
   mean: number;

@@ -1,15 +1,17 @@
 "use client";
 
-import { Switch, FormControlLabel } from '@mui/material';
+import { FormControlLabel,Switch } from '@mui/material';
+
+import { useTheme } from '@/theme/ThemeContext';
+
 import { 
-  ThemeContainer, 
-  ThemeControlContainer, 
   DarkIcon, 
   LightIcon,
+  ThemeContainer, 
+  ThemeControlContainer, 
   ThemeInfo,
   ThemeLabel 
 } from './styled';
-import { useTheme } from '@/theme/ThemeContext';
 
 export const ThemePreference = () => {
     const { isDarkMode, toggleTheme } = useTheme();

@@ -1,12 +1,13 @@
-import React from 'react';
-import {
-    Table, TableHead, TableBody, TableRow,
-    TableCell, TableSortLabel
-} from '@mui/material';
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
-import { SumarioData } from '../types';
-import { formatCurrency } from '../../utils/currency';
+import {
+    Table, TableBody,     TableCell, TableHead, TableRow,
+TableSortLabel
+} from '@mui/material';
 import { useRouter } from 'next/navigation';
+import React from 'react';
+
+import { formatCurrency } from '../../utils/currency';
+import { SumarioData } from '../types';
 
 interface FlatTableViewProps {
     data: SumarioData;

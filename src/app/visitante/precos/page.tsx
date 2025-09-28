@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { Pricing } from "@/pagesComponents/Nao-Logado/Precos";
 
 export const metadata: Metadata = {

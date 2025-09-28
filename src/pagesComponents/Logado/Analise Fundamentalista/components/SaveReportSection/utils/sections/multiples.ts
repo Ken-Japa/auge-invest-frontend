@@ -1,8 +1,8 @@
-import { MetricItem, MetricName } from "../types";
+import { MetricasCalculadas } from "../../../../types";
+import { SaveReportOptions } from "../../index";
 import { METRIC_DESCRIPTIONS, METRIC_FORMULAS } from "../constants";
 import { formatNumber, hasValue } from "../helpers";
-import { SaveReportOptions } from "../../index";
-import { MetricasCalculadas } from "../../../../types";
+import { MetricItem, MetricName } from "../types";
 
 export const generateMultiples = (
   metricsResults: MetricasCalculadas | undefined,

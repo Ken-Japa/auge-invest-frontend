@@ -1,9 +1,9 @@
-import { SaveReportOptions } from "../index";
 import { DadosAnaliseFundamental, MetricasCalculadas } from "../../../types";
 import {
-  ValuationResults,
   SensitivityResults,
+  ValuationResults,
 } from "../../ValuationSection/types";
+import { SaveReportOptions } from "../index";
 
 export interface GenerateReportParams {
   options: SaveReportOptions;

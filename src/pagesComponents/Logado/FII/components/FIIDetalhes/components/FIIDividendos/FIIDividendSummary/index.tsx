@@ -1,5 +1,7 @@
 import { Tooltip, Typography } from '@mui/material';
+
 import { formatCurrency } from '@/components/Utils/Formatters/formatters';
+
 import { DividendSummary, SummaryItem, SummaryLabel, SummaryValue } from '../styled';
 
 interface FIIDividendSummaryDisplayProps {

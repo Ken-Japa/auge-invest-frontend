@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
-import { spacing, transitions } from "@/theme/variables";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { spacing, transitions } from "@/theme/variables";
 
 export const SectionWelcome = styled("section")({
   position: "relative",

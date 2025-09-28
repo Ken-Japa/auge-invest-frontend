@@ -1,6 +1,7 @@
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
-import { ContentContainer } from "./styled";
 import { visitorColors } from "@/theme/palette/visitor";
+
+import { ContentContainer } from "./styled";
 
 export const PrivacyContentSkeleton = () => (
   <ContentContainer>

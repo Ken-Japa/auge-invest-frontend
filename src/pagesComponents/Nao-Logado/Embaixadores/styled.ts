@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
-import { visitorColors } from "@/theme/palette/visitor";
+
 import { PageTransition } from "@/components/Utils/PageTransition";
+import { visitorColors } from "@/theme/palette/visitor";
 
 export const EmbaixadoresSection = styled("main")<{ footerHeight?: number }>(
   ({ footerHeight = 0 }) => ({

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { Solutions } from "@/pagesComponents/Nao-Logado/Recursos";
 
 export const metadata: Metadata = {

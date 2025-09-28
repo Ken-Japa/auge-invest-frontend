@@ -1,20 +1,20 @@
-import React from 'react';
-import { useRouter } from 'next/navigation';
-import { CardContent, Divider, IconButton, Tooltip } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { CardContainer, CodesContainer } from '../../styled';
+import { CardContent, Divider, IconButton, Tooltip } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+
 import { formatCurrency } from '../../../utils/currency';
+import { CardContainer, CodesContainer } from '../../styled';
 import { CodeItem } from '../CodeItem';
 import {
+    CodesTitle,
     CompanyTitle,
-    SegmentText,
+    HeaderContainer,
     IndustryText,
+    InfoIconContainer,
     MarketValueText,
     ParticipationText,
-    CodesTitle,
-    HeaderContainer,
-    InfoIconContainer
-} from './styled';
+    SegmentText} from './styled';
 
 interface CompanyCardProps {
     empresa: {
@@ -22,11 +22,11 @@ interface CompanyCardProps {
         industria: string;
         segmento: string;
         valorMercado: number;
-        codigos: Array<{
+        codigos: {
             codigo: string;
             variacao?: number;
             preco?: number;
-        }>;
+        }[];
     };
     totalMarketValue: number;
 }

@@ -1,5 +1,5 @@
+import { FormControl, Grid, Slider,Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Grid, FormControl, Typography, Slider } from '@mui/material';
 
 export const PeriodoContainer = styled(Grid)(({ theme }) => ({
   marginBottom: theme.spacing(3),

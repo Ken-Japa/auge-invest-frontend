@@ -4,31 +4,27 @@ import { Typography } from '@mui/material';
 
 // Componentes compartilhados
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { PageTransition } from '@/components/Utils/PageTransition';
-import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { PageTransition } from '@/components/Utils/PageTransition';
 
 // Componentes específicos
 import { EmpresaContent } from './components/EmpresaContent';
-
 // Hooks customizados
 import {
+  useDerivativesCheck,
   useEmpresaData,
   useHistoricalData,
-  useDerivativesCheck,
   useTabNavigation,
   useUrlSync
 } from './hooks';
-
-
 // Estilos
 import {
-  EmpresaContainer,
   ContentContainer,
-  StyledPaper,
+  EmpresaContainer,
+  ErrorContainer,
   LoadingContainer,
-  ErrorContainer
-} from './styled';
+  StyledPaper} from './styled';
 
 interface EmpresaDetalhesProps {
   slug: string;

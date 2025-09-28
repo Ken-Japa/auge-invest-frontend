@@ -1,6 +1,6 @@
 'use client';
-import { Box, Typography, IconButton, Tooltip } from "@mui/material";
 import ShareIcon from '@mui/icons-material/Share';
+import { Box, IconButton, Tooltip,Typography } from "@mui/material";
 import { useSnackbar } from 'notistack';
 
 interface ShareSectionProps {

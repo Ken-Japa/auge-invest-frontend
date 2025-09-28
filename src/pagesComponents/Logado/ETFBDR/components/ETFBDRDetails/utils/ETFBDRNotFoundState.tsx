@@ -1,7 +1,8 @@
-import React from 'react';
-import { Alert, Button } from '@mui/material';
 import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
-import { DetailPageContainer, ContentWrapper, ErrorContainer } from '../styled';
+import { Alert, Button } from '@mui/material';
+import React from 'react';
+
+import { ContentWrapper, DetailPageContainer, ErrorContainer } from '../styled';
 
 interface ETFBDRNotFoundStateProps {
   message: string;

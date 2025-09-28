@@ -1,7 +1,8 @@
-import { Box, Avatar } from "@mui/material";
+import { Avatar,Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { borderRadius, spacing, transitions } from "@/theme/variables";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { borderRadius, spacing, transitions } from "@/theme/variables";
 
 export const CardContainer = styled(Box)({
   background: visitorColors.backgroundLight,

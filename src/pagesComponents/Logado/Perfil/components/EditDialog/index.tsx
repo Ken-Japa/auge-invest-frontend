@@ -1,6 +1,7 @@
-import { Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
+import { AnimatePresence,motion } from 'framer-motion';
+
 import { CustomButton } from '@/components/Core/Button';
-import { motion, AnimatePresence } from 'framer-motion';
 
 // Add loading prop to the interface
 interface EditDialogProps {

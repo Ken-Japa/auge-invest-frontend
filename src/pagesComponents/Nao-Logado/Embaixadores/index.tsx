@@ -1,12 +1,12 @@
 "use client";
 
-import { type FC, useState, lazy, useEffect } from "react";
+import { type FC, lazy, useEffect,useState } from "react";
 
 import { ErrorBoundary } from "@/components/Feedback/ErrorBoundary";
 import { OptimizedImage } from "@/components/Utils/OptimizedImage";
 
 import { ambassadors } from './constants/ambassadors';
-import { EmbaixadoresSection, StyledPageTransition, BackgroundImage } from './styled';
+import { BackgroundImage,EmbaixadoresSection, StyledPageTransition } from './styled';
 
 const Header = lazy(() => import('./components/Header').then(mod => ({ default: mod.Header })));
 const CallToAction = lazy(() => import('./components/CallToAction').then(mod => ({ default: mod.CallToAction })));

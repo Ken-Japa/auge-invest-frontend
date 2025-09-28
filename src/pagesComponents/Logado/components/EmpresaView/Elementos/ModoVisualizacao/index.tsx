@@ -1,10 +1,11 @@
-import { IconButton, Tooltip } from '@mui/material';
-import { ViewMode } from './types';
-import { ViewControls } from './styled';
-import GridViewIcon from '@mui/icons-material/GridView';
-import TableRowsIcon from '@mui/icons-material/TableRows';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
+import GridViewIcon from '@mui/icons-material/GridView';
+import TableRowsIcon from '@mui/icons-material/TableRows';
+import { IconButton, Tooltip } from '@mui/material';
+
+import { ViewControls } from './styled';
+import { ViewMode } from './types';
 
 interface ModoVisualizacaoProps {
     viewMode: ViewMode;

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { Empresa } from "@/pagesComponents/Logado/Empresa";
 
 export const metadata: Metadata = {

@@ -1,8 +1,9 @@
 import React from 'react';
+
 import { BDRVisualizationRendererProps } from '../../../types';
 import CardView from '../Cards';
-import TableView from '../Table';
 import GridView from '../Grid';
+import TableView from '../Table';
 
 export const BDRVisualizationRenderer: React.FC<BDRVisualizationRendererProps> = ({
   mode,

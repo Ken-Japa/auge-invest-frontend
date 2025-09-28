@@ -1,5 +1,5 @@
-import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const DetailPageContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(4),

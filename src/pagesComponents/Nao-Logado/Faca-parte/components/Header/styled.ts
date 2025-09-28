@@ -1,7 +1,8 @@
-import { styled } from "@mui/material/styles";
-import { spacing } from "@/theme/variables";
-import { visitorColors } from "@/theme/palette/visitor";
 import GroupsIcon from "@mui/icons-material/Groups";
+import { styled } from "@mui/material/styles";
+
+import { visitorColors } from "@/theme/palette/visitor";
+import { spacing } from "@/theme/variables";
 
 export const HeaderContainer = styled("div")({
   "& .header-content": {

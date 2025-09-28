@@ -1,14 +1,16 @@
 import React from 'react';
+
+import { formatCNPJ,formatNumber } from '@/components/Utils/Formatters/formatters';
+
 import { ETFExtended } from '../../../types';
-import { formatNumber, formatCNPJ } from '@/components/Utils/Formatters/formatters';
 import {
   CardContainer,
   CardHeader,
-  CardTitle,
-  CardSubtitle,
   CardInfo,
   CardInfoLabel,
   CardInfoValue,
+  CardSubtitle,
+  CardTitle,
   CodeChip,
 } from './styled';
 

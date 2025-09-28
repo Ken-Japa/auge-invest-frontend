@@ -1,6 +1,7 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, ReactNode,useContext, useEffect, useState } from 'react';
+
 import { EconomiaService } from '../services/api';
-import { MarketData, UserPosition, EconomicIndicators } from '../types';
+import { EconomicIndicators,MarketData, UserPosition } from '../types';
 
 interface EconomiaContextType {
     stocksData: MarketData[];

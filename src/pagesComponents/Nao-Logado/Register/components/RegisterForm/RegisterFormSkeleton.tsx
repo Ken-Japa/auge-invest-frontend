@@ -1,7 +1,7 @@
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
 
-import { HeaderSkeleton } from "../Header/HeaderSkeleton";
 import { FormFieldsSkeleton } from "../FormFields/FormFieldsSkeleton";
+import { HeaderSkeleton } from "../Header/HeaderSkeleton";
 import { RegisterFormStyled } from "./styled";
 
 const commonSkeletonProps = {

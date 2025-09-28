@@ -1,17 +1,19 @@
-import { api } from '@/services/api';
-import { useMutation } from '@tanstack/react-query';
-import { CreateTransactionPayload } from '@/services/api/types/transaction';
-import { useState } from 'react';
-import {
-    TextField,
-    MenuItem,
-    Grid
-} from '@mui/material';
-import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, SaveButton } from './styled';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
+
+import {
+    Grid,
+    MenuItem,
+    TextField} from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { useMutation } from '@tanstack/react-query';
+import dayjs, { Dayjs } from 'dayjs';
+import { useState } from 'react';
+
 import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
+import { api } from '@/services/api';
+import { CreateTransactionPayload } from '@/services/api/types/transaction';
+
+import { CancelButton, SaveButton,StyledDialog, StyledDialogActions, StyledDialogContent, StyledDialogTitle } from './styled';
 
 interface AddSameTransactionDialogProps {
     open: boolean;

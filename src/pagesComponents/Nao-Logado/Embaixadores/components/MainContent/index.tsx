@@ -1,9 +1,8 @@
+import { Stack } from "@mui/material";
 import { type FC } from 'react';
 
-import { Stack } from "@mui/material";
-
-import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
 import { ProgressiveLoad } from "@/components/Feedback/ProgressiveLoad";
+import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
 
 import { type Ambassador } from '../../types';
 import { AmbassadorsGrid } from '../AmbassadorsGrid';

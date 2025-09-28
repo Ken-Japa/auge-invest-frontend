@@ -1,6 +1,6 @@
 import { formatCurrency } from '../../utils/currency';
 
-export const createCentralNode = (valorTotal: number, sizeMultiplier: number = 10) => ({
+export const createCentralNode = (valorTotal: number, sizeMultiplier = 10) => ({
   id: 'Mercado Total',
   label: `Mercado Total\n${formatCurrency(valorTotal)}`,
   x: 0,

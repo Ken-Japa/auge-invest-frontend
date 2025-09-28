@@ -1,9 +1,8 @@
+import { Stack } from "@mui/material";
 import { type FC } from 'react';
 
-import { visitorColors } from "@/theme/palette/visitor";
-
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
-import { Stack } from "@mui/material";
+import { visitorColors } from "@/theme/palette/visitor";
 
 export const ContactSupportSkeleton: FC = () => (
     <Stack spacing={2} className="items-center">

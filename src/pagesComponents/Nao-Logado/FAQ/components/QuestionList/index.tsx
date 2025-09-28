@@ -1,7 +1,8 @@
 import { type FC, useState } from 'react';
-import { QuestionListSkeleton } from "./QuestionListSkeleton";
-import { QuestionContainer, NoResultsContainer, StyledExpandIcon } from "./styled";
+
 import type { QuestionType } from '../../constants/faqData';
+import { QuestionListSkeleton } from "./QuestionListSkeleton";
+import { NoResultsContainer, QuestionContainer, StyledExpandIcon } from "./styled";
 
 interface QuestionListProps {
     questions: QuestionType[];

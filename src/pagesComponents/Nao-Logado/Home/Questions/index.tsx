@@ -1,9 +1,11 @@
-import { type FC } from 'react';
 import { Stack, Typography } from "@mui/material";
+import { type FC } from 'react';
+
 import { CustomAccordion } from "@/components/Core/Accordion";
-import { QuestionsSection } from "./styled";
-import { QuestionsSkeleton } from "./QuestionsSkeleton";
+
 import { questions } from "./questions";
+import { QuestionsSkeleton } from "./QuestionsSkeleton";
+import { QuestionsSection } from "./styled";
 
 interface QuestionsProps {
     isLoading?: boolean;

@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
-import { api } from "@/services/api";
+import { useEffect,useState } from "react";
+
 import { parseDateDividends as parseDate } from "@/components/Utils/Formatters/formatters";
+import { api } from "@/services/api";
 import {
   FIIDividendItem as Dividend,
   FIIDividendResponseData as FIIDividendResponse,

@@ -1,15 +1,16 @@
 "use client";
 
 import { useState } from 'react';
-import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
-import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 
+import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
+import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
+
+import { BDRTabs } from '../../../BDR/components/BDRTabs';
 // Importando componentes do módulo BDR
 import { BDRSearchBar } from '../../../components/BDR';
-import { BDRTabs } from '../../../BDR/components/BDRTabs';
-import { BdrContainer, ControlsWrapper, Title, ContentBox } from './styled';
+import { BdrContainer, ContentBox,ControlsWrapper, Title } from './styled';
 
 export const Bdr = () => {
     const { error, setError, clearError } = useErrorHandling();

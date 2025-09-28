@@ -1,13 +1,14 @@
-import React from 'react';
-import { useRouter } from 'next/navigation';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+
 import { formatPercentage } from '../../../utils/currency';
 import { CodeChip } from '../../styled';
 import {
-  CodeText,
   CodeContainer,
+  CodeText,
   PriceText,
   VariationContainer,
   VariationText

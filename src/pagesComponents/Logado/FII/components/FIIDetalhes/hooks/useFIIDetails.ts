@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect,useState } from "react";
+
 import { fetchFIIBySlugOrCode } from "../../../../components/FIIs/services/fiisService";
 import { FIIExtended } from "../../../../components/FIIs/types";
 

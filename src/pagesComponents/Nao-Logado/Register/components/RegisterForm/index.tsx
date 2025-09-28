@@ -1,13 +1,12 @@
-import { type FormEvent, type ChangeEvent, type MouseEvent, memo } from 'react';
-import Link from 'next/link';
-
 import { Stack, Typography } from "@mui/material";
+import Link from 'next/link';
+import { type ChangeEvent, type FormEvent, memo,type MouseEvent } from 'react';
 
 import { FormData, FormErrors } from "../../types";
-import { RegisterHeader } from "../Header";
 import { FormFields } from "../FormFields";
-import { TermsCheckbox } from "../TermsCheckbox";
 import { GoogleSignInButton } from "../GoogleSignInButton";
+import { RegisterHeader } from "../Header";
+import { TermsCheckbox } from "../TermsCheckbox";
 import { RegisterFormSkeleton } from "./RegisterFormSkeleton";
 import { RegisterFormStyled, SubmitButton } from "./styled";
 

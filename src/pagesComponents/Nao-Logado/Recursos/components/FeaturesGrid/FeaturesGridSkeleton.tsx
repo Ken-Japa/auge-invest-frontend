@@ -1,6 +1,8 @@
 import { Grid } from "@mui/material";
+
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
-import { FeaturesContainer, FeatureCard } from "./styled";
+
+import { FeatureCard,FeaturesContainer } from "./styled";
 
 export const FeaturesGridSkeleton = () => (
     <FeaturesContainer>

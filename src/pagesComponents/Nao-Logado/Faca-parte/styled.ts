@@ -1,4 +1,5 @@
 import { styled } from "@mui/material/styles";
+
 import { PageTransition } from "@/components/Utils/PageTransition";
 
 export const SectionJoinTeam = styled("section")({

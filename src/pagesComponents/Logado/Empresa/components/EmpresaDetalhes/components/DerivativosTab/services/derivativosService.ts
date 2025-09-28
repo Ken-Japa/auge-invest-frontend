@@ -34,8 +34,8 @@ export interface DerivativosResponse {
 
 export const getDerivativosData = async (
   codigoEmpresa: string,
-  page: number = 0,
-  pageSize: number = 100
+  page = 0,
+  pageSize = 100
 ): Promise<DerivativosResponse> => {
   try {
     const response = await api.derivatives.getDerivatives({

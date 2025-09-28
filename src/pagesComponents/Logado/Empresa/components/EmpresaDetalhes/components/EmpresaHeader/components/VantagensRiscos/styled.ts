@@ -1,5 +1,5 @@
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Paper, Box, Grid, Typography } from "@mui/material";
 
 export const InfoSection = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),

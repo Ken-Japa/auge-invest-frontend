@@ -1,7 +1,8 @@
 import { Grid, Typography } from "@mui/material";
+
 import { FEATURES } from "../../constants/features";
-import { FeatureCard, FeaturesContainer } from "./styled";
 import { FeaturesGridSkeleton } from "./FeaturesGridSkeleton";
+import { FeatureCard, FeaturesContainer } from "./styled";
 
 interface FeaturesGridProps {
     hoveredCard: number | null;

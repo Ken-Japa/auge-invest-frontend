@@ -1,5 +1,5 @@
-import { SumarioData as TabelaViewSumarioData, Industria, Segmento, EmpresaDetalhe } from "../../TabelaView/types";
-import { SumarioData as RedeNeuralSumarioData, IndustriaNode, SegmentoNode, EmpresaNode } from "../types";
+import { EmpresaDetalhe,Industria, Segmento, SumarioData as TabelaViewSumarioData } from "../../TabelaView/types";
+import { EmpresaNode,IndustriaNode, SegmentoNode, SumarioData as RedeNeuralSumarioData } from "../types";
 
 export const transformSumarioData = (data: TabelaViewSumarioData): RedeNeuralSumarioData => {
   const totalValorMercadoGeral = data.sumarioTotal.valorMercadoTotalGeral;

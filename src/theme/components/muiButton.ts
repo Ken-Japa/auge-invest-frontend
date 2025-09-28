@@ -1,5 +1,6 @@
 import { Components } from "@mui/material";
-import { spacing, borderRadius, transitions } from '../variables';
+
+import { borderRadius, spacing, transitions } from '../variables';
 
 export const muiButton: Components["MuiButton"] = {
   styleOverrides: {

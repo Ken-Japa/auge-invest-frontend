@@ -1,8 +1,9 @@
+import { Box, Grid, Slider,Typography } from '@mui/material';
+import type { SyntheticEvent } from 'react';
 import { FC } from 'react';
-import { Grid, Typography, Box, Slider } from '@mui/material';
+
 import { ScenarioInputs, ValuationResults } from '../../types';
 import { SensitivityContainer } from './styled';
-import type { SyntheticEvent } from 'react';
 
 
 interface ScenarioInput {

@@ -1,8 +1,9 @@
 "use client";
 
 import Image, { ImageProps } from "next/image";
-import { useState, useCallback } from "react";
+import { useCallback,useState } from "react";
 import { ReactEventHandler } from "react";
+
 import { ErrorContainer } from "./styled";
 
 interface OptimizedImageProps extends Omit<ImageProps, 'src' | 'alt' | 'fetchPriority'> {

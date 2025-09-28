@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { SnackbarState, SnackbarSeverity } from '../types';
+
+import { SnackbarSeverity,SnackbarState } from '../types';
 
 export const useSnackbar = () => {
     const [snackbar, setSnackbar] = useState<SnackbarState>({
@@ -11,7 +12,7 @@ export const useSnackbar = () => {
     const showSnackbar = (
         message: string, 
         severity: SnackbarSeverity = 'success', 
-        open: boolean = true
+        open = true
     ) => {
         setSnackbar({ message, severity, open });
     };

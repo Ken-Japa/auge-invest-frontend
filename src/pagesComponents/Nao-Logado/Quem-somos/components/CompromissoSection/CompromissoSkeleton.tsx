@@ -1,5 +1,6 @@
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
-import { BaseSection, SectionTitle, ContentContainer, Subtitle } from "../../styled";
+
+import { BaseSection, ContentContainer, SectionTitle, Subtitle } from "../../styled";
 
 export const CompromissoSkeleton = () => (
     <BaseSection>

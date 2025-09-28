@@ -1,7 +1,7 @@
 import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
 import { ErrorCode, handleApiError } from "../errorHandler";
-import { SumarioListResponseApi, SumarioFilter } from "../types";
+import { SumarioFilter,SumarioListResponseApi } from "../types";
 
 class SumarioApiService extends BaseApiService {
   getSumarioItems = async (

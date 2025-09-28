@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/pt-br';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Typography, TextField, CircularProgress, MenuItem, Select, FormControl, InputLabel, Box, Grid } from '@mui/material';
-import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, SaveButton } from './styled';
-import { TransactionType } from '@/services/api/types/transaction';
-import { api } from '@/services/api';
 
-import { Transaction } from '@/services/api/types/transaction';
+import { Box, CircularProgress, FormControl, Grid,InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs, { Dayjs } from 'dayjs';
+import React, { useEffect,useState } from 'react';
+
 import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
+import { api } from '@/services/api';
+import { TransactionType } from '@/services/api/types/transaction';
+import { Transaction } from '@/services/api/types/transaction';
+
+import { CancelButton, SaveButton,StyledDialog, StyledDialogActions, StyledDialogContent, StyledDialogTitle } from './styled';
 
 interface EditTransactionDialogProps {
     open: boolean;

@@ -1,12 +1,12 @@
-import { CORES_INDUSTRIAS } from "../constants/colors";
+import { createEmpresaNode } from "../components/EmpresaNode";
 import { createIndustriaNode } from "../components/IndustriaNode";
 import { createSegmentoNode } from "../components/SegmentoNode";
-import { createEmpresaNode } from "../components/EmpresaNode";
+import { CORES_INDUSTRIAS } from "../constants/colors";
 import {
-  SumarioData,
+  EmpresaNode,
   IndustriaNode,
   SegmentoNode,
-  EmpresaNode,
+  SumarioData,
 } from "../types";
 import { adjustColorHSL } from "./graphUtils";
 

@@ -1,18 +1,19 @@
-import React, { useRef } from 'react';
 import {
-  Typography,
-  SelectChangeEvent
-} from '@mui/material';
+  SelectChangeEvent,
+  Typography} from '@mui/material';
+import React, { useRef } from 'react';
+
+import { PaginationControls } from '@/components/Data-Display/PaginationControls';
+import { ETFBDRFilter } from '@/services/api/types/etfbdr';
+
 import CardView from './Cards';
-import TableView from './Table';
 import GridView from './Grid';
 import { useETFBDRData } from './hooks/useETFBDRData';
-import { ETFBDRFilter } from '@/services/api/types/etfbdr';
-import { PaginationControls } from '@/components/Data-Display/PaginationControls';
 import {
-  VisualizationContainer,
   ErrorContainer,
+  VisualizationContainer,
 } from './styled';
+import TableView from './Table';
 import { ETFBDRLoading } from './utils/ETFBDRLoading';
 import { ETFBDRNotFound } from './utils/ETFBDRNotFound';
 

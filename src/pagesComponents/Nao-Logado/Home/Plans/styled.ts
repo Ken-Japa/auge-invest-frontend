@@ -1,7 +1,8 @@
 import { Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { spacing, borderRadius, shadows, transitions } from "@/theme/variables";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { borderRadius, shadows, spacing, transitions } from "@/theme/variables";
 
 export const SectionPlans = styled("section")({
   width: "100vw",

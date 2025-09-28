@@ -1,5 +1,5 @@
-import { type FC } from 'react';
 import Link from 'next/link';
+import { type FC } from 'react';
 
 import { CustomButton } from "@/components/Core/Button";
 import { visitorColors } from "@/theme/palette/visitor";

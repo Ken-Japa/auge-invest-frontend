@@ -1,13 +1,14 @@
 import { Components } from "@mui/material";
-import { muiButton } from "./muiButton";
-import { muiTable } from "./muiTable";
-import { muiPaper } from "./muiPaper";
-import { muiCard } from "./muiCard";
+
 import {
   muiAccordion,
-  muiAccordionSummary,
   muiAccordionDetails,
+  muiAccordionSummary,
 } from "./muiAccordion";
+import { muiButton } from "./muiButton";
+import { muiCard } from "./muiCard";
+import { muiPaper } from "./muiPaper";
+import { muiTable } from "./muiTable";
 
 export const components: Components = {
   MuiButton: muiButton,

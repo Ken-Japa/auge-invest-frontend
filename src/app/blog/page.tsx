@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import Blog from "@/pagesComponents/Blog";
 import { BlogPost as BlogPostType } from "@/pagesComponents/Blog/constants/blogPosts";
 

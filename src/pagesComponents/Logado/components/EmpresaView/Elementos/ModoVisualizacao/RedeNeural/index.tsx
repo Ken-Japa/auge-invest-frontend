@@ -1,15 +1,13 @@
-import { Network } from 'vis-network/standalone';
-import { Box, Typography, CircularProgress } from '@mui/material';
+import { Box, CircularProgress,Typography } from '@mui/material';
 import dynamic from 'next/dynamic';
-import { useRef, useMemo, useState, useCallback } from 'react';
-
-// Constants
-import { DEFAULT_GRAPH_OPTIONS } from './constants/graphOptions';
+import { useCallback,useMemo, useRef, useState } from 'react';
+import { Network } from 'vis-network/standalone';
 
 // Components
 import { IndustryDropdown } from './components/IndustryDropdown';
 import { SegmentDropdown } from './components/SegmentDropdown';
-
+// Constants
+import { DEFAULT_GRAPH_OPTIONS } from './constants/graphOptions';
 // Utils
 import { GraphContainer, LoadingContainer, MenuContainer, SelectedNodePathContainer } from './styled';
 import { useGraphInteractions } from './utils/hooks';

@@ -1,8 +1,10 @@
 import RocketIcon from '@mui/icons-material/Rocket';
 import dynamic from "next/dynamic";
-import { BaseSection, SectionTitle, ContentContainer, Subtitle } from "../../styled";
-import { MissaoSkeleton } from './MissaoSkeleton';
+
 import { visitorColors } from "@/theme/palette/visitor";
+
+import { BaseSection, ContentContainer, SectionTitle, Subtitle } from "../../styled";
+import { MissaoSkeleton } from './MissaoSkeleton';
 
 interface MissaoSectionProps {
     isLoading?: boolean;

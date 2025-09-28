@@ -1,23 +1,24 @@
 "use client";
 
-import { useState } from 'react';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { ContentSkeleton } from '../../../../../../components/Feedback/Skeletons/ContentSkeleton';
-import { Box, IconButton } from '@mui/material';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import SearchIcon from '@mui/icons-material/Search';
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import { Box, IconButton } from '@mui/material';
+import { useState } from 'react';
+
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
+
+import { ContentSkeleton } from '../../../../../../components/Feedback/Skeletons/ContentSkeleton';
 import { SearchDialog } from './components/SearchDialog';
 import {
-    MoedasContainer,
-    MainCurrency,
-    SideCurrencies,
+    CurrencyName,
     CurrencyOption,
     CurrencyValue,
-    CurrencyName,
+    MainCurrency,
     MainCurrencyValue,
-    MainCurrencyVariation
-} from './styled';
+    MainCurrencyVariation,
+    MoedasContainer,
+    SideCurrencies} from './styled';
 
 // Mock data - will be replaced with API data
 const mockCurrencies = [

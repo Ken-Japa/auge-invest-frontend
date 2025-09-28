@@ -1,6 +1,7 @@
 "use client";
 
 import { Typography } from '@mui/material';
+
 import { ChartContainer, ChartHeader, ChartPlaceholder } from './styled';
 
 // Dados simulados - serão substituídos por dados da API

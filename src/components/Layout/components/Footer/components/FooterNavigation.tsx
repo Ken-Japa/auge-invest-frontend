@@ -1,12 +1,11 @@
 "use client";
 
+import { Box } from "@mui/material";
+import LinkNext from "next/link";
 import { usePathname } from 'next/navigation';
 import { useSession } from "next-auth/react";
-import LinkNext from "next/link";
 
-import { Box } from "@mui/material";
-
-import { publicLinks, authLinks } from "../../../constants/footer";
+import { authLinks,publicLinks } from "../../../constants/footer";
 import { NavigationGrid } from "../styled";
 
 export const FooterNavigation = () => {

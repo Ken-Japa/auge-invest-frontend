@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
-import { borderRadius, transitions } from "@/theme/variables";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { borderRadius, transitions } from "@/theme/variables";
 
 export const StyledSnackbar = styled("div")<{ isVisible: boolean }>(
   ({ isVisible }) => ({

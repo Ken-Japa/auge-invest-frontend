@@ -1,8 +1,9 @@
 "use client";
 import { Alert, CircularProgress, Tooltip, Typography } from '@mui/material';
+
 import { formatCurrency } from '@/components/Utils/Formatters/formatters';
+
 import BDRDividendTable from './BDRDividendTable';
-import useBDRDividendosLogic from './useBDRDividendosLogic';
 import {
   DividendContainer,
   DividendPaper,
@@ -14,6 +15,7 @@ import {
   SummaryLabel,
   SummaryValue,
 } from './styled';
+import useBDRDividendosLogic from './useBDRDividendosLogic';
 
 
 

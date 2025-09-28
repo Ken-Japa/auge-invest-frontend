@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { CategoryType, QuestionsType } from "../constants/faqData";
 
 export const useQuestionFilter = (questions: QuestionsType) => {

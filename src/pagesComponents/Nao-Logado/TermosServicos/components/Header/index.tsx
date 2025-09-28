@@ -1,9 +1,11 @@
 import GavelIcon from '@mui/icons-material/Gavel';
 import { Typography } from "@mui/material";
+
 import { MatrixRainText } from "@/components/Effects/MatrixRainText";
-import { HeaderContainer } from "./styled";
-import { HeaderSkeleton } from "./HeaderSkeleton";
 import { visitorColors } from "@/theme/palette/visitor";
+
+import { HeaderSkeleton } from "./HeaderSkeleton";
+import { HeaderContainer } from "./styled";
 
 interface HeaderProps {
     isLoading?: boolean;

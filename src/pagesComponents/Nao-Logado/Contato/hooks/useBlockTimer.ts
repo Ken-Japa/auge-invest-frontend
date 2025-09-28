@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect,useState } from 'react';
 
 export const useBlockTimer = (duration: number, storageKey: string) => {
     const [isBlocked, setIsBlocked] = useState(false);

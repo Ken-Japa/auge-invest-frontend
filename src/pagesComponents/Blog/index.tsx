@@ -1,16 +1,15 @@
 "use client";
-import { type FC, useState, useMemo, useEffect, lazy, ChangeEvent } from "react";
-
-import { Container, Grid, Box, Pagination } from "@mui/material";
+import { Box, Container, Grid, Pagination } from "@mui/material";
 import { motion } from "framer-motion";
+import { ChangeEvent,type FC, lazy, useEffect, useMemo, useState } from "react";
 
-import { OptimizedImage } from "@/components/Utils/OptimizedImage";
 import { ProgressiveLoad } from "@/components/Feedback/ProgressiveLoad";
 import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
+import { OptimizedImage } from "@/components/Utils/OptimizedImage";
 
-import { BlogContainer, BlogContent } from "./styled";
-import { BlogPost } from "./constants/blogPosts";
 import { BlogPageSkeleton } from "./components/Skeleton/BlogPageSkeleton";
+import { BlogPost } from "./constants/blogPosts";
+import { BlogContainer, BlogContent } from "./styled";
 
 const BlogHeader = lazy(() => import('./components/BlogHeader').then(mod => ({ default: mod.BlogHeader })));
 const BlogSearch = lazy(() => import('./components/BlogSearch').then(mod => ({ default: mod.BlogSearch })));

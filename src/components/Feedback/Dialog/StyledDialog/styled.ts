@@ -1,12 +1,13 @@
-import { styled } from "@mui/material/styles";
 import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
 } from "@mui/material";
-import { spacing, borderRadius, transitions } from "@/theme/variables";
+import { styled } from "@mui/material/styles";
+
+import { borderRadius, spacing, transitions } from "@/theme/variables";
 
 export const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {

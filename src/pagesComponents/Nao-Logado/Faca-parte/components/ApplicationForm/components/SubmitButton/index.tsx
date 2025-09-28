@@ -1,5 +1,6 @@
-import { type FC } from 'react';
 import SendIcon from '@mui/icons-material/Send';
+import { type FC } from 'react';
+
 import { StyledSubmitButton } from './styled';
 
 interface SubmitButtonProps {

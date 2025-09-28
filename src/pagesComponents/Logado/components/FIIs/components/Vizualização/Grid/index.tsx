@@ -1,13 +1,13 @@
 import { Grid } from '@mui/material';
 import Link from 'next/link';
+
 import { FIIExtended } from '../../../types';
 import {
-  StyledCard,
-  StyledCardContent,
-  FIIName,
   CodeChip,
-  GridContainer
-} from './styled';
+  FIIName,
+  GridContainer,
+  StyledCard,
+  StyledCardContent} from './styled';
 
 interface GridViewProps {
   fiis: FIIExtended[];

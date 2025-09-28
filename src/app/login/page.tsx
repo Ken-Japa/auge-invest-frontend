@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { Login } from "@/pagesComponents/Nao-Logado/Login";
 
 export const metadata: Metadata = {

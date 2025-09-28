@@ -1,10 +1,11 @@
-import { forwardRef, useImperativeHandle } from 'react';
 import { Grid } from '@mui/material';
+import { forwardRef, useImperativeHandle } from 'react';
+
 import { DadosAnaliseFundamental } from '../../types';
 import { MetricCard } from './components/MetricCard';
+import { metricCategories } from './constants/categories';
 import { FIELD_LABELS } from './constants/constants';
 import { calculateMetrics } from './constants/metrics';
-import { metricCategories } from './constants/categories';
 import { CategoryContainer, CategoryTitle, MetricsGrid } from './styled';
 
 interface MetricsDisplayProps {

@@ -1,15 +1,15 @@
-import React from 'react';
 import { Grid } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+
 import { ETFBDRExtended } from '../../../types';
 import {
   CardContainer,
   CardHeader,
-  CardTitle,
   CardSubtitle,
+  CardTitle,
   CodeChip,
 } from './styled';
-
-import { useRouter } from 'next/navigation';
 
 interface CardViewProps {
   etfbdrs: ETFBDRExtended[];

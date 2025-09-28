@@ -1,6 +1,8 @@
-import { FC } from 'react';
 import { Grid } from '@mui/material';
+import { FC } from 'react';
+
 import { NumberInput } from '@/components/Form/NumberInput';
+
 import { CashFlowContainer } from './styled';
 
 interface CashFlowInputsSectionProps {

@@ -1,18 +1,19 @@
 "use client";
 
 import { Container, Typography } from '@mui/material';
-import { PageTransition } from '@/components/Utils/PageTransition';
+
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { PageBackground } from '@/components/Layout/PageBackground';
-
-import { AlertsTable } from './components/AlertsTable';
-import { AddAlertButton } from './components/AddAlertButton';
-import { PageHeader, ActionContainer } from './styled';
-import { useAlerts } from './hooks/useAlerts';
+import { PageTransition } from '@/components/Utils/PageTransition';
 import { useApi } from '@/providers/ApiProvider';
+
+import { AddAlertButton } from './components/AddAlertButton';
+import { AlertsTable } from './components/AlertsTable';
+import { useAlerts } from './hooks/useAlerts';
+import { ActionContainer,PageHeader } from './styled';
 
 export const Alertas = () => {
     const { alerts, loading, error, refreshAlerts, toggleAlert, deleteAlert } = useAlerts();

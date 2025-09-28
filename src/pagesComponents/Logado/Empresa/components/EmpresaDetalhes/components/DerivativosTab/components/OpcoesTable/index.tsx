@@ -1,22 +1,22 @@
-import React from 'react';
 import {
+  Box,
   Table,
   TableBody,
   TableHead,
-  TableRow,
   TablePagination,
-  Box,
+  TableRow,
 } from '@mui/material';
+import React from 'react';
+
 import {
-  TableContainer,
-  StyledTableCell,
-  StrikeTableCell,
   CallHeaderCell,
-  PutHeaderCell,
-  StyledTableRow,
+  PaginationButton,
   PaginationContainer,
-  PaginationButton
-} from './styled';
+  PutHeaderCell,
+  StrikeTableCell,
+  StyledTableCell,
+  StyledTableRow,
+  TableContainer} from './styled';
 
 
 interface DerivativoItem {

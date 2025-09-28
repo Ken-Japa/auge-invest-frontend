@@ -1,25 +1,25 @@
 "use client";
 
-import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { Container, Grid, Box } from '@mui/material';
+import { Box,Container, Grid } from '@mui/material';
+import React, { lazy, Suspense,useEffect, useState } from 'react';
+
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { PageTransition } from '@/components/Utils/PageTransition';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
-
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
+import { PageBackground } from '@/components/Layout/PageBackground';
+import { PageTransition } from '@/components/Utils/PageTransition';
 // Componentes da página - Carregando os componentes principais imediatamente
 import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar';
-import { PageBackground } from '@/components/Layout/PageBackground';
 
-import { Empresas } from './components/Empresas';
-import { Indices } from './components/Indices';
 import { Bdr } from './components/BDR';
+import { Empresas } from './components/Empresas';
 import { Etf } from './components/ETF';
 import { Fii } from './components/FII';
-import { Selic } from './components/Outros/Selic';
+import { Indices } from './components/Indices';
 import { Inflacao } from './components/Outros/Inflacao';
 import { PosicaoUsuario } from './components/Outros/PosicaoUsuario';
+import { Selic } from './components/Outros/Selic';
 
 // Componentes secundários carregados com lazy
 const Moedas = lazy(() => import('./components/Outros/Moedas').then(mod => ({ default: mod.Moedas })));
@@ -27,7 +27,7 @@ const Commodities = lazy(() => import('./components/Outros/Commodities').then(mo
 const Debentures = lazy(() => import('./components/Outros/Debentures').then(mod => ({ default: mod.Debentures })));
 const Calendario = lazy(() => import('../components/Calendario').then(mod => ({ default: mod.Calendario })));
 
-import { BackgroundContainer, DashboardItem, Title, Subtitle } from './styled';
+import { BackgroundContainer, DashboardItem, Subtitle,Title } from './styled';
 
 export const VisaoEconomia = () => {
     const [headerHeight, setHeaderHeight] = useState(0);

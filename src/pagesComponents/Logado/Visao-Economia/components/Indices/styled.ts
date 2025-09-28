@@ -1,5 +1,5 @@
-import { styled } from "@mui/material/styles";
 import { Box, Tab } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const IndicesContainer = styled(Box)({
   width: "100%",

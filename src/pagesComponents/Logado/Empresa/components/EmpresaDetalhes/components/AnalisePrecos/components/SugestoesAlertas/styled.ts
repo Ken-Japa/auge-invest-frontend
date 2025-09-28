@@ -1,5 +1,5 @@
-import { styled } from "@mui/material/styles";
 import { Box, Divider, Grid, Paper, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const Container = styled(Grid)(({ theme }) => ({
   marginTop: theme.spacing(2),

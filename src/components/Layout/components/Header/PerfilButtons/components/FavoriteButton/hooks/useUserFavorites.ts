@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
-import { api } from '@/services/api';
+import { useCallback,useEffect, useState } from 'react';
+
 import { useApi } from '@/providers/ApiProvider';
+import { api } from '@/services/api';
 
 export const useUserFavorites = () => {
   const [favorites, setFavorites] = useState<any[]>([]);

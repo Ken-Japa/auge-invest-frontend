@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { api } from "@/services/api";
+
 import {
   formatDate,
   parseDateDividends as parseDate,
 } from "@/components/Utils/Formatters/formatters";
+import { api } from "@/services/api";
 import {
-  BDRDividendResponseData as BDRDividendResponse,
   BDRDividendItem as Dividend,
+  BDRDividendResponseData as BDRDividendResponse,
 } from "@/services/api";
 
 interface SummaryData {

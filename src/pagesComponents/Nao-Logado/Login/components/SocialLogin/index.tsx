@@ -1,11 +1,10 @@
-import Link from 'next/link';
-
 import GoogleIcon from '@mui/icons-material/Google';
 import { Typography } from "@mui/material";
-
-import { GoogleButton, RegisterLink } from './styled';
-import { SocialLoginSkeleton } from "./SocialLoginSkeleton";
+import Link from 'next/link';
 import { useState } from 'react';
+
+import { SocialLoginSkeleton } from "./SocialLoginSkeleton";
+import { GoogleButton, RegisterLink } from './styled';
 
 interface SocialLoginProps {
     handleGoogleSignIn: () => Promise<void>;

@@ -1,16 +1,16 @@
-import { ReactNode } from 'react';
 import {
+  Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
   Typography
 } from '@mui/material';
+import { ReactNode } from 'react';
 
-import { TableWrapper, NoDataMessage } from './styled';
+import { NoDataMessage,TableWrapper } from './styled';
 
 interface StyledTableProps {
   headers: string[];

@@ -1,8 +1,10 @@
+import { CircularProgress, DialogContentText, Typography } from '@mui/material';
 import React from 'react';
-import { DialogContentText, CircularProgress, Typography } from '@mui/material';
-import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, DeleteButton } from './styled';
-import { api } from '@/services/api';
+
 import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
+import { api } from '@/services/api';
+
+import { CancelButton, DeleteButton,StyledDialog, StyledDialogActions, StyledDialogContent, StyledDialogTitle } from './styled';
 
 interface DeleteTransactionConfirmDialogProps {
     open: boolean;

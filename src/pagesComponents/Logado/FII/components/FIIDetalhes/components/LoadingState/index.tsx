@@ -1,5 +1,6 @@
 import { CircularProgress } from '@mui/material';
-import { DetailPageContainer, ContentWrapper, LoadingContainer } from '../../styled';
+
+import { ContentWrapper, DetailPageContainer, LoadingContainer } from '../../styled';
 
 export const LoadingState = () => (
   <DetailPageContainer>

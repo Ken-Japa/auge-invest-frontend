@@ -1,7 +1,7 @@
 import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
 import { ErrorCode, handleApiError } from "../errorHandler";
-import { ETFListResponse, ETFFilter, ETF } from "../types";
+import { ETF,ETFFilter, ETFListResponse } from "../types";
 
 class ETFsApiService extends BaseApiService {
   getETFs = async (filters?: ETFFilter): Promise<ETFListResponse> => {

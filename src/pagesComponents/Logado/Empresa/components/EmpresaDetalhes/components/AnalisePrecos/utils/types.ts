@@ -17,11 +17,11 @@ export interface StatisticalData {
   stdDev: number;
   min: number;
   max: number;
-  histogramData: Array<{
+  histogramData: {
     price: number;
     frequency: number;
     normalValue: number;
-  }>;
+  }[];
 }
 
 // Tipos para períodos de análise

@@ -1,18 +1,19 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Typography, CircularProgress } from '@mui/material';
+import { CircularProgress,Typography } from '@mui/material';
 import { ResponsiveLine } from '@nivo/line';
-import { useChartStyles, configureAlertMarkers } from '../../utils/chartConfig';
-import { PriceDataPoint, ChartDataPoint, ChartMarker } from '../../utils/types';
+import React, { useEffect, useMemo,useState } from 'react';
+
+import { configureAlertMarkers,useChartStyles } from '../../utils/chartConfig';
+import { ChartDataPoint, ChartMarker,PriceDataPoint } from '../../utils/types';
 import {
+    EmptyDataContainer,
+    ErrorContainer,
     GraficoContainer,
     GraficoTitle,
     LoadingContainer,
-    ErrorContainer,
-    EmptyDataContainer,
     TooltipContainer,
-    TooltipTitle,
-    TooltipRow,
     TooltipLabel,
+    TooltipRow,
+    TooltipTitle,
     TooltipValue
 } from './styled';
 

@@ -1,6 +1,7 @@
 import jsPDF from "jspdf";
-import { GenerateReportParams } from "./types";
+
 import { generateReport } from "./reportGenerator";
+import { GenerateReportParams } from "./types";
 
 export const generatePDF = async (
   params: GenerateReportParams

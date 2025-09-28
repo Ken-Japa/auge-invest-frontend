@@ -1,7 +1,8 @@
-import { styled } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { spacing, borderRadius, transitions } from "@/theme/variables";
+import { styled } from "@mui/material/styles";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { borderRadius, spacing, transitions } from "@/theme/variables";
 
 export const QuestionContainer = styled("div")({
   backgroundColor: visitorColors.backgroundLight,

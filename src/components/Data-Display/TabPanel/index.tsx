@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+
 import { TabPanelContainer } from '../../../pagesComponents/Logado/BDR/styled';
 
 interface TabPanelProps {

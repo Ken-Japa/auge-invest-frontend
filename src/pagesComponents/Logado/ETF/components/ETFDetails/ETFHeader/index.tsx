@@ -1,4 +1,5 @@
 import { Chip, Typography } from '@mui/material';
+
 import { Header, NomeETF, SubHeader } from '../styled';
 
 interface ETFHeaderProps {

@@ -1,6 +1,7 @@
-import { Alert } from '@mui/material';
 import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
-import { DetailPageContainer, ContentWrapper, ErrorContainer, BackButton } from '../../styled';
+import { Alert } from '@mui/material';
+
+import { BackButton,ContentWrapper, DetailPageContainer, ErrorContainer } from '../../styled';
 
 interface ErrorStateProps {
   error: string;

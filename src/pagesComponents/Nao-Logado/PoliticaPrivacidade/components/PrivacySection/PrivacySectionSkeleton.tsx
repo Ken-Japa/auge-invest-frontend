@@ -1,4 +1,5 @@
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
+
 import { SectionContainer } from "./styled";
 
 export const PrivacySectionSkeleton = () => {

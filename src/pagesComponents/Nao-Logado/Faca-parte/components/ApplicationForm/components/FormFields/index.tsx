@@ -1,16 +1,17 @@
-import { type FC } from 'react';
 import {
-    TextField,
-    MenuItem,
     FormControl,
+    FormHelperText,
     InputLabel,
+    MenuItem,
     Select,
-    FormHelperText
-} from "@mui/material";
+    TextField} from "@mui/material";
+import { type FC } from 'react';
+
+import { visitorColors } from "@/theme/palette/visitor";
+
 import { ROLES } from '../../../../constants';
 import { FormData, FormErrors } from '../../../../types';
 import { selectStyles } from './styled';
-import { visitorColors } from "@/theme/palette/visitor";
 
 interface FormFieldsProps {
     formData: FormData;

@@ -1,7 +1,8 @@
-import React from 'react';
-import { Grid, Typography, Divider } from '@mui/material';
 import TimelineIcon from '@mui/icons-material/Timeline';
-import { InfoSection, SectionTitle, ItemList } from './styled';
+import { Divider,Grid, Typography } from '@mui/material';
+import React from 'react';
+
+import { InfoSection, ItemList,SectionTitle } from './styled';
 
 interface FatosRelevantesProps {
     fatos: string[];

@@ -1,16 +1,16 @@
-import { styled } from "@mui/material/styles";
 import {
   Box,
-  Paper,
-  Typography,
-  Table as MuiTable,
-  TableContainer as MuiTableContainer,
-  TableCell as MuiTableCell,
-  TableRow as MuiTableRow,
-  TableHead as MuiTableHead,
-  TableBody as MuiTableBody,
   Chip as MuiChip,
+  Paper,
+  Table as MuiTable,
+  TableBody as MuiTableBody,
+  TableCell as MuiTableCell,
+  TableContainer as MuiTableContainer,
+  TableHead as MuiTableHead,
+  TableRow as MuiTableRow,
+  Typography,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const DividendContainer = styled(Box)(({ theme }) => ({
   marginTop: theme.spacing(4),

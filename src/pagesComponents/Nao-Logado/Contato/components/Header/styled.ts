@@ -1,8 +1,9 @@
 import { Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+
 import { MatrixRainText } from "@/components/Effects/MatrixRainText";
-import { spacing } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
+import { spacing } from "@/theme/variables";
 
 export const HeaderContainer = styled("div")({
   textAlign: "center",

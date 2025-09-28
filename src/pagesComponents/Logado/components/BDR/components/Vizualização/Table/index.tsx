@@ -1,7 +1,8 @@
 import { TableBody, TableSortLabel } from '@mui/material';
+
 import { UnifiedBDR } from '../../../types';
-import { useTableSort, getComparator } from './components/useTableSort';
 import { BDRTableRow } from './components/BDRTableRow';
+import { getComparator,useTableSort } from './components/useTableSort';
 import {
   HeaderCell,
   HeaderRow,

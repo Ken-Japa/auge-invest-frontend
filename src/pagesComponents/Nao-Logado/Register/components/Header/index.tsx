@@ -1,6 +1,7 @@
-import { type FC } from 'react';
 import { Typography } from "@mui/material";
 import dynamic from "next/dynamic";
+import { type FC } from 'react';
+
 import { HeaderContainer } from "./styled";
 
 const DynamicMatrixRainText = dynamic(() => import("@/components/Effects/MatrixRainText").then(mod => mod.MatrixRainText), {

@@ -1,14 +1,15 @@
-import React from 'react';
 import { Grid } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+
 import { ETFBDRExtended } from '../../../types';
 import {
-  GridContainer,
-  GridItemPaper,
-  GridHeader,
-  GridTitle,
   CodeChip,
+  GridContainer,
+  GridHeader,
+  GridItemPaper,
+  GridTitle,
 } from './styled';
-import { useRouter } from 'next/navigation';
 
 interface GridViewProps {
   etfbdrs: ETFBDRExtended[];

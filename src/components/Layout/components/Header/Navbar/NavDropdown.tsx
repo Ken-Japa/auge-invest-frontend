@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { AnimatePresence,motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { useEffect,useRef, useState } from "react";
+
 import { DropdownItem } from "../../../constants/Navigation";
 import { LinkNavbar } from "./styled";
 

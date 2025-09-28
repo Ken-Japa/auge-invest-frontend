@@ -1,17 +1,18 @@
 "use client";
 
 import { Box, Typography } from '@mui/material';
+
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
+
 import { ContentSkeleton } from '../../../../../../components/Feedback/Skeletons/ContentSkeleton';
 import {
-    InflacaoContainer,
     ChartContainer,
     InflacaoCard,
-    InflacaoValue,
+    InflacaoColorType,
+    InflacaoContainer,
     InflacaoDate,
-    InflacaoWrapper,
-    InflacaoColorType
-} from './styled';
+    InflacaoValue,
+    InflacaoWrapper} from './styled';
 
 // Temporary mock data - will be replaced with API data
 const mockSelic = {

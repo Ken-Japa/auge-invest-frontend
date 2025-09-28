@@ -1,9 +1,11 @@
 import StarIcon from '@mui/icons-material/Star';
+
+import { visitorColors } from "@/theme/palette/visitor";
+
 import { VALORES } from '../../constants/valores';
 import { BaseSection, SectionTitle } from "../../styled";
-import { ValoresGrid, ValorCard } from "./styled";
+import { ValorCard,ValoresGrid } from "./styled";
 import { ValoresSkeleton } from './ValoresSkeleton';
-import { visitorColors } from "@/theme/palette/visitor";
 
 interface ValoresSectionProps {
     isLoading?: boolean;

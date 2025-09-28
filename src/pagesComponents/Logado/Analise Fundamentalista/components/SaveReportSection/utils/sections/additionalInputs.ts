@@ -1,11 +1,11 @@
 import { DadosAnaliseFundamental } from "../../../../types";
-import { MetricItem } from "../types";
 import {
-  formatNumber,
-  hasValue,
   formatCurrency,
+  formatNumber,
   formatPercentage,
+  hasValue,
 } from "../helpers";
+import { MetricItem } from "../types";
 
 export const generateAdditionalInputs = (
   fundamentalData: DadosAnaliseFundamental

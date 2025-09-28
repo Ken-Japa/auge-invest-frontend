@@ -1,9 +1,10 @@
-import Link from "next/link";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+
 import { RECURSOS_LIST } from "../../constants/recursos";
 import { BaseSection, ContentWrapper } from "../../styled";
-import { RecursosContainer } from "./styled";
 import { RecursosSkeleton } from "./RecursosSkeleton";
+import { RecursosContainer } from "./styled";
 
 interface RecursosSectionProps {
     isLoading?: boolean;

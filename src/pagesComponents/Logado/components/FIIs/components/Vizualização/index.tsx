@@ -2,11 +2,9 @@ import { CircularProgress, Typography } from '@mui/material';
 
 import { PaginationControls } from '@/components/Data-Display/PaginationControls';
 
-import { FIIFilter, VisualizationMode } from '../../types';
 import { useFIIVisualizationLogic } from '../../hooks/useFIIVisualizationLogic';
-
+import { FIIFilter, VisualizationMode } from '../../types';
 import { FIIViewRenderer } from './FIIViewRenderer';
-
 import {
   EmptyResultsContainer,
   ErrorContainer,

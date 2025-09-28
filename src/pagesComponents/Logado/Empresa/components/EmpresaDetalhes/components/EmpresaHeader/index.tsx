@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Typography, Link, Box } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
+import { Box,Link, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
-import { EmpresaDetalhada } from '../../../../types';
 import { dictionaryApi } from '@/services/api/endpoints/dictionary';
 import { DictionaryItem } from '@/services/api/types/dictionary';
 
-import { EmpresaChips } from './components/EmpresaChips';
-import { FatosRelevantes } from './components/FatosRelevantes';
-import { VantagensRiscos } from './components/VantagensRiscos';
-import { InformacoesAdicionais } from './components/InformacoesAdicionais';
+import { EmpresaDetalhada } from '../../../../types';
 import { CodigosDisponiveis } from './components/CodigosDisponiveis';
 import { CompanyAvatar } from './components/CompanyAvatar';
-import { HeaderContainer, EmpresaInfo, EmpresaTitulo, EmpresaSubtitulo, SiteLink, EmpresaDescricao } from './styled';
+import { EmpresaChips } from './components/EmpresaChips';
+import { FatosRelevantes } from './components/FatosRelevantes';
+import { InformacoesAdicionais } from './components/InformacoesAdicionais';
+import { VantagensRiscos } from './components/VantagensRiscos';
+import { EmpresaDescricao,EmpresaInfo, EmpresaSubtitulo, EmpresaTitulo, HeaderContainer, SiteLink } from './styled';
 
 interface EmpresaHeaderProps {
     empresa: EmpresaDetalhada;

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { TermsServices } from "@/pagesComponents/Nao-Logado/TermosServicos";
 
 export const metadata: Metadata = {

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { ETFBDRPage } from "@/pagesComponents/Logado/ETFBDR";
 
 export const metadata: Metadata = {

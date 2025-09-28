@@ -1,6 +1,7 @@
-import React from 'react';
 import { Grid } from '@mui/material';
-import { CodigosContainer, CodigosTitulo, CodigoButton } from './styled';
+import React from 'react';
+
+import { CodigoButton,CodigosContainer, CodigosTitulo } from './styled';
 
 interface Codigo {
   codigo: string;

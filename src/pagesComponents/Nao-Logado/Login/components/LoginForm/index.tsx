@@ -1,15 +1,14 @@
-import { type FormEvent, type ChangeEvent, memo, useEffect } from 'react';
+import { Button,Checkbox, FormControlLabel, TextField } from "@mui/material";
 import Link from 'next/link';
-
-import { TextField, FormControlLabel, Checkbox, Button } from "@mui/material";
+import { type ChangeEvent, type FormEvent, memo, useEffect } from 'react';
 
 import { FormData, FormErrors } from "../../types";
 import { FormHeader } from "../FormHeader";
 import { SocialLogin } from "../SocialLogin";
 import { LoginFormSkeleton } from "./LoginFormSkeleton";
 import {
-    LoginFormStyled,
     ForgotPasswordLink,
+    LoginFormStyled,
     RememberMeContainer
 } from "./styled";
 

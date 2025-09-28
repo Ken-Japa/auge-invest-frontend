@@ -1,6 +1,6 @@
 import { ValuationResults } from "../../../ValuationSection/types";
 import { SaveReportOptions } from "../../index";
-import { hasValue, formatCurrency, formatPercentage } from "../helpers";
+import { formatCurrency, formatPercentage,hasValue } from "../helpers";
 
 // Change from generateValuationSection to generateValuation to match the import
 export const generateValuation = (

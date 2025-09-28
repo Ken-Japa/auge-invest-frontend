@@ -1,14 +1,15 @@
 import { Tooltip } from '@mui/material';
 import Link from 'next/link';
+
+import { formatCNPJ, formatDate,formatNumber } from '@/components/Utils/Formatters/formatters';
+
 import { FIIExtended } from '../../../types';
-import { formatCNPJ, formatNumber, formatDate } from '@/components/Utils/Formatters/formatters';
 import {
-  DataRow,
-  DataCell,
   CodeChip,
-  FIIName,
-  DataText
-} from './styled';
+  DataCell,
+  DataRow,
+  DataText,
+  FIIName} from './styled';
 
 interface FIITableRowProps {
   fii: FIIExtended;

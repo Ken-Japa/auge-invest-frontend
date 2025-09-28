@@ -1,7 +1,7 @@
 import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
-import { Alert, AlertFilter, AlertListResponseApi } from "../types/alert-types";
 import { ErrorCode, handleApiError } from "../errorHandler";
+import { Alert, AlertFilter, AlertListResponseApi } from "../types/alert-types";
 
 class AlertsApiService extends BaseApiService {
   createAlert = async (alert: Alert) => {

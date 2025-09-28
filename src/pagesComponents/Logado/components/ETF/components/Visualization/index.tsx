@@ -1,17 +1,18 @@
+import { CircularProgress,Typography } from '@mui/material';
 import React from 'react';
-import { ETFFilter } from '@/services/api/types/etf';
-import { Typography, CircularProgress } from '@mui/material';
-import CardView from './Cards';
-import TableView from './Table';
-import GridView from './Grid';
+
 import { PaginationControls } from '@/components/Data-Display/PaginationControls';
+import { ETFFilter } from '@/services/api/types/etf';
+
+import CardView from './Cards';
+import GridView from './Grid';
 import { useETFVisualizationLogic } from './hooks/useETFVisualizationLogic';
 import {
-  VisualizationContainer,
-  LoadingContainer,
+  EmptyResultsContainer,
   ErrorContainer,
-  EmptyResultsContainer
-} from './styled';
+  LoadingContainer,
+  VisualizationContainer} from './styled';
+import TableView from './Table';
 
 interface VisualizationETFsProps {
   view: 'card' | 'table' | 'grid';

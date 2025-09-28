@@ -1,6 +1,6 @@
 import { PRIVACY_SECTIONS } from "../../constants/sections";
-import { NavigationContainer, NavigationTitle } from "./styled";
 import { QuickNavigationSkeleton } from "./QuickNavigationSkeleton";
+import { NavigationContainer, NavigationTitle } from "./styled";
 
 interface QuickNavigationProps {
     onSectionClick: (sectionId: string) => void;

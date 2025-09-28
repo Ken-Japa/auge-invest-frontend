@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import AboutPage from "@/pagesComponents/Nao-Logado/Quem-somos";
 
 export const metadata: Metadata = {

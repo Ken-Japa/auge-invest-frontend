@@ -1,5 +1,6 @@
+import { Box,Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { Typography, Grid, Box } from '@mui/material';
+
 import { SumarioData } from '../TabelaView/types';
 import { sumarioService } from '../utils/sumarioService';
 import { CompanyCard } from './components/CompanyCard/index';

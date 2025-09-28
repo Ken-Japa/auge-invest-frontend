@@ -1,5 +1,6 @@
+import { Box,Container, Grid } from '@mui/material';
 import React from 'react';
-import { Container, Grid, Box } from '@mui/material';
+
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 
 interface BlogPageSkeletonProps {

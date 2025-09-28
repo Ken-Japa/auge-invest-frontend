@@ -1,15 +1,17 @@
 import { Box } from '@mui/material';
+
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { PageTransition } from '@/components/Utils/PageTransition';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
-import { ViewMode } from './Elementos/ModoVisualizacao/types';
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
+import { PageTransition } from '@/components/Utils/PageTransition';
+
+import { CardsView } from './Elementos/ModoVisualizacao/Cards';
+import { MapaArvore } from './Elementos/ModoVisualizacao/MapaArvore';
 import { RedeNeural } from './Elementos/ModoVisualizacao/RedeNeural';
 import { TabelaView } from './Elementos/ModoVisualizacao/TabelaView';
-import { MapaArvore } from './Elementos/ModoVisualizacao/MapaArvore';
-import { CardsView } from './Elementos/ModoVisualizacao/Cards';
-import { VisualizationWrapper, ContentPlaceholder } from './styled';
+import { ViewMode } from './Elementos/ModoVisualizacao/types';
+import { ContentPlaceholder,VisualizationWrapper } from './styled';
 
 interface VisualizationContentProps {
     viewMode: ViewMode;

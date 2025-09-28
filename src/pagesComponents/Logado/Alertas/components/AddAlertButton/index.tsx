@@ -1,7 +1,9 @@
 import { useState } from 'react';
+
 import { CustomButton } from '@/components/Core/Button';
-import { AlertDialog } from '../AlertDialog';
 import { useApi } from '@/providers/ApiProvider';
+
+import { AlertDialog } from '../AlertDialog';
 
 interface AddAlertButtonProps {
     refreshAlerts: () => void;

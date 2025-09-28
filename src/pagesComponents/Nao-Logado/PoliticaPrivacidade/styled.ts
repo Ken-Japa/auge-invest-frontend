@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
-import { spacing } from "@/theme/variables";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { spacing } from "@/theme/variables";
 
 export const SectionPolicy = styled("section")({
   width: "100%",

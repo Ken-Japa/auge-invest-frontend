@@ -1,26 +1,27 @@
 "use client";
 
-import { useSession, signOut } from 'next-auth/react';
-import Link from 'next/link';
-import { Button, Snackbar, Alert, Typography } from '@mui/material';
-import LogoutIcon from '@mui/icons-material/Logout';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
-import { clearAuthData } from '@/utils/auth';
-import { PageTransition } from '@/components/Utils/PageTransition';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Alert, Button, Snackbar, Typography } from '@mui/material';
+import Link from 'next/link';
+import { signOut,useSession } from 'next-auth/react';
+
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { PageBackground } from '@/components/Layout/PageBackground';
-import { SubscriptionInfo } from './components/SubscriptionInfo';
-import { ProfileSkeleton } from './components/ProfileSkeleton';
+import { PageTransition } from '@/components/Utils/PageTransition';
+import { clearAuthData } from '@/utils/auth';
+
 import { AdditionalInfo } from './components/AdditionalInfo';
 import { BasicInfo } from './components/BasicInfo';
-import { useProfileData } from './hooks/useProfileData';
+import { ProfileSkeleton } from './components/ProfileSkeleton';
+import { SubscriptionInfo } from './components/SubscriptionInfo';
 import { useProfileActions } from './hooks/useProfileActions';
-
+import { useProfileData } from './hooks/useProfileData';
 import {
-    ProfileCard,
     ContactButton,
+    ProfileCard,
     StyledContactButton
 } from './styled';
 

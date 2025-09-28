@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
 import { Avatar, Box } from '@mui/material';
+import React, { useEffect,useState } from 'react';
+
 import { OptimizedImage } from '@/components/Utils/OptimizedImage';
+
 import { getBestCompanyLogoPath } from '../../utils/imageUtils';
 
 

@@ -1,8 +1,9 @@
-import React from 'react';
 import EditIcon from '@mui/icons-material/Edit';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { InfoContainer, InfoRow, InfoLabel, InfoValue, EditButton, StyledDivider } from '../BasicInfo/styled';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import React from 'react';
+
+import { EditButton, InfoContainer, InfoLabel, InfoRow, InfoValue, StyledDivider } from '../BasicInfo/styled';
 import { HeaderContainer, HeaderTitle } from './styled';
 
 interface AdditionalInfoProps {

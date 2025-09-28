@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect,useState } from "react";
+
 import { CONFIG } from "../constants/config";
 
 export const useScroll = () => {

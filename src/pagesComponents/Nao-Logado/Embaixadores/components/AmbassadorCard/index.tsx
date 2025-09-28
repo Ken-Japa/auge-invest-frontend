@@ -1,11 +1,10 @@
+import { Box, Stack, Typography } from "@mui/material";
+import { motion } from "framer-motion";
 import { type FC } from 'react';
 
-import { Stack, Box, Typography } from "@mui/material";
-import { motion } from "framer-motion";
-
-import { AmbassadorCardSkeleton } from "./AmbassadorCardSkeleton";
-import { CardContainer, StyledAvatar, animationConfig } from "./styled";
 import { CROWN } from "../../constants/ambassadors";
+import { AmbassadorCardSkeleton } from "./AmbassadorCardSkeleton";
+import { animationConfig,CardContainer, StyledAvatar } from "./styled";
 
 interface AmbassadorCardProps {
     name: string;

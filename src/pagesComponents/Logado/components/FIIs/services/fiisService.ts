@@ -1,6 +1,7 @@
 import { api } from "@/services/api";
-import { FIIExtended, FIIFilter } from "../types";
 import { FIIListResponse } from "@/services/api/types/fii";
+
+import { FIIExtended, FIIFilter } from "../types";
 
 export const fetchFIIs = async (
   filters: FIIFilter
@@ -31,7 +32,7 @@ export const fetchFIIs = async (
 
 export const fetchFIIBySlugOrCode = async (
   slugOrCode: string,
-  isCode: boolean = false
+  isCode = false
 ): Promise<FIIExtended | null> => {
   try {
     const decodedSlug = decodeURIComponent(slugOrCode);

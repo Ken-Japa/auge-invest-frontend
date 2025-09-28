@@ -1,5 +1,7 @@
 import { Stack } from "@mui/material";
+
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
+
 import { NewsletterContainer } from "./styled";
 
 export const NewsletterSkeleton = () => {

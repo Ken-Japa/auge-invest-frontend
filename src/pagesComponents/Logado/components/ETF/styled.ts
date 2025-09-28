@@ -1,5 +1,5 @@
+import { Box, Paper,Typography } from "@mui/material";
 import { styled } from "@mui/system";
-import { Box, Typography, Paper } from "@mui/material";
 
 export const ETFTabsContainer = styled(Box)(({ theme }) => ({
   position: "relative",

@@ -1,26 +1,26 @@
-import { UserSettings, User } from './user';
+import { User,UserSettings } from './user';
 
-export type ApiResponse<T> = {
+export interface ApiResponse<T> {
     success: boolean;
     data?: T;
     error?: {
         code: string;
         message: string;
     };
-};
+}
 
-export type UserRegistrationData = {
+export interface UserRegistrationData {
     name: string;
     email: string;
     phone?: string;
     cpf: string;
     password: string;
-};
+}
 
-export type UserLoginData = {
+export interface UserLoginData {
     email: string;
     password: string;
-};
+}
 
 // Define UserPreferences type based on the User interface
 type UserPreferences = User['preferences'];

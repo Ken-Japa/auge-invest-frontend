@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { TextField, Switch, FormControlLabel } from '@mui/material';
-import { StyledDialog, StyledDialogTitle, StyledDialogContent, StyledDialogActions, CancelButton, CreateButton } from './styled';
+import { FormControlLabel,Switch, TextField } from '@mui/material';
+import React, { useEffect, useRef,useState } from 'react';
+
 import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
+
+import { CancelButton, CreateButton,StyledDialog, StyledDialogActions, StyledDialogContent, StyledDialogTitle } from './styled';
 
 interface AddWalletDialogProps {
     open: boolean;

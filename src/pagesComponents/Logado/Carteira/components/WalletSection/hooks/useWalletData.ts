@@ -1,5 +1,5 @@
-import { useWallets } from "./useWallets";
 import { useWalletPositions } from "./useWalletPositions";
+import { useWallets } from "./useWallets";
 
 export const useWalletData = (isSimulated?: boolean) => {
   const {

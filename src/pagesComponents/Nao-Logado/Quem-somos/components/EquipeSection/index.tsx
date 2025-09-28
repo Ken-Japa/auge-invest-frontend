@@ -1,7 +1,9 @@
 import GroupsIcon from '@mui/icons-material/Groups';
-import { BaseSection, SectionTitle, ContentContainer, Subtitle } from "../../styled";
-import { EquipeSkeleton } from './EquipeSkeleton';
+
 import { visitorColors } from "@/theme/palette/visitor";
+
+import { BaseSection, ContentContainer, SectionTitle, Subtitle } from "../../styled";
+import { EquipeSkeleton } from './EquipeSkeleton';
 
 interface EquipeSectionProps {
     isLoading?: boolean;

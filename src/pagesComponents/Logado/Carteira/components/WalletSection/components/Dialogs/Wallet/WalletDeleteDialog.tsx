@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { DeleteWalletConfirmDialog } from './DeleteWalletConfirmDialog';
 
 interface WalletDeleteDialogProps {

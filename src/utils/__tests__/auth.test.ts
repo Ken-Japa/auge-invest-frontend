@@ -1,8 +1,8 @@
-import { getAuthToken, setAuthData, clearAuthData, getUserId } from '../auth';
+import { clearAuthData, getAuthToken, getUserId,setAuthData } from '../auth';
 
 describe('Auth Utils', () => {
   let cookieDescriptor: PropertyDescriptor | undefined;
-  let mockCookies: { [key: string]: string | undefined };
+  let mockCookies: Record<string, string | undefined>;
 
   beforeAll(() => {
     cookieDescriptor = Object.getOwnPropertyDescriptor(document, 'cookie');

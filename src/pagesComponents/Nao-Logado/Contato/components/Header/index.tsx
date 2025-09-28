@@ -1,6 +1,7 @@
 import { type FC } from 'react';
+
 import { HeaderSkeleton } from "./HeaderSkeleton";
-import { HeaderContainer, SubtitleText, HeaderStack, MatrixTitle } from "./styled";
+import { HeaderContainer, HeaderStack, MatrixTitle,SubtitleText } from "./styled";
 
 interface HeaderProps {
     isLoading: boolean;

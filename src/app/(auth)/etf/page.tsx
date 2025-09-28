@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import ETF from "@/pagesComponents/Logado/ETF";
 
 export const metadata: Metadata = {

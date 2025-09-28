@@ -1,16 +1,16 @@
 "use client";
 
+import MenuIcon from '@mui/icons-material/Menu';
+import { IconButton } from "@mui/material";
+import { motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-import { IconButton } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import { motion } from "framer-motion";
+import { authNavigation,publicNavigation } from "@/components/Layout/constants/Navigation";
 
-import { NavLink } from "./NavLink";
-import { NavDropdown } from "./NavDropdown";
 import { useDrawer } from "../../../hooks/useDrawer";
-import { publicNavigation, authNavigation } from "@/components/Layout/constants/Navigation";
+import { NavDropdown } from "./NavDropdown";
+import { NavLink } from "./NavLink";
 import { LinkNavbar, MobileNavContainer } from "./styled";
 
 export const Navbar = () => {

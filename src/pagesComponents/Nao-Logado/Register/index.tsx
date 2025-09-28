@@ -1,21 +1,20 @@
 "use client";
 
-import { useState, lazy, useEffect } from "react";
-import { useRouter } from "next/navigation";
-
 import CloseIcon from '@mui/icons-material/Close';
+import { useRouter } from "next/navigation";
+import { lazy, useEffect,useState } from "react";
 
-import { OptimizedImage } from "@/components/Utils/OptimizedImage";
-import { PageTransition } from "@/components/Utils/PageTransition";
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
+import { OptimizedImage } from "@/components/Utils/OptimizedImage";
+import { PageTransition } from "@/components/Utils/PageTransition";
 
-import { useBlockTimer } from "./hooks/useBlockTimer";
-import { useRegisterForm } from "./hooks/useRegisterForm";
-import { useGoogleSignIn } from "./hooks/useGoogleSignIn";
-import { StyledCloseButton, RegisterPageContainer } from "./styled";
 import { BlockTimer } from "./components/BlockTimer";
 import { RegisterFormSkeleton } from "./components/RegisterForm/RegisterFormSkeleton";
+import { useBlockTimer } from "./hooks/useBlockTimer";
+import { useGoogleSignIn } from "./hooks/useGoogleSignIn";
+import { useRegisterForm } from "./hooks/useRegisterForm";
+import { RegisterPageContainer,StyledCloseButton } from "./styled";
 
 const BLOCK_DURATION = 10 * 60 * 1000;
 const DEFAULT_REDIRECT = "/visao-economia";

@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { Network, NetworkEvents } from 'vis-network/standalone';
-import { Node, Edge, Options } from 'vis-network/standalone';
-import { DataSet } from 'vis-data/standalone';
 import 'vis-network/styles/vis-network.css';
+
+import React, { useEffect, useRef } from 'react';
+import { DataSet } from 'vis-data/standalone';
+import { Network, NetworkEvents } from 'vis-network/standalone';
+import { Edge, Node, Options } from 'vis-network/standalone';
 
 interface GraphProps {
   graph: {
@@ -10,9 +11,7 @@ interface GraphProps {
     edges: Edge[];
   };
   options: Options;
-  events: {
-    [key in NetworkEvents]?: (params: any) => void;
-  };
+  events: Partial<Record<NetworkEvents, (params: any) => void>>;
   networkRef?: React.MutableRefObject<Network | null>;
   onGraphReady?: () => void;
 }

@@ -1,8 +1,7 @@
 import { type FC } from 'react';
 
-import { faqCategories } from '../../constants/faqData';
 import type { CategoryType } from '../../constants/faqData';
-
+import { faqCategories } from '../../constants/faqData';
 import { TabsContainer } from "./styled";
 
 interface CategoryTabsProps {

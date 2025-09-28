@@ -1,8 +1,10 @@
-import { useState, useEffect, useRef } from "react";
-import { ETFFilter } from "@/services/api/types/etf";
-import { ETFExtended } from "../../../types";
-import { fetchETFs } from "../../../services/etfsService";
 import { SelectChangeEvent } from "@mui/material";
+import { useEffect, useRef,useState } from "react";
+
+import { ETFFilter } from "@/services/api/types/etf";
+
+import { fetchETFs } from "../../../services/etfsService";
+import { ETFExtended } from "../../../types";
 
 interface UseETFVisualizationLogicProps {
   filters: ETFFilter;

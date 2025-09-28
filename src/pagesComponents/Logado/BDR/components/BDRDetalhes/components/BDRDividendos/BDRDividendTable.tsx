@@ -1,6 +1,7 @@
 import { formatCurrency } from '@/components/Utils/Formatters/formatters';
-import { HeaderCell, StatusChip, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from './styled';
 import { BDRDividendItem as Dividend } from '@/services/api';
+
+import { HeaderCell, StatusChip, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from './styled';
 
 interface BDRDividendTableProps {
   dividends: Dividend[];

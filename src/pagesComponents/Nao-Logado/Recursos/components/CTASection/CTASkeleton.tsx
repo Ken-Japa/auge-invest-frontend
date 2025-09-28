@@ -1,5 +1,7 @@
 import { Stack } from "@mui/material";
+
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
+
 import { CTAContainer } from "./styled";
 
 export const CTASkeleton = () => (

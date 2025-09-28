@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect,useState } from "react";
+
 import { ETFBDRFilter } from "@/services/api/types/etfbdr";
-import { ETFBDRExtended } from "../../../types";
+
 import { fetchETFBDRs } from "../../../services/etfbdrService";
+import { ETFBDRExtended } from "../../../types";
 
 interface UseETFBDRDataProps {
   filters: ETFBDRFilter;

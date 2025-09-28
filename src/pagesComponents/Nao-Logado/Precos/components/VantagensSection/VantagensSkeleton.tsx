@@ -1,7 +1,8 @@
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
+import { visitorColors } from "@/theme/palette/visitor";
+
 import { BaseSection, ContentWrapper } from "../../styled";
 import { VantagensGrid } from "./styled";
-import { visitorColors } from "@/theme/palette/visitor";
 
 export const VantagensSkeleton = () => (
     <BaseSection>

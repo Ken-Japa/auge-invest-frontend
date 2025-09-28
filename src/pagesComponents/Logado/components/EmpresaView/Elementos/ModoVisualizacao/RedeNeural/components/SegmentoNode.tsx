@@ -1,6 +1,6 @@
-import { SegmentoNode } from '../types';
-import { calculatePosition, calculateNodeSize } from '../utils/graphUtils';
 import { formatCurrency } from '../../utils/currency';
+import { SegmentoNode } from '../types';
+import { calculateNodeSize,calculatePosition } from '../utils/graphUtils';
 
 export const createSegmentoNode = (
     segmento: SegmentoNode,

@@ -1,7 +1,9 @@
-import { type FC } from 'react';
 import { Skeleton } from "@mui/material";
-import { HeaderContainer } from "./styled";
+import { type FC } from 'react';
+
 import { visitorColors } from "@/theme/palette/visitor";
+
+import { HeaderContainer } from "./styled";
 
 const SKELETON_STYLES = {
     bgcolor: visitorColors.skeletonBackground

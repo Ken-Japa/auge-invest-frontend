@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BlogPost as BlogPostType } from "@/pagesComponents/Blog/constants/blogPosts";
+
 import BlogPost from "@/pagesComponents/Blog/components/BlogPost";
+import { BlogPost as BlogPostType } from "@/pagesComponents/Blog/constants/blogPosts";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;

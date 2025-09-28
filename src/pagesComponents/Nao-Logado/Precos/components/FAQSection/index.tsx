@@ -1,9 +1,11 @@
 import Link from "next/link";
+
+import { visitorColors } from "@/theme/palette/visitor";
+
 import { FAQ_ITEMS } from "../../constants/faq";
 import { BaseSection, ContentWrapper } from "../../styled";
-import { FAQContainer } from "./styled";
 import { FAQSkeleton } from "./FAQSkeleton";
-import { visitorColors } from "@/theme/palette/visitor";
+import { FAQContainer } from "./styled";
 
 interface FAQSectionProps {
     isLoading?: boolean;

@@ -1,21 +1,19 @@
 "use client";
 
-import { useState, lazy, type FormEvent, Suspense } from "react";
 import { useSearchParams } from 'next/navigation';
+import { type FormEvent, lazy, Suspense,useState } from "react";
 
-import { OptimizedImage } from "@/components/Utils/OptimizedImage";
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-
-import { SectionContact, StyledPageTransition, BackgroundImageStyle } from "./styled";
-import { CONTACT_CONSTANTS } from './constants';
-
-import { useContactForm } from "./hooks/useContactForm";
-import { useBlockTimer } from "./hooks/useBlockTimer";
-import { useSnackbar } from "./hooks/useSnackbar";
-import { submitContactForm } from './services/contactService';
+import { OptimizedImage } from "@/components/Utils/OptimizedImage";
 
 import { ContactContent } from './components/ContactContent';
 import { SnackbarNotification } from './components/SnackbarNotification';
+import { CONTACT_CONSTANTS } from './constants';
+import { useBlockTimer } from "./hooks/useBlockTimer";
+import { useContactForm } from "./hooks/useContactForm";
+import { useSnackbar } from "./hooks/useSnackbar";
+import { submitContactForm } from './services/contactService';
+import { BackgroundImageStyle,SectionContact, StyledPageTransition } from "./styled";
 
 const Header = lazy(() => import('./components/Header').then(mod => ({ default: mod.Header })));
 const ContactInfo = lazy(() => import('./components/ContactInfo').then(mod => ({ default: mod.ContactInfo })));

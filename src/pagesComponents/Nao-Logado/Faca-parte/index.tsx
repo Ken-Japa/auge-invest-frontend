@@ -1,13 +1,13 @@
 "use client";
 
-import { type FC, useState, lazy } from "react";
 import { Grid, Stack } from "@mui/material";
+import { type FC, lazy,useState } from "react";
 
-import { OptimizedImage } from "@/components/Utils/OptimizedImage";
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
+import { OptimizedImage } from "@/components/Utils/OptimizedImage";
 
-import { SectionJoinTeam, StyledPageTransition, BackgroundImage } from "./styled";
+import { BackgroundImage,SectionJoinTeam, StyledPageTransition } from "./styled";
 
 const IMAGE_PROPS = {
     src: "/assets/images/background/Faca-Parte.jpg",

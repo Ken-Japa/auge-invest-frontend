@@ -1,17 +1,18 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
+import React, { createContext, useContext, useEffect,useState } from 'react';
+
 import { api } from '@/services/api';
 
 // Context type
-type ApiContextType = {
+interface ApiContextType {
   isLoading: boolean;
   error: string | null;
   clearError: () => void;
   revalidateAlerts: () => void;
   revalidateFavorites: () => void;
-};
+}
 
 // Create context with default values
 const ApiContext = createContext<ApiContextType>({

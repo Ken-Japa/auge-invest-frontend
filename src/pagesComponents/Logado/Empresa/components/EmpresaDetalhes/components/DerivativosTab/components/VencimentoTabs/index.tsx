@@ -1,6 +1,7 @@
-import React from 'react';
 import { Box, Chip } from '@mui/material';
-import { TabsContainer, StyledTabs, StyledTab } from './styled';
+import React from 'react';
+
+import { StyledTab,StyledTabs, TabsContainer } from './styled';
 
 interface VencimentoTabsProps {
   vencimentos: string[];

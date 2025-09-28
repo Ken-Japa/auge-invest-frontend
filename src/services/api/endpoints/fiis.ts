@@ -2,11 +2,11 @@ import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
 import { ErrorCode, handleApiError } from "../errorHandler";
 import {
-  FIIListResponse,
-  FIIFilter,
   FII,
-  FIIDividendResponse,
   FIIDividendFilter,
+  FIIDividendResponse,
+  FIIFilter,
+  FIIListResponse,
 } from "../types";
 
 class FIIsApiService extends BaseApiService {

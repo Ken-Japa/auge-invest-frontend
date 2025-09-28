@@ -1,6 +1,7 @@
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
-import { HeaderContainer } from "./styled";
 import { visitorColors } from "@/theme/palette/visitor";
+
+import { HeaderContainer } from "./styled";
 
 export const HeaderSkeleton = () => (
   <HeaderContainer>

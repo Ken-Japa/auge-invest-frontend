@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react';
-
-import { Box, Typography, Accordion, AccordionDetails, Button, AccordionSummary, Tooltip } from '@mui/material';
-import { Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
+import { Add as AddIcon, Delete as DeleteIcon,Edit as EditIcon } from '@mui/icons-material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Tooltip,Typography } from '@mui/material';
+import React, { useEffect,useState } from 'react';
 
 import { Wallet } from '@/services/api/types';
 import { WalletTransactions } from '@/services/api/types/transaction';
+import { useTheme } from '@/theme/ThemeContext';
+
+import { useFocus } from '../../../RecentActivities/components/FocusContext/FocusContext';
 import { AddTransactionDialog } from '../Dialogs/Transactions/AddTransactionDialog';
 import { AddSameTransactionDialog } from '../Dialogs/Transactions/AddTransactionSameAsset';
 import { TransactionsDialog } from '../Dialogs/Transactions/TransactionsDialog';
-
-import { WalletItemContainer, WalletActions, EditButton, WalletSummaryContainer, WalletDetailsContainer } from './styled';
-import { useTheme } from '@/theme/ThemeContext';
 import { AssetPositionsTable } from './AssetPositionsTable';
-import { useFocus } from '../../../RecentActivities/components/FocusContext/FocusContext';
+import { EditButton, WalletActions, WalletDetailsContainer,WalletItemContainer, WalletSummaryContainer } from './styled';
 
 
 interface WalletItemProps {

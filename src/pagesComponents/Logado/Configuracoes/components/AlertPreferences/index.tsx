@@ -1,11 +1,12 @@
-import { Slider } from '@mui/material';
 import PercentIcon from '@mui/icons-material/Percent';
+import { Slider } from '@mui/material';
+
 import { SettingsCard } from '@/components/Core/Card/SettingsCard';
+
 import {
   SliderContainer,
-  SliderLabel,
-  SliderDescription
-} from '../../styled';
+  SliderDescription,
+  SliderLabel} from '../../styled';
 
 interface AlertPreferencesProps {
   percentages: {

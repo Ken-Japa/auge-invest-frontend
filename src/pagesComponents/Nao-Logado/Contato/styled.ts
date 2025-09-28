@@ -1,7 +1,8 @@
 import { styled } from "@mui/material/styles";
+
 import { PageTransition } from "@/components/Utils/PageTransition";
-import { spacing } from "@/theme/variables";
 import { visitorColors } from "@/theme/palette/visitor";
+import { spacing } from "@/theme/variables";
 
 export const SectionContact = styled("section")({
   minHeight: "100vh",

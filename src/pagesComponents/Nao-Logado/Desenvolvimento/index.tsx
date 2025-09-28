@@ -1,15 +1,17 @@
 "use client";
+import { CardContent,Grid, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import React, { useState } from 'react';
 import { Suspense } from 'react';
+
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
-import { Typography, Grid, CardContent } from '@mui/material';
-import { tools } from './constants'
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { OptimizedImage } from '@/components/Utils/OptimizedImage';
-import { PageContainer, Page, SectionTitle, ToolCard, ToolIconContainer, StyledPageTransition, BackgroundImageStyle } from './styled';
-import { useTheme } from '@mui/material/styles';
+
+import { tools } from './constants'
+import { BackgroundImageStyle,Page, PageContainer, SectionTitle, StyledPageTransition, ToolCard, ToolIconContainer } from './styled';
 
 const FerramentasPage = () => {
     const [imageLoaded, setImageLoaded] = useState(false);

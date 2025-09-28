@@ -1,7 +1,8 @@
-import { PermIdentity, AppRegistration } from "@mui/icons-material";
+import { AppRegistration,PermIdentity } from "@mui/icons-material";
 import { motion } from "framer-motion";
-import { CustomButton } from "../../../../Core/Button";
 import { useRouter } from "next/navigation";
+
+import { CustomButton } from "../../../../Core/Button";
 
 
 interface AuthButtonsProps {

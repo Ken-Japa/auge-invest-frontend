@@ -1,6 +1,7 @@
-import { Tooltip, IconButton, Divider } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
-import { SectionTitle, SectionContainer } from '../styled';
+import { Divider,IconButton, Tooltip } from '@mui/material';
+
+import { SectionContainer,SectionTitle } from '../styled';
 import { FormSectionProps } from '../types/types';
 
 export const FormSection = ({ title, description, children }: FormSectionProps) => (

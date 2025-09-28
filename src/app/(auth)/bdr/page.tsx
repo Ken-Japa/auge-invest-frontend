@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { BDR } from "@/pagesComponents/Logado/BDR";
 
 export const metadata: Metadata = {

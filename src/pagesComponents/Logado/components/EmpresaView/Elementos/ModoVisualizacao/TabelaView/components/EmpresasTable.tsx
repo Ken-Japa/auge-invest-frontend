@@ -1,14 +1,14 @@
-import React from 'react';
-import {
-    TableHead, TableBody, TableRow,
-    TableCell
-} from '@mui/material';
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
-import { EmpresaDetalhe } from '../types';
+import {
+TableBody,     TableCell,
+    TableHead, TableRow} from '@mui/material';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+
 import { formatCurrency } from '../../utils/currency';
 import { useSortableData } from '../hooks/useSortableData';
-import { StyledTableSortLabel, StyledTable } from './styled';
-import { useRouter } from 'next/navigation';
+import { EmpresaDetalhe } from '../types';
+import { StyledTable,StyledTableSortLabel } from './styled';
 
 interface EmpresasTableProps {
     empresas: EmpresaDetalhe[];

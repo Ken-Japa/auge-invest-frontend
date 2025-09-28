@@ -1,10 +1,9 @@
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import { Chip,Typography } from "@mui/material";
 import { type FC } from 'react';
 
-import { Typography, Chip } from "@mui/material";
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
-
-import { BenefitsContainer } from "./styled";
 import { BenefitsSkeleton } from "./BenefitsSkeleton";
+import { BenefitsContainer } from "./styled";
 
 interface BenefitsProps {
     isLoading: boolean;

@@ -1,5 +1,5 @@
+import { Table, TableSortLabel, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { TableSortLabel, Table, Typography } from "@mui/material";
 
 export const StyledTableSortLabel = styled(TableSortLabel)(({ theme }) => ({
   "&:hover": {

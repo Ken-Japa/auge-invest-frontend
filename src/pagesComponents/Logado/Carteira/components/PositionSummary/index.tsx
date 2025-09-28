@@ -1,4 +1,5 @@
-import { Typography, Divider } from '@mui/material';
+import { Divider,Typography } from '@mui/material';
+
 import { SummaryContainer, SummaryItem, SummaryLabel, SummaryValue } from './styled';
 
 // Dados simulados - serão substituídos por dados da API

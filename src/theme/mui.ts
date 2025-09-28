@@ -1,7 +1,8 @@
 import { createTheme, Theme } from '@mui/material/styles';
-import { darkPalette, lightPalette } from './palette';
+
 import { components } from './components';
-import { typography, borderRadius } from './variables';
+import { darkPalette, lightPalette } from './palette';
+import { borderRadius,typography } from './variables';
 
 // Configurações comuns para ambos os temas
 const commonOptions = {

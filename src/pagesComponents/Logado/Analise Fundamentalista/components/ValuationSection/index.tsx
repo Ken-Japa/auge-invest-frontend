@@ -1,20 +1,20 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Grid, Button } from '@mui/material';
-import { ValuationInputsSection } from './components/ValuationInputsSection';
+import { Button,Grid } from '@mui/material';
+import { useCallback,useEffect, useState } from 'react';
+
 import { HistoricalDataSection } from './components/HistoricalDataSection';
 import { ResultsSection } from './components/ResultsSection';
 import { ScenariosSection } from './components/ScenariosSection';
-import { calculateGrowthRate, calculateScenario } from './utils/calculations';
-import { DEFAULT_VALUATION_INPUTS, DEFAULT_SCENARIO_INPUTS } from './constants';
+import { ValuationInputsSection } from './components/ValuationInputsSection';
+import { DEFAULT_SCENARIO_INPUTS,DEFAULT_VALUATION_INPUTS } from './constants';
 import { SectionContainer, SectionTitle } from './styled';
 import type {
-    ValuationSectionProps,
-    ValuationInputs,
-    ScenarioInputs,
     HistoricalFCF,
+    ScenarioInputs,
+    SensitivityResults,
+    ValuationInputs,
     ValuationResults,
-    SensitivityResults
-} from './types';
+    ValuationSectionProps} from './types';
+import { calculateGrowthRate, calculateScenario } from './utils/calculations';
 
 export const ValuationSection = ({
     fluxoCaixaOperacional: defaultFCO,

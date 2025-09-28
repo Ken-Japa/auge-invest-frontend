@@ -1,9 +1,9 @@
+import { Skeleton,Stack } from "@mui/material";
 import { type FC } from 'react';
 
-import { Stack, Skeleton } from "@mui/material";
+import { visitorColors } from "@/theme/palette/visitor";
 
 import { CardContainer } from "./styled";
-import { visitorColors } from "@/theme/palette/visitor";
 
 const SKELETON_STYLES = {
     bgcolor: visitorColors.skeletonBackground

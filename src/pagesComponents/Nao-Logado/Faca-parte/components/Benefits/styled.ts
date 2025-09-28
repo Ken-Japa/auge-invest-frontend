@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
-import { spacing, borderRadius, transitions } from "@/theme/variables";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { borderRadius, spacing, transitions } from "@/theme/variables";
 
 export const BenefitsContainer = styled("div")({
   backgroundColor: visitorColors.backgroundLight,

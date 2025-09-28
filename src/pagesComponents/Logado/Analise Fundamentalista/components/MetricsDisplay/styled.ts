@@ -1,5 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+
 import { transitions } from "@/theme/variables";
 
 export const CategoryContainer = styled(Grid)(({ theme }) => ({

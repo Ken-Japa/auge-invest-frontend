@@ -1,8 +1,9 @@
-import { styled } from "@mui/material/styles";
-import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
-import { spacing, borderRadius, transitions } from "@/theme/variables";
+import SearchIcon from "@mui/icons-material/Search";
+import { styled } from "@mui/material/styles";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { borderRadius, spacing, transitions } from "@/theme/variables";
 
 export const SearchContainer = styled("div")({
   width: "100%",

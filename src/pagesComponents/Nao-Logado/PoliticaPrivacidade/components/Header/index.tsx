@@ -1,9 +1,11 @@
 import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 import { Typography } from "@mui/material";
 import dynamic from "next/dynamic";
-import { HeaderContainer } from "./styled";
-import { HeaderSkeleton } from "./HeaderSkeleton";
+
 import { visitorColors } from "@/theme/palette/visitor";
+
+import { HeaderSkeleton } from "./HeaderSkeleton";
+import { HeaderContainer } from "./styled";
 
 interface HeaderProps {
     isLoading?: boolean;

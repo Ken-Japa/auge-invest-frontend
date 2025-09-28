@@ -1,6 +1,5 @@
-import { type FC } from 'react';
-
 import { Stack } from "@mui/material";
+import { type FC } from 'react';
 
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
 import { visitorColors } from "@/theme/palette/visitor";

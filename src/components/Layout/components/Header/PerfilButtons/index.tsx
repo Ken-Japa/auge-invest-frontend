@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { useSession, signOut } from 'next-auth/react';
-import { clearAuthData } from '@/utils/auth';
-import { useRouter } from "next/navigation";
-
-import { IconButton, Menu, MenuItem, Avatar } from '@mui/material';
+import { Avatar,IconButton, Menu, MenuItem } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { signOut,useSession } from 'next-auth/react';
+import { useState } from 'react';
+
+import { clearAuthData } from '@/utils/auth';
 
 interface AuthButtonsProps {
     onButtonClick?: () => void;

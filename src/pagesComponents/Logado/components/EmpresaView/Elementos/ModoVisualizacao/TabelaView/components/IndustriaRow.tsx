@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import {
-    TableRow, TableCell, IconButton, Collapse,
-    Box
-} from '@mui/material';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { IndustriaRowProps } from '../types';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import {
+    Box,
+Collapse,
+IconButton, TableCell,     TableRow} from '@mui/material';
+import React, { useState } from 'react';
+
 import { formatCurrency } from '../../utils/currency';
+import { IndustriaRowProps } from '../types';
 import { EmpresasTable } from './EmpresasTable';
 import { SegmentoSection } from './SegmentoSection';
-import { IndustriaTitle, ValueText, PercentageText } from './styled';
+import { IndustriaTitle, PercentageText,ValueText } from './styled';
 
 export const IndustriaRow: React.FC<IndustriaRowProps> = ({
     industria,

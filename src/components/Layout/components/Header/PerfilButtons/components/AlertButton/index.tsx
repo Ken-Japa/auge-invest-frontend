@@ -1,14 +1,16 @@
-import { useState } from 'react';
-import Link from "next/link";
-import { IconButton, Menu, Badge, Divider, MenuItem } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { Badge, Divider, IconButton, Menu, MenuItem } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { useUserAlerts } from '@/components/Layout/components/Header/PerfilButtons/components/AlertButton/hooks/useUserAlerts';
-import { MAX_DISPLAY_ITEMS } from '../constants';
-import { AlertMenuItem } from './components/AlertMenuItem';
-import { Snackbar } from '@/components/Feedback/Snackbar';
+import Link from "next/link";
+import { useState } from 'react';
+
 import { ErrorDisplay } from '@/components/Feedback/ErrorDisplay';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { Snackbar } from '@/components/Feedback/Snackbar';
+import { useUserAlerts } from '@/components/Layout/components/Header/PerfilButtons/components/AlertButton/hooks/useUserAlerts';
+
+import { MAX_DISPLAY_ITEMS } from '../constants';
+import { AlertMenuItem } from './components/AlertMenuItem';
 
 export const AlertButton = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -49,7 +51,7 @@ export const AlertButton = () => {
     <div>
       <IconButton
         onClick={handleMenu}
-        color={Boolean(anchorEl) ? 'primary' : 'inherit'}
+        color={anchorEl ? 'primary' : 'inherit'}
         aria-label="alert menu"
         aria-controls="alert-appbar"
         aria-haspopup="true"

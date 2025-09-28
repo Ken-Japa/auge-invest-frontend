@@ -1,4 +1,5 @@
 import { useRouter } from "next/navigation";
+
 import { Favorite } from "@/services/api/types/favorite";
 
 export const useFavoriteNavigation = () => {

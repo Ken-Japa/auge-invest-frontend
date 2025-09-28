@@ -1,9 +1,9 @@
-import React from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { ResponsiveLine } from '@nivo/line';
+import React from 'react';
 
 export interface LineChartProps {
-    data: Array<{ data: string; valor: number; showLabel?: boolean;[key: string]: any }>;
+    data: { data: string; valor: number; showLabel?: boolean;[key: string]: any }[];
     loading?: boolean;
     xKey?: string;
     yKey?: string;

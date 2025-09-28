@@ -1,5 +1,5 @@
-import { type MouseEvent } from 'react';
 import GoogleIcon from '@mui/icons-material/Google';
+import { type MouseEvent } from 'react';
 
 import { StyledGoogleButton } from "./styled";
 

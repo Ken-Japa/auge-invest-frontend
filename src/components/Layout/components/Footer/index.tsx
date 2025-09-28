@@ -1,26 +1,24 @@
 "use client";
 
-import { usePathname } from 'next/navigation';
-import { useSession } from "next-auth/react";
-import LinkNext from "next/link";
-
-import { Container, Typography, Box, IconButton, Link } from "@mui/material";
 import EmailIcon from '@mui/icons-material/Email';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import { Box, Container, IconButton, Link,Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import LinkNext from "next/link";
+import { usePathname } from 'next/navigation';
+import { useSession } from "next-auth/react";
 
+import { socialLinks } from "../../constants/footer";
 import { Logo } from "../../Logo";
 import { FooterNavigation } from "./components/FooterNavigation";
 import {
     FooterContainer,
-    TopSection,
-    MainContent,
     LogoSection,
+    MainContent,
     NavigationSection,
+    SectionTitle,
     SocialSection,
-    SectionTitle
-} from "./styled";
-import { socialLinks } from "../../constants/footer";
+    TopSection} from "./styled";
 
 export const Footer = () => {
     const currentYear = new Date().getFullYear();

@@ -1,7 +1,8 @@
-import { motion } from "framer-motion";
 import { Container, Typography } from "@mui/material";
-import { HeaderContainer, HeaderContent } from "./styled";
+import { motion } from "framer-motion";
+
 import { BlogHeaderSkeleton } from "./BlogHeaderSkeleton";
+import { HeaderContainer, HeaderContent } from "./styled";
 
 interface BlogHeaderProps {
     isLoading?: boolean;

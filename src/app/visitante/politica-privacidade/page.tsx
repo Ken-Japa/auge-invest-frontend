@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { PrivacyPolicy } from "@/pagesComponents/Nao-Logado/PoliticaPrivacidade";
 
 export const metadata: Metadata = {

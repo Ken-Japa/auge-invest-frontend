@@ -1,16 +1,16 @@
 "use client";
 
-import { type FC, useState, useEffect, useRef, lazy } from 'react';
-import Head from "next/head";
 import { Container } from "@mui/material";
+import Head from "next/head";
+import { type FC, lazy,useEffect, useRef, useState } from 'react';
 
-import { PageTransition } from "@/components/Utils/PageTransition";
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { ProgressiveLoad } from "@/components/Feedback/ProgressiveLoad";
 import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
 import { OptimizedImage } from "@/components/Utils/OptimizedImage";
+import { PageTransition } from "@/components/Utils/PageTransition";
 
-import { SectionSolutions, ContentWrapper } from "./styled";
+import { ContentWrapper,SectionSolutions } from "./styled";
 
 const Header = lazy(() => import('./components/Header').then(mod => ({ default: mod.Header })));
 const FeaturesGrid = lazy(() => import('./components/FeaturesGrid').then(mod => ({ default: mod.FeaturesGrid })));

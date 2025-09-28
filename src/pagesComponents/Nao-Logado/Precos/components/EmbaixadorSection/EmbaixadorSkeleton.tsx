@@ -1,6 +1,7 @@
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
-import { BaseSection, ContentWrapper } from "../../styled";
 import { visitorColors } from "@/theme/palette/visitor";
+
+import { BaseSection, ContentWrapper } from "../../styled";
 
 export const EmbaixadorSkeleton = () => (
     <BaseSection>

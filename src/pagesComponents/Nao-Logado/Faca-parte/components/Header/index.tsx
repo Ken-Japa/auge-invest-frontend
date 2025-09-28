@@ -1,8 +1,9 @@
-import { type FC } from 'react';
-import dynamic from 'next/dynamic';
-
 import { Typography } from "@mui/material";
+import dynamic from 'next/dynamic';
+import { type FC } from 'react';
+
 import { visitorColors } from "@/theme/palette/visitor";
+
 import { HeaderSkeleton } from "./HeaderSkeleton";
 import { HeaderContainer, HeaderIcon } from "./styled";
 

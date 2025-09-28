@@ -1,11 +1,12 @@
 "use client";
-import { useRouter } from 'next/navigation';
 import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
-import { DetailPageContainer, ContentWrapper, BackButton } from './styled';
-import { useETFDetails } from './hooks/useETFDetails';
-import ETFStatusDisplay from './ETFStatusDisplay';
+import { useRouter } from 'next/navigation';
+
 import ETFHeader from './ETFHeader';
 import ETFInfoSection from './ETFInfoSection';
+import ETFStatusDisplay from './ETFStatusDisplay';
+import { useETFDetails } from './hooks/useETFDetails';
+import { BackButton,ContentWrapper, DetailPageContainer } from './styled';
 
 interface ETFDetailsProps {
   slug: string;

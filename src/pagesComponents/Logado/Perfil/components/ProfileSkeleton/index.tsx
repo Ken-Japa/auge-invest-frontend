@@ -1,5 +1,7 @@
 import { Container, Stack } from '@mui/material';
+
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+
 import { ProfileCard } from '../../styled';
 
 export const ProfileSkeleton = () => (

@@ -1,12 +1,14 @@
 "use client";
-import React from 'react';
 import { useRouter } from 'next/navigation';
+import React from 'react';
+
 import { PageBackground } from '@/components/Layout/PageBackground';
-import { DetailPageContainer } from './styled';
+
+import { ETFBDRDetailsContent } from './ETFBDRDetailsContent';
 import { useETFBDRDetails } from './hooks/useETFBDRDetails';
+import { DetailPageContainer } from './styled';
 import { ETFBDRLoadingState } from './utils/ETFBDRLoadingState';
 import { ETFBDRNotFoundState } from './utils/ETFBDRNotFoundState';
-import { ETFBDRDetailsContent } from './ETFBDRDetailsContent';
 
 
 interface ETFBDRDetailsProps {

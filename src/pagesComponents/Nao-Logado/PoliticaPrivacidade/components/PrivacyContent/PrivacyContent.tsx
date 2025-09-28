@@ -1,17 +1,17 @@
 import { Stack } from "@mui/material";
-import { PrivacySection } from "../PrivacySection";
+
 import { PRIVACY_SECTIONS } from "../../constants/sections";
+import { PrivacySection } from "../PrivacySection";
 import { PrivacyContentSkeleton } from "./PrivacyContentSkeleton";
 import {
-    DadosSection,
-    FinalidadeSection,
-    CompartilhamentoSection,
-    TransferenciaSection,
-    ConsentimentoSection,
     ArmazenamentoSection,
+    CompartilhamentoSection,
+    ConsentimentoSection,
+    DadosSection,
+    DireitosSection,
+    FinalidadeSection,
     RetencaoSection,
-    DireitosSection
-} from "./sections";
+    TransferenciaSection} from "./sections";
 
 interface PrivacyContentProps {
     isLoading?: boolean;

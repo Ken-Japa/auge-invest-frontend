@@ -1,15 +1,14 @@
 import { type ChangeEvent } from 'react';
 
 import { FormData, FormErrors } from "../../types";
-import { getPasswordStrength } from "../../utils/passwordUtils";
 import { formatCPF, formatPhone } from "../../utils/formatUtils";
+import { getPasswordStrength } from "../../utils/passwordUtils";
 import { FormFieldsSkeleton } from "./FormFieldsSkeleton";
 import {
-    StyledTextField,
     PasswordStrengthContainer,
+    StrengthText,
     StyledLinearProgress,
-    StrengthText
-} from "./styled";
+    StyledTextField} from "./styled";
 
 interface FormFieldsProps {
     formData: FormData;

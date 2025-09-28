@@ -1,5 +1,6 @@
-import { Grid, Typography, Box } from "@mui/material";
+import { Box,Grid, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+
 import { transitions } from "@/theme/variables";
 
 export const SectionTitle = styled(Typography)(({ theme }) => ({

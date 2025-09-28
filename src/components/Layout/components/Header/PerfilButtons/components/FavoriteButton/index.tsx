@@ -1,13 +1,15 @@
-import { useState } from 'react';
-import Link from "next/link";
-import { IconButton, Menu, MenuItem, Divider } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Divider,IconButton, Menu, MenuItem } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { useUserFavorites } from '@/components/Layout/components/Header/PerfilButtons/components/FavoriteButton/hooks/useUserFavorites';
-import { MAX_DISPLAY_ITEMS } from '../constants';
-import { FavoriteMenuItem } from './components/FavoriteMenuItem';
+import Link from "next/link";
+import { useState } from 'react';
+
 import { ErrorDisplay } from '@/components/Feedback/ErrorDisplay';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { useUserFavorites } from '@/components/Layout/components/Header/PerfilButtons/components/FavoriteButton/hooks/useUserFavorites';
+
+import { MAX_DISPLAY_ITEMS } from '../constants';
+import { FavoriteMenuItem } from './components/FavoriteMenuItem';
 
 export const FavoriteButton = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -26,7 +28,7 @@ export const FavoriteButton = () => {
     <div>
       <IconButton
         onClick={handleMenu}
-        color={Boolean(anchorEl) ? "primary" : "inherit"}
+        color={anchorEl ? "primary" : "inherit"}
         aria-label="favorite menu"
         aria-controls="favorite-appbar"
         aria-haspopup="true"

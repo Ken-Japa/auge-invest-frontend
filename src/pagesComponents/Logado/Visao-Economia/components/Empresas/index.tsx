@@ -1,15 +1,17 @@
 "use client";
 
-import { useState } from 'react';
 import { Box } from "@mui/material";
+import { useState } from 'react';
+
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { ViewMode } from '../../../components/EmpresaView/Elementos/ModoVisualizacao/types';
+
 import { ContentSkeleton } from '../../../../../components/Feedback/Skeletons/ContentSkeleton';
-import { ModoVisualizacao } from '../../../components/EmpresaView/Elementos/ModoVisualizacao';
-import { SearchBar } from '../../../components/EmpresaView/Elementos/SearchBar';
 import { VisualizationContent } from '../../../components/EmpresaView';
-import { EmpresasContainer, ControlsWrapper, VisualizationWrapper, Title } from './styled';
+import { ModoVisualizacao } from '../../../components/EmpresaView/Elementos/ModoVisualizacao';
+import { ViewMode } from '../../../components/EmpresaView/Elementos/ModoVisualizacao/types';
+import { SearchBar } from '../../../components/EmpresaView/Elementos/SearchBar';
+import { ControlsWrapper, EmpresasContainer, Title,VisualizationWrapper } from './styled';
 
 
 export const Empresas = () => {

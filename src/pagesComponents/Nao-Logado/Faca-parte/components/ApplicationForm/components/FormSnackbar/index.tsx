@@ -1,5 +1,6 @@
-import { type FC, useEffect, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import { type FC, useEffect, useState } from 'react';
+
 import { SnackbarStyled } from './styled';
 
 type Severity = 'success' | 'error' | 'info' | 'warning';

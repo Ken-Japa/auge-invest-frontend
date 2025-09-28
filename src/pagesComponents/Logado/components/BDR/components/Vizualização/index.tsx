@@ -1,19 +1,21 @@
-import React from 'react';
 import {
   CircularProgress,
   Typography,
 } from '@mui/material';
+import React from 'react';
+
 import { PaginationControls } from '@/components/Data-Display/PaginationControls';
+
 import { VisualizacaoBDRsProps } from '../../types/index';
-import { BDRVisualizationRenderer } from './utils/BDRVisualizationRenderer';
-import { BDRFilterControls } from './utils/BDRFilterControls';
-import { useBDRs } from './utils/useBDRs';
 import {
-  VisualizationContainer,
-  LoadingContainer,
-  ErrorContainer,
   EmptyResultsContainer,
+  ErrorContainer,
+  LoadingContainer,
+  VisualizationContainer,
 } from './styled';
+import { BDRFilterControls } from './utils/BDRFilterControls';
+import { BDRVisualizationRenderer } from './utils/BDRVisualizationRenderer';
+import { useBDRs } from './utils/useBDRs';
 
 
 

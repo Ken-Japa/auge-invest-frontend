@@ -1,8 +1,10 @@
-import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
 import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
-import { ContentWrapper } from './styled';
+import { Box, Button,Typography } from '@mui/material';
+import React from 'react';
+
 import { ETFBDR } from '@/services/api/types/etfbdr';
+
+import { ContentWrapper } from './styled';
 
 interface ETFBDRDetailsContentProps {
   etf: ETFBDR;

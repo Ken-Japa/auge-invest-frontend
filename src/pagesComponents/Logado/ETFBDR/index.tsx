@@ -1,20 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
 import { Box, Tab, Tabs } from '@mui/material';
-import { PageTransition } from '@/components/Utils/PageTransition';
-import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
-import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
-import { PageBackground } from '@/components/Layout/PageBackground';
+import React, { useState } from 'react';
+
 import { TabPanel } from '@/components/Data-Display/TabPanel';
+import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
+import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
+import { PageBackground } from '@/components/Layout/PageBackground';
+import { PageTransition } from '@/components/Utils/PageTransition';
+import { ETFBDRFilter } from '@/services/api/types/etfbdr';
 
 import ETFBDRSearchBar from '../components/ETFBDR/components/SearchBar';
 import { VisualizationETFBDRs } from '../components/ETFBDR/components/Visualization';
-import { ETFBDRFilter } from '@/services/api/types/etfbdr';
-
-import { ETFBDRTabsContainer, Title, ETFTabsContainer } from './styled';
+import { ETFBDRTabsContainer, ETFTabsContainer,Title } from './styled';
 
 export const ETFBDRPage = () => {
   const [currentTab, setCurrentTab] = useState(0);

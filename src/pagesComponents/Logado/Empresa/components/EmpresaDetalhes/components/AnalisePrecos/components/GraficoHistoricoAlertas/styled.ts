@@ -1,5 +1,5 @@
+import { Box, Paper,Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Box, Typography, Paper } from '@mui/material';
 
 export const GraficoContainer = styled(Box)(({ theme }) => ({
   height: 400,

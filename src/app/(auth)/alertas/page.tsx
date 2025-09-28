@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { Alertas } from "@/pagesComponents/Logado/Alertas";
 
 export const metadata: Metadata = {

@@ -1,20 +1,18 @@
 "use client";
 
-import { type FC } from "react";
-import Link from "next/link";
-import { Container, Box } from "@mui/material";
+import { Box,Container } from "@mui/material";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { type FC } from "react";
 
 import { OptimizedImage } from "@/components/Utils/OptimizedImage";
 
-import { PostContainer, PostContent } from "./styled";
-
 import type { BlogPost as BlogPostType } from "../../constants/blogPosts";
-
-import { BlogPostHeader } from "./components/BlogPostHeader";
-import { ShareSection } from "./components/ShareSection";
-import { RelatedPosts } from "./components/RelatedPosts";
 import { BlogMarkdown } from "./components/BlogMarkdown";
+import { BlogPostHeader } from "./components/BlogPostHeader";
+import { RelatedPosts } from "./components/RelatedPosts";
+import { ShareSection } from "./components/ShareSection";
+import { PostContainer, PostContent } from "./styled";
 
 interface BlogPostProps {
   post: BlogPostType;

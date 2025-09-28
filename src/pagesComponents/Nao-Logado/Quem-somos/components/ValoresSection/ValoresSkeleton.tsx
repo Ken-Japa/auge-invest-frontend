@@ -1,6 +1,7 @@
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
+
 import { BaseSection, SectionTitle } from "../../styled";
-import { ValoresGrid, ValorCard } from "./styled";
+import { ValorCard,ValoresGrid } from "./styled";
 
 export const ValoresSkeleton = () => (
     <BaseSection>

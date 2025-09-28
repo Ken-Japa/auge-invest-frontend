@@ -1,6 +1,7 @@
 import { formatCurrency } from '@/components/Utils/Formatters/formatters';
-import { HeaderCell, StatusChip, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '../styled';
 import { FIIDividendItem as Dividend } from '@/services/api/types'
+
+import { HeaderCell, StatusChip, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '../styled';
 
 interface FIIDividendTableProps {
   dividends: Dividend[];

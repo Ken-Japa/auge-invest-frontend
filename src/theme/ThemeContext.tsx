@@ -1,14 +1,15 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from 'react';
-import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import { createContext, useContext, useEffect,useState } from 'react';
+
 import { darkTheme, lightTheme } from './mui';
 
-type ThemeContextType = {
+interface ThemeContextType {
     isDarkMode: boolean;
     toggleTheme: () => void;
-};
+}
 
 const ThemeContext = createContext<ThemeContextType>({
     isDarkMode: true,

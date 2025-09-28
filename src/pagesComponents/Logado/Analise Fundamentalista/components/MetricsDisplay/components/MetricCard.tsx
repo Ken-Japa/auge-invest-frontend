@@ -1,8 +1,9 @@
-import { Grid, Typography, Paper, Tooltip } from '@mui/material';
-import { MetricCardProps } from '../types/types';
+import { Grid, Paper, Tooltip,Typography } from '@mui/material';
+
 import { FormulaText } from '../styled';
-import { formatMetricValue } from '../utils/utils';
+import { MetricCardProps } from '../types/types';
 import { getMetricColor } from '../utils/metricFormatting';
+import { formatMetricValue } from '../utils/utils';
 
 export const MetricCard = ({
     title,

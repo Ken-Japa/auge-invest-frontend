@@ -1,11 +1,12 @@
-import React from 'react';
-import { Grid, Typography, AccordionSummary, AccordionDetails, Box } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import PublicIcon from '@mui/icons-material/Public';
 import CategoryIcon from '@mui/icons-material/Category';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import GroupIcon from '@mui/icons-material/Group';
 import NatureIcon from '@mui/icons-material/Nature';
+import PublicIcon from '@mui/icons-material/Public';
 import TimelineIcon from '@mui/icons-material/Timeline';
+import { AccordionDetails, AccordionSummary, Box,Grid, Typography } from '@mui/material';
+import React from 'react';
+
 import { CustomAccordion, ItemList } from './styled';
 
 interface InformacoesAdicionaisProps {

@@ -1,13 +1,12 @@
-import { useState } from 'react';
 import { 
-    Dialog, 
-    DialogTitle, 
-    DialogContent, 
-    DialogActions, 
-    TextField, 
     Button,
-    CircularProgress
-} from '@mui/material';
+    CircularProgress,
+    Dialog, 
+    DialogActions, 
+    DialogContent, 
+    DialogTitle, 
+    TextField} from '@mui/material';
+import { useState } from 'react';
 
 interface PasswordDialogProps {
     open: boolean;

@@ -1,5 +1,5 @@
 import apiClient from "./client";
-import { handleApiError, ErrorCode } from "./errorHandler";
+import { ErrorCode,handleApiError } from "./errorHandler";
 import { ApiSuccessResponse } from "./types";
 
 export class BaseApiService {

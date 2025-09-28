@@ -1,12 +1,12 @@
-import { styled } from "@mui/material/styles";
 import {
   Box,
-  Paper,
-  Typography,
+  Button as MuiButton,
   Chip as MuiChip,
   Divider as MuiDivider,
-  Button as MuiButton,
+  Paper,
+  Typography,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const DetailPageContainer = styled(Box)(({ theme }) => ({
   position: "relative",

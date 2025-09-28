@@ -1,16 +1,16 @@
-import React from 'react';
-import {
-    Pagination,
-    PaginationItem,
-    InputLabel,
-    Select,
-    MenuItem
-} from '@mui/material';
 import {
     FirstPage as FirstPageIcon,
     LastPage as LastPageIcon,
 } from '@mui/icons-material';
-import { PaginationContainer, PageSizeSelector } from './styled'
+import {
+    InputLabel,
+    MenuItem,
+    Pagination,
+    PaginationItem,
+    Select} from '@mui/material';
+import React from 'react';
+
+import { PageSizeSelector,PaginationContainer } from './styled'
 import { PaginationControlsProps } from './types'
 
 export const PaginationControls: React.FC<PaginationControlsProps> = ({

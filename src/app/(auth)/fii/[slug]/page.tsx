@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import FIIDetails from "@/pagesComponents/Logado/FII/components/FIIDetalhes";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {

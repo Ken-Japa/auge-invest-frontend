@@ -1,9 +1,11 @@
-import { type FC, useState } from 'react';
-import { Stack, Typography, Alert, Snackbar } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
-import { NewsletterContainer, SubmitButton, StyledTextField } from "./styled";
-import { NewsletterSkeleton } from "./NewsletterSkeleton";
+import { Alert, Snackbar,Stack, Typography } from "@mui/material";
+import { type FC, useState } from 'react';
+
 import { visitorColors } from "@/theme/palette/visitor";
+
+import { NewsletterSkeleton } from "./NewsletterSkeleton";
+import { NewsletterContainer, StyledTextField,SubmitButton } from "./styled";
 
 
 interface NewsletterProps {

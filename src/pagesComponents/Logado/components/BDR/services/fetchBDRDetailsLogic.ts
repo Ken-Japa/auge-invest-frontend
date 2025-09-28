@@ -1,14 +1,15 @@
 import { api } from "@/services/api";
+
 import {
   BDRExtended,
   BDRNPExtended,
-  UnifiedBDR,
   BDRType,
+  UnifiedBDR,
 } from "../types";
 
 export const fetchBDRBySlugOrCode = async (
   slugOrCode: string,
-  isCode: boolean = false,
+  isCode = false,
   bdrType: BDRType = "todos"
 ): Promise<UnifiedBDR | null> => {
   try {

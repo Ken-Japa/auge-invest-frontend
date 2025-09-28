@@ -1,7 +1,8 @@
-import { ReactNode, useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
-import { transitions } from '@/theme/variables';
+import { ReactNode, useState } from 'react';
+
 import { OptimizedImage } from '@/components/Utils/OptimizedImage';
+import { transitions } from '@/theme/variables';
 
 interface PageBackgroundProps {
   children: ReactNode;

@@ -1,6 +1,8 @@
 import { Box, Typography } from '@mui/material';
-import { BoxBody, BoxContent, BoxHeader } from '../styled';
+
 import { formatCNPJ, formatLink, formatNumber } from '@/components/Utils/Formatters/formatters';
+
+import { BoxBody, BoxContent, BoxHeader } from '../styled';
 
 interface ETFInfoSectionProps {
   etf: any;

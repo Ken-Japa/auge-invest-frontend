@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
-import { spacing, borderRadius } from "@/theme/variables";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { borderRadius,spacing } from "@/theme/variables";
 
 export const ContentContainer = styled("div")({
   maxWidth: "1024px",

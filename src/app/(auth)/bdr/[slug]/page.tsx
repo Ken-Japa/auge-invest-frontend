@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import BDRDetails from "@/pagesComponents/Logado/BDR/components/BDRDetalhes";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {

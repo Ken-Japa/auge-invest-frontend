@@ -1,14 +1,14 @@
 "use client";
 
-import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 import { useErrorHandling } from '@/components/Data-Display/ErrorHandling';
+import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 
 // Importando componentes do módulo BDR
 import FIISearchBar from '../../../components/FIIs/components/SearchBar';
 import { FIITabs } from '../../../FII/components/FIITabs';
-import { FiiContainer, ControlsWrapper, Title, ContentBox } from './styled';
+import { ContentBox,ControlsWrapper, FiiContainer, Title } from './styled';
 
 export const Fii = () => {
     const { error, setError, clearError } = useErrorHandling();

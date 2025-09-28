@@ -1,5 +1,5 @@
-import { type MouseEvent } from "react";
 import { signIn } from "next-auth/react";
+import { type MouseEvent } from "react";
 
 export const useGoogleSignIn = (defaultRedirect: string) => {
   const handleGoogleClick = async (e: MouseEvent) => {

@@ -9,7 +9,7 @@ export interface PriceDataPoint {
 
 export const getHistoricalData = async (
   codigoAtivo: string,
-  period: string = "5A"
+  period = "5A"
 ): Promise<PriceDataPoint[]> => {
   try {
     // Calcular a data limite com base no período selecionado
@@ -54,7 +54,7 @@ export const getHistoricalData = async (
       empresa: string;
       codigo: string;
       totalHistoric: number;
-      historic: Array<{ data: string; preco: string; volume: number }>;
+      historic: { data: string; preco: string; volume: number }[];
       pagination: {
         offset: number;
         limit: number;
@@ -124,7 +124,7 @@ export const getHistoricalData = async (
       });
 
       const typedResponse = historicalResponse as unknown as {
-        historic: Array<{ data: string; preco: string; volume: number }>;
+        historic: { data: string; preco: string; volume: number }[];
         pagination: {
           totalPages: number;
           currentPage: number;

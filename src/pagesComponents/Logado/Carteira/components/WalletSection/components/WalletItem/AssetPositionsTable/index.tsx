@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Typography, CircularProgress, TableBody, IconButton, TableCell, Tooltip } from '@mui/material';
-
-import { TransactionTable } from '../TransactionTable';
 import { Add as AddIcon, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
+import { Box, CircularProgress, IconButton, TableBody, TableCell, Tooltip,Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
-import { Transaction, WalletTransactions } from '@/services/api/types/transaction';
+import { formatCurrency,formatDate2 as formatDate } from '@/components/Utils/Formatters/formatters';
 import { walletApi } from '@/services/api/endpoints/wallet';
-import { formatDate2 as formatDate, formatCurrency } from '@/components/Utils/Formatters/formatters';
-
-import { StyledAssetHeaderTableRow, StyledAssetTableContainer, StyledAssetTable, StyledAssetTableHead, StyledAssetTableRow, StyledAssetTableCell, StyledAssetTableHeaderCell } from './styled';
+import { Transaction, WalletTransactions } from '@/services/api/types/transaction';
 
 import { assetTypes } from '../../Dialogs/Transactions/AddTransactionDialog';
+import { TransactionTable } from '../TransactionTable';
+import { StyledAssetHeaderTableRow, StyledAssetTable, StyledAssetTableCell, StyledAssetTableContainer, StyledAssetTableHead, StyledAssetTableHeaderCell,StyledAssetTableRow } from './styled';
 
 
 interface AssetPositionsTableProps {
@@ -42,9 +40,7 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
     onTransactionChange,
     focusedAssetCode,
 }) => {
-    const [calculatedAssetData, setCalculatedAssetData] = useState<{
-        [positionId: string]: { averagePrice: number; spentValue: number; quantity: number; netSpentValue: number };
-    }>({});
+    const [calculatedAssetData, setCalculatedAssetData] = useState<Record<string, { averagePrice: number; spentValue: number; quantity: number; netSpentValue: number }>>({});
 
     useEffect(() => {
         const calculateAssetData = async () => {
@@ -53,7 +49,7 @@ export const AssetPositionsTable: React.FC<AssetPositionsTableProps> = ({
                 return;
             }
 
-            const newCalculatedData: { [positionId: string]: { averagePrice: number; spentValue: number; quantity: number; netSpentValue: number } } = {};
+            const newCalculatedData: Record<string, { averagePrice: number; spentValue: number; quantity: number; netSpentValue: number }> = {};
 
             for (const position of walletPositions.result) {
                 try {

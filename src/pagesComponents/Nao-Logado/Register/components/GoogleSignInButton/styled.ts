@@ -1,7 +1,8 @@
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { transitions } from "@/theme/variables";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { transitions } from "@/theme/variables";
 
 export const StyledGoogleButton = styled(Button)({
   color: visitorColors.text,

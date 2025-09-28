@@ -1,7 +1,8 @@
-import { UserProfile, SubscriptionDetails } from "../types";
-import { userApi } from "@/services/api/endpoints/users";
-import { User, ApiSuccessResponse } from "@/services/api/types";
 import { apiClient } from "@/services/api";
+import { userApi } from "@/services/api/endpoints/users";
+import { ApiSuccessResponse,User } from "@/services/api/types";
+
+import { SubscriptionDetails,UserProfile } from "../types";
 
 // Função auxiliar para mapear User para UserProfile
 const mapUserToProfile = (user: User): UserProfile => {

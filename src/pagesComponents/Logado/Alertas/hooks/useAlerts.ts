@@ -1,7 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
-import { Alert } from "@/services/api/types";
-import { alertsService } from "../services/alertsService";
+import { useCallback,useEffect, useState } from "react";
+
 import { useApi } from "@/providers/ApiProvider";
+import { Alert } from "@/services/api/types";
+
+import { alertsService } from "../services/alertsService";
 
 export const useAlerts = () => {
   const { revalidateAlerts } = useApi();

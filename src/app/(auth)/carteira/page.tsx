@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { Dashboard } from "@/pagesComponents/Logado/Carteira";
 
 

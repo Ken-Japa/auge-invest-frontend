@@ -1,11 +1,12 @@
-import { styled } from "@mui/material/styles";
 import {
+  Box,
   Card as MuiCard,
   CardContent as MuiCardContent,
-  Box,
   Typography,
 } from "@mui/material";
-import { borderRadius, transitions, spacing } from "@/theme/variables";
+import { styled } from "@mui/material/styles";
+
+import { borderRadius, spacing,transitions } from "@/theme/variables";
 
 export const StyledCard = styled(MuiCard)(({ theme }) => ({
   height: "100%",

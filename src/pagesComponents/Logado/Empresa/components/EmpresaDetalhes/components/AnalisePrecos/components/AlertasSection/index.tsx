@@ -1,19 +1,20 @@
-import { useState } from 'react';
 import { Grid, SelectChangeEvent } from '@mui/material';
-import GraficoHistoricoAlertas from '../GraficoHistoricoAlertas';
-import { PriceDataPoint } from '../../../GraficoHistorico/services/historicalService';
-import { AnalysisPeriod } from '../../utils/types';
+import { useState } from 'react';
+
 import { AlertDialog } from '@/pagesComponents/Logado/Alertas/components/AlertDialog';
 import { Alert } from '@/services/api/types';
+
+import { PriceDataPoint } from '../../../GraficoHistorico/services/historicalService';
+import { AnalysisPeriod } from '../../utils/types';
+import GraficoHistoricoAlertas from '../GraficoHistoricoAlertas';
 import {
     AlertasSectionContainer,
     AlertasSectionTitle,
+    AlertHistoryContainer,
     AlertInputContainer,
     AlertTextField,
     BuyAlertButton,
-    SellAlertButton,
-    AlertHistoryContainer
-} from './styled';
+    SellAlertButton} from './styled';
 
 interface AlertasSectionProps {
     codigoAtivo: string;

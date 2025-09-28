@@ -1,13 +1,13 @@
 import { Grid } from '@mui/material';
 import Link from 'next/link';
+
 import { UnifiedBDR } from '../../../types';
 import {
-  StyledCard,
-  StyledCardContent,
   BDRName,
   CodeChip,
-  GridContainer
-} from './styled';
+  GridContainer,
+  StyledCard,
+  StyledCardContent} from './styled';
 
 interface GridViewProps {
   bdrs: UnifiedBDR[];

@@ -1,7 +1,9 @@
-import { MenuItem, Typography, Box } from '@mui/material';
+import { Box,MenuItem, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { ALERT_TYPES } from '../../constants';
+
 import { Alert } from '@/services/api/types/alert-types';
+
+import { ALERT_TYPES } from '../../constants';
 
 
 interface AlertMenuItemProps {

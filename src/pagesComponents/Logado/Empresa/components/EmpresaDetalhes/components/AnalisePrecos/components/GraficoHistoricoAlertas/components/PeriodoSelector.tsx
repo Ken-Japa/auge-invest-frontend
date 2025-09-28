@@ -1,5 +1,6 @@
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import React from 'react';
-import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
+
 import { AnalysisPeriod } from '../../../utils/types';
 
 interface PeriodoSelectorProps {

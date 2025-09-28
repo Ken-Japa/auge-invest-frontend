@@ -1,8 +1,9 @@
-import { type FC, type FormEvent, type ChangeEvent } from 'react';
-import { TextField, Button, Autocomplete } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
-import { ContactFormStyled, AutocompletePaper } from "./styled";
+import { Autocomplete,Button, TextField } from "@mui/material";
+import { type ChangeEvent,type FC, type FormEvent } from 'react';
+
 import { FormData, FormErrors } from '../../types';
+import { AutocompletePaper,ContactFormStyled } from "./styled";
 
 interface ContactFormProps {
     formData: FormData;

@@ -1,5 +1,5 @@
+import { Box, Chip,Grid, Paper, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Grid, Paper, Box, Typography, Chip } from '@mui/material';
 
 export const GridContainer = styled(Grid)(({ theme }) => ({
   padding: theme.spacing(2),

@@ -1,9 +1,11 @@
-import Link from 'next/link';
 import { Stack, Typography } from "@mui/material";
+import Link from 'next/link';
+
 import { CustomButton } from "@/components/Core/Button";
-import { CTAContainer } from "./styled";
-import { CTASkeleton } from "./CTASkeleton";
 import { visitorColors } from "@/theme/palette/visitor";
+
+import { CTASkeleton } from "./CTASkeleton";
+import { CTAContainer } from "./styled";
 
 interface CTASkeletonProps {
     isLoading?: boolean;

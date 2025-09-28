@@ -1,4 +1,5 @@
 import { Components } from "@mui/material";
+
 import { borderRadius, shadows } from '../variables';
 
 export const muiPaper: Components["MuiPaper"] = {

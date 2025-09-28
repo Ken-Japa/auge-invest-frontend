@@ -1,16 +1,16 @@
 "use client";
 
-import { useState, lazy, useEffect } from "react";
 import CloseIcon from '@mui/icons-material/Close';
+import { lazy, useEffect,useState } from "react";
 
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
+import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
 import { OptimizedImage } from "@/components/Utils/OptimizedImage";
 import { PageTransition } from "@/components/Utils/PageTransition";
-import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
 
 import { useLoginForm } from "./hooks/useLoginForm";
 import { useNavigation } from "./hooks/useNavigation";
-import { StyledDialog, StyledCloseButton } from "./styled";
+import { StyledCloseButton,StyledDialog } from "./styled";
 
 const LoginFormComponent = lazy(() =>
     import('./components/LoginForm').then(mod => ({

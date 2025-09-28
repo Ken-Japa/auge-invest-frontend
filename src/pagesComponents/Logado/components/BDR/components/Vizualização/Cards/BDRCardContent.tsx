@@ -1,10 +1,10 @@
-import { Chip } from '@mui/material';
 import { Star } from '@mui/icons-material';
+import { Chip } from '@mui/material';
 import Link from 'next/link';
 
 import { formatDate } from '@/components/Utils/Formatters/formatters';
-import { UnifiedBDR } from '../../../types';
 
+import { UnifiedBDR } from '../../../types';
 import {
   CardSubtitle,
   CardTitle,

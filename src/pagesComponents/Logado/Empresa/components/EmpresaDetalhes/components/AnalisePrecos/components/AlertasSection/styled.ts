@@ -1,5 +1,5 @@
+import { Box, Button, Grid,Paper, TextField, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Box, Paper, Typography, Button, TextField, Grid } from '@mui/material';
 
 export const AlertasSectionContainer = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),

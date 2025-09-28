@@ -1,5 +1,5 @@
+import { Box,FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React from 'react';
-import { Select, MenuItem, FormControl, InputLabel, Box } from '@mui/material';
 
 interface IndustryDropdownProps {
     industries: { id: string; label: string; color: string }[];

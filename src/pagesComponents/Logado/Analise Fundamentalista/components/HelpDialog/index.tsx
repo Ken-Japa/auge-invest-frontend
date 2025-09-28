@@ -1,5 +1,6 @@
-import { DialogContent, DialogActions, Button, Typography, Divider } from '@mui/material';
-import { StyledDialog, StyledDialogTitle, StepsList, SectionTitle, MetricsTable, MetricsTableRow } from './styled';
+import { Button, DialogActions, DialogContent, Divider,Typography } from '@mui/material';
+
+import { MetricsTable, MetricsTableRow,SectionTitle, StepsList, StyledDialog, StyledDialogTitle } from './styled';
 
 interface HelpDialogProps {
   open: boolean;

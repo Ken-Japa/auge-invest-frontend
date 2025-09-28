@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter,useSearchParams } from 'next/navigation';
+import { useEffect,useState } from 'react';
 
 type TabValue = 'principal' | 'dividendos' | 'derivativos' | 'analiseprecos';
 

@@ -1,5 +1,5 @@
-import { styled } from '@mui/material/styles';
 import { Grid, Paper, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 export const MetricasContainer = styled(Grid)(({ theme }) => ({
   marginBottom: theme.spacing(3),

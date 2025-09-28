@@ -1,8 +1,8 @@
-import HistoryIcon from "@mui/icons-material/History";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import HistoryIcon from "@mui/icons-material/History";
 import SavingsIcon from "@mui/icons-material/Savings";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 
 export const tools = [
   {

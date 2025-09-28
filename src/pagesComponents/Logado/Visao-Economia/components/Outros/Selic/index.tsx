@@ -1,17 +1,18 @@
 "use client";
 
 import { Box, Typography } from '@mui/material';
+
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
+
 import { ContentSkeleton } from '../../../../../../components/Feedback/Skeletons/ContentSkeleton';
 import {
-    SelicContainer,
     ChartContainer,
     SelicCard,
-    SelicValue,
+    SelicColorType,
+    SelicContainer,
     SelicDate,
-    SelicWrapper,
-    SelicColorType
-} from './styled';
+    SelicValue,
+    SelicWrapper} from './styled';
 
 // Temporary mock data - will be replaced with API data
 const mockSelic = {

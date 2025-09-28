@@ -1,5 +1,6 @@
-import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
 import { spacing, transitions } from "@/theme/variables";
 
 export const WalletContainer = styled(Box)(({ theme }) => ({}));

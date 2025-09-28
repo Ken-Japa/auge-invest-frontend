@@ -1,11 +1,12 @@
-import { BDR, BDRNP } from "@/services/api/types";
 import { api } from "@/services/api";
+import { BDR, BDRNP } from "@/services/api/types";
+
 import {
-  BDRFilter,
   BDRExtended,
+  BDRFilter,
   BDRNPExtended,
-  UnifiedBDR,
   BDRType,
+  UnifiedBDR,
 } from "../types";
 
 export const fetchPatrocinados = async (filter: BDRFilter, pageSize: number) => {

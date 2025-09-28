@@ -1,11 +1,12 @@
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import HistoryIcon from '@mui/icons-material/History';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import SecurityIcon from '@mui/icons-material/Security';
-import UpdateIcon from '@mui/icons-material/Update';
 import HandymanIcon from '@mui/icons-material/Handyman';
+import HistoryIcon from '@mui/icons-material/History';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import SecurityIcon from '@mui/icons-material/Security';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import UpdateIcon from '@mui/icons-material/Update';
+
 import { visitorColors } from "@/theme/palette/visitor";
 
 const ICON_STYLE = {

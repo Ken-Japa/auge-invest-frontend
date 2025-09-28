@@ -1,7 +1,8 @@
 import { Typography } from "@mui/material";
+
 import { SECTIONS } from "../../constants/sections";
-import { NavigationContainer } from "./styled";
 import { QuickNavigationSkeleton } from "./QuickNavigationSkeleton";
+import { NavigationContainer } from "./styled";
 
 interface QuickNavigationProps {
     onSectionClick: (sectionId: string) => void;

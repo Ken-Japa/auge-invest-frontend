@@ -1,6 +1,5 @@
 import { api } from "@/services/api";
 import { ETFFilter, ETFListResponse } from "@/services/api/types/etf";
-
 import { ETF } from "@/services/api/types/etf";
 
 export const fetchETFs = async (

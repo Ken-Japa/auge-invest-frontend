@@ -1,9 +1,11 @@
 import 'dayjs/locale/pt-br';
-import { ActivityContainer, ActivityList, ActivityItem } from './styled';
-import { useSearchRecentActivities } from './hooks/searchRecentActivites';
-import { Typography, ListItemText, CircularProgress, Box, Divider } from '@mui/material';
+
+import { Box, CircularProgress, Divider,ListItemText, Typography } from '@mui/material';
+
 import { ActivityText, ActivityText2 } from './components/ActivityText';
 import { useFocus } from './components/FocusContext/FocusContext';
+import { useSearchRecentActivities } from './hooks/searchRecentActivites';
+import { ActivityContainer, ActivityItem,ActivityList } from './styled';
 
 export const RecentActivities = ({ type }: { type: 'real' | 'virtual' }) => {
     const { recentRealActivities, recentVirtualActivities, loading, error } = useSearchRecentActivities();

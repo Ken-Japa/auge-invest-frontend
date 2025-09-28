@@ -1,6 +1,6 @@
-import { Box, Paper, Chip, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, Chip, Paper, Typography } from '@mui/material';
 import { Grid } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 export const GridContainer = styled(Grid)(({ theme }) => ({
   display: 'flex',

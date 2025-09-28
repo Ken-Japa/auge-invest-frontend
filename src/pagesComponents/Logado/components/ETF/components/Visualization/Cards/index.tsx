@@ -1,7 +1,8 @@
-import React from 'react';
 import { Grid } from '@mui/material';
-import { ETFExtended } from '../../../types';
+import React from 'react';
+
 import { useETFCardLogic } from '../../../hooks/useETFCardLogic';
+import { ETFExtended } from '../../../types';
 import ETFCard from './ETFCard';
 
 interface CardViewProps {

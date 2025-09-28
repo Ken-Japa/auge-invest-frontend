@@ -1,14 +1,15 @@
-import { styled } from "@mui/material/styles";
 import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TableCell,
   TableHead,
   TableRow,
-  TableCell,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
 import { spacing, transitions } from "@/theme/variables";
 
 export const StyledDialog = styled(Dialog)(({ theme }) => ({

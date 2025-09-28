@@ -1,5 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback,useEffect, useState } from 'react';
+
 import { Wallet } from '@/services/api/types';
+
 import { useWalletData } from './useWalletData';
 
 interface UseWalletSectionLogicProps {

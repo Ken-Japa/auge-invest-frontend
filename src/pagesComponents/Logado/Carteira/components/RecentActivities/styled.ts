@@ -1,6 +1,7 @@
-import { styled } from "@mui/material/styles";
 import { Box, List, ListItem } from "@mui/material";
-import { spacing, borderRadius } from "@/theme/variables";
+import { styled } from "@mui/material/styles";
+
+import { borderRadius,spacing } from "@/theme/variables";
 
 export const ActivityContainer = styled(Box)(({ theme }) => ({
   maxHeight: "300px",

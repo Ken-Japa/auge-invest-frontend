@@ -1,7 +1,7 @@
-import { User, ApiSuccessResponse } from "../types";
+import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
 import { ErrorCode, handleApiError } from "../errorHandler";
-import { BaseApiService } from "../baseService";
+import { ApiSuccessResponse,User } from "../types";
 
 class UserApiService extends BaseApiService {
   createUser = async (userData: Partial<User>): Promise<User> => {

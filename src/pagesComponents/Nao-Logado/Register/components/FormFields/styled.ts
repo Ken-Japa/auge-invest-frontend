@@ -1,7 +1,8 @@
 import { Box, LinearProgress, TextField, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { spacing, borderRadius, transitions } from "@/theme/variables";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { borderRadius, spacing, transitions } from "@/theme/variables";
 
 export const StyledTextField = styled(TextField)({
   width: "100%",

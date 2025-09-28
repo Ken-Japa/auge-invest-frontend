@@ -1,21 +1,21 @@
-import { FC, useState } from 'react';
+import SaveIcon from '@mui/icons-material/Save';
 import {
     Box,
-    TextField,
-    FormGroup,
-    FormControlLabel,
-    Checkbox,
     Button,
-    Typography,
+    Checkbox,
     FormControl,
+    FormControlLabel,
+    FormGroup,
     InputLabel,
+    MenuItem,
     Select,
-    MenuItem
-} from '@mui/material';
-import SaveIcon from '@mui/icons-material/Save';
-import { SaveReportContainer } from './styled';
+    TextField,
+    Typography} from '@mui/material';
+import { FC, useState } from 'react';
+
 import { DadosAnaliseFundamental, MetricasCalculadas } from '../../types';
-import { ValuationResults, SensitivityResults } from '../ValuationSection/types';
+import { SensitivityResults,ValuationResults } from '../ValuationSection/types';
+import { SaveReportContainer } from './styled';
 import { GenerateReportParams } from './utils/types';
 
 interface SaveReportSectionProps {

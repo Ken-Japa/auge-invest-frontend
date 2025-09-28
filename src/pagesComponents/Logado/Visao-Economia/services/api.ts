@@ -1,4 +1,4 @@
-import { MarketData, UserPosition, EconomicIndicators } from '../types';
+import { EconomicIndicators,MarketData, UserPosition } from '../types';
 
 export const EconomiaService = {
     getStocksData: async () => {

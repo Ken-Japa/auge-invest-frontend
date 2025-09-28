@@ -1,17 +1,18 @@
 "use client";
 
-import { useSession } from 'next-auth/react';
 import { Container } from '@mui/material';
-import { PageTransition } from '@/components/Utils/PageTransition';
+import { useSession } from 'next-auth/react';
+
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
-import { RecentActivitiesProvider } from './context/RecentActivitiesContext';
-import { FocusProvider } from './components/RecentActivities/components/FocusContext/FocusContext';
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { PageBackground } from '@/components/Layout/PageBackground';
+import { PageTransition } from '@/components/Utils/PageTransition';
 
 import { PositionSection } from './components';
+import { FocusProvider } from './components/RecentActivities/components/FocusContext/FocusContext';
 import { WalletSection } from './components/WalletSection';
+import { RecentActivitiesProvider } from './context/RecentActivitiesContext';
 import { PageTitle, SectionContainer } from './styled';
 
 export const Dashboard = () => {

@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect,useState } from "react";
+
 import { EmpresaDetalhada } from "../../../types";
 import { getHistoricalData, PriceDataPoint as GraficoPriceDataPoint } from "../components/GraficoHistorico/services/historicalService";
 import {

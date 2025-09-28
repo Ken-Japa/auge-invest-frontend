@@ -1,6 +1,7 @@
+import { Grid,Paper, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Typography, Paper, Grid } from "@mui/material";
-import { spacing, borderRadius } from "@/theme/variables";
+
+import { borderRadius,spacing } from "@/theme/variables";
 
 export const SectionTitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,

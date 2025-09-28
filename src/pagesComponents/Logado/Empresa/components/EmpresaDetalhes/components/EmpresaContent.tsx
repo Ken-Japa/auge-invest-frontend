@@ -1,16 +1,17 @@
-import React from 'react';
 import { Box } from '@mui/material';
+import React from 'react';
+
 import { EmpresaDetalhada } from '../../../types';
-import { PriceDataPoint } from '../utils/metricasCalculations';
 import { PriceDataPoint as GraficoPriceDataPoint } from '../components/GraficoHistorico/services/historicalService';
-import { EmpresaHeader } from './EmpresaHeader';
-import { MetricasEmpresa } from './MetricasEmpresa';
-import { GraficoHistorico } from './GraficoHistorico';
-import { DividendosTab } from './DividendosTab';
-import { DerivativosTab } from './DerivativosTab';
+import { StyledTab, StyledTabs, TabContent } from '../styled';
+import { PriceDataPoint } from '../utils/metricasCalculations';
 import { AnalisePrecos } from './AnalisePrecos';
+import { DerivativosTab } from './DerivativosTab';
+import { DividendosTab } from './DividendosTab';
+import { EmpresaHeader } from './EmpresaHeader';
+import { GraficoHistorico } from './GraficoHistorico';
+import { MetricasEmpresa } from './MetricasEmpresa';
 import { TabPanel } from './TabPanel';
-import { StyledTabs, StyledTab, TabContent } from '../styled';
 
 interface Metricas {
     minimo52: number;

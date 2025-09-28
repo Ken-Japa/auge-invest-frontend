@@ -1,5 +1,5 @@
+import { Box, Tab,Tabs } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Box, Tabs, Tab } from '@mui/material';
 
 export const TabsContainer = styled(Box)(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,

@@ -1,14 +1,16 @@
-import { useState, useEffect, useCallback } from "react";
 import { Session } from "next-auth";
-import { UserProfile } from "../types";
-import { ProfileService } from "../services/api";
+import { useCallback,useEffect, useState } from "react";
+
 import { getUserId } from "@/utils/auth";
 
-type NotificationType = {
+import { ProfileService } from "../services/api";
+import { UserProfile } from "../types";
+
+interface NotificationType {
   open: boolean;
   message: string;
   type: "success" | "error";
-};
+}
 
 export const useProfileData = (session: Session | null) => {
   const [userData, setUserData] = useState<UserProfile | null>(null);

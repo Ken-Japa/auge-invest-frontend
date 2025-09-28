@@ -6,7 +6,7 @@ export const calculateMetrics = (
   getFieldLabel: (field: keyof DadosAnaliseFundamental) => string
 ) => {
   const calculateMetric = (
-    requiredFields: Array<keyof DadosAnaliseFundamental>,
+    requiredFields: (keyof DadosAnaliseFundamental)[],
     calculation: () => number
   ) => {
     const missingFields = checkMissingFields(

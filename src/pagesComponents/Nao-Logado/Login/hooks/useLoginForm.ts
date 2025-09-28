@@ -1,9 +1,9 @@
-import { useState, useEffect, useCallback, useRef } from "react";
 import { signIn } from "next-auth/react";
+import { useCallback, useEffect, useRef,useState } from "react";
 
 import { LOGIN_CONSTANTS } from "../constants";
-import { validateLoginForm } from "../utils/validation";
 import { FormData, FormErrors } from "../types";
+import { validateLoginForm } from "../utils/validation";
 
 const DEFAULT_REDIRECT = "/visao-economia";
 

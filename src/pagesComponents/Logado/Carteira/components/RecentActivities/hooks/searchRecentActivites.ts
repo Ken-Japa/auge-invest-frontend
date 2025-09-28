@@ -1,9 +1,10 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
 import { useSession } from "next-auth/react";
-import { api } from "@/services/api";
-import { Wallet } from "@/services/api/types/wallet";
-import { Transaction, Positions } from "@/services/api/types/transaction";
+import { useCallback, useEffect, useMemo,useState } from "react";
+
 import { useRecentActivitiesRefresh } from "@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext";
+import { api } from "@/services/api";
+import { Positions,Transaction } from "@/services/api/types/transaction";
+import { Wallet } from "@/services/api/types/wallet";
 
 interface RecentActivity {
   assetCode: string;
@@ -28,7 +29,7 @@ export function useSearchRecentActivities() {
   const [error, setError] = useState<string | null>(null);
 
   const fetchTransactionsForWallets = useCallback(async (wallets: Wallet[]) => {
-    let allTransactions: RecentActivity[] = [];
+    const allTransactions: RecentActivity[] = [];
     for (const wallet of wallets) {
       const positionsResponse = await api.wallet.getWalletPosition(wallet._id);
       const positions: Positions[] = positionsResponse.result;

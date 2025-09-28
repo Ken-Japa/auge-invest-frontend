@@ -23,18 +23,18 @@ export interface EconomicIndicators {
     inflation: {
         current: number;
         forecast: number;
-        history: Array<{ date: string; value: number }>;
+        history: { date: string; value: number }[];
     };
-    currencies: Array<{
+    currencies: {
         symbol: string;
         name: string;
         value: number;
         change: number;
-    }>;
-    commodities: Array<{
+    }[];
+    commodities: {
         symbol: string;
         name: string;
         value: number;
         change: number;
-    }>;
+    }[];
 }

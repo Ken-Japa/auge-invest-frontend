@@ -1,11 +1,12 @@
-import { styled } from "@mui/material/styles";
 import {
-  TableContainer,
   Table,
+  TableCell,
+  TableContainer,
   TableHead,
   TableRow,
-  TableCell,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
 import { transitions } from "@/theme/variables";
 
 export const StyledAssetTableContainer = styled(TableContainer)(

@@ -1,5 +1,7 @@
-import { Stack, Grid } from "@mui/material";
+import { Grid,Stack } from "@mui/material";
+
 import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
+
 import { TestimonialCard } from "./styled";
 
 export const TestimonialsSkeleton = () => (

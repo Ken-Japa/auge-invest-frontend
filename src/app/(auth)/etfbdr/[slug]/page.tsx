@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import ETFBDRDetails from "@/pagesComponents/Logado/ETFBDR/components/ETFBDRDetails";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {

@@ -1,5 +1,6 @@
+import { Table, TableCell, TableHead, TableRow } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Table, TableHead, TableCell, TableRow } from "@mui/material";
+
 import { borderRadius, transitions } from "@/theme/variables";
 
 export const StyledTransactionTable = styled(Table)(({ theme }) => ({

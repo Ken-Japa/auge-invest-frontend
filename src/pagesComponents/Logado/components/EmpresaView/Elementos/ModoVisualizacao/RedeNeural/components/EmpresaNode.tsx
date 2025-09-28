@@ -1,6 +1,6 @@
-import { EmpresaNode } from '../types';
-import { calculatePosition, calculateNodeSize, adjustColorHSL } from '../utils/graphUtils';
 import { formatCurrency } from '../../utils/currency';
+import { EmpresaNode } from '../types';
+import { adjustColorHSL,calculateNodeSize, calculatePosition } from '../utils/graphUtils';
 
 
 export const createEmpresaNode = (

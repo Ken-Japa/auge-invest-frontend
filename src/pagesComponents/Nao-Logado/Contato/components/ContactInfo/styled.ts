@@ -1,7 +1,8 @@
 import { Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { spacing, borderRadius } from "@/theme/variables";
+
 import { visitorColors } from "@/theme/palette/visitor";
+import { borderRadius,spacing } from "@/theme/variables";
 
 export const InfoContainer = styled(Stack)({
   padding: spacing.lg,

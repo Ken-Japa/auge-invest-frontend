@@ -1,7 +1,9 @@
 import HandshakeIcon from '@mui/icons-material/Handshake';
-import { BaseSection, SectionTitle, ContentContainer, Subtitle } from "../../styled";
-import { CompromissoSkeleton } from './CompromissoSkeleton';
+
 import { visitorColors } from "@/theme/palette/visitor";
+
+import { BaseSection, ContentContainer, SectionTitle, Subtitle } from "../../styled";
+import { CompromissoSkeleton } from './CompromissoSkeleton';
 
 interface CompromissoSectionProps {
     isLoading?: boolean;

@@ -1,9 +1,10 @@
-import { styled } from "@mui/material/styles";
 import MuiAccordion from "@mui/material/Accordion";
-import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
+import MuiAccordionSummary from "@mui/material/AccordionSummary";
+import { styled } from "@mui/material/styles";
+
 import { customColors } from "@/theme/palette";
-import { spacing, transitions, borderRadius } from "@/theme/variables";
+import { borderRadius,spacing, transitions } from "@/theme/variables";
 
 // Definição dos temas para o Accordion
 export const lightTheme = {

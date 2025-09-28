@@ -1,4 +1,5 @@
-import { Container, Box, Skeleton } from "@mui/material";
+import { Box, Container, Skeleton } from "@mui/material";
+
 import { HeaderContainer, HeaderContent } from "./styled";
 
 export const BlogHeaderSkeleton = () => {

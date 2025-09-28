@@ -2,9 +2,9 @@ import { BaseApiService } from "../baseService";
 import { API_ENDPOINTS } from "../config";
 import { ErrorCode, handleApiError } from "../errorHandler";
 import {
+  HistoricalDataFilter,
   HistoricalDataItem,
   HistoricalDataResponse,
-  HistoricalDataFilter,
 } from "../types";
 
 class HistoricalApiService extends BaseApiService {

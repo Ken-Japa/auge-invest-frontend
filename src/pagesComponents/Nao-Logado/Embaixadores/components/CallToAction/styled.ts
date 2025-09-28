@@ -1,8 +1,9 @@
-import { Box, Stack, Skeleton } from "@mui/material";
+import { Box, Skeleton,Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { borderRadius, spacing } from "@/theme/variables";
-import { visitorColors } from "@/theme/palette/visitor";
+
 import { CustomButton } from "@/components/Core/Button";
+import { visitorColors } from "@/theme/palette/visitor";
+import { borderRadius, spacing } from "@/theme/variables";
 
 export const CallToActionContainer = styled(Box)({
   marginTop: spacing.xl,

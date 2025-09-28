@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import {
-    TableRow, TableCell, IconButton, Collapse,
-    Box
-} from '@mui/material';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { SegmentoSectionProps } from '../types';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import {
+    Box,
+Collapse,
+IconButton, TableCell,     TableRow} from '@mui/material';
+import React, { useState } from 'react';
+
 import { formatCurrency } from '../../utils/currency';
+import { SegmentoSectionProps } from '../types';
 import { EmpresasTable } from './EmpresasTable';
-import { SegmentoTitle, ValueText, PercentageText } from './styled';
+import { PercentageText,SegmentoTitle, ValueText } from './styled';
 
 export const SegmentoSection: React.FC<SegmentoSectionProps> = ({
     segmento,

@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { FormData, FormErrors } from '../types';
+
 import { INITIAL_FORM_DATA } from '../constants';
+import { FormData, FormErrors } from '../types';
 
 export const useFormState = () => {
     const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);

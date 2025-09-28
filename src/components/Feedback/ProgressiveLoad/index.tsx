@@ -1,5 +1,6 @@
 "use client";
 import { ReactNode, useEffect, useState } from 'react';
+
 import { useProgressiveLoading } from './useProgressiveLoading';
 
 interface ProgressiveLoadProps {

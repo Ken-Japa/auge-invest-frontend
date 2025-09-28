@@ -1,5 +1,6 @@
+import { Box, Card, Container,Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Box, Typography, Card, Container } from "@mui/material";
+
 import { PageTransition } from "@/components/Utils/PageTransition";
 
 export const BackgroundImageStyle = styled(Box, {

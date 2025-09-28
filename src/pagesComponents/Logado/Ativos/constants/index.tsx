@@ -1,9 +1,9 @@
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import ShowChartIcon from '@mui/icons-material/ShowChart';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import CandlestickChartIcon from '@mui/icons-material/CandlestickChart';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import PublicIcon from '@mui/icons-material/Public';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
 
 export const ativosList = [
     {

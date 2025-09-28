@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
-import { MetricType } from "../types/types";
+
 import { UnitText } from "../styled";
+import { MetricType } from "../types/types";
 
 export const formatMetricValue = (
   value: number | undefined | null,
@@ -48,7 +49,7 @@ export const formatMetricValue = (
 
 export const checkMissingFields = <T extends Record<string, any>>(
   data: T,
-  fields: Array<keyof T>,
+  fields: (keyof T)[],
   getFieldLabel: (field: keyof T) => string
 ): string[] => {
   return fields.filter((field) => !data[field]).map(getFieldLabel);

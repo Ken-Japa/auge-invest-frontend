@@ -1,14 +1,14 @@
 import { TableBody, TableSortLabel, Tooltip } from '@mui/material';
-import { FIIExtended } from '../../../types';
-import {
-  StyledTableContainer,
-  StyledTable,
-  StyledTableHead,
-  HeaderRow,
-  HeaderCell
-} from './styled';
+
 import { useFIITableLogic } from '../../../hooks/useFIITableLogic';
+import { FIIExtended } from '../../../types';
 import { FIITableRow } from './FIITableRow';
+import {
+  HeaderCell,
+  HeaderRow,
+  StyledTable,
+  StyledTableContainer,
+  StyledTableHead} from './styled';
 
 interface TableViewProps {
   fiis: FIIExtended[];

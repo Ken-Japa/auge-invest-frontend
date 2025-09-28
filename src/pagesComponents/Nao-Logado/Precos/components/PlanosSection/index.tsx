@@ -1,9 +1,10 @@
 import { CustomButton } from "@/components/Core/Button";
+import { visitorColors } from "@/theme/palette/visitor";
+
 import { PLANOS } from "../../constants/planos";
 import { BaseSection, ContentWrapper } from "../../styled";
 import { PlanosSkeleton } from "./PlanosSkeleton";
-import { PlanosGrid, PlanoCard } from "./styled";
-import { visitorColors } from "@/theme/palette/visitor";
+import { PlanoCard,PlanosGrid } from "./styled";
 
 interface PlanosSectionProps {
     isLoading?: boolean;

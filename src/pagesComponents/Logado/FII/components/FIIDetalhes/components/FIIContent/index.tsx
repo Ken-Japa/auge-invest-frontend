@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material';
+
 import { FIIExtended } from '../../../../../components/FIIs/types';
 import {
   DetailContainer,
@@ -6,9 +7,9 @@ import {
   SectionDivider,
 } from '../../styled';
 import FIIDividendos from '../FIIDividendos';
+import FIIDescription from './FIIDescription';
 import FIIHeader from './FIIHeader';
 import FIIInfoSection from './FIIInfoSection';
-import FIIDescription from './FIIDescription';
 
 interface FIIContentProps {
   fii: FIIExtended;

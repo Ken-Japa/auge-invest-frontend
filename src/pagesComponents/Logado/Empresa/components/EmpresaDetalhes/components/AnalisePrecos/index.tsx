@@ -1,15 +1,14 @@
-import { useState, useEffect, useMemo } from 'react';
-import { Typography, CircularProgress, SelectChangeEvent } from '@mui/material';
-import { fetchHistoricalData, preparePeriodData } from './services/analiseService';
-import { AnalisePrecoProps, AnalysisPeriod, PriceDataPoint } from './utils/types';
-import { StyledPaper, LoadingContainer, ErrorContainer, Description } from './styled';
+import { CircularProgress, SelectChangeEvent,Typography } from '@mui/material';
+import { useEffect, useMemo,useState } from 'react';
 
-
+import GraficoAnalisePreco from './components/GraficoAnalisePreco';
+import Metricas from './components/Métricas';
 // Componentes
 import Periodo from './components/Periodo';
-import Metricas from './components/Métricas';
-import GraficoAnalisePreco from './components/GraficoAnalisePreco';
 import SugestoesAlertas from './components/SugestoesAlertas';
+import { fetchHistoricalData, preparePeriodData } from './services/analiseService';
+import { Description,ErrorContainer, LoadingContainer, StyledPaper } from './styled';
+import { AnalisePrecoProps, AnalysisPeriod, PriceDataPoint } from './utils/types';
 
 export const AnalisePrecos: React.FC<AnalisePrecoProps> = ({ codigoAtivo }) => {
     const [allHistoricalData, setAllHistoricalData] = useState<PriceDataPoint[]>([]);

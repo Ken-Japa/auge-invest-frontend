@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Box, FormControl, InputLabel, Select, MenuItem, ListSubheader, Collapse, IconButton } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Box, Collapse, FormControl, IconButton,InputLabel, ListSubheader, MenuItem, Select } from '@mui/material';
+import React, { useState } from 'react';
 
 interface SegmentDropdownProps {
   segmentsByIndustry: {

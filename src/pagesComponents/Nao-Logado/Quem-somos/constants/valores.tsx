@@ -1,6 +1,7 @@
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import SecurityIcon from '@mui/icons-material/Security';
 import StarIcon from '@mui/icons-material/Star';
+
 import { visitorColors } from "@/theme/palette/visitor";
 import { spacing } from "@/theme/variables";
 

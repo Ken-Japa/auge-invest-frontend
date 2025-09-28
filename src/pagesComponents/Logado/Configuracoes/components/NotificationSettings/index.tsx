@@ -1,13 +1,15 @@
-import { FormControlLabel, Switch } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { FormControlLabel, Switch } from '@mui/material';
+
 import { SettingsCard } from '@/components/Core/Card/SettingsCard';
+
 import { SettingsControlContainer } from '../../styled';
 
-type NotificationTypes = {
+interface NotificationTypes {
   email: boolean;
   push: boolean;
   priceAlerts: boolean;
-};
+}
 
 interface NotificationSettingsProps {
   notifications: NotificationTypes;

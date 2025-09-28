@@ -1,14 +1,15 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { ReactNode, useContext } from 'react';
 import { useTheme as useMuiTheme } from '@mui/material/styles';
-import {
-  StyledAccordion,
-  StyledAccordionSummary,
-  StyledAccordionDetails,
-  lightTheme,
-  darkTheme
-} from './styled';
+import { ReactNode, useContext } from 'react';
+
 import { useTheme } from '@/theme/ThemeContext';
+
+import {
+  darkTheme,
+  lightTheme,
+  StyledAccordion,
+  StyledAccordionDetails,
+  StyledAccordionSummary} from './styled';
 
 interface Props {
   title: string;

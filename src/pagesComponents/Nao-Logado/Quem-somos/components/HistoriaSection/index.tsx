@@ -1,7 +1,9 @@
 import HistoryIcon from '@mui/icons-material/Timeline';
-import { BaseSection, SectionTitle, ContentContainer } from "../../styled";
-import { HistoriaSkeleton } from './HistoriaSkeleton';
+
 import { visitorColors } from "@/theme/palette/visitor";
+
+import { BaseSection, ContentContainer,SectionTitle } from "../../styled";
+import { HistoriaSkeleton } from './HistoriaSkeleton';
 
 interface HistoriaSectionProps {
     isLoading?: boolean;

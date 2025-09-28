@@ -1,6 +1,6 @@
+import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { Network } from "vis-network/standalone";
-import { useRouter } from "next/navigation";
 
 interface GraphData {
   nodes: any[];

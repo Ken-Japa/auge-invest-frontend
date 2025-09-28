@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Wallet } from '@/services/api/types';
+
 import { AddWalletDialog } from './AddWalletDialog';
 import { EditWalletDialog } from './EditWalletDialog';
 

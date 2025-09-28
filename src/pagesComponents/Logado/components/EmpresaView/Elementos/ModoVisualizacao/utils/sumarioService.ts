@@ -1,5 +1,6 @@
-import { SumarioData, Industria, SumarioTotal } from "../TabelaView/types";
 import { sumarioApi } from "@/services/api/endpoints/sumario";
+
+import { Industria, SumarioData, SumarioTotal } from "../TabelaView/types";
 
 /**
  * Busca dados da API e calcula o sumarioTotal

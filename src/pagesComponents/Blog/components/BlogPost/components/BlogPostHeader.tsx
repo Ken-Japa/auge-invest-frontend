@@ -1,7 +1,8 @@
-import { Box, Typography, Chip } from "@mui/material";
-import PersonIcon from '@mui/icons-material/Person';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import PersonIcon from '@mui/icons-material/Person';
+import { Box, Chip,Typography } from "@mui/material";
 import Link from "next/link";
+
 import type { BlogPost as BlogPostType } from "../../../constants/blogPosts";
 
 interface BlogPostHeaderProps {

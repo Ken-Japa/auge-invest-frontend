@@ -1,16 +1,15 @@
-import { type FC, useEffect, useState } from "react";
-import Link from "next/link";
-
-import { Stack, Grid, Typography, Container } from "@mui/material";
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import MonitorIcon from '@mui/icons-material/Monitor';
-import PsychologyIcon from '@mui/icons-material/Psychology';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import PsychologyIcon from '@mui/icons-material/Psychology';
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import { Container,Grid, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import dynamic from 'next/dynamic';
+import Link from "next/link";
+import { type FC, useEffect, useState } from "react";
 
 import { CustomButton } from "@/components/Core/Button";
-import dynamic from 'next/dynamic';
 
 import { SectionWelcome } from "./styled";
 import { WelcomeSkeleton } from "./WelcomeSkeleton";

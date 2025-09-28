@@ -1,6 +1,7 @@
-import { Box, Typography, Grid } from "@mui/material";
-import { BlogCard } from "../../BlogCard";
+import { Box, Grid,Typography } from "@mui/material";
+
 import type { BlogPost } from "../../../constants/blogPosts";
+import { BlogCard } from "../../BlogCard";
 
 interface RelatedPostsProps {
     posts: BlogPost[];

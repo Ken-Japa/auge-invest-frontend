@@ -1,5 +1,5 @@
+import { Box, ToggleButton,Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Box, Typography, ToggleButton } from "@mui/material";
 
 export const CodigosContainer = styled(Box)(({ theme }) => ({
   marginTop: theme.spacing(4),

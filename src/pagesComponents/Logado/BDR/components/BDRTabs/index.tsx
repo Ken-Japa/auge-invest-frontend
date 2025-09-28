@@ -1,11 +1,12 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { Tabs, Tab } from '@mui/material';
+import { Tab,Tabs } from '@mui/material';
+import React, { useEffect,useState } from 'react';
+
 import { TabPanel } from '@/components/Data-Display/TabPanel';
 
+import BDRSearchBar from '../../../components/BDR/components/SearchBar';
 import VisualizacaoBDRs from '../../../components/BDR/components/Vizualização';
 import { BDRTabsContainer } from '../../styled';
-import BDRSearchBar from '../../../components/BDR/components/SearchBar';
 
 
 interface BDRTabsProps {

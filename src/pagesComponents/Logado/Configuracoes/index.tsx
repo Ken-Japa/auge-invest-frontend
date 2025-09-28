@@ -1,17 +1,19 @@
 "use client";
 
+import { Alert, Container, Snackbar } from '@mui/material';
 import { useState } from 'react';
-import { Container, Alert, Snackbar } from '@mui/material';
-import { PageTransition } from '@/components/Utils/PageTransition';
+
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
+import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
 import { PageBackground } from '@/components/Layout/PageBackground';
-import { AppearanceSettings } from './components/AppearanceSettings/index';
-import { NotificationSettings } from './components/NotificationSettings/index';
+import { PageTransition } from '@/components/Utils/PageTransition';
+
 import { AlertPreferences } from './components/AlertPreferences/index';
+import { AppearanceSettings } from './components/AppearanceSettings/index';
 import { FavoritesManagement } from './components/FavoritesManagement/index';
+import { NotificationSettings } from './components/NotificationSettings/index';
 import { useSettings } from './hooks/useSettings';
 import { SettingsTitle } from './styled';
 

@@ -1,5 +1,6 @@
+import { ArrowDropDown,ArrowDropUp } from '@mui/icons-material';
 import { Box, Grid, Paper, Typography } from '@mui/material';
-import { ArrowDropUp, ArrowDropDown } from '@mui/icons-material';
+
 import { MetricaCard } from './MetricaCard';
 
 interface MetricasEmpresaProps {

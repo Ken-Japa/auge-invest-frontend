@@ -1,29 +1,27 @@
 "use client";
 
-import { type FC, useState, lazy } from "react";
+import { Container,Stack } from "@mui/material";
 import Link from 'next/link';
+import { type FC, lazy,useState } from "react";
 
-import { Stack, Container } from "@mui/material";
-
-import { PageTransition } from "@/components/Utils/PageTransition";
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { OptimizedImage } from "@/components/Utils/OptimizedImage";
 import { ProgressiveLoad } from "@/components/Feedback/ProgressiveLoad";
 import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
+import { OptimizedImage } from "@/components/Utils/OptimizedImage";
+import { PageTransition } from "@/components/Utils/PageTransition";
 
-
-import { Welcome } from "./Welcome";
 import {
-    MainContainer,
-    Section,
-    SectionTitle,
-    SectionSubtitle,
     BackgroundImageWrapper,
     BackgroundOverlay,
-    StyledDivider,
     FaqLink,
+    MainContainer,
+    Section,
+    SectionSubtitle,
+    SectionTitle,
+    StyledDivider,
     StyledTypography
 } from "./styled";
+import { Welcome } from "./Welcome";
 
 const Plans = lazy(() => import('./Plans').then(mod => ({ default: mod.Plans })));
 const Questions = lazy(() => import('./Questions').then(mod => ({ default: mod.Questions })));

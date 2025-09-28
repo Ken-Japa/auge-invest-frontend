@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { AnaliseFundamentalista } from "@/pagesComponents/Logado/Analise Fundamentalista";
 
 

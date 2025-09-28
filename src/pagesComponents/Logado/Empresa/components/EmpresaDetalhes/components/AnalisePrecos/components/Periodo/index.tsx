@@ -1,7 +1,8 @@
+import { Grid, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import React from 'react';
-import { Grid, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
+
 import { AnalysisPeriod, PeriodData } from '../../utils/types';
-import { PeriodoContainer, PeriodoFormControl, CustomYearsContainer, YearsTypography, CustomYearsSlider } from './styled';
+import { CustomYearsContainer, CustomYearsSlider,PeriodoContainer, PeriodoFormControl, YearsTypography } from './styled';
 
 interface PeriodoProps {
   periodsData: PeriodData[];

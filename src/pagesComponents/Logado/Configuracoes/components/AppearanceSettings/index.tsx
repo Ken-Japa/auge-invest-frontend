@@ -1,7 +1,9 @@
 import { FormControlLabel, Switch } from '@mui/material';
+
+import { SettingsCard } from '@/components/Core/Card/SettingsCard';
 import { DarkIcon, LightIcon } from '@/components/Theme/TrocarTema/styled';
 import { useTheme } from '@/theme/ThemeContext';
-import { SettingsCard } from '@/components/Core/Card/SettingsCard';
+
 import { SettingsControlContainer } from '../../styled';
 
 export const AppearanceSettings = () => {

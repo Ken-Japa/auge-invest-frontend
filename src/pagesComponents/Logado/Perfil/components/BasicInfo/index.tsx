@@ -1,11 +1,13 @@
-import React from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import LockIcon from '@mui/icons-material/Lock';
 import { Box } from '@mui/material';
+import React from 'react';
+
 import { ThemePreference } from '@/components/Theme/TrocarTema';
-import { PasswordDialog } from '../PasswordDialog';
+
 import { EditDialog } from '../EditDialog';
-import { InfoContainer, InfoRow, InfoLabel, InfoValue, EditButton, PasswordButton, StyledDivider } from './styled';
+import { PasswordDialog } from '../PasswordDialog';
+import { EditButton, InfoContainer, InfoLabel, InfoRow, InfoValue, PasswordButton, StyledDivider } from './styled';
 
 
 const formatPhoneNumber = (phone: string | null): string => {

@@ -1,22 +1,20 @@
 "use client";
-import React from 'react';
-import Link from 'next/link';
-
-import { Box, Tab, Tabs, Tooltip } from '@mui/material';
 import PublicIcon from '@mui/icons-material/Public';
+import { Box, Tab, Tabs, Tooltip } from '@mui/material';
+import Link from 'next/link';
+import React from 'react';
 
-import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { TabPanel } from '@/components/Data-Display/TabPanel';
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { PageTransition } from '@/components/Utils/PageTransition';
-import { TabPanel } from '@/components/Data-Display/TabPanel';
 import { ETFFilter } from '@/services/api/types/etf';
 
 import ETFSearchBar from './components/SearchBar';
 import { VisualizationETFs } from './components/Visualization';
 import { useETFTabsLogic } from './hooks/useETFTabsLogic';
-
 import { BoxVizualizationControl, ETFTabsContainer, SubTitle, Title, VIzualizerContainer } from './styled';
 
 function a11yProps(index: number) {

@@ -1,5 +1,5 @@
-import { styled } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const BackgroundContainer = styled(Box)({
   width: "100%",

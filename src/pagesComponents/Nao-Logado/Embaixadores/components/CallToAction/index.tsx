@@ -1,10 +1,10 @@
+import { Typography } from "@mui/material";
 import { type FC } from 'react';
 
-import { Typography } from "@mui/material";
+import { visitorColors } from "@/theme/palette/visitor";
 
 import { CallToActionSkeleton } from "./CallToActionSkeleton";
 import { CallToActionContainer, ContentStack, StyledButton } from "./styled";
-import { visitorColors } from "@/theme/palette/visitor";
 
 interface CallToActionProps {
     isLoading?: boolean;

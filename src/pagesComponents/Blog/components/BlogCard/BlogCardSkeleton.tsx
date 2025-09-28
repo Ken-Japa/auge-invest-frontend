@@ -1,4 +1,5 @@
 import { Box, Skeleton } from "@mui/material";
+
 import { CardContainer } from "./styled";
 
 export const BlogCardSkeleton = () => {

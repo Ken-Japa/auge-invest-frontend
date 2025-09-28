@@ -1,5 +1,6 @@
 import { Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
+
 import { spacing } from "@/theme/variables";
 
 export const ContentContainer = styled(Stack)({

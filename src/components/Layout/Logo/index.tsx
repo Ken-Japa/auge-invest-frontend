@@ -1,4 +1,5 @@
 import { OptimizedImage } from "@/components/Utils/OptimizedImage";
+
 import { LogoContainer } from "./styled";
 
 interface LogoProps {

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { Desenvolvimento } from "@/pagesComponents/Nao-Logado/Desenvolvimento";
 
 export const metadata: Metadata = {

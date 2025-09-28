@@ -1,6 +1,5 @@
-import { type FC } from 'react';
-
 import { Checkbox } from "@mui/material";
+import { type FC } from 'react';
 
 import { StyledFormControlLabel, StyledLink } from "./styled";
 

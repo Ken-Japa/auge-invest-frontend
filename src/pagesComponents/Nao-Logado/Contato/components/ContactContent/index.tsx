@@ -1,5 +1,7 @@
 import { type FC } from 'react';
+
 import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
+
 import { FormData, FormErrors } from '../../types';
 import { ContentContainer, FormContainer } from './styled';
 

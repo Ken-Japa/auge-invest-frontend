@@ -1,11 +1,11 @@
 import { getHistoricalData } from "../../GraficoHistorico/services/historicalService";
 import {
-  PriceDataPoint,
-  StatisticalData,
-  PeriodData,
+  AlertSuggestions,
   AnalysisPeriod,
   DetailedAlert,
-  AlertSuggestions,
+  PeriodData,
+  PriceDataPoint,
+  StatisticalData,
   StdDevLine
 } from "../utils/types";
 

@@ -1,5 +1,5 @@
+import { ArrowDropDown,ArrowDropUp } from '@mui/icons-material';
 import { Box, Typography } from '@mui/material';
-import { ArrowDropUp, ArrowDropDown } from '@mui/icons-material';
 
 interface MetricaCardProps {
     label: string;

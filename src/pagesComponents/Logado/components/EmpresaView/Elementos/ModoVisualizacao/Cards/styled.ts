@@ -1,5 +1,6 @@
-import { styled } from "@mui/material/styles";
 import { Box, Card, Chip, CircularProgress } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
 import { transitions } from "@/theme/variables";
 
 export const CardContainer = styled(Card)(({ theme }) => ({

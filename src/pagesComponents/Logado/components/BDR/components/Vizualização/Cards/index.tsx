@@ -1,11 +1,10 @@
-import { Grid, IconButton } from '@mui/material';
 import { OpenInNew as OpenInNewIcon } from '@mui/icons-material';
+import { Grid, IconButton } from '@mui/material';
 import Link from 'next/link';
 
 import { UnifiedBDR } from '../../../types';
-
-import { StyledCard } from './styled';
 import { BDRCardContent } from './BDRCardContent';
+import { StyledCard } from './styled';
 
 interface CardViewProps {
   bdrs: UnifiedBDR[];

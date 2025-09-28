@@ -1,12 +1,12 @@
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
 import { RecentActivitiesProvider } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
 
 import { PerformanceChart } from './PerformanceChart';
 import { PositionSummary } from './PositionSummary';
 import { RecentActivities } from './RecentActivities';
-import { SectionTitle, StyledPaper, GridContainer, GridItem } from './styled';
+import { GridContainer, GridItem,SectionTitle, StyledPaper } from './styled';
 
 interface PositionSectionProps {
     title: string;

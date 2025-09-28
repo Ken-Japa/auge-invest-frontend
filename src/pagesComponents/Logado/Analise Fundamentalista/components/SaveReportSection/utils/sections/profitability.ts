@@ -1,8 +1,8 @@
-import { MetricItem, MetricName } from "../types";
-import { METRIC_DESCRIPTIONS, METRIC_FORMULAS } from "../constants";
-import { formatNumber, hasValue, formatPercentage } from "../helpers";
-import { SaveReportOptions } from "../../index";
 import { MetricasCalculadas } from "../../../../types";
+import { SaveReportOptions } from "../../index";
+import { METRIC_DESCRIPTIONS, METRIC_FORMULAS } from "../constants";
+import { formatNumber, formatPercentage,hasValue } from "../helpers";
+import { MetricItem, MetricName } from "../types";
 
 export const generateProfitability = (
   metricsResults: MetricasCalculadas | undefined,

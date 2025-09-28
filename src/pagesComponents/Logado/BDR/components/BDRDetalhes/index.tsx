@@ -1,14 +1,16 @@
 "use client";
 import { useRouter } from 'next/navigation';
-import { PageTransition } from '@/components/Utils/PageTransition';
+
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { useBDRDetails } from './hooks/useBDRDetails';
-import { LoadingState } from './components/LoadingState';
-import { ErrorState } from './components/ErrorState';
-import { NotFoundState } from './components/NotFoundState';
+import { PageTransition } from '@/components/Utils/PageTransition';
+
 import { BDRContent } from './components/BDRContent';
-import { DetailPageContainer, ContentWrapper } from './styled';
+import { ErrorState } from './components/ErrorState';
+import { LoadingState } from './components/LoadingState';
+import { NotFoundState } from './components/NotFoundState';
+import { useBDRDetails } from './hooks/useBDRDetails';
+import { ContentWrapper,DetailPageContainer } from './styled';
 
 interface BDRDetailsProps {
   slug: string;

@@ -1,7 +1,9 @@
+import { Box,Grid, Typography } from '@mui/material';
 import { FC } from 'react';
-import { Grid, Typography, Box } from '@mui/material';
+
 import { CustomAccordion } from '@/components/Core/Accordion';
-import { ValuationResults, SensitivityResults } from '../../types';
+
+import { SensitivityResults,ValuationResults } from '../../types';
 import { ResultsContainer } from './styled';
 
 interface ResultsSectionProps {

@@ -1,17 +1,17 @@
 "use client";
 
-import { type FC, useState, lazy } from 'react';
 import { Container } from "@mui/material";
+import { type FC, lazy,useState } from 'react';
 
-import { PageTransition } from "@/components/Utils/PageTransition";
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { OptimizedImage } from "@/components/Utils/OptimizedImage";
 import { ProgressiveLoad } from "@/components/Feedback/ProgressiveLoad";
 import { SuspenseWrapper } from "@/components/Feedback/SuspenseWrapper";
+import { OptimizedImage } from "@/components/Utils/OptimizedImage";
+import { PageTransition } from "@/components/Utils/PageTransition";
 
-import { SectionTermsServices } from "./styled";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { useScroll } from "./hooks/useScroll";
+import { SectionTermsServices } from "./styled";
 
 const IMAGE_PROPS = {
     src: "/assets/images/background/BACKGROUND-DEFAULT.jpg",

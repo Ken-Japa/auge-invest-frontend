@@ -1,5 +1,6 @@
-import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { usePathname, useRouter } from "next/navigation";
+
 import { LinkNavbar } from "./styled";
 
 
