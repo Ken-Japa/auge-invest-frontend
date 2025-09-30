@@ -17,7 +17,6 @@ const IMAGE_PROPS = {
     fetchPriority: "high",
     sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw",
     className: "object-cover object-center",
-    quality: 70,
 } as const;
 
 const Header = lazy(() => import('./components/Header').then(mod => ({ default: mod.Header })));

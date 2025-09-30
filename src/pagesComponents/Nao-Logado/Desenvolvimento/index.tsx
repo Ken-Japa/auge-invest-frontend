@@ -25,7 +25,6 @@ const FerramentasPage = () => {
         fetchPriority: "high",
         className: "object-cover",
         sizes: "100vw",
-        quality: 100,
         loadingClassName: "scale-100 blur-sm grayscale-0",
         onLoad: () => setImageLoaded(true)
     } as const;

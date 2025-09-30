@@ -56,7 +56,7 @@ export const Features: FC<FeaturesProps> = ({ isLoading }) => {
                                 sizes="(max-width: 768px) 100vw, 50vw"
                                 className="object-cover w-full h-full"
                                 loadingClassName="scale-100 blur-lg grayscale"
-                                quality={90}
+
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                             <div className="absolute bottom-0 left-0 p-8">

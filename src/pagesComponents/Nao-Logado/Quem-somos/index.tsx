@@ -36,7 +36,7 @@ const AboutPage: FC = () => {
                             sizes="100vw"
                             className="object-cover"
                             loadingClassName="scale-100 blur-xl grayscale"
-                            quality={85}
+
                             onLoad={() => setImageLoaded(true)}
                         />
                     </div>

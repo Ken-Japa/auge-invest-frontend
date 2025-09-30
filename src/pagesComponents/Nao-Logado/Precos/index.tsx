@@ -34,7 +34,7 @@ export const Pricing = () => {
                             fetchPriority="high"
                             sizes="100vw"
                             className="object-cover"
-                            quality={90}
+
                             onLoad={() => setImageLoaded(true)}
                         />
                     </div>

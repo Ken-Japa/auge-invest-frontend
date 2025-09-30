@@ -21,8 +21,7 @@ const IMAGE_PROPS = {
     fetchPriority: "high",
     sizes: "100vw",
     className: "object-cover",
-    loadingClassName: "scale-100 blur-xl grayscale",
-    quality: 85
+    loadingClassName: "scale-100 blur-xl grayscale"
 } as const;
 
 const Header = lazy(() => import('./components/Header').then(mod => ({ default: mod.Header })));

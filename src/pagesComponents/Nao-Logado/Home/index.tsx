@@ -46,7 +46,6 @@ export const Home: FC = () => {
                                 sizes="100vw"
                                 className="object-cover"
                                 loadingClassName="scale-100 blur-xl grayscale opacity-50"
-                                quality={90}
                                 onLoad={() => setImageLoaded(true)}
                             />
                             <BackgroundOverlay />

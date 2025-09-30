@@ -83,7 +83,6 @@ export const CompanyAvatar: React.FC<CompanyAvatarProps> = ({
           objectFit: 'cover',
         }}
         priority
-        quality={90}
         placeholder="blur"
         blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxYTIyMzQiLz48L3N2Zz4="
       />

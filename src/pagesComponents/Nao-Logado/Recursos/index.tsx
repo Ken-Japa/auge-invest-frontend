@@ -112,7 +112,6 @@ export const Solutions: FC = () => {
                                 priority
                                 fetchPriority="high"
                                 loading="eager"
-                                quality={70}
                                 style={{
                                     objectFit: 'cover',
                                 }}
