@@ -4,17 +4,18 @@ import { styled } from '@mui/material/styles'
 export const InfoSection = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
   marginTop: theme.spacing(3),
-  borderRadius: theme.shape.borderRadius,
+  borderRadius: '12px',
   backgroundColor:
     theme.palette.mode === 'dark' ? theme.palette.background.paper : theme.palette.background.default,
   border: `1px solid ${theme.palette.divider}`,
   color: theme.palette.text.primary,
-  transition: theme.transitions.create(['transform', 'box-shadow'], {
+  transition: theme.transitions.create(['transform', 'box-shadow', 'border-color'], {
     duration: theme.transitions.duration.standard,
   }),
   '&:hover': {
-    transform: 'translateY(-2px)',
-    boxShadow: theme.shadows[4],
+    transform: 'translateY(-3px)',
+    boxShadow: theme.shadows[8],
+    borderColor: theme.palette.primary.main,
   },
   '& .MuiDivider-root': {
     backgroundColor: theme.palette.divider,

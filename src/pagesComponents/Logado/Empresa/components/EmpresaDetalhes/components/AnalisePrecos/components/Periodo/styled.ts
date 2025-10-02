@@ -2,7 +2,11 @@ import { FormControl, Grid, Slider, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 export const PeriodoContainer = styled(Grid)(({ theme }) => ({
-  marginBottom: theme.spacing(3),
+  marginBottom: '12px',
+  padding: theme.spacing(2),
+  justifyContent: 'center',
+  borderRadius: '12px',
+  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out',
 }))
 
 export const PeriodoFormControl = styled(FormControl)(({ theme }) => ({

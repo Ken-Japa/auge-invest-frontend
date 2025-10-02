@@ -40,7 +40,7 @@ const GraficoAnalisePreco: React.FC<GraficoAnalisePrecoProps> = ({ data }) => {
 
   return (
     <>
-      <ChartTitle variant="h5" sx={{ textAlign: 'center' }}>
+      <ChartTitle variant="h3" sx={{ textAlign: 'center' }}>
         Distribuição de Preços
       </ChartTitle>
       <ChartDescription variant="body2">

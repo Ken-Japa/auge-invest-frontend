@@ -1,62 +1,86 @@
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from '@mui/material'
+import { Table, TableBody, Typography } from '@mui/material'
+import { SelectChangeEvent } from '@mui/material/Select'
+import { useState } from 'react'
+
+import { PaginationControls } from '@/components/Data-Display/PaginationControls'
 
 import { Dividendo } from '../../../../types'
+
+import {
+  StyledDividendosPaper,
+  StyledTableContainer,
+  StyledTableHead,
+  StyledTableRow,
+  StyledTableCell,
+} from './styled'
 
 interface DividendosTabProps {
   dividendos: Dividendo[]
 }
 
 export const DividendosTab: React.FC<DividendosTabProps> = ({ dividendos }) => {
+  const [page, setPage] = useState(0)
+  const [pageSize, setPageSize] = useState(20)
+
+  const totalPages = Math.ceil(dividendos.length / pageSize)
+  const paginatedDividendos = dividendos.slice(page * pageSize, (page + 1) * pageSize)
+
+  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value - 1)
+  }
+
+  const handlePageSizeChange = (event: SelectChangeEvent<number>) => {
+    setPageSize(event.target.value as number)
+    setPage(0)
+  }
   if (!dividendos || dividendos.length === 0) {
     return (
-      <Paper sx={{ p: 3, textAlign: 'center' }}>
-        <Typography>Não há dividendos registrados para esta empresa.</Typography>
-      </Paper>
+      <StyledDividendosPaper>
+        <Typography variant="h6">Nenhum dividendo encontrado para esta empresa.</Typography>
+      </StyledDividendosPaper>
     )
   }
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Tipo</TableCell>
-            <TableCell>Data Com</TableCell>
-            <TableCell>Data Aprovação</TableCell>
-            <TableCell>Tipo Dividendo</TableCell>
-            <TableCell align="right">Valor</TableCell>
-            <TableCell align="right">Yield</TableCell>
-          </TableRow>
-        </TableHead>
+    <StyledTableContainer>
+      <Table aria-label="tabela de dividendos">
+        <StyledTableHead>
+          <StyledTableRow>
+            <StyledTableCell>Tipo</StyledTableCell>
+            <StyledTableCell>Tipo Dividendo</StyledTableCell>
+            <StyledTableCell>Valor</StyledTableCell>
+            <StyledTableCell>Yield</StyledTableCell>
+            <StyledTableCell>Data Com</StyledTableCell>
+            <StyledTableCell>Data Aprovação</StyledTableCell>
+          </StyledTableRow>
+        </StyledTableHead>
         <TableBody>
-          {dividendos.map((dividendo, index) => {
-            // Calcular o yield
+          {paginatedDividendos.map((dividendo, index) => {
             const valor = parseFloat(dividendo.valor.replace(',', '.'))
             const valorAcao = parseFloat(dividendo.valorUltimoDiaCom)
             const yield_ = (valor / valorAcao) * 100
 
             return (
-              <TableRow key={index}>
-                <TableCell>{dividendo.tipo}</TableCell>
-                <TableCell>{dividendo.ultimoDiaCom}</TableCell>
-                <TableCell>{dividendo.dataAprovacao}</TableCell>
-                <TableCell>{dividendo.tipoDividendo}</TableCell>
-                <TableCell align="right">R$ {valor.toFixed(4)}</TableCell>
-                <TableCell align="right">{yield_.toFixed(2)}%</TableCell>
-              </TableRow>
+              <StyledTableRow key={index}>
+                <StyledTableCell>{dividendo.tipo}</StyledTableCell>
+                <StyledTableCell>{dividendo.tipoDividendo}</StyledTableCell>
+                <StyledTableCell>R$ {valor.toFixed(4)}</StyledTableCell>
+                <StyledTableCell>{yield_.toFixed(2)}%</StyledTableCell>
+                <StyledTableCell>{dividendo.ultimoDiaCom}</StyledTableCell>
+                <StyledTableCell>{dividendo.dataAprovacao}</StyledTableCell>
+              </StyledTableRow>
             )
           })}
         </TableBody>
       </Table>
-    </TableContainer>
+      <PaginationControls
+        page={page}
+        totalPages={totalPages}
+        pageSize={pageSize}
+        validPageSizes={[5, 10, 20, 50]}
+        handlePageChange={handlePageChange}
+        handlePageSizeChange={handlePageSizeChange}
+      />
+    </StyledTableContainer>
   )
 }

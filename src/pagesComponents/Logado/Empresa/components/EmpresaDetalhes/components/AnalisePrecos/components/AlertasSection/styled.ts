@@ -5,8 +5,7 @@ export const AlertasSectionContainer = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
   marginTop: theme.spacing(3),
   marginBottom: theme.spacing(3),
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+  borderRadius: '12px',
 }))
 
 export const AlertasSectionTitle = styled(Typography)(({ theme }) => ({
@@ -46,6 +45,7 @@ export const AlertButton = styled(Button)(({ theme }) => ({
 }))
 
 export const BuyAlertButton = styled(AlertButton)(({ theme }) => ({
+  marginTop: 24,
   backgroundColor: theme.palette.success.main,
   '&:hover': {
     backgroundColor: theme.palette.success.dark,
@@ -53,6 +53,7 @@ export const BuyAlertButton = styled(AlertButton)(({ theme }) => ({
 }))
 
 export const SellAlertButton = styled(AlertButton)(({ theme }) => ({
+  marginTop: 24,
   backgroundColor: theme.palette.error.main,
   '&:hover': {
     backgroundColor: theme.palette.error.dark,

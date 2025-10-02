@@ -6,7 +6,7 @@ import { PriceDataPoint } from '@/pagesComponents/Logado/Empresa/components/Empr
 
 import { EmpresaDetalhada } from '../../../types'
 import { PriceDataPoint as GraficoPriceDataPoint } from '../components/GraficoHistorico/services/types'
-import { StyledTab, StyledTabs, TabContent } from '../styled'
+import { StyledTab, StyledTabs, TabContent, StyledTabsPaper } from '../styled'
 
 import { EmpresaHeader } from './EmpresaHeader'
 import { TabPanel } from './TabPanel'
@@ -62,17 +62,25 @@ export const EmpresaContent: React.FC<EmpresaContentProps> = ({
     <>
       <EmpresaHeader empresa={empresa} codigoAtivo={codigoAtivo} onCodigoChange={handleCodigoChange} />
 
-      <StyledTabs value={currentTab} onChange={handleTabChange} aria-label="Abas da empresa">
-        <StyledTab label="Principal" value="principal" />
-        <StyledTab label="Dividendos" value="dividendos" />
-        {hasDerivatives && <StyledTab label="Derivativos" value="derivativos" />}
-        <StyledTab label="Análise de Preços" value="analiseprecos" />
-      </StyledTabs>
+      <StyledTabsPaper>
+        <StyledTabs value={currentTab} onChange={handleTabChange} aria-label="Abas da empresa">
+          <StyledTab label="Histórico" value="principal" />
+          <StyledTab label="Dividendos" value="dividendos" />
+          {hasDerivatives && <StyledTab label="Derivativos" value="derivativos" />}
+          <StyledTab label="Análise de Preços" value="analiseprecos" />
+        </StyledTabs>
+      </StyledTabsPaper>
 
       <TabContent>
         <TabPanel value={currentTab} index="principal">
           <Box sx={{ mb: 4 }}>
-            <SuspenseWrapper fallback={<CircularProgress />}>
+            <SuspenseWrapper
+              fallback={
+                <div>
+                  <CircularProgress size={20} /> Carregando métricas da empresa...
+                </div>
+              }
+            >
               <LazyMetricasEmpresa
                 valor={historicalData.length > 0 ? historicalData[historicalData.length - 1].valor : 0}
                 variacao={
@@ -95,25 +103,49 @@ export const EmpresaContent: React.FC<EmpresaContentProps> = ({
             </SuspenseWrapper>
           </Box>
 
-          <SuspenseWrapper fallback={<CircularProgress />}>
+          <SuspenseWrapper
+            fallback={
+              <div>
+                <CircularProgress size={20} /> Carregando gráfico histórico...
+              </div>
+            }
+          >
             <LazyGraficoHistorico codigoAtivo={codigoAtivo} />
           </SuspenseWrapper>
         </TabPanel>
 
         <TabPanel value={currentTab} index="dividendos">
-          <SuspenseWrapper fallback={<CircularProgress />}>
+          <SuspenseWrapper
+            fallback={
+              <div>
+                <CircularProgress size={20} /> Carregando dividendos...
+              </div>
+            }
+          >
             <LazyDividendosTab dividendos={empresa.dividendos || []} />
           </SuspenseWrapper>
         </TabPanel>
 
         <TabPanel value={currentTab} index="derivativos">
-          <SuspenseWrapper fallback={<CircularProgress />}>
+          <SuspenseWrapper
+            fallback={
+              <div>
+                <CircularProgress size={20} /> Carregando derivativos...
+              </div>
+            }
+          >
             <LazyDerivativosTab codigoBase={codigoAtivo} />
           </SuspenseWrapper>
         </TabPanel>
 
         <TabPanel value={currentTab} index="analiseprecos">
-          <SuspenseWrapper fallback={<CircularProgress />}>
+          <SuspenseWrapper
+            fallback={
+              <div>
+                <CircularProgress size={20} /> Carregando análise de preços...
+              </div>
+            }
+          >
             <LazyAnalisePrecos codigoAtivo={codigoAtivo} />
           </SuspenseWrapper>
         </TabPanel>

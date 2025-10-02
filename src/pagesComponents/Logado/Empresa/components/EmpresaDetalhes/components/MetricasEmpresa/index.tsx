@@ -1,7 +1,7 @@
 import { ArrowDropDown, ArrowDropUp } from '@mui/icons-material'
 import { Box, Grid, Paper, Typography } from '@mui/material'
 
-import { MetricaCard } from './MetricaCard'
+import { MetricaCardComponent } from './MetricaCard'
 
 interface MetricasEmpresaProps {
   valor: number
@@ -38,16 +38,16 @@ export const MetricasEmpresa = ({
         <Grid item xs={12} md={8}>
           <Grid container spacing={2}>
             <Grid item xs={6} sm={3}>
-              <MetricaCard label="Mín. 52 sem" value={`R$ ${minimo52.toFixed(2)}`} />
+              <MetricaCardComponent label="Mín. 52 sem" value={`R$ ${minimo52.toFixed(2)}`} />
             </Grid>
             <Grid item xs={6} sm={3}>
-              <MetricaCard label="Máx. 52 sem" value={`R$ ${maximo52.toFixed(2)}`} />
+              <MetricaCardComponent label="Máx. 52 sem" value={`R$ ${maximo52.toFixed(2)}`} />
             </Grid>
             <Grid item xs={6} sm={3}>
-              <MetricaCard label="Dividend Yield" value={`${dividendYield.toFixed(2)}%`} />
+              <MetricaCardComponent label="Dividend Yield" value={`${dividendYield.toFixed(2)}%`} />
             </Grid>
             <Grid item xs={6} sm={3}>
-              <MetricaCard
+              <MetricaCardComponent
                 label="Valorização 12M"
                 value={`${valorizacao12m.toFixed(2)}%`}
                 isPositive={valorizacao12m >= 0}

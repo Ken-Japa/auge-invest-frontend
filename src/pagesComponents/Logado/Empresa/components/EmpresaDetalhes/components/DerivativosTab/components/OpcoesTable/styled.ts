@@ -4,8 +4,7 @@ import { styled } from '@mui/material/styles'
 export const TableContainer = styled('div')(({ theme }) => ({
   overflowX: 'auto',
   backgroundColor: theme.palette.mode === 'dark' ? theme.palette.background.paper : 'white',
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[1],
+  borderRadius: '12px',
 }))
 
 export const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -34,11 +33,28 @@ export const PutHeaderCell = styled(TableCell)(({ theme }) => ({
 }))
 
 export const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:hover': {
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.action.hover : '#f9f9f9',
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
   },
-  '&:last-child td, &:last-child th': {
-    borderBottom: 0,
+  '&:nth-of-type(even)': {
+    backgroundColor: theme.palette.background.paper,
+  },
+  transition: theme.transitions.create(['background-color', 'transform', 'font-size'], {
+    duration: theme.transitions.duration.short,
+  }),
+  '&:hover': {
+    backgroundColor: '#424242',
+    cursor: 'pointer',
+    transform: 'scale(1.01)',
+    '& .MuiTableCell-root': {
+      fontSize: '1.05rem',
+    },
+    '& .MuiTableCell-root:nth-of-type(3)': {
+      color: theme.palette.primary.main,
+    },
+    '& .MuiTableCell-root:nth-of-type(5)': {
+      color: theme.palette.error.main,
+    },
   },
 }))
 

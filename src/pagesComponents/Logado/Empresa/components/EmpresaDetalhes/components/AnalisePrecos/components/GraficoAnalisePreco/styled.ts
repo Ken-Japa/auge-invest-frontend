@@ -10,7 +10,7 @@ export const ChartContainer = styled(Box)(({ theme }) => ({
 
 export const ChartTitle = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(2),
-  fontWeight: 600,
+  fontWeight: 500,
   color: theme.palette.text.primary,
 }))
 

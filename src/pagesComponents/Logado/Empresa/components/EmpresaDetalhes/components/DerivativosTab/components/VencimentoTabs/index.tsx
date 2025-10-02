@@ -1,4 +1,5 @@
 import { Box, Chip } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 import React from 'react'
 
 import { StyledTab, StyledTabs, TabsContainer } from './styled'
@@ -20,6 +21,8 @@ export const VencimentoTabs: React.FC<VencimentoTabsProps> = ({
   calcularDiasAteVencimento,
   getVencimentoColor,
 }) => {
+  const theme = useTheme()
+
   return (
     <TabsContainer>
       <StyledTabs
@@ -45,7 +48,7 @@ export const VencimentoTabs: React.FC<VencimentoTabsProps> = ({
                     size="small"
                     sx={{
                       backgroundColor: color,
-                      color: diasAteVencimento <= 30 ? 'black' : 'white',
+                      color: theme.palette.getContrastText(color),
                       fontWeight: 'bold',
                     }}
                   />

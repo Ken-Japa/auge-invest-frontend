@@ -5,16 +5,28 @@ export const Container = styled(Grid)(({ theme }) => ({
   marginTop: theme.spacing(2),
 }))
 
-export const AlertGrid = styled(Grid)(() => ({
-  // Estilos específicos para o grid de alerta, se necessário
-}))
+export const AlertGrid = styled(Grid)(() => ({}))
 
 export const BuyAlertPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
+  borderRadius: '12px',
+  boxShadow: theme.shadows[1],
+  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out',
+  border: `1px solid ${theme.palette.divider}`,
+  '&:hover': {
+    boxShadow: theme.shadows[8],
+  },
 }))
 
 export const SellAlertPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
+  borderRadius: '12px',
+  boxShadow: theme.shadows[1],
+  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out',
+  border: `1px solid ${theme.palette.divider}`,
+  '&:hover': {
+    boxShadow: theme.shadows[8],
+  },
 }))
 
 export const BuyAlertTitle = styled(Typography)(({ theme }) => ({

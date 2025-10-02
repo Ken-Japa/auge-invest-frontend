@@ -3,8 +3,10 @@ import { styled } from '@mui/material/styles'
 
 export const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[2],
+  borderRadius: '12px',
+  boxShadow: theme.shadows[1],
+  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out',
+  border: '1px solid transparent',
 }))
 
 export const LoadingContainer = styled(Box)(({ theme }) => ({

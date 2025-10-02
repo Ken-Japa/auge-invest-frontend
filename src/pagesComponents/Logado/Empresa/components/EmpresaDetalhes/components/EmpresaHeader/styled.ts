@@ -9,13 +9,18 @@ export const HeaderContainer = styled(Box)(({ theme }) => ({
   backgroundColor:
     theme.palette.mode === 'dark' ? theme.palette.background.paper : theme.palette.background.default,
   color: theme.palette.text.primary,
-  borderRadius: theme.shape.borderRadius,
+  borderRadius: '12px',
   overflow: 'hidden',
   marginBottom: theme.spacing(4),
   boxShadow: theme.shadows[2],
-  transition: theme.transitions.create(['background-color', 'box-shadow'], {
+  border: `1px solid ${theme.palette.divider}`,
+  transition: theme.transitions.create(['background-color', 'box-shadow', 'transform', 'border-color'], {
     duration: theme.transitions.duration.standard,
   }),
+  '&:hover': {
+    boxShadow: theme.shadows[8],
+    borderColor: theme.palette.primary.main,
+  },
 }))
 
 export const EmpresaInfo = styled(Box)(({ theme }) => ({

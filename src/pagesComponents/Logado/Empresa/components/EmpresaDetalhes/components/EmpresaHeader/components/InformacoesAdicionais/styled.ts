@@ -6,6 +6,16 @@ export const CustomAccordion = styled(Accordion)(({ theme }) => ({
   backgroundColor:
     theme.palette.mode === 'dark' ? theme.palette.background.paper : theme.palette.background.default,
   color: theme.palette.text.primary,
+  borderRadius: '12px',
+  boxShadow: theme.shadows[1],
+  transition: theme.transitions.create(['transform', 'box-shadow', 'border-color'], {
+    duration: theme.transitions.duration.standard,
+  }),
+  '&:hover': {
+    transform: 'translateY(-3px)',
+    boxShadow: theme.shadows[8],
+    borderColor: theme.palette.primary.main,
+  },
   '&:before': {
     display: 'none',
   },

@@ -5,11 +5,7 @@ export const DerivativosContainer = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
   backgroundColor: theme.palette.background.paper,
   color: theme.palette.text.primary,
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[2],
-  transition: theme.transitions.create(['background-color', 'box-shadow'], {
-    duration: theme.transitions.duration.standard,
-  }),
+  borderRadius: '12px',
 }))
 
 export const VencimentoInfo = styled(Box)(({ theme }) => ({
@@ -17,6 +13,7 @@ export const VencimentoInfo = styled(Box)(({ theme }) => ({
 }))
 
 export const TitleTypography = styled(Typography)(({ theme }) => ({
+  marginBottom: '24px',
   color: theme.palette.text.primary,
   textAlign: 'center',
 }))

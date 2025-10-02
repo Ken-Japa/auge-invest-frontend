@@ -2,7 +2,7 @@ import { Grid, Paper, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 export const MetricasContainer = styled(Grid)(({ theme }) => ({
-  marginBottom: theme.spacing(3),
+  marginBottom: theme.spacing(6),
 }))
 
 export const MetricCard = styled(Paper)(({ theme }) => ({
@@ -13,12 +13,14 @@ export const MetricCard = styled(Paper)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   textAlign: 'center',
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-  borderRadius: theme.shape.borderRadius,
-  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+  boxShadow: theme.shadows[1],
+  borderRadius: '12px',
+  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out',
+  border: `1px solid ${theme.palette.divider}`,
   '&:hover': {
-    transform: 'translateY(-5px)',
-    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15)',
+    transform: 'translateY(-3px)',
+    boxShadow: theme.shadows[8],
+    borderColor: theme.palette.primary.main,
   },
 }))
 
