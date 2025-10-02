@@ -1,36 +1,36 @@
-import { styled } from "@mui/material/styles";
+import { styled } from '@mui/material/styles'
 
-import { visitorColors } from "@/theme/palette/visitor";
-import { borderRadius, spacing, transitions } from "@/theme/variables";
+import { visitorColors } from '@/theme/palette/visitor'
+import { borderRadius, spacing, transitions } from '@/theme/variables'
 
-export const TabsContainer = styled("div")({
-  display: "flex",
-  flexWrap: "wrap",
+export const TabsContainer = styled('div')({
+  display: 'flex',
+  flexWrap: 'wrap',
   gap: spacing.sm,
-  justifyContent: "center",
+  justifyContent: 'center',
   marginBottom: spacing.xl,
 
-  "& .category-button": {
+  '& .category-button': {
     padding: `${spacing.sm} ${spacing.md}`,
     borderRadius: borderRadius.md,
     transition: transitions.medium,
-    border: "none",
-    cursor: "pointer",
-    fontSize: "0.9rem",
+    border: 'none',
+    cursor: 'pointer',
+    fontSize: '0.9rem',
     fontWeight: 500,
 
-    "&.active": {
+    '&.active': {
       backgroundColor: visitorColors.primary,
-      color: "#000",
+      color: '#000',
     },
 
-    "&.inactive": {
+    '&.inactive': {
       backgroundColor: visitorColors.backgroundLight,
       color: visitorColors.text,
 
-      "&:hover": {
+      '&:hover': {
         backgroundColor: visitorColors.backgroundMedium,
       },
     },
   },
-});
+})

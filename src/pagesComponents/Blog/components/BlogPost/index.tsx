@@ -1,31 +1,30 @@
-"use client";
+'use client'
 
-import { Box,Container } from "@mui/material";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { type FC } from "react";
+import { Box, Container } from '@mui/material'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { type FC } from 'react'
 
-import { OptimizedImage } from "@/components/Utils/OptimizedImage";
+import { BlogMarkdown } from '@/components/Data-Display/Markdown/BlogMarkdown'
+import { OptimizedImage } from '@/components/Helpers/OptimizedImage'
+import { ShareSection } from '@/components/Helpers/ShareSection'
 
-import type { BlogPost as BlogPostType } from "../../constants/blogPosts";
-import { BlogMarkdown } from "./components/BlogMarkdown";
-import { BlogPostHeader } from "./components/BlogPostHeader";
-import { RelatedPosts } from "./components/RelatedPosts";
-import { ShareSection } from "./components/ShareSection";
-import { PostContainer, PostContent } from "./styled";
+import type { BlogPost as BlogPostType } from '../../constants/blogPosts'
+import { BlogPostHeader } from './components/BlogPostHeader'
+import { RelatedPosts } from './components/RelatedPosts'
+import { PostContainer, PostContent } from './styled'
 
 interface BlogPostProps {
-  post: BlogPostType;
-  relatedPostsData: BlogPostType[];
+  post: BlogPostType
+  relatedPostsData: BlogPostType[]
 }
 
 const BlogPost: FC<BlogPostProps> = ({ post, relatedPostsData }) => {
-
   return (
     <PostContainer>
       <div className="absolute inset-0 h-full">
         <OptimizedImage
-          src="/assets/images/background/BlogPost.jpg"
+          src="/assets/images/background/BlogPost.webp"
           alt="Blog Post Background"
           fill
           priority
@@ -49,15 +48,13 @@ const BlogPost: FC<BlogPostProps> = ({ post, relatedPostsData }) => {
           </PostContent>
 
           <ShareSection title={post.title} description={post.description} />
-          {relatedPostsData.length > 0 && (
-            <RelatedPosts posts={relatedPostsData} />
-          )}
+          {relatedPostsData.length > 0 && <RelatedPosts posts={relatedPostsData} />}
 
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "3rem",
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '3rem',
             }}
           >
             <Link
@@ -70,7 +67,7 @@ const BlogPost: FC<BlogPostProps> = ({ post, relatedPostsData }) => {
         </motion.div>
       </Container>
     </PostContainer>
-  );
-};
+  )
+}
 
-export default BlogPost;
+export default BlogPost

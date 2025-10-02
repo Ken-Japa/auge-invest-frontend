@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-import { CategoryType, QuestionsType } from "../constants/faqData";
+import { CategoryType, QuestionsType } from '../constants/faqData'
 
 export const useQuestionFilter = (questions: QuestionsType) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [activeCategory, setActiveCategory] = useState<CategoryType>("todas");
+  const [searchTerm, setSearchTerm] = useState('')
+  const [activeCategory, setActiveCategory] = useState<CategoryType>('todas')
 
   const filteredQuestions = searchTerm
     ? Object.values(questions)
@@ -12,11 +12,11 @@ export const useQuestionFilter = (questions: QuestionsType) => {
         .filter(
           (q) =>
             q.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            q.body.toLowerCase().includes(searchTerm.toLowerCase())
+            q.body.toLowerCase().includes(searchTerm.toLowerCase()),
         )
-    : activeCategory === "todas"
-    ? Object.values(questions).flat()
-    : questions[activeCategory];
+    : activeCategory === 'todas'
+      ? Object.values(questions).flat()
+      : questions[activeCategory]
 
   return {
     searchTerm,
@@ -24,5 +24,5 @@ export const useQuestionFilter = (questions: QuestionsType) => {
     activeCategory,
     setActiveCategory,
     filteredQuestions,
-  };
-};
+  }
+}

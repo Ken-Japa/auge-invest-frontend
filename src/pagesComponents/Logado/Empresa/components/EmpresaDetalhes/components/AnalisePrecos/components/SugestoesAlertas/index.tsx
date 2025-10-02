@@ -1,12 +1,13 @@
-import { SelectChangeEvent } from '@mui/material';
-import React from 'react';
+import { SelectChangeEvent } from '@mui/material'
+import React from 'react'
 
-import { PriceDataPoint } from "../../../GraficoHistorico/services/historicalService";
+import { PriceDataPoint } from '@/pagesComponents/Logado/Empresa/components/EmpresaDetalhes/components/AnalisePrecos/utils/priceData'
+
 // Serviços e tipos
-import { calculateAlertSuggestions } from '../../services/analiseService';
-import { AnalysisPeriod } from '../../utils/types';
+import { calculateAlertSuggestions } from '../../services/analiseService'
+import { AnalysisPeriod } from '../../utils/types'
 // Componentes
-import { AlertasSection } from '../AlertasSection';
+import { AlertasSection } from '../AlertasSection'
 // Estilos
 import {
   AlertDivider,
@@ -20,31 +21,41 @@ import {
   SecondaryPriceContainer,
   SellAlertPaper,
   SellAlertTitle,
-  SellPriceValue} from './styled';
+  SellPriceValue,
+} from './styled'
 
 interface SugestoesAlertasProps {
-  mean: number;
-  stdDev: number;
-  data: PriceDataPoint[];
-  codigoAtivo: string;
-  selectedPeriod: AnalysisPeriod;
-  onPeriodChange: (period: AnalysisPeriod | SelectChangeEvent) => void;
+  mean: number
+  stdDev: number
+  data: PriceDataPoint[]
+  codigoAtivo: string
+  selectedPeriod: AnalysisPeriod | null
+  onPeriodChange: (period: AnalysisPeriod | SelectChangeEvent) => void
 }
 
 const formatDate = (date: Date | null): string => {
-  if (!date) return 'N/A';
-  return date.toLocaleDateString('pt-BR');
-};
+  if (!date) return 'N/A'
+  return date.toLocaleDateString('pt-BR')
+}
 
-const SugestoesAlertas: React.FC<SugestoesAlertasProps> = ({ mean, stdDev, data, codigoAtivo, selectedPeriod, onPeriodChange }) => {
-  const alerts = calculateAlertSuggestions(mean, stdDev, data);
+const SugestoesAlertas: React.FC<SugestoesAlertasProps> = ({
+  mean,
+  stdDev,
+  data,
+  codigoAtivo,
+  selectedPeriod,
+  onPeriodChange,
+}) => {
+  const alerts = calculateAlertSuggestions(mean, stdDev, data)
 
   return (
     <>
       <Container container spacing={2}>
         <AlertGrid item xs={12} md={6}>
           <BuyAlertPaper>
-            <BuyAlertTitle variant="h3" gutterBottom>Sugestão de Alerta de Compra</BuyAlertTitle>
+            <BuyAlertTitle variant="h3" gutterBottom>
+              Sugestão de Alerta de Compra
+            </BuyAlertTitle>
 
             <PriceContainer>
               <BuyPriceValue variant="h4">R$ {alerts.lowAlert90.price.toFixed(2)}</BuyPriceValue>
@@ -91,7 +102,9 @@ const SugestoesAlertas: React.FC<SugestoesAlertasProps> = ({ mean, stdDev, data,
 
         <AlertGrid item xs={12} md={6}>
           <SellAlertPaper>
-            <SellAlertTitle variant="h3" gutterBottom>Sugestão de Alerta de Venda</SellAlertTitle>
+            <SellAlertTitle variant="h3" gutterBottom>
+              Sugestão de Alerta de Venda
+            </SellAlertTitle>
 
             <PriceContainer>
               <SellPriceValue variant="h4">R$ {alerts.highAlert90.price.toFixed(2)}</SellPriceValue>
@@ -135,8 +148,6 @@ const SugestoesAlertas: React.FC<SugestoesAlertasProps> = ({ mean, stdDev, data,
                 </PriceInfo>
               )}
             </SecondaryPriceContainer>
-
-
           </SellAlertPaper>
         </AlertGrid>
       </Container>
@@ -149,7 +160,7 @@ const SugestoesAlertas: React.FC<SugestoesAlertasProps> = ({ mean, stdDev, data,
         onPeriodChange={onPeriodChange}
       />
     </>
-  );
-};
+  )
+}
 
-export default SugestoesAlertas;
+export default SugestoesAlertas

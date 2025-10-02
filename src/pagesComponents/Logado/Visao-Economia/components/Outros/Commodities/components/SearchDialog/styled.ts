@@ -1,18 +1,24 @@
-import { Box } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, IconButton } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 export const SearchContainer = styled(Box)`
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 8px;
 
-    .MuiTextField-root {
-        margin-bottom: 8px;
-    }
+  .MuiTextField-root {
+    margin-bottom: 8px;
+  }
 
-    .MuiList-root {
-        max-height: 300px;
-        overflow-y: auto;
-    }
-`;
+  .MuiList-root {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+`
+
+export const CloseButton = styled(IconButton)`
+  position: absolute;
+  right: 8px;
+  top: 8px;
+`

@@ -1,16 +1,16 @@
-import { Box,Skeleton } from '@mui/material';
-import React from 'react';
+import { Box, Skeleton } from '@mui/material'
+import React from 'react'
 
 interface ContentSkeletonProps {
-  type?: 'text' | 'card' | 'avatar' | 'chart' | 'form';
-  textLines?: number;
-  height?: number | string;
-  width?: number | string;
-  className?: string;
-  variant?: 'rectangular' | 'circular' | 'rounded' | 'text';
-  cardHeight?: number;
-  formFields?: number;
-  style?: React.CSSProperties;
+  type?: 'text' | 'card' | 'avatar' | 'chart' | 'form'
+  textLines?: number
+  height?: number | string
+  width?: number | string
+  className?: string
+  variant?: 'rectangular' | 'circular' | 'rounded' | 'text'
+  cardHeight?: number
+  formFields?: number
+  style?: React.CSSProperties
 }
 
 export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
@@ -22,46 +22,46 @@ export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
   variant,
   cardHeight,
   formFields = 1,
-  style
+  style,
 }) => {
   const getDefaultHeight = () => {
     switch (type) {
       case 'card':
-        return cardHeight || height || 200;
+        return cardHeight || height || 200
       case 'avatar':
-        return height || 40;
+        return height || 40
       case 'chart':
-        return height || 300;
+        return height || 300
       case 'form':
-        return height || 56;
+        return height || 56
       case 'text':
       default:
-        return height || 20;
+        return height || 20
     }
-  };
+  }
 
   const getDefaultWidth = () => {
     switch (type) {
       case 'avatar':
-        return width || 40;
+        return width || 40
       default:
-        return width || '100%';
+        return width || '100%'
     }
-  };
+  }
 
   const getVariant = () => {
     switch (type) {
       case 'avatar':
-        return 'circular';
+        return 'circular'
       case 'card':
       case 'chart':
       case 'form':
-        return 'rectangular';
+        return 'rectangular'
       case 'text':
       default:
-        return variant || 'text';
+        return variant || 'text'
     }
-  };
+  }
 
   if (type === 'text') {
     return (
@@ -79,7 +79,7 @@ export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
             />
           ))}
       </Box>
-    );
+    )
   }
 
   if (type === 'form') {
@@ -89,13 +89,7 @@ export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
           .fill(0)
           .map((_, index) => (
             <Box key={index} sx={{ mb: 3 }}>
-              <Skeleton
-                variant="text"
-                width="30%"
-                height={24}
-                sx={{ mb: 1 }}
-                animation="wave"
-              />
+              <Skeleton variant="text" width="30%" height={24} sx={{ mb: 1 }} animation="wave" />
               <Skeleton
                 variant="rectangular"
                 width="100%"
@@ -104,13 +98,13 @@ export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
                 sx={{
                   borderRadius: 1,
                   transform: 'none',
-                  transformOrigin: 'center'
+                  transformOrigin: 'center',
                 }}
               />
             </Box>
           ))}
       </Box>
-    );
+    )
   }
 
   return (
@@ -123,8 +117,8 @@ export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
       sx={{
         transform: 'none',
         transformOrigin: 'center',
-        ...style
+        ...style,
       }}
     />
-  );
-};
+  )
+}

@@ -1,10 +1,10 @@
-import { Star } from '@mui/icons-material';
-import { Chip } from '@mui/material';
-import Link from 'next/link';
+import { Star } from '@mui/icons-material'
+import { Chip } from '@mui/material'
+import Link from 'next/link'
 
-import { formatDate } from '@/components/Utils/Formatters/formatters';
+import { formatDate } from '@/components/Helpers/Formatters/formatters'
 
-import { UnifiedBDR } from '../../../types';
+import { UnifiedBDR } from '../../../types'
 import {
   CardSubtitle,
   CardTitle,
@@ -14,18 +14,16 @@ import {
   InfoLabel,
   InfoValue,
   StyledCardContent,
-} from './styled';
+} from './styled'
 
 interface BDRCardContentProps {
-  bdr: UnifiedBDR;
+  bdr: UnifiedBDR
 }
 
 export const BDRCardContent = ({ bdr }: BDRCardContentProps) => (
   <StyledCardContent>
     <Link href={`/bdr/${bdr.nomeEmpresa}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-      <CardTitle variant="h4">
-        {bdr.nomeEmpresa}
-      </CardTitle>
+      <CardTitle variant="h4">{bdr.nomeEmpresa}</CardTitle>
     </Link>
 
     <CardSubtitle variant="body2" color="text.secondary">
@@ -34,18 +32,14 @@ export const BDRCardContent = ({ bdr }: BDRCardContentProps) => (
 
     <ChipsContainer>
       <Link href={`/bdr/${bdr.nomeEmpresa}`} style={{ textDecoration: 'none' }}>
-        <Chip
-          label={bdr.codigo || 'N/A'}
-          size="small"
-          color="primary"
-          variant="outlined"
-          clickable
-        />
+        <Chip label={bdr.codigo || 'N/A'} size="small" color="primary" variant="outlined" clickable />
       </Link>
 
       {(bdr.tipoBDR || bdr.informações?.market) && (
         <Chip
-          label={bdr.tipoBDR || bdr.informações?.market || `Mercado ${bdr.tipoBDR || bdr.informações?.market}`}
+          label={
+            bdr.tipoBDR || bdr.informações?.market || `Mercado ${bdr.tipoBDR || bdr.informações?.market}`
+          }
           size="small"
           color="primary"
         />
@@ -68,4 +62,4 @@ export const BDRCardContent = ({ bdr }: BDRCardContentProps) => (
       </InfoItem>
     </InfoContainer>
   </StyledCardContent>
-);
+)

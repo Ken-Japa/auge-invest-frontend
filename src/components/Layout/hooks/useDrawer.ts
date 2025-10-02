@@ -1,18 +1,18 @@
-import { usePathname } from 'next/navigation';
-import { useEffect,useState } from 'react';
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 export const useDrawer = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
 
-    useEffect(() => {
-        setIsOpen(false);
-    }, [pathname]);
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
 
-    const toggle = () => setIsOpen(!isOpen);
+  const toggle = () => setIsOpen(!isOpen)
 
-    return {
-        isOpen,
-        toggle
-    };
-};
+  return {
+    isOpen,
+    toggle,
+  }
+}

@@ -1,73 +1,79 @@
-import { Box, CircularProgress,Typography } from '@mui/material';
-import dynamic from 'next/dynamic';
-import { useCallback,useMemo, useRef, useState } from 'react';
-import { Network } from 'vis-network/standalone';
+import { Box, CircularProgress, Typography } from '@mui/material'
+import dynamic from 'next/dynamic'
+import { useCallback, useMemo, useRef, useState } from 'react'
+import { Network } from 'vis-network/standalone'
 
 // Components
-import { IndustryDropdown } from './components/IndustryDropdown';
-import { SegmentDropdown } from './components/SegmentDropdown';
+import { IndustryDropdown } from './components/IndustryDropdown'
+import { SegmentDropdown } from './components/SegmentDropdown'
 // Constants
-import { DEFAULT_GRAPH_OPTIONS } from './constants/graphOptions';
+import { DEFAULT_GRAPH_OPTIONS } from './constants/graphOptions'
 // Utils
-import { GraphContainer, LoadingContainer, MenuContainer, SelectedNodePathContainer } from './styled';
-import { useGraphInteractions } from './utils/hooks';
-import { useGraphData } from './utils/useGraphData';
+import { GraphContainer, LoadingContainer, MenuContainer, SelectedNodePathContainer } from './styled'
+import { useGraphInteractions } from './utils/hooks'
+import { useGraphData } from './utils/useGraphData'
 
-const CustomGraph = dynamic(
-  () => import('./components/CustomGraph').then(mod => mod.CustomGraph),
-  {
-    ssr: false,
-    loading: () => (
-      <LoadingContainer>
-        <CircularProgress />
-      </LoadingContainer>
-    )
-  }
-);
+const CustomGraph = dynamic(() => import('./components/CustomGraph').then((mod) => mod.CustomGraph), {
+  ssr: false,
+  loading: () => (
+    <LoadingContainer>
+      <CircularProgress />
+    </LoadingContainer>
+  ),
+})
 
 interface RedeNeuralProps {
-  onLoadingChange?: (loading: boolean) => void;
+  onLoadingChange?: (loading: boolean) => void
 }
 
 export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
-  const [selectedIndustryId, setSelectedIndustryId] = useState<string | null>(null);
-  const [selectedSegmentId, setSelectedSegmentId] = useState<string | null>(null);
-  const [isGraphReady, setIsGraphReady] = useState(false);
+  const [selectedIndustryId, setSelectedIndustryId] = useState<string | null>(null)
+  const [selectedSegmentId, setSelectedSegmentId] = useState<string | null>(null)
+  const [isGraphReady, setIsGraphReady] = useState(false)
 
   const memoizedOnGraphReady = useCallback(() => {
-    setIsGraphReady(true);
-  }, []);
-  const [selectedNodePath, setSelectedNodePath] = useState<string[]>([]);
-  const networkRef = useRef<Network | null>(null);
+    setIsGraphReady(true)
+  }, [])
+  const [selectedNodePath, setSelectedNodePath] = useState<string[]>([])
+  const networkRef = useRef<Network | null>(null)
 
-  const { graphData, isLoading, error, industriesForDropdown, segmentsForDropdown } = useGraphData(onLoadingChange);
+  const { graphData, isLoading, error, industriesForDropdown, segmentsForDropdown } =
+    useGraphData(onLoadingChange)
 
-  const { handleNodeSelection, handleSelectIndustry, handleSelectSegment, handleDoubleClick } = useGraphInteractions(
-    graphData,
-    setSelectedNodePath,
-    networkRef,
-    industriesForDropdown,
-    segmentsForDropdown
-  );
+  const { handleNodeSelection, handleSelectIndustry, handleSelectSegment, handleDoubleClick } =
+    useGraphInteractions(
+      graphData,
+      setSelectedNodePath,
+      networkRef,
+      industriesForDropdown,
+      segmentsForDropdown,
+    )
 
-  const memoizedEvents = useMemo(() => ({
-    deselectNode: () => {
-      setSelectedNodePath([]);
-    },
-    doubleClick: handleDoubleClick,
-    selectNode: handleNodeSelection,
-  }), [handleDoubleClick, handleNodeSelection]);
+  const memoizedEvents = useMemo(
+    () => ({
+      deselectNode: () => {
+        setSelectedNodePath([])
+      },
+      doubleClick: handleDoubleClick,
+      selectNode: handleNodeSelection,
+    }),
+    [handleDoubleClick, handleNodeSelection],
+  )
 
   if (isLoading) {
     return (
       <LoadingContainer>
         <CircularProgress />
       </LoadingContainer>
-    );
+    )
   }
 
   if (error) {
-    return <Box sx={{ p: 2 }}><Typography color="error">{error}</Typography></Box>;
+    return (
+      <Box sx={{ p: 2 }}>
+        <Typography color="error">{error}</Typography>
+      </Box>
+    )
   }
 
   return (
@@ -93,23 +99,23 @@ export const RedeNeural: React.FC<RedeNeuralProps> = ({ onLoadingChange }) => {
           <IndustryDropdown
             industries={industriesForDropdown}
             onSelectIndustry={(id) => {
-              setSelectedIndustryId(id);
-              setSelectedSegmentId(null);
-              handleSelectIndustry(id);
+              setSelectedIndustryId(id)
+              setSelectedSegmentId(null)
+              handleSelectIndustry(id)
             }}
             selectedIndustryId={selectedIndustryId}
           />
           <SegmentDropdown
             segmentsByIndustry={segmentsForDropdown}
             onSelectSegment={(id) => {
-              setSelectedSegmentId(id);
-              setSelectedIndustryId(null);
-              handleSelectSegment(id);
+              setSelectedSegmentId(id)
+              setSelectedIndustryId(null)
+              handleSelectSegment(id)
             }}
             selectedSegmentId={selectedSegmentId}
           />
         </MenuContainer>
       )}
     </GraphContainer>
-  );
-};
+  )
+}

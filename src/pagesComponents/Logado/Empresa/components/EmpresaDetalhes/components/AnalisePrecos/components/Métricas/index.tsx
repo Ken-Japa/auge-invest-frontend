@@ -1,15 +1,15 @@
-import { Grid } from '@mui/material';
-import React from 'react';
+import { Grid } from '@mui/material'
+import React from 'react'
 
-import { StatisticalData } from '../../utils/types';
-import { MetricasContainer, MetricCard, MetricTitle, MetricValue } from './styled';
+import { StatisticalData } from '../../utils/types'
+import { MetricasContainer, MetricCard, MetricTitle, MetricValue } from './styled'
 
 interface MetricasProps {
-  stats: StatisticalData;
+  stats: StatisticalData
 }
 
 const Metricas: React.FC<MetricasProps> = ({ stats }) => {
-  const { mean, stdDev, min, max } = stats;
+  const { mean, stdDev, min, max } = stats
 
   return (
     <MetricasContainer container spacing={2}>
@@ -38,7 +38,7 @@ const Metricas: React.FC<MetricasProps> = ({ stats }) => {
         </MetricCard>
       </Grid>
     </MetricasContainer>
-  );
-};
+  )
+}
 
-export default Metricas;
+export default Metricas

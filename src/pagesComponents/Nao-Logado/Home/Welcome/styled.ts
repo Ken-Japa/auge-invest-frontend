@@ -1,74 +1,74 @@
-import { styled } from "@mui/material/styles";
+import { styled } from '@mui/material/styles'
 
-import { visitorColors } from "@/theme/palette/visitor";
-import { spacing, transitions } from "@/theme/variables";
+import { visitorColors } from '@/theme/palette/visitor'
+import { spacing, transitions } from '@/theme/variables'
 
-export const SectionWelcome = styled("section")({
-  position: "relative",
-  minHeight: "100vh",
-  width: "100%",
-  overflow: "hidden",
-  background: "transparent",
+export const SectionWelcome = styled('section')({
+  position: 'relative',
+  minHeight: '100vh',
+  width: '100%',
+  overflow: 'hidden',
+  background: 'transparent',
 
-  "& .home": {
-    position: "relative",
+  '& .home': {
+    position: 'relative',
     zIndex: 2,
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
     padding: `${spacing.xxl} 0`,
   },
 
-  "& .content-container": {
-    width: "100%",
+  '& .content-container': {
+    width: '100%',
   },
 
-  "& .welcome": {
-    width: "100%",
-    textAlign: "center",
-    marginBottom: "164px",
+  '& .welcome': {
+    width: '100%',
+    textAlign: 'center',
+    marginBottom: '164px',
   },
 
-  "& .title-left": {
-    fontSize: "20px",
-    fontWeight: "bold",
+  '& .title-left': {
+    fontSize: '20px',
+    fontWeight: 'bold',
     marginBottom: spacing.sm,
     color: visitorColors.text,
   },
 
-  "& .title-right": {
-    fontSize: "40px",
-    fontWeight: "bold",
+  '& .title-right': {
+    fontSize: '40px',
+    fontWeight: 'bold',
     color: visitorColors.primary,
   },
 
-  "& .highlight-card": {
+  '& .highlight-card': {
     backgroundColor: visitorColors.backgroundLight,
-    borderRadius: "8px",
+    borderRadius: '8px',
     padding: spacing.lg,
-    height: "100%",
+    height: '100%',
     transition: transitions.medium,
     backdropFilter: visitorColors.blur,
 
-    "&:hover": {
+    '&:hover': {
       backgroundColor: visitorColors.backgroundMedium,
-      transform: "translateY(-5px)",
+      transform: 'translateY(-5px)',
     },
 
-    "& h3": {
+    '& h3': {
       color: visitorColors.text,
       marginBottom: spacing.sm,
     },
 
-    "& .value": {
+    '& .value': {
       color: visitorColors.primary,
-      fontSize: "1.5rem",
-      fontWeight: "bold",
+      fontSize: '1.5rem',
+      fontWeight: 'bold',
       marginBottom: spacing.sm,
     },
 
-    "& p": {
+    '& p': {
       color: visitorColors.textSecondary,
     },
   },
-});
+})

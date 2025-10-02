@@ -1,69 +1,64 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from 'react'
 
-import { fetchFIIBySlugOrCode } from "../../../../components/FIIs/services/fiisService";
-import { FIIExtended } from "../../../../components/FIIs/types";
+import { fetchFIIBySlugOrCode } from '../../../../components/FIIs/services/fiisService'
+import { FIIExtended } from '../../../../components/FIIs/types'
 
 interface UseFIIDetailsProps {
-  slug: string;
-  codigo?: string;
-  isCode?: boolean;
+  slug: string
+  codigo?: string
+  isCode?: boolean
 }
 
 interface UseFIIDetailsResult {
-  fii: FIIExtended | null;
-  loading: boolean;
-  error: string | null;
+  fii: FIIExtended | null
+  loading: boolean
+  error: string | null
 }
 
-export const useFIIDetails = ({
-  slug,
-  codigo,
-  isCode = false,
-}: UseFIIDetailsProps): UseFIIDetailsResult => {
-  const [fii, setFII] = useState<FIIExtended | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export const useFIIDetails = ({ slug, codigo, isCode = false }: UseFIIDetailsProps): UseFIIDetailsResult => {
+  const [fii, setFII] = useState<FIIExtended | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const loadFII = async () => {
       try {
-        setLoading(true);
-        setError(null);
+        setLoading(true)
+        setError(null)
 
-        const searchParam = codigo || slug;
+        const searchParam = codigo || slug
 
-        const isFIICode = /^[A-Z]{4}11$/.test(searchParam.toUpperCase());
+        const isFIICode = /^[A-Z]{4}11$/.test(searchParam.toUpperCase())
 
-        let result: FIIExtended | null;
+        let result: FIIExtended | null
         if (isFIICode) {
-          result = await fetchFIIBySlugOrCode(searchParam, true);
+          result = await fetchFIIBySlugOrCode(searchParam, true)
         } else {
-          result = await fetchFIIBySlugOrCode(searchParam, false);
+          result = await fetchFIIBySlugOrCode(searchParam, false)
 
           if (!result) {
-            result = await fetchFIIBySlugOrCode(searchParam, true);
+            result = await fetchFIIBySlugOrCode(searchParam, true)
           }
         }
 
         if (!result) {
-          console.error("FII não encontrado:", searchParam);
-          setError("FII não encontrado");
-          return;
+          console.error('FII não encontrado:', searchParam)
+          setError('FII não encontrado')
+          return
         }
 
-        setFII(result);
+        setFII(result)
       } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : "Ocorreu um erro desconhecido";
-        console.error("Erro ao carregar FII:", errorMessage);
-        setError(errorMessage);
+        const errorMessage = err instanceof Error ? err.message : 'Ocorreu um erro desconhecido'
+        console.error('Erro ao carregar FII:', errorMessage)
+        setError(errorMessage)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    loadFII();
-  }, [slug, codigo, isCode]);
+    loadFII()
+  }, [slug, codigo, isCode])
 
-  return { fii, loading, error };
-};
+  return { fii, loading, error }
+}

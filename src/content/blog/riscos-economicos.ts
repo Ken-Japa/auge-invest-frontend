@@ -1,25 +1,25 @@
 export const post = {
-  id: "6",
-  title: "Riscos Econômicos e o seu Patrimônio em Crises",
+  id: '6',
+  title: 'Riscos Econômicos e o seu Patrimônio em Crises',
   description:
-    "Descubra como proteger seu patrimônio em tempos de crise econômica. Explore os principais riscos macroeconômicos e estratégias de hedge com derivativos, ouro, dólar e outros ativos defensivos.",
-  image: "",
-  category: ["economia", "educacional"],
-  author: "Auge Invest",
-  date: "2024-03-19",
-  slug: "riscos-economicos",
+    'Descubra como proteger seu patrimônio em tempos de crise econômica. Explore os principais riscos macroeconômicos e estratégias de hedge com derivativos, ouro, dólar e outros ativos defensivos.',
+  image: '',
+  category: ['economia', 'educacional'],
+  author: 'Auge Invest',
+  date: '2024-03-19',
+  slug: 'riscos-economicos',
   tags: [
-    "riscos econômicos",
-    "proteção patrimonial",
-    "inflação",
-    "alta de juros",
-    "recessão global",
-    "estratégias de hedge",
-    "ativos defensivos",
-    "crises cambiais",
+    'riscos econômicos',
+    'proteção patrimonial',
+    'inflação',
+    'alta de juros',
+    'recessão global',
+    'estratégias de hedge',
+    'ativos defensivos',
+    'crises cambiais',
   ],
-  readTime: "15 min",
-  relatedPosts: ["cicloeconomico", "erros-iniciantes", "analise-setorial"],
+  readTime: '15 min',
+  relatedPosts: ['cicloeconomico', 'erros-iniciantes', 'analise-setorial'],
   content: `
 
   Em tempos de incerteza econômica, proteger o patrimônio é uma prioridade para investidores. Crises econômicas podem surgir de várias formas, incluindo inflação, juros altos, crises cambiais e recessões globais. Este artigo explora os principais riscos macroeconômicos e oferece estratégias de hedge e proteção patrimonial utilizando derivativos, ouro, dólar e outros ativos defensivos. Compreender esses conceitos ajudará você a navegar pelas turbulências econômicas e preservar seu patrimônio.
@@ -77,4 +77,4 @@ Aplique as estratégias discutidas e busque mais informações para proteger seu
 - Eichengreen, Barry. "Exorbitant Privilege: The Rise and Fall of the Dollar and the Future of the International Monetary System".
 - Malkiel, Burton G. "A Random Walk Down Wall Street".
 `,
-};
+}

@@ -1,17 +1,13 @@
-// import { Inter } from "next/font/google";
-import "./globals.css";
-import "./custom-styles.css";
+import './globals.css'
+import '../theme/custom-styles.css'
+import '../theme/effects.css'
 
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import type { Metadata, Viewport } from "next";
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import type { Metadata, Viewport } from 'next'
 
-import { Layout } from "@/components/Layout";
-import { Providers } from "@/providers/Providers";
-
-
-// import { Inter } from 'next/font/google';
-// const inter = Inter({ subsets: ['latin'] });
+import { Layout } from '@/components/Layout'
+import { Providers } from '@/providers/Providers'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -22,13 +18,14 @@ export const viewport: Viewport = {
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
     { media: '(prefers-color-scheme: dark)', color: '#000000' },
   ],
-};
+}
 
 export const metadata: Metadata = {
-  title: "Auge Invest",
-  description: "Plataforma líder em análise de investimentos. Oferecemos ferramentas avançadas e insights precisos para otimizar sua carteira de investimentos.",
-  keywords: "investimentos, análise financeira, mercado financeiro, bolsa de valores, auge invest",
-  authors: [{ name: "Auge Invest" }],
+  title: 'Auge Invest',
+  description:
+    'Plataforma líder em análise de investimentos. Oferecemos ferramentas avançadas e insights precisos para otimizar sua carteira de investimentos.',
+  keywords: 'investimentos, análise financeira, mercado financeiro, bolsa de valores, auge invest',
+  authors: [{ name: 'Auge Invest' }],
   openGraph: {
     title: 'Auge Invest',
     description: 'Plataforma líder em análise de investimentos',
@@ -71,40 +68,24 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: 'google-site-verification=your-google-site-verification-code',
   },
-};
+}
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
-
-        <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png" />
-        <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
-
       </head>
-      <body >
+      <body>
         <Providers>
-          <Layout>
-            {children}
-          </Layout>
+          <Layout>{children}</Layout>
         </Providers>
         <SpeedInsights />
         <Analytics />
       </body>
     </html>
-  );
+  )
 }

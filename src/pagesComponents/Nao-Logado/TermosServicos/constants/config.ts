@@ -3,4 +3,4 @@ export const CONFIG = {
     SHOW_BUTTON_THRESHOLD: 400,
     SECTION_OFFSET: -100,
   },
-} as const;
+} as const

@@ -1,9 +1,9 @@
-import { Components } from "@mui/material";
+import { Components } from '@mui/material'
 
-export const muiTable: Components["MuiTable"] = {
+export const muiTable: Components['MuiTable'] = {
   styleOverrides: {
     root: {
       tableLayout: 'fixed',
-    }
-  }
-};
+    },
+  },
+}

@@ -1,21 +1,21 @@
-import React from 'react';
+import React from 'react'
 
-import { Wallet } from '@/services/api/types';
+import { Wallet } from '@/services/api/types'
 
-import { AddWalletDialog } from './AddWalletDialog';
-import { EditWalletDialog } from './EditWalletDialog';
+import { AddWalletDialog } from './AddWalletDialog'
+import { EditWalletDialog } from './EditWalletDialog'
 
 interface WalletDialogsProps {
-  openAddDialog: boolean;
-  onCloseAddDialog: () => void;
-  onCreateWallet: (name: string, description: string, simulated: boolean) => Promise<void>;
-  openEditDialog: boolean;
-  onCloseEditDialog: () => void;
-  onUpdateWallet: (walletId: string, name: string, description: string, simulated: boolean) => Promise<void>;
-  editingWallet: Wallet | null;
-  loading: boolean;
-  error: string | null;
-  isSimulated?: boolean;
+  openAddDialog: boolean
+  onCloseAddDialog: () => void
+  onCreateWallet: (name: string, description: string, simulated: boolean) => Promise<void>
+  openEditDialog: boolean
+  onCloseEditDialog: () => void
+  onUpdateWallet: (walletId: string, name: string, description: string, simulated: boolean) => Promise<void>
+  editingWallet: Wallet | null
+  loading: boolean
+  error: string | null
+  isSimulated?: boolean
 }
 
 export const WalletDialogs: React.FC<WalletDialogsProps> = ({
@@ -50,5 +50,5 @@ export const WalletDialogs: React.FC<WalletDialogsProps> = ({
         editingWallet={editingWallet}
       />
     </>
-  );
-};
+  )
+}

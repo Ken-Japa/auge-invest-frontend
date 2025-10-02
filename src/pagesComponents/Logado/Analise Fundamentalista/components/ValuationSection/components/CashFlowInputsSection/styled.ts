@@ -1,5 +1,5 @@
-import { Box,styled } from '@mui/material';
+import { Box, styled } from '@mui/material'
 
 export const CashFlowContainer = styled(Box)(({ theme }) => ({
-    marginBottom: theme.spacing(3)
-}));
+  marginBottom: theme.spacing(3),
+}))

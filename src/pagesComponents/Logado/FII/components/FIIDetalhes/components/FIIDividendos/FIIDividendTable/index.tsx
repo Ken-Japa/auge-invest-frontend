@@ -1,25 +1,34 @@
-import { formatCurrency } from '@/components/Utils/Formatters/formatters';
+import { formatCurrency } from '@/components/Helpers/Formatters/formatters'
 import { FIIDividendItem as Dividend } from '@/services/api/types'
 
-import { HeaderCell, StatusChip, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '../styled';
+import {
+  HeaderCell,
+  StatusChip,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '../styled'
 
 interface FIIDividendTableProps {
-  dividends: Dividend[];
+  dividends: Dividend[]
 }
 
 const FIIDividendTable = ({ dividends }: FIIDividendTableProps) => {
   const getStatusColor = (tipoDividendo: string) => {
     switch (tipoDividendo.toUpperCase()) {
       case 'RENDIMENTO':
-        return 'success';
+        return 'success'
       case 'DIVIDENDO':
-        return 'warning';
+        return 'warning'
       case 'AMORTIZAÇÃO':
-        return 'info';
+        return 'info'
       default:
-        return 'default';
+        return 'default'
     }
-  };
+  }
 
   return (
     <TableContainer>
@@ -54,7 +63,7 @@ const FIIDividendTable = ({ dividends }: FIIDividendTableProps) => {
         </TableBody>
       </Table>
     </TableContainer>
-  );
-};
+  )
+}
 
-export default FIIDividendTable;
+export default FIIDividendTable

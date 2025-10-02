@@ -1,10 +1,10 @@
-import { Grid, Typography } from '@mui/material';
-import { useRouter } from 'next/navigation';
-import React from 'react';
+import { Grid } from '@mui/material'
+import { useRouter } from 'next/navigation'
+import React from 'react'
 
-import { formatNumber } from '@/components/Utils/Formatters/formatters';
+import { formatNumber } from '@/components/Helpers/Formatters/formatters'
 
-import { ETFExtended } from '../../../types';
+import { ETFExtended } from '../../../types'
 import {
   CodeChip,
   GridContainer,
@@ -14,35 +14,37 @@ import {
   GridInfoValue,
   GridItemPaper,
   GridTitle,
-} from './styled';
+} from './styled'
 
 interface GridViewProps {
-  etfs: ETFExtended[];
+  etfs: ETFExtended[]
 }
 
 const GridView: React.FC<GridViewProps> = ({ etfs }) => {
-  const router = useRouter();
+  const router = useRouter()
 
   const sortedEtfs = [...etfs].sort((a, b) => {
-    const quotaA = Number(a.quotaCount) || 0;
-    const quotaB = Number(b.quotaCount) || 0;
-    return quotaB - quotaA;
-  });
+    const quotaA = Number(a.quotaCount) || 0
+    const quotaB = Number(b.quotaCount) || 0
+    return quotaB - quotaA
+  })
 
   const handleItemClick = (nomeETF: string) => {
-    router.push(`/etf/${nomeETF}`);
-  };
+    router.push(`/etf/${nomeETF}`)
+  }
 
   return (
     <GridContainer container spacing={2}>
       {sortedEtfs.map((etf) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={etf._id}>
-          <GridItemPaper elevation={1} onClick={() => handleItemClick(etf.nomeETF)} style={{ cursor: 'pointer' }}>
+          <GridItemPaper
+            elevation={1}
+            onClick={() => handleItemClick(etf.nomeETF)}
+            style={{ cursor: 'pointer' }}
+          >
             <GridHeader>
               <GridTitle variant="subtitle1">{etf.nomeETF}</GridTitle>
-              {etf.codigo && (
-                <CodeChip label={etf.codigo} color="primary" size="small" />
-              )}
+              {etf.codigo && <CodeChip label={etf.codigo} color="primary" size="small" />}
             </GridHeader>
             <GridInfo>
               <GridInfoLabel>Cotas:</GridInfoLabel>
@@ -52,7 +54,7 @@ const GridView: React.FC<GridViewProps> = ({ etfs }) => {
         </Grid>
       ))}
     </GridContainer>
-  );
-};
+  )
+}
 
-export default GridView;
+export default GridView

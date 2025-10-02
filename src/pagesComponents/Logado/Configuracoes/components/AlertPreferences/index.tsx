@@ -1,31 +1,23 @@
-import PercentIcon from '@mui/icons-material/Percent';
-import { Slider } from '@mui/material';
+import PercentIcon from '@mui/icons-material/Percent'
+import { Slider } from '@mui/material'
 
-import { SettingsCard } from '@/components/Core/Card/SettingsCard';
+import { SettingsCard } from '@/components/Core/Card/SettingsCard'
 
-import {
-  SliderContainer,
-  SliderDescription,
-  SliderLabel} from '../../styled';
+import { SliderContainer, SliderDescription, SliderLabel } from '../../styled'
 
 interface AlertPreferencesProps {
   percentages: {
-    buy: number;
-    sell: number;
-  };
-  onPercentageChange: (type: 'buy' | 'sell') => (event: Event, newValue: number | number[]) => void;
+    buy: number
+    sell: number
+  }
+  onPercentageChange: (type: 'buy' | 'sell') => (event: Event, newValue: number | number[]) => void
 }
 
 export const AlertPreferences = ({ percentages, onPercentageChange }: AlertPreferencesProps) => {
   return (
-    <SettingsCard
-      icon={<PercentIcon />}
-      title="Preferências de Alerta"
-    >
+    <SettingsCard icon={<PercentIcon />} title="Preferências de Alerta">
       <SliderContainer>
-        <SliderLabel gutterBottom>
-          Alerta de Compra: {percentages.buy}%
-        </SliderLabel>
+        <SliderLabel gutterBottom>Alerta de Compra: {percentages.buy}%</SliderLabel>
         <Slider
           value={percentages.buy}
           onChange={onPercentageChange('buy')}
@@ -46,9 +38,7 @@ export const AlertPreferences = ({ percentages, onPercentageChange }: AlertPrefe
       </SliderContainer>
 
       <SliderContainer>
-        <SliderLabel gutterBottom>
-          Alerta de Venda: {percentages.sell}%
-        </SliderLabel>
+        <SliderLabel gutterBottom>Alerta de Venda: {percentages.sell}%</SliderLabel>
         <Slider
           value={percentages.sell}
           onChange={onPercentageChange('sell')}
@@ -68,5 +58,5 @@ export const AlertPreferences = ({ percentages, onPercentageChange }: AlertPrefe
         </SliderDescription>
       </SliderContainer>
     </SettingsCard>
-  );
-};
+  )
+}

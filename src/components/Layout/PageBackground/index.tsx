@@ -1,14 +1,14 @@
-import { styled, useTheme } from '@mui/material/styles';
-import { ReactNode, useState } from 'react';
+import { styled, useTheme } from '@mui/material/styles'
+import { ReactNode, useState } from 'react'
 
-import { OptimizedImage } from '@/components/Utils/OptimizedImage';
-import { transitions } from '@/theme/variables';
+import { OptimizedImage } from '@/components/Helpers/OptimizedImage'
+import { transitions } from '@/theme/variables'
 
 interface PageBackgroundProps {
-  children: ReactNode;
-  imageName: string;
-  opacity?: number;
-  fetchPriority?: 'high' | 'low' | 'auto';
+  children: ReactNode
+  imageName: string
+  opacity?: number
+  fetchPriority?: 'high' | 'low' | 'auto'
 }
 
 const BackgroundContainer = styled('div')<{ opacity: number }>(({ theme, opacity }) => ({
@@ -16,6 +16,8 @@ const BackgroundContainer = styled('div')<{ opacity: number }>(({ theme, opacity
   minHeight: '100vh',
   width: '100%',
   overflow: 'hidden',
+  marginTop: -64,
+  paddingTop: 64,
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -30,7 +32,7 @@ const BackgroundContainer = styled('div')<{ opacity: number }>(({ theme, opacity
     zIndex: -1,
     transition: transitions.medium,
   },
-}));
+}))
 
 const BackgroundImageWrapper = styled('div')<{ isLoaded: boolean }>(({ isLoaded }) => ({
   position: 'fixed',
@@ -47,15 +49,21 @@ const BackgroundImageWrapper = styled('div')<{ isLoaded: boolean }>(({ isLoaded 
     width: '100%',
     height: '100%',
   },
-}));
+}))
 
-export const PageBackground = ({ children, imageName, opacity = 0.4, fetchPriority }: PageBackgroundProps) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const theme = useTheme();
+export const PageBackground = ({
+  children,
+  imageName,
+  opacity = 0.4,
+  fetchPriority,
+}: PageBackgroundProps) => {
+  const [imageLoaded, setImageLoaded] = useState(false)
+  const theme = useTheme()
 
-  const imageSrc = theme.palette.mode === 'dark'
-    ? `/assets/images/background/${imageName}-Dark.jpg`
-    : `/assets/images/background/${imageName}-Light.jpg`;
+  const imageSrc =
+    theme.palette.mode === 'dark'
+      ? `/assets/images/background/${imageName}-Dark.webp`
+      : `/assets/images/background/${imageName}-Light.webp`
 
   return (
     <BackgroundContainer opacity={opacity}>
@@ -68,12 +76,11 @@ export const PageBackground = ({ children, imageName, opacity = 0.4, fetchPriori
           fetchPriority="high"
           className="object-cover"
           sizes="100vw"
-
           loadingClassName="scale-100 blur-sm grayscale-0"
           onLoad={() => setImageLoaded(true)}
         />
       </BackgroundImageWrapper>
       {children}
     </BackgroundContainer>
-  );
-};
+  )
+}

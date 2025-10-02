@@ -1,37 +1,37 @@
-import { Pagination } from "./common";
+import { Pagination } from './common'
 
 export interface ETF {
-  _id: string;
-  nomeCompletoETF: string;
-  nomeETF: string;
-  codigoETF: string;
-  codigo: string;
-  quotaCount: string;
-  quotaDateApproved: string | null;
-  indústria: string | null;
-  segmento: string | null;
-  __v?: number | null;
-  informações: ETFInformation;
+  _id: string
+  nomeCompletoETF: string
+  nomeETF: string
+  codigoETF: string
+  codigo: string
+  quotaCount: string
+  quotaDateApproved: string | null
+  indústria: string | null
+  segmento: string | null
+  __v?: number | null
+  informações: ETFInformation
 }
 
 export interface ETFInformation {
-  cnpj: string;
-  site: string;
+  cnpj: string
+  site: string
 }
 
 export interface ETFListResponse {
-  result: ETF[];
-  pagination: Pagination;
+  result: ETF[]
+  pagination: Pagination
 }
 
 export interface ETFFilter {
-  nomeETF?: string;
-  codigoETF?: string;
-  codigo?: string;
-  industria?: string;
-  segmento?: string;
-  page?: number;
-  pageSize?: number;
-  sortBy?: string;
-  sortOrder?: 'asc' | 'desc';
+  nomeETF?: string
+  codigoETF?: string
+  codigo?: string
+  industria?: string
+  segmento?: string
+  page?: number
+  pageSize?: number
+  sortBy?: string
+  sortOrder?: 'asc' | 'desc'
 }

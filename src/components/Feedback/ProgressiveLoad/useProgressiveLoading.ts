@@ -1,44 +1,44 @@
-import { useEffect, useRef,useState } from "react";
+import { useEffect, useRef, useState } from 'react'
 
 interface UseProgressiveLoadingProps {
-  threshold?: number;
-  rootMargin?: string;
+  threshold?: number
+  rootMargin?: string
 }
 
 export const useProgressiveLoading = ({
   threshold = 0.1,
-  rootMargin = "50px",
+  rootMargin = '50px',
 }: UseProgressiveLoadingProps = {}) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false)
+  const elementRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
+          setIsVisible(true)
+          observer.disconnect()
         }
       },
       {
         threshold,
         rootMargin,
-      }
-    );
+      },
+    )
 
-    const currentElement = elementRef.current;
+    const currentElement = elementRef.current
 
     if (currentElement) {
-      observer.observe(currentElement);
+      observer.observe(currentElement)
     }
 
     return () => {
       if (currentElement) {
-        observer.unobserve(currentElement);
+        observer.unobserve(currentElement)
       }
-      observer.disconnect();
-    };
-  }, [threshold, rootMargin]);
+      observer.disconnect()
+    }
+  }, [threshold, rootMargin])
 
-  return { isVisible, elementRef };
-};
+  return { isVisible, elementRef }
+}

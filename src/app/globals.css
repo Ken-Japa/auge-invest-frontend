@@ -34,7 +34,7 @@
 body {
   background-color: #000;
   color: var(--matrix-green);
-  font-family: Consolas, "Courier New", monospace;
+  font-family: Consolas, 'Courier New', monospace;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;

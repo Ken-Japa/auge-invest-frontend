@@ -1,15 +1,19 @@
-import { Business as BusinessIcon, CalendarToday as CalendarIcon, Link as LinkIcon } from '@mui/icons-material';
-import { Typography } from '@mui/material';
+import {
+  Business as BusinessIcon,
+  CalendarToday as CalendarIcon,
+  Link as LinkIcon,
+} from '@mui/icons-material'
+import { Typography } from '@mui/material'
 
-import { formatCNPJ, formatDate, formatLink,formatNumber } from '@/components/Utils/Formatters/formatters';
+import { formatCNPJ, formatDate, formatLink, formatNumber } from '@/components/Helpers/Formatters/formatters'
 
-import { IconWrapper, InfoContainer } from '../../styled';
+import { IconWrapper, InfoContainer } from '../../styled'
 
 interface FIIInfoSectionProps {
-  cnpj?: string;
-  quotaDateApproved?: string;
-  quotaCount?: string;
-  link?: string;
+  cnpj?: string
+  quotaDateApproved?: string
+  quotaCount?: string
+  link?: string
 }
 
 const FIIInfoSection = ({ cnpj, quotaDateApproved, quotaCount, link }: FIIInfoSectionProps) => {
@@ -57,13 +61,15 @@ const FIIInfoSection = ({ cnpj, quotaDateApproved, quotaCount, link }: FIIInfoSe
             <IconWrapper>
               <LinkIcon fontSize="small" />
             </IconWrapper>
-            <Typography variant="body1" dangerouslySetInnerHTML={{ __html: formatLink(link, 'Acessar Link') }} />
+            <Typography
+              variant="body1"
+              dangerouslySetInnerHTML={{ __html: formatLink(link, 'Acessar Link') }}
+            />
           </Typography>
         </InfoContainer>
       )}
-
     </>
-  );
-};
+  )
+}
 
-export default FIIInfoSection;
+export default FIIInfoSection

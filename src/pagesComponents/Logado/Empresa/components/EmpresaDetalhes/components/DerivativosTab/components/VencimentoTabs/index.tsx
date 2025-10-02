@@ -1,15 +1,15 @@
-import { Box, Chip } from '@mui/material';
-import React from 'react';
+import { Box, Chip } from '@mui/material'
+import React from 'react'
 
-import { StyledTab,StyledTabs, TabsContainer } from './styled';
+import { StyledTab, StyledTabs, TabsContainer } from './styled'
 
 interface VencimentoTabsProps {
-  vencimentos: string[];
-  selectedVencimento: string;
-  onVencimentoChange: (event: React.SyntheticEvent, newValue: string) => void;
-  formatarVencimento: (data: string) => string;
-  calcularDiasAteVencimento: (vencimento: string) => number;
-  getVencimentoColor: (dias: number) => string;
+  vencimentos: string[]
+  selectedVencimento: string
+  onVencimentoChange: (event: React.SyntheticEvent, newValue: string) => void
+  formatarVencimento: (data: string) => string
+  calcularDiasAteVencimento: (vencimento: string) => number
+  getVencimentoColor: (dias: number) => string
 }
 
 export const VencimentoTabs: React.FC<VencimentoTabsProps> = ({
@@ -18,7 +18,7 @@ export const VencimentoTabs: React.FC<VencimentoTabsProps> = ({
   onVencimentoChange,
   formatarVencimento,
   calcularDiasAteVencimento,
-  getVencimentoColor
+  getVencimentoColor,
 }) => {
   return (
     <TabsContainer>
@@ -29,9 +29,9 @@ export const VencimentoTabs: React.FC<VencimentoTabsProps> = ({
         scrollButtons="auto"
         aria-label="vencimentos tabs"
       >
-        {vencimentos.map(vencimento => {
-          const diasAteVencimento = calcularDiasAteVencimento(vencimento);
-          const color = getVencimentoColor(diasAteVencimento);
+        {vencimentos.map((vencimento) => {
+          const diasAteVencimento = calcularDiasAteVencimento(vencimento)
+          const color = getVencimentoColor(diasAteVencimento)
 
           return (
             <StyledTab
@@ -46,15 +46,15 @@ export const VencimentoTabs: React.FC<VencimentoTabsProps> = ({
                     sx={{
                       backgroundColor: color,
                       color: diasAteVencimento <= 30 ? 'black' : 'white',
-                      fontWeight: 'bold'
+                      fontWeight: 'bold',
                     }}
                   />
                 </Box>
               }
             />
-          );
+          )
         })}
       </StyledTabs>
     </TabsContainer>
-  );
-};
+  )
+}

@@ -1,87 +1,87 @@
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { styled } from "@mui/material/styles";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { styled } from '@mui/material/styles'
 
-import { visitorColors } from "@/theme/palette/visitor";
-import { borderRadius, spacing, transitions } from "@/theme/variables";
+import { visitorColors } from '@/theme/palette/visitor'
+import { borderRadius, spacing, transitions } from '@/theme/variables'
 
-export const QuestionContainer = styled("div")({
+export const QuestionContainer = styled('div')({
   backgroundColor: visitorColors.backgroundLight,
   borderRadius: borderRadius.md,
   marginBottom: spacing.md,
-  overflow: "hidden",
+  overflow: 'hidden',
   transition: transitions.medium,
 
-  "&:hover": {
+  '&:hover': {
     backgroundColor: visitorColors.backgroundMedium,
   },
 
-  "& .question-header": {
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
+  '& .question-header': {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: spacing.lg,
-    border: "none",
-    background: "none",
-    cursor: "pointer",
-    textAlign: "left",
+    border: 'none',
+    background: 'none',
+    cursor: 'pointer',
+    textAlign: 'left',
   },
 
-  "& .question-title": {
+  '& .question-title': {
     margin: 0,
-    fontSize: "1.1rem",
+    fontSize: '1.1rem',
     fontWeight: 500,
     color: visitorColors.text,
   },
 
-  "& .question-answer": {
+  '& .question-answer': {
     maxHeight: 0,
-    overflow: "hidden",
-    transition: "max-height 0.3s ease, padding 0.3s ease",
+    overflow: 'hidden',
+    transition: 'max-height 0.3s ease, padding 0.3s ease',
 
-    "&.open": {
-      maxHeight: "1000px",
+    '&.open': {
+      maxHeight: '1000px',
       padding: `0 ${spacing.lg} ${spacing.lg}`,
     },
 
-    "&.closed": {
+    '&.closed': {
       maxHeight: 0,
       padding: `0 ${spacing.lg}`,
     },
   },
 
-  "& .answer-content": {
+  '& .answer-content': {
     color: visitorColors.textSecondary,
     lineHeight: 1.6,
 
-    "& a": {
+    '& a': {
       color: visitorColors.primary,
-      textDecoration: "none",
+      textDecoration: 'none',
 
-      "&:hover": {
-        textDecoration: "underline",
+      '&:hover': {
+        textDecoration: 'underline',
       },
     },
   },
-});
+})
 
-export const NoResultsContainer = styled("div")({
-  textAlign: "center",
+export const NoResultsContainer = styled('div')({
+  textAlign: 'center',
   padding: spacing.xl,
   backgroundColor: visitorColors.backgroundLight,
   borderRadius: borderRadius.md,
   color: visitorColors.textSecondary,
 
-  "& p": {
+  '& p': {
     margin: spacing.sm,
   },
-});
+})
 
 export const StyledExpandIcon = styled(ExpandMoreIcon, {
-  shouldForwardProp: (prop) => prop !== "isOpen",
+  shouldForwardProp: (prop) => prop !== 'isOpen',
 })<{ isOpen?: boolean }>(({ isOpen, theme }) => ({
   fontSize: 24,
   color: visitorColors.primary,
-  transition: "transform 0.3s ease",
-  transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-}));
+  transition: 'transform 0.3s ease',
+  transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+}))

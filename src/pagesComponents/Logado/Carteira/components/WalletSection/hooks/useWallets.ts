@@ -1,121 +1,113 @@
-import { useSession } from "next-auth/react";
-import { useCallback,useEffect, useState } from "react";
+import { useSession } from 'next-auth/react'
+import { useCallback, useEffect, useState } from 'react'
 
-import { api } from "@/services/api";
-import { Wallet } from "@/services/api/types";
+import { api } from '@/services/api'
+import { Wallet } from '@/services/api/types'
 
 export const useWallets = (isSimulated?: boolean) => {
-  const { data: session } = useSession();
-  const userId = session?.user?.id;
+  const { data: session } = useSession()
+  const userId = session?.user?.id
 
-  const [wallets, setWallets] = useState<Wallet[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [wallets, setWallets] = useState<Wallet[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
 
   const fetchWallets = useCallback(async () => {
     if (!userId) {
-      setError("User not authenticated.");
-      setLoading(false);
-      return;
+      setError('User not authenticated.')
+      setLoading(false)
+      return
     }
-    setLoading(true);
-    setError(null);
+    setLoading(true)
+    setError(null)
     try {
-      const userWallets = await api.wallet.getUserWallets(userId);
-      const filteredWallets = userWallets.filter(
-        (wallet) => wallet.simulated === isSimulated
-      );
-      setWallets(filteredWallets);
+      const userWallets = await api.wallet.getUserWallets(userId)
+      const filteredWallets = userWallets.filter((wallet) => wallet.simulated === isSimulated)
+      setWallets(filteredWallets)
     } catch (err: any) {
       if (
-        err.code === "wallet/not-found" &&
-        err.message ===
-          "Carteira não encontrada. Por favor, verifique as informações fornecidas."
+        err.code === 'wallet/not-found' &&
+        err.message === 'Carteira não encontrada. Por favor, verifique as informações fornecidas.'
       ) {
-        setWallets([]);
-        setError(null);
+        setWallets([])
+        setError(null)
       } else {
-        setError(err.message || "Failed to fetch wallets.");
+        setError(err.message || 'Failed to fetch wallets.')
       }
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  }, [userId, isSimulated]);
+  }, [userId, isSimulated])
 
   useEffect(() => {
-    fetchWallets();
-  }, [userId, fetchWallets]);
+    fetchWallets()
+  }, [userId, fetchWallets])
 
   const handleCreateWallet = useCallback(
     async (name: string, description: string, simulated: boolean) => {
       if (!userId || !name) {
-        setError("Wallet name and user ID are required.");
-        return;
+        setError('Wallet name and user ID are required.')
+        return
       }
-      setLoading(true);
-      setError(null);
+      setLoading(true)
+      setError(null)
       try {
         await api.wallet.createWallet({
           name: name,
           description: description,
           userId: userId,
           simulated: simulated,
-        });
-        fetchWallets();
+        })
+        fetchWallets()
       } catch (err: any) {
-        setError(err.message || "Failed to create wallet.");
+        setError(err.message || 'Failed to create wallet.')
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     },
-    [userId, fetchWallets]
-  );
+    [userId, fetchWallets],
+  )
 
   const handleUpdateWallet = useCallback(
-    async (
-      walletId: string,
-      name: string,
-      description: string,
-      simulated: boolean
-    ) => {
+    async (walletId: string, name: string, description: string, simulated: boolean) => {
       if (!walletId || !name) {
-        setError("Wallet name and wallet ID are required for update.");
-        return;
+        setError('Wallet name and wallet ID are required for update.')
+        return
       }
-      setLoading(true);
-      setError(null);
+      setLoading(true)
+      setError(null)
       try {
         await api.wallet.updateWallet(walletId, {
           name: name,
           description: description,
           simulated: simulated,
-        });
-        fetchWallets();
+        })
+        fetchWallets()
       } catch (err: any) {
-        setError(err.message || "Failed to update wallet.");
+        setError(err.message || 'Failed to update wallet.')
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     },
-    [fetchWallets]
-  );
+    [fetchWallets],
+  )
 
   const handleConfirmDelete = useCallback(
     async (walletToDelete: string) => {
-      if (!walletToDelete) return;
-      setLoading(true);
-      setError(null);
+      if (!walletToDelete) return
+      setLoading(true)
+      setError(null)
       try {
-        await api.wallet.deleteWallet(walletToDelete);
-        fetchWallets();
+        await api.wallet.deleteWallet(walletToDelete)
+        fetchWallets()
       } catch (err: any) {
-        setError(err.message || "Failed to delete wallet.");
+        setError(err.message || 'Failed to delete wallet.')
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     },
-    [fetchWallets]
-  );
+    [fetchWallets],
+  )
 
   return {
     wallets,
@@ -125,5 +117,5 @@ export const useWallets = (isSimulated?: boolean) => {
     handleCreateWallet,
     handleUpdateWallet,
     handleConfirmDelete,
-  };
-};
+  }
+}

@@ -1,64 +1,64 @@
-import { styled } from "@mui/material/styles";
+import { styled } from '@mui/material/styles'
 
-import { visitorColors } from "@/theme/palette/visitor";
-import { borderRadius, spacing, transitions } from "@/theme/variables";
+import { visitorColors } from '@/theme/palette/visitor'
+import { borderRadius, spacing, transitions } from '@/theme/variables'
 
-export const EmbaixadorCard = styled("div")({
+export const EmbaixadorCard = styled('div')({
   backgroundColor: visitorColors.overlay,
   padding: spacing.xl,
   borderRadius: borderRadius.md,
   border: `1px solid ${visitorColors.divider}`,
   color: visitorColors.text,
-  width: "100%",
-  maxWidth: "400px",
+  width: '100%',
+  maxWidth: '400px',
   transition: transitions.medium,
 
-  "&:hover": {
+  '&:hover': {
     backgroundColor: visitorColors.backgroundMedium,
     borderColor: visitorColors.primary,
   },
 
-  "& .card-title": {
-    fontSize: "1.5rem",
+  '& .card-title': {
+    fontSize: '1.5rem',
     marginBottom: spacing.md,
-    textAlign: "center",
+    textAlign: 'center',
   },
 
-  "& .card-price": {
-    fontSize: "2.5rem",
-    fontWeight: "bold",
+  '& .card-price': {
+    fontSize: '2.5rem',
+    fontWeight: 'bold',
     marginBottom: spacing.xs,
-    textAlign: "center",
+    textAlign: 'center',
   },
 
-  "& .card-period": {
+  '& .card-period': {
     opacity: 0.75,
     marginBottom: spacing.lg,
-    textAlign: "center",
+    textAlign: 'center',
   },
 
-  "& .benefits-list": {
+  '& .benefits-list': {
     marginBottom: spacing.xl,
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     gap: spacing.md,
   },
 
-  "& .benefit-item": {
-    display: "flex",
-    alignItems: "center",
+  '& .benefit-item': {
+    display: 'flex',
+    alignItems: 'center',
     gap: spacing.sm,
 
-    "& .icon": {
+    '& .icon': {
       color: visitorColors.primary,
     },
   },
-});
+})
 
-export const Description = styled("p")({
+export const Description = styled('p')({
   color: visitorColors.text,
-  textAlign: "center",
-  maxWidth: "800px",
+  textAlign: 'center',
+  maxWidth: '800px',
   marginBottom: spacing.xl,
   lineHeight: 1.6,
-});
+})

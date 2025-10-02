@@ -1,96 +1,87 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from 'react'
 
-import { Codigo,EmpresaDetalhada } from "../../../types";
-import {
-  getAllEmpresas,
-  getCodigoPrincipal,
-  getEmpresaBySlug,
-} from "../services/empresaService";
+import { Codigo, EmpresaDetalhada } from '../../../types'
+import { getAllEmpresas, getCodigoPrincipal, getEmpresaBySlug } from '../services/empresaService'
 
 interface UseEmpresaDataResult {
-  empresa: EmpresaDetalhada | null;
-  loading: boolean;
-  error: string | null;
-  codigoAtivo: string | null;
-  setCodigoAtivo: (codigo: string) => void;
+  empresa: EmpresaDetalhada | null
+  loading: boolean
+  error: string | null
+  codigoAtivo: string | null
+  setCodigoAtivo: (codigo: string) => void
 }
 
-export const useEmpresaData = (
-  slug: string,
-  codigoSelecionado?: string
-): UseEmpresaDataResult => {
-  const [empresa, setEmpresa] = useState<EmpresaDetalhada | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [codigoAtivo, setCodigoAtivo] = useState<string | null>(
-    codigoSelecionado || null
-  );
+export const useEmpresaData = (slug: string, codigoSelecionado?: string): UseEmpresaDataResult => {
+  const [empresa, setEmpresa] = useState<EmpresaDetalhada | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [codigoAtivo, setCodigoAtivo] = useState<string | null>(codigoSelecionado || null)
 
   // Fetch empresa data
   useEffect(() => {
     const fetchEmpresa = async () => {
       try {
-        setLoading(true);
+        setLoading(true)
 
         // Verificar se o slug é um código de ativo
-        let empresaData: EmpresaDetalhada | null = null;
-        let codigoAtivoFinal = codigoSelecionado;
+        let empresaData: EmpresaDetalhada | null = null
+        let codigoAtivoFinal = codigoSelecionado
 
         // Primeiro, tenta buscar como nome da empresa ou código
-        const result = await getEmpresaBySlug(slug);
-        empresaData = result.empresa;
+        const result = await getEmpresaBySlug(slug)
+        empresaData = result.empresa
 
         // Se encontrou por código, usar esse código como ativo
         if (result.codigoEncontrado && !codigoSelecionado) {
-          codigoAtivoFinal = result.codigoEncontrado.toUpperCase();
+          codigoAtivoFinal = result.codigoEncontrado.toUpperCase()
         }
 
         // Se não encontrou, tentar buscar como código em todas as empresas
         if (!empresaData) {
           // Buscar todas as empresas para encontrar a que tem o código correspondente ao slug
-          const todasEmpresas = await getAllEmpresas();
+          const todasEmpresas = await getAllEmpresas()
 
           for (const emp of todasEmpresas) {
             const codigoEncontrado = emp.codigos.find(
-              (cod: Codigo) => cod.codigo.toUpperCase() === slug.toUpperCase()
-            );
+              (cod: Codigo) => cod.codigo.toUpperCase() === slug.toUpperCase(),
+            )
 
             if (codigoEncontrado) {
-              empresaData = emp;
+              empresaData = emp
               // Se o slug era um código e não foi fornecido um codigoSelecionado,
               // então o código do slug deve ser o selecionado
               if (!codigoSelecionado) {
-                codigoAtivoFinal = slug.toUpperCase();
+                codigoAtivoFinal = slug.toUpperCase()
               }
-              break;
+              break
             }
           }
         }
 
         if (!empresaData) {
-          setError("Empresa não encontrada");
-          return;
+          setError('Empresa não encontrada')
+          return
         }
 
-        setEmpresa(empresaData);
+        setEmpresa(empresaData)
 
         // Define o código ativo
         if (codigoAtivoFinal) {
-          setCodigoAtivo(codigoAtivoFinal);
+          setCodigoAtivo(codigoAtivoFinal)
         } else {
           // Se não tiver código selecionado, seleciona o principal
-          setCodigoAtivo(getCodigoPrincipal(empresaData.codigos));
+          setCodigoAtivo(getCodigoPrincipal(empresaData.codigos))
         }
       } catch (err) {
-        console.error("Erro ao carregar dados da empresa:", err);
-        setError("Falha ao carregar dados da empresa");
+        console.error('Erro ao carregar dados da empresa:', err)
+        setError('Falha ao carregar dados da empresa')
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchEmpresa();
-  }, [slug, codigoSelecionado]);
+    fetchEmpresa()
+  }, [slug, codigoSelecionado])
 
-  return { empresa, loading, error, codigoAtivo, setCodigoAtivo };
-};
+  return { empresa, loading, error, codigoAtivo, setCodigoAtivo }
+}

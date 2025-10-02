@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import { formatCNPJ,formatNumber } from '@/components/Utils/Formatters/formatters';
+import { formatCNPJ, formatNumber } from '@/components/Helpers/Formatters/formatters'
 
-import { ETFExtended } from '../../../types';
+import { ETFExtended } from '../../../types'
 import {
   CardContainer,
   CardHeader,
@@ -12,11 +12,11 @@ import {
   CardSubtitle,
   CardTitle,
   CodeChip,
-} from './styled';
+} from './styled'
 
 interface ETFCardProps {
-  etf: ETFExtended;
-  handleCardClick: (nomeETF: string) => void;
+  etf: ETFExtended
+  handleCardClick: (nomeETF: string) => void
 }
 
 const ETFCard: React.FC<ETFCardProps> = ({ etf, handleCardClick }) => {
@@ -24,13 +24,9 @@ const ETFCard: React.FC<ETFCardProps> = ({ etf, handleCardClick }) => {
     <CardContainer onClick={() => handleCardClick(etf.nomeETF)} style={{ cursor: 'pointer' }}>
       <CardHeader>
         <CardTitle variant="h6">{etf.nomeETF}</CardTitle>
-        {etf.codigo && (
-          <CodeChip label={etf.codigo} color="primary" size="small" />
-        )}
+        {etf.codigo && <CodeChip label={etf.codigo} color="primary" size="small" />}
       </CardHeader>
-      <CardSubtitle variant="body2">
-        {etf.nomeCompletoETF}
-      </CardSubtitle>
+      <CardSubtitle variant="body2">{etf.nomeCompletoETF}</CardSubtitle>
 
       <CardInfo>
         <CardInfoLabel variant="body2">Cotas:</CardInfoLabel>
@@ -47,7 +43,7 @@ const ETFCard: React.FC<ETFCardProps> = ({ etf, handleCardClick }) => {
         <CardInfoValue variant="body1">{formatCNPJ(etf.informações?.cnpj)}</CardInfoValue>
       </CardInfo>
     </CardContainer>
-  );
-};
+  )
+}
 
-export default ETFCard;
+export default ETFCard

@@ -1,71 +1,71 @@
-import { Pagination } from "./common";
+import { Pagination } from './common'
 
 export interface FIIInformation {
-  cnpj: string;
-  site: string;
+  cnpj: string
+  site: string
 }
 
 export interface FII {
-  _id: string;
-  nomeCompletoFII: string;
-  nomeFII: string;
-  codigoFII: string;
-  codigo: string[];
-  quotaCount: string;
-  quotaDateApproved: string;
-  industria: string;
-  segmento: string;
-  informacoes: FIIInformation;
+  _id: string
+  nomeCompletoFII: string
+  nomeFII: string
+  codigoFII: string
+  codigo: string[]
+  quotaCount: string
+  quotaDateApproved: string
+  industria: string
+  segmento: string
+  informacoes: FIIInformation
 }
 
 export interface FIIListResponse {
-  result: FII[];
-  pagination: Pagination;
+  result: FII[]
+  pagination: Pagination
 }
 
 export interface FIIFilter {
-  nome?: string;
-  segmento?: string;
-  page?: number;
-  pageSize?: number;
-  sortBy?: string;
-  sortOrder?: "asc" | "desc";
+  nome?: string
+  segmento?: string
+  page?: number
+  pageSize?: number
+  sortBy?: string
+  sortOrder?: 'asc' | 'desc'
 }
 
 // FII Dividend related types
 export interface FIIDividendItem {
-  dataPagamento: string;
-  valor: string;
-  relativo: string;
-  dataAprovacao: string;
-  tipoDividendo: string;
-  ultimoDiaCom: string;
-  _id: string;
+  dataPagamento: string
+  valor: string
+  relativo: string
+  dataAprovacao: string
+  tipoDividendo: string
+  ultimoDiaCom: string
+  _id: string
 }
 
 export interface FIIDividendData {
-  _id: string;
-  nomeFII: string;
-  quantidade: string;
-  totalDividendos: number;
-  dividendos: FIIDividendItem[];
+  _id: string
+  nomeFII: string
+  quantidade: string
+  totalDividendos: number
+  dividendos: FIIDividendItem[]
 }
 
 export interface FIIDividendResponse {
-  success: boolean;
+  success: boolean
   data: {
-    result: FIIDividendData;
-    pagination: Pagination;
-  };
+    result: FIIDividendData
+    pagination: Pagination
+  }
 }
 
 export interface FIIDividendResponseData {
-  result: FIIDividendData;
-  pagination: Pagination;
+  result: FIIDividendData
+  pagination: Pagination
 }
 
 export interface FIIDividendFilter {
-  nomeFII?: string;
-  page?: number;
-  pageSize?: number;
+  nomeFII?: string
+  page?: number
+  pageSize?: number
 }

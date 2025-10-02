@@ -1,12 +1,12 @@
-import { Box } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 export const HeaderContainer = styled(Box)`
   padding: 8rem 0;
   position: relative;
   overflow: hidden;
   text-align: center;
-`;
+`
 
 export const HeaderContent = styled(Box)`
   position: relative;
@@ -20,4 +20,4 @@ export const HeaderContent = styled(Box)`
   h2 {
     margin: 0 auto;
   }
-`;
+`

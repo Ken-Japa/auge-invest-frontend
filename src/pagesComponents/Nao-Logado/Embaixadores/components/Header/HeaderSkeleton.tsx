@@ -1,46 +1,41 @@
-import { Skeleton } from "@mui/material";
-import { type FC } from 'react';
+import { type FC } from 'react'
 
-import { visitorColors } from "@/theme/palette/visitor";
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
 
-import { HeaderContainer } from "./styled";
-
-const SKELETON_STYLES = {
-    bgcolor: visitorColors.skeletonBackground
-} as const;
+import { HeaderContainer } from './styled'
 
 const SKELETON_DIMENSIONS = {
-    icon: { width: 60, height: 60 },
-    title: { width: 200, height: 60 },
-    subtitle: { width: 180, height: 40 },
-    description: { width: 500, height: 60 }
-} as const;
+  icon: { width: 60, height: 60 },
+  title: { width: 200, height: 60 },
+  subtitle: { width: 180, height: 40 },
+  description: { width: 500, height: 60 },
+} as const
 
 export const HeaderSkeleton: FC = () => (
-    <HeaderContainer spacing={3}>
-        <Skeleton 
-            variant="circular" 
-            width={SKELETON_DIMENSIONS.icon.width} 
-            height={SKELETON_DIMENSIONS.icon.height} 
-            sx={SKELETON_STYLES} 
-        />
-        <Skeleton 
-            variant="text" 
-            width={SKELETON_DIMENSIONS.title.width} 
-            height={SKELETON_DIMENSIONS.title.height} 
-            sx={SKELETON_STYLES} 
-        />
-        <Skeleton 
-            variant="text" 
-            width={SKELETON_DIMENSIONS.subtitle.width} 
-            height={SKELETON_DIMENSIONS.subtitle.height} 
-            sx={SKELETON_STYLES} 
-        />
-        <Skeleton 
-            variant="text" 
-            width={SKELETON_DIMENSIONS.description.width} 
-            height={SKELETON_DIMENSIONS.description.height} 
-            sx={SKELETON_STYLES} 
-        />
-    </HeaderContainer>
-);
+  <HeaderContainer spacing={3}>
+    <ContentSkeleton
+      type="avatar"
+      width={SKELETON_DIMENSIONS.icon.width}
+      height={SKELETON_DIMENSIONS.icon.height}
+      className="bg-[#ffffff0a] backdrop-blur-sm"
+    />
+    <ContentSkeleton
+      type="text"
+      width={SKELETON_DIMENSIONS.title.width}
+      height={SKELETON_DIMENSIONS.title.height}
+      className="bg-[#ffffff0a] backdrop-blur-sm"
+    />
+    <ContentSkeleton
+      type="text"
+      width={SKELETON_DIMENSIONS.subtitle.width}
+      height={SKELETON_DIMENSIONS.subtitle.height}
+      className="bg-[#ffffff0a] backdrop-blur-sm"
+    />
+    <ContentSkeleton
+      type="text"
+      width={SKELETON_DIMENSIONS.description.width}
+      height={SKELETON_DIMENSIONS.description.height}
+      className="bg-[#ffffff0a] backdrop-blur-sm"
+    />
+  </HeaderContainer>
+)

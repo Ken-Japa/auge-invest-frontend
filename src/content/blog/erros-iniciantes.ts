@@ -1,26 +1,19 @@
 export const post = {
-  id: "4",
-  title: "Os Maiores Erros de Investidores Iniciantes",
+  id: '4',
+  title: 'Os Maiores Erros de Investidores Iniciantes',
   description:
-    "Os investidores iniciantes frequentemente cometem erros comuns que podem custar caro em termos de retorno financeiro e estabilidade emocional. Este artigo analisa os maiores erros de investidores iniciantes e fornece dicas práticas para evitá-los.",
-  image: "",
-  category: ["economia", "educacional"],
-  author: "Auge Invest",
-  date: "2024-03-19",
-  slug: "erros-iniciantes",
-  tags: [
-    "investimentos",
-    "educação financeira",
-    "diversificação",
-    "controle emocional",
-    "dicas",
-    "timing",
-  ],
-  readTime: "15 min",
+    'Os investidores iniciantes frequentemente cometem erros comuns que podem custar caro em termos de retorno financeiro e estabilidade emocional. Este artigo analisa os maiores erros de investidores iniciantes e fornece dicas práticas para evitá-los.',
+  image: '',
+  category: ['economia', 'educacional'],
+  author: 'Auge Invest',
+  date: '2024-03-19',
+  slug: 'erros-iniciantes',
+  tags: ['investimentos', 'educação financeira', 'diversificação', 'controle emocional', 'dicas', 'timing'],
+  readTime: '15 min',
   relatedPosts: [
-    "analisetecnica-vs-analisefundamentalista",
-    "principais-indicadores-economicos",
-    "cicloeconomico",
+    'analisetecnica-vs-analisefundamentalista',
+    'principais-indicadores-economicos',
+    'cicloeconomico',
   ],
   content: `
 
@@ -90,4 +83,4 @@ Comece hoje mesmo a aplicar essas estratégias em seus investimentos. Se precisa
 [^1]: Markowitz, H. (1952). "Portfolio Selection". The Journal of Finance, 7(1), 77-91.
 [^2]: Malkiel, B. G. (1973). "A Random Walk Down Wall Street". W. W. Norton & Company.
 `,
-};
+}

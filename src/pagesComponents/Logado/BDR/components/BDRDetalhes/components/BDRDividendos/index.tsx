@@ -1,9 +1,9 @@
-"use client";
-import { Alert, CircularProgress, Tooltip, Typography } from '@mui/material';
+'use client'
+import { Alert, CircularProgress, Tooltip, Typography } from '@mui/material'
 
-import { formatCurrency } from '@/components/Utils/Formatters/formatters';
+import { formatCurrency } from '@/components/Helpers/Formatters/formatters'
 
-import BDRDividendTable from './BDRDividendTable';
+import BDRDividendTable from './BDRDividendTable'
 import {
   DividendContainer,
   DividendPaper,
@@ -14,34 +14,32 @@ import {
   SummaryItem,
   SummaryLabel,
   SummaryValue,
-} from './styled';
-import useBDRDividendosLogic from './useBDRDividendosLogic';
-
-
+} from './styled'
+import useBDRDividendosLogic from './useBDRDividendosLogic'
 
 interface BDRDividendosProps {
-  codigoEmpresa: string;
+  codigoEmpresa: string
 }
 
 interface BDRDividendosProps {
-  codigoEmpresa: string;
+  codigoEmpresa: string
 }
 
 const BDRDividendos = ({ codigoEmpresa }: BDRDividendosProps) => {
-  const { dividends, loading, error, summary } = useBDRDividendosLogic(codigoEmpresa);
+  const { dividends, loading, error, summary } = useBDRDividendosLogic(codigoEmpresa)
 
   const getStatusColor = (tipoDividendo: string) => {
     switch (tipoDividendo.toUpperCase()) {
       case 'DIVIDENDO':
-        return 'success';
+        return 'success'
       case 'RENDIMENTO':
-        return 'warning';
+        return 'warning'
       case 'AMORTIZAÇÃO':
-        return 'info';
+        return 'info'
       default:
-        return 'default';
+        return 'default'
     }
-  };
+  }
 
   if (loading) {
     return (
@@ -55,7 +53,7 @@ const BDRDividendos = ({ codigoEmpresa }: BDRDividendosProps) => {
           </LoadingContainer>
         </DividendPaper>
       </DividendContainer>
-    );
+    )
   }
 
   if (error) {
@@ -67,19 +65,17 @@ const BDRDividendos = ({ codigoEmpresa }: BDRDividendosProps) => {
           </ErrorContainer>
         </DividendPaper>
       </DividendContainer>
-    );
+    )
   }
 
   if (!dividends.length) {
-    return null;
+    return null
   }
 
   return (
     <DividendContainer>
       <DividendPaper>
-        <DividendTitle variant="h3">
-          Histórico de Dividendos {codigoEmpresa}
-        </DividendTitle>
+        <DividendTitle variant="h3">Histórico de Dividendos {codigoEmpresa}</DividendTitle>
 
         <DividendSummary>
           <SummaryItem>
@@ -107,7 +103,7 @@ const BDRDividendos = ({ codigoEmpresa }: BDRDividendosProps) => {
         <BDRDividendTable dividends={dividends} />
       </DividendPaper>
     </DividendContainer>
-  );
-};
+  )
+}
 
-export default BDRDividendos;
+export default BDRDividendos

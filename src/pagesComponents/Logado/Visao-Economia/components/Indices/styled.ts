@@ -1,47 +1,56 @@
-import { Box, Tab } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Box, IconButton, Tab } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 export const IndicesContainer = styled(Box)({
-  width: "100%",
-  height: "100%",
+  width: '100%',
+  height: '100%',
   minHeight: 400,
-  display: "flex",
-  flexDirection: "column",
-});
+  display: 'flex',
+  flexDirection: 'column',
+})
 
 export const TabsContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
+  display: 'flex',
+  alignItems: 'center',
   borderBottom: `1px solid ${
-    theme.palette.mode === "dark"
-      ? "rgba(255, 255, 255, 0.1)"
-      : "rgba(0, 0, 0, 0.1)"
+    theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
   }`,
-  padding: "0 8px",
-}));
+  padding: '0 8px',
+}))
 
 export const ChartContainer = styled(Box)(({ theme }) => ({
   flex: 1,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   color: theme.palette.text.secondary,
-  fontStyle: "italic",
-}));
+  fontStyle: 'italic',
+}))
 
 export const CustomTab = styled(Tab)(({ theme }) => ({
-  textTransform: "none",
+  textTransform: 'none',
   minHeight: 48,
-  padding: "0 16px",
+  padding: '0 16px',
   color: theme.palette.text.secondary,
-  "&.Mui-selected": {
+  '&.Mui-selected': {
     color: theme.palette.primary.main,
     fontWeight: 500,
   },
-}));
+}))
 
 export const TabActions = styled(Box)(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
+  display: 'flex',
+  alignItems: 'center',
   gap: theme.spacing(1),
-}));
+}))
+
+export const AddTabButton = styled(Tab)({
+  minWidth: '48px',
+})
+
+export const StyledIconButton = styled(IconButton)(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  '&:hover': {
+    color: theme.palette.primary.main,
+  },
+}))

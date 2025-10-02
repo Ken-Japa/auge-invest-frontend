@@ -1,289 +1,429 @@
 [
   {
     "id": "TC001",
-    "title": "User Registration Success",
-    "description": "Verify that a new user can successfully register with valid credentials via the registration form.",
+    "title": "User Registration with Valid Data",
+    "description": "Verify that a new user can successfully register with valid input data and receive confirmation of account creation.",
     "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to the registration page"
+        "description": "Navigate to the registration page."
       },
       {
         "type": "action",
-        "description": "Fill in valid user details including email, password, and any required fields"
+        "description": "Input valid user details including email, username, and password."
       },
       {
         "type": "action",
-        "description": "Submit the registration form"
+        "description": "Submit the registration form."
       },
       {
         "type": "assertion",
-        "description": "Verify registration is successful and user is redirected or notified appropriately"
+        "description": "Verify that registration is successful and user is redirected to the appropriate page or shown confirmation."
       }
     ]
   },
   {
     "id": "TC002",
-    "title": "User Registration with Existing Email",
-    "description": "Ensure registration fails when the user attempts to sign up with an email that already exists.",
+    "title": "User Registration with Invalid Email Format",
+    "description": "Ensure that the registration fails if the user inputs an invalid email format and a proper error message is displayed.",
     "category": "error handling",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to the registration page"
+        "description": "Navigate to the registration page."
       },
       {
         "type": "action",
-        "description": "Enter an email address that is already registered"
+        "description": "Input an invalid email format along with other valid fields."
       },
       {
         "type": "action",
-        "description": "Fill out other required fields"
-      },
-      {
-        "type": "action",
-        "description": "Submit the registration form"
+        "description": "Submit the registration form."
       },
       {
         "type": "assertion",
-        "description": "Verify that an appropriate error message is shown and registration is blocked"
+        "description": "Confirm that an appropriate error message is shown indicating invalid email."
       }
     ]
   },
   {
     "id": "TC003",
-    "title": "User Login Success",
-    "description": "Check that an existing user can log in using valid credentials.",
+    "title": "User Login with Correct Credentials",
+    "description": "Check that existing users can log in successfully with correct username/email and password.",
     "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to the login page"
+        "description": "Navigate to the login page."
       },
       {
         "type": "action",
-        "description": "Enter valid email and password"
+        "description": "Input valid username/email and password."
       },
       {
         "type": "action",
-        "description": "Click the login button"
+        "description": "Click the login button."
       },
       {
         "type": "assertion",
-        "description": "Verify that user is authenticated and redirected to main application page"
+        "description": "Verify that login succeeds and user is directed to the authenticated area."
       }
     ]
   },
   {
     "id": "TC004",
-    "title": "User Login with Invalid Credentials",
-    "description": "Verify that login fails and displays an error message for invalid username or password.",
+    "title": "User Login with Incorrect Password",
+    "description": "Validate that login fails when the user inputs incorrect password and error is handled gracefully.",
     "category": "error handling",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to the login page"
+        "description": "Navigate to the login page."
       },
       {
         "type": "action",
-        "description": "Enter an invalid email and/or password"
+        "description": "Input valid username/email but incorrect password."
       },
       {
         "type": "action",
-        "description": "Click the login button"
+        "description": "Click the login button."
       },
       {
         "type": "assertion",
-        "description": "Check that login is rejected with correct error message"
+        "description": "Check that appropriate error message is displayed and user remains on login page."
       }
     ]
   },
   {
     "id": "TC005",
-    "title": "Session Management After Login",
-    "description": "Confirm that user session persists after login and remains active across page refreshes.",
+    "title": "Session Persistence after Login",
+    "description": "Ensure that the user session persists after logging in and remains active across page reloads and browser restarts.",
     "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Log in successfully with valid credentials"
+        "description": "Log in with valid user credentials."
       },
       {
         "type": "action",
-        "description": "Reload or navigate through authenticated pages"
+        "description": "Reload the application or close and reopen the browser."
       },
       {
         "type": "assertion",
-        "description": "Verify session remains active and user stays logged in"
-      },
-      {
-        "type": "action",
-        "description": "Log out"
-      },
-      {
-        "type": "action",
-        "description": "Reload page after logout"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify session is cleared and user is no longer authenticated"
+        "description": "Verify that user remains logged in without needing to re-enter credentials."
       }
     ]
   },
   {
     "id": "TC006",
-    "title": "Access Company Management Without Authentication",
-    "description": "Ensure users who are not authenticated cannot access the company management pages or data.",
-    "category": "security",
+    "title": "Create New Company Data",
+    "description": "Verify that authenticated users can create a new company record using the company management interface.",
+    "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Attempt to navigate directly to the company management section without logging in"
+        "description": "Login as an authenticated user."
+      },
+      {
+        "type": "action",
+        "description": "Navigate to the company management section."
+      },
+      {
+        "type": "action",
+        "description": "Enter valid details to add a new company."
+      },
+      {
+        "type": "action",
+        "description": "Submit the company creation form."
       },
       {
         "type": "assertion",
-        "description": "Confirm that access is denied or user is redirected to login page"
+        "description": "Confirm that the new company appears in the list and is saved correctly."
       }
     ]
   },
   {
     "id": "TC007",
-    "title": "Load Public Home Page for Visitor",
-    "description": "Verify that the public home page loads correctly and displays accurate content for non-authenticated visitors.",
+    "title": "Edit Existing Company Data",
+    "description": "Confirm that authenticated users can edit the details of an existing company and the changes are persisted.",
     "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Access the app without logging in"
+        "description": "Log in as an authenticated user."
+      },
+      {
+        "type": "action",
+        "description": "Navigate to the company management interface."
+      },
+      {
+        "type": "action",
+        "description": "Select an existing company and change one or more fields."
+      },
+      {
+        "type": "action",
+        "description": "Save the changes."
       },
       {
         "type": "assertion",
-        "description": "Verify that the public home page is rendered with all key UI elements"
-      },
-      {
-        "type": "assertion",
-        "description": "Confirm accessibility of all public content and main application value propositions"
+        "description": "Verify that edits are saved and displayed correctly in the company list."
       }
     ]
   },
   {
     "id": "TC008",
-    "title": "Blog Posts Load and Display Correctly",
-    "description": "Ensure blog posts section loads all posts correctly and displays latest published content with titles, excerpts, and timestamps.",
+    "title": "Delete Company Data with Confirmation",
+    "description": "Validate that users can delete a company record after confirmation and it is removed from the list.",
     "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to the blog section"
-      },
-      {
-        "type": "assertion",
-        "description": "Verify the list of blog posts is displayed with correct titles, dates, and excerpts"
+        "description": "Login and navigate to company management."
       },
       {
         "type": "action",
-        "description": "Select a blog post to view details"
+        "description": "Initiate deletion of an existing company."
+      },
+      {
+        "type": "action",
+        "description": "Confirm the deletion action."
       },
       {
         "type": "assertion",
-        "description": "Confirm full blog content is rendered correctly"
+        "description": "Ensure the company is removed from the listing and no longer retrievable."
       }
     ]
   },
   {
     "id": "TC009",
-    "title": "API Integration Handles Successful Data Fetch",
-    "description": "Verify that the application correctly fetches data from APIs (e.g., authentication status, company data, blog content) and displays it.",
-    "category": "integration",
+    "title": "Public Home Page Loads and Displays Content",
+    "description": "Verify the public home page loads successfully and displays the intended overview and visitor engagement content.",
+    "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Trigger data fetches via UI or hooks (e.g., login status check, company list, blog posts)"
+        "description": "Open the application URL as an unauthenticated visitor."
       },
       {
         "type": "assertion",
-        "description": "Verify that the returned data is properly displayed in the UI and matches backend data"
+        "description": "Confirm that the home page loads without errors and shows welcome content."
       }
     ]
   },
   {
     "id": "TC010",
-    "title": "API Integration Handles Backend Errors Gracefully",
-    "description": "Test that the frontend handles API failures (e.g., network errors, server errors) by showing appropriate error messages and fallback UI.",
-    "category": "error handling",
-    "priority": "High",
+    "title": "Blog Post List Displays Correctly",
+    "description": "Ensure that the blog section lists available blog posts accurately with title, date, and snippet.",
+    "category": "functional",
+    "priority": "Medium",
     "steps": [
       {
         "type": "action",
-        "description": "Simulate backend API errors during data fetch or update"
+        "description": "Navigate to the blog page."
       },
       {
         "type": "assertion",
-        "description": "Check that user-visible error messages or notifications are displayed"
-      },
-      {
-        "type": "assertion",
-        "description": "Confirm the app remains stable and does not crash"
+        "description": "Verify that blog posts render correctly with all required metadata for each post."
       }
     ]
   },
   {
     "id": "TC011",
-    "title": "Middleware Request Processing",
-    "description": "Test middleware functions correctly intercept requests, modifies or redirects as intended, and handles unauthenticated access properly.",
-    "category": "security",
-    "priority": "High",
+    "title": "View Single Blog Post Content",
+    "description": "Check that selecting a blog post opens the full post content without errors and with correct formatting.",
+    "category": "functional",
+    "priority": "Medium",
     "steps": [
       {
         "type": "action",
-        "description": "Send requests as unauthenticated user to protected routes"
+        "description": "From the blog listing page, select a blog post."
       },
       {
         "type": "assertion",
-        "description": "Verify middleware blocks or redirects unauthorized access"
-      },
-      {
-        "type": "action",
-        "description": "Send requests as authenticated user"
-      },
-      {
-        "type": "assertion",
-        "description": "Confirm middleware allows passage and proper processing"
+        "description": "Verify full blog post content displays including text, images, and metadata."
       }
     ]
   },
   {
     "id": "TC012",
-    "title": "Theme Switching Applies Across Application",
-    "description": "Validate that changing the application theme updates styling consistently across all pages and components.",
+    "title": "API Integration Success on Data Fetch",
+    "description": "Confirm that the application successfully fetches data from backend APIs for user authentication and company info without errors.",
+    "category": "integration",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Trigger data fetch on login and company management components."
+      },
+      {
+        "type": "assertion",
+        "description": "Validate API responses are received, parsed, and data displayed accordingly."
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Graceful API Error Handling",
+    "description": "Test that the application handles backend API errors (such as 4xx, 5xx responses, or timeouts) gracefully, showing user-friendly error messages.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate API errors during authentication and company data requests."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm that appropriate error messages or fallback UI are displayed and application remains stable."
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "UI Components Render Consistently Across Themes",
+    "description": "Verify that reusable UI components render consistently and correctly under different application themes.",
     "category": "ui",
     "priority": "Medium",
     "steps": [
       {
         "type": "action",
-        "description": "Trigger the theme switch (e.g., light to dark mode) via UI control"
+        "description": "Switch application themes through the theme context or settings."
       },
       {
         "type": "assertion",
-        "description": "Verify that colors, backgrounds, and UI elements update accordingly throughout the app"
+        "description": "Check that all UI components adapt styling without visual glitches or layout problems."
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Application Theming Switch and Persistence",
+    "description": "Ensure the user can switch between defined application themes and the selected theme persists across sessions.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Change the theme from default to alternate available themes."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify theme changes apply immediately and are retained after page reload or new session."
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Unauthorized Access Restriction to Company Management",
+    "description": "Validate that unauthenticated users cannot access company management features and are redirected or shown access denied messages.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Attempt to navigate to company management pages without logging in."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the user is redirected to login or an access denied message is shown."
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Session Timeout and Reauthentication",
+    "description": "Check that when a user session expires, the application requires reauthentication before allowing access to protected features.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in and simulate session expiration."
       },
       {
         "type": "action",
-        "description": "Navigate between pages after theme change"
+        "description": "Attempt to access authenticated sections like company management."
       },
       {
         "type": "assertion",
-        "description": "Confirm theme selection is retained and consistent"
+        "description": "Verify that the user is prompted to log in again and cannot proceed without valid session."
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "Responsive Layout on Various Screen Sizes",
+    "description": "Verify that the application layout and components render correctly across multiple devices and screen sizes without layout breakage.",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open the application on mobile, tablet, and desktop screen sizes."
+      },
+      {
+        "type": "assertion",
+        "description": "Check that UI elements are properly arranged, readable, and interactive on all screen sizes."
+      }
+    ]
+  },
+  {
+    "id": "TC019",
+    "title": "Form Validation on Company Management Inputs",
+    "description": "Ensure that company management forms validate input fields correctly, disallow invalid data submission, and provide useful validation feedback.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to company data creation or editing forms."
+      },
+      {
+        "type": "action",
+        "description": "Enter invalid data formats such as empty required fields or invalid characters."
+      },
+      {
+        "type": "action",
+        "description": "Attempt to submit the form."
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that form submission is blocked and appropriate validation error messages appear."
+      }
+    ]
+  },
+  {
+    "id": "TC020",
+    "title": "Middleware Request Processing for Authenticated Routes",
+    "description": "Validate the middleware correctly processes and routes requests, ensuring only authenticated users access protected pages.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send requests to protected URLs without authentication."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm middleware blocks access and redirects to login or returns appropriate response."
+      },
+      {
+        "type": "action",
+        "description": "Send authenticated requests to protected URLs."
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm middleware allows access to authenticated users."
       }
     ]
   }

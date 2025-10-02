@@ -1,93 +1,78 @@
 // Importação de tipos externos
-import { PriceDataPoint as HistoricalPriceDataPoint } from "../../GraficoHistorico/services/historicalService";
-
-// Redefinição de tipos importados para centralização
-export interface PriceDataPoint extends HistoricalPriceDataPoint {
-  showLabel?: boolean;
-}
-
-// Tipos para componentes de análise de preços
-export interface AnalisePrecoProps {
-  codigoAtivo: string;
-}
+import { PriceDataPoint } from '@/pagesComponents/Logado/Empresa/components/EmpresaDetalhes/components/AnalisePrecos/utils/priceData'
 
 // Tipos para dados estatísticos
+/**
+ * Representa os dados estatísticos calculados para um conjunto de pontos de preço.
+ */
 export interface StatisticalData {
-  mean: number;
-  stdDev: number;
-  min: number;
-  max: number;
-  histogramData: {
-    price: number;
-    frequency: number;
-    normalValue: number;
-  }[];
+  mean: number
+  stdDev: number
+  min: number
+  max: number
+  histogramData: HistogramBin[]
 }
 
-// Tipos para períodos de análise
-export type AnalysisPeriod = "all" | "5y" | "2.5y" | "custom";
-
-// Tipos para dados de cada período
-export interface PeriodData {
-  label: string;
-  period: AnalysisPeriod;
-  data: PriceDataPoint[];
-  stats: StatisticalData | null;
+/**
+ * Representa um bin (intervalo) no histograma.
+ */
+export interface HistogramBin {
+  price: number
+  frequency: number
+  normalValue: number
 }
 
-// Tipos para linhas de desvio padrão
-export interface StdDevLine {
-  label: string;
-  value: number;
-}
+/**
+ * Define os períodos de análise disponíveis.
+ */
+export type AnalysisPeriod = 'all' | '5y' | '2.5y' | 'custom'
 
-// Tipos para áreas de heatmap
-export interface HeatmapArea {
-  label: string;
-  start: number;
-  end: number;
-  opacity: number;
-}
-
-// Tipos para sugestões de alertas
-export interface AlertSuggestion {
-  lowAlert: number;
-  highAlert: number;
-}
-
-// Tipos para alertas detalhados
+/**
+ * Representa um alerta detalhado com preço, porcentagem e datas.
+ */
 export interface DetailedAlert {
-  price: number;
-  percentage: number;
-  lastDate: Date | null;
-  daysSince: number | null;
+  price: number
+  percentage: number
+  lastDate: Date | null
+  daysSince: number | null
 }
 
-// Tipos para sugestões de alertas detalhados
+/**
+ * Contém sugestões de alertas para diferentes níveis de preço.
+ */
 export interface AlertSuggestions {
-  lowAlert90: DetailedAlert;
-  lowAlert80: DetailedAlert;
-  lowAlert70: DetailedAlert;
-  highAlert90: DetailedAlert;
-  highAlert80: DetailedAlert;
-  highAlert70: DetailedAlert;
+  lowAlert90: DetailedAlert
+  lowAlert80: DetailedAlert
+  lowAlert70: DetailedAlert
+  highAlert90: DetailedAlert
+  highAlert80: DetailedAlert
+  highAlert70: DetailedAlert
 }
 
 // Tipos para marcadores de gráfico
 export interface ChartMarker {
-  axis: 'x' | 'y';
-  value: number | string;
-  lineStyle: { stroke: string; strokeWidth: number; strokeDasharray?: string };
-  legend: string;
-  legendPosition: 'top' | 'bottom' | 'left' | 'right';
-  legendOrientation?: 'horizontal' | 'vertical';
-  textStyle: { fill: string };
+  axis: 'x' | 'y'
+  value: number | string
+  lineStyle: { stroke: string; strokeWidth: number; strokeDasharray?: string }
+  legend: string
+  legendPosition: 'top' | 'bottom' | 'left' | 'right'
+  legendOrientation?: 'horizontal' | 'vertical'
+  textStyle: { fill: string }
 }
 
 // Tipos para pontos de dados em gráficos
 export interface ChartDataPoint {
-  x: string;
-  y: number;
-  showLabel?: boolean;
-  originalData: PriceDataPoint;
+  x: string
+  y: number
+  showLabel?: boolean
+  originalData: PriceDataPoint
+}
+
+export interface StdDevLine {
+  label: string
+  value: number
+}
+
+export interface AnalisePrecoProps {
+  codigoAtivo: string
 }

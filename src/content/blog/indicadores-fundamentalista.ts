@@ -1,29 +1,24 @@
 export const post = {
-  id: "8",
-  title: "Indicadores Econômicos e Análise Fundamentalista",
+  id: '8',
+  title: 'Indicadores Econômicos e Análise Fundamentalista',
   description:
-    "Este artigo explora em profundidade os indicadores econômicos e a análise fundamentalista, focando nas razões financeiras como P/L (Preço/Lucro), P/VP (Preço/Valor Patrimonial) e Margem Líquida. Com exemplos práticos e referências de autores renomados, o texto oferece uma visão detalhada sobre como esses indicadores ajudam a avaliar a saúde financeira de uma empresa",
-  image: "",
-  category: ["fundamentalista", "indicadores"],
-  author: "Auge Invest",
-  date: "2024-03-20",
-  slug: "indicadores-fundamentalista",
+    'Este artigo explora em profundidade os indicadores econômicos e a análise fundamentalista, focando nas razões financeiras como P/L (Preço/Lucro), P/VP (Preço/Valor Patrimonial) e Margem Líquida. Com exemplos práticos e referências de autores renomados, o texto oferece uma visão detalhada sobre como esses indicadores ajudam a avaliar a saúde financeira de uma empresa',
+  image: '',
+  category: ['fundamentalista', 'indicadores'],
+  author: 'Auge Invest',
+  date: '2024-03-20',
+  slug: 'indicadores-fundamentalista',
   tags: [
-    "indicadores economicos",
-    "análise fundamentalista",
-    "razões financeiras",
-    "P/L",
-    "P/VP",
-    "margem líquida",
-    "saúde financeira",
+    'indicadores economicos',
+    'análise fundamentalista',
+    'razões financeiras',
+    'P/L',
+    'P/VP',
+    'margem líquida',
+    'saúde financeira',
   ],
-  readTime: "20 min",
-  relatedPosts: [
-    "cicloeconomico",
-    "analise-fundamentalista",
-    "valuation",
-    "indicadores-fundamentalista2",
-  ],
+  readTime: '20 min',
+  relatedPosts: ['cicloeconomico', 'analise-fundamentalista', 'valuation', 'indicadores-fundamentalista2'],
   content: `
 Avaliar a saúde financeira de uma empresa antes de investir é uma prática essencial para qualquer investidor. A análise fundamentalista, que se baseia em indicadores econômicos e razões financeiras, é uma ferramenta poderosa para essa avaliação. Neste artigo, vamos explorar em profundidade três indicadores cruciais: P/L (Preço/Lucro), P/VP (Preço/Valor Patrimonial) e Margem Líquida. Com exemplos práticos e referências de autores renomados, ofereceremos uma visão detalhada sobre como esses indicadores podem ser utilizados para tomar decisões de investimento informadas.
 
@@ -198,4 +193,4 @@ Incentivamos os leitores a aplicarem esses conhecimentos em suas próprias anál
 
 A análise detalhada e informada é essencial para o sucesso dos investimentos. Lembre-se de que o conhecimento é a chave para o sucesso nos investimentos, e esperamos que este artigo tenha fornecido insights valiosos para suas decisões de investimento.
     `,
-};
+}

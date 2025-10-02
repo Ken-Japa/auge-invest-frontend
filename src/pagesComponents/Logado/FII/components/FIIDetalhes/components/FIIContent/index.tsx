@@ -1,18 +1,16 @@
-import { Grid } from '@mui/material';
+import { Grid } from '@mui/material'
+import { lazy, Suspense } from 'react'
 
-import { FIIExtended } from '../../../../../components/FIIs/types';
-import {
-  DetailContainer,
-  DetailPaper,
-  SectionDivider,
-} from '../../styled';
-import FIIDividendos from '../FIIDividendos';
-import FIIDescription from './FIIDescription';
-import FIIHeader from './FIIHeader';
-import FIIInfoSection from './FIIInfoSection';
+import { FIIExtended } from '../../../../../components/FIIs/types'
+import { DetailContainer, DetailPaper, SectionDivider } from '../../styled'
+import FIIHeader from './FIIHeader'
+import FIIInfoSection from './FIIInfoSection'
+
+const LazyFIIDividendos = lazy(() => import('../FIIDividendos'))
+const LazyFIIDescription = lazy(() => import('./FIIDescription'))
 
 interface FIIContentProps {
-  fii: FIIExtended;
+  fii: FIIExtended
 }
 
 export const FIIContent = ({ fii }: FIIContentProps) => (
@@ -20,11 +18,7 @@ export const FIIContent = ({ fii }: FIIContentProps) => (
     <DetailPaper>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <FIIHeader
-            nomeFII={fii.nomeFII}
-            nomeCompletoFII={fii.nomeCompletoFII}
-            codigos={fii.codigo}
-          />
+          <FIIHeader nomeFII={fii.nomeFII} nomeCompletoFII={fii.nomeCompletoFII} codigos={fii.codigo} />
         </Grid>
 
         <Grid item xs={12}>
@@ -45,10 +39,16 @@ export const FIIContent = ({ fii }: FIIContentProps) => (
         </Grid>
 
         {/* <Grid item xs={12}>
-          <FIIDescription description={fii.informacoes.cnpj} />
+          <Suspense fallback={<div>Loading Description...</div>}>
+            <LazyFIIDescription description={fii.informacoes.cnpj} />
+          </Suspense>
         </Grid> */}
       </Grid>
     </DetailPaper>
-    {fii.nomeFII && <FIIDividendos nomeFII={fii.nomeFII} />}
+    {fii.nomeFII && (
+      <Suspense fallback={<div>Loading Dividends...</div>}>
+        <LazyFIIDividendos nomeFII={fii.nomeFII} />
+      </Suspense>
+    )}
   </DetailContainer>
-);
+)

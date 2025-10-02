@@ -1,10 +1,10 @@
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import { Box, Button, Typography } from '@mui/material';
-import React from 'react';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import { Box, Button, Typography } from '@mui/material'
+import React from 'react'
 
 interface ErrorDisplayProps {
-  message?: string;
-  onRetry?: () => void;
+  message?: string
+  onRetry?: () => void
 }
 
 /**
@@ -14,7 +14,7 @@ interface ErrorDisplayProps {
  * @param {() => void} [props.onRetry] - Callback function to execute when the retry button is clicked.
  */
 export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
-  message = "Ocorreu um erro inesperado.",
+  message = 'Ocorreu um erro inesperado.',
   onRetry,
 }) => {
   return (
@@ -38,5 +38,5 @@ export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
         </Button>
       )}
     </Box>
-  );
-};
+  )
+}

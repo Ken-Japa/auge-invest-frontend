@@ -1,26 +1,26 @@
 export const post = {
-  id: "3",
-  title: "Análise Fundamentalista vs. Análise Técnica",
+  id: '3',
+  title: 'Análise Fundamentalista vs. Análise Técnica',
   description:
-    "Descubra as diferenças entre Análise Fundamentalista e Análise Técnica, suas vantagens e desvantagens, e aprenda como combiná-las para tomar decisões de investimento mais informadas",
-  image: "",
-  category: ["economia", "educacional"],
-  author: "Auge Invest",
-  date: "2024-03-18",
-  slug: "analisetecnica-vs-analisefundamentalista",
+    'Descubra as diferenças entre Análise Fundamentalista e Análise Técnica, suas vantagens e desvantagens, e aprenda como combiná-las para tomar decisões de investimento mais informadas',
+  image: '',
+  category: ['economia', 'educacional'],
+  author: 'Auge Invest',
+  date: '2024-03-18',
+  slug: 'analisetecnica-vs-analisefundamentalista',
   tags: [
-    "investimentos",
-    "análise fundamentalista",
-    "análise técnica",
-    "mercado de ações",
-    "estratégias de investimento",
-    "economia",
+    'investimentos',
+    'análise fundamentalista',
+    'análise técnica',
+    'mercado de ações',
+    'estratégias de investimento',
+    'economia',
   ],
-  readTime: "15 min",
+  readTime: '15 min',
   relatedPosts: [
-    "principais-indicadores-economicos",
-    "analise-fundamentalista",
-    "indicadores-fundamentalista",
+    'principais-indicadores-economicos',
+    'analise-fundamentalista',
+    'indicadores-fundamentalista',
   ],
   content: `
 No mundo dos investimentos, escolher a abordagem certa para analisar o mercado de ações é crucial para o sucesso. Dois métodos amplamente utilizados são a **Análise Fundamentalista** e a **Análise Técnica**. Enquanto ambas têm como objetivo ajudar os investidores a tomar decisões informadas, elas se baseiam em princípios e premissas distintas. Neste artigo, vamos explorar as diferenças entre essas duas abordagens, seus prós e contras, e como combiná-las para maximizar os resultados.
@@ -108,4 +108,4 @@ Escolher entre Análise Fundamentalista e Análise Técnica depende de seus obje
 Para aprofundar seus conhecimentos, sugiro a leitura de *"Technical Analysis of the Financial Markets"* de John J. Murphy para análise técnica e *"Common Stocks and Uncommon Profits"* de Philip Fisher para análise fundamentalista.
 
  `,
-};
+}

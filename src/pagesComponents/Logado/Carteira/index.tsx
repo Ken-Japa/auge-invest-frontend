@@ -1,77 +1,61 @@
-"use client";
+'use client'
 
-import { Container } from '@mui/material';
-import { useSession } from 'next-auth/react';
+import { Container } from '@mui/material'
+import { useSession } from 'next-auth/react'
 
-import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary';
-import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad';
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper';
-import { PageBackground } from '@/components/Layout/PageBackground';
-import { PageTransition } from '@/components/Utils/PageTransition';
+import { PageTitle, SectionContainer } from '@/components/Component-Styles/SharedStyledComponents'
+import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
+import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
+import { PageTransition } from '@/components/Helpers/PageTransition'
+import { PageBackground } from '@/components/Layout/PageBackground'
 
-import { PositionSection } from './components';
-import { FocusProvider } from './components/RecentActivities/components/FocusContext/FocusContext';
-import { WalletSection } from './components/WalletSection';
-import { RecentActivitiesProvider } from './context/RecentActivitiesContext';
-import { PageTitle, SectionContainer } from './styled';
+import { PositionSection } from './components'
+import { FocusProvider } from './components/RecentActivities/components/FocusContext/FocusContext'
+import { WalletSection } from './components/WalletSection'
+import { RecentActivitiesProvider } from './context/RecentActivitiesContext'
 
 export const Dashboard = () => {
-    const { data: session } = useSession();
+  const { data: session } = useSession()
 
-    return (
-        <PageTransition direction="up" duration={0.4} distance={30}>
-            <ErrorBoundary>
-                <PageBackground imageName="Dashboard">
-                    <Container maxWidth="xl">
-                        <PageTitle variant="h2" >
-                            Posição de {session?.user?.name}
-                        </PageTitle>
-                        <RecentActivitiesProvider>
-                            <FocusProvider>
-                                <SectionContainer>
-                                    <SuspenseWrapper>
-                                        {/* Posições Reais */}
-                                        <ProgressiveLoad delay={0.2}>
-                                            <PositionSection
-                                                title="Posições Reais"
-                                                type="real"
-                                            />
-                                        </ProgressiveLoad>
+  return (
+    <PageTransition direction="up" duration={0.4} distance={30}>
+      <ErrorBoundary>
+        <PageBackground imageName="Dashboard">
+          <Container maxWidth="xl">
+            <PageTitle variant="h2">Posição de {session?.user?.name}</PageTitle>
+            <RecentActivitiesProvider>
+              <FocusProvider>
+                <SectionContainer>
+                  <SuspenseWrapper>
+                    {/* Posições Reais */}
+                    <ProgressiveLoad delay={0.2}>
+                      <PositionSection title="Posições Reais" type="real" />
+                    </ProgressiveLoad>
 
-                                        <ProgressiveLoad delay={0.6}>
-                                            <WalletSection
-                                                title="Minhas Carteiras"
-                                                isSimulated={false}
-                                            />
-                                        </ProgressiveLoad>
+                    <ProgressiveLoad delay={0.6}>
+                      <WalletSection title="Minhas Carteiras" isSimulated={false} />
+                    </ProgressiveLoad>
+                  </SuspenseWrapper>
+                </SectionContainer>
 
-                                    </SuspenseWrapper>
-                                </SectionContainer>
+                <SectionContainer>
+                  <SuspenseWrapper>
+                    {/* Posições Simuladas */}
+                    <ProgressiveLoad delay={0.2}>
+                      <PositionSection title="Simulações" type="virtual" />
+                    </ProgressiveLoad>
 
-                                <SectionContainer>
-                                    <SuspenseWrapper>
-                                        {/* Posições Simuladas */}
-                                        <ProgressiveLoad delay={0.2}>
-                                            <PositionSection
-                                                title="Simulações"
-                                                type="virtual"
-                                            />
-                                        </ProgressiveLoad>
-
-                                        <ProgressiveLoad delay={0.6}>
-                                            <WalletSection
-                                                title="Simulações"
-                                                isSimulated={true}
-                                            />
-                                        </ProgressiveLoad>
-
-                                    </SuspenseWrapper>
-                                </SectionContainer>
-                            </FocusProvider>
-                        </RecentActivitiesProvider>
-                    </Container>
-                </PageBackground>
-            </ErrorBoundary>
-        </PageTransition>
-    );
-};
+                    <ProgressiveLoad delay={0.6}>
+                      <WalletSection title="Simulações" isSimulated={true} />
+                    </ProgressiveLoad>
+                  </SuspenseWrapper>
+                </SectionContainer>
+              </FocusProvider>
+            </RecentActivitiesProvider>
+          </Container>
+        </PageBackground>
+      </ErrorBoundary>
+    </PageTransition>
+  )
+}

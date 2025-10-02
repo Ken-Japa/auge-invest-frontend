@@ -6,20 +6,20 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography
-} from '@mui/material';
-import { ReactNode } from 'react';
+  Typography,
+} from '@mui/material'
+import { ReactNode } from 'react'
 
-import { NoDataMessage,TableWrapper } from './styled';
+import { NoDataMessage, TableWrapper } from './styled'
 
 interface StyledTableProps {
-  headers: string[];
-  children: ReactNode;
-  noDataMessage?: string;
-  noDataDescription?: string;
-  alignments?: ('left' | 'center' | 'right')[];
-  showData: boolean;
-  loading?: boolean;
+  headers: string[]
+  children: ReactNode
+  noDataMessage?: string
+  noDataDescription?: string
+  alignments?: ('left' | 'center' | 'right')[]
+  showData: boolean
+  loading?: boolean
 }
 
 export const StyledTable = ({
@@ -29,17 +29,15 @@ export const StyledTable = ({
   noDataDescription,
   alignments,
   showData,
-  loading = false
+  loading = false,
 }: StyledTableProps) => {
   if (!showData && !loading) {
     return (
       <NoDataMessage>
         <Typography variant="h6">{noDataMessage}</Typography>
-        {noDataDescription && (
-          <Typography variant="body2">{noDataDescription}</Typography>
-        )}
+        {noDataDescription && <Typography variant="body2">{noDataDescription}</Typography>}
       </NoDataMessage>
-    );
+    )
   }
 
   return (
@@ -49,20 +47,15 @@ export const StyledTable = ({
           <TableHead>
             <TableRow>
               {headers.map((header, index) => (
-                <TableCell 
-                  key={index} 
-                  align={alignments ? alignments[index] : 'left'}
-                >
+                <TableCell key={index} align={alignments ? alignments[index] : 'left'}>
                   {header}
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
-            {children}
-          </TableBody>
+          <TableBody>{children}</TableBody>
         </Table>
       </TableContainer>
     </TableWrapper>
-  );
-};
+  )
+}

@@ -1,16 +1,11 @@
-import { Grid } from '@mui/material';
-import Link from 'next/link';
+import { Grid } from '@mui/material'
+import Link from 'next/link'
 
-import { UnifiedBDR } from '../../../types';
-import {
-  BDRName,
-  CodeChip,
-  GridContainer,
-  StyledCard,
-  StyledCardContent} from './styled';
+import { UnifiedBDR } from '../../../types'
+import { BDRName, CodeChip, GridContainer, StyledCard, StyledCardContent } from './styled'
 
 interface GridViewProps {
-  bdrs: UnifiedBDR[];
+  bdrs: UnifiedBDR[]
 }
 
 export const GridView = ({ bdrs }: GridViewProps) => {
@@ -22,31 +17,21 @@ export const GridView = ({ bdrs }: GridViewProps) => {
             <StyledCard>
               <StyledCardContent>
                 <Link href={`/bdr/${bdr.nomeEmpresaCompleto}`} style={{ textDecoration: 'none' }}>
-                  <BDRName>
-                    {bdr.nomeEmpresaCompleto}
-                  </BDRName>
+                  <BDRName>{bdr.nomeEmpresaCompleto}</BDRName>
                 </Link>
 
                 {bdr.codigo && (
                   <Link href={`/bdr/${bdr.codigo}`} style={{ textDecoration: 'none' }}>
-                    <CodeChip
-                      label={bdr.codigo}
-                      size="small"
-                      variant="filled"
-                      color="primary"
-                    />
+                    <CodeChip label={bdr.codigo} size="small" variant="filled" color="primary" />
                   </Link>
                 )}
-
-
-
               </StyledCardContent>
             </StyledCard>
           </Grid>
         ))}
       </Grid>
     </GridContainer>
-  );
-};
+  )
+}
 
-export default GridView;
+export default GridView

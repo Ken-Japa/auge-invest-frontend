@@ -1,12 +1,12 @@
-import { Box, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { motion } from "framer-motion";
+import { Box, Typography } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import { motion } from 'framer-motion'
 
 export const FooterContainer = styled(motion.footer)`
   background-color: #111111;
   padding: 4rem 0;
   width: 100%;
-`;
+`
 
 export const TopSection = styled(Box)`
   display: flex;
@@ -15,7 +15,7 @@ export const TopSection = styled(Box)`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
-`;
+`
 
 export const NavigationGrid = styled(Box)`
   display: grid;
@@ -28,7 +28,7 @@ export const NavigationGrid = styled(Box)`
     grid-template-columns: repeat(2, minmax(140px, 1fr));
     gap: 1.5rem;
   }
-`;
+`
 
 export const MainContent = styled(Box)`
   display: flex;
@@ -46,7 +46,7 @@ export const MainContent = styled(Box)`
       max-width: 350px;
     }
   }
-`;
+`
 
 export const LogoSection = styled(Box)`
   display: flex;
@@ -61,7 +61,7 @@ export const LogoSection = styled(Box)`
     align-items: center;
     text-align: center;
   }
-`;
+`
 
 export const NavigationSection = styled(Box)`
   display: flex;
@@ -76,7 +76,7 @@ export const NavigationSection = styled(Box)`
     max-width: 600px;
     margin: 0 2rem;
   }
-`;
+`
 
 export const SocialSection = styled(Box)`
   color: white;
@@ -90,7 +90,7 @@ export const SocialSection = styled(Box)`
   @media (min-width: 768px) {
     align-items: center;
   }
-`;
+`
 
 export const SectionTitle = styled(Typography)`
   color: white;
@@ -101,7 +101,7 @@ export const SectionTitle = styled(Typography)`
   display: inline-block;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: -8px;
     left: 50%;
@@ -116,4 +116,4 @@ export const SectionTitle = styled(Typography)`
   &:hover::after {
     width: 60px;
   }
-`;
+`

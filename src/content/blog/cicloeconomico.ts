@@ -1,26 +1,26 @@
 export const post = {
-  id: "5",
-  title: "Ciclo Econômico e Seus Impactos nos Investimentos",
+  id: '5',
+  title: 'Ciclo Econômico e Seus Impactos nos Investimentos',
   description:
-    "Entenda as fases do ciclo econômico—expansão, pico, recessão e recuperação—e como cada uma delas influencia diferentes tipos de ativos, setores e estratégias de investimento. Como o investidor pode entender o momento da economia e ajustar sua carteira de acordo com a fase do ciclo",
-  image: "",
-  category: ["economia", "educacional"],
-  author: "Auge Invest",
-  date: "2024-03-19",
-  slug: "cicloeconomico",
+    'Entenda as fases do ciclo econômico—expansão, pico, recessão e recuperação—e como cada uma delas influencia diferentes tipos de ativos, setores e estratégias de investimento. Como o investidor pode entender o momento da economia e ajustar sua carteira de acordo com a fase do ciclo',
+  image: '',
+  category: ['economia', 'educacional'],
+  author: 'Auge Invest',
+  date: '2024-03-19',
+  slug: 'cicloeconomico',
   tags: [
-    "ciclos economicos",
-    "expansão econômica",
-    "recessão",
-    "recuperação econômica",
-    "estratégias de investimento",
-    "títulos de dívida",
+    'ciclos economicos',
+    'expansão econômica',
+    'recessão',
+    'recuperação econômica',
+    'estratégias de investimento',
+    'títulos de dívida',
   ],
-  readTime: "15 min",
+  readTime: '15 min',
   relatedPosts: [
-    "principais-indicadores-economicos",
-    "analisetecnica-vs-analisefundamentalista",
-    "analise-setorial",
+    'principais-indicadores-economicos',
+    'analisetecnica-vs-analisefundamentalista',
+    'analise-setorial',
   ],
   content: `
 O ciclo econômico é um fenômeno recorrente que afeta todas as economias do mundo. Compreender suas fases—expansão, pico, recessão e recuperação—é crucial para investidores que desejam ajustar suas carteiras de acordo com o momento econômico. Este artigo detalha cada fase do ciclo econômico e explica como elas influenciam diferentes tipos de ativos, setores e estratégias de investimento.
@@ -111,4 +111,4 @@ Acompanhe regularmente as análises econômicas e financeiras para estar sempre 
 
 
 `,
-};
+}

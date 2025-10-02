@@ -1,103 +1,123 @@
-import { useCallback,useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react'
 
-import { Wallet } from '@/services/api/types';
+import { Wallet } from '@/services/api/types'
 
-import { useWalletData } from './useWalletData';
+import { useDialogState } from './useDialogState'
+import { useWalletData } from './useWalletData'
 
 interface UseWalletSectionLogicProps {
-    isSimulated?: boolean;
+  isSimulated?: boolean
 }
 
 export const useWalletSectionLogic = ({ isSimulated }: UseWalletSectionLogicProps) => {
-    const { wallets, loading, error, fetchWallets, handleCreateWallet, handleUpdateWallet, handleConfirmDelete, walletPositions, loadingPositions, errorPositions, fetchWalletPositions } = useWalletData(isSimulated);
+  const {
+    wallets,
+    loading,
+    error,
+    fetchWallets,
+    handleCreateWallet,
+    handleUpdateWallet,
+    handleConfirmDelete,
+    walletPositions,
+    loadingPositions,
+    errorPositions,
+    fetchWalletPositions,
+  } = useWalletData(isSimulated)
 
-    const [openAddDialog, setOpenAddDialog] = useState<boolean>(false);
-    const [expanded, setExpanded] = useState<string | false>(false);
-    const [openEditDialog, setOpenEditDialog] = useState<boolean>(false);
-    const [editingWallet, setEditingWallet] = useState<Wallet | null>(null);
-    const [openDeleteConfirm, setOpenDeleteConfirm] = useState<boolean>(false);
-    const [walletToDelete, setWalletToDelete] = useState<string | null>(null);
+  const {
+    openAddDialog,
+    handleOpenAddDialog,
+    handleCloseAddDialog,
+    openEditDialog,
+    handleOpenEditDialog,
+    handleCloseEditDialog,
+    openDeleteConfirm,
+    handleOpenDeleteConfirm,
+    handleCloseDeleteConfirm,
+  } = useDialogState()
 
-    useEffect(() => {
-        fetchWallets();
-    }, [fetchWallets]);
+  const [expanded, setExpanded] = useState<string | false>(false)
+  const [editingWallet, setEditingWallet] = useState<Wallet | null>(null)
+  const [walletToDelete, setWalletToDelete] = useState<string | null>(null)
 
-    const handleOpenAddDialog = useCallback(() => {
-        setOpenAddDialog(true);
-    }, []);
+  useEffect(() => {
+    fetchWallets()
+  }, [fetchWallets])
 
-    const handleCloseAddDialog = useCallback(() => {
-        setOpenAddDialog(false);
-    }, []);
+  const handleCreateWalletAndCloseDialog = useCallback(
+    async (name: string, description: string, simulated: boolean) => {
+      await handleCreateWallet(name, description, simulated)
+      handleCloseAddDialog()
+    },
+    [handleCreateWallet, handleCloseAddDialog],
+  )
 
-    const handleCreateWalletAndCloseDialog = useCallback(async (name: string, description: string, simulated: boolean) => {
-        await handleCreateWallet(name, description, simulated);
-        handleCloseAddDialog();
-    }, [handleCreateWallet, handleCloseAddDialog]);
+  const handleAccordionChange = useCallback(
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false)
+    },
+    [],
+  )
 
-    const handleAccordionChange = useCallback((panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-        setExpanded(isExpanded ? panel : false);
-    }, []);
+  const collapseAccordion = useCallback(() => {
+    setExpanded(false)
+  }, [])
 
-    const collapseAccordion = useCallback(() => {
-        setExpanded(false);
-    }, []);
+  const handleEditWallet = useCallback(
+    (wallet: Wallet) => {
+      setEditingWallet(wallet)
+      handleOpenEditDialog()
+    },
+    [handleOpenEditDialog],
+  )
 
-    const handleEditWallet = useCallback((wallet: Wallet) => {
-        setEditingWallet(wallet);
-        setOpenEditDialog(true);
-    }, []);
+  const handleUpdateWalletAndCloseDialog = useCallback(
+    async (walletId: string, name: string, description: string, simulated: boolean) => {
+      await handleUpdateWallet(walletId, name, description, simulated)
+      handleCloseEditDialog()
+      setEditingWallet(null)
+    },
+    [handleUpdateWallet, handleCloseEditDialog],
+  )
 
-    const handleUpdateWalletAndCloseDialog = useCallback(async (walletId: string, name: string, description: string, simulated: boolean) => {
-        await handleUpdateWallet(walletId, name, description, simulated);
-        setOpenEditDialog(false);
-        setEditingWallet(null);
-    }, [handleUpdateWallet]);
+  const handleDeleteWallet = useCallback(
+    (walletId: string) => {
+      setWalletToDelete(walletId)
 
-    const handleDeleteWallet = useCallback((walletId: string) => {
-        setWalletToDelete(walletId);
-        setOpenDeleteConfirm(true);
-    }, []);
+      handleOpenDeleteConfirm()
+    },
+    [handleOpenDeleteConfirm],
+  )
 
-    const handleConfirmDeleteAndCloseDialog = useCallback(async () => {
-        await handleConfirmDelete(walletToDelete as string);
-        setOpenDeleteConfirm(false);
-        setWalletToDelete(null);
-    }, [handleConfirmDelete, walletToDelete]);
+  const handleConfirmDeleteAndCloseDialog = useCallback(async () => {
+    await handleConfirmDelete(walletToDelete as string)
+    handleCloseDeleteConfirm()
+    setWalletToDelete(null)
+  }, [handleConfirmDelete, walletToDelete, handleCloseDeleteConfirm])
 
-    const handleCloseEditDialog = useCallback(() => {
-        setOpenEditDialog(false);
-        setEditingWallet(null);
-    }, []);
-
-    const handleCloseDeleteConfirm = useCallback(() => {
-        setOpenDeleteConfirm(false);
-        setWalletToDelete(null);
-    }, []);
-
-    return {
-        wallets,
-        loading,
-        error,
-        walletPositions,
-        loadingPositions,
-        errorPositions,
-        fetchWalletPositions,
-        openAddDialog,
-        expanded,
-        openEditDialog,
-        editingWallet,
-        openDeleteConfirm,
-        handleOpenAddDialog,
-        handleCloseAddDialog,
-        handleCreateWalletAndCloseDialog,
-        handleAccordionChange,
-        handleEditWallet,
-        handleUpdateWalletAndCloseDialog,
-        handleDeleteWallet,
-        handleConfirmDeleteAndCloseDialog,
-        handleCloseEditDialog,
-        handleCloseDeleteConfirm,
-        collapseAccordion,
-    };
-};
+  return {
+    wallets,
+    loading,
+    error,
+    walletPositions,
+    loadingPositions,
+    errorPositions,
+    fetchWalletPositions,
+    openAddDialog,
+    expanded,
+    openEditDialog,
+    editingWallet,
+    openDeleteConfirm,
+    handleOpenAddDialog,
+    handleCloseAddDialog,
+    handleCreateWalletAndCloseDialog,
+    handleAccordionChange,
+    handleEditWallet,
+    handleUpdateWalletAndCloseDialog,
+    handleDeleteWallet,
+    handleConfirmDeleteAndCloseDialog,
+    handleCloseEditDialog: handleCloseEditDialog,
+    handleCloseDeleteConfirm: handleCloseDeleteConfirm,
+    collapseAccordion,
+  }
+}

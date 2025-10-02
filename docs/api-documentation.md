@@ -1,6 +1,7 @@
 # Documentação da API - Auge Invest
 
 ## Sumário
+
 - [Autenticação](#autenticação)
 - [Ativos](#ativos)
 - [Posições do Usuário](#posições-do-usuário)
@@ -16,6 +17,7 @@
 **Descrição:** Autentica um usuário e retorna um token JWT
 
 **Corpo da Requisição:**
+
 ```json
 {
   "email": "usuario@exemplo.com",
@@ -24,6 +26,7 @@
 ```
 
 **Resposta de Sucesso:**
+
 ```json
 {
   "user": {
@@ -36,6 +39,7 @@
 ```
 
 **Códigos de Status:**
+
 - 200 OK - Autenticação bem-sucedida
 - 401 Unauthorized - Credenciais inválidas
 - 500 Internal Server Error - Erro no servidor
@@ -47,6 +51,7 @@
 **Descrição:** Registra um novo usuário
 
 **Corpo da Requisição:**
+
 ```json
 {
   "name": "Nome do Usuário",
@@ -56,6 +61,7 @@
 ```
 
 **Resposta de Sucesso:**
+
 ```json
 {
   "user": {
@@ -68,6 +74,7 @@
 ```
 
 **Códigos de Status:**
+
 - 201 Created - Usuário criado com sucesso
 - 400 Bad Request - Dados inválidos
 - 409 Conflict - Email já registrado
@@ -82,12 +89,14 @@
 **Descrição:** Retorna uma lista paginada de ativos
 
 **Parâmetros de Consulta:**
+
 - `type` (opcional): Filtrar por tipo de ativo (stocks, fiis, etc.)
 - `search` (opcional): Termo de busca para nome ou símbolo do ativo
 - `page` (opcional): Número da página para paginação (padrão: 1)
 - `limit` (opcional): Número de itens por página (padrão: 10)
 
 **Resposta de Sucesso:**
+
 ```json
 {
   "data": [
@@ -109,6 +118,7 @@
 ```
 
 **Códigos de Status:**
+
 - 200 OK - Requisição bem-sucedida
 - 400 Bad Request - Parâmetros inválidos
 - 500 Internal Server Error - Erro no servidor
@@ -120,9 +130,11 @@
 **Descrição:** Retorna informações detalhadas sobre um ativo específico
 
 **Parâmetros de URL:**
+
 - `symbol`: Símbolo do ativo (ex: PETR4)
 
 **Resposta de Sucesso:**
+
 ```json
 {
   "id": "1",
@@ -141,6 +153,7 @@
 ```
 
 **Códigos de Status:**
+
 - 200 OK - Requisição bem-sucedida
 - 404 Not Found - Ativo não encontrado
 - 500 Internal Server Error - Erro no servidor
@@ -154,9 +167,11 @@
 **Descrição:** Retorna as posições de investimento do usuário
 
 **Cabeçalhos Necessários:**
+
 - `Authorization: Bearer {token}`
 
 **Resposta de Sucesso:**
+
 ```json
 {
   "data": [
@@ -184,6 +199,7 @@
 ```
 
 **Códigos de Status:**
+
 - 200 OK - Requisição bem-sucedida
 - 401 Unauthorized - Não autenticado
 - 500 Internal Server Error - Erro no servidor
@@ -195,9 +211,11 @@
 **Descrição:** Cria uma nova posição de investimento
 
 **Cabeçalhos Necessários:**
+
 - `Authorization: Bearer {token}`
 
 **Corpo da Requisição:**
+
 ```json
 {
   "name": "Nova Carteira",
@@ -206,6 +224,7 @@
 ```
 
 **Resposta de Sucesso:**
+
 ```json
 {
   "id": "2",
@@ -220,6 +239,7 @@
 ```
 
 **Códigos de Status:**
+
 - 201 Created - Posição criada com sucesso
 - 400 Bad Request - Dados inválidos
 - 401 Unauthorized - Não autenticado
@@ -234,9 +254,11 @@
 **Descrição:** Retorna os alertas configurados pelo usuário
 
 **Cabeçalhos Necessários:**
+
 - `Authorization: Bearer {token}`
 
 **Resposta de Sucesso:**
+
 ```json
 {
   "data": [
@@ -254,6 +276,7 @@
 ```
 
 **Códigos de Status:**
+
 - 200 OK - Requisição bem-sucedida
 - 401 Unauthorized - Não autenticado
 - 500 Internal Server Error - Erro no servidor
@@ -265,9 +288,11 @@
 **Descrição:** Cria um novo alerta
 
 **Cabeçalhos Necessários:**
+
 - `Authorization: Bearer {token}`
 
 **Corpo da Requisição:**
+
 ```json
 {
   "symbol": "VALE3",
@@ -278,6 +303,7 @@
 ```
 
 **Resposta de Sucesso:**
+
 ```json
 {
   "id": "3",
@@ -291,6 +317,7 @@
 ```
 
 **Códigos de Status:**
+
 - 201 Created - Alerta criado com sucesso
 - 400 Bad Request - Dados inválidos
 - 401 Unauthorized - Não autenticado
@@ -305,6 +332,7 @@
 **Descrição:** Retorna os principais indicadores econômicos
 
 **Resposta de Sucesso:**
+
 ```json
 {
   "data": {
@@ -320,5 +348,6 @@
 ```
 
 **Códigos de Status:**
+
 - 200 OK - Requisição bem-sucedida
 - 500 Internal Server Error - Erro no servidor

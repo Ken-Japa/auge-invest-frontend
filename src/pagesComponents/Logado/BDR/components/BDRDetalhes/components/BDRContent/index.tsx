@@ -1,9 +1,9 @@
-import { Business as BusinessIcon,CalendarToday as CalendarIcon } from '@mui/icons-material';
-import { Chip,Grid, Typography } from '@mui/material';
+import { Business as BusinessIcon, CalendarToday as CalendarIcon } from '@mui/icons-material'
+import { Chip, Grid, Typography } from '@mui/material'
 
-import { formatCNPJ, formatDate } from '@/components/Utils/Formatters/formatters';
+import { formatCNPJ, formatDate } from '@/components/Helpers/Formatters/formatters'
 
-import { UnifiedBDR } from '../../../../../components/BDR/types';
+import { UnifiedBDR } from '../../../../../components/BDR/types'
 import {
   CodeChip,
   DetailContainer,
@@ -11,11 +11,12 @@ import {
   HeaderContainer,
   IconWrapper,
   InfoContainer,
-  SectionDivider} from '../../styled';
-import BDRDividendos from '../BDRDividendos';
+  SectionDivider,
+} from '../../styled'
+import BDRDividendos from '../BDRDividendos'
 
 interface BDRContentProps {
-  bdr: UnifiedBDR;
+  bdr: UnifiedBDR
 }
 
 export const BDRContent = ({ bdr }: BDRContentProps) => (
@@ -25,7 +26,12 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
         <Grid item xs={12}>
           <HeaderContainer>
             <div>
-              <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+              <Typography
+                variant="h3"
+                component="h1"
+                gutterBottom
+                sx={{ fontWeight: 'bold', color: 'primary.main' }}
+              >
                 {bdr.nomeEmpresa}
               </Typography>
               {bdr.nomeEmpresaCompleto && (
@@ -35,16 +41,10 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
               )}
             </div>
             <div>
-              {bdr.codigo && (
-                <CodeChip
-                  key={bdr.codigo}
-                  label={bdr.codigo}
-                  color="primary"
-                />
-              )}
+              {bdr.codigo && <CodeChip key={bdr.codigo} label={bdr.codigo} color="primary" />}
               <Chip
-                label={bdr.isPatrocinado ? "Patrocinado" : "Não Patrocinado"}
-                color={bdr.isPatrocinado ? "success" : "default"}
+                label={bdr.isPatrocinado ? 'Patrocinado' : 'Não Patrocinado'}
+                color={bdr.isPatrocinado ? 'success' : 'default'}
                 sx={{ ml: 1 }}
                 size="small"
               />
@@ -55,7 +55,6 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
         <Grid item xs={12}>
           <SectionDivider />
         </Grid>
-
 
         <Grid item xs={12} md={6}>
           {bdr.informações?.cnpj !== '0' && (
@@ -112,4 +111,4 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
     </DetailPaper>
     {bdr.nomeEmpresa && <BDRDividendos codigoEmpresa={bdr.codigoEmpresa} />}
   </DetailContainer>
-);
+)

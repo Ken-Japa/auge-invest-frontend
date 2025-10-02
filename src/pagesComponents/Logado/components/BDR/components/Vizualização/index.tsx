@@ -1,23 +1,13 @@
-import {
-  CircularProgress,
-  Typography,
-} from '@mui/material';
-import React from 'react';
+import { CircularProgress, Typography } from '@mui/material'
+import React from 'react'
 
-import { PaginationControls } from '@/components/Data-Display/PaginationControls';
+import { PaginationControls } from '@/components/Data-Display/PaginationControls'
 
-import { VisualizacaoBDRsProps } from '../../types/index';
-import {
-  EmptyResultsContainer,
-  ErrorContainer,
-  LoadingContainer,
-  VisualizationContainer,
-} from './styled';
-import { BDRFilterControls } from './utils/BDRFilterControls';
-import { BDRVisualizationRenderer } from './utils/BDRVisualizationRenderer';
-import { useBDRs } from './utils/useBDRs';
-
-
+import { VisualizacaoBDRsProps } from '../../types/index'
+import { EmptyResultsContainer, ErrorContainer, LoadingContainer, VisualizationContainer } from './styled'
+import { BDRFilterControls } from './utils/BDRFilterControls'
+import { BDRVisualizationRenderer } from './utils/BDRVisualizationRenderer'
+import { useBDRs } from './utils/useBDRs'
 
 export const VisualizacaoBDRs = ({
   mode = 'card',
@@ -38,14 +28,14 @@ export const VisualizacaoBDRs = ({
     handlePageChange,
     handlePageSizeChange,
     handleBDRTypeChange,
-  } = useBDRs({ filter, onError, defaultPageSize });
+  } = useBDRs({ filter, onError, defaultPageSize })
 
   if (loading) {
     return (
       <LoadingContainer>
         <CircularProgress />
       </LoadingContainer>
-    );
+    )
   }
 
   if (error) {
@@ -53,7 +43,7 @@ export const VisualizacaoBDRs = ({
       <ErrorContainer>
         <Typography color="error">{error}</Typography>
       </ErrorContainer>
-    );
+    )
   }
 
   if (bdrs.length === 0) {
@@ -61,16 +51,12 @@ export const VisualizacaoBDRs = ({
       <EmptyResultsContainer>
         <Typography>Nenhum BDR encontrado com os filtros aplicados.</Typography>
       </EmptyResultsContainer>
-    );
+    )
   }
 
   return (
     <VisualizationContainer ref={containerRef}>
-
-      <BDRFilterControls
-        bdrType={bdrType}
-        handleBDRTypeChange={handleBDRTypeChange}
-      />
+      <BDRFilterControls bdrType={bdrType} handleBDRTypeChange={handleBDRTypeChange} />
 
       <BDRVisualizationRenderer mode={mode} bdrs={bdrs} />
 
@@ -85,7 +71,7 @@ export const VisualizacaoBDRs = ({
         />
       )}
     </VisualizationContainer>
-  );
-};
+  )
+}
 
-export default VisualizacaoBDRs;
+export default VisualizacaoBDRs

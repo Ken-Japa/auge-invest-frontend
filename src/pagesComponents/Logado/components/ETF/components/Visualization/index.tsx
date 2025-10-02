@@ -1,30 +1,22 @@
-import { CircularProgress,Typography } from '@mui/material';
-import React from 'react';
+import { CircularProgress, Typography } from '@mui/material'
+import React from 'react'
 
-import { PaginationControls } from '@/components/Data-Display/PaginationControls';
-import { ETFFilter } from '@/services/api/types/etf';
+import { PaginationControls } from '@/components/Data-Display/PaginationControls'
+import { ETFFilter } from '@/services/api/types/etf'
 
-import CardView from './Cards';
-import GridView from './Grid';
-import { useETFVisualizationLogic } from './hooks/useETFVisualizationLogic';
-import {
-  EmptyResultsContainer,
-  ErrorContainer,
-  LoadingContainer,
-  VisualizationContainer} from './styled';
-import TableView from './Table';
+import CardView from './Cards'
+import GridView from './Grid'
+import { useETFVisualizationLogic } from './hooks/useETFVisualizationLogic'
+import { EmptyResultsContainer, ErrorContainer, LoadingContainer, VisualizationContainer } from './styled'
+import TableView from './Table'
 
 interface VisualizationETFsProps {
-  view: 'card' | 'table' | 'grid';
-  filters: ETFFilter;
-  defaultPageSize?: number;
+  view: 'card' | 'table' | 'grid'
+  filters: ETFFilter
+  defaultPageSize?: number
 }
 
-export const VisualizationETFs = ({
-  view,
-  filters,
-  defaultPageSize = 20
-}: VisualizationETFsProps) => {
+export const VisualizationETFs = ({ view, filters, defaultPageSize = 20 }: VisualizationETFsProps) => {
   const {
     etfs,
     loading,
@@ -35,15 +27,15 @@ export const VisualizationETFs = ({
     validPageSizes,
     containerRef,
     handlePageChange,
-    handlePageSizeChange
-  } = useETFVisualizationLogic({ filters, defaultPageSize });
+    handlePageSizeChange,
+  } = useETFVisualizationLogic({ filters, defaultPageSize })
 
   if (loading) {
     return (
       <LoadingContainer>
         <CircularProgress />
       </LoadingContainer>
-    );
+    )
   }
 
   if (error) {
@@ -51,7 +43,7 @@ export const VisualizationETFs = ({
       <ErrorContainer>
         <Typography color="error">{error}</Typography>
       </ErrorContainer>
-    );
+    )
   }
 
   if (etfs.length === 0) {
@@ -59,21 +51,21 @@ export const VisualizationETFs = ({
       <EmptyResultsContainer>
         <Typography>Nenhum ETF encontrado com os filtros aplicados.</Typography>
       </EmptyResultsContainer>
-    );
+    )
   }
 
   const renderVisualization = () => {
     switch (view) {
       case 'card':
-        return <CardView etfs={etfs} />;
+        return <CardView etfs={etfs} />
       case 'table':
-        return <TableView etfs={etfs} />;
+        return <TableView etfs={etfs} />
       case 'grid':
-        return <GridView etfs={etfs} />;
+        return <GridView etfs={etfs} />
       default:
-        return <CardView etfs={etfs} />;
+        return <CardView etfs={etfs} />
     }
-  };
+  }
 
   return (
     <VisualizationContainer ref={containerRef}>
@@ -89,7 +81,6 @@ export const VisualizationETFs = ({
           handlePageSizeChange={handlePageSizeChange}
         />
       )}
-
     </VisualizationContainer>
-  );
-};
+  )
+}

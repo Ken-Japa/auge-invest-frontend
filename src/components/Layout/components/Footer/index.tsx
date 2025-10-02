@@ -1,161 +1,142 @@
-"use client";
+'use client'
 
-import EmailIcon from '@mui/icons-material/Email';
-import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
-import { Box, Container, IconButton, Link,Typography } from "@mui/material";
-import { motion } from "framer-motion";
-import LinkNext from "next/link";
-import { usePathname } from 'next/navigation';
-import { useSession } from "next-auth/react";
+import EmailIcon from '@mui/icons-material/Email'
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium'
+import { Box, Container, IconButton, Link, Typography } from '@mui/material'
+import { motion } from 'framer-motion'
+import LinkNext from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 
-import { socialLinks } from "../../constants/footer";
-import { Logo } from "../../Logo";
-import { FooterNavigation } from "./components/FooterNavigation";
+import { socialLinks } from '../../constants/footer'
+import { Logo } from '../../Logo'
+import { FooterNavigation } from './components/FooterNavigation'
 import {
-    FooterContainer,
-    LogoSection,
-    MainContent,
-    NavigationSection,
-    SectionTitle,
-    SocialSection,
-    TopSection} from "./styled";
+  FooterContainer,
+  LogoSection,
+  MainContent,
+  NavigationSection,
+  SectionTitle,
+  SocialSection,
+  TopSection,
+} from './styled'
 
 export const Footer = () => {
-    const currentYear = new Date().getFullYear();
-    const pathname = usePathname();
-    const { data: session, status } = useSession();
-    const isLoading = status === "loading";
+  const currentYear = new Date().getFullYear()
+  const pathname = usePathname()
+  const { data: session, status } = useSession()
+  const isLoading = status === 'loading'
 
-    if (isLoading) {
-        return (
-            <FooterContainer>
-                <Container maxWidth="lg">
-                </Container>
-            </FooterContainer>
-        );
-    }
-
+  if (isLoading) {
     return (
-        <FooterContainer
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-        >
-            <Container
-                maxWidth={false}
-                disableGutters
-            >
-                <TopSection>
-                    <MainContent>
-                        {/* Top Section */}
-                        <LogoSection>
-                            <motion.div
-                                whileHover={{ scale: 1.05 }}
-                                transition={{ type: "spring", stiffness: 300 }}
-                            >
-                                {session ?
-                                    <Logo width={60} height={60} />
-                                    :
-                                    <Link href="/">
-                                        <Logo width={60} height={60} />
-                                    </Link>
-                                }
-                            </motion.div>
+      <FooterContainer>
+        <Container maxWidth="lg"></Container>
+      </FooterContainer>
+    )
+  }
 
-                            <Typography variant="body1" className="text-white/80 mb-2" style={{ minHeight: "50px" }}>
-                                Inovações tecnológicas com o objetivo de fornecer ao investidor a melhor visão do mercado.
-                            </Typography>
-                            <Link
-                                href="mailto:capitalauge@gmail.com"
-                                className="text-white/60 hover:text-white flex items-center justify-center md:justify-end gap-2"
-                                underline="hover"
-                            >
-                                <EmailIcon fontSize="small" />
-                                capitalauge@gmail.com
-                            </Link>
+  return (
+    <FooterContainer
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Container maxWidth={false} disableGutters>
+        <TopSection>
+          <MainContent>
+            {/* Top Section */}
+            <LogoSection>
+              <motion.div whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 300 }}>
+                {session ? (
+                  <Logo width={60} height={60} />
+                ) : (
+                  <Link href="/">
+                    <Logo width={60} height={60} />
+                  </Link>
+                )}
+              </motion.div>
 
-                        </LogoSection>
+              <Typography variant="body1" className="text-white/80 mb-2" style={{ minHeight: '50px' }}>
+                Inovações tecnológicas com o objetivo de fornecer ao investidor a melhor visão do mercado.
+              </Typography>
+              <Link
+                href="mailto:capitalauge@gmail.com"
+                className="text-white/60 hover:text-white flex items-center justify-center md:justify-end gap-2"
+                underline="hover"
+              >
+                <EmailIcon fontSize="small" />
+                capitalauge@gmail.com
+              </Link>
+            </LogoSection>
 
-                        {/* Middle Section */}
-                        <NavigationSection>
-                            <Box sx={{ width: '100%', textAlign: 'center' }}>
-                                <SectionTitle variant="h3">
-                                    Links
-                                </SectionTitle>
-                                <FooterNavigation />
-                            </Box>
-                        </NavigationSection>
+            {/* Middle Section */}
+            <NavigationSection>
+              <Box sx={{ width: '100%', textAlign: 'center' }}>
+                <SectionTitle variant="h3">Links</SectionTitle>
+                <FooterNavigation />
+              </Box>
+            </NavigationSection>
 
-                        <SocialSection>
-                            <Typography variant="h3">
-                                Redes Sociais
-                            </Typography>
-                            <Box sx={{ display: 'flex', gap: 3 }}>
-                                {socialLinks.map((social) => {
-                                    const Icon = social.icon;
-                                    return (
-                                        <IconButton
-                                            key={social.label}
-                                            component={LinkNext}
-                                            href={social.href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            aria-label={social.label}
-                                            sx={{
-                                                color: 'white',
-                                                transition: 'transform 0.2s',
-                                                '&:hover': {
-                                                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                                                    transform: 'scale(1.1)'
-                                                }
-                                            }}
-                                        >
-                                            <Icon />
-                                        </IconButton>
-                                    );
-                                })}
-                            </Box>
-                            <LinkNext
-                                href="/visitante/embaixadores"
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem',
-                                    color: pathname === '/visitante/embaixadores' ? '#FFD700' : 'rgba(255, 255, 255, 0.8)',
-                                    transition: 'color 0.2s'
-                                }}
-                            >
-                                <WorkspacePremiumIcon />
-                                <span style={{ fontWeight: 'bold' }}>
-                                    Programa de Embaixadores
-                                </span>
-                            </LinkNext>
-
-                            <LinkNext
-                                href="/visitante/em-desenvolvimento"
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem',
-                                }}
-                            >
-                                <span style={{ fontWeight: '200' }}>
-                                    Em Desenvolvimento
-                                </span>
-                            </LinkNext>
-                        </SocialSection>
-
-                    </MainContent>
-
-                    {/* Bottom Section */}
-                    <Typography
-                        variant="body2"
-                        className="text-white/60 text-center"
+            <SocialSection>
+              <Typography variant="h3">Redes Sociais</Typography>
+              <Box sx={{ display: 'flex', gap: 3 }}>
+                {socialLinks.map((social) => {
+                  const Icon = social.icon
+                  return (
+                    <IconButton
+                      key={social.label}
+                      component={LinkNext}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      sx={{
+                        color: 'white',
+                        transition: 'transform 0.2s',
+                        '&:hover': {
+                          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                          transform: 'scale(1.1)',
+                        },
+                      }}
                     >
-                        © {currentYear} Auge Capital. Todos os direitos reservados.
-                    </Typography>
-                </TopSection>
-            </Container>
-        </FooterContainer >
-    );
-};
+                      <Icon />
+                    </IconButton>
+                  )
+                })}
+              </Box>
+              <LinkNext
+                href="/visitante/embaixadores"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  color: pathname === '/visitante/embaixadores' ? '#FFD700' : 'rgba(255, 255, 255, 0.8)',
+                  transition: 'color 0.2s',
+                }}
+              >
+                <WorkspacePremiumIcon />
+                <span style={{ fontWeight: 'bold' }}>Programa de Embaixadores</span>
+              </LinkNext>
+
+              <LinkNext
+                href="/visitante/em-desenvolvimento"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                }}
+              >
+                <span style={{ fontWeight: '200' }}>Em Desenvolvimento</span>
+              </LinkNext>
+            </SocialSection>
+          </MainContent>
+
+          {/* Bottom Section */}
+          <Typography variant="body2" className="text-white/60 text-center">
+            © {currentYear} Auge Capital. Todos os direitos reservados.
+          </Typography>
+        </TopSection>
+      </Container>
+    </FooterContainer>
+  )
+}

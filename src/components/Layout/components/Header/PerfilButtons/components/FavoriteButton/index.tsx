@@ -1,34 +1,34 @@
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { Divider,IconButton, Menu, MenuItem } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import Link from "next/link";
-import { useState } from 'react';
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import { Divider, IconButton, Menu, MenuItem } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import Link from 'next/link'
+import { useState } from 'react'
 
-import { ErrorDisplay } from '@/components/Feedback/ErrorDisplay';
-import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
-import { useUserFavorites } from '@/components/Layout/components/Header/PerfilButtons/components/FavoriteButton/hooks/useUserFavorites';
+import { ErrorDisplay } from '@/components/Feedback/ErrorDisplay'
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
+import { useUserFavorites } from '@/components/Layout/components/Header/PerfilButtons/components/FavoriteButton/hooks/useUserFavorites'
 
-import { MAX_DISPLAY_ITEMS } from '../constants';
-import { FavoriteMenuItem } from './components/FavoriteMenuItem';
+import { MAX_DISPLAY_ITEMS } from '../constants'
+import { FavoriteMenuItem } from './components/FavoriteMenuItem'
 
 export const FavoriteButton = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const theme = useTheme();
-  const { favorites, loading, error, fetchFavorites } = useUserFavorites();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const theme = useTheme()
+  const { favorites, loading, error, fetchFavorites } = useUserFavorites()
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   return (
     <div>
       <IconButton
         onClick={handleMenu}
-        color={anchorEl ? "primary" : "inherit"}
+        color={anchorEl ? 'primary' : 'inherit'}
         aria-label="favorite menu"
         aria-controls="favorite-appbar"
         aria-haspopup="true"
@@ -55,7 +55,7 @@ export const FavoriteButton = () => {
             maxHeight: 300, // Limita a altura do dropdown
             borderRadius: '8px',
             boxShadow: theme.shadows[3],
-          }
+          },
         }}
       >
         {loading ? (
@@ -67,11 +67,13 @@ export const FavoriteButton = () => {
             <ErrorDisplay message="Erro ao carregar favoritos." onRetry={fetchFavorites} />
           </MenuItem>
         ) : favorites.length === 0 ? (
-          <MenuItem onClick={handleClose} disabled>Nenhum favorito encontrado.</MenuItem>
+          <MenuItem onClick={handleClose} disabled>
+            Nenhum favorito encontrado.
+          </MenuItem>
         ) : (
-          favorites.slice(0, MAX_DISPLAY_ITEMS).map((fav) => (
-            <FavoriteMenuItem key={fav._id} favorite={fav} onClose={handleClose} />
-          ))
+          favorites
+            .slice(0, MAX_DISPLAY_ITEMS)
+            .map((fav) => <FavoriteMenuItem key={fav._id} favorite={fav} onClose={handleClose} />)
         )}
         <Divider />
         <MenuItem
@@ -89,5 +91,5 @@ export const FavoriteButton = () => {
         </MenuItem>
       </Menu>
     </div>
-  );
-};
+  )
+}

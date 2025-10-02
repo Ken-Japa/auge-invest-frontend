@@ -1,14 +1,14 @@
 export const DEFAULT_GRAPH_OPTIONS = {
   nodes: {
     fixed: false,
-    shape: "dot",
+    shape: 'dot',
     borderWidth: 3,
     shadow: false,
     font: {
-      color: "#FFFFFF",
+      color: '#FFFFFF',
       size: 500,
       strokeWidth: 3,
-      strokeColor: "#000000",
+      strokeColor: '#000000',
     },
     scaling: {
       min: 10,
@@ -22,7 +22,7 @@ export const DEFAULT_GRAPH_OPTIONS = {
     },
     smooth: {
       enabled: true,
-      type: "curvedCW",
+      type: 'curvedCW',
       roundness: 0.2,
     },
     physics: true,
@@ -41,11 +41,11 @@ export const DEFAULT_GRAPH_OPTIONS = {
       nodeDistance: 4000,
       damping: 0.1,
     },
-    solver: "repulsion",
+    solver: 'repulsion',
   },
   interaction: {
     dragNodes: true,
     dragView: true,
     zoomView: true,
   },
-};
+}

@@ -1,16 +1,16 @@
-import { styled } from "@mui/material/styles";
+import { styled } from '@mui/material/styles'
 
-import { visitorColors } from "@/theme/palette/visitor";
-import { borderRadius, spacing, transitions } from "@/theme/variables";
+import { visitorColors } from '@/theme/palette/visitor'
+import { borderRadius, spacing, transitions } from '@/theme/variables'
 
-export const NavigationContainer = styled("div")({
-  "& .navigation-title": {
+export const NavigationContainer = styled('div')({
+  '& .navigation-title': {
     color: visitorColors.primary,
     marginBottom: spacing.md,
-    textAlign: "center",
+    textAlign: 'center',
   },
 
-  "& .navigation-content": {
+  '& .navigation-content': {
     backgroundColor: visitorColors.backgroundLight,
     padding: spacing.md,
     borderRadius: borderRadius.md,
@@ -18,26 +18,26 @@ export const NavigationContainer = styled("div")({
     backdropFilter: visitorColors.blur,
   },
 
-  "& .navigation-grid": {
-    display: "grid",
+  '& .navigation-grid': {
+    display: 'grid',
     gap: spacing.md,
 
-    "@media (min-width: 900px)": {
-      gridTemplateColumns: "repeat(2, 1fr)",
+    '@media (min-width: 900px)': {
+      gridTemplateColumns: 'repeat(2, 1fr)',
     },
 
-    "@media (min-width: 1200px)": {
-      gridTemplateColumns: "repeat(4, 1fr)",
+    '@media (min-width: 1200px)': {
+      gridTemplateColumns: 'repeat(4, 1fr)',
     },
   },
 
-  "& .navigation-link": {
+  '& .navigation-link': {
     color: visitorColors.textSecondary,
-    cursor: "pointer",
+    cursor: 'pointer',
     transition: transitions.medium,
 
-    "&:hover": {
+    '&:hover': {
       color: visitorColors.primary,
     },
   },
-});
+})

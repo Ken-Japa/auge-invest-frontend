@@ -1,30 +1,25 @@
 export const post = {
-  id: "10",
-  title: "Indicadores Essenciais da Análise Fundamentalista",
+  id: '10',
+  title: 'Indicadores Essenciais da Análise Fundamentalista',
   description:
-    "Explore os principais indicadores da análise fundamentalista, incluindo ROIC, EV/EBITDA, CAGR, Dívida Líquida/EBITDA, Dividend Yield e Fluxo de Caixa Livre. Entenda como esses indicadores podem ajudar a tomar decisões de investimento informadas, com exemplos do mercado brasileiro e referências de especialistas.",
-  image: "",
-  category: ["fundamentalista", "indicadores"],
-  author: "Auge Invest",
-  date: "2024-03-20",
-  slug: "indicadores-fundamentalista2",
+    'Explore os principais indicadores da análise fundamentalista, incluindo ROIC, EV/EBITDA, CAGR, Dívida Líquida/EBITDA, Dividend Yield e Fluxo de Caixa Livre. Entenda como esses indicadores podem ajudar a tomar decisões de investimento informadas, com exemplos do mercado brasileiro e referências de especialistas.',
+  image: '',
+  category: ['fundamentalista', 'indicadores'],
+  author: 'Auge Invest',
+  date: '2024-03-20',
+  slug: 'indicadores-fundamentalista2',
   tags: [
-    "indicadores economicos",
-    "análise fundamentalista",
-    "ROIC",
-    "EV/EBITDA",
-    "CAGR",
-    "dívida líquida",
-    "dividend yield",
-    "fluxo de caixa livre",
+    'indicadores economicos',
+    'análise fundamentalista',
+    'ROIC',
+    'EV/EBITDA',
+    'CAGR',
+    'dívida líquida',
+    'dividend yield',
+    'fluxo de caixa livre',
   ],
-  readTime: "40 min",
-  relatedPosts: [
-    "cicloeconomico",
-    "analise-fundamentalista",
-    "indicadores-fundamentalista",
-    "valuation",
-  ],
+  readTime: '40 min',
+  relatedPosts: ['cicloeconomico', 'analise-fundamentalista', 'indicadores-fundamentalista', 'valuation'],
   content: `
 A análise fundamentalista é uma abordagem crucial para avaliar o valor intrínseco de uma empresa, considerando fatores econômicos, financeiros e outros aspectos qualitativos e quantitativos. 
 
@@ -522,4 +517,4 @@ Ao entender e aplicar esses conceitos, você estará melhor preparado para naveg
 Gostou do artigo? Compartilhe com seus amigos e colegas investidores! E não se esqueça de se inscrever em nosso blog para receber mais conteúdos como este diretamente em seu e-mail.
 
 `,
-};
+}

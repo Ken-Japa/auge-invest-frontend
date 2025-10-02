@@ -1,22 +1,22 @@
-import { Box, Paper } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, Paper } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 export const GraficoContainer = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
-  marginBottom: theme.spacing(3)
-}));
+  marginBottom: theme.spacing(3),
+}))
 
 export const GraficoHeader = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2),
   display: 'flex',
   justifyContent: 'space-between',
-  alignItems: 'center'
-}));
+  alignItems: 'center',
+}))
 
 export const ChartWrapper = styled(Box)({
   height: 400,
-  position: 'relative'
-});
+  position: 'relative',
+})
 
 export const LoadingContainer = styled(Box)({
   position: 'absolute',
@@ -27,5 +27,5 @@ export const LoadingContainer = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center'
-});
+  justifyContent: 'center',
+})

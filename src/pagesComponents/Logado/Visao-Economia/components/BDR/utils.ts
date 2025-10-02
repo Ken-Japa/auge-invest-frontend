@@ -1,34 +1,30 @@
-import { VisualizationMode } from "../../../components/BDR/types";
-import { ViewMode } from "./types";
+import { VisualizationMode } from '../../../components/BDR/types'
+import { ViewMode } from './types'
 
 // Mapeamento de ViewMode para VisualizationMode
-export const viewModeToVisualizationMode = (
-  viewMode: ViewMode
-): VisualizationMode => {
+export const viewModeToVisualizationMode = (viewMode: ViewMode): VisualizationMode => {
   switch (viewMode) {
-    case "cartao":
-      return "card";
-    case "tabela":
-      return "table";
-    case "grid":
-      return "grid";
+    case 'cartao':
+      return 'card'
+    case 'tabela':
+      return 'table'
+    case 'grid':
+      return 'grid'
     default:
-      return "card";
+      return 'card'
   }
-};
+}
 
 // Mapeamento de VisualizationMode para ViewMode
-export const visualizationModeToViewMode = (
-  mode: VisualizationMode
-): ViewMode => {
+export const visualizationModeToViewMode = (mode: VisualizationMode): ViewMode => {
   switch (mode) {
-    case "card":
-      return "cartao";
-    case "table":
-      return "tabela";
-    case "grid":
-      return "grid";
+    case 'card':
+      return 'cartao'
+    case 'table':
+      return 'tabela'
+    case 'grid':
+      return 'grid'
     default:
-      return "cartao";
+      return 'cartao'
   }
-};
+}

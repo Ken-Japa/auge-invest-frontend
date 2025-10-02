@@ -1,17 +1,16 @@
-import { OpenInNew as OpenInNewIcon } from '@mui/icons-material';
-import { Grid, IconButton } from '@mui/material';
-import Link from 'next/link';
+import { OpenInNew as OpenInNewIcon } from '@mui/icons-material'
+import { Grid, IconButton } from '@mui/material'
+import Link from 'next/link'
 
-import { UnifiedBDR } from '../../../types';
-import { BDRCardContent } from './BDRCardContent';
-import { StyledCard } from './styled';
+import { UnifiedBDR } from '../../../types'
+import { BDRCardContent } from './BDRCardContent'
+import { StyledCard } from './styled'
 
 interface CardViewProps {
-  bdrs: UnifiedBDR[];
+  bdrs: UnifiedBDR[]
 }
 
 export const CardView = ({ bdrs }: CardViewProps) => {
-
   return (
     <Grid container spacing={3}>
       {bdrs.map((bdr) => (
@@ -32,7 +31,7 @@ export const CardView = ({ bdrs }: CardViewProps) => {
         </Grid>
       ))}
     </Grid>
-  );
-};
+  )
+}
 
-export default CardView;
+export default CardView

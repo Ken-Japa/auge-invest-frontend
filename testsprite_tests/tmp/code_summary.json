@@ -1,68 +1,82 @@
 {
-  "tech_stack": ["TypeScript", "JavaScript", "Next.js", "Tailwind CSS", "CSS Modules", "Zustand (potential)"],
-  "features": [
-    {
-      "name": "Authentication",
-      "description": "Handles user login, registration, and session management.",
+  "tech_stack": [
+    "TypeScript",
+    "Next.js",
+    "React",
+    "Material-UI",
+    "CSS",
+    "ESLint",
+    "Jest",
+    "Prettier"
+  ],
+  "features": {
+    "Theme Management": {
+      "description": "Manages application themes (light/dark) and provides a consistent look and feel.",
       "files": [
-        "src/app/(auth)/page.tsx",
-        "src/app/login/page.tsx",
-        "src/app/register/page.tsx",
-        "src/providers/AuthProvider.tsx",
-        "src/utils/auth.ts"
+        "src/contexts/ThemeContext.tsx",
+        "src/hooks/useColorMode.ts"
       ]
     },
-    {
-      "name": "UI Components",
-      "description": "Reusable UI components for various parts of the application.",
+    "Image Optimization": {
+      "description": "Optimizes and serves images in WebP format for better performance, including company logos.",
       "files": [
-        "src/components/Core",
-        "src/components/Data-Display",
-        "src/components/Form",
-        "src/components/Layout",
-        "src/components/Theme",
-        "src/components/Utils"
+        "public/assets/images/background/",
+        "public/assets/images/imagens/",
+        "public/assets/images/individuais/empresas/",
+        "src/pagesComponents/Logado/Empresa/components/EmpresaDetalhes/components/EmpresaHeader/utils/imageUtils.ts"
       ]
     },
-    {
-      "name": "API Integration",
-      "description": "Logic for interacting with backend APIs.",
+    "Authentication": {
+      "description": "Handles user authentication and authorization.",
       "files": [
-        "src/app/api",
-        "src/services/api",
-        "src/hooks/useApi.ts"
+        "src/contexts/AuthContext.tsx",
+        "src/hooks/useAuth.ts",
+        "src/pages/login.tsx"
       ]
     },
-    {
-      "name": "Company Management",
-      "description": "Logic related to company data and management.",
+    "Transaction Management": {
+      "description": "Manages financial transactions within the application.",
       "files": [
-        "src/hooks/useCompanies.ts",
-        "src/store/companyStore.ts"
+        "src/components/Transactions/",
+        "src/pages/transactions.tsx"
       ]
     },
-    {
-      "name": "Blog",
-      "description": "Functionality for displaying blog posts.",
+    "Blog Functionality": {
+      "description": "Provides blog-related features and content display.",
       "files": [
-        "src/app/blog",
-        "src/content/blog"
+        "src/components/Blog/",
+        "src/pages/blog.tsx"
       ]
     },
-    {
-      "name": "Middleware",
-      "description": "Request processing logic.",
+    "Context Providers": {
+      "description": "Centralized state management using React Context API.",
       "files": [
-        "src/middleware.ts"
+        "src/contexts/ThemeContext.tsx",
+        "src/contexts/AuthContext.tsx"
       ]
     },
-    {
-      "name": "Theming",
-      "description": "Application theme management.",
+    "Custom Hooks": {
+      "description": "Reusable logic encapsulated in custom React hooks.",
       "files": [
-        "src/theme",
-        "src/theme/ThemeContext.tsx"
+        "src/hooks/useColorMode.ts",
+        "src/hooks/useAuth.ts"
+      ]
+    },
+    "Page Structure": {
+      "description": "Defines the overall page layout and navigation.",
+      "files": [
+        "src/pages/_app.tsx",
+        "src/pages/_document.tsx",
+        "src/components/Layout/"
       ]
     }
-  ]
+  },
+  "project_structure": {
+    "pages": "src/pages/",
+    "components": "src/components/",
+    "pagesComponents": "src/pagesComponents/",
+    "contexts": "src/contexts/",
+    "hooks": "src/hooks/",
+    "public_assets": "public/assets/"
+  }
 }

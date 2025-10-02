@@ -1,55 +1,54 @@
-import { Box, List, ListItem } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Box, List, ListItem, Typography } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
-import { borderRadius,spacing } from "@/theme/variables";
+import { borderRadius, spacing } from '@/theme/variables'
 
 export const ActivityContainer = styled(Box)(({ theme }) => ({
-  maxHeight: "300px",
-  overflowY: "auto",
+  maxHeight: '300px',
+  overflowY: 'auto',
   padding: spacing.sm,
 
   // Estilização da barra de rolagem
-  "&::-webkit-scrollbar": {
-    width: "6px",
+  '&::-webkit-scrollbar': {
+    width: '6px',
   },
-  "&::-webkit-scrollbar-track": {
-    background:
-      theme.palette.mode === "dark"
-        ? "rgba(255, 255, 255, 0.05)"
-        : "rgba(0, 0, 0, 0.05)",
+  '&::-webkit-scrollbar-track': {
+    background: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
     borderRadius: borderRadius.sm,
   },
-  "&::-webkit-scrollbar-thumb": {
-    background:
-      theme.palette.mode === "dark"
-        ? "rgba(255, 255, 255, 0.2)"
-        : "rgba(0, 0, 0, 0.2)",
+  '&::-webkit-scrollbar-thumb': {
+    background: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)',
     borderRadius: borderRadius.sm,
   },
-  "&::-webkit-scrollbar-thumb:hover": {
-    background:
-      theme.palette.mode === "dark"
-        ? "rgba(255, 255, 255, 0.3)"
-        : "rgba(0, 0, 0, 0.3)",
+  '&::-webkit-scrollbar-thumb:hover': {
+    background: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
   },
-}));
+}))
 
 export const ActivityList = styled(List)(({ theme }) => ({
   padding: 0,
-}));
+}))
 
 export const ActivityItem = styled(ListItem)(({ theme }) => ({
-    cursor: 'pointer',
+  cursor: 'pointer',
 
   padding: 2,
   paddingLeft: 8,
   borderRadius: borderRadius.sm,
 
-  transition: "background-color 0.2s ease",
-  "&:hover": {
-    backgroundColor:
-      theme.palette.mode === "dark"
-        ? "rgba(255, 255, 255, 0.05)"
-        : "rgba(0, 0, 0, 0.02)",
+  transition: 'background-color 0.2s ease',
+  '&:hover': {
+    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)',
   },
-}));
+}))
+
+export const CenteredTypography = styled(Typography)({
+  textAlign: 'center',
+})
+
+export const LoadingBox = styled(Box)({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100px',
+})

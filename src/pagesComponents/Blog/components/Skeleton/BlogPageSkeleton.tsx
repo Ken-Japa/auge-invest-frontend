@@ -1,17 +1,25 @@
-import { Box,Container, Grid } from '@mui/material';
-import React from 'react';
+import { Box, Container, Grid } from '@mui/material'
+import React from 'react'
 
-import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
 
 interface BlogPageSkeletonProps {
-  postsPerPage: number;
+  postsPerPage: number
 }
 
 export const BlogPageSkeleton: React.FC<BlogPageSkeletonProps> = ({ postsPerPage }) => {
   return (
     <Box>
       {/* Blog Header Skeleton */}
-      <Box sx={{ height: 450, display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: 'grey.200' }}>
+      <Box
+        sx={{
+          height: 450,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          bgcolor: 'grey.200',
+        }}
+      >
         <ContentSkeleton type="text" width="60%" height={450} />
       </Box>
 
@@ -44,5 +52,5 @@ export const BlogPageSkeleton: React.FC<BlogPageSkeletonProps> = ({ postsPerPage
         </Grid>
       </Container>
     </Box>
-  );
-};
+  )
+}

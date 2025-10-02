@@ -1,12 +1,12 @@
-import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
-import { Alert, Button } from '@mui/material';
-import React from 'react';
+import { ArrowBack as ArrowBackIcon } from '@mui/icons-material'
+import { Alert, Button } from '@mui/material'
+import React from 'react'
 
-import { ContentWrapper, DetailPageContainer, ErrorContainer } from '../styled';
+import { ContentWrapper, DetailPageContainer, ErrorContainer } from '../styled'
 
 interface ETFBDRNotFoundStateProps {
-  message: string;
-  onBack: () => void;
+  message: string
+  onBack: () => void
 }
 
 export const ETFBDRNotFoundState: React.FC<ETFBDRNotFoundStateProps> = ({ message, onBack }) => (
@@ -16,14 +16,10 @@ export const ETFBDRNotFoundState: React.FC<ETFBDRNotFoundStateProps> = ({ messag
         <Alert severity="warning" sx={{ mb: 2 }}>
           {message}
         </Alert>
-        <Button
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={onBack}
-        >
+        <Button startIcon={<ArrowBackIcon />} variant="contained" onClick={onBack}>
           Voltar
         </Button>
       </ErrorContainer>
     </ContentWrapper>
   </DetailPageContainer>
-);
+)

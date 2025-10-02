@@ -1,17 +1,17 @@
-import { fileURLToPath } from "url";
-import path from "path";
+import { fileURLToPath } from 'url'
+import path from 'path'
 
 // eslint-disable-next-line no-underscore-dangle
-const __filename = fileURLToPath(import.meta.url);
+const __filename = fileURLToPath(import.meta.url)
 // eslint-disable-next-line no-underscore-dangle
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(__filename)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
 
   sassOptions: {
-    includePaths: [path.join(__dirname, "styles")],
+    includePaths: [path.join(__dirname, 'styles')],
   },
   experimental: {
     optimizeCss: true,
@@ -20,25 +20,25 @@ const nextConfig = {
     qualities: [60, 65, 70, 75, 80, 85, 90, 95, 100],
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "lh3.googleusercontent.com",
-        port: "",
-        pathname: "**",
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        port: '',
+        pathname: '**',
       },
       {
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com",
-        port: "",
-        pathname: "**",
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        port: '',
+        pathname: '**',
       },
     ],
   },
   modularizeImports: {
-    "@mui/material/?(((w*)?/?)*)": {
-      transform: "@mui/material/{{ matches.[1] }}/{{member}}",
+    '@mui/material/?(((w*)?/?)*)': {
+      transform: '@mui/material/{{ matches.[1] }}/{{member}}',
     },
-    "@mui/icons-material/?(((w*)?/?)*)": {
-      transform: "@mui/icons-material/{{ matches.[1] }}/{{member}}",
+    '@mui/icons-material/?(((w*)?/?)*)': {
+      transform: '@mui/icons-material/{{ matches.[1] }}/{{member}}',
     },
   },
   async headers() {
@@ -61,7 +61,9 @@ const nextConfig = {
               upgrade-insecure-requests;
               connect-src 'self' https://api-servidor-yupg.onrender.com;
               frame-src https://s.tradingview.com https://www.tradingview-widget.com;
-            `.replace(/\s{2,}/g, ' ').trim(),
+            `
+              .replace(/\s{2,}/g, ' ')
+              .trim(),
           },
           {
             key: 'Strict-Transport-Security',
@@ -73,7 +75,7 @@ const nextConfig = {
           },
         ],
       },
-    ];
+    ]
   },
-};
-export default nextConfig;
+}
+export default nextConfig

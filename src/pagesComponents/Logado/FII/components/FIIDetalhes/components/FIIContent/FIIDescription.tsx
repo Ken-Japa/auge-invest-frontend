@@ -1,8 +1,8 @@
-import { Typography } from '@mui/material';
-import React from 'react';
+import { Typography } from '@mui/material'
+import React from 'react'
 
 interface FIIDescriptionProps {
-  description?: string;
+  description?: string
 }
 
 const FIIDescription: React.FC<FIIDescriptionProps> = ({ description }) => (
@@ -14,6 +14,6 @@ const FIIDescription: React.FC<FIIDescriptionProps> = ({ description }) => (
       {description || 'Não há descrição disponível para este FII.'}
     </Typography>
   </>
-);
+)
 
-export default FIIDescription;
+export default FIIDescription

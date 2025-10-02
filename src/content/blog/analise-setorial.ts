@@ -1,27 +1,23 @@
 export const post = {
-  id: "7",
-  title: "Como Analisar Setores da Economia Antes de Investir",
+  id: '7',
+  title: 'Como Analisar Setores da Economia Antes de Investir',
   description:
-    "A análise setorial permite identificar oportunidades de investimento em setores que estão em crescimento ou que têm potencial de crescimento futuro",
-  image: "",
-  category: ["economia", "educacional"],
-  author: "Auge Invest",
-  date: "2024-03-19",
-  slug: "analise-setorial",
+    'A análise setorial permite identificar oportunidades de investimento em setores que estão em crescimento ou que têm potencial de crescimento futuro',
+  image: '',
+  category: ['economia', 'educacional'],
+  author: 'Auge Invest',
+  date: '2024-03-19',
+  slug: 'analise-setorial',
   tags: [
-    "setores econômicos",
-    "diversificação da carteira",
-    "análise setorial",
-    "indicadores econômicos",
-    "tendências",
-    "rotação setorial",
+    'setores econômicos',
+    'diversificação da carteira',
+    'análise setorial',
+    'indicadores econômicos',
+    'tendências',
+    'rotação setorial',
   ],
-  readTime: "20 min",
-  relatedPosts: [
-    "cicloeconomico",
-    "riscos-economicos",
-    "analisetecnica-vs-analisefundamentalista",
-  ],
+  readTime: '20 min',
+  relatedPosts: ['cicloeconomico', 'riscos-economicos', 'analisetecnica-vs-analisefundamentalista'],
   content: `
 
 Investir em setores promissores da economia é uma estratégia essencial para qualquer investidor que deseja diversificar seu portfólio e maximizar retornos. A análise setorial permite identificar oportunidades de investimento em setores que estão em crescimento ou que têm potencial de crescimento futuro. Este artigo fornecerá um guia detalhado sobre como identificar setores promissores, entender a rotação setorial e quais métricas usar para avaliar oportunidades.
@@ -152,4 +148,4 @@ Aplique o conhecimento adquirido neste artigo para diversificar seu portfólio e
 - Shiller, R. J. (2003). Irrational Exuberance. Princeton University Press.
 - Auge Invest. (2023). Ferramentas de Análise Setorial. Disponível em: [Auge Invest](/)
 `,
-};
+}

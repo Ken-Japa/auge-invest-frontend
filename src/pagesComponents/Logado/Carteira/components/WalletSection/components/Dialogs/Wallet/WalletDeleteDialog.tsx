@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import { DeleteWalletConfirmDialog } from './DeleteWalletConfirmDialog';
+import { DeleteWalletConfirmDialog } from './DeleteWalletConfirmDialog'
 
 interface WalletDeleteDialogProps {
-  openDeleteConfirm: boolean;
-  onCloseDeleteConfirm: () => void;
-  onConfirmDelete: () => Promise<void>;
-  loading: boolean;
+  openDeleteConfirm: boolean
+  onCloseDeleteConfirm: () => void
+  onConfirmDelete: () => Promise<void>
+  loading: boolean
 }
 
 export const WalletDeleteDialog: React.FC<WalletDeleteDialogProps> = ({
@@ -22,5 +22,5 @@ export const WalletDeleteDialog: React.FC<WalletDeleteDialogProps> = ({
       onConfirm={onConfirmDelete}
       loading={loading}
     />
-  );
-};
+  )
+}

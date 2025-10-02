@@ -9,5 +9,5 @@ export const CORES_INDUSTRIAS = [
   '#FF7C91', // Pink (slightly darker)
   '#9C755F', // Brown
   '#C2B6B2', // Gray (slightly lighter)
-  '#D37295'  // Rose
-];
+  '#D37295', // Rose
+]

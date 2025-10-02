@@ -1,10 +1,10 @@
-import { Grid } from '@mui/material';
+import { Grid } from '@mui/material'
 
-import { FIIExtended } from '../../../types';
-import { FIICard } from './FIICard';
+import { FIIExtended } from '../../../types'
+import { FIICard } from './FIICard'
 
 interface CardViewProps {
-  fiis: FIIExtended[];
+  fiis: FIIExtended[]
 }
 
 export const CardView = ({ fiis }: CardViewProps) => {
@@ -14,7 +14,7 @@ export const CardView = ({ fiis }: CardViewProps) => {
         <FIICard key={fii._id} fii={fii} />
       ))}
     </Grid>
-  );
-};
+  )
+}
 
-export default CardView;
+export default CardView

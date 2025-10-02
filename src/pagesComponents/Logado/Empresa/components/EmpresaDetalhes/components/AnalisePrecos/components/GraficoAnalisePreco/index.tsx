@@ -1,35 +1,54 @@
-import React from 'react';
-import { Bar, CartesianGrid, ComposedChart, Legend, Line, ReferenceLine,ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { useTheme } from '@mui/material/styles'
+import React from 'react'
+import {
+  Bar,
+  CartesianGrid,
+  ComposedChart,
+  Legend,
+  Line,
+  ReferenceLine,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts'
 
-import { generateStdDevLines } from '../../services/analiseService';
-import { useChartStyles } from '../../utils/chartConfig';
-import { StatisticalData, StdDevLine } from '../../utils/types';
-import { ChartContainer, ChartDescription,ChartTitle } from './styled';
-
+import { generateStdDevLines } from '../../services/analiseService'
+import { StdDevLine } from '../../services/subservices/dataPreparationUtils'
+import { useChartStyles } from '../../utils/chartConfig'
+import { StatisticalData } from '../../utils/types'
+import {
+  ChartContainer,
+  ChartDescription,
+  ChartTitle,
+  legendWrapperStyles,
+  tooltipContentStyles,
+  tooltipWrapperStyles,
+} from './styled'
 
 interface GraficoAnalisePrecoProps {
-  stats: StatisticalData;
+  data: StatisticalData
 }
 
-const GraficoAnalisePreco: React.FC<GraficoAnalisePrecoProps> = ({ stats }) => {
-  const chartStyles = useChartStyles();
-  const { mean, stdDev, histogramData } = stats;
+const GraficoAnalisePreco: React.FC<GraficoAnalisePrecoProps> = ({ data }) => {
+  const theme = useTheme()
+  const chartStyles = useChartStyles()
+  const { mean, stdDev, histogramData } = data
 
-  const stdDevLines = generateStdDevLines(mean, stdDev);
+  const stdDevLines = generateStdDevLines(mean, stdDev)
 
   return (
     <>
-      <ChartTitle variant="h5" sx={{ textAlign: 'center' }}>Distribuição de Preços</ChartTitle>
+      <ChartTitle variant="h5" sx={{ textAlign: 'center' }}>
+        Distribuição de Preços
+      </ChartTitle>
       <ChartDescription variant="body2">
-        Este gráfico mostra a distribuição de frequência dos preços históricos e a curva normal correspondente.
-        As linhas verticais indicam a média e os desvios padrão.
+        Este gráfico mostra a distribuição de frequência dos preços históricos e a curva normal
+        correspondente. As linhas verticais indicam a média e os desvios padrão.
       </ChartDescription>
       <ChartContainer>
         <ResponsiveContainer width="100%" height="100%">
-          <ComposedChart
-            data={histogramData}
-            margin={{ top: 20, right: 40, left: 40, bottom: 5 }}
-          >
+          <ComposedChart data={histogramData} margin={{ top: 20, right: 40, left: 40, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
 
             <XAxis
@@ -46,42 +65,34 @@ const GraficoAnalisePreco: React.FC<GraficoAnalisePrecoProps> = ({ stats }) => {
               yAxisId="right"
               orientation="right"
               tickFormatter={(value) => `${(value * 100).toFixed(0)}%`}
-
             />
 
             <Tooltip
               formatter={(value: any, name: string) => {
                 if (name === 'Frequência') {
-                  const percentage = (value as number * 100).toFixed(2);
-                  return [`${percentage}%`, name];
+                  const percentage = ((value as number) * 100).toFixed(2)
+                  return [`${percentage}%`, name]
                 }
-                return [`${(value * 100).toFixed(2)}%`, name];
+                return [`${(value * 100).toFixed(2)}%`, name]
               }}
               labelFormatter={(label) => {
                 // Converter o label para número
-                const price = parseFloat(label as string);
+                const price = parseFloat(label as string)
                 // Acessar min e max diretamente do stats
-                const { min, max } = stats;
-                const binSize = (max - min) / 20;
+                const { min, max } = data
+                const binSize = (max - min) / 20
 
                 // Calcular o início e fim do bin
-                const binStart = min + Math.floor((price - min) / binSize) * binSize;
-                const binEnd = binStart + binSize;
+                const binStart = min + Math.floor((price - min) / binSize) * binSize
+                const binEnd = binStart + binSize
 
-                return `Intervalo de Preço: R$ ${binStart.toFixed(2)} - R$ ${binEnd.toFixed(2)}`;
+                return `Intervalo de Preço: R$ ${binStart.toFixed(2)} - R$ ${binEnd.toFixed(2)}`
               }}
-              wrapperStyle={{ zIndex: 1000 }}
-              contentStyle={{
-                backgroundColor: chartStyles.tooltip.background,
-                border: chartStyles.tooltip.border,
-                padding: '10px',
-                borderRadius: chartStyles.tooltip.borderRadius,
-                boxShadow: chartStyles.tooltip.boxShadow,
-                color: '#000000'
-              }}
+              wrapperStyle={tooltipWrapperStyles}
+              contentStyle={tooltipContentStyles(theme)}
+              cursor={{ stroke: theme.palette.text.secondary, strokeWidth: 1 }}
             />
-            <Legend wrapperStyle={{ paddingTop: '20px' }} />
-
+            <Legend wrapperStyle={legendWrapperStyles} />
 
             <Bar
               dataKey="frequency"
@@ -90,7 +101,6 @@ const GraficoAnalisePreco: React.FC<GraficoAnalisePrecoProps> = ({ stats }) => {
               yAxisId="left"
               opacity={0.7}
             />
-
 
             <Line
               type="monotone"
@@ -107,22 +117,23 @@ const GraficoAnalisePreco: React.FC<GraficoAnalisePrecoProps> = ({ stats }) => {
                 key={index}
                 x={line.value}
                 stroke={line.label === 'Média' ? chartStyles.colors.error : chartStyles.colors.info}
-                strokeDasharray={line.label === 'Média' ? chartStyles.markers.solidLine : chartStyles.markers.dashArray}
+                strokeDasharray={
+                  line.label === 'Média' ? chartStyles.markers.solidLine : chartStyles.markers.dashArray
+                }
                 label={{
                   value: `${line.label} (${line.value.toFixed(2)})`,
                   position: 'top',
                   fill: line.label === 'Média' ? chartStyles.colors.error : chartStyles.colors.info,
-                  fontSize: 12
+                  fontSize: 12,
                 }}
                 yAxisId="left"
               />
             ))}
-
           </ComposedChart>
         </ResponsiveContainer>
       </ChartContainer>
     </>
-  );
-};
+  )
+}
 
-export default GraficoAnalisePreco;
+export default GraficoAnalisePreco

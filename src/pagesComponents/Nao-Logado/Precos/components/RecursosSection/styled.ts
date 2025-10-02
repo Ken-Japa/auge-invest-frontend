@@ -1,53 +1,53 @@
-import { styled } from "@mui/material/styles";
+import { styled } from '@mui/material/styles'
 
-import { visitorColors } from "@/theme/palette/visitor";
-import { borderRadius, spacing, transitions } from "@/theme/variables";
+import { visitorColors } from '@/theme/palette/visitor'
+import { borderRadius, spacing, transitions } from '@/theme/variables'
 
-export const RecursosContainer = styled("div")(({ theme }) => ({
+export const RecursosContainer = styled('div')(({ theme }) => ({
   backgroundColor: visitorColors.overlay,
-  width: "100%",
+  width: '100%',
   padding: spacing.lg,
   borderRadius: borderRadius.md,
   transition: transitions.medium,
 
-  "&:hover": {
+  '&:hover': {
     backgroundColor: visitorColors.backgroundMedium,
   },
 
-  "& .recursos-grid": {
-    display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
+  '& .recursos-grid': {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
     gap: spacing.xl,
     marginBottom: spacing.xl,
-    width: "100%",
+    width: '100%',
 
-    [theme.breakpoints.down("md")]: {
-      gridTemplateColumns: "1fr",
+    [theme.breakpoints.down('md')]: {
+      gridTemplateColumns: '1fr',
     },
   },
 
-  "& .recurso-item": {
-    display: "flex",
-    alignItems: "center",
+  '& .recurso-item': {
+    display: 'flex',
+    alignItems: 'center',
     color: visitorColors.textSecondary,
 
-    "& .icon": {
+    '& .icon': {
       color: visitorColors.primary,
       marginRight: spacing.sm,
     },
   },
 
-  "& .link-container": {
-    textAlign: "center",
+  '& .link-container': {
+    textAlign: 'center',
   },
 
-  "& .more-link": {
+  '& .more-link': {
     color: visitorColors.primary,
-    textDecoration: "none",
+    textDecoration: 'none',
     transition: transitions.medium,
 
-    "&:hover": {
-      textDecoration: "underline",
+    '&:hover': {
+      textDecoration: 'underline',
     },
   },
-}));
+}))

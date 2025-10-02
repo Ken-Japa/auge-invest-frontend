@@ -1,31 +1,31 @@
-import { User,UserSettings } from './user';
+import { User, UserSettings } from './user'
 
 export interface ApiResponse<T> {
-    success: boolean;
-    data?: T;
-    error?: {
-        code: string;
-        message: string;
-    };
+  success: boolean
+  data?: T
+  error?: {
+    code: string
+    message: string
+  }
 }
 
 export interface UserRegistrationData {
-    name: string;
-    email: string;
-    phone?: string;
-    cpf: string;
-    password: string;
+  name: string
+  email: string
+  phone?: string
+  cpf: string
+  password: string
 }
 
 export interface UserLoginData {
-    email: string;
-    password: string;
+  email: string
+  password: string
 }
 
 // Define UserPreferences type based on the User interface
-type UserPreferences = User['preferences'];
+type UserPreferences = User['preferences']
 
 export type UserUpdateData = Partial<Omit<UserRegistrationData, 'password'>> & {
-    settings?: Partial<UserSettings>;
-    preferences?: Partial<UserPreferences>;
-};
+  settings?: Partial<UserSettings>
+  preferences?: Partial<UserPreferences>
+}

@@ -1,23 +1,23 @@
-import { FormControl, Grid, Slider,Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { FormControl, Grid, Slider, Typography } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 export const PeriodoContainer = styled(Grid)(({ theme }) => ({
   marginBottom: theme.spacing(3),
-}));
+}))
 
 export const PeriodoFormControl = styled(FormControl)(({ theme }) => ({
   width: '100%',
-}));
+}))
 
 export const CustomYearsContainer = styled(Grid)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(1),
-}));
+}))
 
 export const YearsTypography = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(1),
-}));
+}))
 
 export const CustomYearsSlider = styled(Slider)(({ theme }) => ({
   color: theme.palette.primary.main,
@@ -49,4 +49,4 @@ export const CustomYearsSlider = styled(Slider)(({ theme }) => ({
       transform: 'rotate(45deg)',
     },
   },
-}));
+}))

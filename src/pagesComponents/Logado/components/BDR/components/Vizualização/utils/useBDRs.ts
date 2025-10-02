@@ -1,39 +1,33 @@
-import { SelectChangeEvent } from "@mui/material";
-import { useEffect, useRef,useState } from "react";
+import { SelectChangeEvent } from '@mui/material'
+import { useEffect, useRef, useState } from 'react'
 
-import { fetchBDRs } from "../../../services/bdrsService";
-import { BDRType, UnifiedBDR, UseBDRsProps } from "../../../types";
+import { fetchBDRs } from '../../../services/bdrsService'
+import { BDRType, UnifiedBDR, UseBDRsProps } from '../../../types'
 
-export const useBDRs = ({
-  filter = {},
-  onError,
-  defaultPageSize = 10,
-}: UseBDRsProps) => {
-  const validPageSizes = [10, 20, 50, 100];
-  const initialPageSize = validPageSizes.includes(defaultPageSize)
-    ? defaultPageSize
-    : 10;
+export const useBDRs = ({ filter = {}, onError, defaultPageSize = 10 }: UseBDRsProps) => {
+  const validPageSizes = [10, 20, 50, 100]
+  const initialPageSize = validPageSizes.includes(defaultPageSize) ? defaultPageSize : 10
 
-  const [bdrs, setBdrs] = useState<UnifiedBDR[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [page, setPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
-  const [pageSize, setPageSize] = useState(initialPageSize);
-  const [bdrType, setBdrType] = useState<BDRType>("todos");
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [bdrs, setBdrs] = useState<UnifiedBDR[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [page, setPage] = useState(0)
+  const [totalPages, setTotalPages] = useState(0)
+  const [pageSize, setPageSize] = useState(initialPageSize)
+  const [bdrType, setBdrType] = useState<BDRType>('todos')
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const loadBDRs = async () => {
       try {
-        setLoading(true);
-        setError(null);
+        setLoading(true)
+        setError(null)
 
-        let isPatrocinado;
-        if (bdrType === "patrocinado") {
-          isPatrocinado = true;
-        } else if (bdrType === "nao-patrocinado") {
-          isPatrocinado = false;
+        let isPatrocinado
+        if (bdrType === 'patrocinado') {
+          isPatrocinado = true
+        } else if (bdrType === 'nao-patrocinado') {
+          isPatrocinado = false
         }
 
         const result = await fetchBDRs({
@@ -42,64 +36,55 @@ export const useBDRs = ({
           page,
           pageSize,
           isPatrocinado,
-        });
+        })
 
-        setBdrs(result.bdrs);
-        setTotalPages(result.pagination.pages);
+        setBdrs(result.bdrs)
+        setTotalPages(result.pagination.pages)
       } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : "Ocorreu um erro desconhecido";
-        setError(errorMessage);
+        const errorMessage = err instanceof Error ? err.message : 'Ocorreu um erro desconhecido'
+        setError(errorMessage)
         if (onError) {
-          onError(errorMessage);
+          onError(errorMessage)
         }
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    loadBDRs();
-  }, [
-    filter.segmento,
-    filter.nome,
-    filter.searchQuery,
-    page,
-    pageSize,
-    bdrType,
-    onError,
-  ]);
+    loadBDRs()
+  }, [filter.segmento, filter.nome, filter.searchQuery, page, pageSize, bdrType, onError])
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
-    setPage(newPage - 1);
+    setPage(newPage - 1)
 
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
-    });
+      behavior: 'smooth',
+    })
 
     if (containerRef.current) {
       containerRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+        behavior: 'smooth',
+        block: 'start',
+      })
     }
-  };
+  }
 
   const handlePageSizeChange = (event: SelectChangeEvent<number>) => {
-    const newPageSize = Number(event.target.value);
-    setPageSize(newPageSize);
-    setPage(0);
+    const newPageSize = Number(event.target.value)
+    setPageSize(newPageSize)
+    setPage(0)
 
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
-    });
-  };
+      behavior: 'smooth',
+    })
+  }
 
   const handleBDRTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setBdrType(event.target.value as BDRType);
-    setPage(0);
-  };
+    setBdrType(event.target.value as BDRType)
+    setPage(0)
+  }
 
   return {
     bdrs,
@@ -114,5 +99,5 @@ export const useBDRs = ({
     handlePageChange,
     handlePageSizeChange,
     handleBDRTypeChange,
-  };
-};
+  }
+}

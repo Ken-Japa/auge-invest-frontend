@@ -1,35 +1,29 @@
-import TrendingDownIcon from '@mui/icons-material/TrendingDown';
-import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import { useRouter } from 'next/navigation';
-import React from 'react';
+import TrendingDownIcon from '@mui/icons-material/TrendingDown'
+import TrendingFlatIcon from '@mui/icons-material/TrendingFlat'
+import TrendingUpIcon from '@mui/icons-material/TrendingUp'
+import { useRouter } from 'next/navigation'
+import React from 'react'
 
-import { formatPercentage } from '../../../utils/currency';
-import { CodeChip } from '../../styled';
-import {
-  CodeContainer,
-  CodeText,
-  PriceText,
-  VariationContainer,
-  VariationText
-} from './styled';
+import { formatPercentage } from '../../../utils/currency'
+import { CodeChip } from '../../styled'
+import { CodeContainer, CodeText, PriceText, VariationContainer, VariationText } from './styled'
 
 interface CodeItemProps {
   codigo: {
-    codigo: string;
-    variacao?: number;
-    preco?: number;
-  };
+    codigo: string
+    variacao?: number
+    preco?: number
+  }
 }
 
 export const CodeItem: React.FC<CodeItemProps> = ({ codigo }) => {
-  const router = useRouter();
-  const ispositive = codigo.variacao !== undefined && codigo.variacao > 0;
-  const iszero = codigo.variacao !== undefined && codigo.variacao === 0;
+  const router = useRouter()
+  const ispositive = codigo.variacao !== undefined && codigo.variacao > 0
+  const iszero = codigo.variacao !== undefined && codigo.variacao === 0
 
   const handleDoubleClick = () => {
-    router.push(`/empresa/${codigo.codigo}`);
-  };
+    router.push(`/empresa/${codigo.codigo}`)
+  }
 
   return (
     <CodeChip
@@ -40,9 +34,7 @@ export const CodeItem: React.FC<CodeItemProps> = ({ codigo }) => {
           </CodeText>
 
           {codigo.preco !== undefined && (
-            <PriceText variant="caption">
-              R$ {codigo.preco.toFixed(2)}
-            </PriceText>
+            <PriceText variant="caption">R$ {codigo.preco.toFixed(2)}</PriceText>
           )}
 
           {codigo.variacao !== undefined && (
@@ -54,11 +46,7 @@ export const CodeItem: React.FC<CodeItemProps> = ({ codigo }) => {
               ) : (
                 <TrendingDownIcon fontSize="small" color="error" />
               )}
-              <VariationText
-                variant="caption"
-                ispositive={ispositive}
-                iszero={iszero}
-              >
+              <VariationText variant="caption" ispositive={ispositive} iszero={iszero}>
                 {formatPercentage(codigo.variacao)}
               </VariationText>
             </VariationContainer>
@@ -66,5 +54,5 @@ export const CodeItem: React.FC<CodeItemProps> = ({ codigo }) => {
         </CodeContainer>
       }
     />
-  );
-};
+  )
+}

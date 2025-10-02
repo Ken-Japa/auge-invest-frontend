@@ -1,36 +1,35 @@
-import { useCallback,useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react'
 
-import { useApi } from '@/providers/ApiProvider';
-import { api } from '@/services/api';
+import { useApi } from '@/providers/ApiProvider'
+import { api } from '@/services/api'
 
 export const useUserFavorites = () => {
-  const [favorites, setFavorites] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const { revalidateFavorites } = useApi();
+  const [favorites, setFavorites] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const { revalidateFavorites } = useApi()
 
   const fetchFavorites = useCallback(async () => {
     try {
-      setLoading(true);
-      const response = await api.favorites.getFavoritesByUser();
-      setFavorites(response.result);
+      setLoading(true)
+      const response = await api.favorites.getFavoritesByUser()
+      setFavorites(response.result)
     } catch (err) {
-      setError("Failed to fetch favorites.");
-      console.error("Failed to fetch favorites:", err);
+      setError('Failed to fetch favorites.')
+      console.error('Failed to fetch favorites:', err)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    fetchFavorites();
-  }, [fetchFavorites, revalidateFavorites]);
+    fetchFavorites()
+  }, [fetchFavorites, revalidateFavorites])
 
   return {
     favorites,
     loading,
     error,
     fetchFavorites,
-  };
-};
-
+  }
+}

@@ -1,37 +1,37 @@
-import { styled } from "@mui/material/styles";
+import { styled } from '@mui/material/styles'
 
-import { visitorColors } from "@/theme/palette/visitor";
-import { borderRadius, spacing, transitions } from "@/theme/variables";
+import { visitorColors } from '@/theme/palette/visitor'
+import { borderRadius, spacing, transitions } from '@/theme/variables'
 
-export const TestimonialCard = styled("div")(({ theme }) => ({
+export const TestimonialCard = styled('div')(({ theme }) => ({
   backgroundColor: visitorColors.backgroundLight,
   padding: spacing.lg,
   borderRadius: borderRadius.md,
   backdropFilter: visitorColors.blur,
   transition: transitions.medium,
-  height: "100%",
+  height: '100%',
 
-  "&:hover": {
+  '&:hover': {
     backgroundColor: visitorColors.backgroundMedium,
   },
 
-  "& .testimonial-text": {
+  '& .testimonial-text': {
     color: visitorColors.textSecondary,
     marginBottom: spacing.md,
-    fontStyle: "italic",
+    fontStyle: 'italic',
   },
 
-  "& .testimonial-author": {
+  '& .testimonial-author': {
     color: visitorColors.primary,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 
-  "& .testimonial-role": {
+  '& .testimonial-role': {
     color: visitorColors.textMuted,
-    fontSize: "0.875rem",
+    fontSize: '0.875rem',
   },
 
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down('sm')]: {
     padding: spacing.md,
   },
-}));
+}))

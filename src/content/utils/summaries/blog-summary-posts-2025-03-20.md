@@ -1,6 +1,6 @@
 # Blog Posts List
 
-1. Análise Fundamentalista: A Ciência por Trás dos Investimentos Inteligentes  (id:9) ("analise-fundamentalista") 2024-03-20
+1. Análise Fundamentalista: A Ciência por Trás dos Investimentos Inteligentes (id:9) ("analise-fundamentalista") 2024-03-20
    Related Posts: cicloeconomico, indicadores-fundamentalista, analisetecnica-vs-analisefundamentalista, indicadores-fundamentalista2
 
 2. Indicadores Econômicos e Análise Fundamentalista (id:8) ("indicadores-fundamentalista") 2024-03-20
@@ -28,8 +28,7 @@
    Related Posts: principais-indicadores-economicos, analise-fundamentalista, indicadores-fundamentalista
 
 10. Como Dar os Primeiros Passos no Mercado (id:1) ("como-comecar-no-mercado-financeiro") 2024-03-18
-   Related Posts: erros-iniciantes, analisetecnica-vs-analisefundamentalista, principais-indicadores-economicos
+    Related Posts: erros-iniciantes, analisetecnica-vs-analisefundamentalista, principais-indicadores-economicos
 
 11. Principais Indicadores Econômicos (id:2) ("principais-indicadores-economicos") 2024-03-18
-   Related Posts: analisetecnica-vs-analisefundamentalista, analise-setorial, cicloeconomico
-
+    Related Posts: analisetecnica-vs-analisefundamentalista, analise-setorial, cicloeconomico

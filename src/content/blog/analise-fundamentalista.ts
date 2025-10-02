@@ -1,29 +1,28 @@
 export const post = {
-  id: "9",
-  title:
-    "Análise Fundamentalista: A Ciência por Trás dos Investimentos Inteligentes ",
+  id: '9',
+  title: 'Análise Fundamentalista: A Ciência por Trás dos Investimentos Inteligentes ',
   description:
-    "Descubra como a análise fundamentalista transforma dados econômicos e financeiros em decisões estratégicas de investimento. Domine os conceitos-chave com exemplos práticos e referências acadêmicas.",
-  image: "",
-  category: ["fundamentalista", "educacional"],
-  author: "Auge Invest",
-  date: "2024-03-20",
-  slug: "analise-fundamentalista",
+    'Descubra como a análise fundamentalista transforma dados econômicos e financeiros em decisões estratégicas de investimento. Domine os conceitos-chave com exemplos práticos e referências acadêmicas.',
+  image: '',
+  category: ['fundamentalista', 'educacional'],
+  author: 'Auge Invest',
+  date: '2024-03-20',
+  slug: 'analise-fundamentalista',
   tags: [
-    "investimentos",
-    "análise fundamentalista",
-    "razões financeiras",
-    "educação financeira",
-    "ações",
-    "valuation",
-    "saúde financeira",
+    'investimentos',
+    'análise fundamentalista',
+    'razões financeiras',
+    'educação financeira',
+    'ações',
+    'valuation',
+    'saúde financeira',
   ],
-  readTime: "20 min",
+  readTime: '20 min',
   relatedPosts: [
-    "cicloeconomico",
-    "indicadores-fundamentalista",
-    "analisetecnica-vs-analisefundamentalista",
-    "indicadores-fundamentalista2",
+    'cicloeconomico',
+    'indicadores-fundamentalista',
+    'analisetecnica-vs-analisefundamentalista',
+    'indicadores-fundamentalista2',
   ],
   content: `
 A análise fundamentalista é a espinha dorsal da tomada de decisão em investimentos de longo prazo. Desenvolvida inicialmente por **Benjamin Graham** e **David Dodd** na década de 1930 (referência: "Security Analysis", 1934), essa metodologia permite identificar o **valor intrínseco** de ativos através de:
@@ -147,4 +146,4 @@ A análise fundamentalista não deve ser usada isoladamente. Gestores como **How
 [^16]: DCF (Discounted Cash Flow | Fluxo de Caixa Descontado): Método de valuation que calcula o valor intrínseco de uma empresa projetando seus fluxos de caixa futuros e trazendo-os a valor presente. É como uma "viagem no tempo" para responder: "Quanto vale hoje todo o dinheiro que essa empresa vai gerar no futuro?"
 
     `,
-};
+}

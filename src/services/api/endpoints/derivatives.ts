@@ -1,33 +1,27 @@
-import { BaseApiService } from "../baseService";
-import { API_ENDPOINTS } from "../config";
-import { ErrorCode, handleApiError } from "../errorHandler";
-import { DerivativeFilter,DerivativeResponse } from "../types";
+import { BaseApiService } from '../baseService'
+import { API_ENDPOINTS } from '../config'
+import { ErrorCode, handleApiError } from '../errorHandler'
+import { DerivativeFilter, DerivativeResponse } from '../types'
+import { getPaginationParams } from '../utils/pagination'
 
 class DerivativesApiService extends BaseApiService {
-  getDerivatives = async (
-    filters: DerivativeFilter
-  ): Promise<DerivativeResponse> => {
+  getDerivatives = async (filters: DerivativeFilter): Promise<DerivativeResponse> => {
+    const { page, pageSize } = getPaginationParams(filters)
     const params = {
       cod_empresa: filters.cod_empresa,
-      page: filters.page !== undefined ? filters.page : 0,
-      pageSize: filters.pageSize || 100,
-    };
+      page,
+      pageSize,
+    }
 
     try {
-      const response = await this.get<DerivativeResponse>(
-        API_ENDPOINTS.DERIVATIVE.PAGINATION,
-        params
-      );
+      const response = await this.get<DerivativeResponse>(API_ENDPOINTS.DERIVATIVE.PAGINATION, params)
 
-      return response;
+      return response
     } catch (error) {
-      console.error(
-        `Erro ao buscar derivativos para empresa ${filters.cod_empresa}:`,
-        error
-      );
-      throw handleApiError(error, ErrorCode.COMPANY_DATA_ERROR);
+      console.error(`Erro ao buscar derivativos para empresa ${filters.cod_empresa}:`, error)
+      throw handleApiError(error, ErrorCode.COMPANY_DATA_ERROR)
     }
-  };
+  }
 }
 
-export const derivativesApi = new DerivativesApiService();
+export const derivativesApi = new DerivativesApiService()

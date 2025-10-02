@@ -1,26 +1,26 @@
-"use client";
-import { useState } from "react";
+'use client'
+import { useState } from 'react'
 
 interface ErrorHandling {
-  error: string | null;
-  setError: (message: string) => void;
-  clearError: () => void;
+  error: string | null
+  setError: (message: string) => void
+  clearError: () => void
 }
 
 export const useErrorHandling = (): ErrorHandling => {
-  const [error, setErrorState] = useState<string | null>(null);
+  const [error, setErrorState] = useState<string | null>(null)
 
   const setError = (message: string) => {
-    setErrorState(message);
-  };
+    setErrorState(message)
+  }
 
   const clearError = () => {
-    setErrorState(null);
-  };
+    setErrorState(null)
+  }
 
   return {
     error,
     setError,
     clearError,
-  };
-};
+  }
+}

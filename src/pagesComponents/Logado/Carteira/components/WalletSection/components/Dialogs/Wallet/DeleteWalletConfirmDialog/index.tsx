@@ -1,45 +1,57 @@
-import { Typography } from '@mui/material';
-import React from 'react';
+import { Typography } from '@mui/material'
+import React from 'react'
 
-import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext';
+import { useRecentActivitiesRefresh } from '@/pagesComponents/Logado/Carteira/context/RecentActivitiesContext'
 
-import { CancelButton, DeleteButton,StyledDialog, StyledDialogActions, StyledDialogContent, StyledDialogTitle } from './styled';
+import {
+  CancelButton,
+  DeleteButton,
+  StyledDialog,
+  StyledDialogActions,
+  StyledDialogContent,
+  StyledDialogTitle,
+} from './styled'
 
 interface DeleteWalletConfirmDialogProps {
-    open: boolean;
-    onClose: () => void;
-    onConfirm: () => void;
-    loading: boolean;
+  open: boolean
+  onClose: () => void
+  onConfirm: () => void
+  loading: boolean
 }
 
 export const DeleteWalletConfirmDialog: React.FC<DeleteWalletConfirmDialogProps> = ({
-    open,
-    onClose,
-    onConfirm,
-    loading,
+  open,
+  onClose,
+  onConfirm,
+  loading,
 }) => {
-    const { triggerRefresh } = useRecentActivitiesRefresh();
+  const { triggerRefresh } = useRecentActivitiesRefresh()
 
-    const handleDeleteConfirm = () => {
-        onConfirm();
-        triggerRefresh();
-    };
+  const handleDeleteConfirm = () => {
+    onConfirm()
+    triggerRefresh()
+  }
 
-    return (
-        <StyledDialog open={open} onClose={onClose}>
-            <StyledDialogTitle>Confirmar Exclusão</StyledDialogTitle>
-            <StyledDialogContent sx={{ textAlign: 'center' }}>
-                <Typography>Tem certeza de que deseja excluir esta carteira? <br /></Typography>
-                <Typography><br />Esta ação não poderá ser desfeita.</Typography>
-            </StyledDialogContent>
-            <StyledDialogActions>
-                <CancelButton onClick={onClose} color="primary" disabled={loading}>
-                    Cancelar
-                </CancelButton>
-                <DeleteButton onClick={handleDeleteConfirm} color="error" disabled={loading}>
-                    {loading ? 'Excluindo...' : 'Excluir'}
-                </DeleteButton>
-            </StyledDialogActions>
-        </StyledDialog>
-    );
-};
+  return (
+    <StyledDialog open={open} onClose={onClose}>
+      <StyledDialogTitle>Confirmar Exclusão</StyledDialogTitle>
+      <StyledDialogContent sx={{ textAlign: 'center' }}>
+        <Typography>
+          Tem certeza de que deseja excluir esta carteira? <br />
+        </Typography>
+        <Typography>
+          <br />
+          Esta ação não poderá ser desfeita.
+        </Typography>
+      </StyledDialogContent>
+      <StyledDialogActions>
+        <CancelButton onClick={onClose} color="primary" disabled={loading}>
+          Cancelar
+        </CancelButton>
+        <DeleteButton onClick={handleDeleteConfirm} color="error" disabled={loading}>
+          {loading ? 'Excluindo...' : 'Excluir'}
+        </DeleteButton>
+      </StyledDialogActions>
+    </StyledDialog>
+  )
+}

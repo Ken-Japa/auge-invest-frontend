@@ -1,5 +1,5 @@
-import { useWalletPositions } from "./useWalletPositions";
-import { useWallets } from "./useWallets";
+import { useWalletPositions } from './useWalletPositions'
+import { useWallets } from './useWallets'
 
 export const useWalletData = (isSimulated?: boolean) => {
   const {
@@ -10,13 +10,8 @@ export const useWalletData = (isSimulated?: boolean) => {
     handleCreateWallet,
     handleUpdateWallet,
     handleConfirmDelete,
-  } = useWallets(isSimulated);
-  const {
-    walletPositions,
-    loadingPositions,
-    errorPositions,
-    fetchWalletPositions,
-  } = useWalletPositions();
+  } = useWallets(isSimulated)
+  const { walletPositions, loadingPositions, errorPositions, fetchWalletPositions } = useWalletPositions()
 
   return {
     wallets,
@@ -30,5 +25,5 @@ export const useWalletData = (isSimulated?: boolean) => {
     loadingPositions,
     errorPositions,
     fetchWalletPositions,
-  };
-};
+  }
+}

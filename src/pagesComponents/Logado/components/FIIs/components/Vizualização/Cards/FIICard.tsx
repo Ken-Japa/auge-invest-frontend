@@ -1,10 +1,10 @@
-import { OpenInNew as OpenInNewIcon } from '@mui/icons-material';
-import { Chip, Grid, IconButton } from '@mui/material';
-import Link from 'next/link';
+import { OpenInNew as OpenInNewIcon } from '@mui/icons-material'
+import { Chip, Grid, IconButton } from '@mui/material'
+import Link from 'next/link'
 
-import { formatCNPJ, formatDate, formatNumber } from '@/components/Utils/Formatters/formatters';
+import { formatCNPJ, formatDate, formatNumber } from '@/components/Helpers/Formatters/formatters'
 
-import { FIIExtended } from '../../../types';
+import { FIIExtended } from '../../../types'
 import {
   CardHeader,
   CardSubtitle,
@@ -16,10 +16,10 @@ import {
   InfoValue,
   StyledCard,
   StyledCardContent,
-} from './styled';
+} from './styled'
 
 interface FIICardProps {
-  fii: FIIExtended;
+  fii: FIIExtended
 }
 
 export const FIICard = ({ fii }: FIICardProps) => {
@@ -39,9 +39,7 @@ export const FIICard = ({ fii }: FIICardProps) => {
         </CardHeader>
         <StyledCardContent>
           <Link href={`/fii/${fii.codigoFII}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-            <CardTitle variant="h4">
-              {fii.nomeFII}
-            </CardTitle>
+            <CardTitle variant="h4">{fii.nomeFII}</CardTitle>
           </Link>
 
           <CardSubtitle variant="body2" color="text.secondary">
@@ -51,13 +49,7 @@ export const FIICard = ({ fii }: FIICardProps) => {
           <ChipsContainer>
             {fii.codigo.map((code) => (
               <Link key={code} href={`/fii/${code}`} style={{ textDecoration: 'none' }}>
-                <Chip
-                  label={code}
-                  size="small"
-                  color="primary"
-                  variant="outlined"
-                  clickable
-                />
+                <Chip label={code} size="small" color="primary" variant="outlined" clickable />
               </Link>
             ))}
           </ChipsContainer>
@@ -81,5 +73,5 @@ export const FIICard = ({ fii }: FIICardProps) => {
         </StyledCardContent>
       </StyledCard>
     </Grid>
-  );
-};
+  )
+}

@@ -1,29 +1,25 @@
 export const post = {
-  id: "11",
-  title: "Valuation - Fluxo de Caixa Descontado (DFC)",
+  id: '11',
+  title: 'Valuation - Fluxo de Caixa Descontado (DFC)',
   description:
-    "Domine o método DCF (Fluxo de Caixa Descontado) para valuation de empresas. Aprenda fórmulas corretas, evite erros comuns e utilize planilhas profissionais.",
-  image: "",
-  category: ["fundamentalista", "educacional"],
-  author: "Auge Invest",
-  date: "2024-03-20",
-  slug: "valuation",
+    'Domine o método DCF (Fluxo de Caixa Descontado) para valuation de empresas. Aprenda fórmulas corretas, evite erros comuns e utilize planilhas profissionais.',
+  image: '',
+  category: ['fundamentalista', 'educacional'],
+  author: 'Auge Invest',
+  date: '2024-03-20',
+  slug: 'valuation',
   tags: [
-    "valuation",
-    "fluxo de caixa descontado",
-    "DFC",
-    "Discounted Cash Flow",
-    "analise fundamentalista",
-    "investimentos",
-    "finanças corporativas",
-    "fluxo de caixa livre",
+    'valuation',
+    'fluxo de caixa descontado',
+    'DFC',
+    'Discounted Cash Flow',
+    'analise fundamentalista',
+    'investimentos',
+    'finanças corporativas',
+    'fluxo de caixa livre',
   ],
-  readTime: "40 min",
-  relatedPosts: [
-    "analise-fundamentalista",
-    "indicadores-fundamentalista",
-    "indicadores-fundamentalista2",
-  ],
+  readTime: '40 min',
+  relatedPosts: ['analise-fundamentalista', 'indicadores-fundamentalista', 'indicadores-fundamentalista2'],
   content: `
 Na complexa arena dos investimentos e da avaliação de empresas, o método de Fluxo de Caixa Descontado (DFC - em inglês: Discounted Cash Flow) se destaca como uma das ferramentas mais robustas e amplamente utilizadas. 
 
@@ -344,4 +340,4 @@ Deixe seus comentários e perguntas abaixo e junte-se à nossa comunidade de inv
 - **Artigos Acadêmicos**: "The Discounted Cash Flow Method: A Comprehensive Guide"
 
     `,
-};
+}

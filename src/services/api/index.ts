@@ -1,5 +1,5 @@
-import apiClient from "./client";
-import * as endpoints from "./endpoints";
+import apiClient from './client'
+import * as endpoints from './endpoints'
 
 export const api = {
   auth: endpoints.authApi,
@@ -17,10 +17,10 @@ export const api = {
   wallet: endpoints.walletApi,
   alerts: endpoints.alertsApi,
   favorites: endpoints.favoritesApi,
-};
+}
 
-export * from "./types";
+export * from './types'
 
-export { apiClient };
+export { apiClient }
 
-export default api;
+export default api

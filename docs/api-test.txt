@@ -1,0 +1,50 @@
+### TRANSACTION.UPDATE
+- **Endpoint:** `/transaction/{positionId}`
+- **Status:** `200 OK`
+- **Detalhes:** Atualiza uma transação existente.
+
+### TRANSACTION.DELETE
+- **Endpoint:** `/transaction/{transactionId}`
+- **Status:** `200 OK`
+- **Detalhes:** Exclui uma transação existente.
+
+### TRANSACTION.GET
+- **Endpoint:** `/transaction/{transactionId}`
+- **Status:** `404 Not Found`
+- **Detalhes:** Falha ao recuperar a transação com o `transactionId` `68dc3b24c4697e1eafa22650`. (Inesperado, pois a transação foi criada com sucesso e o `TRANSACTION.PAGINATION` funciona. Falha também ao tentar com `positionId`.)
+
+### TRANSACTION.PAGINATION
+- **Endpoint:** `/transaction/pagination`
+- **Status:** `200 OK`
+- **Detalhes:** Transação com `positionId` `68dc3b24c4697e1eafa2264d` recuperada com sucesso via paginação. Os parâmetros `page` e `pageSize` são obrigatórios.
+
+### PORTFOLIOS.GET_USER_PORTFOLIOS
+- **Endpoint:** `/portfolios/user/{userId}`
+- **Status:** `200 OK`
+- **Detalhes:** Retorna os portfólios do usuário. `portfolioId` extraído: `688bdf50e4c72f78ec5ae15c`
+
+### Testes Concluídos:
+- Testar o endpoint BDR.PAGINATION com paginação e filtros. (200 OK para paginação, filtro `nomeEmpresa` e `segmento` funcionaram corretamente)
+  - **Tipagem:** `BDRFilter` aceita `nomeEmpresa`, `codigoEmpresa`, `segmento`, `page`, `pageSize`, `searchTerm`, `searchBy`. `codigoEmpresa` é mapeado para `nome` na API, o que pode causar inconsistências.
+
+- Testar o endpoint BDR.DIVIDENDS com paginação e filtros. (200 OK para paginação, filtro `nomeEmpresa` funcionou corretamente)
+  - **Tipagem:** `BDRDividendFilter` aceita `nomeEmpresa`, `page`, `pageSize`.
+
+- Testar o endpoint BDRNP.PAGINATION com paginação e filtros. (200 OK para paginação, filtros `nomeEmpresa` e `segmento` funcionaram corretamente)
+  - **Tipagem:** `BDRNPFilter` aceita `nomeEmpresa`, `codigoEmpresa`, `segmento`, `page`, `pageSize`, `searchTerm`, `searchBy`. `codigoEmpresa` é mapeado para `nome` na API em `getBDRNPs`, `searchTerm` e `searchBy` são usados em `searchBDRNPs`, e `codigo` é usado em `getBDRNPByCode`.
+
+- Testar o endpoint ETF.PAGINATION com paginação e filtros. (200 OK para paginação, todos os filtros funcionaram corretamente)
+  - **Tipagem:** `ETFFilter` aceita `nomeETF`, `codigoETF`, `codigo`, `industria`, `segmento`, `page`, `pageSize`.
+
+- Testar o endpoint DICTIONARY.PAGINATION com paginação e filtros. (200 OK para paginação, filtro `name` funcionou)
+
+- Testar o endpoint SUMARIO.PAGINATION com paginação e filtros. (200 OK para paginação, filtro `name` não implementado)
+
+- Testar o endpoint ETFBDR.PAGINATION com paginação e filtros. (200 OK para paginação, todos os filtros funcionaram corretamente)
+  - **Tipagem:** `ETFBDRFilter` aceita `nomeETF`, `codigoETF`, `codigo`, `industria`, `segmento`, `atividade`, `page`, `pageSize`.
+
+### Testes com Falha ou Inconsistência:
+- **Endpoint:** `TRANSACTION.GET`
+  - **Detalhes:** `404 Not Found` ao tentar recuperar a transação com o `transactionId` `68dc3b24c4697e1eafa22650`. (Inesperado, pois a transação foi criada com sucesso e o `TRANSACTION.PAGINATION` funciona. Falha também ao tentar com `positionId`.)
+- **Endpoint:** `SUMARIO.PAGINATION`
+  - **Detalhes:** Filtro `name` não implementado.

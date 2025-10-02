@@ -1,22 +1,19 @@
-import { FormErrors } from "../types";
+import { FormErrors } from '../types'
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-export const validateLoginForm = (
-  email: string,
-  password: string
-): FormErrors => {
-  const errors: FormErrors = {};
+export const validateLoginForm = (email: string, password: string): FormErrors => {
+  const errors: FormErrors = {}
 
   if (!email.trim()) {
-    errors.email = "E-mail é obrigatório";
+    errors.email = 'E-mail é obrigatório'
   } else if (!EMAIL_REGEX.test(email)) {
-    errors.email = "E-mail inválido";
+    errors.email = 'E-mail inválido'
   }
 
   if (!password.trim()) {
-    errors.password = "Senha é obrigatória";
+    errors.password = 'Senha é obrigatória'
   }
 
-  return errors;
-};
+  return errors
+}

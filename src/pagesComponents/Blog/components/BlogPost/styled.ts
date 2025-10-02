@@ -1,12 +1,12 @@
-import { Box } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 export const PostContainer = styled(Box)`
   padding: 4rem 0;
   background: #111111;
   min-height: 100vh;
   position: relative;
-`;
+`
 
 export const PostContent = styled(Box)`
   color: #fff;
@@ -112,4 +112,4 @@ export const PostContent = styled(Box)`
       padding: 0;
     }
   }
-`;
+`

@@ -1,4 +1,4 @@
-import { formatCurrency } from '../../utils/currency';
+import { formatCurrency } from '../../utils/currency'
 
 export const createCentralNode = (valorTotal: number, sizeMultiplier = 10) => ({
   id: 'Mercado Total',
@@ -10,7 +10,7 @@ export const createCentralNode = (valorTotal: number, sizeMultiplier = 10) => ({
   color: {
     background: '#FFFFFF',
     border: '#000000',
-    highlight: { background: '#FFFFFF', border: '#000000' }
+    highlight: { background: '#FFFFFF', border: '#000000' },
   },
-  borderWidth: 2
-});
+  borderWidth: 2,
+})

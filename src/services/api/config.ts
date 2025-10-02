@@ -1,103 +1,102 @@
 // API base URL
-export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "https://api-servidor-yupg.onrender.com";
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api-servidor-yupg.onrender.com'
 
 export const API_ENDPOINTS = {
   // Auth endpoints
   AUTH: {
-    LOGIN: "/login",
-    LOGOUT: "/logout",
-    GOOGLE_LOGIN: "/login/google",
-    REGISTER: "/auth/register",
-    CURRENT_USER: "/auth/me",
+    LOGIN: '/login',
+    LOGOUT: '/logout',
+    GOOGLE_LOGIN: '/login/google',
+    REGISTER: '/auth/register',
+    CURRENT_USER: '/auth/me',
   },
 
   // User endpoints
   USER: {
-    CREATE: "/user/create",
-    READ: "/user/read",
-    UPDATE: "/user/update",
-    DELETE: "/user/delete",
-    UPDATE_PASSWORD: "/user/update-password",
+    CREATE: '/user/create',
+    READ: '/user/read',
+    UPDATE: '/user/update',
+    DELETE: '/user/delete',
+    UPDATE_PASSWORD: '/user/update-password',
   },
 
   // Company endpoints
   COMPANY: {
-    PAGINATION: "/company/pagination",
-    DETAIL: "/company",
-    DIVIDENDS: "/company/dividendos/pagination",
+    PAGINATION: '/company/pagination',
+    DETAIL: '/company',
+    DIVIDENDS: '/company/dividendos/pagination',
   },
   // Historical data endpoints
   HISTORIC: {
-    PAGINATION: "/historic/pagination",
+    PAGINATION: '/historic/pagination',
   },
   // Derivative endpoints
   DERIVATIVE: {
-    PAGINATION: "/derivative/pagination",
+    PAGINATION: '/derivative/pagination',
   },
   // FII endpoints
   FII: {
-    PAGINATION: "/fiis/pagination",
-    DETAIL: "/fiis",
-    DIVIDENDS: "/fiis/dividendos/pagination",
+    PAGINATION: '/fiis/pagination',
+    DETAIL: '/fiis',
+    DIVIDENDS: '/fiis/dividendos/pagination',
   },
   //BDR endpoints
   BDR: {
-    PAGINATION: "/bdr/pagination",
-    DETAIL: "/bdr",
-    DIVIDENDS: "/bdr/dividendos/pagination",
+    PAGINATION: '/bdr/pagination',
+    DETAIL: '/bdr',
+    DIVIDENDS: '/bdr/dividendos/pagination',
   },
   //BDR NP endpoints
   BDRNP: {
-    PAGINATION: "/bdr/np/pagination",
-    DETAIL: "/bdr/np",
+    PAGINATION: '/bdr/np/pagination',
+    DETAIL: '/bdr/np',
   },
   //ETF endpoints
   ETF: {
-    PAGINATION: "/etf/pagination",
-    DETAIL: "/etf",
+    PAGINATION: '/etf/pagination',
+    DETAIL: '/etf',
   },
   ETFBDR: {
-    PAGINATION: "/etf/bdr/pagination",
-    DETAIL: "/etf/bdr",
+    PAGINATION: '/etf/bdr/pagination',
+    DETAIL: '/etf/bdr',
   },
   //Dictionary endpoints
   DICTIONARY: {
-    PAGINATION: "/dictionary/pagination",
+    PAGINATION: '/dictionary/pagination',
   },
   //Dictionary endpoints
   SUMARIO: {
-    PAGINATION: "/sumario/pagination",
+    PAGINATION: '/sumario/pagination',
   },
   // Wallet endpoints
   WALLET: {
-    CREATE: "/portfolios",
-    DELETE: "/portfolios",
-    UPDATE: "/portfolios",
-    GET_WALLET_POSITION: "/positions",
-    GET_USER_WALLETS: "/portfolios/user",
-    GET_WALLET: "/portfolios",
+    CREATE: '/portfolios',
+    DELETE: '/portfolios',
+    UPDATE: '/portfolios',
+    GET_WALLET_POSITION: '/positions',
+    GET_USER_WALLETS: '/portfolios/user',
+    GET_WALLET: '/portfolios',
   },
   // Transaction endpoints
   TRANSACTION: {
-    CREATE: "/transaction",
-    UPDATE: "/transaction",
-    DELETE: "/transaction",
-    GET: "/transaction",
-    PAGINATION: "/transaction/pagination",
+    CREATE: '/transaction',
+    UPDATE: '/transaction',
+    DELETE: '/transaction',
+    GET: '/transaction',
+    PAGINATION: '/transaction/pagination',
   },
   // Alert endpoints
   ALERTS: {
-    BASE: "/alerts",
-    USER_ALERTS: "/alerts",
+    BASE: '/alerts',
+    USER_ALERTS: '/alerts',
   },
   // Favorite endpoints
   FAVORITES: {
-    BASE: "/favorites",
+    BASE: '/favorites',
   },
   // Outros grupos de endpoints...
-};
+}
 
 export function getFullEndpointUrl(endpoint: string): string {
-  return `${API_BASE_URL}${endpoint}`;
+  return `${API_BASE_URL}${endpoint}`
 }

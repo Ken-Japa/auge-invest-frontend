@@ -1,101 +1,99 @@
 export function getAuthToken(): string | null {
-  const localToken = localStorage.getItem("authToken");
+  const localToken = localStorage.getItem('authToken')
   if (localToken) {
-    return localToken;
+    return localToken
   }
 
-  const cookieToken = getCookie("clientAuthToken");
+  const cookieToken = getCookie('clientAuthToken')
   if (cookieToken) {
-    return cookieToken;
+    return cookieToken
   }
 
-  const userId = getUserIdNoConsole();
-  if (userId && userId.includes("@") === false) {
-    const tempToken = `google_${userId}`;
-    localStorage.setItem("authToken", tempToken);
-    return tempToken;
+  const userId = getUserIdNoConsole()
+  if (userId && userId.includes('@') === false) {
+    const tempToken = `google_${userId}`
+    localStorage.setItem('authToken', tempToken)
+    return tempToken
   }
-  return null;
+  return null
 }
 
 // Função centralizada para definir dados de autenticação
 export function setAuthData(token: string, userId?: string): void {
-  if (!token) return;
+  if (!token) return
 
   // Armazenar no localStorage (para acesso do cliente)
-  if (typeof window !== "undefined") {
-    localStorage.setItem("authToken", token);
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('authToken', token)
 
     if (userId) {
-      localStorage.setItem("userId", userId);
+      localStorage.setItem('userId', userId)
     }
   }
 
   // Também definir em cookies para acesso entre abas
-  if (typeof document !== "undefined") {
-    const maxAge = 30 * 24 * 60 * 60; // 30 dias em segundos
-    document.cookie = `authToken=${token}; path=/; max-age=${maxAge}; SameSite=Lax`;
+  if (typeof document !== 'undefined') {
+    const maxAge = 30 * 24 * 60 * 60 // 30 dias em segundos
+    document.cookie = `authToken=${token}; path=/; max-age=${maxAge}; SameSite=Lax`
 
     if (userId) {
-      document.cookie = `userId=${userId}; path=/; max-age=${maxAge}; SameSite=Lax`;
+      document.cookie = `userId=${userId}; path=/; max-age=${maxAge}; SameSite=Lax`
     }
   }
 }
 
 function getUserIdNoConsole(): string | null {
-  const localUserId = localStorage.getItem("userId");
-  if (localUserId) return localUserId;
+  const localUserId = localStorage.getItem('userId')
+  if (localUserId) return localUserId
 
-  const cookieUserId = getCookie("userId");
-  if (cookieUserId) return cookieUserId;
+  const cookieUserId = getCookie('userId')
+  if (cookieUserId) return cookieUserId
 
-  const sessionData = sessionStorage.getItem("nextauth.session");
+  const sessionData = sessionStorage.getItem('nextauth.session')
   if (sessionData) {
     try {
-      const session = JSON.parse(sessionData);
-      if (session?.user?.id) return session.user.id;
-      if (session?.user?.email) return session.user.email;
+      const session = JSON.parse(sessionData)
+      if (session?.user?.id) return session.user.id
+      if (session?.user?.email) return session.user.email
     } catch (e) {}
   }
 
-  return null;
+  return null
 }
 
 export function getCookie(name: string): string | null {
-  if (typeof document === "undefined") return null;
+  if (typeof document === 'undefined') return null
 
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
   if (parts.length === 2) {
-    const cookieValue = parts.pop()?.split(";").shift() || null;
-    return cookieValue;
+    const cookieValue = parts.pop()?.split(';').shift() || null
+    return cookieValue
   }
-  return null;
+  return null
 }
 
 export function getUserId(session: any): string | null {
-  const localUserId = localStorage.getItem("userId");
-  if (localUserId) return localUserId;
+  const localUserId = localStorage.getItem('userId')
+  if (localUserId) return localUserId
 
-  const cookieUserId = getCookie("userId");
-  if (cookieUserId) return cookieUserId;
+  const cookieUserId = getCookie('userId')
+  if (cookieUserId) return cookieUserId
 
-  if (session?.user?.id) return session.user.id;
-  if (session?.user?.email) return session.user.email;
+  if (session?.user?.id) return session.user.id
+  if (session?.user?.email) return session.user.email
 
-  return null;
+  return null
 }
 
 export function clearAuthData(): void {
-  localStorage.removeItem("authToken");
-  localStorage.removeItem("userId");
+  localStorage.removeItem('authToken')
+  localStorage.removeItem('userId')
 
-  if (typeof document !== "undefined") {
-    document.cookie =
-      "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie =
-      "clientAuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  if (typeof document !== 'undefined') {
+    document.cookie = 'authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+    document.cookie = 'userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+    document.cookie = 'clientAuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
   }
 }
 
@@ -104,17 +102,17 @@ export function clearAuthData(): void {
  * @returns {boolean} True if a valid token exists
  */
 export function hasValidToken(): boolean {
-  const token = getAuthToken();
+  const token = getAuthToken()
 
-  if (!token) return false;
+  if (!token) return false
 
   // If it's a Google token, assume it's valid (we can't easily check)
-  if (token.startsWith("google_")) return true;
+  if (token.startsWith('google_')) return true
 
   // For JWT tokens, we could check expiration if the token is decoded
   // This is a simplified check - in a real app, you might want to decode the JWT
   // and check its expiration date
-  return token.length > 20; // Arbitrary length check for a valid JWT
+  return token.length > 20 // Arbitrary length check for a valid JWT
 }
 
 /**
@@ -122,5 +120,5 @@ export function hasValidToken(): boolean {
  * @returns {boolean} True if the user is authenticated
  */
 export function isAuthenticated(): boolean {
-  return hasValidToken() && !!getUserIdNoConsole();
+  return hasValidToken() && !!getUserIdNoConsole()
 }

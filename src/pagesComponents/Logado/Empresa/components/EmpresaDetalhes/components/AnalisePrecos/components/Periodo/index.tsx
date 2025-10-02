@@ -1,15 +1,24 @@
-import { Grid, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import React from 'react';
+import { Grid, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material'
+import React from 'react'
 
-import { AnalysisPeriod, PeriodData } from '../../utils/types';
-import { CustomYearsContainer, CustomYearsSlider,PeriodoContainer, PeriodoFormControl, YearsTypography } from './styled';
+import { PeriodData } from '../../services/subservices/dataPreparationUtils'
+
+type AnalysisPeriod = PeriodData['period']
+
+import {
+  CustomYearsContainer,
+  CustomYearsSlider,
+  PeriodoContainer,
+  PeriodoFormControl,
+  YearsTypography,
+} from './styled'
 
 interface PeriodoProps {
-  periodsData: PeriodData[];
-  selectedPeriod: AnalysisPeriod;
-  customYears: number;
-  onPeriodChange: (event: SelectChangeEvent) => void;
-  onCustomYearsChange: (event: Event, newValue: number | number[]) => void;
+  periodsData: PeriodData[]
+  selectedPeriod: AnalysisPeriod | null
+  customYears: number
+  onPeriodChange: (event: SelectChangeEvent) => void
+  onCustomYearsChange: (event: Event, newValue: number | number[]) => void
 }
 
 const Periodo: React.FC<PeriodoProps> = ({
@@ -24,11 +33,7 @@ const Periodo: React.FC<PeriodoProps> = ({
       <Grid item xs={12} md={6}>
         <PeriodoFormControl>
           <InputLabel>Período de Análise</InputLabel>
-          <Select
-            value={selectedPeriod}
-            label="Período de Análise"
-            onChange={onPeriodChange}
-          >
+          <Select value={selectedPeriod || ''} label="Período de Análise" onChange={onPeriodChange}>
             {periodsData.map((period) => (
               <MenuItem key={period.period} value={period.period}>
                 {period.label}
@@ -59,7 +64,7 @@ const Periodo: React.FC<PeriodoProps> = ({
         </Grid>
       )}
     </PeriodoContainer>
-  );
-};
+  )
+}
 
-export default Periodo;
+export default Periodo

@@ -1,21 +1,16 @@
-import { TableBody, TableSortLabel, Tooltip } from '@mui/material';
+import { TableBody, TableSortLabel } from '@mui/material'
 
-import { useFIITableLogic } from '../../../hooks/useFIITableLogic';
-import { FIIExtended } from '../../../types';
-import { FIITableRow } from './FIITableRow';
-import {
-  HeaderCell,
-  HeaderRow,
-  StyledTable,
-  StyledTableContainer,
-  StyledTableHead} from './styled';
+import { useFIITableLogic } from '../../../hooks/useFIITableLogic'
+import { FIIExtended } from '../../../types'
+import { FIITableRow } from './FIITableRow'
+import { HeaderCell, HeaderRow, StyledTable, StyledTableContainer, StyledTableHead } from './styled'
 
 interface TableViewProps {
-  fiis: FIIExtended[];
+  fiis: FIIExtended[]
 }
 
 export const TableView = ({ fiis }: TableViewProps) => {
-  const { sortedFiis, order, orderBy, handleRequestSort } = useFIITableLogic(fiis);
+  const { sortedFiis, order, orderBy, handleRequestSort } = useFIITableLogic(fiis)
 
   return (
     <StyledTableContainer>
@@ -52,7 +47,7 @@ export const TableView = ({ fiis }: TableViewProps) => {
         </TableBody>
       </StyledTable>
     </StyledTableContainer>
-  );
-};
+  )
+}
 
-export default TableView;
+export default TableView

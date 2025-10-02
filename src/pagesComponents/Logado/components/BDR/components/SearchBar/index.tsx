@@ -1,11 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar';
+import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar'
 
 const BDRSearchBar: React.FC = () => {
-    return (
-        <GlobalSearchBar type="BDR" />
-    );
-};
+  return <GlobalSearchBar type="BDR" />
+}
 
-export default BDRSearchBar;
+export default BDRSearchBar

@@ -1,51 +1,51 @@
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Badge, Divider, IconButton, Menu, MenuItem } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import Link from "next/link";
-import { useState } from 'react';
+import NotificationsIcon from '@mui/icons-material/Notifications'
+import { Badge, Divider, IconButton, Menu, MenuItem } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import Link from 'next/link'
+import { useState } from 'react'
 
-import { ErrorDisplay } from '@/components/Feedback/ErrorDisplay';
-import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton';
-import { Snackbar } from '@/components/Feedback/Snackbar';
-import { useUserAlerts } from '@/components/Layout/components/Header/PerfilButtons/components/AlertButton/hooks/useUserAlerts';
+import { ErrorDisplay } from '@/components/Feedback/ErrorDisplay'
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
+import { Snackbar } from '@/components/Feedback/Snackbar'
+import { useUserAlerts } from '@/components/Layout/components/Header/PerfilButtons/components/AlertButton/hooks/useUserAlerts'
 
-import { MAX_DISPLAY_ITEMS } from '../constants';
-import { AlertMenuItem } from './components/AlertMenuItem';
+import { MAX_DISPLAY_ITEMS } from '../constants'
+import { AlertMenuItem } from './components/AlertMenuItem'
 
 export const AlertButton = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'info' | 'warning'>('info');
-  const theme = useTheme();
-  const { alerts, loading, error, triggeredAlertCount, markAlertAsRead, fetchAlerts } = useUserAlerts();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [snackbarOpen, setSnackbarOpen] = useState(false)
+  const [snackbarMessage, setSnackbarMessage] = useState('')
+  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'info' | 'warning'>('info')
+  const theme = useTheme()
+  const { alerts, loading, error, triggeredAlertCount, markAlertAsRead, fetchAlerts } = useUserAlerts()
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   const handleAlertMarkAsRead = async (alert: any) => {
     try {
-      await markAlertAsRead(alert._id);
+      await markAlertAsRead(alert._id)
       if (alert.triggered) {
-        setSnackbarMessage('Alerta marcado como lido!');
-        setSnackbarSeverity('success');
-        setSnackbarOpen(true);
+        setSnackbarMessage('Alerta marcado como lido!')
+        setSnackbarSeverity('success')
+        setSnackbarOpen(true)
       }
     } catch (err) {
-      setSnackbarMessage('Erro ao marcar alerta como lido.');
-      setSnackbarSeverity('error');
-      setSnackbarOpen(true);
+      setSnackbarMessage('Erro ao marcar alerta como lido.')
+      setSnackbarSeverity('error')
+      setSnackbarOpen(true)
     }
-  };
+  }
 
   const handleSnackbarClose = () => {
-    setSnackbarOpen(false);
-  };
+    setSnackbarOpen(false)
+  }
 
   return (
     <div>
@@ -60,11 +60,11 @@ export const AlertButton = () => {
           badgeContent={triggeredAlertCount}
           color="primary"
           sx={{
-            "& .MuiBadge-badge": {
+            '& .MuiBadge-badge': {
               height: 18,
               minWidth: 18,
               fontSize: 10,
-              padding: "0 4px",
+              padding: '0 4px',
               backgroundColor: theme.palette.warning.main,
             },
           }}
@@ -92,7 +92,7 @@ export const AlertButton = () => {
             maxHeight: 300,
             borderRadius: '8px',
             boxShadow: theme.shadows[3],
-          }
+          },
         }}
       >
         {loading ? (
@@ -104,15 +104,13 @@ export const AlertButton = () => {
             <ErrorDisplay message="Erro ao carregar alertas." onRetry={fetchAlerts} />
           </MenuItem>
         ) : alerts.length === 0 ? (
-          <MenuItem onClick={handleClose} disabled>Nenhum alerta encontrado.</MenuItem>
+          <MenuItem onClick={handleClose} disabled>
+            Nenhum alerta encontrado.
+          </MenuItem>
         ) : (
           alerts.slice(0, MAX_DISPLAY_ITEMS).map((alert, index) => (
             <div key={alert._id}>
-              <AlertMenuItem
-                alert={alert}
-                onClose={handleClose}
-                markAlertAsRead={handleAlertMarkAsRead}
-              />
+              <AlertMenuItem alert={alert} onClose={handleClose} markAlertAsRead={handleAlertMarkAsRead} />
               {index < alerts.slice(0, MAX_DISPLAY_ITEMS).length - 1 && (
                 <Divider variant="middle" sx={{ borderStyle: 'dotted' }} />
               )}
@@ -141,5 +139,5 @@ export const AlertButton = () => {
         onClose={handleSnackbarClose}
       />
     </div>
-  );
-};
+  )
+}

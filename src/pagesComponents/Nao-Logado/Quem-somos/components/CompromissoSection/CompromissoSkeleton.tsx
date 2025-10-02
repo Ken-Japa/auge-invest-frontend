@@ -1,32 +1,32 @@
-import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
 
-import { BaseSection, ContentContainer, SectionTitle, Subtitle } from "../../styled";
+import { BaseSection, ContentContainer, SectionTitle, Subtitle } from '../../styled'
 
 export const CompromissoSkeleton = () => (
-    <BaseSection>
-        <SectionTitle>
-            <ContentSkeleton
-                type="text"
-                textLines={1}
-                className="w-48 bg-[#ffffff0a] backdrop-blur-sm"
-                style={{ minHeight: '48px' }}
-            />
-        </SectionTitle>
-        <Subtitle>
-            <ContentSkeleton
-                type="text"
-                textLines={1}
-                className="w-64 bg-[#ffffff0a] backdrop-blur-sm"
-                style={{ minHeight: '24px' }}
-            />
-        </Subtitle>
-        <ContentContainer>
-            <ContentSkeleton
-                type="text"
-                textLines={3}
-                className="bg-[#ffffff0a] backdrop-blur-sm"
-                style={{ minHeight: '100px' }}
-            />
-        </ContentContainer>
-    </BaseSection>
-);
+  <BaseSection>
+    <SectionTitle>
+      <ContentSkeleton
+        type="text"
+        textLines={1}
+        className="w-48 bg-[#ffffff0a] backdrop-blur-sm"
+        style={{ minHeight: '48px' }}
+      />
+    </SectionTitle>
+    <Subtitle>
+      <ContentSkeleton
+        type="text"
+        textLines={1}
+        className="w-64 bg-[#ffffff0a] backdrop-blur-sm"
+        style={{ minHeight: '24px' }}
+      />
+    </Subtitle>
+    <ContentContainer>
+      <ContentSkeleton
+        type="text"
+        textLines={3}
+        className="bg-[#ffffff0a] backdrop-blur-sm"
+        style={{ minHeight: '100px' }}
+      />
+    </ContentContainer>
+  </BaseSection>
+)

@@ -1,18 +1,13 @@
-import { Tooltip } from '@mui/material';
-import Link from 'next/link';
+import { Tooltip } from '@mui/material'
+import Link from 'next/link'
 
-import { formatCNPJ, formatDate,formatNumber } from '@/components/Utils/Formatters/formatters';
+import { formatCNPJ, formatDate, formatNumber } from '@/components/Helpers/Formatters/formatters'
 
-import { FIIExtended } from '../../../types';
-import {
-  CodeChip,
-  DataCell,
-  DataRow,
-  DataText,
-  FIIName} from './styled';
+import { FIIExtended } from '../../../types'
+import { CodeChip, DataCell, DataRow, DataText, FIIName } from './styled'
 
 interface FIITableRowProps {
-  fii: FIIExtended;
+  fii: FIIExtended
 }
 
 export const FIITableRow = ({ fii }: FIITableRowProps) => (
@@ -41,4 +36,4 @@ export const FIITableRow = ({ fii }: FIITableRowProps) => (
       <DataText>{formatCNPJ(fii.informacoes?.cnpj)}</DataText>
     </DataCell>
   </DataRow>
-);
+)

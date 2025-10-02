@@ -1,0 +1,13 @@
+﻿
+src\pagesComponents\Logado\components\SearchBar\index.tsx (Linhas: 546)
+
+src\pagesComponents\Logado\Empresa\components\EmpresaDetalhes\components\GraficoHistorico\index.tsx (Linhas: 186)
+
+src\pagesComponents\Logado\Perfil\index.tsx (Linhas: 152)
+
+src\pagesComponents\Logado\Perfil\components\BasicInfo\index.tsx (Linhas: 155)
+
+
+src\app\api\auth\[...nextauth]\route.ts - 217 linhas
+src\components\Layout\components\Header\Navbar\index.tsx (Linhas: 176)
+src\pagesComponents\Logado\Visao-Economia\index.tsx (Linhas: 184)

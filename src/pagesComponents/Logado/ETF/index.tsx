@@ -1,17 +1,26 @@
-"use client";
+'use client'
 
-import React from 'react';
+import { type FC, lazy } from 'react'
 
-import { PageBackground } from '@/components/Layout/PageBackground';
+import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
+import { PageTransition } from '@/components/Helpers/PageTransition'
+import { PageBackground } from '@/components/Layout/PageBackground'
 
-import ETF from '../components/ETF';
+const LazyETFDetails = lazy(() => import('../components/ETF'))
 
-const ETFPage: React.FC = () => {
-    return (
+const ETFPage: FC = () => {
+  return (
+    <PageTransition>
+      <ErrorBoundary>
         <PageBackground imageName="ETFs">
-            <ETF defaultPageSize={50} />
+          <SuspenseWrapper fallback={<div>Carregando...</div>}>
+            <LazyETFDetails defaultPageSize={50} />
+          </SuspenseWrapper>
         </PageBackground>
-    )
-};
+      </ErrorBoundary>
+    </PageTransition>
+  )
+}
 
-export default ETFPage;
+export default ETFPage

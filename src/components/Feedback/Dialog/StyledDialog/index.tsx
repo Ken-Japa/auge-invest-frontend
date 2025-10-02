@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from 'react'
 
 import {
   CancelButton,
@@ -6,21 +6,22 @@ import {
   StyledDialog as Dialog,
   StyledDialogActions,
   StyledDialogContent,
-  StyledDialogTitle} from './styled';
+  StyledDialogTitle,
+} from './styled'
 
 interface StyledDialogProps {
-  open: boolean;
-  onClose: () => void;
-  title: string;
-  children: ReactNode;
-  onCancel?: () => void;
-  onSave?: () => void;
-  cancelText?: string;
-  saveText?: string;
-  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  fullWidth?: boolean;
-  disableSave?: boolean;
-  loading?: boolean;
+  open: boolean
+  onClose: () => void
+  title: string
+  children: ReactNode
+  onCancel?: () => void
+  onSave?: () => void
+  cancelText?: string
+  saveText?: string
+  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  fullWidth?: boolean
+  disableSave?: boolean
+  loading?: boolean
 }
 
 export const StyledDialog = ({
@@ -35,38 +36,28 @@ export const StyledDialog = ({
   maxWidth = 'sm',
   fullWidth = true,
   disableSave = false,
-  loading = false
+  loading = false,
 }: StyledDialogProps) => {
   const handleCancel = () => {
     if (onCancel) {
-      onCancel();
+      onCancel()
     } else {
-      onClose();
+      onClose()
     }
-  };
+  }
 
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      maxWidth={maxWidth}
-      fullWidth={fullWidth}
-    >
+    <Dialog open={open} onClose={onClose} maxWidth={maxWidth} fullWidth={fullWidth}>
       <StyledDialogTitle>{title}</StyledDialogTitle>
       <StyledDialogContent>{children}</StyledDialogContent>
       <StyledDialogActions>
-        <CancelButton onClick={handleCancel}>
-          {cancelText}
-        </CancelButton>
+        <CancelButton onClick={handleCancel}>{cancelText}</CancelButton>
         {onSave && (
-          <SaveButton 
-            onClick={onSave} 
-            disabled={disableSave || loading}
-          >
+          <SaveButton onClick={onSave} disabled={disableSave || loading}>
             {saveText}
           </SaveButton>
         )}
       </StyledDialogActions>
     </Dialog>
-  );
-};
+  )
+}

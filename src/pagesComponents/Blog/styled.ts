@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 export const BlogContainer = styled(Box)`
   position: relative;
@@ -17,7 +17,7 @@ export const BlogContainer = styled(Box)`
     height: 100%;
     z-index: -1;
   }
-`;
+`
 
 export const BlogContent = styled(Box)`
   position: relative;
@@ -26,4 +26,4 @@ export const BlogContent = styled(Box)`
   width: 100%;
   padding: 2rem 0;
   padding-bottom: 112px;
-`;
+`

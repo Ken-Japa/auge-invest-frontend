@@ -1,27 +1,20 @@
-import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
-import { getServerSession } from 'next-auth';
+import { Metadata } from 'next'
+import { redirect } from 'next/navigation'
+import { getServerSession } from 'next-auth'
 
 export const metadata: Metadata = {
-    title: "Área Logada | AugeInvest",
-    description: "Acesso à área exclusiva para membros da AugeInvest. Gerencie sua carteira, acesse análises e ferramentas avançadas de investimento.",
-    robots: 'noindex, nofollow',
-};
+  title: 'Área Logada | AugeInvest',
+  description:
+    'Acesso à área exclusiva para membros da AugeInvest. Gerencie sua carteira, acesse análises e ferramentas avançadas de investimento.',
+  robots: 'noindex, nofollow',
+}
 
-export default async function AuthLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
-    const session = await getServerSession();
+export default async function AuthLayout({ children }: { children: React.ReactNode }) {
+  const session = await getServerSession()
 
-    if (!session) {
-        redirect('/login');
-    }
+  if (!session) {
+    redirect('/login')
+  }
 
-    return (
-        <main className="pt-16">
-            {children}
-        </main>
-    );
+  return <main className="pt-16">{children}</main>
 }

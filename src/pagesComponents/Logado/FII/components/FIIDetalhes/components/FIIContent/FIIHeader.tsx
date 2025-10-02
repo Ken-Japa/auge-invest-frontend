@@ -1,18 +1,23 @@
-import { Typography } from '@mui/material';
+import { Typography } from '@mui/material'
 
-import { CodeChip, HeaderContainer } from '../../styled';
+import { CodeChip, HeaderContainer } from '../../styled'
 
 interface FIIHeaderProps {
-  nomeFII: string;
-  nomeCompletoFII?: string;
-  codigos?: string[];
+  nomeFII: string
+  nomeCompletoFII?: string
+  codigos?: string[]
 }
 
 const FIIHeader = ({ nomeFII, nomeCompletoFII, codigos }: FIIHeaderProps) => {
   return (
     <HeaderContainer>
       <div>
-        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+        <Typography
+          variant="h3"
+          component="h1"
+          gutterBottom
+          sx={{ fontWeight: 'bold', color: 'primary.main' }}
+        >
           {nomeFII}
         </Typography>
         {nomeCompletoFII && (
@@ -21,17 +26,9 @@ const FIIHeader = ({ nomeFII, nomeCompletoFII, codigos }: FIIHeaderProps) => {
           </Typography>
         )}
       </div>
-      <div>
-        {codigos && codigos.map((code) => (
-          <CodeChip
-            key={code}
-            label={code}
-            color="primary"
-          />
-        ))}
-      </div>
+      <div>{codigos && codigos.map((code) => <CodeChip key={code} label={code} color="primary" />)}</div>
     </HeaderContainer>
-  );
-};
+  )
+}
 
-export default FIIHeader;
+export default FIIHeader

@@ -1,30 +1,30 @@
-import { CircularProgress, Typography } from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material'
 
-import { PaginationControls } from '@/components/Data-Display/PaginationControls';
+import { PaginationControls } from '@/components/Data-Display/PaginationControls'
 
-import { useFIIVisualizationLogic } from '../../hooks/useFIIVisualizationLogic';
-import { FIIFilter, VisualizationMode } from '../../types';
-import { FIIViewRenderer } from './FIIViewRenderer';
+import { useFIIVisualizationLogic } from '../../hooks/useFIIVisualizationLogic'
+import { FIIFilter, VisualizationMode } from '../../types'
+import { FIIViewRenderer } from './FIIViewRenderer'
 import {
   EmptyResultsContainer,
   ErrorContainer,
   LoadingContainer,
   PaginationContainer,
   VisualizationContainer,
-} from './styled';
+} from './styled'
 
 interface VisualizacaoFIIsProps {
-  mode?: VisualizationMode;
-  filters: FIIFilter;
-  onError?: (message: string) => void;
-  defaultPageSize?: number;
+  mode?: VisualizationMode
+  filters: FIIFilter
+  onError?: (message: string) => void
+  defaultPageSize?: number
 }
 
 export const VisualizacaoFIIs = ({
   mode = 'card',
   filters,
   onError,
-  defaultPageSize = 20
+  defaultPageSize = 20,
 }: VisualizacaoFIIsProps) => {
   const {
     fiis,
@@ -36,15 +36,15 @@ export const VisualizacaoFIIs = ({
     handlePageChange,
     handlePageSizeChange,
     containerRef,
-    validPageSizes
-  } = useFIIVisualizationLogic({ filters, onError, defaultPageSize });
+    validPageSizes,
+  } = useFIIVisualizationLogic({ filters, onError, defaultPageSize })
 
   if (loading) {
     return (
       <LoadingContainer>
         <CircularProgress />
       </LoadingContainer>
-    );
+    )
   }
 
   if (error) {
@@ -52,7 +52,7 @@ export const VisualizacaoFIIs = ({
       <ErrorContainer>
         <Typography color="error">{error}</Typography>
       </ErrorContainer>
-    );
+    )
   }
 
   if (fiis.length === 0) {
@@ -60,10 +60,8 @@ export const VisualizacaoFIIs = ({
       <EmptyResultsContainer>
         <Typography>Nenhum FII encontrado com os filtros aplicados.</Typography>
       </EmptyResultsContainer>
-    );
+    )
   }
-
-
 
   return (
     <VisualizationContainer ref={containerRef}>
@@ -87,7 +85,7 @@ export const VisualizacaoFIIs = ({
         </PaginationContainer>
       )}
     </VisualizationContainer>
-  );
-};
+  )
+}
 
-export default VisualizacaoFIIs;
+export default VisualizacaoFIIs

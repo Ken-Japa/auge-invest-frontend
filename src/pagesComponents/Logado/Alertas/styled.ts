@@ -1,26 +1,31 @@
-import { styled } from "@mui/material/styles";
+import { Typography } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
-import { spacing } from "@/theme/variables";
+import { spacing } from '@/theme/variables'
 
-export const PageHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
+export const PageHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
   marginBottom: spacing.xl,
 
-  "& h1": {
+  '& h1': {
     color: theme.palette.text.primary,
     fontWeight: 600,
   },
-}));
+}))
 
-export const ActionContainer = styled("div")(({ theme }) => ({
-  display: "flex",
-  flexDirection: "row",
+export const ActionContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
   marginBottom: spacing.xl,
-  justifyContent: "space-between",
+  justifyContent: 'space-between',
 
-  [theme.breakpoints.down("sm")]: {
-    flexDirection: "column",
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
     gap: spacing.md,
   },
-}));
+}))
+
+export const AlertTypography = styled(Typography)<{ type: 'buy' | 'sell' }>(({ theme, type }) => ({
+  color: type === 'buy' ? theme.palette.success.main : theme.palette.error.main,
+}))

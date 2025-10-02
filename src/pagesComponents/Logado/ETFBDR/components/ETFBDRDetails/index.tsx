@@ -1,52 +1,59 @@
-"use client";
-import { useRouter } from 'next/navigation';
-import React from 'react';
+'use client'
+import { useRouter } from 'next/navigation'
+import React, { lazy } from 'react'
 
-import { PageBackground } from '@/components/Layout/PageBackground';
+import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
+import { PageTransition } from '@/components/Helpers/PageTransition'
+import { PageBackground } from '@/components/Layout/PageBackground'
 
-import { ETFBDRDetailsContent } from './ETFBDRDetailsContent';
-import { useETFBDRDetails } from './hooks/useETFBDRDetails';
-import { DetailPageContainer } from './styled';
-import { ETFBDRLoadingState } from './utils/ETFBDRLoadingState';
-import { ETFBDRNotFoundState } from './utils/ETFBDRNotFoundState';
-
+const LazyETFBDRDetailsContent = lazy(() =>
+  import('./ETFBDRDetailsContent').then((mod) => ({ default: mod.ETFBDRDetailsContent })),
+)
+import { useETFBDRDetails } from './hooks/useETFBDRDetails'
+import { DetailPageContainer } from './styled'
+import { ETFBDRLoadingState } from './utils/ETFBDRLoadingState'
+import { ETFBDRNotFoundState } from './utils/ETFBDRNotFoundState'
 
 interface ETFBDRDetailsProps {
-    slug: string;
-    codigo?: string;
-    isCode?: boolean;
+  slug: string
+  codigo?: string
+  isCode?: boolean
 }
 
 const ETFDetails = ({ slug, codigo, isCode = false }: ETFBDRDetailsProps) => {
-    const router = useRouter();
-    const { etf, loading, error } = useETFBDRDetails({ slug, codigo, isCode });
+  const router = useRouter()
+  const { etf, loading, error } = useETFBDRDetails({ slug, codigo, isCode })
 
+  const handleBack = () => {
+    router.back()
+  }
 
-    const handleBack = () => {
-        router.back();
-    };
+  if (loading) {
+    return <ETFBDRLoadingState />
+  }
 
-    if (loading) {
-        return <ETFBDRLoadingState />;
-    }
+  if (error) {
+    return <ETFBDRNotFoundState message={error} onBack={handleBack} />
+  }
 
-    if (error) {
-        return <ETFBDRNotFoundState message={error} onBack={handleBack} />;
-    }
+  if (!etf) {
+    return <ETFBDRNotFoundState message="ETF não encontrado." onBack={handleBack} />
+  }
 
-    if (!etf) {
-        return <ETFBDRNotFoundState message="ETF não encontrado." onBack={handleBack} />;
-    }
-
-    return (
+  return (
+    <PageTransition>
+      <ErrorBoundary>
         <PageBackground imageName="ETFs">
+          <SuspenseWrapper fallback={<div>Carregando...</div>}>
             <DetailPageContainer>
-
-                <ETFBDRDetailsContent etf={etf} onBack={handleBack} />
-
+              <LazyETFBDRDetailsContent etf={etf} onBack={handleBack} />
             </DetailPageContainer>
+          </SuspenseWrapper>
         </PageBackground>
-    );
-};
+      </ErrorBoundary>
+    </PageTransition>
+  )
+}
 
-export default ETFDetails;
+export default ETFDetails

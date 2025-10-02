@@ -1,25 +1,34 @@
-import { formatCurrency } from '@/components/Utils/Formatters/formatters';
-import { BDRDividendItem as Dividend } from '@/services/api';
+import { formatCurrency } from '@/components/Helpers/Formatters/formatters'
+import { BDRDividendItem as Dividend } from '@/services/api'
 
-import { HeaderCell, StatusChip, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from './styled';
+import {
+  HeaderCell,
+  StatusChip,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from './styled'
 
 interface BDRDividendTableProps {
-  dividends: Dividend[];
+  dividends: Dividend[]
 }
 
 const BDRDividendTable = ({ dividends }: BDRDividendTableProps) => {
   const getStatusColor = (tipoDividendo: string) => {
     switch (tipoDividendo.toUpperCase()) {
       case 'DIVIDENDO':
-        return 'success';
+        return 'success'
       case 'RENDIMENTO':
-        return 'warning';
+        return 'warning'
       case 'AMORTIZAÇÃO':
-        return 'info';
+        return 'info'
       default:
-        return 'default';
+        return 'default'
     }
-  };
+  }
 
   return (
     <TableContainer>
@@ -35,11 +44,12 @@ const BDRDividendTable = ({ dividends }: BDRDividendTableProps) => {
         </TableHead>
         <TableBody>
           {dividends.map((dividend, index) => {
-            const valor = typeof dividend.valor === 'string' ?
-              parseFloat(dividend.valor.replace(',', '.')) :
-              dividend.valor;
+            const valor =
+              typeof dividend.valor === 'string'
+                ? parseFloat(dividend.valor.replace(',', '.'))
+                : dividend.valor
 
-            const key = dividend._id || `row-${index}`;
+            const key = dividend._id || `row-${index}`
 
             return (
               <TableRow key={key}>
@@ -53,14 +63,14 @@ const BDRDividendTable = ({ dividends }: BDRDividendTableProps) => {
                     size="small"
                   />
                 </TableCell>
-                <TableCell >{dividend.ultimoDiaCom}</TableCell>
+                <TableCell>{dividend.ultimoDiaCom}</TableCell>
               </TableRow>
-            );
+            )
           })}
         </TableBody>
       </Table>
     </TableContainer>
-  );
-};
+  )
+}
 
-export default BDRDividendTable;
+export default BDRDividendTable

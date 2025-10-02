@@ -1,19 +1,19 @@
-import { Button } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Button } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
-import { visitorColors } from "@/theme/palette/visitor";
-import { transitions } from "@/theme/variables";
+import { visitorColors } from '@/theme/palette/visitor'
+import { transitions } from '@/theme/variables'
 
 export const StyledSubmitButton = styled(Button)({
-  height: "56px",
+  height: '56px',
   backgroundColor: visitorColors.buttonPrimary,
   color: visitorColors.buttonText,
   transition: transitions.medium,
-  "&:hover": {
-    backgroundColor: "#004a9e",
+  '&:hover': {
+    backgroundColor: '#004a9e',
   },
-  "&:disabled": {
-    backgroundColor: "rgba(255, 255, 255, 0.12)",
-    color: "rgba(255, 255, 255, 0.3)",
+  '&:disabled': {
+    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+    color: 'rgba(255, 255, 255, 0.3)',
   },
-});
+})

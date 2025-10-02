@@ -1,27 +1,23 @@
-"use client";
-import { Alert, CircularProgress, Typography } from '@mui/material';
+'use client'
+import { Alert, CircularProgress, Typography } from '@mui/material'
+import { lazy, Suspense } from 'react'
 
-import FIIDividendSummaryDisplay from './FIIDividendSummary';
-import FIIDividendTable from './FIIDividendTable';
-import { useFIIDividendosLogic } from './hooks/useFIIDividendosLogic';
-import {
-  DividendContainer,
-  DividendPaper,
-  DividendTitle,
-  ErrorContainer,
-  LoadingContainer,
-} from './styled';
+import { useFIIDividendosLogic } from './hooks/useFIIDividendosLogic'
+import { DividendContainer, DividendPaper, DividendTitle, ErrorContainer, LoadingContainer } from './styled'
+
+const LazyFIIDividendSummaryDisplay = lazy(() => import('./FIIDividendSummary'))
+const LazyFIIDividendTable = lazy(() => import('./FIIDividendTable'))
 
 interface FIIDividendosProps {
-  nomeFII: string;
+  nomeFII: string
 }
 
 interface FIIDividendosProps {
-  nomeFII: string;
+  nomeFII: string
 }
 
 const FIIDividendos = ({ nomeFII }: FIIDividendosProps) => {
-  const { dividends, loading, error, summary } = useFIIDividendosLogic({ nomeFII });
+  const { dividends, loading, error, summary } = useFIIDividendosLogic({ nomeFII })
 
   if (loading) {
     return (
@@ -35,7 +31,7 @@ const FIIDividendos = ({ nomeFII }: FIIDividendosProps) => {
           </LoadingContainer>
         </DividendPaper>
       </DividendContainer>
-    );
+    )
   }
 
   if (error) {
@@ -47,11 +43,11 @@ const FIIDividendos = ({ nomeFII }: FIIDividendosProps) => {
           </ErrorContainer>
         </DividendPaper>
       </DividendContainer>
-    );
+    )
   }
 
   if (!dividends.length) {
-    return null;
+    return null
   }
 
   return (
@@ -61,12 +57,16 @@ const FIIDividendos = ({ nomeFII }: FIIDividendosProps) => {
           Dividendos Recebidos
         </DividendTitle>
 
-        <FIIDividendSummaryDisplay summary={summary} />
+        <Suspense fallback={<div>Carregando resumo de dividendos...</div>}>
+          <LazyFIIDividendSummaryDisplay summary={summary} />
+        </Suspense>
 
-        <FIIDividendTable dividends={dividends} />
+        <Suspense fallback={<div>Carregando tabela de dividendos...</div>}>
+          <LazyFIIDividendTable dividends={dividends} />
+        </Suspense>
       </DividendPaper>
     </DividendContainer>
-  );
-};
+  )
+}
 
-export default FIIDividendos;
+export default FIIDividendos

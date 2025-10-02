@@ -1,19 +1,13 @@
-import { Tooltip } from '@mui/material';
-import Link from 'next/link';
+import { Tooltip } from '@mui/material'
+import Link from 'next/link'
 
-import { formatDate } from '@/components/Utils/Formatters/formatters';
+import { formatDate } from '@/components/Helpers/Formatters/formatters'
 
-import { UnifiedBDR } from '../../../../types';
-import {
-  BDRName,
-  CodeChip,
-  DataCell,
-  DataRow,
-  DataText
-} from '../styled';
+import { UnifiedBDR } from '../../../../types'
+import { BDRName, CodeChip, DataCell, DataRow, DataText } from '../styled'
 
 interface BDRTableRowProps {
-  bdr: UnifiedBDR;
+  bdr: UnifiedBDR
 }
 
 export const BDRTableRow = ({ bdr }: BDRTableRowProps) => (
@@ -34,7 +28,7 @@ export const BDRTableRow = ({ bdr }: BDRTableRowProps) => (
       <DataText>{formatDate(bdr.dataInicio)}</DataText>
     </DataCell>
     <DataCell>
-      <DataText>{(bdr.informações?.market)}</DataText>
+      <DataText>{bdr.informações?.market}</DataText>
     </DataCell>
   </DataRow>
-);
+)

@@ -1,16 +1,16 @@
-import { Grid } from '@mui/material';
-import React from 'react';
+import { Grid } from '@mui/material'
+import React from 'react'
 
-import { useETFCardLogic } from '../../../hooks/useETFCardLogic';
-import { ETFExtended } from '../../../types';
-import ETFCard from './ETFCard';
+import { useETFCardLogic } from '../../../hooks/useETFCardLogic'
+import { ETFExtended } from '../../../types'
+import ETFCard from './ETFCard'
 
 interface CardViewProps {
-  etfs: ETFExtended[];
+  etfs: ETFExtended[]
 }
 
 const CardView: React.FC<CardViewProps> = ({ etfs }) => {
-  const { sortedEtfs, handleCardClick } = useETFCardLogic(etfs);
+  const { sortedEtfs, handleCardClick } = useETFCardLogic(etfs)
 
   return (
     <Grid container spacing={3}>
@@ -20,7 +20,7 @@ const CardView: React.FC<CardViewProps> = ({ etfs }) => {
         </Grid>
       ))}
     </Grid>
-  );
-};
+  )
+}
 
-export default CardView;
+export default CardView

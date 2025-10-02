@@ -1,7 +1,7 @@
-import { ContentSkeleton } from "@/components/Feedback/Skeletons/ContentSkeleton";
-import { visitorColors } from "@/theme/palette/visitor";
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
+import { visitorColors } from '@/theme/palette/visitor'
 
-import { HeaderContainer } from "./styled";
+import { HeaderContainer } from './styled'
 
 export const HeaderSkeleton = () => (
   <HeaderContainer>
@@ -18,4 +18,4 @@ export const HeaderSkeleton = () => (
       className={`${visitorColors.skeletonBackground} backdrop-blur-sm`}
     />
   </HeaderContainer>
-);
+)

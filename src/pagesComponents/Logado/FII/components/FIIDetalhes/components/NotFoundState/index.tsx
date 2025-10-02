@@ -1,10 +1,10 @@
-import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
-import { Alert } from '@mui/material';
+import { ArrowBack as ArrowBackIcon } from '@mui/icons-material'
+import { Alert } from '@mui/material'
 
-import { BackButton,ContentWrapper, DetailPageContainer, ErrorContainer } from '../../styled';
+import { BackButton, ContentWrapper, DetailPageContainer, ErrorContainer } from '../../styled'
 
 interface NotFoundStateProps {
-  onBack: () => void;
+  onBack: () => void
 }
 
 export const NotFoundState = ({ onBack }: NotFoundStateProps) => (
@@ -14,14 +14,10 @@ export const NotFoundState = ({ onBack }: NotFoundStateProps) => (
         <Alert severity="warning" sx={{ mb: 2 }}>
           FII não encontrado
         </Alert>
-        <BackButton
-          startIcon={<ArrowBackIcon />}
-          variant="contained"
-          onClick={onBack}
-        >
+        <BackButton startIcon={<ArrowBackIcon />} variant="contained" onClick={onBack}>
           Voltar
         </BackButton>
       </ErrorContainer>
     </ContentWrapper>
   </DetailPageContainer>
-);
+)

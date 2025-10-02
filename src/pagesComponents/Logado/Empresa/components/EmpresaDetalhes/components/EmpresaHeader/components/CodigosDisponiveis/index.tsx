@@ -1,28 +1,26 @@
-import { Grid } from '@mui/material';
-import React from 'react';
+import { Grid } from '@mui/material'
+import React from 'react'
 
-import { CodigoButton,CodigosContainer, CodigosTitulo } from './styled';
+import { CodigoButton, CodigosContainer, CodigosTitulo } from './styled'
 
 interface Codigo {
-  codigo: string;
+  codigo: string
 }
 
 interface CodigosDisponiveisProps {
-  codigos: Codigo[];
-  codigoAtivo: string;
-  onCodigoChange: (codigo: string) => void;
+  codigos: Codigo[]
+  codigoAtivo: string
+  onCodigoChange: (codigo: string) => void
 }
 
 export const CodigosDisponiveis: React.FC<CodigosDisponiveisProps> = ({
   codigos,
   codigoAtivo,
-  onCodigoChange
+  onCodigoChange,
 }) => {
   return (
     <CodigosContainer>
-      <CodigosTitulo variant="h4">
-        Códigos Disponíveis
-      </CodigosTitulo>
+      <CodigosTitulo variant="h4">Códigos Disponíveis</CodigosTitulo>
 
       <Grid container spacing={2} justifyContent="center">
         {codigos.map((codigo) => (
@@ -39,5 +37,5 @@ export const CodigosDisponiveis: React.FC<CodigosDisponiveisProps> = ({
         ))}
       </Grid>
     </CodigosContainer>
-  );
-};
+  )
+}

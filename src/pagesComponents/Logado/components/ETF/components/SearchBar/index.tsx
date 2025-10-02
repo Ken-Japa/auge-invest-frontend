@@ -1,11 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar';
+import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar'
 
 const ETFSearchBar: React.FC = () => {
-  return (
-    <GlobalSearchBar type="ETF" />
-  );
-};
+  return <GlobalSearchBar type="ETF" />
+}
 
-export default ETFSearchBar;
+export default ETFSearchBar

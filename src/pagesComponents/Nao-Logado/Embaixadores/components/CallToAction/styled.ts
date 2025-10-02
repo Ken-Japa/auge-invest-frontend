@@ -1,14 +1,14 @@
-import { Box, Skeleton,Stack } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Box, Skeleton, Stack } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
-import { CustomButton } from "@/components/Core/Button";
-import { visitorColors } from "@/theme/palette/visitor";
-import { borderRadius, spacing } from "@/theme/variables";
+import { CustomButton } from '@/components/Core/Button'
+import { visitorColors } from '@/theme/palette/visitor'
+import { borderRadius, spacing } from '@/theme/variables'
 
 export const CallToActionContainer = styled(Box)({
   marginTop: spacing.xl,
-  textAlign: "center",
-});
+  textAlign: 'center',
+})
 
 export const ContentStack = styled(Stack)({
   background: visitorColors.backgroundDark,
@@ -16,22 +16,22 @@ export const ContentStack = styled(Stack)({
   padding: spacing.lg,
   borderRadius: borderRadius.md,
 
-  "& .cta-question": {
+  '& .cta-question': {
     color: `${visitorColors.text}e6`,
   },
 
-  "& .cta-message": {
+  '& .cta-message': {
     color: visitorColors.text,
   },
-});
+})
 
 export const StyledButton = styled(CustomButton)({
-  marginTop: "1rem",
-  maxWidth: "20rem",
-  marginLeft: "auto",
-  marginRight: "auto",
-});
+  marginTop: '1rem',
+  maxWidth: '20rem',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+})
 
 export const StyledSkeleton = styled(Skeleton)({
   backgroundColor: visitorColors.skeletonBackground,
-});
+})

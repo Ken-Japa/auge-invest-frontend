@@ -1,66 +1,40 @@
-'use client';
+import React, { createContext, useCallback, useContext, useState } from 'react'
 
-import { useSession } from 'next-auth/react';
-import React, { createContext, useContext, useEffect,useState } from 'react';
-
-import { api } from '@/services/api';
-
-// Context type
 interface ApiContextType {
-  isLoading: boolean;
-  error: string | null;
-  clearError: () => void;
-  revalidateAlerts: () => void;
-  revalidateFavorites: () => void;
+  revalidateAlerts: () => void
+  alertsRevalidationKey: number
+  revalidateFavorites: () => void
+  favoritesRevalidationKey: number
 }
 
-// Create context with default values
-const ApiContext = createContext<ApiContextType>({
-  isLoading: false,
-  error: null,
-  clearError: () => {},
-  revalidateAlerts: () => {},
-  revalidateFavorites: () => {},
-});
+const ApiContext = createContext<ApiContextType | undefined>(undefined)
 
-export const useApi = () => useContext(ApiContext);
+export const ApiProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [alertsRevalidationKey, setAlertsRevalidationKey] = useState(0)
+  const [favoritesRevalidationKey, setFavoritesRevalidationKey] = useState(0)
 
-export function ApiProvider({ children }: { children: React.ReactNode }) {
-  const { data: session } = useSession();
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [alertsRevalidationKey, setAlertsRevalidationKey] = useState(0);
-  const [favoritesRevalidationKey, setFavoritesRevalidationKey] = useState(0);
+  const revalidateAlerts = useCallback(() => {
+    setAlertsRevalidationKey((prev) => prev + 1)
+  }, [])
 
-  // Clear error helper
-  const clearError = () => setError(null);
-
-  // Revalidation functions
-  const revalidateAlerts = () => setAlertsRevalidationKey(prev => prev + 1);
-  const revalidateFavorites = () => setFavoritesRevalidationKey(prev => prev + 1);
-
-  // Set up global error handling for API
-  useEffect(() => {
-    // This could be expanded to include global API error handling
-    // For example, setting up global interceptors or event listeners
-    
-    // Clean up on unmount
-    return () => {
-      // Any cleanup needed
-    };
-  }, [session]);
+  const revalidateFavorites = useCallback(() => {
+    setFavoritesRevalidationKey((prev) => prev + 1)
+  }, [])
 
   const value = {
-    isLoading,
-    error,
-    clearError,
     revalidateAlerts,
+    alertsRevalidationKey,
     revalidateFavorites,
-  };
+    favoritesRevalidationKey,
+  }
 
-  return (
-    <ApiContext.Provider value={value}>
-      {children}
-    </ApiContext.Provider>
-  );
+  return <ApiContext.Provider value={value}>{children}</ApiContext.Provider>
+}
+
+export const useApi = () => {
+  const context = useContext(ApiContext)
+  if (!context) {
+    throw new Error('useApi must be used within an ApiProvider')
+  }
+  return context
 }

@@ -1,16 +1,11 @@
-import { Grid } from '@mui/material';
-import Link from 'next/link';
+import { Grid } from '@mui/material'
+import Link from 'next/link'
 
-import { FIIExtended } from '../../../types';
-import {
-  CodeChip,
-  FIIName,
-  GridContainer,
-  StyledCard,
-  StyledCardContent} from './styled';
+import { FIIExtended } from '../../../types'
+import { CodeChip, FIIName, GridContainer, StyledCard, StyledCardContent } from './styled'
 
 interface GridViewProps {
-  fiis: FIIExtended[];
+  fiis: FIIExtended[]
 }
 
 export const GridView = ({ fiis }: GridViewProps) => {
@@ -22,18 +17,12 @@ export const GridView = ({ fiis }: GridViewProps) => {
             <StyledCard>
               <StyledCardContent>
                 <Link href={`/fii/${fii.nomeFII}`} style={{ textDecoration: 'none' }}>
-                  <FIIName>
-                    {fii.nomeFII}
-                  </FIIName>
+                  <FIIName>{fii.nomeFII}</FIIName>
                 </Link>
-                
+
                 {fii.codigo && fii.codigo.length > 0 && fii.codigo[0] && (
                   <Link href={`/fii/${fii.codigo[0]}`} style={{ textDecoration: 'none' }}>
-                    <CodeChip 
-                      label={fii.codigo[0]} 
-                      size="small" 
-                      variant="filled"
-                    />
+                    <CodeChip label={fii.codigo[0]} size="small" variant="filled" />
                   </Link>
                 )}
               </StyledCardContent>
@@ -42,7 +31,7 @@ export const GridView = ({ fiis }: GridViewProps) => {
         ))}
       </Grid>
     </GridContainer>
-  );
-};
+  )
+}
 
-export default GridView;
+export default GridView

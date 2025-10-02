@@ -1,12 +1,12 @@
-import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
-import { Alert, Button,CircularProgress } from '@mui/material';
+import { ArrowBack as ArrowBackIcon } from '@mui/icons-material'
+import { Alert, CircularProgress } from '@mui/material'
 
-import { BackButton, ContentWrapper, DetailPageContainer, ErrorContainer, LoadingContainer } from './styled';
+import { BackButton, ContentWrapper, DetailPageContainer, ErrorContainer, LoadingContainer } from './styled'
 
 interface ETFStatusDisplayProps {
-  loading: boolean;
-  error: string | null;
-  onBack: () => void;
+  loading: boolean
+  error: string | null
+  onBack: () => void
 }
 
 const ETFStatusDisplay = ({ loading, error, onBack }: ETFStatusDisplayProps) => {
@@ -15,7 +15,7 @@ const ETFStatusDisplay = ({ loading, error, onBack }: ETFStatusDisplayProps) => 
       <LoadingContainer>
         <CircularProgress />
       </LoadingContainer>
-    );
+    )
   }
 
   if (error) {
@@ -26,20 +26,16 @@ const ETFStatusDisplay = ({ loading, error, onBack }: ETFStatusDisplayProps) => 
             <Alert severity="error" sx={{ mb: 2 }}>
               {error}
             </Alert>
-            <BackButton
-              startIcon={<ArrowBackIcon />}
-              variant="contained"
-              onClick={onBack}
-            >
+            <BackButton startIcon={<ArrowBackIcon />} variant="contained" onClick={onBack}>
               Voltar
             </BackButton>
           </ErrorContainer>
         </ContentWrapper>
       </DetailPageContainer>
-    );
+    )
   }
 
-  return null;
-};
+  return null
+}
 
-export default ETFStatusDisplay;
+export default ETFStatusDisplay

@@ -1,43 +1,43 @@
-import { styled } from "@mui/material/styles";
+import { styled } from '@mui/material/styles'
 
-import { visitorColors } from "@/theme/palette/visitor";
-import { borderRadius,spacing } from "@/theme/variables";
+import { visitorColors } from '@/theme/palette/visitor'
+import { borderRadius, spacing } from '@/theme/variables'
 
-export const BlockTimerContainer = styled("div")({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
+export const BlockTimerContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
   gap: spacing.md,
   padding: spacing.xl,
   backgroundColor: `${visitorColors.backgroundDark}b3`,
   backdropFilter: visitorColors.blur,
   borderRadius: borderRadius.md,
-  maxWidth: "400px",
-  width: "100%",
-  textAlign: "center",
-});
+  maxWidth: '400px',
+  width: '100%',
+  textAlign: 'center',
+})
 
-export const TimerTitle = styled("h2")({
+export const TimerTitle = styled('h2')({
   color: visitorColors.error,
   marginBottom: spacing.sm,
-  fontSize: "1.5rem",
+  fontSize: '1.5rem',
   fontWeight: 600,
-});
+})
 
-export const TimerText = styled("p")({
+export const TimerText = styled('p')({
   color: visitorColors.text,
   marginBottom: spacing.md,
-});
+})
 
-export const TimerDisplay = styled("div")({
+export const TimerDisplay = styled('div')({
   color: visitorColors.primary,
-  fontSize: "2rem",
+  fontSize: '2rem',
   fontWeight: 700,
   fontFamily: '"Roboto Mono", monospace',
   marginBottom: spacing.md,
-});
+})
 
-export const TimerMessage = styled("p")({
+export const TimerMessage = styled('p')({
   color: `${visitorColors.text}cc`,
-  fontSize: "0.875rem",
-});
+  fontSize: '0.875rem',
+})

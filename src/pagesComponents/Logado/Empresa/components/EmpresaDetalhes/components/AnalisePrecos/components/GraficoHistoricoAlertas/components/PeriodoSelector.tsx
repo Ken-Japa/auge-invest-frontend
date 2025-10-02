@@ -1,11 +1,11 @@
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import React from 'react';
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material'
+import React from 'react'
 
-import { AnalysisPeriod } from '../../../utils/types';
+import { AnalysisPeriod } from '../../../utils/types'
 
 interface PeriodoSelectorProps {
-  selectedPeriod: AnalysisPeriod;
-  onPeriodChange: (event: SelectChangeEvent) => void;
+  selectedPeriod: AnalysisPeriod
+  onPeriodChange: (event: SelectChangeEvent) => void
 }
 
 const PeriodoSelector: React.FC<PeriodoSelectorProps> = ({ selectedPeriod, onPeriodChange }) => {
@@ -25,7 +25,7 @@ const PeriodoSelector: React.FC<PeriodoSelectorProps> = ({ selectedPeriod, onPer
         <MenuItem value="custom">Personalizado</MenuItem>
       </Select>
     </FormControl>
-  );
-};
+  )
+}
 
-export default PeriodoSelector;
+export default PeriodoSelector
