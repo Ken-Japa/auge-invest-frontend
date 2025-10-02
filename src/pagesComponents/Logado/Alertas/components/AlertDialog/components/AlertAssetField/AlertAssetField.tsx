@@ -1,7 +1,9 @@
-import { Grid, Typography } from '@mui/material'
+import { Grid } from '@mui/material'
 import React, { lazy, Suspense } from 'react'
 
 import { Alert } from '@/services/api/types'
+
+import { StyledAssetTypography } from './styled'
 
 const LazyGlobalSearchBar = lazy(() => import('@/pagesComponents/Logado/components/SearchBar'))
 
@@ -22,9 +24,9 @@ export const AlertAssetField: React.FC<AlertAssetFieldProps> = ({ formData, hand
   return (
     <Grid item xs={12}>
       {alert ? (
-        <Typography variant="h3" align="center">
+        <StyledAssetTypography variant="h3" align="center">
           {formData.asset}
-        </Typography>
+        </StyledAssetTypography>
       ) : (
         <Suspense fallback={<div>Carregando busca...</div>}>
           <LazyGlobalSearchBar

@@ -1,23 +1,46 @@
 'use client'
 
+import { useState } from 'react'
+
 import { Container, Typography } from '@mui/material'
 
-import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
-import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
-import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
-import { PageTransition } from '@/components/Helpers/PageTransition'
+import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
 import { PageBackground } from '@/components/Layout/PageBackground'
+import { PageTransition } from '@/components/Helpers/PageTransition'
+import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
+import { Snackbar } from '@/components/Feedback/Snackbar'
+import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 import { useApi } from '@/providers/ApiProvider'
 
+import { ActionContainer, PageHeader } from './styled'
 import { AddAlertButton } from './components/AddAlertButton'
 import { AlertsTable } from './components/AlertsTable'
 import { useAlerts } from './hooks/useAlerts'
-import { ActionContainer, PageHeader } from './styled'
 
 export const Alertas = () => {
   const { alerts, loading, error, refreshAlerts, toggleAlert, deleteAlert } = useAlerts()
   const { revalidateAlerts } = useApi()
+
+  const [snackbarOpen, setSnackbarOpen] = useState(false)
+  const [snackbarMessage, setSnackbarMessage] = useState('')
+  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'info' | 'warning'>(
+    'success',
+  )
+
+  const handleSnackbarClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    setSnackbarOpen(false)
+  }
+
+  const showSnackbar = (message: string, severity: 'success' | 'error' | 'info' | 'warning') => {
+    console.log('showSnackbar called with:', { message, severity })
+    setSnackbarMessage(message)
+    setSnackbarSeverity(severity)
+    setSnackbarOpen(true)
+  }
 
   const handleDeleteAlert = async (alertId: string) => {
     await deleteAlert(alertId)
@@ -41,7 +64,7 @@ export const Alertas = () => {
             </PageHeader>
 
             <ActionContainer>
-              <AddAlertButton refreshAlerts={refreshAlerts} />
+              <AddAlertButton refreshAlerts={refreshAlerts} showSnackbar={showSnackbar} />
             </ActionContainer>
 
             <SuspenseWrapper fallback={<ContentSkeleton type="card" cardHeight={400} />}>
@@ -54,12 +77,20 @@ export const Alertas = () => {
                   refreshAlerts={refreshAlerts}
                   toggleAlert={handleToggleAlert}
                   deleteAlert={handleDeleteAlert}
+                  showSnackbar={showSnackbar}
                 />
               </ProgressiveLoad>
             </SuspenseWrapper>
           </Container>
         </PageBackground>
       </ErrorBoundary>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+        severity={snackbarSeverity}
+        message={snackbarMessage}
+      />
     </PageTransition>
   )
 }

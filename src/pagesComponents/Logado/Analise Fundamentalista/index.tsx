@@ -1,23 +1,23 @@
 'use client'
 
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import HelpIcon from '@mui/icons-material/Help'
 import { Box, Container, Grid, IconButton } from '@mui/material'
-import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
+import { PageBackground } from '@/components/Layout/PageBackground'
+import { PageTransition } from '@/components/Helpers/PageTransition'
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
-import { PageTransition } from '@/components/Helpers/PageTransition'
-import { PageBackground } from '@/components/Layout/PageBackground'
 
 import { DataInputForm } from './components/DataInputForm'
 const HelpDialog = lazy(() => import('./components/HelpDialog').then((mod) => ({ default: mod.HelpDialog })))
 import { MetricsDisplay } from './components/MetricsDisplay'
 import { SaveReportSection } from './components/SaveReportSection'
+import { GenerateReportParams } from './components/SaveReportSection/utils/types'
 import { generatePDF } from './components/SaveReportSection/utils/pdfGenerator'
 import { generateReport } from './components/SaveReportSection/utils/reportGenerator'
-import { GenerateReportParams } from './components/SaveReportSection/utils/types'
 import { ValuationSection } from './components/ValuationSection'
 import { SensitivityResults, ValuationResults } from './components/ValuationSection/types'
 import { ContentContainer, StyledPaper, Title } from './styled'

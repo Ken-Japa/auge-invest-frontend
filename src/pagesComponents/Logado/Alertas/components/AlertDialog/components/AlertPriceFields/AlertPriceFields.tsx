@@ -1,10 +1,11 @@
-import { Grid, InputAdornment, TextField } from '@mui/material'
+import { Grid, InputAdornment } from '@mui/material'
 import React from 'react'
+
+import { StyledTextField } from './styled'
 
 interface AlertPriceFieldsProps {
   formData: {
     targetPrice: number
-    currentPrice: number
     percentageDistance: number
   }
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -18,8 +19,8 @@ interface AlertPriceFieldsProps {
 export const AlertPriceFields: React.FC<AlertPriceFieldsProps> = ({ formData, handleChange }) => {
   return (
     <>
-      <Grid item xs={12}>
-        <TextField
+      <Grid item xs={12} display="flex" justifyContent="center" paddingBottom={1}>
+        <StyledTextField
           fullWidth
           label="Preço Alvo"
           name="targetPrice"
@@ -32,22 +33,9 @@ export const AlertPriceFields: React.FC<AlertPriceFieldsProps> = ({ formData, ha
           required
         />
       </Grid>
-      <Grid item xs={12}>
-        <TextField
-          fullWidth
-          label="Preço Atual"
-          name="currentPrice"
-          type="number"
-          value={formData.currentPrice}
-          onChange={handleChange}
-          InputProps={{
-            startAdornment: <InputAdornment position="start">R$</InputAdornment>,
-          }}
-          required
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
+
+      <Grid item xs={12} display="flex" justifyContent="center">
+        <StyledTextField
           fullWidth
           label="Distância Percentual"
           name="percentageDistance"

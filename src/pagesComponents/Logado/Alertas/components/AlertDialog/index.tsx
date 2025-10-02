@@ -1,11 +1,13 @@
-import { DialogContent } from '@mui/material'
-import { useSession } from 'next-auth/react'
 import React, { useCallback, useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { Button } from '@mui/material'
 
-import { StyledDialog } from '@/components/Feedback/Dialog/StyledDialog'
 import { Alert } from '@/services/api/types'
+import { StyledDialog } from '@/components/Feedback/Dialog/StyledDialog'
 
 import { AlertFormContent } from './AlertFormContent'
+import { ConfirmDeleteDialog } from './components/ConfirmDeleteDialog'
+import { StyledDialogContent } from './styled'
 import { useAlertFormSubmit } from './useAlertFormSubmit'
 
 interface AlertDialogProps {
@@ -13,22 +15,32 @@ interface AlertDialogProps {
   onClose: () => void
   alert: Alert | null
   refreshAlerts?: () => Promise<void>
+  showSnackbar: (message: string, severity: 'success' | 'error' | 'info' | 'warning') => void
+  onDelete?: () => void
 }
 
-export const AlertDialog = ({ open, onClose, alert, refreshAlerts }: AlertDialogProps) => {
+export const AlertDialog = ({
+  open,
+  onClose,
+  alert,
+  refreshAlerts,
+  showSnackbar,
+  onDelete,
+}: AlertDialogProps) => {
   const { data: session } = useSession()
 
   const [formData, setFormData] = useState({
     asset: '',
     type: 'buy' as 'buy' | 'sell',
     targetPrice: 0,
-    currentPrice: 0,
     percentageDistance: 0,
     notificationMethods: [] as string[],
     expiresAt: '',
-    recurring: false,
+    recurring: true,
     comments: '',
   })
+
+  const [openConfirmDelete, setOpenConfirmDelete] = useState(false)
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -72,7 +84,6 @@ export const AlertDialog = ({ open, onClose, alert, refreshAlerts }: AlertDialog
         asset: alert.asset,
         type: alert.type,
         targetPrice: alert.targetPrice,
-        currentPrice: alert.currentPrice || 0,
         percentageDistance: alert.percentageDistance || 0,
         notificationMethods: alert.notificationMethods || [],
         expiresAt: alert.expiresAt ? new Date(alert.expiresAt).toISOString().split('T')[0] : '',
@@ -84,12 +95,11 @@ export const AlertDialog = ({ open, onClose, alert, refreshAlerts }: AlertDialog
         asset: '',
         type: 'buy',
         targetPrice: 0,
-        currentPrice: 0,
         percentageDistance: 0,
         notificationMethods: ['app_notification'],
         expiresAt: '',
-        recurring: false,
-        comments: ' ',
+        recurring: true,
+        comments: '',
       })
     }
   }, [alert, open])
@@ -99,12 +109,20 @@ export const AlertDialog = ({ open, onClose, alert, refreshAlerts }: AlertDialog
     alert,
     onClose,
     refreshAlerts,
+    showSnackbar,
   })
 
   return (
     <StyledDialog
       open={open}
-      onClose={onClose}
+      onClose={() => {
+        if (!isSubmitting) {
+          if (showSnackbar) {
+            showSnackbar(alert ? 'Edição de alerta cancelada.' : 'Criação de alerta cancelada.', 'info')
+          }
+        }
+        onClose()
+      }}
       maxWidth="sm"
       fullWidth
       title={alert ? 'Editar Alerta' : 'Novo Alerta'}
@@ -114,7 +132,17 @@ export const AlertDialog = ({ open, onClose, alert, refreshAlerts }: AlertDialog
       }
       loading={isSubmitting}
     >
-      <DialogContent>
+      {alert && onDelete && (
+        <Button
+          onClick={() => setOpenConfirmDelete(true)}
+          color="error"
+          variant="contained"
+          sx={{ position: 'absolute', left: 24, bottom: 24, color: 'white' }}
+        >
+          Excluir Alerta
+        </Button>
+      )}
+      <StyledDialogContent>
         <AlertFormContent
           formData={formData}
           handleChange={handleChange}
@@ -122,7 +150,21 @@ export const AlertDialog = ({ open, onClose, alert, refreshAlerts }: AlertDialog
           handleNotificationMethodsChange={handleNotificationMethodsChange}
           alert={alert}
         />
-      </DialogContent>
+      </StyledDialogContent>
+
+      <ConfirmDeleteDialog
+        open={openConfirmDelete}
+        onClose={() => setOpenConfirmDelete(false)}
+        onConfirm={() => {
+          setOpenConfirmDelete(false)
+          onDelete && onDelete()
+        }}
+        alertDetails={
+          alert
+            ? `${alert.type === 'buy' ? 'compra' : 'venda'} de ${alert.asset} a R$ ${alert.targetPrice.toFixed(2)}`
+            : 'este alerta'
+        }
+      />
     </StyledDialog>
   )
 }

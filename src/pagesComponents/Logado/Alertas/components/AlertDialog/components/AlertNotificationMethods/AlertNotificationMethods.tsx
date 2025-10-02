@@ -1,5 +1,7 @@
-import { Checkbox, FormControlLabel, FormGroup, FormLabel, Grid } from '@mui/material'
+import { Checkbox, FormControlLabel, Grid } from '@mui/material'
 import React from 'react'
+
+import { StyledFormGroup, StyledFormLabel } from './styled'
 
 interface AlertNotificationMethodsProps {
   notificationMethods: string[]
@@ -16,8 +18,8 @@ export const AlertNotificationMethods: React.FC<AlertNotificationMethodsProps> =
 }) => {
   return (
     <Grid item xs={12}>
-      <FormLabel component="legend">Métodos de Notificação*</FormLabel>
-      <FormGroup row>
+      <StyledFormLabel component="legend">Métodos de Notificação*</StyledFormLabel>
+      <StyledFormGroup row>
         <FormControlLabel
           control={
             <Checkbox
@@ -58,7 +60,7 @@ export const AlertNotificationMethods: React.FC<AlertNotificationMethodsProps> =
           }
           label="WhatsApp"
         />
-      </FormGroup>
+      </StyledFormGroup>
     </Grid>
   )
 }

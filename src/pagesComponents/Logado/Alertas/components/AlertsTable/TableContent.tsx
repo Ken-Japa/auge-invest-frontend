@@ -16,6 +16,7 @@ interface TableContentProps {
   handleDelete: (id: string) => Promise<void>
   toggleAlert: (id: string, field: 'recurring' | 'triggered', value: boolean) => Promise<void>
   refreshAlerts: () => Promise<void>
+  showSnackbar: (message: string, severity: 'success' | 'error' | 'info' | 'warning') => void
 }
 
 export const TableContent = React.memo(
@@ -27,6 +28,7 @@ export const TableContent = React.memo(
     handleDelete,
     toggleAlert,
     refreshAlerts,
+    showSnackbar,
   }: TableContentProps) => {
     return (
       <>
@@ -78,7 +80,15 @@ export const TableContent = React.memo(
                   </IconButton>
                 </Tooltip>
                 <Tooltip title="Excluir">
-                  <IconButton size="small" color="error" onClick={() => handleDelete(alert._id)}>
+                  <IconButton
+                    size="small"
+                    color="error"
+                    onClick={() => {
+                      if (alert._id) {
+                        handleDelete(alert._id)
+                      }
+                    }}
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </Tooltip>
@@ -87,8 +97,14 @@ export const TableContent = React.memo(
                     size="small"
                     color={alert.triggered ? 'primary' : 'default'}
                     onClick={async () => {
-                      await toggleAlert(alert._id, 'triggered', !alert.triggered)
-                      refreshAlerts()
+                      if (alert._id) {
+                        await toggleAlert(alert._id, 'triggered', !alert.triggered)
+                        refreshAlerts()
+                        showSnackbar(
+                          `Alerta para ${alert.type === 'buy' ? 'compra' : 'venda'} de ${alert.asset} a R$ ${alert.targetPrice.toFixed(2)} está ${alert.triggered ? 'desativado' : 'ativado'}.`,
+                          'success',
+                        )
+                      }
                     }}
                   >
                     <NotificationsActiveIcon />

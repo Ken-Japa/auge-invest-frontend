@@ -1,5 +1,7 @@
-import { FormControlLabel, Grid, Switch, TextField } from '@mui/material'
+import { Grid, Switch } from '@mui/material'
 import React from 'react'
+
+import { StyledFormControlLabel, StyledTextField } from './styled'
 
 interface AlertTimingFieldsProps {
   formData: {
@@ -17,11 +19,11 @@ interface AlertTimingFieldsProps {
 export const AlertTimingFields: React.FC<AlertTimingFieldsProps> = ({ formData, handleChange }) => {
   return (
     <>
-      <Grid item xs={12}>
-        <TextField
+      <Grid item xs={12} display="flex" justifyContent="center">
+        <StyledTextField
           fullWidth
           label="Expira em (opcional)"
-          name="expiresAt"
+          name="expirationDate"
           type="date"
           value={formData.expiresAt}
           onChange={handleChange}
@@ -31,9 +33,9 @@ export const AlertTimingFields: React.FC<AlertTimingFieldsProps> = ({ formData, 
         />
       </Grid>
       <Grid item xs={12}>
-        <FormControlLabel
+        <StyledFormControlLabel
           control={<Switch checked={formData.recurring} onChange={handleChange} name="recurring" />}
-          label="Recorrente"
+          label={formData.recurring ? 'Recorrente' : 'Não recorrente'}
         />
       </Grid>
     </>

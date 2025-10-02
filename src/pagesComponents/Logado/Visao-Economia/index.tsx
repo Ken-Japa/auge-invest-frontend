@@ -1,7 +1,8 @@
 'use client'
 
-import { Grid } from '@mui/material'
 import React, { lazy, Suspense, useEffect, useState } from 'react'
+
+import { Grid } from '@mui/material'
 
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
@@ -20,16 +21,6 @@ import { Indices } from './components/Indices'
 import { Inflacao } from './components/Outros/Inflacao'
 import { PosicaoUsuario } from './components/Outros/PosicaoUsuario'
 import { Selic } from './components/Outros/Selic'
-
-const Moedas = lazy(() => import('./components/Outros/Moedas').then((mod) => ({ default: mod.Moedas })))
-const Commodities = lazy(() =>
-  import('./components/Outros/Commodities').then((mod) => ({ default: mod.Commodities })),
-)
-const Debentures = lazy(() =>
-  import('./components/Outros/Debentures').then((mod) => ({ default: mod.Debentures })),
-)
-const Calendario = lazy(() => import('../components/Calendario').then((mod) => ({ default: mod.Calendario })))
-
 import {
   BackgroundContainer,
   DashboardItem,
@@ -39,6 +30,15 @@ import {
   SuspenseFallbackBox,
   Title,
 } from './styled'
+
+const Moedas = lazy(() => import('./components/Outros/Moedas').then((mod) => ({ default: mod.Moedas })))
+const Commodities = lazy(() =>
+  import('./components/Outros/Commodities').then((mod) => ({ default: mod.Commodities })),
+)
+const Debentures = lazy(() =>
+  import('./components/Outros/Debentures').then((mod) => ({ default: mod.Debentures })),
+)
+const Calendario = lazy(() => import('../components/Calendario').then((mod) => ({ default: mod.Calendario })))
 
 export const VisaoEconomia = () => {
   const [headerHeight, setHeaderHeight] = useState(0)

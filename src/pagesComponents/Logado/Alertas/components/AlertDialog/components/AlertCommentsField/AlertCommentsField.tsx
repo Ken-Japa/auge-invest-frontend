@@ -1,5 +1,7 @@
-import { Grid, TextField } from '@mui/material'
+import { Grid } from '@mui/material'
 import React from 'react'
+
+import { StyledTextField } from './styled'
 
 interface AlertCommentsFieldProps {
   comments: string
@@ -13,7 +15,7 @@ interface AlertCommentsFieldProps {
 export const AlertCommentsField: React.FC<AlertCommentsFieldProps> = ({ comments, handleChange }) => {
   return (
     <Grid item xs={12}>
-      <TextField
+      <StyledTextField
         fullWidth
         label="Comentários (opcional)"
         name="comments"

@@ -32,6 +32,7 @@ interface SugestoesAlertasProps {
   codigoAtivo: string
   selectedPeriod: AnalysisPeriod | null
   onPeriodChange: (period: AnalysisPeriod | SelectChangeEvent) => void
+  showSnackbar: (message: string, severity: 'success' | 'error' | 'warning' | 'info') => void
 }
 
 const formatDate = (date: Date | null): string => {
@@ -46,6 +47,7 @@ const SugestoesAlertas: React.FC<SugestoesAlertasProps> = ({
   codigoAtivo,
   selectedPeriod,
   onPeriodChange,
+  showSnackbar,
 }) => {
   const alerts = calculateAlertSuggestions(mean, stdDev, data)
 
@@ -159,6 +161,7 @@ const SugestoesAlertas: React.FC<SugestoesAlertasProps> = ({
         data={data}
         selectedPeriod={selectedPeriod}
         onPeriodChange={onPeriodChange}
+        showSnackbar={showSnackbar}
       />
     </>
   )

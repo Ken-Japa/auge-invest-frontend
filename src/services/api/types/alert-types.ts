@@ -1,20 +1,20 @@
 import { Pagination } from './common'
 
 export interface Alert {
-  _id: string
+  _id?: string
   type: 'buy' | 'sell'
   asset: string
   targetPrice: number
-  currentPrice: number
+  currentPrice?: number
   percentageDistance: number
   notificationMethods: string[]
-  expiresAt?: Date
+  expiresAt?: string
   recurring?: boolean
   userId: string
   comments?: string
   triggered?: boolean
-  createdAt?: Date
-  updatedAt?: Date
+  createdAt?: string
+  updatedAt?: string
   __v?: number
 }
 

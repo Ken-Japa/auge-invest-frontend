@@ -3,19 +3,18 @@ import React from 'react'
 
 import { Alert } from '@/services/api/types'
 
-import { AlertAssetField } from './components/AlertAssetField'
-import { AlertCommentsField } from './components/AlertCommentsField'
-import { AlertNotificationMethods } from './components/AlertNotificationMethods'
-import { AlertPriceFields } from './components/AlertPriceFields'
-import { AlertTimingFields } from './components/AlertTimingFields'
-import { AlertTypeField } from './components/AlertTypeField'
+import { AlertAssetField } from './components/AlertAssetField/AlertAssetField'
+import { AlertCommentsField } from './components/AlertCommentsField/AlertCommentsField'
+import { AlertNotificationMethods } from './components/AlertNotificationMethods/AlertNotificationMethods'
+import { AlertPriceFields } from './components/AlertPriceFields/AlertPriceFields'
+import { AlertTimingFields } from './components/AlertTimingFields/AlertTimingFields'
+import { AlertTypeField } from './components/AlertTypeField/AlertTypeField'
 
 interface AlertFormContentProps {
   formData: {
     asset: string
     type: 'buy' | 'sell'
     targetPrice: number
-    currentPrice: number
     percentageDistance: number
     notificationMethods: string[]
     expiresAt: string

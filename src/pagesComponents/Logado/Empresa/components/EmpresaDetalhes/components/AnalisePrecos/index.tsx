@@ -1,4 +1,4 @@
-import { CircularProgress, SelectChangeEvent, Typography } from '@mui/material'
+import { Alert, CircularProgress, SelectChangeEvent, Snackbar, Typography } from '@mui/material'
 import { useEffect, useMemo, useState } from 'react'
 
 import { PriceDataPoint } from '@/pagesComponents/Logado/Empresa/components/EmpresaDetalhes/components/AnalisePrecos/utils/priceData'
@@ -18,6 +18,11 @@ export const AnalisePrecos: React.FC<AnalisePrecoProps> = ({ codigoAtivo }) => {
   const [error, setError] = useState<string | null>(null)
   const [selectedPeriod, setSelectedPeriod] = useState<AnalysisPeriod | null>(null)
   const [customYears, setCustomYears] = useState<number>(8.0)
+  const [snackbarOpen, setSnackbarOpen] = useState(false)
+  const [snackbarMessage, setSnackbarMessage] = useState('')
+  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'warning' | 'info'>(
+    'success',
+  )
 
   // Buscar todos os dados históricos
   useEffect(() => {
@@ -73,6 +78,16 @@ export const AnalisePrecos: React.FC<AnalisePrecoProps> = ({ codigoAtivo }) => {
     setCustomYears(value as number)
   }
 
+  const showSnackbar = (message: string, severity: 'success' | 'error' | 'warning' | 'info') => {
+    setSnackbarMessage(message)
+    setSnackbarSeverity(severity)
+    setSnackbarOpen(true)
+  }
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false)
+  }
+
   return (
     <StyledPaper>
       <Typography variant="h2" gutterBottom sx={{ textAlign: 'center', mb: 4 }}>
@@ -115,11 +130,17 @@ export const AnalisePrecos: React.FC<AnalisePrecoProps> = ({ codigoAtivo }) => {
                 codigoAtivo={codigoAtivo || ''}
                 selectedPeriod={selectedPeriod}
                 onPeriodChange={handlePeriodChange}
+                showSnackbar={showSnackbar}
               />
             </>
           )}
         </>
       )}
+      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+        <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </StyledPaper>
   )
 }

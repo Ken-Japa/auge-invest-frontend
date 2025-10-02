@@ -9,7 +9,6 @@ interface AlertFormData {
   asset: string
   type: 'buy' | 'sell'
   targetPrice: number
-  currentPrice: number
   percentageDistance: number
   notificationMethods: string[]
   expiresAt: string
@@ -22,9 +21,16 @@ interface UseAlertFormSubmitProps {
   alert: Alert | null
   onClose: () => void
   refreshAlerts?: () => Promise<void>
+  showSnackbar: (message: string, severity: 'success' | 'error' | 'info' | 'warning') => void
 }
 
-export const useAlertFormSubmit = ({ formData, alert, onClose, refreshAlerts }: UseAlertFormSubmitProps) => {
+export const useAlertFormSubmit = ({
+  formData,
+  alert,
+  onClose,
+  refreshAlerts,
+  showSnackbar,
+}: UseAlertFormSubmitProps) => {
   const { createAlert, updateAlert } = useAlerts()
   const { data: session } = useSession()
   const userId = session?.user?.id
@@ -44,30 +50,47 @@ export const useAlertFormSubmit = ({ formData, alert, onClose, refreshAlerts }: 
         asset: formData.asset,
         type: formData.type,
         targetPrice: formData.targetPrice,
-        currentPrice: formData.currentPrice,
         percentageDistance: formData.percentageDistance,
         notificationMethods: formData.notificationMethods,
-        expiresAt: formData.expiresAt ? new Date(formData.expiresAt) : undefined,
+        expiresAt: formData.expiresAt ? new Date(formData.expiresAt).toISOString() : undefined,
         comments: formData.comments,
         triggered: false,
       }
 
-      if (alert) {
+      if (alert?._id) {
         await updateAlert(alert._id, alertData)
+        if (showSnackbar) {
+          const alertType = formData.type === 'buy' ? 'compra' : 'venda'
+          showSnackbar(
+            `Alerta de ${alertType} para ${formData.asset} a R$ ${formData.targetPrice.toFixed(2)} editado com sucesso!`,
+            'success',
+          )
+        }
       } else {
         await createAlert(alertData)
+        if (showSnackbar) {
+          const alertType = formData.type === 'buy' ? 'compra' : 'venda'
+          showSnackbar(
+            `Alerta de ${alertType} para ${formData.asset} a R$ ${formData.targetPrice.toFixed(2)} criado com sucesso!`,
+            'success',
+          )
+        }
       }
 
       onClose()
+
       if (refreshAlerts) {
         await refreshAlerts()
       }
     } catch (error) {
       console.error('Erro ao salvar alerta:', error)
+      if (showSnackbar) {
+        showSnackbar('Erro ao salvar alerta.', 'error')
+      }
     } finally {
       setIsSubmitting(false)
     }
-  }, [formData, alert, onClose, createAlert, updateAlert, userId, refreshAlerts])
+  }, [formData, alert, onClose, createAlert, updateAlert, userId, refreshAlerts, showSnackbar])
 
   return {
     isSubmitting,

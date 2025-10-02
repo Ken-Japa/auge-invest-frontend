@@ -24,6 +24,7 @@ interface AlertasSectionProps {
   data: PriceDataPoint[]
   selectedPeriod?: AnalysisPeriod | null
   onPeriodChange?: (period: AnalysisPeriod | SelectChangeEvent) => void
+  showSnackbar: (message: string, severity: 'success' | 'error' | 'info' | 'warning') => void
 }
 
 export const AlertasSection: React.FC<AlertasSectionProps> = ({
@@ -33,6 +34,7 @@ export const AlertasSection: React.FC<AlertasSectionProps> = ({
   data,
   selectedPeriod = '5y',
   onPeriodChange,
+  showSnackbar,
 }) => {
   const [buyPrice, setBuyPrice] = useState('')
   const [sellPrice, setSellPrice] = useState('')
@@ -43,20 +45,18 @@ export const AlertasSection: React.FC<AlertasSectionProps> = ({
   const handleCreateBuyAlert = () => {
     const price = parseFloat(buyPrice || lowAlert.toFixed(2))
     setAlertToEdit({
-      _id: '',
       asset: codigoAtivo,
       type: 'buy',
       targetPrice: price,
-      currentPrice: 0,
       percentageDistance: 0,
       notificationMethods: ['app_notification'],
       expiresAt: undefined,
-      recurring: false,
+      recurring: true,
       comments: '',
       triggered: false,
       userId: '',
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     })
     setShowAlertDialog(true)
   }
@@ -64,20 +64,18 @@ export const AlertasSection: React.FC<AlertasSectionProps> = ({
   const handleCreateSellAlert = () => {
     const price = parseFloat(sellPrice || highAlert.toFixed(2))
     setAlertToEdit({
-      _id: '',
       asset: codigoAtivo,
       type: 'sell',
       targetPrice: price,
-      currentPrice: 0,
       percentageDistance: 0,
-      notificationMethods: [],
+      notificationMethods: ['app_notification'],
       expiresAt: undefined,
-      recurring: false,
+      recurring: true,
       comments: '',
       triggered: false,
       userId: '',
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     })
     setShowAlertDialog(true)
   }
@@ -137,7 +135,12 @@ export const AlertasSection: React.FC<AlertasSectionProps> = ({
         </AlertHistoryContainer>
       )}
 
-      <AlertDialog open={showAlertDialog} onClose={handleCloseAlertDialog} alert={alertToEdit} />
+      <AlertDialog
+        open={showAlertDialog}
+        onClose={handleCloseAlertDialog}
+        alert={alertToEdit}
+        showSnackbar={showSnackbar}
+      />
     </AlertasSectionContainer>
   )
 }

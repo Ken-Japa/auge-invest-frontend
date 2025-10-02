@@ -16,6 +16,7 @@ interface AlertsTableProps {
   refreshAlerts: () => Promise<void>
   toggleAlert: (id: string, field: 'recurring' | 'triggered', value: boolean) => Promise<void>
   deleteAlert: (id: string) => Promise<void>
+  showSnackbar: (message: string, severity: 'success' | 'error' | 'info' | 'warning') => void
 }
 
 export const AlertsTable = ({
@@ -25,6 +26,7 @@ export const AlertsTable = ({
   refreshAlerts,
   toggleAlert,
   deleteAlert,
+  showSnackbar,
 }: AlertsTableProps) => {
   const theme = useTheme()
   const [openDialog, setOpenDialog] = useState(false)
@@ -46,10 +48,17 @@ export const AlertsTable = ({
    */
   const handleToggle = useCallback(
     async (alert: Alert) => {
+      if (!alert._id) {
+        return
+      }
       await toggleAlert(alert._id, 'recurring', !alert.recurring)
       refreshAlerts()
+      showSnackbar(
+        `Alerta para ${alert.type === 'buy' ? 'compra' : 'venda'} de ${alert.asset} a R$ ${alert.targetPrice.toFixed(2)} agora ${alert.recurring ? 'não é recorrente' : 'é recorrente'}.`,
+        'success',
+      )
     },
-    [toggleAlert, refreshAlerts],
+    [toggleAlert, refreshAlerts, showSnackbar],
   )
 
   /**
@@ -57,11 +66,17 @@ export const AlertsTable = ({
    * @param id The ID of the alert to be deleted.
    */
   const handleDelete = useCallback(
-    async (id: string) => {
-      await deleteAlert(id)
-      refreshAlerts()
+    async (id?: string) => {
+      const alertIdToDelete = id || selectedAlert?._id
+      if (alertIdToDelete) {
+        await deleteAlert(alertIdToDelete)
+        refreshAlerts()
+        showSnackbar('Alerta excluído com sucesso!', 'success')
+        setOpenDialog(false)
+        setSelectedAlert(null)
+      }
     },
-    [deleteAlert, refreshAlerts],
+    [deleteAlert, refreshAlerts, selectedAlert, showSnackbar],
   )
 
   const sortedAlerts = useMemo(() => {
@@ -121,6 +136,7 @@ export const AlertsTable = ({
           handleDelete={handleDelete}
           toggleAlert={toggleAlert}
           refreshAlerts={refreshAlerts}
+          showSnackbar={showSnackbar}
         />
       </StyledTable>
     </Box>
@@ -161,6 +177,8 @@ export const AlertsTable = ({
         onClose={() => setOpenDialog(false)}
         alert={selectedAlert}
         refreshAlerts={refreshAlerts}
+        showSnackbar={showSnackbar}
+        onDelete={handleDelete}
       />
     </>
   )

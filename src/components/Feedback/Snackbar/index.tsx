@@ -6,13 +6,20 @@ interface SnackbarProps {
   message: string
   severity?: AlertProps['severity']
   onClose: () => void
+  autoHideDuration?: number
 }
 
-export const Snackbar = ({ open, message, severity = 'info', onClose }: SnackbarProps) => {
+export const Snackbar = ({
+  open,
+  message,
+  severity = 'info',
+  onClose,
+  autoHideDuration = 6000,
+}: SnackbarProps) => {
   return (
     <MuiSnackbar
       open={open}
-      autoHideDuration={6000}
+      autoHideDuration={autoHideDuration}
       onClose={onClose}
       anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
     >
