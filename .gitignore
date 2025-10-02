@@ -37,6 +37,7 @@ next-env.d.ts
 # Others
 /.trae
 /lighthouse-reports
+/.lighthouseci
 /testsprite_tests
 /warp_report
 
