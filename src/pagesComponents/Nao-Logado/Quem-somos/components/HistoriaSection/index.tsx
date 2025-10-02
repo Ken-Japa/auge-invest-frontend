@@ -3,6 +3,7 @@ import HistoryIcon from '@mui/icons-material/Timeline'
 import { visitorColors } from '@/theme/palette/visitor'
 
 import { BaseSection, ContentContainer, SectionTitle } from '../../styled'
+
 import { HistoriaSkeleton } from './HistoriaSkeleton'
 
 interface HistoriaSectionProps {

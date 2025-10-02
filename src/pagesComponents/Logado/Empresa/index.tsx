@@ -16,6 +16,7 @@ import { ModoVisualizacao } from '../components/EmpresaView/Elementos/ModoVisual
 import { ViewMode } from '../components/EmpresaView/Elementos/ModoVisualizacao/types'
 // Componentes específicos
 import { SearchBar } from '../components/EmpresaView/Elementos/SearchBar'
+
 // Estilos
 import { ContentContainer, ControlsWrapper, SearchBarWrapper, Title } from './styled'
 

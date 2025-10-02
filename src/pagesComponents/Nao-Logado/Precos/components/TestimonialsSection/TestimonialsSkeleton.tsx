@@ -2,6 +2,7 @@ import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton
 import { visitorColors } from '@/theme/palette/visitor'
 
 import { BaseSection, ContentWrapper } from '../../styled'
+
 import { TestimonialsGrid } from './styled'
 
 export const TestimonialsSkeleton = () => (

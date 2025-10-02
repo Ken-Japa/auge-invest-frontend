@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material'
 
 import { FIIExtended } from '../../../types'
+
 import { FIICard } from './FIICard'
 
 interface CardViewProps {

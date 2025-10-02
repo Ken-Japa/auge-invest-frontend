@@ -6,6 +6,7 @@ import React from 'react'
 import { formatCurrency } from '../../utils/currency'
 import { useSortableData } from '../hooks/useSortableData'
 import { EmpresaDetalhe } from '../types'
+
 import { StyledTable, StyledTableSortLabel } from './styled'
 
 interface EmpresasTableProps {

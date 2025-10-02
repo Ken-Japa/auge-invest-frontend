@@ -10,6 +10,7 @@ import { OptimizedImage } from '@/components/Helpers/OptimizedImage'
 import { ShareSection } from '@/components/Helpers/ShareSection'
 
 import type { BlogPost as BlogPostType } from '../../constants/blogPosts'
+
 import { BlogPostHeader } from './components/BlogPostHeader'
 import { RelatedPosts } from './components/RelatedPosts'
 import { PostContainer, PostContent } from './styled'

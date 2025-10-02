@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { type FC } from 'react'
 
 import { CROWN } from '../../constants/ambassadors'
+
 import { AmbassadorCardSkeleton } from './AmbassadorCardSkeleton'
 import { animationConfig, CardContainer, StyledAvatar } from './styled'
 

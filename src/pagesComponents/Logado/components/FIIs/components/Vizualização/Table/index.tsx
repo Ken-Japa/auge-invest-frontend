@@ -2,6 +2,7 @@ import { TableBody, TableSortLabel } from '@mui/material'
 
 import { useFIITableLogic } from '../../../hooks/useFIITableLogic'
 import { FIIExtended } from '../../../types'
+
 import { FIITableRow } from './FIITableRow'
 import { HeaderCell, HeaderRow, StyledTable, StyledTableContainer, StyledTableHead } from './styled'
 

@@ -2,6 +2,7 @@ import { Grid } from '@mui/material'
 import { forwardRef, useImperativeHandle } from 'react'
 
 import { DadosAnaliseFundamental } from '../../types'
+
 import { MetricCard } from './components/MetricCard'
 import { metricCategories } from './constants/categories'
 import { FIELD_LABELS } from './constants/constants'

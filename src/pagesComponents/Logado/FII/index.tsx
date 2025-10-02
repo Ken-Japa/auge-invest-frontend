@@ -10,6 +10,7 @@ import { PageTransition } from '@/components/Helpers/PageTransition'
 import { PageBackground } from '@/components/Layout/PageBackground'
 
 import FIISearchBar from '../components/FIIs/components/SearchBar'
+
 import { FIITabs } from './components/FIITabs'
 import { ContentBox, ContentWrapper, FIITitle } from './styled'
 

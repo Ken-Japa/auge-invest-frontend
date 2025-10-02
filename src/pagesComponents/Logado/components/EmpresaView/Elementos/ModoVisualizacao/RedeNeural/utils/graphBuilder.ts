@@ -1,8 +1,10 @@
+import { createCentralNode } from '../components/CentralNode'
 import { createEmpresaNode } from '../components/EmpresaNode'
 import { createIndustriaNode } from '../components/IndustriaNode'
 import { createSegmentoNode } from '../components/SegmentoNode'
 import { CORES_INDUSTRIAS } from '../constants/colors'
 import { EmpresaNode, IndustriaNode, SegmentoNode, SumarioData } from '../types'
+
 import { adjustColorHSL } from './graphUtils'
 
 export const generateSegmentColors = (baseColor: string, count: number): string[] => {
@@ -28,8 +30,6 @@ interface BuildGraphDataParams {
   maxEmpresaValue: number
   valorMercadoTotalGeral: number
 }
-
-import { createCentralNode } from '../components/CentralNode'
 
 export const buildGraphData = ({
   data,
@@ -112,7 +112,7 @@ export const buildGraphData = ({
           segmentColors[segIndex],
           empresaRadius,
           industriaAngle,
-          industriaSector / segArray.length,
+          industriaSector / empArray.length,
         )
         nodes.push(empresaNode)
 

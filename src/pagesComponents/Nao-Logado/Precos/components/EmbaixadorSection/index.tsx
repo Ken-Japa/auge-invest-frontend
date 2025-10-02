@@ -5,6 +5,7 @@ import { visitorColors } from '@/theme/palette/visitor'
 
 import { EMBAIXADOR_BENEFICIOS } from '../../constants/embaixador'
 import { BaseSection, ContentWrapper } from '../../styled'
+
 import { EmbaixadorSkeleton } from './EmbaixadorSkeleton'
 import { Description, EmbaixadorCard } from './styled'
 

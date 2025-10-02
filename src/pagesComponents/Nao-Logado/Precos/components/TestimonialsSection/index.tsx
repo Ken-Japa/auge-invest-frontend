@@ -2,6 +2,7 @@ import { visitorColors } from '@/theme/palette/visitor'
 
 import { TESTIMONIALS } from '../../constants/testimonials'
 import { BaseSection, ContentWrapper } from '../../styled'
+
 import { TestimonialCard, TestimonialsGrid } from './styled'
 import { TestimonialsSkeleton } from './TestimonialsSkeleton'
 

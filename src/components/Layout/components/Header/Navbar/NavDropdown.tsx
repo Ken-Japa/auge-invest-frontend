@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
 import { DropdownItem } from '../../../constants/Navigation'
+
 import { LinkNavbar } from './styled'
 
 interface NavDropdownProps {

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { FIIExtended, VisualizationMode } from '../../types'
+
 import CardView from './Cards'
 import GridView from './Grid'
 import TableView from './Table'

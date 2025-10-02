@@ -3,6 +3,7 @@ import GroupsIcon from '@mui/icons-material/Groups'
 import { visitorColors } from '@/theme/palette/visitor'
 
 import { BaseSection, ContentContainer, SectionTitle, Subtitle } from '../../styled'
+
 import { EquipeSkeleton } from './EquipeSkeleton'
 
 interface EquipeSectionProps {

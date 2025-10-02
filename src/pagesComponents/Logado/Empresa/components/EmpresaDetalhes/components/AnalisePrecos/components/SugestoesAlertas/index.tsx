@@ -8,6 +8,7 @@ import { calculateAlertSuggestions } from '../../services/analiseService'
 import { AnalysisPeriod } from '../../utils/types'
 // Componentes
 import { AlertasSection } from '../AlertasSection'
+
 // Estilos
 import {
   AlertDivider,

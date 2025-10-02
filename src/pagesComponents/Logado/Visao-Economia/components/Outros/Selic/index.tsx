@@ -5,6 +5,7 @@ import { Typography } from '@mui/material'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 
 import { ContentSkeleton } from '../../../../../../components/Feedback/Skeletons/ContentSkeleton'
+
 import {
   ChartContainer,
   ChartPlaceholderBox,

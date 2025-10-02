@@ -10,6 +10,7 @@ import { Snackbar } from '@/components/Feedback/Snackbar'
 import { useUserAlerts } from '@/components/Layout/components/Header/PerfilButtons/components/AlertButton/hooks/useUserAlerts'
 
 import { MAX_DISPLAY_ITEMS } from '../constants'
+
 import { AlertMenuItem } from './components/AlertMenuItem'
 
 export const AlertButton = () => {

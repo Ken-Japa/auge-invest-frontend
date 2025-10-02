@@ -6,6 +6,7 @@ import { dictionaryApi } from '@/services/api/endpoints/dictionary'
 import { DictionaryItem } from '@/services/api/types/dictionary'
 
 import { EmpresaDetalhada } from '../../../../types'
+
 import { CodigosDisponiveis } from './components/CodigosDisponiveis'
 import { CompanyAvatar } from './components/CompanyAvatar'
 import { EmpresaChips } from './components/EmpresaChips'
@@ -30,25 +31,25 @@ interface EmpresaHeaderProps {
 export const EmpresaHeader: React.FC<EmpresaHeaderProps> = ({ empresa, codigoAtivo, onCodigoChange }) => {
   const [empresaInfo, setEmpresaInfo] = useState<DictionaryItem | null>(null)
 
-  /**
-   * @function encontrarInfoEmpresa
-   * @description Busca as informações detalhadas da empresa na API de dicionário.
-   * @returns {Promise<DictionaryItem | null>} As informações da empresa ou null se não for encontrada ou ocorrer um erro.
-   */
-  const encontrarInfoEmpresa = async (): Promise<DictionaryItem | null> => {
-    const empresaNomeUpperCase = empresa.nome.toUpperCase()
-    try {
-      const response = await dictionaryApi.getDictionary({ name: empresaNomeUpperCase, pageSize: 1 })
-      if (response.result.length > 0) {
-        return response.result[0]
-      }
-    } catch (error) {
-      console.error('Erro ao buscar informações da empresa na API:', error)
-    }
-    return null
-  }
-
   useEffect(() => {
+    /**
+     * @function encontrarInfoEmpresa
+     * @description Busca as informações detalhadas da empresa na API de dicionário.
+     * @returns {Promise<DictionaryItem | null>} As informações da empresa ou null se não for encontrada ou ocorrer um erro.
+     */
+    const encontrarInfoEmpresa = async (): Promise<DictionaryItem | null> => {
+      const empresaNomeUpperCase = empresa.nome.toUpperCase()
+      try {
+        const response = await dictionaryApi.getDictionary({ name: empresaNomeUpperCase, pageSize: 1 })
+        if (response.result.length > 0) {
+          return response.result[0]
+        }
+      } catch (error) {
+        console.error('Erro ao buscar informações da empresa na API:', error)
+      }
+      return null
+    }
+
     /**
      * @function fetchEmpresaInfo
      * @description Função assíncrona para buscar as informações da empresa e atualizar o estado.
@@ -58,7 +59,6 @@ export const EmpresaHeader: React.FC<EmpresaHeaderProps> = ({ empresa, codigoAti
       setEmpresaInfo(infoEmpresa)
     }
     fetchEmpresaInfo()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [empresa.nome])
 
   if (!empresa) {

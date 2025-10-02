@@ -5,6 +5,7 @@ import React from 'react'
 import { formatNumber } from '@/components/Helpers/Formatters/formatters'
 
 import { ETFExtended } from '../../../types'
+
 import {
   CodeChip,
   GridContainer,

@@ -10,6 +10,7 @@ import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 import { BDRTabs } from '../../../BDR/components/BDRTabs'
 // Importando componentes do módulo BDR
 import { BDRSearchBar } from '../../../components/BDR'
+
 import { BdrContainer, ContentBox, ControlsWrapper, Title } from './styled'
 
 export const Bdr = () => {

@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 
 import { BaseSection, ContentWrapper } from '../../styled'
+
 import { VantagemCard, VantagensGrid } from './styled'
 import { VantagensSkeleton } from './VantagensSkeleton'
 

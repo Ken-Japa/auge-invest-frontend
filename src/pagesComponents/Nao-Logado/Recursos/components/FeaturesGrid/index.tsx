@@ -1,6 +1,7 @@
 import { Grid, Typography } from '@mui/material'
 
 import { FEATURES } from '../../constants/features'
+
 import { FeaturesGridSkeleton } from './FeaturesGridSkeleton'
 import { FeatureCard, FeaturesContainer } from './styled'
 

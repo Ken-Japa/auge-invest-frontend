@@ -1,4 +1,5 @@
 import { TERMS_SECTIONS } from '../../constants/termsContent'
+
 import { ContentContainer } from './styled'
 import { TermsContentSkeleton } from './TermsContentSkeleton'
 

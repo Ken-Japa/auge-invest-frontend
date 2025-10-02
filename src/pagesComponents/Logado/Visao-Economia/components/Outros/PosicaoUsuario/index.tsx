@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 
 import { ContentSkeleton } from '../../../../../../components/Feedback/Skeletons/ContentSkeleton'
+
 import { NegativeValue, PosicaoContainer, PosicaoHeader, PosicaoTitle, PositiveValue } from './styled'
 
 // Mock data - will be replaced with API data

@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material'
 import { motion } from 'framer-motion'
 
 import type { BlogPost } from '../../constants/blogPosts'
+
 import { BlogCategoriesSkeleton } from './BlogCategoriesSkeleton'
 import { CategoriesContainer, CategoryButton } from './styled'
 

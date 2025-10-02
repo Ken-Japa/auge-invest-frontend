@@ -6,6 +6,7 @@ import React from 'react'
 
 import { formatPercentage } from '../../../utils/currency'
 import { CodeChip } from '../../styled'
+
 import { CodeContainer, CodeText, PriceText, VariationContainer, VariationText } from './styled'
 
 interface CodeItemProps {

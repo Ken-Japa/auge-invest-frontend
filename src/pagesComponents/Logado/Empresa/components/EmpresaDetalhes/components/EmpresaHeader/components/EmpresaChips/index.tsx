@@ -6,6 +6,7 @@ import { Box, Tooltip } from '@mui/material'
 import React from 'react'
 
 import { formatCurrency } from '../../../../utils/formatters'
+
 import { ChipsContainer, EsgScoreChip, InfoChip, ValorMercadoChip } from './styled'
 
 interface EmpresaChipsProps {

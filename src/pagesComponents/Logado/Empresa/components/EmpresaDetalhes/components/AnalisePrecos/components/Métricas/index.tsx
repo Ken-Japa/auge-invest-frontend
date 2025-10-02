@@ -2,6 +2,7 @@ import { Grid } from '@mui/material'
 import React from 'react'
 
 import { StatisticalData } from '../../utils/types'
+
 import { MetricasContainer, MetricCard, MetricTitle, MetricValue } from './styled'
 
 interface MetricasProps {

@@ -8,6 +8,7 @@ import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 // Importando componentes do módulo BDR
 import FIISearchBar from '../../../components/FIIs/components/SearchBar'
 import { FIITabs } from '../../../FII/components/FIITabs'
+
 import { ContentBox, ControlsWrapper, FiiContainer, Title } from './styled'
 
 export const Fii = () => {

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { OptimizedImage } from '@/components/Helpers/OptimizedImage'
 
 import { getBestCompanyLogoPath } from '../../utils/imageUtils'
+
 import { StyledCompanyAvatar, StyledCompanyAvatarBox } from './styled'
 
 interface CompanyAvatarProps {

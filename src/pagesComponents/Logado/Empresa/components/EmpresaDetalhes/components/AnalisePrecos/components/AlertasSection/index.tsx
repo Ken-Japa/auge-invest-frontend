@@ -7,6 +7,7 @@ import { Alert } from '@/services/api/types'
 
 import { AnalysisPeriod } from '../../utils/types'
 import GraficoHistoricoAlertas from '../GraficoHistoricoAlertas'
+
 import {
   AlertasSectionContainer,
   AlertasSectionTitle,

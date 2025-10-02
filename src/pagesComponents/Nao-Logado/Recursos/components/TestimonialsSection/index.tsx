@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { visitorColors } from '@/theme/palette/visitor'
 
 import { TESTIMONIALS } from '../../constants/testimonials'
+
 import { TestimonialCard } from './styled'
 import { TestimonialsSkeleton } from './TestimonialsSkeleton'
 

@@ -9,6 +9,7 @@ import { useSession } from 'next-auth/react'
 import { authNavigation, publicNavigation } from '@/components/Layout/constants/Navigation'
 
 import { useDrawer } from '../../../hooks/useDrawer'
+
 import { NavDropdown } from './NavDropdown'
 import { NavLink } from './NavLink'
 import { LinkNavbar, MobileNavContainer } from './styled'

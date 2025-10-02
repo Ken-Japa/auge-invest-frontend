@@ -7,6 +7,7 @@ import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 
 import { useFocus } from '../RecentActivities/components/FocusContext/FocusContext'
+
 import { WalletDeleteDialog } from './components/Dialogs/Wallet/WalletDeleteDialog'
 import { WalletDialogs } from './components/Dialogs/Wallet/WalletDialogs'
 import { useWalletSectionLogic } from './hooks/useWalletSectionLogic'

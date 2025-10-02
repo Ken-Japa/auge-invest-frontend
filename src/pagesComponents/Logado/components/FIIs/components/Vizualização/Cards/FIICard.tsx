@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { formatCNPJ, formatDate, formatNumber } from '@/components/Helpers/Formatters/formatters'
 
 import { FIIExtended } from '../../../types'
+
 import {
   CardHeader,
   CardSubtitle,

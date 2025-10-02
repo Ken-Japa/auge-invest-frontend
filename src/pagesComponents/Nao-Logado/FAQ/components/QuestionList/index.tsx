@@ -1,6 +1,7 @@
 import { type FC, useState } from 'react'
 
 import type { QuestionType } from '../../constants/faqData'
+
 import { QuestionListSkeleton } from './QuestionListSkeleton'
 import { NoResultsContainer, QuestionContainer, StyledExpandIcon } from './styled'
 

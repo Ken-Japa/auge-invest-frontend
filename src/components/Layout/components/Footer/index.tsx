@@ -10,6 +10,7 @@ import { useSession } from 'next-auth/react'
 
 import { socialLinks } from '../../constants/footer'
 import { Logo } from '../../Logo'
+
 import { FooterNavigation } from './components/FooterNavigation'
 import {
   FooterContainer,

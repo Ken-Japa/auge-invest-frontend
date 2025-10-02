@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react'
 
 import { FIIExtended } from '../../../../../components/FIIs/types'
 import { DetailContainer, DetailPaper, SectionDivider } from '../../styled'
+
 import FIIHeader from './FIIHeader'
 import FIIInfoSection from './FIIInfoSection'
 

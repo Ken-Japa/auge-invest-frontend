@@ -3,6 +3,7 @@ import React from 'react'
 import { formatCNPJ, formatNumber } from '@/components/Helpers/Formatters/formatters'
 
 import { ETFExtended } from '../../../types'
+
 import {
   CardContainer,
   CardHeader,

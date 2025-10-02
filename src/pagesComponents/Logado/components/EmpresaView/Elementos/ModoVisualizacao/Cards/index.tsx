@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 import { SumarioData } from '../TabelaView/types'
 import { sumarioService } from '../utils/sumarioService'
+
 import { CompanyCard } from './components/CompanyCard/index'
 import { CardsContainer, LoadingContainer, StyledCircularProgress } from './styled'
 

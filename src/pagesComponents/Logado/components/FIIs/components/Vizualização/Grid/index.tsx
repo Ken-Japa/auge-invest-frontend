@@ -2,6 +2,7 @@ import { Grid } from '@mui/material'
 import Link from 'next/link'
 
 import { FIIExtended } from '../../../types'
+
 import { CodeChip, FIIName, GridContainer, StyledCard, StyledCardContent } from './styled'
 
 interface GridViewProps {

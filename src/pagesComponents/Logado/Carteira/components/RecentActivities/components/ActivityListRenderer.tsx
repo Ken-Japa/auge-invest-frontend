@@ -2,6 +2,7 @@ import { Divider, ListItemText } from '@mui/material'
 import React from 'react'
 
 import { ActivityItem, ActivityList } from '../styled'
+
 import { ActivityText, ActivityText2 } from './ActivityText'
 
 interface Activity {

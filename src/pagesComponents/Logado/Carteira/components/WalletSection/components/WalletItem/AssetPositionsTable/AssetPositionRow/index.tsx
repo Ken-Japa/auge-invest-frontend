@@ -7,6 +7,7 @@ import { Positions } from '@/services/api/types/transaction'
 
 import { assetTypes } from '../../../transactionConstants'
 import { TransactionTable } from '../../TransactionTable'
+
 import { StyledAssetTableCell, StyledAssetTableRow } from './styled'
 
 interface AssetPositionRowProps {

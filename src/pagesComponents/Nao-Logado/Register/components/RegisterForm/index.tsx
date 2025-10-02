@@ -7,6 +7,7 @@ import { FormFields } from '../FormFields'
 import { GoogleSignInButton } from '../GoogleSignInButton'
 import { RegisterHeader } from '../Header'
 import { TermsCheckbox } from '../TermsCheckbox'
+
 import { RegisterFormSkeleton } from './RegisterFormSkeleton'
 import { RegisterFormStyled, SubmitButton } from './styled'
 

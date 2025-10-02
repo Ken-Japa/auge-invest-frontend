@@ -4,6 +4,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import React from 'react'
 
 import { EditButton, InfoContainer, InfoLabel, InfoRow, InfoValue, StyledDivider } from '../BasicInfo/styled'
+
 import { HeaderContainer, HeaderTitle } from './styled'
 
 interface AdditionalInfoProps {

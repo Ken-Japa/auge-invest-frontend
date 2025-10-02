@@ -1,4 +1,5 @@
 import { PRIVACY_SECTIONS } from '../../constants/sections'
+
 import { QuickNavigationSkeleton } from './QuickNavigationSkeleton'
 import { NavigationContainer, NavigationTitle } from './styled'
 

@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 
 import { ETFBDRExtended } from '../../../types'
+
 import { CardContainer, CardHeader, CardSubtitle, CardTitle, CodeChip } from './styled'
 
 interface CardViewProps {

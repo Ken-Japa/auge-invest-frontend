@@ -9,6 +9,7 @@ import { useFocus } from '../../../RecentActivities/components/FocusContext/Focu
 import { AddTransactionDialog } from '../Dialogs/Transactions/AddTransactionDialog'
 import { AddSameTransactionDialog } from '../Dialogs/Transactions/AddTransactionSameAsset'
 import { TransactionsDialog } from '../Dialogs/Transactions/TransactionsDialog'
+
 import { AddTransactionButton } from './AddTransactionButton'
 import { AssetPositionsTable } from './AssetPositionsTable'
 import { WalletDetailsContainer, WalletItemContainer, WalletSummaryContainer } from './styled'

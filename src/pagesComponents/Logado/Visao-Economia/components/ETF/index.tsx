@@ -4,6 +4,7 @@ import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 import { ContentSkeleton } from '../../../../../components/Feedback/Skeletons/ContentSkeleton'
 import ETF from '../../../components/ETF'
 import ETFSearchBar from '../../../components/ETF/components/SearchBar'
+
 import { BdrContainer, ContentBox, ControlsWrapper, Title } from './styled'
 
 export const Etf = () => {

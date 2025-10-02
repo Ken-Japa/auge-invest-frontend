@@ -2,6 +2,7 @@ import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton
 
 import { FormHeaderSkeleton } from '../FormHeader/FormHeaderSkeleton'
 import { SocialLoginSkeleton } from '../SocialLogin/SocialLoginSkeleton'
+
 import { LoginFormStyled } from './styled'
 
 export const LoginFormSkeleton = () => {

@@ -6,6 +6,7 @@ import React from 'react'
 import { formatCurrency } from '../../../utils/currency'
 import { CardContainer, CodesContainer } from '../../styled'
 import { CodeItem } from '../CodeItem'
+
 import {
   CodesTitle,
   CompanyTitle,

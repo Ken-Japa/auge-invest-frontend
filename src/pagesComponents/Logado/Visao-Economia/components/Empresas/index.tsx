@@ -10,6 +10,7 @@ import { VisualizationContent } from '../../../components/EmpresaView'
 import { ModoVisualizacao } from '../../../components/EmpresaView/Elementos/ModoVisualizacao'
 import { ViewMode } from '../../../components/EmpresaView/Elementos/ModoVisualizacao/types'
 import { SearchBar } from '../../../components/EmpresaView/Elementos/SearchBar'
+
 import { ControlsWrapper, EmpresasContainer, Title, TitleWrapper, VisualizationWrapper } from './styled'
 
 export const Empresas = () => {

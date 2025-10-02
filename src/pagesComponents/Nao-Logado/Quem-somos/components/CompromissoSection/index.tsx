@@ -3,6 +3,7 @@ import HandshakeIcon from '@mui/icons-material/Handshake'
 import { visitorColors } from '@/theme/palette/visitor'
 
 import { BaseSection, ContentContainer, SectionTitle, Subtitle } from '../../styled'
+
 import { CompromissoSkeleton } from './CompromissoSkeleton'
 
 interface CompromissoSectionProps {

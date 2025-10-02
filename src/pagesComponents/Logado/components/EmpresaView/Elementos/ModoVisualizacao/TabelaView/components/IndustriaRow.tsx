@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 
 import { formatCurrency } from '../../utils/currency'
 import { IndustriaRowProps } from '../types'
+
 import { EmpresasTable } from './EmpresasTable'
 import { SegmentoSection } from './SegmentoSection'
 import { IndustriaTitle, PercentageText, ValueText } from './styled'

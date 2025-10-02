@@ -39,5 +39,6 @@ next-env.d.ts
 /lighthouse-reports
 /testsprite_tests
 /warp_report
+
 helper.txt
 

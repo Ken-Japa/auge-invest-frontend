@@ -2,6 +2,7 @@ import { Grid } from '@mui/material'
 import { Control } from 'react-hook-form'
 
 import { DadosAnaliseFundamental } from '../../types'
+
 import { FormField } from './components/FormField'
 import { FormSection } from './components/FormSection'
 import { FORM_SECTIONS } from './constants/constants'

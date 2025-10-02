@@ -2,6 +2,7 @@ import { PriceDataPoint } from '@/pagesComponents/Logado/Empresa/components/Empr
 
 import { getHistoricalData } from '../../GraficoHistorico/services/historicalService'
 import { StatisticalData } from '../utils/types'
+
 import { calculateMean, calculateStdDev, createHistogramData } from './subservices/statisticsUtils'
 export {
   calculateAlertSuggestions,

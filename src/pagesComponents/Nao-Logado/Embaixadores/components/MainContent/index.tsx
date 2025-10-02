@@ -6,6 +6,7 @@ import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 
 import { type Ambassador } from '../../types'
 import { AmbassadorsGrid } from '../AmbassadorsGrid'
+
 import { ContentWrapper, StyledContainer } from './styled'
 
 interface MainContentProps {

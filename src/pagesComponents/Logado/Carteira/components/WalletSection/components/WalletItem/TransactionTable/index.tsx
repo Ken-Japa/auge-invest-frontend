@@ -5,6 +5,7 @@ import { Transaction } from '@/services/api/types/transaction'
 
 import { DeleteTransactionConfirmDialog } from '../../Dialogs/Transactions/DeleteTransactionConfirmDialog'
 import { EditTransactionDialog } from '../../Dialogs/Transactions/EditTransactionDialog'
+
 import {
   StyledTransactionHeaderTableCell,
   StyledTransactionTable,

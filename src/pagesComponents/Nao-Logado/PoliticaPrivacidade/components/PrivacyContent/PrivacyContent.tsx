@@ -2,6 +2,7 @@ import { Stack } from '@mui/material'
 
 import { PRIVACY_SECTIONS } from '../../constants/sections'
 import { PrivacySection } from '../PrivacySection'
+
 import { PrivacyContentSkeleton } from './PrivacyContentSkeleton'
 import {
   ArmazenamentoSection,

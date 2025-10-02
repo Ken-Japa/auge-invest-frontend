@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 
 import { ContentSkeleton } from '../../../../../components/Feedback/Skeletons/ContentSkeleton'
+
 import { SearchDialog } from './components/Elementos/SearchDialog'
 import {
   AddTabButton,

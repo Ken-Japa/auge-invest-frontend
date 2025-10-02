@@ -4,6 +4,7 @@ import React from 'react'
 import { formatNumber } from '@/components/Helpers/Formatters/formatters'
 
 import { ETFExtended } from '../../../types'
+
 import { StyledTableCell, StyledTableRow } from './styled'
 
 interface ETFTableBodyProps {

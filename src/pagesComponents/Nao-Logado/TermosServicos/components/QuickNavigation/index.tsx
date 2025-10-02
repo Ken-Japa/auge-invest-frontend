@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material'
 
 import { SECTIONS } from '../../constants/sections'
+
 import { QuickNavigationSkeleton } from './QuickNavigationSkeleton'
 import { NavigationContainer } from './styled'
 

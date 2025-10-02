@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { RECURSOS_LIST } from '../../constants/recursos'
 import { BaseSection, ContentWrapper } from '../../styled'
+
 import { RecursosSkeleton } from './RecursosSkeleton'
 import { RecursosContainer } from './styled'
 

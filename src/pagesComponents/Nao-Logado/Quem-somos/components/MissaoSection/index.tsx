@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { visitorColors } from '@/theme/palette/visitor'
 
 import { BaseSection, ContentContainer, SectionTitle, Subtitle } from '../../styled'
+
 import { MissaoSkeleton } from './MissaoSkeleton'
 
 interface MissaoSectionProps {

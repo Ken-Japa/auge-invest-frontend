@@ -4,6 +4,7 @@ import { PaginationControls } from '@/components/Data-Display/PaginationControls
 
 import { useFIIVisualizationLogic } from '../../hooks/useFIIVisualizationLogic'
 import { FIIFilter, VisualizationMode } from '../../types'
+
 import { FIIViewRenderer } from './FIIViewRenderer'
 import {
   EmptyResultsContainer,

@@ -4,6 +4,7 @@ import { visitorColors } from '@/theme/palette/visitor'
 
 import { FAQ_ITEMS } from '../../constants/faq'
 import { BaseSection, ContentWrapper } from '../../styled'
+
 import { FAQSkeleton } from './FAQSkeleton'
 import { FAQContainer } from './styled'
 

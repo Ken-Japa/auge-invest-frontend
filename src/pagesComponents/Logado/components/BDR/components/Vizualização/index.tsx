@@ -4,6 +4,7 @@ import React from 'react'
 import { PaginationControls } from '@/components/Data-Display/PaginationControls'
 
 import { VisualizacaoBDRsProps } from '../../types/index'
+
 import { EmptyResultsContainer, ErrorContainer, LoadingContainer, VisualizationContainer } from './styled'
 import { BDRFilterControls } from './utils/BDRFilterControls'
 import { BDRVisualizationRenderer } from './utils/BDRVisualizationRenderer'

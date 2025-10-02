@@ -7,6 +7,7 @@ import { PriceDataPoint } from '@/pagesComponents/Logado/Empresa/components/Empr
 import { EmpresaDetalhada } from '../../../types'
 import { PriceDataPoint as GraficoPriceDataPoint } from '../components/GraficoHistorico/services/types'
 import { StyledTab, StyledTabs, TabContent } from '../styled'
+
 import { EmpresaHeader } from './EmpresaHeader'
 import { TabPanel } from './TabPanel'
 

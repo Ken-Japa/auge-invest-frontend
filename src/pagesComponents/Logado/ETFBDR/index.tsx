@@ -15,6 +15,7 @@ import { PageBackground } from '@/components/Layout/PageBackground'
 import { ETFBDRFilter } from '@/services/api/types/etfbdr'
 
 import ETFBDRSearchBar from '../components/ETFBDR/components/SearchBar'
+
 const LazyVisualizationETFBDRs = lazy(() =>
   import('../components/ETFBDR/components/Visualization').then((mod) => ({
     default: mod.VisualizationETFBDRs,

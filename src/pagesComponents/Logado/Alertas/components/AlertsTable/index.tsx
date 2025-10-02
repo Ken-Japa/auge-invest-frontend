@@ -6,6 +6,7 @@ import { StyledTable } from '@/components/Data-Display/Table'
 import { Alert } from '@/services/api/types'
 
 import { AlertDialog } from '../AlertDialog'
+
 import { TableContent } from './TableContent'
 
 interface AlertsTableProps {

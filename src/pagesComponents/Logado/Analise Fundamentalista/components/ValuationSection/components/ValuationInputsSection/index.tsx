@@ -4,6 +4,7 @@ import { FC } from 'react'
 import { NumberInput } from '@/components/Form/NumberInput'
 
 import { ValuationInputs } from '../../types'
+
 import { InputsContainer } from './styled'
 
 interface ValuationInputsSectionProps {

@@ -2,6 +2,7 @@ import { Box, Grid, Typography } from '@mui/material'
 import { FC } from 'react'
 
 import { SensitivityResults, ValuationResults } from '../../types'
+
 import { ResultsContainer } from './styled'
 
 interface ResultsSectionProps {

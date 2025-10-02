@@ -12,6 +12,7 @@ import React, { useEffect, useState } from 'react'
 
 import { formatCurrency } from '../utils/currency'
 import { sumarioService } from '../utils/sumarioService'
+
 import { FlatTableView } from './components/FlatTableView'
 import { IndustriaRow } from './components/IndustriaRow'
 import { SegmentoSection } from './components/SegmentoSection'

@@ -3,6 +3,7 @@ import type { SyntheticEvent } from 'react'
 import { FC } from 'react'
 
 import { ValuationResults } from '../../types'
+
 import { SensitivityContainer } from './styled'
 
 interface ScenarioInput {

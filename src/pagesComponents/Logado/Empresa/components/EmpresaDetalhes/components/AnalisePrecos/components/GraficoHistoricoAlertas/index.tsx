@@ -2,6 +2,7 @@ import { CircularProgress, Typography } from '@mui/material'
 import React from 'react'
 
 import { useChartStyles } from '../../utils/chartConfig'
+
 import PriceChart from './components/PriceChart'
 import {
   EmptyDataContainer,

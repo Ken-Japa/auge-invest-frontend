@@ -7,6 +7,7 @@ import { CustomAccordion } from '@/components/Core/Accordion'
 import { NumberInput } from '@/components/Form/NumberInput'
 
 import { HistoricalFCF } from '../../types'
+
 import { HistoricalDataContainer } from './styled'
 
 interface HistoricalDataSectionProps {

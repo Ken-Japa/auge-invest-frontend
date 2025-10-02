@@ -4,6 +4,7 @@ import { visitorColors } from '@/theme/palette/visitor'
 
 import { VALORES } from '../../constants/valores'
 import { BaseSection, SectionTitle } from '../../styled'
+
 import { ValorCard, ValoresGrid } from './styled'
 import { ValoresSkeleton } from './ValoresSkeleton'
 

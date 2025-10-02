@@ -9,6 +9,7 @@ import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton
 import { useUserFavorites } from '@/components/Layout/components/Header/PerfilButtons/components/FavoriteButton/hooks/useUserFavorites'
 
 import { MAX_DISPLAY_ITEMS } from '../constants'
+
 import { FavoriteMenuItem } from './components/FavoriteMenuItem'
 
 export const FavoriteButton = () => {

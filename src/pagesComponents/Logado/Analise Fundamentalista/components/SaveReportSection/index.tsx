@@ -16,6 +16,7 @@ import { FC, useState } from 'react'
 
 import { DadosAnaliseFundamental, MetricasCalculadas } from '../../types'
 import { SensitivityResults, ValuationResults } from '../ValuationSection/types'
+
 import { SaveReportContainer } from './styled'
 import { GenerateReportParams } from './utils/types'
 

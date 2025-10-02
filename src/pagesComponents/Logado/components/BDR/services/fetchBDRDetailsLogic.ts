@@ -1,6 +1,7 @@
 import { api } from '@/services/api'
 
 import { BDRExtended, BDRNPExtended, BDRType, UnifiedBDR } from '../types'
+
 import { fetchBDRBySlugOrCode } from './fetchBDRBySlugOrCodeService'
 
 export { fetchBDRBySlugOrCode }

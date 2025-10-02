@@ -21,7 +21,6 @@ import { Inflacao } from './components/Outros/Inflacao'
 import { PosicaoUsuario } from './components/Outros/PosicaoUsuario'
 import { Selic } from './components/Outros/Selic'
 
-// Componentes secundários carregados com lazy
 const Moedas = lazy(() => import('./components/Outros/Moedas').then((mod) => ({ default: mod.Moedas })))
 const Commodities = lazy(() =>
   import('./components/Outros/Commodities').then((mod) => ({ default: mod.Commodities })),

@@ -5,6 +5,7 @@ import { sumarioService } from '../../utils/sumarioService'
 import { CORES_INDUSTRIAS } from '../constants/colors'
 import { SumarioData as RedeNeuralSumarioData } from '../types'
 import { transformSumarioData } from '../utils/transformSumarioData'
+
 import { buildGraphData } from './graphBuilder'
 import { adjustColorHSL } from './graphUtils'
 

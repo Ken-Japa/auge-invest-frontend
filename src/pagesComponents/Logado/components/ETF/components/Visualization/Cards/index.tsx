@@ -3,6 +3,7 @@ import React from 'react'
 
 import { useETFCardLogic } from '../../../hooks/useETFCardLogic'
 import { ETFExtended } from '../../../types'
+
 import ETFCard from './ETFCard'
 
 interface CardViewProps {
