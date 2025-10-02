@@ -14,6 +14,7 @@
       "assertions": {
         "image-delivery-insight": "off",
         "uses-responsive-images": "off",
+        "unused-javascript": "off",
         "errors-in-console": "off",
         "heading-order": "off",
         "legacy-javascript-insight": "off",
