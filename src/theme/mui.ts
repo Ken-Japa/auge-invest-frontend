@@ -1,5 +1,10 @@
 import { createTheme, Theme } from '@mui/material/styles'
 
+/**
+ * @module @mui/material/styles
+ * @description Extensão dos tipos de tema do Material-UI para incluir estilos personalizados para gráficos.
+ * Isso permite a definição de propriedades específicas para tooltips de gráficos diretamente no objeto de tema.
+ */
 declare module '@mui/material/styles' {
   interface Theme {
     chartStyles: {
@@ -27,7 +32,11 @@ import { components } from './components'
 import { darkPalette, lightPalette } from './palette'
 import { borderRadius, typography } from './variables'
 
-// Configurações comuns para ambos os temas
+/**
+ * @const commonOptions
+ * @description Objeto de configuração comum para ambos os temas (claro e escuro).
+ * Define configurações de tipografia, forma (borderRadius), componentes e estilos de gráfico que são compartilhados.
+ */
 const commonOptions = {
   typography: {
     fontFamily: typography.fontFamily,
@@ -76,12 +85,19 @@ const commonOptions = {
   },
 }
 
-// Criar os temas
+/**
+ * @const darkTheme
+ * @description Tema escuro configurado para a aplicação, combinando as opções comuns com a paleta de cores escura.
+ */
 export const darkTheme: Theme = createTheme({
   ...commonOptions,
   palette: darkPalette,
 })
 
+/**
+ * @const lightTheme
+ * @description Tema claro configurado para a aplicação, combinando as opções comuns com a paleta de cores clara.
+ */
 export const lightTheme: Theme = createTheme({
   ...commonOptions,
   palette: lightPalette,

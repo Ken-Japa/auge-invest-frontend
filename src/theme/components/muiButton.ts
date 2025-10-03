@@ -2,6 +2,12 @@ import { Components } from '@mui/material'
 
 import { borderRadius, spacing, transitions } from '../variables'
 
+/**
+ * @const muiButton
+ * @description Define as sobrescrições de estilo para o componente MuiButton.
+ * Personaliza o preenchimento, raio da borda, transformação de texto e transições para botões.
+ * Inclui estilos específicos para variantes 'contained' e 'outlined'.
+ */
 export const muiButton: Components['MuiButton'] = {
   styleOverrides: {
     root: {

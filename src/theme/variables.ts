@@ -80,7 +80,13 @@ export const breakpoints = {
   xl: '1920px', // Extra grande - Monitores grandes e TVs
 }
 
-// Função auxiliar para obter cor baseada no modo (claro/escuro)
+/**
+ * @function getThemeColor
+ * @description Função auxiliar para obter uma cor específica do tema, baseada no modo (claro/escuro) e no caminho da cor.
+ * @param {any} theme - O objeto de tema atual, contendo informações sobre o modo da paleta.
+ * @param {string} colorPath - O caminho da cor desejada dentro do objeto customColors (ex: 'primary.main').
+ * @returns {string} A string da cor correspondente ao caminho e ao modo do tema.
+ */
 export const getThemeColor = (theme: any, colorPath: string) => {
   const mode = theme.palette.mode // 'light' ou 'dark'
   const parts = colorPath.split('.')
@@ -93,8 +99,18 @@ export const getThemeColor = (theme: any, colorPath: string) => {
   return color[parts[parts.length - 1]][mode]
 }
 
-// Função para obter valor de espaçamento
+/**
+ * @function getSpacing
+ * @description Função auxiliar para obter um valor de espaçamento predefinido.
+ * @param {keyof typeof spacing} size - O tamanho do espaçamento desejado (ex: 'md', 'lg').
+ * @returns {string} O valor da string de espaçamento correspondente.
+ */
 export const getSpacing = (size: keyof typeof spacing) => spacing[size]
 
-// Função para obter valor de raio de borda
+/**
+ * @function getBorderRadius
+ * @description Função auxiliar para obter um valor de raio de borda predefinido.
+ * @param {keyof typeof borderRadius} size - O tamanho do raio de borda desejado (ex: 'sm', 'circle').
+ * @returns {string} O valor da string do raio de borda correspondente.
+ */
 export const getBorderRadius = (size: keyof typeof borderRadius) => borderRadius[size]

@@ -2,6 +2,11 @@ import { Components } from '@mui/material'
 
 import { borderRadius, spacing, transitions } from '../variables'
 
+/**
+ * @const muiAccordion
+ * @description Define as sobrescrições de estilo para o componente MuiAccordion.
+ * Personaliza o raio da borda, sombra, borda, margens e transições do acordeão.
+ */
 export const muiAccordion: Components['MuiAccordion'] = {
   styleOverrides: {
     root: {
@@ -23,6 +28,11 @@ export const muiAccordion: Components['MuiAccordion'] = {
   },
 }
 
+/**
+ * @const muiAccordionSummary
+ * @description Define as sobrescrições de estilo para o componente MuiAccordionSummary.
+ * Personaliza o preenchimento e as margens do conteúdo do resumo do acordeão.
+ */
 export const muiAccordionSummary: Components['MuiAccordionSummary'] = {
   styleOverrides: {
     root: {
@@ -34,6 +44,11 @@ export const muiAccordionSummary: Components['MuiAccordionSummary'] = {
   },
 }
 
+/**
+ * @const muiAccordionDetails
+ * @description Define as sobrescrições de estilo para o componente MuiAccordionDetails.
+ * Personaliza o preenchimento e a borda superior dos detalhes do acordeão.
+ */
 export const muiAccordionDetails: Components['MuiAccordionDetails'] = {
   styleOverrides: {
     root: {

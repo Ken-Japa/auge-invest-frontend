@@ -1,3 +1,9 @@
+/**
+ * @const visitorColors
+ * @description Objeto contendo uma paleta de cores específica para visitantes ou para um tema alternativo,
+ * incluindo cores principais, secundárias, de destaque, de status (sucesso, erro, aviso, informação),
+ * cores para fundos com transparência, textos e elementos de UI.
+ */
 export const visitorColors = {
   // Cores principais
   primary: '#0D95F9', // Azul principal (Azul céu brilhante) - Cor principal da marca

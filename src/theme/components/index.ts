@@ -6,6 +6,11 @@ import { muiCard } from './muiCard'
 import { muiPaper } from './muiPaper'
 import { muiTable } from './muiTable'
 
+/**
+ * @const components
+ * @description Objeto que define as sobrescrições de componentes Material-UI para personalizar a aparência e o comportamento.
+ * Inclui configurações para botões, tabelas, papéis, cards, acordeões e o CssBaseline para estilos globais.
+ */
 export const components: Components = {
   MuiButton: muiButton,
   MuiTable: muiTable,
@@ -14,6 +19,11 @@ export const components: Components = {
   MuiAccordion: muiAccordion,
   MuiAccordionSummary: muiAccordionSummary,
   MuiAccordionDetails: muiAccordionDetails,
+  /**
+   * @property MuiCssBaseline
+   * @description Sobrescrições de estilo para o componente MuiCssBaseline, aplicando estilos globais ao corpo do documento.
+   * Inclui a personalização da barra de rolagem para uma aparência mais consistente entre navegadores.
+   */
   MuiCssBaseline: {
     styleOverrides: {
       body: {

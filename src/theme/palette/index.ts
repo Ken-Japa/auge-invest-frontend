@@ -1,5 +1,10 @@
 import { PaletteOptions } from '@mui/material'
 
+/**
+ * @module @mui/material/styles
+ * @description Extensão dos tipos de paleta do Material-UI para incluir variações de cores personalizadas (A100, A200, A400).
+ * Isso permite a definição de cores adicionais para estados como hover, active, etc., além das cores principais.
+ */
 declare module '@mui/material/styles' {
   interface PaletteColor {
     A100?: string
@@ -14,7 +19,11 @@ declare module '@mui/material/styles' {
   }
 }
 
-// Cores base comuns para ambos os temas
+/**
+ * @const baseColors
+ * @description Objeto contendo as definições de cores base que são comuns para ambos os temas (claro e escuro).
+ * Inclui as paletas de cores primária, secundária, info, warning, success e error, com suas respectivas variações.
+ */
 const baseColors = {
   primary: {
     main: '#0D95F9', // Azul principal da marca (Azul céu brilhante)
@@ -55,7 +64,10 @@ const baseColors = {
   },
 }
 
-// Paleta para o tema escuro
+/**
+ * @const darkPalette
+ * @description Paleta de cores específica para o tema escuro, estendendo as cores base e definindo cores para texto, fundo e divisores no modo escuro.
+ */
 export const darkPalette: PaletteOptions = {
   mode: 'dark',
   ...baseColors,
@@ -70,7 +82,10 @@ export const darkPalette: PaletteOptions = {
   divider: 'rgba(255, 255, 255, 0.12)', // Divisores em tema escuro (Branco com 12% de opacidade)
 }
 
-// Paleta para o tema claro
+/**
+ * @const lightPalette
+ * @description Paleta de cores específica para o tema claro, estendendo as cores base e definindo cores para texto, fundo e divisores no modo claro.
+ */
 export const lightPalette: PaletteOptions = {
   mode: 'light',
   ...baseColors,
@@ -85,7 +100,12 @@ export const lightPalette: PaletteOptions = {
   divider: 'rgba(0, 0, 0, 0.12)', // Divisores em tema claro (Preto com 12% de opacidade)
 }
 
-// Cores personalizadas para componentes específicos
+/**
+ * @const customColors
+ * @description Objeto contendo cores personalizadas que não se encaixam diretamente na paleta padrão do Material-UI,
+ * mas são usadas em componentes específicos, como tabelas de opções, cards e efeitos de hover.
+ * As cores são definidas para os modos claro e escuro.
+ */
 export const customColors = {
   // Cores para tabelas de opções
   callHeader: {
