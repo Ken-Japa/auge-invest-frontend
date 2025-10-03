@@ -1,6 +1,6 @@
-import { Alert, CircularProgress, Tooltip } from '@mui/material'
-import FilterListIcon from '@mui/icons-material/FilterList'
 import CloseIcon from '@mui/icons-material/Close'
+import FilterListIcon from '@mui/icons-material/FilterList'
+import { Alert, CircularProgress, Tooltip } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useCallback, useMemo, useRef, useState, useEffect } from 'react'
 import { Network } from 'vis-network/standalone'

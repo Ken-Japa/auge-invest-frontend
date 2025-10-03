@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react'
 import { DataSet } from 'vis-data/standalone'
 import { Network, NetworkEvents } from 'vis-network/standalone'
 import { Edge, Node, Options } from 'vis-network/standalone'
+
 import { GraphContainer } from '../../styled'
 
 interface GraphProps {

@@ -1,22 +1,22 @@
 'use client'
 
-import { useState } from 'react'
 
 import { Container, Typography } from '@mui/material'
+import { useState } from 'react'
 
-import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
-import { PageBackground } from '@/components/Layout/PageBackground'
-import { PageTransition } from '@/components/Helpers/PageTransition'
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
 import { Snackbar } from '@/components/Feedback/Snackbar'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
+import { PageTransition } from '@/components/Helpers/PageTransition'
+import { PageBackground } from '@/components/Layout/PageBackground'
 import { useApi } from '@/providers/ApiProvider'
 
-import { ActionContainer, PageHeader } from './styled'
 import { AddAlertButton } from './components/AddAlertButton'
 import { AlertsTable } from './components/AlertsTable'
 import { useAlerts } from './hooks/useAlerts'
+import { ActionContainer, PageHeader } from './styled'
 
 export const Alertas = () => {
   const { alerts, loading, error, refreshAlerts, toggleAlert, deleteAlert } = useAlerts()

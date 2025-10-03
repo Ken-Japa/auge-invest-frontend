@@ -1,3 +1,5 @@
+import { Theme } from '@mui/material/styles'
+
 import { createCentralNode } from '../components/CentralNode'
 import { createEmpresaNode } from '../components/EmpresaNode'
 import { createIndustriaNode } from '../components/IndustriaNode'
@@ -6,7 +8,6 @@ import { CORES_INDUSTRIAS } from '../constants/colors'
 import { EmpresaNode, IndustriaNode, SegmentoNode, SumarioData } from '../types'
 
 import { adjustColorHSL } from './graphUtils'
-import { Theme } from '@mui/material/styles'
 
 export const generateSegmentColors = (baseColor: string, count: number): string[] => {
   const colors: string[] = []

@@ -1,5 +1,8 @@
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Select, MenuItem, InputLabel } from '@mui/material'
 import React, { useState } from 'react'
+
 import {
   IndustryColorBox,
   SegmentDropdownContainer,
@@ -7,8 +10,6 @@ import {
   StyledListSubheader,
   ToggleIconButton,
 } from './styled'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 
 interface SegmentDropdownProps {
   segmentsByIndustry: {

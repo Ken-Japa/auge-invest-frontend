@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
 import { Button, DialogActions, CircularProgress } from '@mui/material'
+import { useSession } from 'next-auth/react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { Alert } from '@/services/api/types'
+
 import { AlertFormContent } from './AlertFormContent'
 import { ConfirmDeleteDialog } from './components/ConfirmDeleteDialog'
 import { StyledDialog, StyledDialogContent, StyledDialogTitle } from './styled'

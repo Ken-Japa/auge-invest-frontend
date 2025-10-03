@@ -1,5 +1,6 @@
-import { formatCurrency } from '../../utils/currency'
 import { Theme } from '@mui/material/styles'
+
+import { formatCurrency } from '../../utils/currency'
 
 export const createCentralNode = (valorTotal: number, theme: Theme, sizeMultiplier = 10) => {
   return {

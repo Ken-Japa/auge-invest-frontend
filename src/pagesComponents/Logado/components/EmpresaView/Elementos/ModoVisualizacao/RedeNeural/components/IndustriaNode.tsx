@@ -1,7 +1,8 @@
+import { Theme } from '@mui/material/styles'
+
 import { formatCurrency } from '../../utils/currency'
 import { IndustriaNode } from '../types'
 import { adjustColorHSL, calculateNodeSize, calculatePosition } from '../utils/graphUtils'
-import { Theme } from '@mui/material/styles'
 
 export const createIndustriaNode = (
   industria: IndustriaNode,

@@ -1,4 +1,5 @@
 import { Theme } from '@mui/material/styles'
+
 import { formatCurrency } from '../../utils/currency'
 import { SegmentoNode } from '../types'
 import { calculateNodeSize, calculatePosition } from '../utils/graphUtils'

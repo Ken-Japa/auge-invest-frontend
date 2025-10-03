@@ -1,8 +1,8 @@
 'use client'
 
+import { Grid } from '@mui/material'
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 
-import { Grid } from '@mui/material'
 
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'

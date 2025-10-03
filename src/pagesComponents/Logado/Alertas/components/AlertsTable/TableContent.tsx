@@ -7,6 +7,7 @@ import React from 'react'
 import { Alert } from '@/services/api/types'
 
 import { AlertTypography } from '../../styled'
+
 import { StyledTableCell, StyledTableRow } from './styled'
 
 interface TableContentProps {

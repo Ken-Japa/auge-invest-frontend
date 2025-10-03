@@ -1,6 +1,6 @@
+import { useTheme } from '@mui/material/styles'
 import { useEffect, useState } from 'react'
 
-import { useTheme } from '@mui/material/styles'
 
 import { SumarioData as TabelaViewSumarioData } from '../../TabelaView/types'
 import { sumarioService } from '../../utils/sumarioService'

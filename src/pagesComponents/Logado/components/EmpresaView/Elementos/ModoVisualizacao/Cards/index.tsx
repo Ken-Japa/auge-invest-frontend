@@ -3,6 +3,7 @@ import type { SelectChangeEvent } from '@mui/material/Select'
 import React, { useEffect, useState } from 'react'
 
 import { PaginationControls } from '@/components/Data-Display/PaginationControls'
+
 import { SumarioData } from '../TabelaView/types'
 import { sumarioService } from '../utils/sumarioService'
 
