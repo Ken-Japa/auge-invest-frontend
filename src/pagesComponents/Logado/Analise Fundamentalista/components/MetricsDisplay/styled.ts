@@ -9,11 +9,12 @@ export const CategoryContainer = styled(Grid)(({ theme }) => ({
 }))
 
 export const CategoryTitle = styled(Typography)(({ theme }) => ({
-  fontWeight: 600,
+  fontWeight: 700,
+  fontSize: '1.3rem',
   color: theme.palette.text.primary,
-  marginBottom: theme.spacing(2),
-  borderBottom: `1px solid ${theme.palette.divider}`,
-  paddingBottom: theme.spacing(1),
+  marginBottom: theme.spacing(3),
+  borderBottom: `2px solid ${theme.palette.primary.main}`,
+  letterSpacing: '0.03em',
   transition: transitions.medium,
 }))
 

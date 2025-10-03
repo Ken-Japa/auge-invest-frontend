@@ -1,8 +1,9 @@
 import InfoIcon from '@mui/icons-material/Info'
-import { Divider, IconButton, Tooltip } from '@mui/material'
+import { IconButton, Tooltip } from '@mui/material'
 
 import { SectionContainer, SectionTitle } from '../styled'
 import { FormSectionProps } from '../types/types'
+import { StyledDivider } from './styled'
 
 export const FormSection = ({ title, description, children }: FormSectionProps) => (
   <SectionContainer item xs={12}>
@@ -15,6 +16,6 @@ export const FormSection = ({ title, description, children }: FormSectionProps) 
       </Tooltip>
     </SectionTitle>
     {children}
-    <Divider sx={{ my: 3 }} />
+    <StyledDivider />
   </SectionContainer>
 )

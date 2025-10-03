@@ -20,7 +20,7 @@ import { generatePDF } from './components/SaveReportSection/utils/pdfGenerator'
 import { generateReport } from './components/SaveReportSection/utils/reportGenerator'
 import { ValuationSection } from './components/ValuationSection'
 import { SensitivityResults, ValuationResults } from './components/ValuationSection/types'
-import { ContentContainer, StyledPaper, Title } from './styled'
+import { ContentContainer, StyledPaper, StyledPaperInput, Title } from './styled'
 import { DadosAnaliseFundamental, MetricasCalculadas } from './types'
 
 export const AnaliseFundamentalista = () => {
@@ -88,7 +88,7 @@ export const AnaliseFundamentalista = () => {
             <ContentContainer>
               <SuspenseWrapper>
                 <ProgressiveLoad>
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 3 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 6 }}>
                     <Title>Análise Fundamentalista</Title>
                     <IconButton
                       onClick={() => setHelpOpen(true)}
@@ -97,11 +97,11 @@ export const AnaliseFundamentalista = () => {
                       <HelpIcon />
                     </IconButton>
                   </Box>
-                  <Grid container spacing={3}>
+                  <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
-                      <StyledPaper>
+                      <StyledPaperInput>
                         <DataInputForm control={control} />
-                      </StyledPaper>
+                      </StyledPaperInput>
                     </Grid>
                     <Grid item xs={12} md={6}>
                       <StyledPaper>
@@ -126,7 +126,7 @@ export const AnaliseFundamentalista = () => {
                       </StyledPaper>
                     </Grid>
                     <Grid item xs={12}>
-                      <StyledPaper>
+                      <StyledPaperInput>
                         <SaveReportSection
                           onSave={handleSaveReport}
                           isEnabled={!!formValues.precoAcao && !!formValues.acoesCirculacao}
@@ -135,7 +135,7 @@ export const AnaliseFundamentalista = () => {
                           sensitivityResults={sensitivityResults}
                           metricsResults={metricsResults}
                         />
-                      </StyledPaper>
+                      </StyledPaperInput>
                     </Grid>
                   </Grid>
                   <Suspense fallback={<div>Loading Help...</div>}>

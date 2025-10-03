@@ -31,19 +31,26 @@ export const MetricCard = ({
     >
       <Paper
         sx={{
-          p: 2,
+          p: 3,
           height: '100%',
           cursor: 'pointer',
           bgcolor: missingFields.length > 0 ? 'action.disabledBackground' : 'background.paper',
+          boxShadow: 3,
+          transition: 'transform 0.2s, box-shadow 0.2s',
+          '&:hover': {
+            transform: 'translateY(-5px)',
+            boxShadow: 6,
+          },
         }}
       >
-        <Typography variant="subtitle2" color="text.secondary">
+        <Typography variant="subtitle1" color="text.secondary" gutterBottom>
           {title}
         </Typography>
         <Typography
-          variant="h6"
+          variant="h5"
           sx={{
             color: !isInvalid && !missingFields.length ? getMetricColor(metricKey, value) : 'text.primary',
+            fontWeight: 600,
           }}
         >
           {missingFields.length > 0 ? '---' : isInvalid ? 'N/A' : formatMetricValue(value, type)}

@@ -6,25 +6,38 @@ import { transitions } from '@/theme/variables'
 export const ContentContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
   zIndex: 2,
-  padding: theme.spacing(4, 0),
 }))
 
 export const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(3),
+  padding: theme.spacing(4),
   backgroundColor: theme.palette.background.paper,
-  backdropFilter: 'blur(5px)',
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[1],
+  borderRadius: theme.shape.borderRadius * 2,
+  boxShadow: theme.shadows[3],
   border: `1px solid ${theme.palette.divider}`,
   transition: transitions.medium,
+  marginBottom: theme.spacing(6),
   '& .MuiInputBase-root': {
-    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(26, 34, 52, 0.7)' : 'rgba(255, 255, 255, 0.7)',
+    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(26, 34, 52, 0.8)' : 'rgba(255, 255, 255, 0.8)',
+  },
+}))
+
+export const StyledPaperInput = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(4),
+  backgroundColor: theme.palette.background.default,
+  borderRadius: theme.shape.borderRadius * 2,
+  boxShadow: theme.shadows[3],
+  border: `1px solid ${theme.palette.divider}`,
+  transition: transitions.medium,
+  marginBottom: theme.spacing(6),
+  '& .MuiInputBase-root': {
+    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(26, 34, 52, 0.8)' : 'rgba(255, 255, 255, 0.8)',
   },
 }))
 
 export const Title = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
-  fontWeight: 500,
-  fontSize: 36,
+  fontWeight: 600,
+  fontSize: 42,
   textAlign: 'center',
+  letterSpacing: '0.02em',
 }))

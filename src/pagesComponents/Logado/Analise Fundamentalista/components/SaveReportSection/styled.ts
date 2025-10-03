@@ -10,9 +10,11 @@ export const SaveReportContainer = styled(Box)(({ theme }) => ({
 
 export const SectionTitle = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(3),
-  fontWeight: 600,
+  fontWeight: 700,
+  fontSize: '1.25rem',
   color: theme.palette.text.primary,
-  borderBottom: `1px solid ${theme.palette.divider}`,
-  paddingBottom: theme.spacing(1),
+  borderBottom: `2px solid ${theme.palette.primary.main}`,
+  paddingBottom: theme.spacing(1.5),
+  letterSpacing: '0.03em',
   transition: transitions.medium,
 }))
