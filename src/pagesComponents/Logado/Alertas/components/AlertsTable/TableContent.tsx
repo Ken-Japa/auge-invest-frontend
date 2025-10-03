@@ -1,12 +1,13 @@
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
-import { IconButton, Switch, TableCell, TableRow, Tooltip, Typography } from '@mui/material'
+import { IconButton, Switch, Tooltip, Typography } from '@mui/material'
 import React from 'react'
 
 import { Alert } from '@/services/api/types'
 
 import { AlertTypography } from '../../styled'
+import { StyledTableCell, StyledTableRow } from './styled'
 
 interface TableContentProps {
   alerts: Alert[]
@@ -33,16 +34,8 @@ export const TableContent = React.memo(
     return (
       <>
         {alerts.map((alert) => (
-          <TableRow
-            key={alert._id}
-            sx={{
-              backgroundColor: alert.triggered ? theme.palette.secondary.A200 : 'inherit',
-              '&:hover': {
-                backgroundColor: alert.triggered ? theme.palette.secondary.A300 : theme.palette.action.hover,
-              },
-            }}
-          >
-            <TableCell align="center">
+          <StyledTableRow key={alert._id} className={alert.triggered ? 'triggered-alert' : ''}>
+            <StyledTableCell align="center">
               <Typography variant="body1" component="strong">
                 {alert.asset}
               </Typography>
@@ -51,17 +44,17 @@ export const TableContent = React.memo(
                   {alert.comments}
                 </Typography>
               )}
-            </TableCell>
-            <TableCell align="center">
+            </StyledTableCell>
+            <StyledTableCell align="center">
               <AlertTypography type={alert.type}>{alert.type === 'buy' ? 'Compra' : 'Venda'}</AlertTypography>
-            </TableCell>
-            <TableCell align="center">
+            </StyledTableCell>
+            <StyledTableCell align="center">
               <Typography className="price-value">R$ {alert.targetPrice.toFixed(2)}</Typography>
-            </TableCell>
-            <TableCell align="center">
+            </StyledTableCell>
+            <StyledTableCell align="center">
               <Switch checked={alert.recurring} onChange={() => handleToggle(alert)} />
-            </TableCell>
-            <TableCell align="center">
+            </StyledTableCell>
+            <StyledTableCell align="center">
               <Typography>
                 {alert.createdAt
                   ? new Date(alert.createdAt).toLocaleDateString('pt-BR', {
@@ -71,8 +64,8 @@ export const TableContent = React.memo(
                     })
                   : 'N/A'}
               </Typography>
-            </TableCell>
-            <TableCell align="center">
+            </StyledTableCell>
+            <StyledTableCell align="center">
               <div className="action-buttons">
                 <Tooltip title="Editar">
                   <IconButton size="small" onClick={() => handleEdit(alert)}>
@@ -111,8 +104,8 @@ export const TableContent = React.memo(
                   </IconButton>
                 </Tooltip>
               </div>
-            </TableCell>
-          </TableRow>
+            </StyledTableCell>
+          </StyledTableRow>
         ))}
       </>
     )

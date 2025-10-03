@@ -1,8 +1,7 @@
 import { useState } from 'react'
 
-import { CustomButton } from '@/components/Core/Button'
-
 import { AlertDialog } from '../AlertDialog'
+import { StyledAddAlertButton } from './styled'
 
 interface AddAlertButtonProps {
   refreshAlerts: () => Promise<void>
@@ -22,9 +21,9 @@ export const AddAlertButton = ({ refreshAlerts, showSnackbar }: AddAlertButtonPr
 
   return (
     <>
-      <CustomButton onClick={handleAddAlert} variant="contained">
+      <StyledAddAlertButton onClick={handleAddAlert} variant="contained">
         Adicionar Alerta
-      </CustomButton>
+      </StyledAddAlertButton>
       <AlertDialog
         open={open}
         onClose={handleCloseDialog}

@@ -6,9 +6,8 @@ import { spacing } from '@/theme/variables'
 export const PageHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
-  marginBottom: spacing.xl,
-
-  '& h1': {
+  textAlign: 'center',
+  '& h2': {
     color: theme.palette.text.primary,
     fontWeight: 600,
   },
@@ -17,8 +16,7 @@ export const PageHeader = styled('div')(({ theme }) => ({
 export const ActionContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
-  marginBottom: spacing.xl,
-  justifyContent: 'space-between',
+  justifyContent: 'end',
 
   [theme.breakpoints.down('sm')]: {
     flexDirection: 'column',

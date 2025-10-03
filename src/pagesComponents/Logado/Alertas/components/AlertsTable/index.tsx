@@ -117,7 +117,7 @@ export const AlertsTable = ({
     noDataDescription: string,
   ) => (
     <Box mb={4}>
-      <Typography variant="h3" component="h2" gutterBottom textAlign="center" mb={4} color="warning">
+      <Typography variant="h3" component="h3" gutterBottom textAlign="center" my={6} color="warning">
         {title}
       </Typography>
       <StyledTable

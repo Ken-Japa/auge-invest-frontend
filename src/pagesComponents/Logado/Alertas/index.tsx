@@ -58,7 +58,7 @@ export const Alertas = () => {
         <PageBackground imageName="Alertas" opacity={0.2}>
           <Container maxWidth="xl">
             <PageHeader>
-              <Typography variant="h2" component="h1">
+              <Typography variant="h2" component="h2">
                 Alertas de Preço
               </Typography>
             </PageHeader>

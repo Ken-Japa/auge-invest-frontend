@@ -1,13 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
-import { Button } from '@mui/material'
+import { Button, DialogActions, CircularProgress } from '@mui/material'
 
 import { Alert } from '@/services/api/types'
-import { StyledDialog } from '@/components/Feedback/Dialog/StyledDialog'
-
 import { AlertFormContent } from './AlertFormContent'
 import { ConfirmDeleteDialog } from './components/ConfirmDeleteDialog'
-import { StyledDialogContent } from './styled'
+import { StyledDialog, StyledDialogContent, StyledDialogTitle } from './styled'
 import { useAlertFormSubmit } from './useAlertFormSubmit'
 
 interface AlertDialogProps {
@@ -125,23 +123,8 @@ export const AlertDialog = ({
       }}
       maxWidth="sm"
       fullWidth
-      title={alert ? 'Editar Alerta' : 'Novo Alerta'}
-      onSave={handleSubmit}
-      disableSave={
-        isSubmitting || !formData.asset || !formData.targetPrice || formData.notificationMethods.length === 0
-      }
-      loading={isSubmitting}
     >
-      {alert && onDelete && (
-        <Button
-          onClick={() => setOpenConfirmDelete(true)}
-          color="error"
-          variant="contained"
-          sx={{ position: 'absolute', left: 24, bottom: 24, color: 'white' }}
-        >
-          Excluir Alerta
-        </Button>
-      )}
+      <StyledDialogTitle>{alert ? 'Editar Alerta' : 'Novo Alerta'}</StyledDialogTitle>
       <StyledDialogContent>
         <AlertFormContent
           formData={formData}
@@ -151,6 +134,32 @@ export const AlertDialog = ({
           alert={alert}
         />
       </StyledDialogContent>
+      <DialogActions sx={{ padding: '16px 24px', justifyContent: 'space-between' }}>
+        {alert && onDelete && (
+          <Button
+            onClick={() => setOpenConfirmDelete(true)}
+            color="error"
+            variant="contained"
+            sx={{ color: 'white' }}
+          >
+            Excluir Alerta
+          </Button>
+        )}
+        <div>
+          <Button onClick={onClose} color="inherit" disabled={isSubmitting}>
+            Cancelar
+          </Button>
+          <Button
+            onClick={handleSubmit}
+            color="primary"
+            variant="contained"
+            disabled={isSubmitting || !formData.asset || !formData.targetPrice || formData.notificationMethods.length === 0}
+            sx={{ ml: 2 }}
+          >
+            {isSubmitting ? <CircularProgress size={24} color="inherit" /> : 'Salvar'}
+          </Button>
+        </div>
+      </DialogActions>
 
       <ConfirmDeleteDialog
         open={openConfirmDelete}
