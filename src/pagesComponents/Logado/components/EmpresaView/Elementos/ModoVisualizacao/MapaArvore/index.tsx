@@ -2,6 +2,8 @@ import { Box } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import React, { memo, useEffect, useRef, useState } from 'react'
 
+import { MapaArvoreContainer, TradingViewWidgetContainer, WidgetWrapper } from './styled'
+
 interface MapaArvoreProps {
   onLoadingChange?: (loading: boolean) => void
 }
@@ -74,42 +76,14 @@ const MapaArvoreComponent: React.FC<MapaArvoreProps> = ({ onLoadingChange }) => 
   }, [onLoadingChange, widgetId, isDarkMode])
 
   return (
-    <Box
-      sx={{
-        width: '60vw',
-        height: '800px',
-        flex: 1,
-        minHeight: '600px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'relative',
-        '& .tradingview-widget-copyright': {
-          display: 'none',
-        },
-      }}
-    >
-      <div
-        style={{
-          width: '100%',
-          maxWidth: '100%',
-          height: '700px',
-          position: 'relative',
-        }}
-      >
-        <div
+    <MapaArvoreContainer>
+      <WidgetWrapper>
+        <TradingViewWidgetContainer
           className="tradingview-widget-container"
           ref={container}
-          style={{
-            width: '100%',
-            height: '100%',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-          }}
-        ></div>
-      </div>
-    </Box>
+        ></TradingViewWidgetContainer>
+      </WidgetWrapper>
+    </MapaArvoreContainer>
   )
 }
 

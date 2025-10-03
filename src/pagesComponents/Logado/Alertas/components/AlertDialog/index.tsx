@@ -153,7 +153,12 @@ export const AlertDialog = ({
             onClick={handleSubmit}
             color="primary"
             variant="contained"
-            disabled={isSubmitting || !formData.asset || !formData.targetPrice || formData.notificationMethods.length === 0}
+            disabled={
+              isSubmitting ||
+              !formData.asset ||
+              !formData.targetPrice ||
+              formData.notificationMethods.length === 0
+            }
             sx={{ ml: 2 }}
           >
             {isSubmitting ? <CircularProgress size={24} color="inherit" /> : 'Salvar'}

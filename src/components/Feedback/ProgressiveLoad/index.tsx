@@ -32,7 +32,7 @@ export const ProgressiveLoad = ({
   }, [isVisible, delay])
 
   return (
-    <div ref={elementRef} className={className}>
+    <div ref={elementRef} className={`${className} h-full`}>
       {isVisible && (!delay || shouldRender) && children}
     </div>
   )

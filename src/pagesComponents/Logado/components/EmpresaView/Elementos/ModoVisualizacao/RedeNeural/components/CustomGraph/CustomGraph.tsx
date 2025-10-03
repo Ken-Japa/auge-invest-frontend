@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react'
 import { DataSet } from 'vis-data/standalone'
 import { Network, NetworkEvents } from 'vis-network/standalone'
 import { Edge, Node, Options } from 'vis-network/standalone'
+import { GraphContainer } from '../../styled'
 
 interface GraphProps {
   graph: {
@@ -28,6 +29,13 @@ export const CustomGraph: React.FC<GraphProps> = ({
 
   useEffect(() => {
     if (!containerRef.current) return
+
+    const handleResize = () => {
+      if (internalNetworkRef.current) {
+        internalNetworkRef.current.fit()
+        internalNetworkRef.current.redraw()
+      }
+    }
 
     const initNetwork = async () => {
       try {
@@ -60,6 +68,12 @@ export const CustomGraph: React.FC<GraphProps> = ({
         if (onGraphReady) {
           network.once('afterDrawing', onGraphReady)
         }
+
+        // Fit the network to the container after initialization
+        network.fit()
+
+        // Add resize listener to window
+        window.addEventListener('resize', handleResize)
       } catch (error) {
         console.error('Erro ao inicializar rede:', error)
       }
@@ -69,6 +83,7 @@ export const CustomGraph: React.FC<GraphProps> = ({
 
     // Cleanup function
     return () => {
+      window.removeEventListener('resize', handleResize)
       if (internalNetworkRef.current) {
         internalNetworkRef.current.destroy()
         internalNetworkRef.current = null
@@ -79,13 +94,5 @@ export const CustomGraph: React.FC<GraphProps> = ({
     }
   }, [graph, options, events, propNetworkRef, onGraphReady])
 
-  return (
-    <div
-      ref={containerRef}
-      style={{
-        width: '100%',
-        height: '100%',
-      }}
-    />
-  )
+  return <GraphContainer ref={containerRef} />
 }

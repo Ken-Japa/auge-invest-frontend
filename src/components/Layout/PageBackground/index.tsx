@@ -14,6 +14,7 @@ interface PageBackgroundProps {
 const BackgroundContainer = styled('div')<{ opacity: number }>(({ theme, opacity }) => ({
   position: 'relative',
   minHeight: '100vh',
+  height: '100%',
   width: '100%',
   overflow: 'hidden',
   marginTop: -64,

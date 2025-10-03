@@ -13,7 +13,7 @@ import { SearchBar } from '../../../components/EmpresaView/Elementos/SearchBar'
 
 import { ControlsWrapper, EmpresasContainer, Title, TitleWrapper, VisualizationWrapper } from './styled'
 
-export const Empresas = () => {
+export const Empresas = ({ cardsPerPage }: { cardsPerPage?: number }) => {
   const [viewMode, setViewMode] = useState<ViewMode>('tabela')
   const [isLoading, setIsLoading] = useState(true)
 
@@ -30,7 +30,12 @@ export const Empresas = () => {
           </ControlsWrapper>
 
           <VisualizationWrapper>
-            <VisualizationContent viewMode={viewMode} isLoading={isLoading} setIsLoading={setIsLoading} />
+            <VisualizationContent
+              viewMode={viewMode}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              cardsPerPage={cardsPerPage}
+            />
           </VisualizationWrapper>
         </EmpresasContainer>
       </SuspenseWrapper>

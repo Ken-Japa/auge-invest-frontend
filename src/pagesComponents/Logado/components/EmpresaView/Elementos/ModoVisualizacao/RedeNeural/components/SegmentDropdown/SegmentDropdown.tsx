@@ -1,7 +1,14 @@
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { Box, FormControl, IconButton, InputLabel, ListSubheader, MenuItem, Select } from '@mui/material'
+import { Select, MenuItem, InputLabel } from '@mui/material'
 import React, { useState } from 'react'
+import {
+  IndustryColorBox,
+  SegmentDropdownContainer,
+  StyledFormControl,
+  StyledListSubheader,
+  ToggleIconButton,
+} from './styled'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 
 interface SegmentDropdownProps {
   segmentsByIndustry: {
@@ -28,45 +35,40 @@ export const SegmentDropdown: React.FC<SegmentDropdownProps> = ({
   }
 
   return (
-    <Box sx={{ minWidth: 200, mb: 2 }}>
-      <FormControl fullWidth>
+    <SegmentDropdownContainer>
+      <StyledFormControl>
         <InputLabel id="segment-select-label">Segmentos:</InputLabel>
         <Select
           labelId="segment-select-label"
           value={selectedSegmentId || ''}
           label="Selecionar Segmento"
+          aria-label="Selecionar Segmento"
           onChange={(e) => {
             onSelectSegment(e.target.value as string)
           }}
         >
           <MenuItem value="">Todos</MenuItem>
           {segmentsByIndustry.map((industryGroup) => [
-            <ListSubheader
-              key={industryGroup.industryId}
-              sx={{ display: 'flex', alignItems: 'center', color: 'white' }}
-            >
-              <IconButton
+            <StyledListSubheader key={industryGroup.industryId}>
+              <ToggleIconButton
                 size="small"
                 onClick={() => handleToggleIndustry(industryGroup.industryId)}
-                sx={{ mr: 1 }}
+                aria-label={
+                  openIndustries.includes(industryGroup.industryId) ? 'Collapse industry' : 'Expand industry'
+                }
               >
                 {openIndustries.includes(industryGroup.industryId) ? (
                   <ExpandMoreIcon />
                 ) : (
                   <ChevronRightIcon />
                 )}
-              </IconButton>
-              <Box
-                sx={{
-                  width: 12,
-                  height: 12,
-                  borderRadius: '50%',
-                  backgroundColor: industryGroup.color,
-                  mr: 1,
-                }}
+              </ToggleIconButton>
+              <IndustryColorBox
+                sx={{ backgroundColor: industryGroup.color }}
+                aria-label={`Color for ${industryGroup.industryLabel}`}
               />
               {industryGroup.industryLabel}
-            </ListSubheader>,
+            </StyledListSubheader>,
             ...(openIndustries.includes(industryGroup.industryId)
               ? industryGroup.segments.map((segment) => (
                   <MenuItem key={segment.id} value={segment.id} sx={{ pl: 4 }}>
@@ -76,7 +78,7 @@ export const SegmentDropdown: React.FC<SegmentDropdownProps> = ({
               : []),
           ])}
         </Select>
-      </FormControl>
-    </Box>
+      </StyledFormControl>
+    </SegmentDropdownContainer>
   )
 }

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import { useTheme } from '@mui/material/styles'
+
 import { SumarioData as TabelaViewSumarioData } from '../../TabelaView/types'
 import { sumarioService } from '../../utils/sumarioService'
 import { CORES_INDUSTRIAS } from '../constants/colors'
@@ -32,6 +34,7 @@ export const useGraphData = (onLoadingChange?: (loading: boolean) => void): UseG
     nodes: [],
     edges: [],
   })
+  const theme = useTheme()
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [industriesForDropdown, setIndustriesForDropdown] = useState<
@@ -117,6 +120,7 @@ export const useGraphData = (onLoadingChange?: (loading: boolean) => void): UseG
           maxSegmentoValue,
           maxEmpresaValue,
           valorMercadoTotalGeral: data.sumarioTotal.valorMercadoTotalGeral,
+          theme,
         })
 
         setGraphData({ nodes, edges })
@@ -130,7 +134,7 @@ export const useGraphData = (onLoadingChange?: (loading: boolean) => void): UseG
     }
 
     fetchData()
-  }, [onLoadingChange])
+  }, [onLoadingChange, theme])
 
   return {
     graphData,

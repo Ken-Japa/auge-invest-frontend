@@ -1,6 +1,7 @@
 import { formatCurrency } from '../../utils/currency'
 import { EmpresaNode } from '../types'
 import { adjustColorHSL, calculateNodeSize, calculatePosition } from '../utils/graphUtils'
+import { Theme } from '@mui/material/styles'
 
 export const createEmpresaNode = (
   empresa: EmpresaNode,
@@ -11,6 +12,7 @@ export const createEmpresaNode = (
   radius: number,
   segmentAngle: number,
   empresaSector: number,
+  theme: Theme,
 ) => {
   const empresaAngle =
     segmentAngle - empresaSector * 0.4 + empresaSector * (empIndex / (empArray.length - 1 || 1))
@@ -29,17 +31,19 @@ export const createEmpresaNode = (
     companyUrl = `/empresa/${encodeURIComponent(empresa.empresa)}`
   }
 
+  const nodeSize = calculateNodeSize(empresa.valorMercado, 10, maxValue, 10 * 0.8, 10 * 2.5)
+
   return {
     id: `empresa-${empresa.empresa}-${empIndex}`,
     label: `${empresa.empresa}\n${formatCurrency(empresa.valorMercado)}`,
     x: position.x,
     y: position.y,
-    size: calculateNodeSize(empresa.valorMercado, 10, maxValue, 10 * 0.8, 10 * 2.5),
-    font: { size: 60 },
+    size: nodeSize,
+    font: { size: Math.max(12, nodeSize / 5), bold: true, color: theme.palette.text.primary },
     color: {
       background: empresaColor,
-      border: empresaColor,
-      highlight: { background: empresaColor, border: '#FFFFFF' },
+      border: theme.palette.divider,
+      highlight: { background: empresaColor, border: theme.palette.primary.main },
     },
     url: companyUrl,
     title: `Duplo clique para ver os detalhes de ${empresa.empresa} (${empresa.codigos?.[0]?.codigo || ''})`,

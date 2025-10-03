@@ -36,15 +36,16 @@ export const Empresa = () => {
                   <SearchBar />
                 </SearchBarWrapper>
 
-                <ContentContainer>
-                  <ControlsWrapper>
-                    <ModoVisualizacao viewMode={viewMode} onChangeView={setViewMode} />
-                  </ControlsWrapper>
+                <ControlsWrapper>
+                  <ModoVisualizacao viewMode={viewMode} onChangeView={setViewMode} />
+                </ControlsWrapper>
 
+                <ContentContainer>
                   <VisualizationContent
                     viewMode={viewMode}
                     isLoading={isLoading}
                     setIsLoading={setIsLoading}
+                    cardsPerPage={50}
                   />
                 </ContentContainer>
               </Box>

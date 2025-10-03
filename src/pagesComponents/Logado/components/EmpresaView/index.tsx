@@ -17,22 +17,23 @@ interface VisualizationContentProps {
   viewMode: ViewMode
   isLoading: boolean
   setIsLoading: (loading: boolean) => void
+  cardsPerPage?: number
 }
 
-export const VisualizationContent = ({ viewMode, isLoading, setIsLoading }: VisualizationContentProps) => {
+export const VisualizationContent = ({
+  viewMode,
+  isLoading,
+  setIsLoading,
+  cardsPerPage,
+}: VisualizationContentProps) => {
   const LoadingOverlay = () => (
     <Box
       sx={{
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        zIndex: 1000,
+        backgroundColor: 'rgba(0, 0, 0, 0.95)',
       }}
     >
       <ContentSkeleton type="card" cardHeight={300} />
@@ -64,7 +65,7 @@ export const VisualizationContent = ({ viewMode, isLoading, setIsLoading }: Visu
           <VisualizationWrapper>
             <ContentPlaceholder>
               <ProgressiveLoad>
-                <CardsView onLoadingChange={setIsLoading} />
+                <CardsView onLoadingChange={setIsLoading} cardsPerPage={cardsPerPage} />
               </ProgressiveLoad>
             </ContentPlaceholder>
           </VisualizationWrapper>

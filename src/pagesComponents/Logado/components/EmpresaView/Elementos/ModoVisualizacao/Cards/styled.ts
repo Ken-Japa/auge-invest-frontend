@@ -7,10 +7,6 @@ export const CardContainer = styled(Card)(({ theme }) => ({
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
-  backgroundColor:
-    theme.palette.mode === 'dark'
-      ? 'rgba(35, 45, 65, 0.95)' // Fundo mais escuro para o modo dark
-      : theme.palette.background.paper,
   borderRadius: theme.shape.borderRadius,
   border: `1px solid ${theme.palette.divider}`,
   boxShadow: theme.shadows[4],
@@ -20,10 +16,6 @@ export const CardContainer = styled(Card)(({ theme }) => ({
   '&:hover': {
     boxShadow: theme.shadows[8],
     transform: 'translateY(-2px)',
-    backgroundColor:
-      theme.palette.mode === 'dark'
-        ? 'rgba(40, 50, 70, 0.98)' // Ligeiramente mais claro no hover
-        : theme.palette.background.paper,
   },
 }))
 
@@ -76,7 +68,7 @@ export const CompanyName = styled(Box)(({ theme }) => ({
 }))
 
 export const CardsContainer = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(2),
-  position: 'relative', // Importante para o contexto de z-index
-  zIndex: 4, // Valor alto para garantir que fique acima de overlays da página
+  padding: theme.spacing(4),
+  position: 'relative',
+  zIndex: 4,
 }))

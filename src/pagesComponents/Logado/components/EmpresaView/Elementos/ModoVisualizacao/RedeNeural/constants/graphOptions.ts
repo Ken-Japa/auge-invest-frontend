@@ -1,4 +1,7 @@
 export const DEFAULT_GRAPH_OPTIONS = {
+  autoResize: true,
+  height: '100%',
+  width: '100%',
   nodes: {
     fixed: false,
     shape: 'dot',

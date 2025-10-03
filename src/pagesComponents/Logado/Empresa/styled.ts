@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles'
 export const EmpresasContainer = styled(Box)(({ theme }) => ({
   width: '100%',
   minHeight: '100vh',
+  height: '100%',
   display: 'flex',
   flexDirection: 'column',
   backgroundImage:
@@ -15,8 +16,6 @@ export const EmpresasContainer = styled(Box)(({ theme }) => ({
   backgroundRepeat: 'no-repeat',
   backgroundAttachment: 'fixed',
   position: 'relative',
-  marginTop: -64,
-  paddingTop: 64,
 
   '&::before': {
     content: '""',
@@ -31,34 +30,45 @@ export const EmpresasContainer = styled(Box)(({ theme }) => ({
 }))
 
 export const SearchBarWrapper = styled(Box)(({ theme }) => ({
-  width: '100%',
+  width: 'fit-content',
+  margin: '0 auto',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: theme.palette.background.paper,
+  boxShadow: theme.shadows[3],
+  marginBottom: theme.spacing(3),
 }))
 
 export const ContentContainer = styled(Container)(({ theme }) => ({
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(2),
-  padding: theme.spacing(2),
+  marginTop: theme.spacing(4),
   marginBottom: theme.spacing(8),
-  maxWidth: '100%',
-  [theme.breakpoints.up('lg')]: {
-    maxWidth: theme.breakpoints.values.lg,
-  },
+  borderRadius: '12px',
+  height: '100%',
+  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.98)' : 'rgba(255, 255, 255, 0.98)',
 }))
 
 export const ControlsWrapper = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: theme.spacing(1),
+  gap: theme.spacing(2),
+  width: 'fit-content',
+  margin: '0 auto',
+  padding: theme.spacing(1.5),
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)',
+  backgroundColor: theme.palette.background.paper,
+  boxShadow: theme.shadows[1],
+  marginTop: theme.spacing(2),
+  marginBottom: theme.spacing(2),
 }))
 
 export const Title = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
-  fontWeight: 500,
-  fontSize: 36,
+  fontWeight: 700,
+  fontSize: 48,
   textAlign: 'center',
+  marginBottom: theme.spacing(4),
+  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
 }))

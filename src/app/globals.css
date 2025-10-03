@@ -31,6 +31,11 @@
   background: rgba(255, 255, 255, 0.4);
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background-color: #000;
   color: var(--matrix-green);

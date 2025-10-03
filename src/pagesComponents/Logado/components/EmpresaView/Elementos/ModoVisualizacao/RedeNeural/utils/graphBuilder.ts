@@ -6,6 +6,7 @@ import { CORES_INDUSTRIAS } from '../constants/colors'
 import { EmpresaNode, IndustriaNode, SegmentoNode, SumarioData } from '../types'
 
 import { adjustColorHSL } from './graphUtils'
+import { Theme } from '@mui/material/styles'
 
 export const generateSegmentColors = (baseColor: string, count: number): string[] => {
   const colors: string[] = []
@@ -29,6 +30,7 @@ interface BuildGraphDataParams {
   maxSegmentoValue: number
   maxEmpresaValue: number
   valorMercadoTotalGeral: number
+  theme: Theme
 }
 
 export const buildGraphData = ({
@@ -39,9 +41,10 @@ export const buildGraphData = ({
   maxSegmentoValue,
   maxEmpresaValue,
   valorMercadoTotalGeral,
+  theme,
 }: BuildGraphDataParams) => {
   // Central node
-  nodes.push(createCentralNode(valorMercadoTotalGeral))
+  nodes.push(createCentralNode(valorMercadoTotalGeral, theme))
   // Industry nodes - First level
   const industriaRadius = 14000
   data.sumario.forEach((industria: IndustriaNode, index: number, array: IndustriaNode[]) => {
@@ -59,6 +62,7 @@ export const buildGraphData = ({
       maxIndustriaValue,
       corIndustria,
       industriaRadius,
+      theme,
     )
     nodes.push(industriaNode)
 
@@ -85,6 +89,7 @@ export const buildGraphData = ({
         segmentRadius,
         industriaAngle,
         industriaSector,
+        theme,
       )
       nodes.push(segmentoNode)
 
@@ -113,6 +118,7 @@ export const buildGraphData = ({
           empresaRadius,
           industriaAngle,
           industriaSector / empArray.length,
+          theme,
         )
         nodes.push(empresaNode)
 

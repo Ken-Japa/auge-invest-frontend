@@ -95,7 +95,7 @@ export const VisaoEconomia = () => {
                         {/* Componente de Ações */}
                         <Grid item xs={12}>
                           <DashboardItem>
-                            <Empresas />
+                            <Empresas cardsPerPage={20} />
                           </DashboardItem>
                         </Grid>
 

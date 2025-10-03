@@ -16,7 +16,7 @@ export const Layout = ({ children }: Props) => {
   const isLoginPage = pathname === '/login'
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', height: '100%' }}>
       {!isLoginPage && <Header />}
       <Box component="main" sx={{ flexGrow: 1 }}>
         {children}

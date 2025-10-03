@@ -4,10 +4,11 @@ import { styled } from '@mui/material/styles'
 export const TableContainer = styled(Box)(({ theme }) => ({
   flex: 1,
   width: '100%',
-  padding: theme.spacing(2),
+  padding: theme.spacing(4),
   backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.85)' : 'rgba(255, 255, 255, 0.85)',
   backdropFilter: 'blur(10px)',
   borderRadius: theme.shape.borderRadius,
+
   boxShadow: theme.shadows[1],
   '& .MuiTable-root': {
     boxShadow: 'none',

@@ -30,22 +30,7 @@ export const TitleWrapper = styled(Box)({
   textAlign: 'center',
 })
 
-export const VisualizationWrapper = styled(Box)(({ theme }) => ({
-  height: '1000px',
-  overflow: 'auto',
-  '&::-webkit-scrollbar': {
-    width: '8px',
-    height: '8px',
-  },
-  '&::-webkit-scrollbar-track': {
-    background: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)',
-    borderRadius: '4px',
-  },
-  '&::-webkit-scrollbar-thumb': {
-    background: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)',
-    borderRadius: '4px',
-    '&:hover': {
-      background: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
-    },
-  },
+export const VisualizationWrapper = styled(Box)(() => ({
+  height: '100%',
+  flex: 1,
 }))
