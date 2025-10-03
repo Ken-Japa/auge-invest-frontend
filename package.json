@@ -16,6 +16,7 @@
     "bench:web:quick": "npx lighthouse http://localhost:3000/blog/analise-fundamentalista --output html --output json --output-path ./lighthouse-reports/report.html --view --preset=desktop --throttling.cpuSlowdownMultiplier=2.4 --no-enable-error-reporting",
     "bench:all": "npm run bench:web",
     "lint": "eslint --debug",
+    "lintfix": "eslint --fix",
     "format": "prettier --write .",
     "test": "jest",
     "blog-summary": "node ./src/content/utils/blogSummary.mjs"

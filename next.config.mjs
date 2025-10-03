@@ -8,6 +8,10 @@ const __dirname = path.dirname(__filename)
 const nextConfig = {
   reactStrictMode: false,
 
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
