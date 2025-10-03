@@ -1,12 +1,17 @@
 import { FormControlLabel, TextField } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-export const StyledTextField = styled(TextField)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
-  maxWidth: '200px',
-  '& .MuiInputBase-input': {
-    textAlign: 'center',
-  },
-}))
+export const StyledTextField = styled(TextField)<{ textAlign?: 'left' | 'right' }>(
+  ({ theme, textAlign }) => ({
+    width: 'fit-content',
 
-export const StyledFormControlLabel = styled(FormControlLabel)(({ theme }) => ({}))
+    '& .MuiInputBase-input': {
+      textAlign: textAlign || 'inherit',
+    },
+  }),
+)
+
+export const StyledFormControlLabel = styled(FormControlLabel)(({ theme }) => ({
+  justifyContent: 'center',
+  marginBottom: theme.spacing(2),
+}))

@@ -3,7 +3,9 @@ import { styled } from '@mui/material/styles'
 
 export const FilterContainer = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
-  marginBottom: theme.spacing(3),
+  marginBottom: theme.spacing(2),
+  borderRadius: theme.shape.borderRadius * 2,
+  boxShadow: theme.shadows[6],
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(2),

@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Alert } from '@/services/api/types'
 
 import { AlertFormContent } from './AlertFormContent'
-import { ConfirmDeleteDialog } from './components/ConfirmDeleteDialog'
+import { ConfirmDeleteDialog } from './components/ConfirmDeleteDialog/ConfirmDeleteDialog'
 import { StyledDialog, StyledDialogContent, StyledDialogTitle } from './styled'
 import { useAlertFormSubmit } from './useAlertFormSubmit'
 

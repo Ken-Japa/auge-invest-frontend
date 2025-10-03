@@ -5,13 +5,18 @@ import { formatCNPJ, formatDate } from '@/components/Helpers/Formatters/formatte
 
 import { UnifiedBDR } from '../../../../../components/BDR/types'
 import {
+  BDRSubtitle,
+  BDRTitle,
   CodeChip,
   DetailContainer,
   DetailPaper,
   HeaderContainer,
   IconWrapper,
   InfoContainer,
+  InfoLabel,
+  InfoValue,
   SectionDivider,
+  SectionTitle,
 } from '../../styled'
 import BDRDividendos from '../BDRDividendos'
 
@@ -26,18 +31,13 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
         <Grid item xs={12}>
           <HeaderContainer>
             <div>
-              <Typography
-                variant="h3"
-                component="h1"
-                gutterBottom
-                sx={{ fontWeight: 'bold', color: 'primary.main' }}
-              >
+              <BDRTitle variant="h3" component="h1" gutterBottom>
                 {bdr.nomeEmpresa}
-              </Typography>
+              </BDRTitle>
               {bdr.nomeEmpresaCompleto && (
-                <Typography variant="subtitle1" component="div" gutterBottom sx={{ color: 'text.secondary' }}>
+                <BDRSubtitle variant="subtitle1" component="div" gutterBottom>
                   {bdr.nomeEmpresaCompleto}
-                </Typography>
+                </BDRSubtitle>
               )}
             </div>
             <div>
@@ -59,39 +59,39 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
         <Grid item xs={12} md={6}>
           {bdr.informações?.cnpj !== '0' && (
             <InfoContainer>
-              <Typography variant="body2" component="div" sx={{ color: 'text.secondary', mb: 0.5 }}>
+              <InfoLabel variant="body2" component="div">
                 CNPJ
-              </Typography>
-              <Typography variant="body1" component="div" sx={{ display: 'flex', alignItems: 'center' }}>
+              </InfoLabel>
+              <InfoValue variant="body1" component="div">
                 {bdr.informações?.cnpj ? formatCNPJ(bdr.informações.cnpj) : 'Não informado'}
-              </Typography>
+              </InfoValue>
             </InfoContainer>
           )}
 
           <InfoContainer>
-            <Typography variant="body2" component="div" sx={{ color: 'text.secondary', mb: 0.5 }}>
+            <InfoLabel variant="body2" component="div">
               Data de Início
-            </Typography>
-            <Typography variant="body1" component="div" sx={{ display: 'flex', alignItems: 'center' }}>
+            </InfoLabel>
+            <InfoValue variant="body1" component="div">
               <IconWrapper>
                 <CalendarIcon fontSize="small" />
               </IconWrapper>
               {bdr.dataInicio ? formatDate(bdr.dataInicio) : 'Não informado'}
-            </Typography>
+            </InfoValue>
           </InfoContainer>
         </Grid>
 
         <Grid item xs={12} md={6}>
           <InfoContainer>
-            <Typography variant="body2" component="div" sx={{ color: 'text.secondary', mb: 0.5 }}>
+            <InfoLabel variant="body2" component="div">
               Tipo
-            </Typography>
-            <Typography variant="body1" component="div" sx={{ display: 'flex', alignItems: 'center' }}>
+            </InfoLabel>
+            <InfoValue variant="body1" component="div">
               <IconWrapper>
                 <BusinessIcon fontSize="small" />
               </IconWrapper>
               {bdr.tipoBDR || bdr.informações?.market || `Mercado ${bdr.tipoBDR || bdr.informações?.market}`}
-            </Typography>
+            </InfoValue>
           </InfoContainer>
         </Grid>
 
@@ -100,9 +100,9 @@ export const BDRContent = ({ bdr }: BDRContentProps) => (
         </Grid>
 
         <Grid item xs={12}>
-          <Typography variant="h5" component="h2" sx={{ mb: 2, fontWeight: 'medium' }}>
+          <SectionTitle variant="h5" component="h2">
             Descrição
-          </Typography>
+          </SectionTitle>
           <Typography variant="body1" component="div">
             Não há descrição disponível para este BDR.
           </Typography>

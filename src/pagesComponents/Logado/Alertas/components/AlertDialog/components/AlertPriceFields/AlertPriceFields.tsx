@@ -21,7 +21,6 @@ export const AlertPriceFields: React.FC<AlertPriceFieldsProps> = ({ formData, ha
     <>
       <Grid item xs={12} display="flex" justifyContent="center" paddingBottom={1}>
         <StyledTextField
-          fullWidth
           label="Preço Alvo"
           name="targetPrice"
           type="number"
@@ -30,13 +29,13 @@ export const AlertPriceFields: React.FC<AlertPriceFieldsProps> = ({ formData, ha
           InputProps={{
             startAdornment: <InputAdornment position="start">R$</InputAdornment>,
           }}
+          textAlign="left"
           required
         />
       </Grid>
 
       <Grid item xs={12} display="flex" justifyContent="center">
         <StyledTextField
-          fullWidth
           label="Distância Percentual"
           name="percentageDistance"
           type="number"
@@ -45,6 +44,7 @@ export const AlertPriceFields: React.FC<AlertPriceFieldsProps> = ({ formData, ha
           InputProps={{
             endAdornment: <InputAdornment position="end">%</InputAdornment>,
           }}
+          textAlign="right"
         />
       </Grid>
     </>

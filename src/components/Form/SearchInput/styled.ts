@@ -4,10 +4,12 @@ import { styled } from '@mui/material/styles'
 export const SearchContainer = styled(Box)`
   display: flex;
   align-items: center;
-  background: #1a1a1a;
+  width: 100%;
+  max-width: 600px;
+  background: ${({ theme }) => theme.palette.background.paper};
   border-radius: 8px;
   padding: 8px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid ${({ theme }) => theme.palette.divider};
   transition: all 0.3s ease;
   position: relative;
 
@@ -20,12 +22,12 @@ export const SearchContainer = styled(Box)`
 
 export const SearchInput = styled(InputBase)`
   width: 100%;
-  color: white;
+  color: ${({ theme }) => theme.palette.text.primary};
   margin-left: 8px;
   margin-right: 24px;
 
   input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: ${({ theme }) => theme.palette.text.secondary};
     opacity: 1;
   }
 `

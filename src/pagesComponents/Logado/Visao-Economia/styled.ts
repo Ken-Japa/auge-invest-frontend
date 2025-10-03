@@ -1,35 +1,26 @@
 import { Box, Container, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-interface BackgroundContainerProps {
-  headerheight: number
-  footerheight: number
-}
+export const BackgroundContainer = styled(Box)(() => ({
+  width: '100%',
+  position: 'relative',
+  willChange: 'transform',
+  minHeight: '100vh',
+  '& .MuiGrid-item': {
+    minHeight: '50px',
+  },
 
-export const BackgroundContainer = styled(Box)<BackgroundContainerProps>(
-  ({ headerheight, footerheight }) => ({
-    width: '100%',
-    position: 'relative',
-    willChange: 'transform',
-    paddingTop: `${headerheight}px`,
-    paddingBottom: `${footerheight}px`,
-    minHeight: '100vh',
-    '& .MuiGrid-item': {
-      minHeight: '50px',
-    },
-
-    '&::-webkit-scrollbar': {
-      width: '8px',
-    },
-    '&::-webkit-scrollbar-track': {
-      background: 'rgba(0, 0, 0, 0.1)',
-    },
-    '&::-webkit-scrollbar-thumb': {
-      background: 'rgba(0, 0, 0, 0.2)',
-      borderRadius: '4px',
-    },
-  }),
-)
+  '&::-webkit-scrollbar': {
+    width: '8px',
+  },
+  '&::-webkit-scrollbar-track': {
+    background: 'rgba(0, 0, 0, 0.1)',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    background: 'rgba(0, 0, 0, 0.2)',
+    borderRadius: '4px',
+  },
+}))
 
 interface StyledContainerProps {
   $isloading: boolean
@@ -38,7 +29,6 @@ interface StyledContainerProps {
 export const StyledContainer = styled(Container, {
   shouldForwardProp: (prop) => prop !== '$isloading',
 })<StyledContainerProps>(({ $isloading, theme }) => ({
-  paddingTop: theme.spacing(4),
   paddingBottom: theme.spacing(4),
   opacity: $isloading ? 0.8 : 1,
   transition: 'opacity 0.3s ease-in-out',
@@ -48,7 +38,8 @@ export const SearchBarWrapper = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  marginBottom: theme.spacing(3),
+  marginBottom: theme.spacing(6),
+  marginTop: theme.spacing(4),
 }))
 
 interface SuspenseFallbackBoxProps {

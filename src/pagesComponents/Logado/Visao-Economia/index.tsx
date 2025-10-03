@@ -1,8 +1,7 @@
 'use client'
 
 import { Grid } from '@mui/material'
-import React, { lazy, Suspense, useEffect, useState } from 'react'
-
+import React, { lazy, Suspense, useState } from 'react'
 
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
@@ -41,38 +40,7 @@ const Debentures = lazy(() =>
 const Calendario = lazy(() => import('../components/Calendario').then((mod) => ({ default: mod.Calendario })))
 
 export const VisaoEconomia = () => {
-  const [headerHeight, setHeaderHeight] = useState(0)
-  const [footerHeight, setFooterHeight] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    const measureElements = () => {
-      const header = document.querySelector('header')
-      const footer = document.querySelector('footer')
-
-      if (header) {
-        setHeaderHeight(header.offsetHeight)
-      }
-
-      if (footer) {
-        setFooterHeight(footer.offsetHeight)
-      }
-    }
-    measureElements()
-    const timer = setTimeout(measureElements, 300)
-
-    window.addEventListener('resize', measureElements)
-
-    const loadTimer = setTimeout(() => {
-      setIsLoading(false)
-    }, 500)
-
-    return () => {
-      clearTimeout(timer)
-      clearTimeout(loadTimer)
-      window.removeEventListener('resize', measureElements)
-    }
-  }, [])
 
   return (
     <ErrorBoundary>
@@ -82,7 +50,7 @@ export const VisaoEconomia = () => {
             <PageBackground imageName="VisaoEconomia">
               <Title>Visão Geral da Economia</Title>
 
-              <BackgroundContainer headerheight={headerHeight} footerheight={footerHeight}>
+              <BackgroundContainer>
                 <StyledContainer maxWidth="xl" $isloading={isLoading}>
                   <SearchBarWrapper>
                     <GlobalSearchBar type="TodosSimplificado" />

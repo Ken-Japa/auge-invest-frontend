@@ -6,7 +6,7 @@ import { TabPanel } from '@/components/Data-Display/TabPanel'
 
 import BDRSearchBar from '../../../components/BDR/components/SearchBar'
 import VisualizacaoBDRs from '../../../components/BDR/components/Vizualização'
-import { BDRTabsContainer } from '../../styled'
+import { BDRTabsContainer, SearchWrapper } from '../../styled'
 
 interface BDRTabsProps {
   viewMode: string
@@ -33,7 +33,9 @@ export const BDRTabs: React.FC<BDRTabsProps> = ({ viewMode, onChangeView, onErro
 
   return (
     <BDRTabsContainer>
-      <BDRSearchBar />
+      <SearchWrapper>
+        <BDRSearchBar />
+      </SearchWrapper>
       <Tabs
         value={tabValue}
         onChange={handleTabChange}

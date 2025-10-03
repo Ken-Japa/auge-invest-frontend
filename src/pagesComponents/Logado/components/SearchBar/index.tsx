@@ -527,7 +527,6 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
   return (
     <GlobalSearchContainer>
       <Autocomplete
-        freeSolo
         options={options}
         loading={loading}
         inputValue={inputValue}
@@ -551,12 +550,13 @@ const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({ type, onSelect, filte
           <TextField
             {...params}
             size="small"
+            variant="outlined"
             placeholder={getPlaceholder()}
             InputProps={{
               ...params.InputProps,
               style: {
                 minWidth: '250px',
-                padding: '2px 8px',
+                padding: '2px 4px',
               },
               endAdornment: (
                 <InputAdornment position="end">

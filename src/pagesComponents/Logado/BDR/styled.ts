@@ -4,40 +4,52 @@ import { styled } from '@mui/material/styles'
 export const ContentWrapper = styled(Container)(({ theme }) => ({
   position: 'relative',
   zIndex: 1,
-  padding: theme.spacing(3),
+
   display: 'flex',
   flexDirection: 'column',
   flexGrow: 1,
+  justifyContent: 'center',
 }))
 
 export const ContentBox = styled(Box)(({ theme }) => ({
   position: 'relative',
   zIndex: 1,
-  marginTop: theme.spacing(4),
-  marginBottom: theme.spacing(4),
+  marginBottom: theme.spacing(8),
   textAlign: 'center',
+  display: 'flex',
+  flexDirection: 'column',
   alignItems: 'center',
+  justifyContent: 'center',
+  padding: theme.spacing(4),
+  borderRadius: theme.shape.borderRadius * 2,
 }))
 
 export const BDRTitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
-  fontWeight: 500,
-  fontSize: 36,
+  fontWeight: 700,
+  fontSize: 48,
   textAlign: 'center',
+  marginBottom: theme.spacing(1),
 }))
 
 export const BDRSubTitle = styled(Typography)(({ theme }) => ({
-  fontWeight: 500,
-  marginBottom: theme.spacing(3),
-  color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : theme.palette.text.secondary,
+  fontWeight: 400,
+  marginBottom: theme.spacing(4),
+  color: theme.palette.text.secondary,
+  fontSize: 18,
 }))
 
 export const BDRTabsContainer = styled(Paper)(({ theme }) => ({
   width: '100%',
+  paddingTop: theme.spacing(4),
+  marginBottom: theme.spacing(4),
+  backgroundColor: theme.palette.background.paper,
+  backdropFilter: 'blur(15px)',
+  borderRadius: theme.shape.borderRadius * 3,
+  border: `2px solid ${theme.palette.divider}`,
+  boxShadow: theme.shadows[9],
+}))
+
+export const SearchWrapper = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2),
-  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(19, 47, 76, 0.85)' : 'rgba(255, 255, 255, 0.85)',
-  backdropFilter: 'blur(10px)',
-  borderRadius: theme.shape.borderRadius * 2,
-  border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`,
-  boxShadow: theme.shadows[3],
 }))

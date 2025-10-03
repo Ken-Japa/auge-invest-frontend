@@ -9,9 +9,9 @@ import {
 import { styled } from '@mui/material/styles'
 
 export const StyledTableContainer = styled(MuiTableContainer)(({ theme }) => ({
-  boxShadow: theme.shadows[3],
-  borderRadius: theme.shape.borderRadius,
-  marginBottom: theme.spacing(3),
+  boxShadow: theme.shadows[6],
+  borderRadius: theme.shape.borderRadius * 2,
+  marginBottom: theme.spacing(4),
   overflow: 'hidden',
 }))
 
@@ -20,7 +20,7 @@ export const StyledTable = styled(MuiTable)({
 })
 
 export const StyledTableHead = styled(MuiTableHead)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)',
+  backgroundColor: theme.palette.action.hover,
 }))
 
 export const HeaderRow = styled(MuiTableRow)({
@@ -29,26 +29,29 @@ export const HeaderRow = styled(MuiTableRow)({
   },
 })
 
-export const HeaderCell = styled(MuiTableCell)({
+export const HeaderCell = styled(MuiTableCell)(({ theme }) => ({
   textAlign: 'center',
-  fontWeight: 'bold',
-})
+  fontWeight: 700,
+  color: theme.palette.text.primary,
+  padding: theme.spacing(1.5),
+}))
 
 export const DataRow = styled(MuiTableRow)(({ theme }) => ({
   '&:last-child td, &:last-child th': {
     border: 0,
   },
   '&:hover': {
-    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.04)',
+    backgroundColor: theme.palette.action.hover,
   },
 }))
 
-export const DataCell = styled(MuiTableCell)({
-  textAlign: 'center',
-})
+export const DataCell = styled(MuiTableCell)(({ theme }) => ({
+  padding: theme.spacing(1.5),
+}))
 
 export const BDRName = styled('span')(({ theme }) => ({
-  fontWeight: 600,
+  fontWeight: 700,
+  fontSize: '1rem',
   transition: 'color 0.3s ease',
   '&:hover': {
     color: theme.palette.primary.main,
@@ -59,22 +62,22 @@ export const BDRName = styled('span')(({ theme }) => ({
 
 export const CodeChip = styled('span')(({ theme }) => ({
   display: 'inline-block',
-  padding: theme.spacing(0.5, 1),
+  padding: theme.spacing(0.75, 1.25),
   margin: theme.spacing(0.25),
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(58, 65, 111, 0.2)' : 'rgba(63, 81, 181, 0.1)',
-  border: `1px solid ${theme.palette.primary.main}`,
-  fontSize: '0.75rem',
-  fontWeight: 500,
-  color: theme.palette.primary.main,
+  borderRadius: theme.shape.borderRadius * 2,
+  backgroundColor: theme.palette.primary.main,
+  border: 'none',
+  fontSize: '0.8rem',
+  fontWeight: 700,
+  color: theme.palette.common.white,
   transition: 'all 0.3s ease',
   '&:hover': {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
     cursor: 'pointer',
   },
 }))
 
 export const DataText = styled(Typography)({
-  fontSize: '0.875rem',
+  fontSize: '0.9rem',
 })

@@ -1,4 +1,5 @@
-import { Grid } from '@mui/material'
+import ClearIcon from '@mui/icons-material/Clear'
+import { Box, Grid, IconButton } from '@mui/material'
 import React, { lazy, Suspense } from 'react'
 
 import { Alert } from '@/services/api/types'
@@ -23,10 +24,15 @@ interface AlertAssetFieldProps {
 export const AlertAssetField: React.FC<AlertAssetFieldProps> = ({ formData, handleAssetChange, alert }) => {
   return (
     <Grid item xs={12}>
-      {alert ? (
-        <StyledAssetTypography variant="h3" align="center">
-          {formData.asset}
-        </StyledAssetTypography>
+      {alert || formData.asset ? (
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
+          <StyledAssetTypography align="center">{formData.asset}</StyledAssetTypography>
+          {!alert && (
+            <IconButton onClick={() => handleAssetChange(null)} size="small">
+              <ClearIcon fontSize="small" />
+            </IconButton>
+          )}
+        </Box>
       ) : (
         <Suspense fallback={<div>Carregando busca...</div>}>
           <LazyGlobalSearchBar

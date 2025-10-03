@@ -20,7 +20,10 @@ export const DividendContainer = styled(Box)(({ theme }) => ({
 export const DividendPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
   borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[2],
+  boxShadow: theme.shadows[6],
+  backgroundColor: theme.palette.background.paper,
+  backdropFilter: 'blur(12px)',
+  border: `1px solid ${theme.palette.divider}`,
 }))
 
 export const TableContainer = styled(MuiTableContainer)({
@@ -33,7 +36,7 @@ export const Table = styled(MuiTable)({
 })
 
 export const TableHead = styled(MuiTableHead)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.primary.dark,
   '& th': {
     color: theme.palette.primary.contrastText,
     fontWeight: 'bold',
@@ -57,7 +60,7 @@ export const TableCell = styled(MuiTableCell)({
 })
 
 export const HeaderCell = styled(MuiTableCell)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.primary.dark,
   color: theme.palette.primary.contrastText,
   fontWeight: 'bold',
 }))
@@ -85,7 +88,8 @@ export const ErrorContainer = styled(Box)(({ theme }) => ({
 
 export const DividendTitle = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(2),
-  fontWeight: theme.typography.fontWeightMedium,
+  fontWeight: 700,
+  fontSize: '1.8rem',
   textAlign: 'center',
 }))
 
@@ -99,20 +103,20 @@ export const DividendSummary = styled(Box)(({ theme }) => ({
 
 export const SummaryItem = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: theme.palette.background.default,
   borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[1],
+  boxShadow: theme.shadows[3],
   minWidth: '150px',
   flex: '1 1 auto',
 }))
 
 export const SummaryLabel = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.secondary,
-  fontSize: '0.875rem',
+  fontSize: '0.9rem',
 }))
 
 export const SummaryValue = styled(Typography)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightBold,
-  fontSize: '1.25rem',
-  color: theme.palette.primary.main,
+  fontSize: '1.1rem',
+  color: theme.palette.text.primary,
 }))

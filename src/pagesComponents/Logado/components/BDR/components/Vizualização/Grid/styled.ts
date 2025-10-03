@@ -6,34 +6,34 @@ export const StyledCard = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   transition: 'transform 0.2s, box-shadow 0.2s',
-  boxShadow: theme.shadows[2],
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(30, 40, 60, 0.8)' : theme.palette.background.paper,
-  border: `1px solid ${theme.palette.divider}`,
+  boxShadow: theme.shadows[6],
+  borderRadius: theme.shape.borderRadius * 2,
+  backgroundColor: theme.palette.background.paper,
+  border: `2px solid ${theme.palette.divider}`,
 
   '&:hover': {
-    transform: 'translateY(-4px)',
-    boxShadow: theme.shadows[4],
+    transform: 'translateY(-8px)',
+    boxShadow: theme.shadows[9],
     borderColor: theme.palette.primary.main,
   },
 }))
 
 export const StyledCardContent = styled(MuiCardContent)(({ theme }) => ({
-  padding: theme.spacing(1.5),
+  padding: theme.spacing(2.5),
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
   textAlign: 'center',
-  gap: theme.spacing(1),
+  gap: theme.spacing(2),
   '&:last-child': {
-    paddingBottom: theme.spacing(1.5),
+    paddingBottom: theme.spacing(2.5),
   },
 }))
 
 export const BDRName = styled('div')(({ theme }) => ({
-  fontWeight: 600,
-  fontSize: '0.9rem',
+  fontWeight: 700,
+  fontSize: '1.1rem',
   marginBottom: theme.spacing(1),
   whiteSpace: 'nowrap',
   overflow: 'hidden',
@@ -47,14 +47,19 @@ export const BDRName = styled('div')(({ theme }) => ({
 }))
 
 export const CodeChip = styled(Chip)(({ theme }) => ({
+  padding: theme.spacing(0.75, 1.5),
+  borderRadius: theme.shape.borderRadius * 2,
+  backgroundColor: theme.palette.primary.main,
   transition: 'all 0.3s ease',
+  fontSize: '0.85rem',
+  fontWeight: 700,
   '&:hover': {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
     cursor: 'pointer',
   },
 }))
 
 export const GridContainer = styled(Box)(({ theme }) => ({
-  marginTop: theme.spacing(1),
+  marginTop: theme.spacing(2),
 }))

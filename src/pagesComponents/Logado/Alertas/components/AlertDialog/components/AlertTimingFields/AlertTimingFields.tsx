@@ -21,7 +21,6 @@ export const AlertTimingFields: React.FC<AlertTimingFieldsProps> = ({ formData, 
     <>
       <Grid item xs={12} display="flex" justifyContent="center">
         <StyledTextField
-          fullWidth
           label="Expira em (opcional)"
           name="expirationDate"
           type="date"
@@ -30,6 +29,7 @@ export const AlertTimingFields: React.FC<AlertTimingFieldsProps> = ({ formData, 
           InputLabelProps={{
             shrink: true,
           }}
+          textAlign="right"
         />
       </Grid>
       <Grid item xs={12}>

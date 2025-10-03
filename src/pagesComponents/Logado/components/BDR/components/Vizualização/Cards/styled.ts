@@ -9,16 +9,14 @@ export const StyledCard = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   transition: transitions.medium,
-  boxShadow:
-    theme.palette.mode === 'dark' ? '0 8px 16px rgba(0, 0, 0, 0.4)' : '0 8px 16px rgba(0, 0, 0, 0.1)',
-  borderRadius: borderRadius.md,
-  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(30, 40, 60, 0.8)' : theme.palette.background.paper,
-  border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(100, 120, 180, 0.2)' : theme.palette.divider}`,
+  boxShadow: theme.shadows[6],
+  borderRadius: borderRadius.lg,
+  backgroundColor: theme.palette.background.paper,
+  border: `2px solid ${theme.palette.divider}`,
 
   '&:hover': {
-    transform: 'translateY(-4px)',
-    boxShadow:
-      theme.palette.mode === 'dark' ? '0 12px 24px rgba(0, 0, 0, 0.6)' : '0 12px 24px rgba(0, 0, 0, 0.15)',
+    transform: 'translateY(-5px)',
+    boxShadow: theme.shadows[9],
     borderColor: theme.palette.primary.main,
   },
 }))
@@ -29,8 +27,8 @@ export const StyledCardContent = styled(MuiCardContent)(({ theme }) => ({
 }))
 
 export const CardTitle = styled(Typography)(({ theme }) => ({
-  fontWeight: theme.typography.fontWeightBold,
-  fontSize: '1.25rem',
+  fontWeight: 700,
+  fontSize: '1.35rem',
   marginBottom: theme.spacing(0.5),
   transition: 'color 0.3s ease',
   '&:hover': {
@@ -42,7 +40,7 @@ export const CardTitle = styled(Typography)(({ theme }) => ({
 
 export const CardSubtitle = styled(Typography)(({ theme }) => ({
   marginBottom: spacing.md,
-  fontSize: theme.typography.body2.fontSize,
+  fontSize: '0.9rem',
   color: theme.palette.text.secondary,
   display: '-webkit-box',
   WebkitLineClamp: 2,
@@ -56,16 +54,16 @@ export const ChipsContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   flexWrap: 'wrap',
-  gap: spacing.xs,
+  gap: spacing.sm,
   margin: `${spacing.md} 0`,
-  padding: `${spacing.sm} 0`,
+  padding: spacing.sm,
   borderTop: `1px solid ${theme.palette.divider}`,
   borderBottom: `1px solid ${theme.palette.divider}`,
-  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
+  backgroundColor: theme.palette.action.hover,
 }))
 
 export const InfoContainer = styled(Box)(({ theme }) => ({
-  marginTop: spacing.md,
+  marginTop: spacing.lg,
 }))
 
 export const InfoItem = styled(Box)(({ theme }) => ({
@@ -83,13 +81,13 @@ export const InfoItem = styled(Box)(({ theme }) => ({
 
 export const InfoLabel = styled(Typography)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightMedium,
-  fontSize: theme.typography.body2.fontSize,
-  color: theme.palette.text.primary,
+  fontSize: '0.85rem',
+  color: theme.palette.text.secondary,
 }))
 
 export const InfoValue = styled(Typography)(({ theme }) => ({
-  fontSize: theme.typography.body2.fontSize,
+  fontSize: '0.9rem',
   textAlign: 'right',
-  color: theme.palette.primary.main,
+  color: theme.palette.text.primary,
   fontWeight: theme.typography.fontWeightMedium,
 }))
