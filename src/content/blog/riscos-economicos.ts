@@ -5,7 +5,7 @@ export const post = {
     'Descubra como proteger seu patrimônio em tempos de crise econômica. Explore os principais riscos macroeconômicos e estratégias de hedge com derivativos, ouro, dólar e outros ativos defensivos.',
   image: '',
   category: ['economia', 'educacional'],
-  author: 'Auge Invest',
+  author: 'Equipe Auge Invest',
   date: '2024-03-19',
   slug: 'riscos-economicos',
   tags: [

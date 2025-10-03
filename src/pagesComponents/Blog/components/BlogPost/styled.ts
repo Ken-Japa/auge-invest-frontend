@@ -1,5 +1,7 @@
 import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 export const PostContainer = styled(Box)`
   padding: 4rem 0;
@@ -8,12 +10,58 @@ export const PostContainer = styled(Box)`
   position: relative;
 `
 
+export const BackgroundImageWrapper = styled(Box)`
+  position: absolute;
+  inset: 0;
+  height: 100%;
+`
+
+export const MainContentWrapper = styled(motion.div)`
+  background: rgba(26, 32, 44, 0.75);
+  backdrop-filter: blur(8px);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    padding: 3rem;
+  }
+`
+export const RelatedPostContentWrapper = styled(motion.div)`
+  background: rgba(26, 32, 44, 0.2);
+  backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    padding: 3rem;
+  }
+`
+export const BackLinkBox = styled(Box)`
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+`
+
+export const BackLink = styled(Link)`
+  color: ${({ theme }) => theme.palette.primary.main};
+  &:hover {
+    color: ${({ theme }) => theme.palette.common.white};
+  }
+  transition: color 0.3s ease-in-out;
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-decoration: none;
+`
+
 export const PostContent = styled(Box)`
   color: #fff;
   font-size: 1.1rem;
   line-height: 1.8;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.25);
+  border: ${({ theme }) => `1px solid ${theme.palette.divider}`};
   border-radius: 8px;
   backdrop-filter: blur(4px);
 
@@ -31,18 +79,18 @@ export const PostContent = styled(Box)`
 
   h1 {
     font-size: 3rem;
-    color: #0d95f9; // Primary blue
+    color: #0d95f9;
     letter-spacing: -0.5px;
   }
 
   h2 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: #0d95f9; // Teal
     letter-spacing: -0.3px;
   }
 
   h3 {
-    font-size: 2rem;
+    font-size: 1.75rem;
     color: #ff6b6b; // Purple
     letter-spacing: -0.2px;
   }

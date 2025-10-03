@@ -5,7 +5,7 @@ export const post = {
     'Descubra como interpretar os principais indicadores macroeconômicos e sua influência nos investimentos',
   image: '',
   category: ['economia', 'educacional'],
-  author: 'Auge Invest',
+  author: 'Equipe Auge Invest',
   date: '2024-03-18',
   slug: 'principais-indicadores-economicos',
   tags: ['indicadores', 'investimentos', 'macroeconomia'],

@@ -5,7 +5,7 @@ export const post = {
     'Domine o método DCF (Fluxo de Caixa Descontado) para valuation de empresas. Aprenda fórmulas corretas, evite erros comuns e utilize planilhas profissionais.',
   image: '',
   category: ['fundamentalista', 'educacional'],
-  author: 'Auge Invest',
+  author: 'Equipe Auge Invest',
   date: '2024-03-20',
   slug: 'valuation',
   tags: [

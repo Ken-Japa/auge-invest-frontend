@@ -5,7 +5,7 @@ export const post = {
     'Explore os principais indicadores da análise fundamentalista, incluindo ROIC, EV/EBITDA, CAGR, Dívida Líquida/EBITDA, Dividend Yield e Fluxo de Caixa Livre. Entenda como esses indicadores podem ajudar a tomar decisões de investimento informadas, com exemplos do mercado brasileiro e referências de especialistas.',
   image: '',
   category: ['fundamentalista', 'indicadores'],
-  author: 'Auge Invest',
+  author: 'Equipe Auge Invest',
   date: '2024-03-20',
   slug: 'indicadores-fundamentalista2',
   tags: [

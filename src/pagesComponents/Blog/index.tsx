@@ -102,20 +102,14 @@ const Blog: FC<BlogProps> = ({ posts }) => {
               <BlogHeader isLoading={isContentLoading} />
             </SuspenseWrapper>
 
-            <Container maxWidth="lg" sx={{ py: 8 }}>
+            <Container maxWidth="lg">
               <Grid container spacing={4}>
-                <Grid item xs={12} md={8}>
-                  <ProgressiveLoad>
-                    <Box mb={4}>
-                      <SuspenseWrapper>
-                        <BlogSearch
-                          value={searchQuery}
-                          onChange={handleSearchChange}
-                          isLoading={isContentLoading}
-                        />
-                      </SuspenseWrapper>
-                    </Box>
-                  </ProgressiveLoad>
+                <Grid item xs={12} md={8} sx={{ display: 'flex', flexDirection: 'column' }}>
+                  <BlogSearch
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    isLoading={isContentLoading}
+                  />
 
                   <SuspenseWrapper>
                     <BlogCardList posts={filteredPosts} isLoading={isContentLoading} />

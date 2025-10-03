@@ -5,7 +5,7 @@ export const post = {
     'Descubra como a análise fundamentalista transforma dados econômicos e financeiros em decisões estratégicas de investimento. Domine os conceitos-chave com exemplos práticos e referências acadêmicas.',
   image: '',
   category: ['fundamentalista', 'educacional'],
-  author: 'Auge Invest',
+  author: 'Equipe Auge Invest',
   date: '2024-03-20',
   slug: 'analise-fundamentalista',
   tags: [

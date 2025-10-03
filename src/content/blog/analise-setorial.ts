@@ -5,7 +5,7 @@ export const post = {
     'A análise setorial permite identificar oportunidades de investimento em setores que estão em crescimento ou que têm potencial de crescimento futuro',
   image: '',
   category: ['economia', 'educacional'],
-  author: 'Auge Invest',
+  author: 'Equipe Auge Invest',
   date: '2024-03-19',
   slug: 'analise-setorial',
   tags: [

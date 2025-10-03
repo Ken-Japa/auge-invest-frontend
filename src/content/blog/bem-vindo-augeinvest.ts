@@ -5,7 +5,7 @@ export const post = {
     'Descubra os conceitos básicos do mercado financeiro, os principais tipos de investimentos no Brasil e como a Auge Invest pode ajudá-lo a tomar decisões estratégicas',
   image: '',
   category: ['noticia', 'economia', 'educacional'],
-  author: 'Auge Invest',
+  author: 'Equipe Auge Invest',
   date: '2024-03-18',
   slug: 'como-comecar-no-mercado-financeiro',
   tags: ['investimentos', 'mercado financeiro', 'análise', 'educação financeira'],

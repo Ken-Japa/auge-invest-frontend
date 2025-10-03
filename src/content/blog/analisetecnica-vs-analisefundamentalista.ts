@@ -5,7 +5,7 @@ export const post = {
     'Descubra as diferenças entre Análise Fundamentalista e Análise Técnica, suas vantagens e desvantagens, e aprenda como combiná-las para tomar decisões de investimento mais informadas',
   image: '',
   category: ['economia', 'educacional'],
-  author: 'Auge Invest',
+  author: 'Equipe Auge Invest',
   date: '2024-03-18',
   slug: 'analisetecnica-vs-analisefundamentalista',
   tags: [

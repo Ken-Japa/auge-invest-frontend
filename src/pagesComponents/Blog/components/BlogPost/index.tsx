@@ -1,8 +1,6 @@
 'use client'
 
-import { Box, Container } from '@mui/material'
-import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { Container } from '@mui/material'
 import { type FC } from 'react'
 
 import { BlogMarkdown } from '@/components/Data-Display/Markdown/BlogMarkdown'
@@ -11,9 +9,17 @@ import { ShareSection } from '@/components/Helpers/ShareSection'
 
 import type { BlogPost as BlogPostType } from '../../constants/blogPosts'
 
-import { BlogPostHeader } from './components/BlogPostHeader'
-import { RelatedPosts } from './components/RelatedPosts'
-import { PostContainer, PostContent } from './styled'
+import { BlogPostHeader } from './components/BlogPostHeader/BlogPostHeader'
+import { RelatedPosts } from './components/RelatedPosts/RelatedPosts'
+import {
+  BackLink,
+  BackLinkBox,
+  BackgroundImageWrapper,
+  MainContentWrapper,
+  PostContainer,
+  PostContent,
+  RelatedPostContentWrapper,
+} from './styled'
 
 interface BlogPostProps {
   post: BlogPostType
@@ -23,7 +29,7 @@ interface BlogPostProps {
 const BlogPost: FC<BlogPostProps> = ({ post, relatedPostsData }) => {
   return (
     <PostContainer>
-      <div className="absolute inset-0 h-full">
+      <BackgroundImageWrapper>
         <OptimizedImage
           src="/assets/images/background/BlogPost.webp"
           alt="Blog Post Background"
@@ -35,13 +41,12 @@ const BlogPost: FC<BlogPostProps> = ({ post, relatedPostsData }) => {
           loadingClassName="scale-100 blur-sm"
           quality={85}
         />
-      </div>
+      </BackgroundImageWrapper>
       <Container maxWidth="lg">
-        <motion.div
+        <MainContentWrapper
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="bg-slate-900/75 backdrop-blur-sm rounded-lg p-8"
         >
           <BlogPostHeader post={post} />
           <PostContent>
@@ -49,23 +54,19 @@ const BlogPost: FC<BlogPostProps> = ({ post, relatedPostsData }) => {
           </PostContent>
 
           <ShareSection title={post.title} description={post.description} />
+
+          <BackLinkBox sx={{ mt: 4 }}>
+            <BackLink href="/blog">← Voltar ao Blog</BackLink>
+          </BackLinkBox>
+        </MainContentWrapper>
+
+        <RelatedPostContentWrapper>
           {relatedPostsData.length > 0 && <RelatedPosts posts={relatedPostsData} />}
 
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              marginTop: '3rem',
-            }}
-          >
-            <Link
-              href="/blog"
-              className="text-[#0D95F9] hover:text-white transition-colors text-lg font-medium"
-            >
-              ← Voltar ao Blog
-            </Link>
-          </Box>
-        </motion.div>
+          <BackLinkBox>
+            <BackLink href="/blog">← Voltar ao Blog</BackLink>
+          </BackLinkBox>
+        </RelatedPostContentWrapper>
       </Container>
     </PostContainer>
   )

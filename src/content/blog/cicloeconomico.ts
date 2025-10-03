@@ -5,7 +5,7 @@ export const post = {
     'Entenda as fases do ciclo econômico—expansão, pico, recessão e recuperação—e como cada uma delas influencia diferentes tipos de ativos, setores e estratégias de investimento. Como o investidor pode entender o momento da economia e ajustar sua carteira de acordo com a fase do ciclo',
   image: '',
   category: ['economia', 'educacional'],
-  author: 'Auge Invest',
+  author: 'Equipe Auge Invest',
   date: '2024-03-19',
   slug: 'cicloeconomico',
   tags: [

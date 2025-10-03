@@ -1,8 +1,8 @@
-import { Container, Typography } from '@mui/material'
+import { Container } from '@mui/material'
 import { motion } from 'framer-motion'
 
 import { BlogHeaderSkeleton } from './BlogHeaderSkeleton'
-import { HeaderContainer, HeaderContent } from './styled'
+import { HeaderContainer, HeaderContent, HeaderTitle, HeaderSubtitle } from './styled'
 
 interface BlogHeaderProps {
   isLoading?: boolean
@@ -20,28 +20,10 @@ export const BlogHeader = ({ isLoading }: BlogHeaderProps) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Typography
-              variant="h1"
-              sx={{
-                fontSize: { xs: '2rem', md: '3rem' },
-                fontWeight: 700,
-                color: '#0D95F9',
-                marginBottom: '3rem',
-              }}
-            >
-              Blog Auge Invest
-            </Typography>
-            <Typography
-              variant="h2"
-              sx={{
-                fontSize: { xs: '1.3rem', md: '1.25rem' },
-                color: 'rgba(255, 255, 255, 0.8)',
-                maxWidth: '32rem',
-                margin: '0 auto',
-              }}
-            >
+            <HeaderTitle variant="h1">Blog Auge Invest</HeaderTitle>
+            <HeaderSubtitle variant="h2">
               Análises, insights e estratégias para você tomar as melhores decisões no mercado financeiro.
-            </Typography>
+            </HeaderSubtitle>
           </motion.div>
         </HeaderContent>
       </Container>

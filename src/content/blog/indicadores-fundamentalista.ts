@@ -5,7 +5,7 @@ export const post = {
     'Este artigo explora em profundidade os indicadores econômicos e a análise fundamentalista, focando nas razões financeiras como P/L (Preço/Lucro), P/VP (Preço/Valor Patrimonial) e Margem Líquida. Com exemplos práticos e referências de autores renomados, o texto oferece uma visão detalhada sobre como esses indicadores ajudam a avaliar a saúde financeira de uma empresa',
   image: '',
   category: ['fundamentalista', 'indicadores'],
-  author: 'Auge Invest',
+  author: 'Equipe Auge Invest',
   date: '2024-03-20',
   slug: 'indicadores-fundamentalista',
   tags: [

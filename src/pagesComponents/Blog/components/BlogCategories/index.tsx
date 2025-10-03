@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, Divider } from '@mui/material'
 import { motion } from 'framer-motion'
 
 import type { BlogPost } from '../../constants/blogPosts'
@@ -35,9 +35,10 @@ export const BlogCategories = ({
   }
   return (
     <CategoriesContainer>
-      <Typography variant="h6" className="font-bold text-white mb-8 text-center">
+      <Typography variant="h5" className="font-bold text-white mb-8 text-center">
         Categorias
       </Typography>
+      <Divider sx={{ mb: 2 }} />
       <Box className="flex flex-col gap-2 mt-4">
         {categories.map((category) => (
           <motion.div key={category.id} whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>

@@ -5,7 +5,7 @@ export const post = {
     'Os investidores iniciantes frequentemente cometem erros comuns que podem custar caro em termos de retorno financeiro e estabilidade emocional. Este artigo analisa os maiores erros de investidores iniciantes e fornece dicas práticas para evitá-los.',
   image: '',
   category: ['economia', 'educacional'],
-  author: 'Auge Invest',
+  author: 'Equipe Auge Invest',
   date: '2024-03-19',
   slug: 'erros-iniciantes',
   tags: ['investimentos', 'educação financeira', 'diversificação', 'controle emocional', 'dicas', 'timing'],

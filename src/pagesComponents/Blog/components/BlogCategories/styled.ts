@@ -6,7 +6,7 @@ import { CustomButton } from '@/components/Core/Button'
 export const CategoriesContainer = styled(Box)`
   background: #1a1a1a;
   padding: 24px;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 `
 
@@ -18,7 +18,7 @@ export const CategoryButton = styled(CustomButton)<CategoryButtonProps>`
   width: 100%;
   text-align: left;
   padding: 8px 16px;
-  border-radius: 6px;
+  border-radius: 12px;
   background: ${({ isSelected }) => (isSelected ? '#0D95F9' : 'transparent')};
   color: ${({ isSelected }) => (isSelected ? 'white' : 'rgba(255, 255, 255, 0.8)')};
   border: none;

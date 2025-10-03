@@ -1,8 +1,8 @@
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 export const HeaderContainer = styled(Box)`
-  padding: 8rem 0;
+  padding: 4rem 0;
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -19,5 +19,27 @@ export const HeaderContent = styled(Box)`
 
   h2 {
     margin: 0 auto;
+  }
+`
+
+export const HeaderTitle = styled(Typography)`
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0d95f9;
+  margin-bottom: 3rem;
+
+  @media (min-width: 900px) {
+    font-size: 3rem;
+  }
+`
+
+export const HeaderSubtitle = styled(Typography)`
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 32rem;
+  margin: 0 auto;
+
+  @media (min-width: 900px) {
+    font-size: 1.25rem;
   }
 `
