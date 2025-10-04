@@ -1,10 +1,9 @@
 import { Grid, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { spacing, transitions, typography } from '@/theme/variables'
+import { spacing, transitions, typography, border } from '@/theme/variables'
 
-export const CategoryContainer = styled(Grid)(({ theme }) => ({
-  marginTop: spacing.md,
+export const CategoryContainer = styled(Grid)(() => ({
   transition: transitions.medium,
 }))
 
@@ -13,7 +12,7 @@ export const CategoryTitle = styled(Typography)(({ theme }) => ({
   fontSize: typography.fontSizes.xl,
   color: theme.palette.text.primary,
   marginBottom: spacing.lg,
-  borderBottom: `2px solid ${theme.palette.primary.main}`,
+  borderBottom: `${border.solid2px} ${theme.palette.primary.main}`,
   letterSpacing: typography.letterSpacing.md,
   transition: transitions.medium,
 }))

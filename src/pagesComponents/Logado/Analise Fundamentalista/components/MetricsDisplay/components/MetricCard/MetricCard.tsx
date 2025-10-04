@@ -1,9 +1,10 @@
-import { Grid, Paper, Tooltip, Typography } from '@mui/material'
+import { Grid, Tooltip, Typography } from '@mui/material'
 
-import { FormulaText } from '../styled'
-import { MetricCardProps } from '../types/types'
-import { getMetricColor } from '../utils/metricFormatting'
-import { formatMetricValue } from '../utils/utils'
+import { FormulaText } from '../../styled'
+import { MetricCardProps } from '../../types/types'
+import { getMetricColor } from '../../utils/metricFormatting'
+import { formatMetricValue } from '../../utils/utils'
+import { StyledPaper, StyledValueTypography } from './styled'
 
 export const MetricCard = ({
   title,
@@ -29,33 +30,23 @@ export const MetricCard = ({
         )
       }
     >
-      <Paper
+      <StyledPaper
         sx={{
-          p: 3,
-          height: '100%',
-          cursor: 'pointer',
           bgcolor: missingFields.length > 0 ? 'action.disabledBackground' : 'background.paper',
-          boxShadow: 3,
-          transition: 'transform 0.2s, box-shadow 0.2s',
-          '&:hover': {
-            transform: 'translateY(-5px)',
-            boxShadow: 6,
-          },
         }}
       >
         <Typography variant="subtitle1" color="text.secondary" gutterBottom>
           {title}
         </Typography>
-        <Typography
+        <StyledValueTypography
           variant="h5"
           sx={{
             color: !isInvalid && !missingFields.length ? getMetricColor(metricKey, value) : 'text.primary',
-            fontWeight: 600,
           }}
         >
           {missingFields.length > 0 ? '---' : isInvalid ? 'N/A' : formatMetricValue(value, type)}
-        </Typography>
-      </Paper>
+        </StyledValueTypography>
+      </StyledPaper>
     </Tooltip>
   </Grid>
 )

@@ -13,7 +13,7 @@ export const StyledTextField = styled(TextField)<{ textAlign?: 'left' | 'right' 
   }),
 )
 
-export const StyledFormControlLabel = styled(FormControlLabel)(({ theme }) => ({
+export const StyledFormControlLabel = styled(FormControlLabel)(() => ({
   justifyContent: 'center',
   marginBottom: spacing.md,
 }))

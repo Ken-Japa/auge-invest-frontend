@@ -11,11 +11,6 @@ interface AlertPriceFieldsProps {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-/**
- * Componente para os campos de preço do formulário de alerta.
- * Inclui Preço Alvo, Preço Atual e Distância Percentual.
- * @param {AlertPriceFieldsProps} props - As props do componente.
- */
 export const AlertPriceFields: React.FC<AlertPriceFieldsProps> = ({ formData, handleChange }) => {
   return (
     <>
@@ -28,8 +23,8 @@ export const AlertPriceFields: React.FC<AlertPriceFieldsProps> = ({ formData, ha
           onChange={handleChange}
           InputProps={{
             startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+            inputProps: { textAlign: "left" },
           }}
-          textAlign="left"
           required
         />
       </Grid>
@@ -43,8 +38,8 @@ export const AlertPriceFields: React.FC<AlertPriceFieldsProps> = ({ formData, ha
           onChange={handleChange}
           InputProps={{
             endAdornment: <InputAdornment position="end">%</InputAdornment>,
+            inputProps: { textAlign: "right" },
           }}
-          textAlign="right"
         />
       </Grid>
     </>

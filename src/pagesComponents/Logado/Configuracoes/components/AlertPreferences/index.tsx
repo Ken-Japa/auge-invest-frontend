@@ -30,7 +30,7 @@ export const AlertPreferences = ({ percentages, onPercentageChange }: AlertPrefe
             { value: 10, label: '10%' },
             { value: 20, label: '20%' },
           ]}
-          sx={{ color: 'success.main' }}
+          sx={{ color: (theme) => theme.palette.success.main }}
         />
         <SliderDescription variant="body2">
           Alerta quando o preço estiver a % do valor de alerta de compra
@@ -51,7 +51,7 @@ export const AlertPreferences = ({ percentages, onPercentageChange }: AlertPrefe
             { value: 10, label: '10%' },
             { value: 20, label: '20%' },
           ]}
-          sx={{ color: 'error.main' }}
+          sx={{ color: (theme) => theme.palette.error.main }}
         />
         <SliderDescription variant="body2">
           Alerta quando o preço estiver a % do valor de alerta de venda

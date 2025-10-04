@@ -1,19 +1,19 @@
 import { Box, Paper, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { borderRadius, shadows, spacing, transitions, typography } from '@/theme/variables'
+import { borderRadius, shadows, spacing, transitions, typography, border } from '@/theme/variables'
 
-export const ContentContainer = styled(Box)(({ theme }) => ({
+export const ContentContainer = styled(Box)(() => ({
   position: 'relative',
   zIndex: 2,
 }))
 
 export const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: spacing.xxl,
+  padding: spacing.xl,
   backgroundColor: theme.palette.background.paper,
   borderRadius: borderRadius.lg,
   boxShadow: shadows.md,
-  border: `1px solid ${theme.palette.divider}`,
+  border: `${border.solid1px} ${theme.palette.divider}`,
   transition: transitions.medium,
   marginBottom: spacing.xxxxl,
   '& .MuiInputBase-root': {
@@ -26,7 +26,7 @@ export const StyledPaperInput = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   borderRadius: borderRadius.lg,
   boxShadow: shadows.md,
-  border: `1px solid ${theme.palette.divider}`,
+  border: `${border.solid1px} ${theme.palette.divider}`,
   transition: transitions.medium,
   marginBottom: spacing.xxxxl,
   '& .MuiInputBase-root': {
@@ -40,4 +40,5 @@ export const Title = styled(Typography)(({ theme }) => ({
   fontSize: typography.fontSizes.xxxxl,
   textAlign: 'center',
   letterSpacing: typography.letterSpacing.md,
+  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
 }))

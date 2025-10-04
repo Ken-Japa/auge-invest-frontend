@@ -3,12 +3,10 @@ import StarIcon from '@mui/icons-material/Star'
 import {
   Alert as MuiAlert,
   Box,
-  Card,
   CardContent,
   CircularProgress,
   IconButton,
   List,
-  ListItem,
   ListItemText,
   Typography,
 } from '@mui/material'
@@ -23,6 +21,7 @@ import { api } from '@/services/api'
 import { Favorite } from '@/services/api/types/favorite'
 
 import { SettingsControlContainer } from '../../styled'
+import { StyledCard, StyledListItem } from './styled'
 
 interface FavoritesManagementProps {
   // Adicione props se necessário
@@ -103,25 +102,10 @@ export const FavoritesManagement: React.FC<FavoritesManagementProps> = () => {
 
         <List>
           {favorites.map((favorite) => (
-            <Card
-              key={favorite._id}
-              sx={{
-                marginBottom: 2,
-                boxShadow: 3,
-                border: '1px solid rgba(255, 255, 255, 0.12)',
-                borderRadius: '8px',
-                backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              }}
-            >
+            <StyledCard key={favorite._id}>
               <CardContent>
-                <ListItem
+                <StyledListItem
                   onClick={() => navigateToFavorite(favorite)}
-                  sx={{
-                    cursor: 'pointer',
-                    '&:hover': {
-                      backgroundColor: 'action.hover',
-                    },
-                  }}
                   secondaryAction={
                     <IconButton
                       edge="end"
@@ -147,9 +131,9 @@ export const FavoritesManagement: React.FC<FavoritesManagementProps> = () => {
                       </Typography>
                     }
                   />
-                </ListItem>
+                </StyledListItem>
               </CardContent>
-            </Card>
+            </StyledCard>
           ))}
         </List>
       </SettingsControlContainer>

@@ -1,9 +1,9 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { borderRadius, shadows, spacing, typography } from '@/theme/variables'
+import { borderRadius, shadows, spacing, typography, border } from '@/theme/variables'
 
-export const StyledDialog = styled(Dialog)(({ theme }) => ({
+export const StyledDialog = styled(Dialog)(() => ({
   '& .MuiPaper-root': {
     borderRadius: borderRadius.md,
     boxShadow: shadows.md,
@@ -16,10 +16,10 @@ export const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
   padding: spacing.md,
   fontSize: typography.fontSizes.lg,
   fontWeight: typography.fontWeights.bold,
-  borderBottom: `1px solid ${theme.palette.divider}`,
+  borderBottom: `${border.solid1px} ${theme.palette.divider}`,
 }))
 
-export const StyledDialogContent = styled(DialogContent)(({ theme }) => ({
+export const StyledDialogContent = styled(DialogContent)(() => ({
   marginTop: spacing.md,
   padding: spacing.md,
 }))
@@ -28,7 +28,7 @@ export const StyledDialogContentText = styled(DialogContentText)(({ theme }) => 
   color: theme.palette.text.secondary,
 }))
 
-export const StyledDialogActions = styled(DialogActions)(({ theme }) => ({
+export const StyledDialogActions = styled(DialogActions)(() => ({
   padding: spacing.md,
   justifyContent: 'space-between',
 }))

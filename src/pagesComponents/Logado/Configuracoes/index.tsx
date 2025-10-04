@@ -1,6 +1,6 @@
 'use client'
 
-import { Alert, Container, Snackbar } from '@mui/material'
+import { Snackbar } from '@mui/material'
 import { lazy, useState } from 'react'
 
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
@@ -11,7 +11,7 @@ import { PageTransition } from '@/components/Helpers/PageTransition'
 import { PageBackground } from '@/components/Layout/PageBackground'
 
 import { useSettings } from './hooks/useSettings'
-import { SettingsTitle } from './styled'
+import { SettingsTitle, StyledAlert, StyledContainer } from './styled'
 
 const LazyAppearanceSettings = lazy(() =>
   import('./components/AppearanceSettings').then((mod) => ({ default: mod.AppearanceSettings })),
@@ -57,9 +57,9 @@ export const Configuracoes = () => {
   if (error) {
     return (
       <PageBackground imageName="Configuracoes">
-        <Container maxWidth="md" sx={{ py: 4 }}>
-          <Alert severity="error">{error}</Alert>
-        </Container>
+        <StyledContainer maxWidth="md">
+          <StyledAlert severity="error">{error}</StyledAlert>
+        </StyledContainer>
       </PageBackground>
     )
   }
@@ -70,7 +70,7 @@ export const Configuracoes = () => {
         <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
           <ProgressiveLoad threshold={0.1} delay={0.2}>
             <PageBackground imageName="Configuracoes">
-              <Container maxWidth="md" sx={{ py: 4 }}>
+              <StyledContainer maxWidth="md">
                 <SettingsTitle variant="h2">Configurações</SettingsTitle>
 
                 <SuspenseWrapper fallback={<ContentSkeleton type="form" formFields={1} />}>
@@ -108,11 +108,11 @@ export const Configuracoes = () => {
                   autoHideDuration={3000}
                   onClose={() => setSnackbar((prev) => ({ ...prev, open: false }))}
                 >
-                  <Alert severity={snackbar.type} sx={{ width: '100%' }}>
+                  <StyledAlert severity={snackbar.type}>
                     {snackbar.message}
-                  </Alert>
+                  </StyledAlert>
                 </Snackbar>
-              </Container>
+              </StyledContainer>
             </PageBackground>
           </ProgressiveLoad>
         </SuspenseWrapper>

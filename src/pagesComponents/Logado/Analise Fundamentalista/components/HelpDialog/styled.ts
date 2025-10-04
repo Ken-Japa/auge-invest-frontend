@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles'
 
-import { spacing, typography } from '@/theme/variables'
+import { spacing, typography, border } from '@/theme/variables'
 
 export const StepsList = styled('ul')(({ theme }) => ({
   marginBottom: spacing.md,
@@ -21,7 +21,7 @@ export const SectionTitle = styled('h2')(({ theme }) => ({
   marginBottom: spacing.md,
 }))
 
-export const MetricsTable = styled('div')(({ theme }) => ({
+export const MetricsTable = styled('div')(() => ({
   display: 'flex',
   flexDirection: 'column',
   gap: spacing.md,
@@ -33,8 +33,8 @@ export const MetricsTableRow = styled('div')(({ theme }) => ({
   gridTemplateColumns: '1fr 2fr 1fr',
   gap: spacing.md,
   padding: spacing.xs,
-  borderBottom: `1px solid ${theme.palette.divider}`,
+  borderBottom: `${border.solid1px} ${theme.palette.divider}`,
   '&:last-child': {
-    borderBottom: 'none',
+    borderBottom: border.none,
   },
 }))

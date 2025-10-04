@@ -7,7 +7,7 @@ export const StyledFormLabel = styled(FormLabel)<{ component?: React.ElementType
   color: theme.palette.text.primary,
 }))
 
-export const StyledRadioGroup = styled(RadioGroup)(({ theme }) => ({
+export const StyledRadioGroup = styled(RadioGroup)(() => ({
   justifyContent: 'center',
   gap: spacing.lg,
   marginBottom: spacing.lg,

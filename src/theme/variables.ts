@@ -26,6 +26,12 @@ export const borderRadius = {
   full: '9999px', // Borda completamente arredondada para elementos como pílulas
 }
 
+export const border = {
+  none: 'none',
+  solid1px: '1px solid',
+  solid2px: '2px solid',
+}
+
 // Padding - Combinações comuns de padding para diferentes componentes
 export const padding = {
   xs: spacing.xs, // Extra pequeno
@@ -51,10 +57,16 @@ export const typography = {
     md: '1rem', // 16px - Tamanho base para a maioria dos textos
     lg: '1.25rem', // 20px - Para títulos de seção menores
     xl: '1.5rem', // 24px - Para títulos de seção
+    lg2: '1.6rem', // 25.6px - Para textos de destaque
     xxl: '2rem', // 32px - Para títulos principais
     xxxxl: '3rem', // 48px - Para títulos muito grandes
     display: '2.5rem', // Para títulos de destaque
     caption: '1.1rem', // Para legendas e textos menores
+    bdrTitle: '3rem', // Tamanho de fonte para o título BDR
+    bdrSubtitle: '1.2rem', // Tamanho de fonte para o subtítulo BDR
+    infoLabel: '1rem', // Tamanho de fonte para o label de informação
+    infoValue: '1.1rem', // Tamanho de fonte para o valor de informação
+    sectionTitle: '2rem', // Tamanho de fonte para o título da seção
   },
   fontWeights: {
     light: 300, // Para textos mais leves e sutis
@@ -62,6 +74,7 @@ export const typography = {
     medium: 500, // Para subtítulos e textos destacados
     semiBold: 600, // Para títulos e elementos enfatizados
     bold: 700, // Para títulos e elementos enfatizados
+    extraBold: 800, // Para títulos e elementos muito enfatizados
   },
   lineHeights: {
     sm: 1.4,
@@ -71,6 +84,14 @@ export const typography = {
   },
   letterSpacing: {
     md: '0.02em',
+  },
+}
+
+// Componentes - Variáveis específicas para componentes
+export const components = {
+  detailPaper: {
+    borderRadius: 12, // Raio da borda para o DetailPaper
+    boxShadow: 9, // Sombra para o DetailPaper
   },
 }
 
@@ -121,6 +142,16 @@ export const gradients = {
   primaryToSecondary: 'linear-gradient(90deg, #0D95F9 0%, #8411CC 100%)',
   primaryToSecondaryAlt: 'linear-gradient(135deg, #0D95F9 0%, #8411CC 100%)',
   warningToError: 'linear-gradient(135deg, #ff9800 0%, #ff5722 100%)',
+}
+
+// Layout - Variáveis relacionadas ao layout geral da página
+export const layout = {
+  minHeightPage: '100vh', // Altura mínima para páginas
+  maxWidthContent: '1400px', // Largura máxima para o conteúdo principal
+  chartPlaceholderHeight: '300px', // Altura padrão para placeholders de gráfico
+  activityContainerMaxHeight: '300px', // Altura máxima para o container de atividades
+  loadingBoxHeight: '100px', // Altura para a caixa de carregamento
+  walletLoadingContainerHeight: '200px', // Altura para o container de carregamento da carteira
 }
 
 /**

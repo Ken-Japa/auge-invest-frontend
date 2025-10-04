@@ -1,10 +1,10 @@
 import { Box, List, ListItem, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { borderRadius, spacing } from '@/theme/variables'
+import { borderRadius, spacing, layout } from '@/theme/variables'
 
 export const ActivityContainer = styled(Box)(({ theme }) => ({
-  maxHeight: '300px',
+  maxHeight: layout.activityContainerMaxHeight,
   overflowY: 'auto',
   padding: spacing.sm,
 
@@ -25,9 +25,9 @@ export const ActivityContainer = styled(Box)(({ theme }) => ({
   },
 }))
 
-export const ActivityList = styled(List)(({ theme }) => ({
+export const ActivityList = styled(List)({
   padding: 0,
-}))
+})
 
 export const ActivityItem = styled(ListItem)(({ theme }) => ({
   cursor: 'pointer',
@@ -50,5 +50,5 @@ export const LoadingBox = styled(Box)({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  height: '100px',
+  height: layout.loadingBoxHeight,
 })

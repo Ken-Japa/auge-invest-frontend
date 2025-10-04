@@ -5,6 +5,6 @@ import { typography } from '@/theme/variables'
 
 export const StyledAssetTypography = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
-  fontSize: '1.6rem',
+  fontSize: typography.fontSizes.lg2,
   fontWeight: typography.fontWeights.medium,
 }))

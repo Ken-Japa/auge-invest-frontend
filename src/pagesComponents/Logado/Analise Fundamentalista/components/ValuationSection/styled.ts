@@ -1,14 +1,14 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { spacing, transitions, typography } from '@/theme/variables'
+import { border, spacing, transitions, typography } from '@/theme/variables'
 
 export const SectionTitle = styled(Typography)(({ theme }) => ({
   marginBottom: spacing.lg,
   fontWeight: typography.fontWeights.bold,
   fontSize: typography.fontSizes.lg,
   color: theme.palette.text.primary,
-  borderBottom: `2px solid ${theme.palette.divider}`,
+  borderBottom: `${border.solid2px} ${theme.palette.divider}`,
   paddingBottom: spacing.md,
   letterSpacing: typography.letterSpacing.md,
   transition: transitions.medium,
@@ -21,7 +21,7 @@ export const InputLabel = styled(Typography)(({ theme }) => ({
   transition: transitions.medium,
 }))
 
-export const SectionContainer = styled(Box)(({ theme }) => ({
+export const SectionContainer = styled(Box)(() => ({
   padding: spacing.lg,
   transition: transitions.medium,
 }))

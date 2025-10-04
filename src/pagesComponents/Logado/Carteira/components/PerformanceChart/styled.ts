@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { borderRadius, spacing } from '@/theme/variables'
+import { borderRadius, spacing, layout } from '@/theme/variables'
 
 export const ChartContainer = styled(Box)(({ theme }) => ({
   width: '100%',
@@ -20,7 +20,7 @@ export const ChartHeader = styled(Box)(({ theme }) => ({
 
 export const ChartPlaceholder = styled(Box)(({ theme }) => ({
   width: '100%',
-  height: '300px',
+  height: layout.chartPlaceholderHeight,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

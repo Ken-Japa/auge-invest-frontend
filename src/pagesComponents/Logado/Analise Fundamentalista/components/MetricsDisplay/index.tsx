@@ -3,7 +3,7 @@ import { forwardRef, useImperativeHandle } from 'react'
 
 import { DadosAnaliseFundamental } from '../../types'
 
-import { MetricCard } from './components/MetricCard'
+import { MetricCard } from './components/MetricCard/MetricCard'
 import { metricCategories } from './constants/categories'
 import { FIELD_LABELS } from './constants/constants'
 import { calculateMetrics } from './constants/metrics'

@@ -1,16 +1,16 @@
 import { TextField } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-export const StyledTextField = styled(TextField)<{ textAlign?: 'left' | 'right' }>(
-  ({ theme, textAlign }) => ({
-    width: 'fit-content',
-    '& .MuiInputBase-root': {
-      fieldset: {
-        border: 'none',
-      },
+import { border } from '@/theme/variables'
+
+export const StyledTextField = styled(TextField)(() => ({
+  width: 'fit-content',
+  '& .MuiInputBase-root': {
+    fieldset: {
+      border: border.none,
     },
-    '& .MuiInputBase-input': {
-      textAlign: textAlign || 'inherit',
-    },
-  }),
-)
+  },
+  '& .MuiInputBase-input': {
+    textAlign: 'inherit',
+  },
+}))
