@@ -14,7 +14,7 @@ export const BlogSearch = ({ value, onChange, isLoading }: BlogSearchProps) => {
   if (isLoading) {
     return (
       <SearchInputContainer>
-        <GenericSearchInput value="" onChange={() => { }} placeholder="Carregando..." />
+        <GenericSearchInput value="" onChange={() => {}} placeholder="Carregando..." />
       </SearchInputContainer>
     )
   }

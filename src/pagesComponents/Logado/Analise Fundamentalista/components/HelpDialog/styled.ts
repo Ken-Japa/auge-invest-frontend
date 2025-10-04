@@ -1,36 +1,38 @@
 import { styled } from '@mui/material/styles'
 
+import { spacing, typography } from '@/theme/variables'
+
 export const StepsList = styled('ul')(({ theme }) => ({
-  marginBottom: theme.spacing(2),
-  paddingLeft: theme.spacing(2),
+  marginBottom: spacing.md,
+  paddingLeft: spacing.md,
   '& .highlight': {
     color: theme.palette.error.main,
-    fontWeight: 'bold',
+    fontWeight: typography.fontWeights.bold,
   },
   '& li': {
-    marginBottom: theme.spacing(1),
+    marginBottom: spacing.xs,
   },
 }))
 
 export const SectionTitle = styled('h2')(({ theme }) => ({
   color: theme.palette.primary.main,
-  fontSize: '1.25rem',
-  marginTop: theme.spacing(4),
-  marginBottom: theme.spacing(2),
+  fontSize: typography.fontSizes.lg,
+  marginTop: spacing.xl,
+  marginBottom: spacing.md,
 }))
 
 export const MetricsTable = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(2),
-  margin: theme.spacing(2, 0),
+  gap: spacing.md,
+  margin: `${spacing.md} 0`,
 }))
 
 export const MetricsTableRow = styled('div')(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: '1fr 2fr 1fr',
-  gap: theme.spacing(2),
-  padding: theme.spacing(1),
+  gap: spacing.md,
+  padding: spacing.xs,
   borderBottom: `1px solid ${theme.palette.divider}`,
   '&:last-child': {
     borderBottom: 'none',

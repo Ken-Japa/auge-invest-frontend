@@ -1,6 +1,8 @@
 import { FormControlLabel, TextField } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+import { spacing } from '@/theme/variables'
+
 export const StyledTextField = styled(TextField)<{ textAlign?: 'left' | 'right' }>(
   ({ theme, textAlign }) => ({
     width: 'fit-content',
@@ -13,5 +15,5 @@ export const StyledTextField = styled(TextField)<{ textAlign?: 'left' | 'right' 
 
 export const StyledFormControlLabel = styled(FormControlLabel)(({ theme }) => ({
   justifyContent: 'center',
-  marginBottom: theme.spacing(2),
+  marginBottom: spacing.md,
 }))

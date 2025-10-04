@@ -1,23 +1,20 @@
+import { lazy } from 'react'
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 
 import { ContentSkeleton } from '../../../../../components/Feedback/Skeletons/ContentSkeleton'
-import ETF from '../../../components/ETF'
-import ETFSearchBar from '../../../components/ETF/components/SearchBar'
 
-import { BdrContainer, ContentBox, ControlsWrapper, Title } from './styled'
+import { BdrContainer, ContentBox } from './styled'
+
+const LazyETFDetails = lazy(() => import('@/pagesComponents/Logado/components/ETF'))
 
 export const Etf = () => {
   return (
     <ErrorBoundary>
       <SuspenseWrapper fallback={<ContentSkeleton height={400} />}>
         <BdrContainer>
-          <ControlsWrapper>
-            <Title>ETFs</Title>
-            <ETFSearchBar />
-          </ControlsWrapper>
           <ContentBox>
-            <ETF defaultPageSize={20} />
+            <LazyETFDetails viewMode="grid" defaultPageSize={20} />
           </ContentBox>
         </BdrContainer>
       </SuspenseWrapper>

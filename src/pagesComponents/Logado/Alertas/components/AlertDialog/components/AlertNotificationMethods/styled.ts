@@ -1,12 +1,14 @@
 import { FormGroup, FormLabel } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+import { spacing } from '@/theme/variables'
+
 export const StyledFormLabel = styled(FormLabel)<{ component?: React.ElementType }>(({ theme }) => ({
-  marginBottom: theme.spacing(2),
+  marginBottom: spacing.md,
   color: theme.palette.text.primary,
 }))
 
 export const StyledFormGroup = styled(FormGroup)(({ theme }) => ({
-  gap: theme.spacing(2),
-  marginBottom: theme.spacing(3),
+  gap: spacing.md,
+  marginBottom: spacing.lg,
 }))

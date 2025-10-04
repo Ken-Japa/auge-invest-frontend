@@ -1,6 +1,8 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+import { spacing, typography } from '@/theme/variables'
+
 export const WalletSectionContainer = styled(Box)({})
 
 export const WalletSectionHeader = styled(Box)({
@@ -21,6 +23,6 @@ export const NoWalletsMessage = styled(Box)({
 })
 
 export const WalletSectionTitle = styled(Typography)(({ theme }) => ({
-  fontWeight: 'bold',
-  margin: theme.spacing(4, 0),
+  fontWeight: typography.fontWeights.bold,
+  margin: `${spacing.xxl} 0`,
 }))

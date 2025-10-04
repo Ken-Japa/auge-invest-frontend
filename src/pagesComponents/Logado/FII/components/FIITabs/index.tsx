@@ -6,8 +6,9 @@ import { TabPanel } from '@/components/Data-Display/TabPanel'
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 import { ETFFilter } from '@/services/api/types/etf'
+import { AtivosSearchWrapper, AtivosContainer } from '@/components/Shared-Styles/AtivosStyledComponents'
 
-import { FIITabsContainer } from '../../styled'
+import FIISearchBar from '../../../components/FIIs/components/SearchBar'
 
 const LazyVisualizacaoFIIs = lazy(() =>
   import('../../../components/FIIs/components/Vizualização').then((mod) => ({
@@ -24,12 +25,23 @@ export const FIITabs: React.FC<FIITabsProps> = ({ defaultPageSize, onError }) =>
   const [tabValue, setTabValue] = useState(0)
   const [filters, setFilters] = useState<ETFFilter>({})
 
+
+  function a11yProps(index: number) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    }
+  }
+
   const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue)
   }
 
   return (
-    <FIITabsContainer>
+    <AtivosContainer>
+      <AtivosSearchWrapper>
+        <FIISearchBar />
+      </AtivosSearchWrapper>
       <Tabs
         value={tabValue}
         onChange={handleTabChange}
@@ -38,16 +50,16 @@ export const FIITabs: React.FC<FIITabsProps> = ({ defaultPageSize, onError }) =>
         aria-label="Modos de visualização de FIIs"
         centered
       >
-        <Tab label="Cartões" />
-        <Tab label="Tabela" />
-        <Tab label="Grade" />
+        <Tab label="Cartões" {...a11yProps(0)} />
+        <Tab label="Tabela" {...a11yProps(1)} />
+        <Tab label="Grade" {...a11yProps(2)} />
       </Tabs>
 
       <TabPanel value={tabValue} index={0}>
         <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
           <LazyVisualizacaoFIIs
             mode="card"
-            filters={filters}
+            filter={filters}
             defaultPageSize={defaultPageSize}
             onError={onError}
           />
@@ -58,7 +70,7 @@ export const FIITabs: React.FC<FIITabsProps> = ({ defaultPageSize, onError }) =>
         <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
           <LazyVisualizacaoFIIs
             mode="table"
-            filters={filters}
+            filter={filters}
             defaultPageSize={defaultPageSize}
             onError={onError}
           />
@@ -69,12 +81,12 @@ export const FIITabs: React.FC<FIITabsProps> = ({ defaultPageSize, onError }) =>
         <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
           <LazyVisualizacaoFIIs
             mode="grid"
-            filters={filters}
+            filter={filters}
             defaultPageSize={defaultPageSize}
             onError={onError}
           />
         </SuspenseWrapper>
       </TabPanel>
-    </FIITabsContainer>
+    </AtivosContainer>
   )
 }

@@ -12,21 +12,24 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+import { borderRadius, shadows, spacing, typography } from '@/theme/variables'
+
 export const DividendContainer = styled(Box)(({ theme }) => ({
-  marginTop: theme.spacing(4),
-  marginBottom: theme.spacing(4),
+  marginTop: spacing.xxl,
+  marginBottom: spacing.xxl,
   display: 'flex',
 }))
 
 export const DividendPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(3),
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[2],
+  padding: spacing.lg,
+  borderRadius: borderRadius.sm,
+  boxShadow: shadows.md,
 }))
 
 export const TableContainer = styled(MuiTableContainer)({
   overflowY: 'auto',
   display: 'flex',
+  borderRadius: borderRadius.md,
 })
 
 export const Table = styled(MuiTable)({
@@ -37,7 +40,7 @@ export const TableHead = styled(MuiTableHead)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   '& th': {
     color: theme.palette.primary.contrastText,
-    fontWeight: 'bold',
+    fontWeight: typography.fontWeights.bold,
   },
 }))
 
@@ -53,39 +56,40 @@ export const TableRow = styled(MuiTableRow)(({ theme }) => ({
 }))
 
 export const TableCell = styled(MuiTableCell)({
-  fontSize: '0.875rem',
+  fontSize: typography.fontSizes.sm,
   textAlign: 'center',
 })
 
 export const HeaderCell = styled(MuiTableCell)(({ theme }) => ({
+  textAlign: 'center',
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.primary.contrastText,
-  fontWeight: 'bold',
+  fontWeight: typography.fontWeights.bold,
 }))
 
 export const StatusChip = styled(MuiChip)(({ theme, color }) => ({
-  fontWeight: 'bold',
-  fontSize: '0.75rem',
+  fontWeight: typography.fontWeights.bold,
+  fontSize: typography.fontSizes.xs,
 }))
 
 export const NoDataContainer = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(4),
+  padding: spacing.xxl,
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }))
 
 export const LoadingContainer = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(4),
+  padding: spacing.xxl,
   textAlign: 'center',
 }))
 
 export const ErrorContainer = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(2),
+  padding: spacing.md,
   color: theme.palette.error.main,
 }))
 
 export const DividendTitle = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
+  marginBottom: spacing.md,
   fontWeight: theme.typography.fontWeightMedium,
   textAlign: 'center',
 }))
@@ -94,26 +98,26 @@ export const DividendSummary = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   flexWrap: 'wrap',
-  marginBottom: theme.spacing(3),
-  gap: theme.spacing(2),
+  marginBottom: spacing.lg,
+  gap: spacing.md,
 }))
 
 export const SummaryItem = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(2),
+  padding: spacing.md,
   backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[1],
+  borderRadius: borderRadius.sm,
+  boxShadow: shadows.sm,
   minWidth: '150px',
   flex: '1 1 auto',
 }))
 
 export const SummaryLabel = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.secondary,
-  fontSize: '0.875rem',
+  fontSize: typography.fontSizes.sm,
 }))
 
 export const SummaryValue = styled(Typography)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightBold,
-  fontSize: '1.25rem',
+  fontSize: typography.fontSizes.lg,
   color: theme.palette.primary.main,
 }))

@@ -2,27 +2,29 @@ import { Box, Container, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { motion } from 'framer-motion'
 
+import { borderRadius, shadows, spacing, typography, gradients } from '@/theme/variables'
+
 export const Page = styled(Container)(({ theme }) => ({
   zIndex: 1,
   position: 'relative',
-  paddingTop: '24px',
+  paddingTop: spacing.xl,
   '& .text-gradient': {
-    background: 'linear-gradient(90deg, #0d95f9 0%, #8411cc 100%)',
+    background: gradients.primaryToSecondary,
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
     textFillColor: 'transparent',
-    marginBottom: '1rem',
-    fontWeight: 700,
+    marginBottom: spacing.md,
+    fontWeight: typography.fontWeights.bold,
     textAlign: 'center',
   },
   '& .subtitle': {
     color: theme.palette.text.secondary,
     textAlign: 'center',
     maxWidth: '800px',
-    margin: '0 auto 2rem',
-    fontWeight: 400,
-    lineHeight: 1.6,
+    margin: `0 auto ${spacing.xl}`,
+    fontWeight: typography.fontWeights.regular,
+    lineHeight: typography.lineHeights.md,
   },
   '& .grid-container': {
     display: 'flex',
@@ -32,15 +34,15 @@ export const Page = styled(Container)(({ theme }) => ({
 }))
 
 export const AtivosHeader = styled(Box)({
-  marginBottom: '2rem',
+  marginBottom: spacing.xl,
   textAlign: 'center',
-  paddingTop: '1rem',
+  paddingTop: spacing.md,
 })
 
 export const AtivosGrid = styled(Box)({
   display: 'grid',
   gridTemplateColumns: 'repeat(1, 1fr)',
-  gap: '2rem',
+  gap: spacing.xl,
   maxWidth: '1200px',
   margin: '0 auto',
   '@media (min-width: 600px)': {
@@ -56,14 +58,14 @@ export const AtivoCard = styled(motion.div)<{ available: string }>(({ theme, ava
     theme.palette.mode === 'dark'
       ? 'linear-gradient(145deg, rgba(26, 34, 52, 0.95), rgba(26, 34, 52, 0.85))'
       : 'linear-gradient(145deg, #ffffff, #f5f8fa)',
-  borderRadius: '16px',
+  borderRadius: borderRadius.lg,
   overflow: 'hidden',
   height: '100%',
   cursor: available ? 'pointer' : 'default',
   position: 'relative',
   backdropFilter: 'blur(10px)',
   border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'}`,
-  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+  boxShadow: shadows.md,
   transition: 'all 0.3s ease',
   opacity: available === 'true' ? 1 : 0.85,
   '&:hover': {
@@ -72,7 +74,7 @@ export const AtivoCard = styled(motion.div)<{ available: string }>(({ theme, ava
 }))
 
 export const CardContent = styled(Box)({
-  padding: '2rem',
+  padding: spacing.xl,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -87,35 +89,35 @@ export const CardIcon = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  marginBottom: '1.5rem',
-  background: 'linear-gradient(135deg, #0d95f9 0%, #8411cc 100%)',
+  marginBottom: spacing.lg,
+  background: gradients.primaryToSecondaryAlt,
   color: 'white',
-  boxShadow: '0 10px 20px rgba(13, 149, 249, 0.3)',
+  boxShadow: shadows.lg,
 })
 
 export const CardTitle = styled(Typography)(({ theme }) => ({
-  fontSize: '1.25rem',
-  fontWeight: 600,
-  marginBottom: '1rem',
+  fontSize: typography.fontSizes.lg,
+  fontWeight: typography.fontWeights.semiBold,
+  marginBottom: spacing.md,
   color: theme.palette.text.primary,
 }))
 
 export const CardDescription = styled(Typography)(({ theme }) => ({
-  fontSize: '0.875rem',
+  fontSize: typography.fontSizes.sm,
   color: theme.palette.text.secondary,
-  marginBottom: '1.5rem',
-  lineHeight: 1.6,
+  marginBottom: spacing.lg,
+  lineHeight: typography.lineHeights.md,
 }))
 
 export const ComingSoonBadge = styled(Box)({
   position: 'absolute',
-  top: '1rem',
-  right: '1rem',
-  background: 'linear-gradient(135deg, #ff9800 0%, #ff5722 100%)',
+  top: spacing.md,
+  right: spacing.md,
+  background: gradients.warningToError,
   color: 'white',
-  padding: '0.25rem 0.75rem',
-  borderRadius: '20px',
-  fontSize: '0.75rem',
-  fontWeight: 600,
-  boxShadow: '0 4px 10px rgba(255, 152, 0, 0.3)',
+  padding: `${spacing.xs} ${spacing.sm}`,
+  borderRadius: borderRadius.full,
+  fontSize: typography.fontSizes.xs,
+  fontWeight: typography.fontWeights.semiBold,
+  boxShadow: shadows.sm,
 })

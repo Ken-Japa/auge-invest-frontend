@@ -7,7 +7,6 @@ import { formatCNPJ, formatDate, formatNumber } from '@/components/Helpers/Forma
 import { FIIExtended } from '../../../types'
 
 import {
-  CardHeader,
   CardSubtitle,
   CardTitle,
   ChipsContainer,
@@ -17,6 +16,7 @@ import {
   InfoValue,
   StyledCard,
   StyledCardContent,
+  TitleContainer, // Importar o novo componente
 } from './styled'
 
 interface FIICardProps {
@@ -27,21 +27,22 @@ export const FIICard = ({ fii }: FIICardProps) => {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} key={fii._id}>
       <StyledCard>
-        <CardHeader>
-          <IconButton
-            component={Link}
-            href={`/fii/${fii.nomeFII}`}
-            aria-label="Ver detalhes do FII"
-            color="primary"
-            size="small"
-          >
-            <OpenInNewIcon />
-          </IconButton>
-        </CardHeader>
         <StyledCardContent>
-          <Link href={`/fii/${fii.codigoFII}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-            <CardTitle variant="h4">{fii.nomeFII}</CardTitle>
-          </Link>
+          <TitleContainer> {/* Usar o novo TitleContainer */}
+            <Link href={`/fii/${fii.codigoFII}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <CardTitle variant="h4">{fii.nomeFII}</CardTitle>
+            </Link>
+            <IconButton
+              component={Link}
+              href={`/fii/${fii.nomeFII}`}
+              aria-label="Ver detalhes do FII"
+              color="primary"
+              size="small"
+              sx={{ position: 'absolute', right: 0, top: 0 }}
+            >
+              <OpenInNewIcon />
+            </IconButton>
+          </TitleContainer>
 
           <CardSubtitle variant="body2" color="text.secondary">
             {fii.nomeCompletoFII}

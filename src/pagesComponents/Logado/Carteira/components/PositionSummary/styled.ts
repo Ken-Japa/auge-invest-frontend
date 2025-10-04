@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { spacing } from '@/theme/variables'
+import { spacing, typography } from '@/theme/variables'
 
 export const SummaryContainer = styled(Box)(({ theme }) => ({
   padding: spacing.md,
@@ -21,14 +21,14 @@ export const SummaryItem = styled(Box)(({ theme }) => ({
 
 export const SummaryLabel = styled(Box)(({ theme }) => ({
   color: theme.palette.text.secondary,
-  fontSize: '0.875rem',
+  fontSize: typography.fontSizes.sm,
 }))
 
 export const SummaryValue = styled(Box, {
   shouldForwardProp: (prop) => prop !== '$ispositive',
 })<{ $ispositive?: boolean }>(({ theme, $ispositive }) => ({
-  fontWeight: 500,
-  fontSize: '1rem',
+  fontWeight: typography.fontWeights.medium,
+  fontSize: typography.fontSizes.md,
   color:
     $ispositive === true
       ? theme.palette.success.main

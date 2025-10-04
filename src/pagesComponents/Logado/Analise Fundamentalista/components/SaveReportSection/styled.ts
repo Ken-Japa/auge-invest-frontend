@@ -1,20 +1,20 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { transitions } from '@/theme/variables'
+import { spacing, transitions, typography } from '@/theme/variables'
 
 export const SaveReportContainer = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(3),
+  padding: spacing.lg,
   transition: transitions.medium,
 }))
 
 export const SectionTitle = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(3),
-  fontWeight: 700,
-  fontSize: '1.25rem',
+  marginBottom: spacing.lg,
+  fontWeight: typography.fontWeights.bold,
+  fontSize: typography.fontSizes.lg,
   color: theme.palette.text.primary,
   borderBottom: `2px solid ${theme.palette.primary.main}`,
-  paddingBottom: theme.spacing(1.5),
-  letterSpacing: '0.03em',
+  paddingBottom: spacing.md,
+  letterSpacing: typography.letterSpacing.md,
   transition: transitions.medium,
 }))

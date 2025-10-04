@@ -6,7 +6,6 @@ export const GlobalSearchContainer = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   mb: theme.spacing(4),
-
   backgroundColor: theme.palette.background.paper,
   borderRadius: theme.shape.borderRadius * 3,
 }))

@@ -3,14 +3,16 @@ import { styled } from '@mui/material/styles'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-import { borderRadius } from '@/theme/variables'
+import { borderRadius, spacing, typography } from '@/theme/variables'
 
-export const PostContainer = styled(Box)`
-  padding: 4rem 0;
-  background: #111111;
+export const PostContainer = styled(Box)(
+  ({ theme }) => `
+  padding: ${spacing.xl} 0;
+  background: ${theme.palette.background.default};
   min-height: 100vh;
   position: relative;
-`
+`,
+)
 
 export const BackgroundImageWrapper = styled(Box)`
   position: absolute;
@@ -18,52 +20,61 @@ export const BackgroundImageWrapper = styled(Box)`
   height: 100%;
 `
 
-export const MainContentWrapper = styled(motion.div)`
-  background: rgba(26, 32, 44, 0.75);
+export const MainContentWrapper = styled(motion.div)(
+  ({ theme }) => `
+  background: ${theme.palette.background.paper};
   backdrop-filter: blur(8px);
   border-radius: ${borderRadius.md};
-  padding: 2rem;
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
+  padding: ${spacing.xl};
+  margin-top: ${spacing.lg};
+  margin-bottom: ${spacing.xl};
 
   @media (min-width: 768px) {
-    padding: 3rem;
+    padding: ${spacing.xxl};
   }
-`
-export const RelatedPostContentWrapper = styled(motion.div)`
-  background: rgba(26, 32, 44, 0.2);
+`,
+)
+export const RelatedPostContentWrapper = styled(motion.div)(
+  ({ theme }) => `
+  background: ${theme.palette.background.paper};
   backdrop-filter: blur(8px);
   border-radius: ${borderRadius.lg};
-  margin-bottom: 1rem;
+  margin-bottom: ${spacing.md};
 
   @media (min-width: 768px) {
-    padding: 3rem;
+    padding: ${spacing.xxl};
   }
-`
-export const BackLinkBox = styled(Box)`
+`,
+)
+export const BackLinkBox = styled(Box)(
+  () => `
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
-`
+  margin-top: ${spacing.xxl};
+`,
+)
 
-export const BackLink = styled(Link)`
-  color: ${({ theme }) => theme.palette.primary.main};
+export const BackLink = styled(Link)(
+  ({ theme }) => `
+  color: ${theme.palette.primary.main};
   &:hover {
-    color: ${({ theme }) => theme.palette.common.white};
+    color: ${theme.palette.common.white};
   }
   transition: color 0.3s ease-in-out;
-  font-size: 1.125rem;
-  font-weight: 500;
+  font-size: ${typography.fontSizes.lg};
+  font-weight: ${typography.fontWeights.medium};
   text-decoration: none;
-`
+`,
+)
 
-export const PostContent = styled(Box)`
-  color: #fff;
-  font-size: 1.1rem;
+export const PostContent = styled(Box)(
+  ({ theme }) => `
+  color: ${theme.palette.text.primary};
+  font-size: ${typography.fontSizes.md};
   line-height: 1.8;
-  padding: 2rem;
-  background: rgba(0, 0, 0, 0.25);
-  border: ${({ theme }) => `1px solid ${theme.palette.divider}`};
+  padding: ${spacing.xl};
+  background: ${theme.palette.background.default};
+  border: 1px solid ${theme.palette.divider};
   border-radius: ${borderRadius.md};
   backdrop-filter: blur(4px);
 
@@ -73,62 +84,62 @@ export const PostContent = styled(Box)`
   h4,
   h5,
   h6 {
-    font-weight: 700;
+    font-weight: ${typography.fontWeights.bold};
     line-height: 1.2;
-    margin-top: 2.5rem;
-    margin-bottom: 1.5rem;
+    margin-top: ${spacing.xxl};
+    margin-bottom: ${spacing.lg};
   }
 
   h1 {
-    font-size: 3rem;
-    color: #0d95f9;
+    font-size: ${typography.fontSizes.xxl};
+    color: ${theme.palette.primary.main};
     letter-spacing: -0.5px;
   }
 
   h2 {
-    font-size: 2.2rem;
-    color: #0d95f9; // Teal
+    font-size: ${typography.fontSizes.xxl};
+    color: ${theme.palette.primary.main};
     letter-spacing: -0.3px;
   }
 
   h3 {
-    font-size: 1.75rem;
+    font-size: ${typography.fontSizes.xl};
     color: #ff6b6b; // Purple
     letter-spacing: -0.2px;
   }
 
   h4 {
-    font-size: 1.75rem;
-    color: #4ecdc4; // Coral
+    font-size: ${typography.fontSizes.xl};
+    color: ${theme.palette.success.main};
     letter-spacing: -0.1px;
   }
 
   h5 {
-    font-size: 1.5rem;
+    font-size: ${typography.fontSizes.xl};
     color: #9d8df1; // Mint
   }
 
   h6 {
-    font-size: 1.25rem;
-    color: #95a5a6; // Gray blue
+    font-size: ${typography.fontSizes.lg};
+    color: ${theme.palette.text.secondary};
   }
 
   p {
-    margin-bottom: 1.5rem;
+    margin-bottom: ${spacing.lg};
   }
 
   ul,
   ol {
-    margin-bottom: 1.5rem;
-    padding-left: 2rem;
+    margin-bottom: ${spacing.lg};
+    padding-left: ${spacing.xl};
   }
 
   li {
-    margin-bottom: 0.5rem;
+    margin-bottom: ${spacing.sm};
   }
 
   a {
-    color: ${({ theme }) => theme.palette.primary.main};
+    color: ${theme.palette.primary.main};
     text-decoration: none;
 
     &:hover {
@@ -137,29 +148,30 @@ export const PostContent = styled(Box)`
   }
 
   blockquote {
-    border-left: 4px solid ${({ theme }) => theme.palette.primary.main};
-    padding-left: 1rem;
-    margin: 1.5rem 0;
+    border-left: 4px solid ${theme.palette.primary.main};
+    padding-left: ${spacing.md};
+    margin: ${spacing.lg} 0;
     font-style: italic;
   }
 
   code {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.2rem 0.4rem;
+    background: ${theme.palette.divider};
+    padding: ${spacing.xs} ${spacing.sm};
     border-radius: ${borderRadius.sm};
-    font-size: 0.9em;
+    font-size: ${typography.fontSizes.xs};
   }
 
   pre {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 1rem;
+    background: ${theme.palette.divider};
+    padding: ${spacing.md};
     border-radius: ${borderRadius.md};
     overflow-x: auto;
-    margin: 1.5rem 0;
+    margin: ${spacing.lg} 0;
 
     code {
       background: none;
       padding: 0;
     }
   }
-`
+`,
+)

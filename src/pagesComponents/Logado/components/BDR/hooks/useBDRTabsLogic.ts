@@ -1,6 +1,10 @@
 import { useCallback, useState } from 'react'
 
-export const useETFTabsLogic = (initialViewMode?: 'card' | 'table' | 'grid') => {
+interface UseBDRTabsLogicProps {
+  initialViewMode?: 'card' | 'table' | 'grid'
+}
+
+export const useBDRTabsLogic = ({ initialViewMode }: UseBDRTabsLogicProps) => {
   const getInitialValue = () => {
     switch (initialViewMode) {
       case 'card':
@@ -13,6 +17,7 @@ export const useETFTabsLogic = (initialViewMode?: 'card' | 'table' | 'grid') => 
         return 0
     }
   }
+
   const [value, setValue] = useState(getInitialValue())
 
   const handleChange = useCallback((event: React.SyntheticEvent, newValue: number) => {

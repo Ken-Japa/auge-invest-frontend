@@ -31,7 +31,7 @@ export const JoinTeamForm = styled('form')({
         borderColor: 'rgba(255, 255, 255, 0.23)',
       },
       '&:hover fieldset': {
-        borderColor: 'rgba(255, 255, 255, 0.5)',
+        borderColor: 'rgba(255, 255, 255, theme.opacity.medium)',
       },
       '&.Mui-focused fieldset': {
         borderColor: visitorColors.primary,

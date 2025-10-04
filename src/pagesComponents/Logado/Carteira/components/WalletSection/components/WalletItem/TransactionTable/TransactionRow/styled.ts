@@ -1,6 +1,8 @@
 import { TableCell, TableRow } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+import { spacing } from '@/theme/variables'
+
 export const StyledTransactionTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
@@ -12,5 +14,5 @@ export const StyledTransactionTableRow = styled(TableRow)(({ theme }) => ({
 }))
 
 export const StyledTransactionTableCell = styled(TableCell)(() => ({
-  padding: '6px 16px',
+  padding: `${spacing.xs} ${spacing.md}`,
 }))

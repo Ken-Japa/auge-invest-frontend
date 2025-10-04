@@ -9,10 +9,10 @@ export const StyledTransactionTable = styled(Table)(({ theme }) => ({
 }))
 
 export const StyledTransactionTableHead = styled(TableHead)(({ theme }) => ({
-  background: '#121820',
+  background: theme.palette.primary.dark,
 }))
 
 export const StyledTransactionHeaderTableCell = styled(TableCell)(({ theme }) => ({
-  color: '#ffffff',
+  color: theme.palette.primary.contrastText,
   fontWeight: 'bold',
 }))

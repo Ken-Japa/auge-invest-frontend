@@ -1,5 +1,7 @@
 import { Box, styled } from '@mui/material'
 
+import { spacing } from '@/theme/variables'
+
 export const CashFlowContainer = styled(Box)(({ theme }) => ({
-  marginBottom: theme.spacing(3),
+  marginBottom: spacing.lg,
 }))

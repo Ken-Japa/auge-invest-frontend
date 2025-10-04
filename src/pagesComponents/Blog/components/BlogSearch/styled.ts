@@ -1,33 +1,37 @@
 import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-export const SearchInputContainer = styled(Box)`
-  margin-bottom: 2rem;
+import { borderRadius, shadows, spacing } from '@/theme/variables'
+
+export const SearchInputContainer = styled(Box)(
+  ({ theme }) => `
+  margin-bottom: ${spacing.xl};
 
   .MuiOutlinedInput-root {
-    border-radius: 8px;
-    background-color: #f5f5f5;
+    border-radius: ${borderRadius.md};
+    background-color: ${theme.palette.background.paper};
     transition: all 0.3s ease-in-out;
 
     &:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: ${shadows.md};
     }
 
     &.Mui-focused {
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-      border-color: #0d95f9;
+      box-shadow: ${shadows.lg};
+      border-color: ${theme.palette.primary.main};
     }
   }
 
   .MuiInputBase-input {
-    padding: 12px 14px;
+    padding: ${spacing.md} ${spacing.lg};
   }
 
   .MuiInputLabel-root {
-    color: #666;
+    color: ${theme.palette.text.secondary};
   }
 
   .MuiInputAdornment-root {
-    color: #999;
+    color: ${theme.palette.text.disabled};
   }
-`
+`,
+)

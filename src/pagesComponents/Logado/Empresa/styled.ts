@@ -1,5 +1,7 @@
-import { Box, Container, Typography } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import { styled } from '@mui/material/styles'
+
+import { borderRadius, shadows, spacing } from '@/theme/variables'
 
 export const EmpresasContainer = styled(Box)(({ theme }) => ({
   width: '100%',
@@ -32,19 +34,19 @@ export const EmpresasContainer = styled(Box)(({ theme }) => ({
 export const SearchBarWrapper = styled(Box)(({ theme }) => ({
   width: 'fit-content',
   margin: '0 auto',
-  borderRadius: theme.shape.borderRadius,
+  borderRadius: borderRadius.sm,
   backgroundColor: theme.palette.background.paper,
-  boxShadow: theme.shadows[3],
-  marginBottom: theme.spacing(3),
+  boxShadow: shadows.lg,
+  marginBottom: spacing.lg,
 }))
 
 export const ContentContainer = styled(Container)(({ theme }) => ({
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
-  marginTop: theme.spacing(4),
-  marginBottom: theme.spacing(8),
-  borderRadius: '12px',
+  marginTop: spacing.xxl,
+  marginBottom: spacing.xxxxl,
+  borderRadius: borderRadius.lg,
   height: '100%',
   backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.98)' : 'rgba(255, 255, 255, 0.98)',
 }))
@@ -53,22 +55,13 @@ export const ControlsWrapper = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  gap: theme.spacing(2),
+  gap: spacing.md,
   width: 'fit-content',
   margin: '0 auto',
-  padding: theme.spacing(1.5),
-  borderRadius: theme.shape.borderRadius,
+  padding: spacing.sm,
+  borderRadius: borderRadius.sm,
   backgroundColor: theme.palette.background.paper,
-  boxShadow: theme.shadows[1],
-  marginTop: theme.spacing(2),
-  marginBottom: theme.spacing(2),
-}))
-
-export const Title = styled(Typography)(({ theme }) => ({
-  color: theme.palette.primary.main,
-  fontWeight: 700,
-  fontSize: 48,
-  textAlign: 'center',
-  marginBottom: theme.spacing(4),
-  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
+  boxShadow: shadows.md,
+  marginTop: spacing.md,
+  marginBottom: spacing.md,
 }))

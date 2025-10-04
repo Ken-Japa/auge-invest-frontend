@@ -1,12 +1,6 @@
 import { Box, FormControl, Stack } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-export const VisualizationContainer = styled(Box)({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100%',
-})
-
 export const LoadingContainer = styled(Box)({
   display: 'flex',
   justifyContent: 'center',

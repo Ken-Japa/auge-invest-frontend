@@ -2,33 +2,37 @@ import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { CustomButton } from '@/components/Core/Button'
-import { borderRadius } from '@/theme/variables'
+import { borderRadius, spacing, typography } from '@/theme/variables'
 
-export const CategoriesContainer = styled(Box)`
-  background: #1a1a1a;
-  padding: 24px;
+export const CategoriesContainer = styled(Box)(
+  ({ theme }) => `
+  background: ${theme.palette.background.paper};
+  padding: ${spacing.lg};
   border-radius: ${borderRadius.md};
-  border: 1px solid rgba(255, 255, 255, 0.1);
-`
+  border: 1px solid ${theme.palette.divider};
+`,
+)
 
 interface CategoryButtonProps {
   isSelected: boolean
 }
 
-export const CategoryButton = styled(CustomButton)<CategoryButtonProps>`
+export const CategoryButton = styled(CustomButton)<CategoryButtonProps>(
+  ({ isSelected, theme }) => `
   width: 100%;
   text-align: left;
-  padding: 8px 16px;
+  padding: ${spacing.sm} ${spacing.md};
   border-radius: ${borderRadius.md};
-  background: ${({ isSelected }) => (isSelected ? '#0D95F9' : 'transparent')};
-  color: ${({ isSelected }) => (isSelected ? 'white' : 'rgba(255, 255, 255, 0.8)')};
+  background: ${isSelected ? theme.palette.primary.main : 'transparent'};
+  color: ${isSelected ? theme.palette.primary.contrastText : theme.palette.text.secondary};
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 0.95rem;
+  font-size: ${typography.fontSizes.sm};
 
   &:hover {
-    background: ${({ isSelected }) => (isSelected ? '#0D95F9' : 'rgba(13, 149, 249, 0.1)')};
-    color: white;
+    background: ${isSelected ? theme.palette.primary.main : 'rgba(13, 149, 249, 0.1)'};
+    color: ${theme.palette.primary.contrastText};
   }
-`
+`,
+)

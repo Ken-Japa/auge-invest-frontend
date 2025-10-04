@@ -1,20 +1,20 @@
 import { Grid, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { transitions } from '@/theme/variables'
+import { spacing, transitions, typography } from '@/theme/variables'
 
 export const CategoryContainer = styled(Grid)(({ theme }) => ({
-  marginTop: theme.spacing(2),
+  marginTop: spacing.md,
   transition: transitions.medium,
 }))
 
 export const CategoryTitle = styled(Typography)(({ theme }) => ({
-  fontWeight: 700,
-  fontSize: '1.3rem',
+  fontWeight: typography.fontWeights.bold,
+  fontSize: typography.fontSizes.xl,
   color: theme.palette.text.primary,
-  marginBottom: theme.spacing(3),
+  marginBottom: spacing.lg,
   borderBottom: `2px solid ${theme.palette.primary.main}`,
-  letterSpacing: '0.03em',
+  letterSpacing: typography.letterSpacing.md,
   transition: transitions.medium,
 }))
 
@@ -25,15 +25,15 @@ export const MetricsGrid = styled(Grid)({
 
 export const UnitText = styled('span')(({ theme }) => ({
   color: theme.palette.text.secondary,
-  marginLeft: '2px',
-  fontSize: '0.9em',
+  marginLeft: spacing.xxs,
+  fontSize: typography.fontSizes.sm,
   transition: transitions.medium,
 }))
 
 export const FormulaText = styled('span')(({ theme }) => ({
   color: theme.palette.info.light,
   display: 'block',
-  marginTop: theme.spacing(1),
-  fontSize: '0.8rem',
+  marginTop: spacing.xs,
+  fontSize: typography.fontSizes.xs,
   transition: transitions.medium,
 }))

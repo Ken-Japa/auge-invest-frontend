@@ -2,7 +2,7 @@ import { Divider, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { visitorColors } from '@/theme/palette/visitor'
-import { borderRadius, spacing, transitions } from '@/theme/variables'
+import { borderRadius, spacing, transitions, zIndex } from '@/theme/variables'
 
 export const MainContainer = styled('main')({
   background: visitorColors.backgroundGradient,
@@ -31,14 +31,14 @@ export const Section = styled('section')<SectionProps>(({ withPadding, withBackg
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       opacity: 0.9,
-      zIndex: -1,
+      zIndex: zIndex.hide,
     },
     '&::after': {
       content: '""',
       position: 'absolute',
       inset: 0,
       backgroundColor: visitorColors.overlay,
-      zIndex: -1,
+      zIndex: zIndex.hide,
     },
   }),
 
@@ -72,7 +72,7 @@ export const BackgroundImageWrapper = styled('div')({
 export const BackgroundOverlay = styled('div')({
   position: 'absolute',
   inset: 0,
-  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  backgroundColor: 'rgba(0, 0, 0, theme.opacity.medium)',
 })
 
 export const StyledDivider = styled(Divider)({

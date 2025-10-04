@@ -8,10 +8,12 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+import { borderRadius, shadows, spacing, typography } from '@/theme/variables'
+
 export const DetailPageContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
   minHeight: '100vh',
-  padding: theme.spacing(4, 2),
+  padding: `${spacing.xxl} ${spacing.md}`,
   marginTop: '-64px',
   paddingTop: '84px',
   display: 'flex',
@@ -28,14 +30,14 @@ export const ContentWrapper = styled(Box)(({ theme }) => ({
 }))
 
 export const DetailContainer = styled(Box)(({ theme }) => ({
-  marginTop: theme.spacing(4),
+  marginTop: spacing.xxl,
 }))
 
 export const DetailPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(3),
-  marginBottom: theme.spacing(4),
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[3],
+  padding: spacing.lg,
+  marginBottom: spacing.xxl,
+  borderRadius: borderRadius.sm,
+  boxShadow: shadows.lg,
   backgroundColor: theme.palette.mode === 'dark' ? 'rgba(19, 47, 76, 0.9)' : 'rgba(255, 255, 255, 0.9)',
   backdropFilter: 'blur(10px)',
   border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`,
@@ -57,18 +59,18 @@ export const FIISubtitle = styled(Typography)(({ theme }) => ({
 }))
 
 export const CodeChip = styled(MuiChip)(({ theme }) => ({
-  marginLeft: theme.spacing(1),
-  fontWeight: 'bold',
-  fontSize: '1rem',
+  marginLeft: spacing.xs,
+  fontWeight: typography.fontWeights.bold,
+  fontSize: typography.fontSizes.md,
 }))
 
 export const SectionDivider = styled(MuiDivider)(({ theme }) => ({
-  margin: `${theme.spacing(2)} 0`,
+  margin: `${spacing.md} 0`,
 }))
 
 export const InfoLabel = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.secondary,
-  marginBottom: theme.spacing(0.5),
+  marginBottom: spacing.xxs,
 }))
 
 export const InfoValue = styled(Typography)({
@@ -77,22 +79,22 @@ export const InfoValue = styled(Typography)({
 })
 
 export const InfoContainer = styled(Box)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
+  marginBottom: spacing.md,
 }))
 
 export const IconWrapper = styled(Box)(({ theme }) => ({
-  marginRight: theme.spacing(1),
+  marginRight: spacing.xs,
   color: theme.palette.text.secondary,
   display: 'flex',
   alignItems: 'center',
 }))
 
 export const BackButton = styled(MuiButton)(({ theme }) => ({
-  marginBottom: theme.spacing(3),
+  marginBottom: spacing.lg,
 }))
 
 export const SectionTitle = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
+  marginBottom: spacing.md,
   fontWeight: theme.typography.fontWeightMedium,
 }))
 

@@ -1,8 +1,10 @@
 import { Table, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+import { spacing } from '@/theme/variables'
+
 export const StyledAssetTableContainer = styled(TableContainer)(({ theme }) => ({
-  marginTop: theme.spacing(2),
+  marginTop: spacing.md,
 }))
 
 export const StyledAssetTable = styled(Table)(({ theme }) => ({
@@ -10,7 +12,7 @@ export const StyledAssetTable = styled(Table)(({ theme }) => ({
 }))
 
 export const StyledAssetTableHead = styled(TableHead)(({ theme }) => ({
-  backgroundColor: '#000000',
+  backgroundColor: theme.palette.primary.main,
 }))
 
 export const StyledAssetHeaderTableRow = styled(TableRow)(({ theme }) => ({
@@ -20,5 +22,5 @@ export const StyledAssetHeaderTableRow = styled(TableRow)(({ theme }) => ({
 export const StyledAssetTableHeaderCell = styled(TableCell)(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,
   fontWeight: 'bold',
-  color: '#ffffff',
+  color: theme.palette.primary.contrastText,
 }))

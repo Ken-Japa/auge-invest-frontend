@@ -8,7 +8,6 @@ import { BlogCard } from '@/components/Data-Display/Card/BlogCard'
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
 import { BlogCardListSkeleton } from '@/components/Feedback/Skeletons/BlogCardListSkeleton'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
-
 import { borderRadius } from '@/theme/variables'
 
 import type { BlogPost } from '../../constants/blogPosts'

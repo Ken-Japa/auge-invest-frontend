@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles'
 
 import { StyledIconButton } from '@/components/Core/IconButton'
 import { visitorColors } from '@/theme/palette/visitor'
-import { spacing } from '@/theme/variables'
+import { spacing, zIndex } from '@/theme/variables'
 
 export const RegisterPageContainer = styled('div')({
   position: 'fixed',
@@ -10,7 +10,7 @@ export const RegisterPageContainer = styled('div')({
   left: 0,
   width: '100vw',
   height: '100vh',
-  zIndex: 1300,
+  zIndex: zIndex.base,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -23,14 +23,14 @@ export const RegisterPageContainer = styled('div')({
     left: 0,
     width: '100%',
     height: '100%',
-    zIndex: -1,
+    zIndex: zIndex.hide,
     willChange: 'transform',
     transform: 'translateZ(0)',
   },
 
   '& .content': {
     position: 'relative',
-    zIndex: 1,
+    zIndex: zIndex.base,
     width: '100%',
     height: '100%',
     display: 'flex',
@@ -70,7 +70,7 @@ export const StyledCloseButton = styled(StyledIconButton)({
   backgroundColor: `${visitorColors.backgroundDark}80`,
   backdropFilter: visitorColors.blur,
   transition: 'background-color 0.2s, color 0.2s',
-  zIndex: 10,
+  zIndex: zIndex.base,
   transform: 'translateZ(0)',
   willChange: 'transform, background-color',
 

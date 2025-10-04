@@ -1,14 +1,14 @@
 import { Grid, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { transitions } from '@/theme/variables'
+import { spacing, transitions, typography } from '@/theme/variables'
 
 export const SectionTitle = styled(Typography)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  gap: theme.spacing(1),
-  fontWeight: 700,
-  fontSize: '1.25rem',
+  gap: spacing.xs,
+  fontWeight: typography.fontWeights.bold,
+  fontSize: typography.fontSizes.lg,
   color: theme.palette.text.primary,
   transition: transitions.medium,
 }))
@@ -21,13 +21,13 @@ export const FormContainer = styled(Grid)(({ theme }) => ({
 }))
 
 export const SectionContainer = styled(Grid)(({ theme }) => ({
-  marginBottom: theme.spacing(1),
+  marginBottom: spacing.xs,
 }))
 
 export const FieldContainer = styled(Grid)(({ theme }) => ({
   '& .MuiFormControl-root': {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+    marginTop: spacing.xs,
+    marginBottom: spacing.xs,
   },
   '& .MuiOutlinedInput-root': {
     transition: transitions.medium,

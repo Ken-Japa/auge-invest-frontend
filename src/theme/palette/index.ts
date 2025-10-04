@@ -1,4 +1,5 @@
 import { PaletteOptions } from '@mui/material'
+
 import { baseColors } from './baseColors'
 /**
  * @const darkPalette

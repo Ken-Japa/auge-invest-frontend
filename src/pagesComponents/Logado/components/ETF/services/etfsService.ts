@@ -7,6 +7,8 @@ export const fetchETFs = async (filters: ETFFilter): Promise<ETFListResponse> =>
     const { page, pageSize, ...restFilters } = filters // Extrai page e pageSize
     const response = await api.etf.getETFs({
       ...restFilters, // Usa o restante dos filtros
+      page,
+      pageSize,
       sortBy: filters.sortBy || 'quotaCount',
       sortOrder: filters.sortOrder || 'desc',
     })

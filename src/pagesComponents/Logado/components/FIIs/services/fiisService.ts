@@ -8,6 +8,8 @@ export const fetchFIIs = async (filters: FIIFilter): Promise<FIIListResponse> =>
     const { page, pageSize, ...restFilters } = filters // Extrai page e pageSize
     const response = await api.fiis.getFIIs({
       ...restFilters, // Usa o restante dos filtros
+      page,
+      pageSize,
       sortBy: filters.sortBy || 'quotaCount',
       sortOrder: filters.sortOrder || 'desc',
     })

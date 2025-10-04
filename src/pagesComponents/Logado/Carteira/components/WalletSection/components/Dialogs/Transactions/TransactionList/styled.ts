@@ -4,16 +4,16 @@ import { styled } from '@mui/material/styles'
 import { transitions } from '@/theme/variables'
 
 export const StyledAssetTableHead = styled(TableHead)(({ theme }) => ({
-  backgroundColor: '#000000',
+  backgroundColor: theme.palette.primary.main,
 }))
 
 export const StyledAssetTableRow = styled(TableRow)(({ theme }) => ({
   transition: transitions.medium,
   '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2234' : '#F5F5F5',
+    backgroundColor: theme.palette.background.default,
   },
   '&:nth-of-type(even)': {
-    backgroundColor: theme.palette.mode === 'dark' ? '#2A3244' : '#F5F5F5',
+    backgroundColor: theme.palette.background.paper,
   },
 
   '&:last-child td, &:last-child th': {
@@ -24,5 +24,5 @@ export const StyledAssetTableRow = styled(TableRow)(({ theme }) => ({
 export const StyledAssetTableHeaderCell = styled(TableCell)(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,
   fontWeight: 'bold',
-  color: '#fff',
+  color: theme.palette.primary.contrastText,
 }))

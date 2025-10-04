@@ -30,7 +30,6 @@ export const ThemeInfo = styled(Box)(({ theme }) => ({
  * Define peso da fonte, cor do texto, margem inferior e variante de tipografia.
  */
 export const ThemeLabel = styled(Typography)(({ theme }) => ({
-  fontWeight: 500,
   color: theme.palette.text.secondary,
   marginBottom: theme.spacing(1),
   variant: 'body2',

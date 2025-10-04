@@ -5,20 +5,19 @@ import { fetchFIIs } from '../services/fiisService'
 import { FIIExtended, FIIFilter } from '../types'
 
 interface UseFIIVisualizationLogicProps {
-  filters: FIIFilter
+  filter: FIIFilter
   onError?: (message: string) => void
   defaultPageSize?: number
 }
 
 export const useFIIVisualizationLogic = ({
-  filters,
+  filter,
   onError,
   defaultPageSize = 20,
 }: UseFIIVisualizationLogicProps) => {
   const validPageSizes = useMemo(() => [10, 20, 50, 100], [])
   const initialPageSize = validPageSizes.includes(defaultPageSize) ? defaultPageSize : 20
 
-  const [allFiis, setAllFiis] = useState<FIIExtended[]>([])
   const [fiis, setFiis] = useState<FIIExtended[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -34,11 +33,13 @@ export const useFIIVisualizationLogic = ({
         setError(null)
 
         const result = await fetchFIIs({
-          ...filters,
+          ...filter,
+          page,
+          pageSize,
         })
 
-        setAllFiis(result.result)
-        setPage(0)
+        setFiis(result.result)
+        setTotalPages(result.pagination.pages)
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Ocorreu um erro desconhecido'
         setError(errorMessage)
@@ -51,27 +52,7 @@ export const useFIIVisualizationLogic = ({
     }
 
     loadFIIs()
-  }, [filters, onError])
-
-  useEffect(() => {
-    if (allFiis.length > 0) {
-      const sortedEtfs = [...allFiis].sort((a, b) => {
-        const quotaA = Number(a.quotaCount)
-        const quotaB = Number(b.quotaCount)
-        return quotaB - quotaA
-      })
-
-      const newTotalPages = Math.ceil(sortedEtfs.length / pageSize)
-      setTotalPages(newTotalPages)
-
-      const startIndex = page * pageSize
-      const endIndex = startIndex + pageSize
-      setFiis(sortedEtfs.slice(startIndex, endIndex))
-    } else {
-      setFiis([])
-      setTotalPages(0)
-    }
-  }, [allFiis, page, pageSize])
+  }, [filter, onError, page, pageSize])
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
     setPage(newPage - 1)

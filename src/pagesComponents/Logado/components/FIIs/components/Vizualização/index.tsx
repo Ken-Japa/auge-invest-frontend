@@ -1,9 +1,10 @@
 import { CircularProgress, Typography } from '@mui/material'
 
 import { PaginationControls } from '@/components/Data-Display/PaginationControls'
+import { VisualizationContainer } from '@/components/Shared-Styles/AtivosStyledComponents'
 
 import { useFIIVisualizationLogic } from '../../hooks/useFIIVisualizationLogic'
-import { FIIFilter, VisualizationMode } from '../../types'
+import { VisualizacaoFIIsProps } from '../../types'
 
 import { FIIViewRenderer } from './FIIViewRenderer'
 import {
@@ -11,21 +12,15 @@ import {
   ErrorContainer,
   LoadingContainer,
   PaginationContainer,
-  VisualizationContainer,
 } from './styled'
 
-interface VisualizacaoFIIsProps {
-  mode?: VisualizationMode
-  filters: FIIFilter
-  onError?: (message: string) => void
-  defaultPageSize?: number
-}
+
 
 export const VisualizacaoFIIs = ({
   mode = 'card',
-  filters,
+  filter = {},
   onError,
-  defaultPageSize = 20,
+  defaultPageSize = 10,
 }: VisualizacaoFIIsProps) => {
   const {
     fiis,
@@ -38,7 +33,7 @@ export const VisualizacaoFIIs = ({
     handlePageSizeChange,
     containerRef,
     validPageSizes,
-  } = useFIIVisualizationLogic({ filters, onError, defaultPageSize })
+  } = useFIIVisualizationLogic({ filter, onError, defaultPageSize })
 
   if (loading) {
     return (

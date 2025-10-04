@@ -1,26 +1,6 @@
 import { Box, Container, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
-
-export const BackgroundContainer = styled(Box)(() => ({
-  width: '100%',
-  position: 'relative',
-  willChange: 'transform',
-  minHeight: '100vh',
-  '& .MuiGrid-item': {
-    minHeight: '50px',
-  },
-
-  '&::-webkit-scrollbar': {
-    width: '8px',
-  },
-  '&::-webkit-scrollbar-track': {
-    background: 'rgba(0, 0, 0, 0.1)',
-  },
-  '&::-webkit-scrollbar-thumb': {
-    background: 'rgba(0, 0, 0, 0.2)',
-    borderRadius: '4px',
-  },
-}))
+import { typography } from '@/theme/variables'
 
 interface StyledContainerProps {
   $isloading: boolean
@@ -30,7 +10,7 @@ export const StyledContainer = styled(Container, {
   shouldForwardProp: (prop) => prop !== '$isloading',
 })<StyledContainerProps>(({ $isloading, theme }) => ({
   paddingBottom: theme.spacing(4),
-  opacity: $isloading ? 0.8 : 1,
+  opacity: 1,
   transition: 'opacity 0.3s ease-in-out',
 }))
 
@@ -60,20 +40,19 @@ export const DashboardItem = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   overflow: 'hidden',
-
   willChange: 'transform',
-
-  transition: 'box-shadow 0.2s ease-in-out',
+  border: '1px solid transparent',
   '&:hover': {
-    boxShadow: theme.shadows[3],
+    border: `1px solid ${theme.palette.primary.hoverBorder}`,
   },
 }))
 
 export const Title = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
-  fontWeight: 500,
-  fontSize: 36,
+  fontWeight: typography.fontWeights.bold,
+  fontSize: typography.fontSizes.xxxxl,
   textAlign: 'center',
+  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
 }))
 
 export const Subtitle = styled(Typography)(({ theme }) => ({

@@ -10,7 +10,7 @@ export const ActivityContainer = styled(Box)(({ theme }) => ({
 
   // Estilização da barra de rolagem
   '&::-webkit-scrollbar': {
-    width: '6px',
+    width: spacing.xxs,
   },
   '&::-webkit-scrollbar-track': {
     background: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
@@ -32,8 +32,8 @@ export const ActivityList = styled(List)(({ theme }) => ({
 export const ActivityItem = styled(ListItem)(({ theme }) => ({
   cursor: 'pointer',
 
-  padding: 2,
-  paddingLeft: 8,
+  padding: spacing.xxs,
+  paddingLeft: spacing.xs,
   borderRadius: borderRadius.sm,
 
   transition: 'background-color 0.2s ease',

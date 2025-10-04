@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 
-import { FII } from '@/pagesComponents/Logado/FII'
+import FIIPg from '@/pagesComponents/Logado/FII'
 
 export const metadata: Metadata = {
   title: 'Fundos Imobiliários | AugeInvest',
@@ -19,5 +19,5 @@ export const metadata: Metadata = {
 }
 
 export default function FIIPage() {
-  return <FII />
+  return <FIIPg />
 }

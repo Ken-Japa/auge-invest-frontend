@@ -31,5 +31,6 @@ export const muiTypography = {
   },
   body2: {
     fontSize: typography.fontSizes.sm,
+    fontWeight: typography.fontWeights.medium,
   },
 }

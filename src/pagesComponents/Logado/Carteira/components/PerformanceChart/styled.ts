@@ -1,13 +1,13 @@
 import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { spacing } from '@/theme/variables'
+import { borderRadius, spacing } from '@/theme/variables'
 
 export const ChartContainer = styled(Box)(({ theme }) => ({
   width: '100%',
   marginTop: spacing.md,
   backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius,
+  borderRadius: borderRadius.sm,
 }))
 
 export const ChartHeader = styled(Box)(({ theme }) => ({

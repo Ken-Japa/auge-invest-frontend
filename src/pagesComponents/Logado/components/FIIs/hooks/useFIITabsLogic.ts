@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 
-export const useETFTabsLogic = (initialViewMode?: 'card' | 'table' | 'grid') => {
+export const useFIITabsLogic = (initialViewMode?: 'card' | 'table' | 'grid') => {
   const getInitialValue = () => {
     switch (initialViewMode) {
       case 'card':

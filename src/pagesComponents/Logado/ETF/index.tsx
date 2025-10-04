@@ -15,7 +15,7 @@ const ETFPage: FC = () => {
       <ErrorBoundary>
         <PageBackground imageName="ETFs">
           <SuspenseWrapper fallback={<div>Carregando...</div>}>
-            <LazyETFDetails defaultPageSize={50} />
+            <LazyETFDetails viewMode="card" defaultPageSize={50} />
           </SuspenseWrapper>
         </PageBackground>
       </ErrorBoundary>

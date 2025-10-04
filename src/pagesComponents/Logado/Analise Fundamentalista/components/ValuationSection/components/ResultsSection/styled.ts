@@ -1,7 +1,9 @@
 import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+import { spacing } from '@/theme/variables'
+
 export const ResultsContainer = styled(Box)(({ theme }) => ({
-  marginTop: theme.spacing(3),
+  marginTop: spacing.lg,
   textAlign: 'center',
 }))

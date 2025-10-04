@@ -18,7 +18,6 @@ export const useETFVisualizationLogic = ({
   const validPageSizes = [10, 20, 50, 100]
   const initialPageSize = validPageSizes.includes(defaultPageSize) ? defaultPageSize : 20
 
-  const [allEtfs, setAllEtfs] = useState<ETFExtended[]>([])
   const [etfs, setETFs] = useState<ETFExtended[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -35,10 +34,12 @@ export const useETFVisualizationLogic = ({
 
         const result = await fetchETFs({
           ...filters,
+          page,
+          pageSize,
         })
 
-        setAllEtfs(result.result)
-        setPage(0)
+        setETFs(result.result)
+        setTotalPages(result.pagination.pages)
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Ocorreu um erro desconhecido'
         setError(errorMessage)
@@ -48,27 +49,7 @@ export const useETFVisualizationLogic = ({
     }
 
     loadETFs()
-  }, [filters])
-
-  useEffect(() => {
-    if (allEtfs.length > 0) {
-      const sortedEtfs = [...allEtfs].sort((a, b) => {
-        const quotaA = Number(a.quotaCount)
-        const quotaB = Number(b.quotaCount)
-        return quotaB - quotaA
-      })
-
-      const newTotalPages = Math.ceil(sortedEtfs.length / pageSize)
-      setTotalPages(newTotalPages)
-
-      const startIndex = page * pageSize
-      const endIndex = startIndex + pageSize
-      setETFs(sortedEtfs.slice(startIndex, endIndex))
-    } else {
-      setETFs([])
-      setTotalPages(0)
-    }
-  }, [allEtfs, page, pageSize])
+  }, [filters, page, pageSize])
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
     setPage(newPage - 1)

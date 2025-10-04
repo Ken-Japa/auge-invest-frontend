@@ -1,6 +1,8 @@
 import { TableCell, TableRow } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+import { spacing, typography } from '@/theme/variables'
+
 export const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&.triggered-alert': {
     backgroundColor: theme.palette.warning.light,
@@ -12,12 +14,12 @@ export const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export const StyledTableCell = styled(TableCell)(() => ({
   '& .price-value': {
-    fontWeight: 600,
-    fontSize: '1.1rem',
+    fontWeight: typography.fontWeights.medium,
+    fontSize: typography.fontSizes.lg,
   },
   '& .action-buttons': {
     display: 'flex',
-    gap: '8px',
+    gap: spacing.sm,
     justifyContent: 'center',
   },
 }))

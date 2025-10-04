@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles'
 
 import { visitorColors } from '@/theme/palette/visitor'
-import { spacing } from '@/theme/variables'
+import { spacing, zIndex } from '@/theme/variables'
 
 export const SectionPolicy = styled('section')({
   width: '100%',
@@ -16,12 +16,12 @@ export const SectionPolicy = styled('section')({
     left: 0,
     width: '100%',
     height: '100%',
-    zIndex: -1,
+    zIndex: zIndex.hide,
   },
 
   '& .opacity': {
     position: 'relative',
-    zIndex: 1,
+    zIndex: zIndex.base,
     backgroundColor: visitorColors.backgroundOverlay,
     backdropFilter: visitorColors.blur,
     width: '100%',

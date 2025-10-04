@@ -1,17 +1,17 @@
 import { Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { spacing } from '@/theme/variables'
+import { spacing, typography } from '@/theme/variables'
 
 export const PageHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   textAlign: 'center',
-  marginBottom: theme.spacing(4),
+  marginBottom: spacing.xxl,
   '& h2': {
     color: theme.palette.text.primary,
-    fontWeight: 700,
-    fontSize: '2.5rem',
+    fontWeight: typography.fontWeights.bold,
+    fontSize: typography.fontSizes.xxl,
   },
 }))
 
@@ -19,7 +19,7 @@ export const ActionContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'end',
-  marginBottom: theme.spacing(3),
+  marginBottom: spacing.lg,
 
   [theme.breakpoints.down('sm')]: {
     flexDirection: 'column',

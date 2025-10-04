@@ -6,6 +6,9 @@ import { createTheme, Theme } from '@mui/material/styles'
  * Isso permite a definição de propriedades específicas para tooltips de gráficos diretamente no objeto de tema.
  */
 declare module '@mui/material/styles' {
+  interface PaletteColor {
+    hoverBorder?: string
+  }
   interface Theme {
     chartStyles: {
       tooltip: {

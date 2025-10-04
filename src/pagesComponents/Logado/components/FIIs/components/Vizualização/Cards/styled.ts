@@ -8,6 +8,7 @@ export const StyledCard = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   transition: transitions.medium,
+  position: 'relative', // Adicionado para posicionamento relativo
   boxShadow:
     theme.palette.mode === 'dark' ? '0 8px 16px rgba(0, 0, 0, 0.4)' : '0 8px 16px rgba(0, 0, 0, 0.1)',
   borderRadius: borderRadius.md,
@@ -27,15 +28,13 @@ export const StyledCardContent = styled(MuiCardContent)({
   padding: spacing.md,
 })
 
-export const CardHeader = styled(Box)(({ theme }) => ({
+export const TitleContainer = styled(Box)({
   display: 'flex',
-  justifyContent: 'flex-end',
-  padding: theme.spacing(1, 1, 0, 1),
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  zIndex: 1,
-}))
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginBottom: spacing.sm,
+  position: 'relative',
+})
 
 export const CardTitle = styled(Typography)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightBold,

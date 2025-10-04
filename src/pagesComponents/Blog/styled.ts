@@ -1,6 +1,8 @@
 import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+import { spacing } from '@/theme/variables'
+
 export const BlogContainer = styled(Box)`
   position: relative;
   width: 100%;
@@ -30,16 +32,16 @@ export const BlogContent = styled(Box)`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 2rem;
-  margin-bottom: 4rem;
+  padding: ${spacing.xxl} ${spacing.xl};
+  margin-bottom: ${spacing.xxl};
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 8rem);
+  min-height: calc(100vh - ${spacing.xxl} * 2);
 
   @media (max-width: 900px) {
-    padding: 2rem 1rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    min-height: calc(100vh - 4rem);
+    padding: ${spacing.xl} ${spacing.md};
+    margin-top: ${spacing.xl};
+    margin-bottom: ${spacing.xl};
+    min-height: calc(100vh - ${spacing.xxl});
   }
 `

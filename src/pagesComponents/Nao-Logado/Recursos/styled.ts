@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles'
 
 import { visitorColors } from '@/theme/palette/visitor'
+import { zIndex } from '@/theme/variables'
 
 export const SectionSolutions = styled('section')({
   position: 'relative',
@@ -45,14 +46,14 @@ export const SectionSolutions = styled('section')({
     left: 0,
     width: '100%',
     height: '100%',
-    background: 'rgba(0, 0, 0, 0.2)',
-    zIndex: -1,
+    background: 'rgba(0, 0, 0, theme.opacity.low)',
+    zIndex: zIndex.hide,
   },
 })
 
 export const ContentWrapper = styled('div')({
   position: 'relative',
-  zIndex: 1,
+  zIndex: zIndex.base,
   paddingBottom: '80px',
   width: '100%',
   minHeight: 'calc(100vh - 80px)',

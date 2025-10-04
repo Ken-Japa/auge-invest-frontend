@@ -1,7 +1,7 @@
 import { Box, Card, Chip, CircularProgress } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { transitions } from '@/theme/variables'
+import { transitions, zIndex } from '@/theme/variables'
 
 export const CardContainer = styled(Card)(({ theme }) => ({
   height: '100%',
@@ -12,7 +12,7 @@ export const CardContainer = styled(Card)(({ theme }) => ({
   boxShadow: theme.shadows[4],
   transition: transitions.medium,
   position: 'relative',
-  zIndex: 5,
+  zIndex: zIndex.tooltip,
   '&:hover': {
     boxShadow: theme.shadows[8],
     transform: 'translateY(-2px)',
@@ -34,10 +34,7 @@ export const CodesContainer = styled(Box)(({ theme }) => ({
 
 export const CodeChip = styled(Chip)(({ theme }) => ({
   height: 'auto',
-  backgroundColor:
-    theme.palette.mode === 'dark'
-      ? 'rgba(55, 65, 85, 0.95)' // Fundo mais claro para os chips
-      : 'rgba(240, 245, 250, 0.9)',
+  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(55, 65, 85, 0.95)' : 'rgba(240, 245, 250, 0.9)',
   border: `1px solid ${theme.palette.divider}`,
   transition: transitions.medium,
   '& .MuiChip-label': {
@@ -70,5 +67,5 @@ export const CompanyName = styled(Box)(({ theme }) => ({
 export const CardsContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(4),
   position: 'relative',
-  zIndex: 4,
+  zIndex: zIndex.tooltip,
 }))

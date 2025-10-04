@@ -1,13 +1,13 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { transitions } from '@/theme/variables'
+import { borderRadius, spacing, transitions } from '@/theme/variables'
 
 export const StyledDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialog-paper': {
     width: '100%',
     maxWidth: '500px',
-    borderRadius: 16,
+    borderRadius: borderRadius.md,
     boxShadow: theme.shadows[5],
   },
 }))
@@ -15,7 +15,7 @@ export const StyledDialog = styled(Dialog)(({ theme }) => ({
 export const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.primary.contrastText,
-  padding: theme.spacing(2),
+  padding: spacing.md,
   fontSize: '1.1rem',
   fontWeight: 'bold',
   textAlign: 'center',

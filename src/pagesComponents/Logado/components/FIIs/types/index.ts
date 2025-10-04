@@ -23,4 +23,16 @@ export interface FIIFilter {
   sortOrder?: 'asc' | 'desc'
 }
 
+export interface VisualizacaoFIIsProps {
+  mode?: VisualizationMode
+  filter?: {
+    segmento?: string
+    nome?: string
+    isPatrocinado?: boolean
+    searchQuery?: string
+  }
+  onError?: (message: string) => void
+  defaultPageSize?: number
+}
+
 export type VisualizationMode = 'card' | 'table' | 'grid'

@@ -1,7 +1,6 @@
 import { Box, Container } from '@mui/material'
 
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
-
 import { borderRadius } from '@/theme/variables'
 
 import { PostContainer } from './styled'

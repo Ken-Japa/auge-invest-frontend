@@ -2,26 +2,26 @@ import { DialogContent } from '@mui/material'
 import { DialogTitle, Dialog } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { borderRadius } from '@/theme/variables'
+import { borderRadius, spacing, typography, shadows } from '@/theme/variables'
 
 export const StyledDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiPaper-root': {
     borderRadius: borderRadius.lg,
-    boxShadow: theme.shadows[10],
+    boxShadow: shadows.xl,
   },
 }))
 
 export const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   color: theme.palette.text.primary,
-  padding: theme.spacing(2.5, 3),
+  padding: `${spacing.md} ${spacing.lg}`,
   textAlign: 'center',
-  fontSize: '1.5rem',
-  fontWeight: 700,
+  fontSize: typography.fontSizes.xxl,
+  fontWeight: typography.fontWeights.bold,
   borderBottom: 'none',
 }))
 
 export const StyledDialogContent = styled(DialogContent)(({ theme }) => ({
-  marginTop: theme.spacing(2),
-  padding: theme.spacing(2.5),
+  marginTop: spacing.md,
+  padding: spacing.md,
 }))

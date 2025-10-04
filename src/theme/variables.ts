@@ -1,14 +1,18 @@
 import { customColors } from './palette'
+export { customColors }
 // Variáveis de tema centralizadas para uso em styled components e componentes MUI
 
 // Espaçamento - Sistema de espaçamento consistente para margens e paddings
 export const spacing = {
+  xxs: '0.125rem', // Extra extra pequeno - Para espaçamentos mínimos e compactos
   xs: '0.25rem', // Extra pequeno - Para espaçamentos mínimos e compactos
   sm: '0.5rem', // Pequeno - Para espaçamentos internos em componentes pequenos
   md: '1rem', // Médio - Espaçamento padrão para a maioria dos componentes
   lg: '1.5rem', // Grande - Para separação entre seções ou componentes maiores
   xl: '2rem', // Extra grande - Para margens maiores e separação de blocos
   xxl: '3rem', // Extra extra grande - Para espaçamentos muito grandes entre seções
+  xxxl: '3.5rem',
+  xxxxl: '4rem', // Extra extra extra grande - Para espaçamentos ainda maiores
 }
 
 // Bordas - Sistema de arredondamento de bordas para consistência visual
@@ -48,12 +52,25 @@ export const typography = {
     lg: '1.25rem', // 20px - Para títulos de seção menores
     xl: '1.5rem', // 24px - Para títulos de seção
     xxl: '2rem', // 32px - Para títulos principais
+    xxxxl: '3rem', // 48px - Para títulos muito grandes
+    display: '2.5rem', // Para títulos de destaque
+    caption: '1.1rem', // Para legendas e textos menores
   },
   fontWeights: {
     light: 300, // Para textos mais leves e sutis
     regular: 400, // Peso padrão para a maioria dos textos
     medium: 500, // Para subtítulos e textos destacados
+    semiBold: 600, // Para títulos e elementos enfatizados
     bold: 700, // Para títulos e elementos enfatizados
+  },
+  lineHeights: {
+    sm: 1.4,
+    md: 1.6,
+    lg: 1.8,
+    base: 1.6, // Altura de linha padrão para a maioria dos textos
+  },
+  letterSpacing: {
+    md: '0.02em',
   },
 }
 
@@ -72,6 +89,24 @@ export const transitions = {
   slow: '0.5s ease', // Lenta - Para transições mais elaboradas
 }
 
+// Z-Index - Gerenciamento de camadas para elementos sobrepostos
+export const zIndex = {
+  hide: -1, // Para esconder elementos atrás de outros
+  base: 1, // Camada base para a maioria dos elementos
+  tooltip: 4,
+  dropdown: 1000, // Para dropdowns
+  sticky: 1020, // Para elementos fixos/sticky (headers, footers)
+  overlay: 1030, // Para overlays de modais, backdrops
+  modal: 1040, // Para modais e diálogos
+  loader: 1050, // Para loaders e spinners
+}
+
+// Opacity - Escala de opacidade para elementos
+export const opacity = {
+  semiTransparent: 0.9, // Para elementos semi-transparentes
+  full: 1, // Para elementos totalmente opacos
+}
+
 // Breakpoints - Pontos de quebra para design responsivo
 export const breakpoints = {
   xs: '0px', // Extra pequeno - Celulares pequenos
@@ -79,6 +114,13 @@ export const breakpoints = {
   md: '960px', // Médio - Tablets e notebooks pequenos
   lg: '1280px', // Grande - Notebooks e desktops
   xl: '1920px', // Extra grande - Monitores grandes e TVs
+}
+
+// Gradientes - Definições de gradientes de cor para uso consistente
+export const gradients = {
+  primaryToSecondary: 'linear-gradient(90deg, #0D95F9 0%, #8411CC 100%)',
+  primaryToSecondaryAlt: 'linear-gradient(135deg, #0D95F9 0%, #8411CC 100%)',
+  warningToError: 'linear-gradient(135deg, #ff9800 0%, #ff5722 100%)',
 }
 
 /**

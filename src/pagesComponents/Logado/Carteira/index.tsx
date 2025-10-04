@@ -3,7 +3,6 @@
 import { Container } from '@mui/material'
 import { useSession } from 'next-auth/react'
 
-import { PageTitle, SectionContainer } from '@/components/Component-Styles/SharedStyledComponents'
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
@@ -14,6 +13,7 @@ import { PositionSection } from './components'
 import { FocusProvider } from './components/RecentActivities/components/FocusContext/FocusContext'
 import { WalletSection } from './components/WalletSection'
 import { RecentActivitiesProvider } from './context/RecentActivitiesContext'
+import { PageTitle, SectionContainer } from './styled'
 
 export const Dashboard = () => {
   const { data: session } = useSession()

@@ -9,6 +9,8 @@ import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 import { PageTransition } from '@/components/Helpers/PageTransition'
 import { PageBackground } from '@/components/Layout/PageBackground'
+import { PageContainer } from '@/components/Shared-Styles/PageStyledComponents'
+
 // Componentes da página - Carregando os componentes principais imediatamente
 import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar'
 
@@ -21,7 +23,6 @@ import { Inflacao } from './components/Outros/Inflacao'
 import { PosicaoUsuario } from './components/Outros/PosicaoUsuario'
 import { Selic } from './components/Outros/Selic'
 import {
-  BackgroundContainer,
   DashboardItem,
   SearchBarWrapper,
   StyledContainer,
@@ -47,10 +48,11 @@ export const VisaoEconomia = () => {
       <PageTransition direction="up" duration={0.4} distance={30}>
         <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
           <ProgressiveLoad threshold={0.1} delay={0.2}>
-            <PageBackground imageName="VisaoEconomia">
-              <Title>Visão Geral da Economia</Title>
+            <PageBackground imageName="VisaoEconomia" >
+              <PageContainer>
+                <Title>Visão Geral da Economia</Title>
 
-              <BackgroundContainer>
+
                 <StyledContainer maxWidth="xl" $isloading={isLoading}>
                   <SearchBarWrapper>
                     <GlobalSearchBar type="TodosSimplificado" />
@@ -137,7 +139,6 @@ export const VisaoEconomia = () => {
                       </Grid>
                     </Grid>
 
-                    {/* Calendários na parte inferior - Largura total */}
                     <Suspense
                       fallback={
                         <SuspenseFallbackBox height="500px">
@@ -145,6 +146,13 @@ export const VisaoEconomia = () => {
                         </SuspenseFallbackBox>
                       }
                     >
+
+                      <Grid item xs={12}>
+                        <DashboardItem>
+                          <Fii />
+                        </DashboardItem>
+                      </Grid>
+
                       <Grid item xs={12}>
                         <DashboardItem>
                           <Bdr />
@@ -157,11 +165,7 @@ export const VisaoEconomia = () => {
                         </DashboardItem>
                       </Grid>
 
-                      <Grid item xs={12}>
-                        <DashboardItem>
-                          <Fii />
-                        </DashboardItem>
-                      </Grid>
+
 
                       <Grid item xs={12}>
                         <DashboardItem>
@@ -175,7 +179,7 @@ export const VisaoEconomia = () => {
                     </Suspense>
                   </Grid>
                 </StyledContainer>
-              </BackgroundContainer>
+              </PageContainer>
             </PageBackground>
           </ProgressiveLoad>
         </SuspenseWrapper>

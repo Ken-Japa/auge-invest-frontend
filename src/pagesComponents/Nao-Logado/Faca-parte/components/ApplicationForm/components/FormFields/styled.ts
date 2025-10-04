@@ -24,7 +24,7 @@ export const selectStyles = {
       borderColor: 'rgba(255, 255, 255, 0.23)',
     },
     '&:hover .MuiOutlinedInput-notchedOutline': {
-      borderColor: 'rgba(255, 255, 255, 0.5)',
+      borderColor: 'rgba(255, 255, 255, theme.opacity.medium)',
     },
     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
       borderColor: visitorColors.primary,

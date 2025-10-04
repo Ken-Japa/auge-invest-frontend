@@ -1,14 +1,19 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-export const HeaderContainer = styled(Box)`
-  padding: 4rem 0;
+import { spacing, typography } from '@/theme/variables'
+
+export const HeaderContainer = styled(Box)(
+  () => `
+  padding: ${spacing.xl} 0;
   position: relative;
   overflow: hidden;
   text-align: center;
-`
+`,
+)
 
-export const HeaderContent = styled(Box)`
+export const HeaderContent = styled(Box)(
+  () => `
   position: relative;
   z-index: 2;
   display: flex;
@@ -20,26 +25,31 @@ export const HeaderContent = styled(Box)`
   h2 {
     margin: 0 auto;
   }
-`
+`,
+)
 
-export const HeaderTitle = styled(Typography)`
-  font-size: 2rem;
-  font-weight: 700;
-  color: #0d95f9;
-  margin-bottom: 3rem;
+export const HeaderTitle = styled(Typography)(
+  ({ theme }) => `
+  font-size: ${typography.fontSizes.xxl};
+  font-weight: ${typography.fontWeights.bold};
+  color: ${theme.palette.primary.main};
+  margin-bottom: ${spacing.xxl};
 
   @media (min-width: 900px) {
-    font-size: 3rem;
+    font-size: ${typography.fontSizes.xxl};
   }
-`
+`,
+)
 
-export const HeaderSubtitle = styled(Typography)`
-  font-size: 1.3rem;
-  color: rgba(255, 255, 255, 0.8);
+export const HeaderSubtitle = styled(Typography)(
+  ({ theme }) => `
+  font-size: ${typography.fontSizes.lg};
+  color: ${theme.palette.text.secondary};
   max-width: 32rem;
   margin: 0 auto;
 
   @media (min-width: 900px) {
-    font-size: 1.25rem;
+    font-size: ${typography.fontSizes.lg};
   }
-`
+`,
+)

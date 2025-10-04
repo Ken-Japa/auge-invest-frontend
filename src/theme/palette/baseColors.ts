@@ -4,6 +4,7 @@ const baseColors = {
     A100: '#7DC5FC', // Azul claro para hover e elementos secundários (Azul céu claro)
     A200: '#0068BA', // Azul escuro para elementos ativos e destaques (Azul marinho médio)
     contrastText: '#FFFFFF', // Texto sobre fundo azul (Branco puro)
+    hoverBorder: 'rgba(125, 197, 252, 0.5)', // Tom mais suave que o azul principal da marca
   },
   secondary: {
     main: '#8411CC', // Roxo principal para elementos secundários (Roxo violeta intenso)

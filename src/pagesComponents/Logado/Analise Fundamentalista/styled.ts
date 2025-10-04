@@ -1,7 +1,7 @@
 import { Box, Paper, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { borderRadius, transitions } from '@/theme/variables'
+import { borderRadius, shadows, spacing, transitions, typography } from '@/theme/variables'
 
 export const ContentContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -9,26 +9,26 @@ export const ContentContainer = styled(Box)(({ theme }) => ({
 }))
 
 export const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(4),
+  padding: spacing.xxl,
   backgroundColor: theme.palette.background.paper,
   borderRadius: borderRadius.lg,
-  boxShadow: theme.shadows[3],
+  boxShadow: shadows.md,
   border: `1px solid ${theme.palette.divider}`,
   transition: transitions.medium,
-  marginBottom: theme.spacing(6),
+  marginBottom: spacing.xxxxl,
   '& .MuiInputBase-root': {
     backgroundColor: theme.palette.mode === 'dark' ? 'rgba(26, 34, 52, 0.8)' : 'rgba(255, 255, 255, 0.8)',
   },
 }))
 
 export const StyledPaperInput = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(4),
+  padding: spacing.xxl,
   backgroundColor: theme.palette.background.default,
   borderRadius: borderRadius.lg,
-  boxShadow: theme.shadows[3],
+  boxShadow: shadows.md,
   border: `1px solid ${theme.palette.divider}`,
   transition: transitions.medium,
-  marginBottom: theme.spacing(6),
+  marginBottom: spacing.xxxxl,
   '& .MuiInputBase-root': {
     backgroundColor: theme.palette.mode === 'dark' ? 'rgba(26, 34, 52, 0.8)' : 'rgba(255, 255, 255, 0.8)',
   },
@@ -36,8 +36,8 @@ export const StyledPaperInput = styled(Paper)(({ theme }) => ({
 
 export const Title = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
-  fontWeight: 600,
-  fontSize: 42,
+  fontWeight: typography.fontWeights.semiBold,
+  fontSize: typography.fontSizes.xxxxl,
   textAlign: 'center',
-  letterSpacing: '0.02em',
+  letterSpacing: typography.letterSpacing.md,
 }))
