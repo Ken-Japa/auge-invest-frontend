@@ -3,6 +3,8 @@ import { styled } from '@mui/material/styles'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
+import { borderRadius } from '@/theme/variables'
+
 export const PostContainer = styled(Box)`
   padding: 4rem 0;
   background: #111111;
@@ -19,7 +21,7 @@ export const BackgroundImageWrapper = styled(Box)`
 export const MainContentWrapper = styled(motion.div)`
   background: rgba(26, 32, 44, 0.75);
   backdrop-filter: blur(8px);
-  border-radius: 0.5rem;
+  border-radius: ${borderRadius.md};
   padding: 2rem;
   margin-top: 1.5rem;
   margin-bottom: 2rem;
@@ -31,7 +33,7 @@ export const MainContentWrapper = styled(motion.div)`
 export const RelatedPostContentWrapper = styled(motion.div)`
   background: rgba(26, 32, 44, 0.2);
   backdrop-filter: blur(8px);
-  border-radius: 1rem;
+  border-radius: ${borderRadius.lg};
   margin-bottom: 1rem;
 
   @media (min-width: 768px) {
@@ -62,7 +64,7 @@ export const PostContent = styled(Box)`
   padding: 2rem;
   background: rgba(0, 0, 0, 0.25);
   border: ${({ theme }) => `1px solid ${theme.palette.divider}`};
-  border-radius: 8px;
+  border-radius: ${borderRadius.md};
   backdrop-filter: blur(4px);
 
   h1,
@@ -144,14 +146,14 @@ export const PostContent = styled(Box)`
   code {
     background: rgba(255, 255, 255, 0.1);
     padding: 0.2rem 0.4rem;
-    border-radius: 4px;
+    border-radius: ${borderRadius.sm};
     font-size: 0.9em;
   }
 
   pre {
     background: rgba(255, 255, 255, 0.1);
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: ${borderRadius.md};
     overflow-x: auto;
     margin: 1.5rem 0;
 

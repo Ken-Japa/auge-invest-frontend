@@ -2,9 +2,11 @@
 
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles'
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 
 import { darkTheme, lightTheme } from './mui'
+
+const THEME_STORAGE_KEY = 'theme'
 
 /**
  * @interface ThemeContextType
@@ -47,17 +49,17 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [isDarkMode, setIsDarkMode] = useState(true)
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme')
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY)
     setIsDarkMode(savedTheme !== 'light')
   }, [])
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     setIsDarkMode((prev) => {
       const newTheme = !prev
-      localStorage.setItem('theme', newTheme ? 'dark' : 'light')
+      localStorage.setItem(THEME_STORAGE_KEY, newTheme ? 'dark' : 'light')
       return newTheme
     })
-  }
+  }, [])
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>

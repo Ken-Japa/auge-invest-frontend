@@ -1,5 +1,7 @@
 import { Box, Grid, Skeleton } from '@mui/material'
 
+import { borderRadius } from '@/theme/variables'
+
 export const BlogCardListSkeleton = () => {
   return (
     <Box>
@@ -11,7 +13,7 @@ export const BlogCardListSkeleton = () => {
               height={200}
               sx={{
                 bgcolor: 'rgba(255, 255, 255, 0.1)',
-                borderRadius: 2,
+                borderRadius: borderRadius.md,
               }}
             />
           </Grid>
@@ -24,7 +26,7 @@ export const BlogCardListSkeleton = () => {
           height={40}
           sx={{
             bgcolor: 'rgba(255, 255, 255, 0.1)',
-            borderRadius: 1,
+            borderRadius: borderRadius.sm,
           }}
         />
       </Box>

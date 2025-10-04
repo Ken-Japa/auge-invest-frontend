@@ -1,6 +1,8 @@
 import { Box, Skeleton } from '@mui/material'
 import React from 'react'
 
+import { borderRadius } from '@/theme/variables'
+
 interface ContentSkeletonProps {
   type?: 'text' | 'card' | 'avatar' | 'chart' | 'form'
   textLines?: number
@@ -96,7 +98,7 @@ export const ContentSkeleton: React.FC<ContentSkeletonProps> = ({
                 height={56}
                 animation="wave"
                 sx={{
-                  borderRadius: 1,
+                  borderRadius: borderRadius.md,
                   transform: 'none',
                   transformOrigin: 'center',
                 }}

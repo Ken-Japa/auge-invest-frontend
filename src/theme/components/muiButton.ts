@@ -12,7 +12,7 @@ export const muiButton: Components['MuiButton'] = {
   styleOverrides: {
     root: {
       padding: `${spacing.xs} ${spacing.md}`,
-      borderRadius: borderRadius.sm,
+      borderRadius: borderRadius.md,
       textTransform: 'capitalize',
       transition: transitions.medium,
     },

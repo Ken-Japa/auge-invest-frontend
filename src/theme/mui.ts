@@ -27,62 +27,16 @@ declare module '@mui/material/styles' {
     }
   }
 }
-
 import { components } from './components'
-import { darkPalette, lightPalette } from './palette'
-import { borderRadius, typography } from './variables'
-
-/**
- * @const commonOptions
- * @description Objeto de configuração comum para ambos os temas (claro e escuro).
- * Define configurações de tipografia, forma (borderRadius), componentes e estilos de gráfico que são compartilhados.
- */
+import { muiTypography } from './components/muiTypography'
+import { darkPalette, lightPalette, customColors } from './palette'
+import { borderRadius, shadows } from './variables'
 const commonOptions = {
-  typography: {
-    fontFamily: typography.fontFamily,
-    h1: {
-      fontSize: typography.fontSizes.xxl,
-      fontWeight: typography.fontWeights.bold,
-    },
-    h2: {
-      fontSize: typography.fontSizes.xl,
-      fontWeight: typography.fontWeights.bold,
-    },
-    h3: {
-      fontSize: typography.fontSizes.lg,
-      fontWeight: typography.fontWeights.medium,
-    },
-    h4: {
-      fontSize: typography.fontSizes.md,
-      fontWeight: typography.fontWeights.medium,
-    },
-    h5: {
-      fontSize: typography.fontSizes.md,
-      fontWeight: typography.fontWeights.medium,
-    },
-    h6: {
-      fontSize: typography.fontSizes.xs,
-      fontWeight: typography.fontWeights.medium,
-    },
-    body1: {
-      fontSize: typography.fontSizes.md,
-    },
-    body2: {
-      fontSize: typography.fontSizes.sm,
-    },
-  },
+  typography: muiTypography,
   shape: {
-    borderRadius: parseInt(borderRadius.sm),
+    borderRadius: parseInt(borderRadius.md),
   },
   components,
-  chartStyles: {
-    tooltip: {
-      background: 'rgba(255, 255, 255, 0.9)',
-      border: '1px solid #ccc',
-      borderRadius: '4px',
-      boxShadow: '0 3px 6px rgba(0,0,0,0.16)',
-    },
-  },
 }
 
 /**
@@ -92,6 +46,14 @@ const commonOptions = {
 export const darkTheme: Theme = createTheme({
   ...commonOptions,
   palette: darkPalette,
+  chartStyles: {
+    tooltip: {
+      background: customColors.cardBackground.dark,
+      border: `1px solid ${customColors.cardBorder.dark}`,
+      borderRadius: borderRadius.xs,
+      boxShadow: shadows.md,
+    },
+  },
 })
 
 /**
@@ -101,4 +63,12 @@ export const darkTheme: Theme = createTheme({
 export const lightTheme: Theme = createTheme({
   ...commonOptions,
   palette: lightPalette,
+  chartStyles: {
+    tooltip: {
+      background: customColors.cardBackground.light,
+      border: `1px solid ${customColors.cardBorder.light}`,
+      borderRadius: borderRadius.xs,
+      boxShadow: shadows.md,
+    },
+  },
 })

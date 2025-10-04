@@ -3,12 +3,12 @@ import { customColors } from './palette'
 
 // Espaçamento - Sistema de espaçamento consistente para margens e paddings
 export const spacing = {
-  xs: '4px', // Extra pequeno - Para espaçamentos mínimos e compactos
-  sm: '8px', // Pequeno - Para espaçamentos internos em componentes pequenos
-  md: '16px', // Médio - Espaçamento padrão para a maioria dos componentes
-  lg: '24px', // Grande - Para separação entre seções ou componentes maiores
-  xl: '32px', // Extra grande - Para margens maiores e separação de blocos
-  xxl: '48px', // Extra extra grande - Para espaçamentos muito grandes entre seções
+  xs: '0.25rem', // Extra pequeno - Para espaçamentos mínimos e compactos
+  sm: '0.5rem', // Pequeno - Para espaçamentos internos em componentes pequenos
+  md: '1rem', // Médio - Espaçamento padrão para a maioria dos componentes
+  lg: '1.5rem', // Grande - Para separação entre seções ou componentes maiores
+  xl: '2rem', // Extra grande - Para margens maiores e separação de blocos
+  xxl: '3rem', // Extra extra grande - Para espaçamentos muito grandes entre seções
 }
 
 // Bordas - Sistema de arredondamento de bordas para consistência visual
@@ -19,6 +19,7 @@ export const borderRadius = {
   lg: '16px', // Grande - Para modais e diálogos
   xl: '24px', // Extra grande - Para componentes destacados
   circle: '50%', // Circular - Para avatares e botões circulares
+  full: '9999px', // Borda completamente arredondada para elementos como pílulas
 }
 
 // Padding - Combinações comuns de padding para diferentes componentes
@@ -37,15 +38,7 @@ export const padding = {
   input: `${spacing.sm} ${spacing.md}`, // Padding para campos de entrada (vertical pequeno, horizontal médio)
 }
 
-// Sombras - Sistema de elevação com sombras para indicar profundidade
-export const shadows = {
-  sm: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)', // Pequena - Para elementos sutilmente elevados
-  md: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)', // Média - Para cards e elementos interativos
-  lg: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)', // Grande - Para modais e elementos flutuantes
-  xl: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)', // Extra grande - Para elementos destacados
-}
-
-// Tipografia - Sistema tipográfico para consistência de texto
+// Tipografia - Definições de fontes, tamanhos e pesos
 export const typography = {
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif', // Família de fontes padrão
   fontSizes: {
@@ -62,6 +55,14 @@ export const typography = {
     medium: 500, // Para subtítulos e textos destacados
     bold: 700, // Para títulos e elementos enfatizados
   },
+}
+
+// Sombras - Sistema de elevação com sombras para indicar profundidade
+export const shadows = {
+  sm: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)', // Pequena - Para elementos sutilmente elevados
+  md: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)', // Média - Para cards e elementos interativos
+  lg: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)', // Grande - Para modais e elementos flutuantes
+  xl: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)', // Extra grande - Para elementos destacados
 }
 
 // Transições - Tempos de transição para animações e efeitos

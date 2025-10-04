@@ -3,6 +3,7 @@ import { ButtonPropsColorOverrides, ButtonPropsSizeOverrides } from '@mui/materi
 import { SxProps } from '@mui/system'
 import { OverridableStringUnion } from '@mui/types'
 import { HTMLMotionProps } from 'framer-motion'
+import { borderRadius as themeBorderRadius } from '@/theme/variables'
 
 interface CustomButtonProps extends Omit<ButtonProps, 'variant' | 'color' | 'size'> {
   value?: string
@@ -43,7 +44,7 @@ export const CustomButton = ({
   margin,
   align,
   padding = '10px 30px',
-  borderRadius = '100px',
+  borderRadius = themeBorderRadius.md,
   disabled = false,
   className,
   sx,

@@ -1,13 +1,15 @@
 import { Box, InputBase } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+import { borderRadius } from '@/theme/variables'
+
 export const SearchContainer = styled(Box)`
   display: flex;
   align-items: center;
   width: 100%;
   max-width: 600px;
   background: ${({ theme }) => theme.palette.background.paper};
-  border-radius: 8px;
+  border-radius: ${borderRadius.md};
   padding: 8px 16px;
   border: 1px solid ${({ theme }) => theme.palette.divider};
   transition: all 0.3s ease;

@@ -1,7 +1,7 @@
 import { Box, Paper, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { transitions } from '@/theme/variables'
+import { borderRadius, transitions } from '@/theme/variables'
 
 export const ContentContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -11,7 +11,7 @@ export const ContentContainer = styled(Box)(({ theme }) => ({
 export const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
   backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius * 2,
+  borderRadius: borderRadius.lg,
   boxShadow: theme.shadows[3],
   border: `1px solid ${theme.palette.divider}`,
   transition: transitions.medium,
@@ -24,7 +24,7 @@ export const StyledPaper = styled(Paper)(({ theme }) => ({
 export const StyledPaperInput = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
   backgroundColor: theme.palette.background.default,
-  borderRadius: theme.shape.borderRadius * 2,
+  borderRadius: borderRadius.lg,
   boxShadow: theme.shadows[3],
   border: `1px solid ${theme.palette.divider}`,
   transition: transitions.medium,

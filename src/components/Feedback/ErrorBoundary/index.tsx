@@ -3,6 +3,7 @@ import { Box, Stack, Typography } from '@mui/material'
 import React, { Component, ErrorInfo, ReactNode } from 'react'
 
 import { CustomButton } from '@/components/Core/Button'
+import { borderRadius } from '@/theme/variables'
 
 interface Props {
   children: ReactNode
@@ -85,7 +86,7 @@ export class ErrorBoundary extends Component<Props, State> {
             />
           </Stack>
           {process.env.NODE_ENV === 'development' && this.state.error && (
-            <Box sx={{ mt: 4, p: 2, bgcolor: 'rgba(255, 255, 255, 0.05)', borderRadius: 1 }}>
+            <Box sx={{ mt: 4, p: 2, bgcolor: 'rgba(255, 255, 255, 0.05)', borderRadius: borderRadius.md }}>
               <Typography variant="body2" color="error" sx={{ fontFamily: 'monospace' }}>
                 {this.state.error.toString()}
               </Typography>

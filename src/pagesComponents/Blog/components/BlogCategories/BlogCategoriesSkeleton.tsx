@@ -1,5 +1,7 @@
 import { Box, Skeleton } from '@mui/material'
 
+import { borderRadius } from '@/theme/variables'
+
 import { CategoriesContainer } from './styled'
 
 export const BlogCategoriesSkeleton = () => {
@@ -19,7 +21,7 @@ export const BlogCategoriesSkeleton = () => {
             height={40}
             sx={{
               bgcolor: 'rgba(255,255,255,0.1)',
-              borderRadius: 1,
+              borderRadius: borderRadius.sm,
             }}
           />
         ))}

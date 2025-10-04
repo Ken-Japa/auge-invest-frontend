@@ -2,6 +2,8 @@ import { Box, Typography } from '@mui/material'
 import { Point } from '@nivo/line'
 import React from 'react'
 
+import { borderRadius } from '@/theme/variables'
+
 interface TooltipContentProps {
   point: Point
   valueFormatter: (value: number) => [string] | [string, string]
@@ -15,7 +17,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({ point, valueForm
   const formattedLabel = labelFormatter(label)
 
   return (
-    <Box sx={{ p: 1, bgcolor: 'background.paper', boxShadow: 1, borderRadius: 1 }}>
+    <Box sx={{ p: 1, bgcolor: 'background.paper', boxShadow: 1, borderRadius: borderRadius.md }}>
       <Typography variant="body2">{formattedLabel}</Typography>
       <Typography variant="body1" fontWeight="bold">
         {formattedValue} {valueLabel && `(${valueLabel})`}

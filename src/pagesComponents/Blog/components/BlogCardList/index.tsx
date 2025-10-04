@@ -9,6 +9,8 @@ import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
 import { BlogCardListSkeleton } from '@/components/Feedback/Skeletons/BlogCardListSkeleton'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 
+import { borderRadius } from '@/theme/variables'
+
 import type { BlogPost } from '../../constants/blogPosts'
 
 interface BlogCardListProps {
@@ -32,7 +34,7 @@ export const BlogCardList = ({ posts, isLoading }: BlogCardListProps) => {
           textAlign: 'center',
           py: 8,
           backgroundColor: 'rgba(255, 255, 255, 0.05)',
-          borderRadius: 2,
+          borderRadius: borderRadius.md,
         }}
       >
         <Typography variant="h6" color="text.secondary">

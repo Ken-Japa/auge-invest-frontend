@@ -42,7 +42,7 @@ export const StyledAccordion = styled(MuiAccordion, {
 })<{ customTheme: CustomTheme }>(({ customTheme }) => ({
   backgroundColor: customTheme.customBackground || customTheme.background,
   border: `1px solid ${customTheme.customBorderColor || customTheme.borderColor}`,
-  borderRadius: borderRadius.sm,
+  borderRadius: borderRadius.md,
   boxShadow: 'none',
   '&:before': {
     display: 'none',

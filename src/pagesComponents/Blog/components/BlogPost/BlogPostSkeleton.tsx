@@ -2,6 +2,8 @@ import { Box, Container } from '@mui/material'
 
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
 
+import { borderRadius } from '@/theme/variables'
+
 import { PostContainer } from './styled'
 
 export const BlogPostSkeleton = () => {
@@ -55,7 +57,7 @@ export const BlogPostSkeleton = () => {
                 height={32}
                 className="bg-[#ffffff0a] backdrop-blur-sm"
                 style={{
-                  borderRadius: '16px',
+                  borderRadius: borderRadius.full,
                 }}
               />
             ))}

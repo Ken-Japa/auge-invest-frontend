@@ -10,7 +10,7 @@ import { borderRadius, spacing, transitions } from '../variables'
 export const muiAccordion: Components['MuiAccordion'] = {
   styleOverrides: {
     root: {
-      borderRadius: borderRadius.sm,
+      borderRadius: borderRadius.md,
       boxShadow: 'none',
       border: '1px solid',
       borderColor: 'divider',

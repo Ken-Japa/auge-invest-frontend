@@ -1,3 +1,7 @@
+:root {
+  --matrix-green: #00ff41;
+}
+
 /* Custom styles for matrix theme */
 .matrix-bg {
   position: relative;
@@ -41,12 +45,6 @@
 
 .glow-text {
   text-shadow: 0 0 10px var(--matrix-green);
-}
-
-.matrix-card {
-  background: rgba(0, 10, 0, 0.8);
-  border: 1px solid var(--matrix-green);
-  transition: all 0.3s ease;
 }
 
 .matrix-card:hover {

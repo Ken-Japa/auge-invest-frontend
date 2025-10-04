@@ -1,9 +1,11 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+import { borderRadius } from '@/theme/variables'
+
 export const StyledDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiPaper-root': {
-    borderRadius: theme.spacing(2),
+    borderRadius: borderRadius.md,
     boxShadow: theme.shadows[5],
   },
 }))

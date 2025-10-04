@@ -1,5 +1,7 @@
 import { Theme } from '@nivo/core'
 
+import { borderRadius } from '@/theme/variables'
+
 export const getChartTheme = (
   gridXColor: string,
   gridYColor: string,
@@ -47,7 +49,7 @@ export const getChartTheme = (
       background: '#ffffff',
       color: '#333333',
       fontSize: 12,
-      borderRadius: 4,
+      borderRadius: borderRadius.md,
       boxShadow: '0 1px 2px rgba(0, 0, 0, 0.25)',
       padding: 8,
     },
