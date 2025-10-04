@@ -1,4 +1,5 @@
 import { lazy } from 'react'
+
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 

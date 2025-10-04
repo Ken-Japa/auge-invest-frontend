@@ -1,18 +1,26 @@
 'use client'
-import React from 'react'
 import { Tab, Tabs } from '@mui/material'
+import React from 'react'
 
-import { TabPanel } from '@/components/Data-Display/TabPanel'
 import { useErrorHandling } from '@/components/Data-Display/ErrorHandling'
+import { TabPanel } from '@/components/Data-Display/TabPanel'
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 import { PageTransition } from '@/components/Helpers/PageTransition'
-import { VisualizacaoFIIs } from './components/Vizualização'
+import {
+  AtivosTitle,
+  VisualizationContainer,
+  ContentBox,
+  ContentWrapper,
+  AtivosContainer,
+  AtivosSearchWrapper,
+} from '@/components/Shared-Styles/AtivosStyledComponents'
+
 import FIISearchBar from './components/SearchBar'
+import { VisualizacaoFIIs } from './components/Vizualização'
 import { useFIITabsLogic } from './hooks/useFIITabsLogic'
-import { AtivosTitle, VisualizationContainer, ContentBox, ContentWrapper, AtivosContainer, AtivosSearchWrapper } from '@/components/Shared-Styles/AtivosStyledComponents'
 
 
 interface FIIProps {
@@ -20,7 +28,7 @@ interface FIIProps {
   viewMode?: 'card' | 'table' | 'grid'
 }
 
-function a11yProps(index: number) { 
+function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
@@ -41,29 +49,44 @@ const FII: React.FC<FIIProps> = ({ defaultPageSize, viewMode }) => {
                 <AtivosTitle variant="h2" gutterBottom>
                   Fundos Imobiliários
                 </AtivosTitle>
-                  <AtivosContainer>
-                    <AtivosSearchWrapper>
-                      <FIISearchBar />
-                    </AtivosSearchWrapper>
-                    <VisualizationContainer>
-                      <Tabs value={value} onChange={handleChange} aria-label="ETF visualization tabs">
-                        <Tab label="Cartões" {...a11yProps(0)} />
-                        <Tab label="Tabela" {...a11yProps(1)} />
-                        <Tab label="Grade" {...a11yProps(2)} />
-                      </Tabs>
-                    </VisualizationContainer>
-                    <TabPanel value={value} index={0}>
-                      <VisualizacaoFIIs mode="card" filter={{}} onError={setError} defaultPageSize={defaultPageSize} />
-                    </TabPanel>
-                    <TabPanel value={value} index={1}>
-                      <VisualizacaoFIIs mode="table" filter={{}} onError={setError} defaultPageSize={defaultPageSize} />
-                    </TabPanel>
-                    <TabPanel value={value} index={2}>
-                      <VisualizacaoFIIs mode="grid" filter={{}} onError={setError} defaultPageSize={defaultPageSize} />
-                    </TabPanel>
-                  </AtivosContainer>
-                </ContentBox>
-              </ContentWrapper>
+                <AtivosContainer>
+                  <AtivosSearchWrapper>
+                    <FIISearchBar />
+                  </AtivosSearchWrapper>
+                  <VisualizationContainer>
+                    <Tabs value={value} onChange={handleChange} aria-label="ETF visualization tabs">
+                      <Tab label="Cartões" {...a11yProps(0)} />
+                      <Tab label="Tabela" {...a11yProps(1)} />
+                      <Tab label="Grade" {...a11yProps(2)} />
+                    </Tabs>
+                  </VisualizationContainer>
+                  <TabPanel value={value} index={0}>
+                    <VisualizacaoFIIs
+                      mode="card"
+                      filter={{}}
+                      onError={setError}
+                      defaultPageSize={defaultPageSize}
+                    />
+                  </TabPanel>
+                  <TabPanel value={value} index={1}>
+                    <VisualizacaoFIIs
+                      mode="table"
+                      filter={{}}
+                      onError={setError}
+                      defaultPageSize={defaultPageSize}
+                    />
+                  </TabPanel>
+                  <TabPanel value={value} index={2}>
+                    <VisualizacaoFIIs
+                      mode="grid"
+                      filter={{}}
+                      onError={setError}
+                      defaultPageSize={defaultPageSize}
+                    />
+                  </TabPanel>
+                </AtivosContainer>
+              </ContentBox>
+            </ContentWrapper>
           </ProgressiveLoad>
         </SuspenseWrapper>
       </PageTransition>

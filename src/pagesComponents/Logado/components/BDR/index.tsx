@@ -1,19 +1,28 @@
 'use client'
-import React, { useState } from 'react'
 import { Alert, Snackbar, Tab, Tabs } from '@mui/material'
+import React, { useState } from 'react'
 
-import { TabPanel } from '@/components/Data-Display/TabPanel'
 import { useErrorHandling } from '@/components/Data-Display/ErrorHandling'
+import { TabPanel } from '@/components/Data-Display/TabPanel'
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 import { PageTransition } from '@/components/Helpers/PageTransition'
-import { PageBackground } from '@/components/Layout/PageBackground'
-import VisualizacaoBDRs from './components/Vizualização'
+import {
+  AtivosTitle,
+  VisualizationContainer,
+  ContentBox,
+  ContentWrapper,
+  SubTitle,
+  AtivosContainer,
+  AtivosSearchWrapper,
+} from '@/components/Shared-Styles/AtivosStyledComponents'
+
 import BDRSearchBar from './components/SearchBar'
+import VisualizacaoBDRs from './components/Vizualização'
 import { useBDRTabsLogic } from './hooks/useBDRTabsLogic'
-import { AtivosTitle, VisualizationContainer, ContentBox, ContentWrapper, SubTitle, AtivosContainer, AtivosSearchWrapper } from '@/components/Shared-Styles/AtivosStyledComponents'
+
 
 interface BDRProps {
   defaultPageSize?: number
@@ -61,13 +70,28 @@ export const BDR: React.FC<BDRProps> = ({ defaultPageSize, viewMode }) => {
                     </Tabs>
                   </VisualizationContainer>
                   <TabPanel value={value} index={0}>
-                    <VisualizacaoBDRs mode="card" filter={{}} onError={setError} defaultPageSize={defaultPageSize} />
+                    <VisualizacaoBDRs
+                      mode="card"
+                      filter={{}}
+                      onError={setError}
+                      defaultPageSize={defaultPageSize}
+                    />
                   </TabPanel>
                   <TabPanel value={value} index={1}>
-                    <VisualizacaoBDRs mode="table" filter={{}} onError={setError} defaultPageSize={defaultPageSize} />
+                    <VisualizacaoBDRs
+                      mode="table"
+                      filter={{}}
+                      onError={setError}
+                      defaultPageSize={defaultPageSize}
+                    />
                   </TabPanel>
                   <TabPanel value={value} index={2}>
-                    <VisualizacaoBDRs mode="grid" filter={{}} onError={setError} defaultPageSize={defaultPageSize} />
+                    <VisualizacaoBDRs
+                      mode="grid"
+                      filter={{}}
+                      onError={setError}
+                      defaultPageSize={defaultPageSize}
+                    />
                   </TabPanel>
                 </AtivosContainer>
               </ContentBox>

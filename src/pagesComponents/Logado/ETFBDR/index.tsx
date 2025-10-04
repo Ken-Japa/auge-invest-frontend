@@ -12,7 +12,15 @@ import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 import { PageTransition } from '@/components/Helpers/PageTransition'
 import { PageBackground } from '@/components/Layout/PageBackground'
-import { AtivosTitle, VisualizationContainer, AtivosSearchWrapper, AtivosContainer, ContentBox, ContentWrapper, EtfIconLink } from '@/components/Shared-Styles/AtivosStyledComponents'
+import {
+  AtivosTitle,
+  VisualizationContainer,
+  AtivosSearchWrapper,
+  AtivosContainer,
+  ContentBox,
+  ContentWrapper,
+  EtfIconLink,
+} from '@/components/Shared-Styles/AtivosStyledComponents'
 import { ETFBDRFilter } from '@/services/api/types/etfbdr'
 
 import ETFBDRSearchBar from '../components/ETFBDR/components/SearchBar'

@@ -7,14 +7,7 @@ import { useFIIVisualizationLogic } from '../../hooks/useFIIVisualizationLogic'
 import { VisualizacaoFIIsProps } from '../../types'
 
 import { FIIViewRenderer } from './FIIViewRenderer'
-import {
-  EmptyResultsContainer,
-  ErrorContainer,
-  LoadingContainer,
-  PaginationContainer,
-} from './styled'
-
-
+import { EmptyResultsContainer, ErrorContainer, LoadingContainer, PaginationContainer } from './styled'
 
 export const VisualizacaoFIIs = ({
   mode = 'card',

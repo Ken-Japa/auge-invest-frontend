@@ -31,7 +31,9 @@ export const Empresa = () => {
         <SuspenseWrapper fallback={<ContentSkeleton height={600} />}>
           <ProgressiveLoad threshold={0.1} delay={0.2}>
             <PageBackground imageName="Empresas">
-              <AtivosTitle variant="h2" gutterBottom>Empresas</AtivosTitle>
+              <AtivosTitle variant="h2" gutterBottom>
+                Empresas
+              </AtivosTitle>
               <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <SearchBarWrapper>
                   <SearchBar />

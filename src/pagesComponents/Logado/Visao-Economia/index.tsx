@@ -10,8 +10,6 @@ import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 import { PageTransition } from '@/components/Helpers/PageTransition'
 import { PageBackground } from '@/components/Layout/PageBackground'
 import { PageContainer } from '@/components/Shared-Styles/PageStyledComponents'
-
-// Componentes da página - Carregando os componentes principais imediatamente
 import GlobalSearchBar from '@/pagesComponents/Logado/components/SearchBar'
 
 import { Bdr } from './components/BDR'
@@ -48,10 +46,9 @@ export const VisaoEconomia = () => {
       <PageTransition direction="up" duration={0.4} distance={30}>
         <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
           <ProgressiveLoad threshold={0.1} delay={0.2}>
-            <PageBackground imageName="VisaoEconomia" >
+            <PageBackground imageName="VisaoEconomia">
               <PageContainer>
                 <Title>Visão Geral da Economia</Title>
-
 
                 <StyledContainer maxWidth="xl" $isloading={isLoading}>
                   <SearchBarWrapper>
@@ -146,7 +143,6 @@ export const VisaoEconomia = () => {
                         </SuspenseFallbackBox>
                       }
                     >
-
                       <Grid item xs={12}>
                         <DashboardItem>
                           <Fii />
@@ -164,8 +160,6 @@ export const VisaoEconomia = () => {
                           <Etf />
                         </DashboardItem>
                       </Grid>
-
-
 
                       <Grid item xs={12}>
                         <DashboardItem>

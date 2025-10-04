@@ -28,7 +28,9 @@ export const FIICard = ({ fii }: FIICardProps) => {
     <Grid item xs={12} sm={6} md={4} lg={3} key={fii._id}>
       <StyledCard>
         <StyledCardContent>
-          <TitleContainer> {/* Usar o novo TitleContainer */}
+          <TitleContainer>
+            {' '}
+            {/* Usar o novo TitleContainer */}
             <Link href={`/fii/${fii.codigoFII}`} style={{ textDecoration: 'none', color: 'inherit' }}>
               <CardTitle variant="h4">{fii.nomeFII}</CardTitle>
             </Link>

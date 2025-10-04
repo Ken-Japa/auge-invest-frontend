@@ -1,5 +1,6 @@
 import { Box, Container, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+
 import { typography } from '@/theme/variables'
 
 interface StyledContainerProps {

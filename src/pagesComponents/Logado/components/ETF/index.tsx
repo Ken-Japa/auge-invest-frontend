@@ -10,8 +10,16 @@ import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 import { PageTransition } from '@/components/Helpers/PageTransition'
+import {
+  AtivosTitle,
+  VisualizationContainer,
+  AtivosSearchWrapper,
+  AtivosContainer,
+  ContentBox,
+  ContentWrapper,
+  SubTitle,
+} from '@/components/Shared-Styles/AtivosStyledComponents'
 import { ETFFilter } from '@/services/api/types/etf'
-import { AtivosTitle, VisualizationContainer, AtivosSearchWrapper, AtivosContainer, ContentBox, ContentWrapper, SubTitle } from '@/components/Shared-Styles/AtivosStyledComponents'
 
 import ETFSearchBar from './components/SearchBar'
 import { VisualizationETFs } from './components/Visualization'

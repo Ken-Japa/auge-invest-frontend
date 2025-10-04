@@ -5,8 +5,8 @@ import React, { lazy, useState } from 'react'
 import { TabPanel } from '@/components/Data-Display/TabPanel'
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
-import { ETFFilter } from '@/services/api/types/etf'
 import { AtivosSearchWrapper, AtivosContainer } from '@/components/Shared-Styles/AtivosStyledComponents'
+import { ETFFilter } from '@/services/api/types/etf'
 
 import FIISearchBar from '../../../components/FIIs/components/SearchBar'
 
@@ -24,7 +24,6 @@ interface FIITabsProps {
 export const FIITabs: React.FC<FIITabsProps> = ({ defaultPageSize, onError }) => {
   const [tabValue, setTabValue] = useState(0)
   const [filters, setFilters] = useState<ETFFilter>({})
-
 
   function a11yProps(index: number) {
     return {

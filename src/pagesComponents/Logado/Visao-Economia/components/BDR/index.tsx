@@ -9,7 +9,6 @@ import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 
 const LazyBDRDetails = lazy(() => import('@/pagesComponents/Logado/components/BDR'))
 
-
 import { BdrContainer, ContentBox } from './styled'
 
 export const Bdr = () => {
@@ -22,10 +21,7 @@ export const Bdr = () => {
       <SuspenseWrapper fallback={<ContentSkeleton height={400} />}>
         <BdrContainer>
           <ContentBox>
-            <LazyBDRDetails
-              viewMode="table"
-              defaultPageSize={20}
-            />
+            <LazyBDRDetails viewMode="table" defaultPageSize={20} />
           </ContentBox>
         </BdrContainer>
       </SuspenseWrapper>

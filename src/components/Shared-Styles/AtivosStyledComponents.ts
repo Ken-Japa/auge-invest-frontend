@@ -1,5 +1,6 @@
-import { styled } from '@mui/material/styles'
 import { Typography, Box, Paper, Container } from '@mui/material'
+import { styled } from '@mui/material/styles'
+
 import { typography, spacing, borderRadius, shadows } from '@/theme/variables'
 
 export const ContentWrapper = styled(Container)(() => ({
