@@ -8,6 +8,7 @@ import { createTheme, Theme } from '@mui/material/styles'
 declare module '@mui/material/styles' {
   interface PaletteColor {
     hoverBorder?: string
+    A200?: string
   }
   interface Theme {
     chartStyles: {
