@@ -87,14 +87,19 @@ export function handleApiError(error: any, defaultCode: ErrorCode = ErrorCode.UN
   let errorCode = defaultCode
 
   if (error.response) {
-    const status = error.response.status
+    // Tenta extrair o código de erro do corpo da resposta, se disponível
+    if (error.response.data && error.response.data.code && Object.values(ErrorCode).includes(error.response.data.code)) {
+      errorCode = error.response.data.code
+    } else {
+      const status = error.response.status
 
-    if (status === 401) {
-      errorCode = ErrorCode.AUTHENTICATION_FAILED
-    } else if (status === 404) {
-      errorCode = ErrorCode.USER_NOT_FOUND
-    } else if (status >= 500) {
-      errorCode = ErrorCode.SERVER_ERROR
+      if (status === 401) {
+        errorCode = ErrorCode.AUTHENTICATION_FAILED
+      } else if (status === 404) {
+        errorCode = ErrorCode.USER_NOT_FOUND
+      } else if (status >= 500) {
+        errorCode = ErrorCode.SERVER_ERROR
+      }
     }
   } else if (error.request) {
     errorCode = ErrorCode.NETWORK_ERROR
