@@ -13,6 +13,10 @@ import { Favorite } from '@/services/api/types/favorite'
 export const useFavoriteNavigation = () => {
   const router = useRouter()
 
+  /**
+   * Navega para a página de detalhes de um item favorito com base no seu tipo e ativo.
+   * @param {Favorite} favorite O objeto favorito contendo o tipo e o ativo.
+   */
   const navigateToFavorite = useCallback(
     (favorite: Favorite) => {
       let path = ''

@@ -23,8 +23,8 @@ const cache = new Map<string, { data: any; timestamp: number }>()
 const CACHE_DURATION = 240 * 60 * 1000 // 4 hours
 
 /**
- * Invalidates cache entries that match the given URL.
- * @param url The URL to invalidate cache for.
+ * Invalida entradas de cache que correspondem à URL fornecida.
+ * @param {string} urlToInvalidate A URL para a qual o cache deve ser invalidado.
  */
 function invalidateCacheForUrl(urlToInvalidate: string) {
   for (const key of cache.keys()) {
@@ -39,9 +39,17 @@ function invalidateCacheForUrl(urlToInvalidate: string) {
   }
 }
 
+/**
+ * @class ApiClient
+ * @description Cliente HTTP para interagir com a API, configurado com interceptors para autenticação e tratamento de erros, e um mecanismo de cache.
+ */
 class ApiClient {
   private client: AxiosInstance
 
+  /**
+   * Cria uma instância de ApiClient.
+   * @param {string} baseURL A URL base para todas as requisições da API.
+   */
   constructor(baseURL: string) {
     this.client = axios.create({
       baseURL,
@@ -69,6 +77,13 @@ class ApiClient {
     )
   }
 
+  /**
+   * Realiza uma requisição GET com suporte a cache.
+   * @template T O tipo de dado esperado na resposta.
+   * @param {string} url A URL para a requisição.
+   * @param {AxiosRequestConfig} [config] Configurações adicionais para a requisição Axios.
+   * @returns {Promise<AxiosResponse<T>>} Uma promessa que resolve com a resposta da requisição.
+   */
   async get<T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
     const cacheKey = JSON.stringify({ url, params: config?.params })
     const cached = cache.get(cacheKey)
@@ -90,6 +105,14 @@ class ApiClient {
     return response
   }
 
+  /**
+   * Realiza uma requisição POST e invalida o cache para a URL específica.
+   * @template T O tipo de dado esperado na resposta.
+   * @param {string} url A URL para a requisição.
+   * @param {any} [data] Os dados a serem enviados no corpo da requisição.
+   * @param {AxiosRequestConfig} [config] Configurações adicionais para a requisição Axios.
+   * @returns {Promise<AxiosResponse<T>>} Uma promessa que resolve com a resposta da requisição.
+   */
   async post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
     // Invalidate cache for the specific URL to ensure fresh data
     invalidateCacheForUrl(url)
@@ -99,6 +122,14 @@ class ApiClient {
     return this.client.post<T>(url, data, config)
   }
 
+  /**
+   * Realiza uma requisição PUT e invalida o cache para a URL específica.
+   * @template T O tipo de dado esperado na resposta.
+   * @param {string} url A URL para a requisição.
+   * @param {any} [data] Os dados a serem enviados no corpo da requisição.
+   * @param {AxiosRequestConfig} [config] Configurações adicionais para a requisição Axios.
+   * @returns {Promise<AxiosResponse<T>>} Uma promessa que resolve com a resposta da requisição.
+   */
   async put<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
     // Invalidate cache for the specific URL to ensure fresh data
     invalidateCacheForUrl(url)
@@ -108,6 +139,13 @@ class ApiClient {
     return this.client.put<T>(url, data, config)
   }
 
+  /**
+   * Realiza uma requisição DELETE e invalida o cache para a URL específica.
+   * @template T O tipo de dado esperado na resposta.
+   * @param {string} url A URL para a requisição.
+   * @param {AxiosRequestConfig} [config] Configurações adicionais para a requisição Axios.
+   * @returns {Promise<AxiosResponse<T>>} Uma promessa que resolve com a resposta da requisição.
+   */
   async delete<T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
     // Invalidate cache for the specific URL to ensure fresh data
     invalidateCacheForUrl(url)
@@ -117,6 +155,14 @@ class ApiClient {
     return this.client.delete<T>(url, config)
   }
 
+  /**
+   * Realiza uma requisição PATCH e invalida o cache para a URL específica.
+   * @template T O tipo de dado esperado na resposta.
+   * @param {string} url A URL para a requisição.
+   * @param {any} [data] Os dados a serem enviados no corpo da requisição.
+   * @param {AxiosRequestConfig} [config] Configurações adicionais para a requisição Axios.
+   * @returns {Promise<AxiosResponse<T>>} Uma promessa que resolve com a resposta da requisição.
+   */
   async patch<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
     // Invalidate cache for the specific URL to ensure fresh data
     invalidateCacheForUrl(url)

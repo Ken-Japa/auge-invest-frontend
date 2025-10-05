@@ -1,6 +1,10 @@
 import { ApiError } from './client'
 
 // Códigos de erro comuns
+/**
+ * @enum {string} ErrorCode - Códigos de erro padronizados para a aplicação.
+ * Usados para identificar e categorizar diferentes tipos de erros de API.
+ */
 export enum ErrorCode {
   AUTHENTICATION_FAILED = 'auth/failed',
   USER_NOT_FOUND = 'user/not-found',
@@ -38,6 +42,9 @@ export enum ErrorCode {
 }
 
 // Mapeamento de mensagens de erro amigáveis
+/**
+ * @constant {Record<ErrorCode, string>} ERROR_MESSAGES - Mapeamento de códigos de erro para mensagens amigáveis ao usuário.
+ */
 const ERROR_MESSAGES: Record<ErrorCode, string> = {
   [ErrorCode.AUTHENTICATION_FAILED]:
     'Falha na autenticação. Por favor, verifique suas credenciais e tente novamente.',
@@ -77,10 +84,22 @@ const ERROR_MESSAGES: Record<ErrorCode, string> = {
   [ErrorCode.ALERT_DELETE_ERROR]: 'Erro ao deletar alerta. Por favor, tente novamente.',
 }
 
+/**
+ * Retorna uma mensagem de erro amigável com base no código de erro fornecido.
+ * Se o código de erro não for encontrado, retorna uma mensagem de erro genérica.
+ * @param {ErrorCode} code O código de erro.
+ * @returns {string} A mensagem de erro correspondente.
+ */
 export function getErrorMessage(code: ErrorCode): string {
   return ERROR_MESSAGES[code] || ERROR_MESSAGES[ErrorCode.UNKNOWN_ERROR]
 }
 
+/**
+ * Lida com erros de API, extraindo informações relevantes e retornando um objeto ApiError padronizado.
+ * @param {any} error O objeto de erro capturado (geralmente um AxiosError).
+ * @param {ErrorCode} [defaultCode=ErrorCode.UNKNOWN_ERROR] O código de erro padrão a ser usado se um código específico não puder ser determinado.
+ * @returns {ApiError} Um objeto ApiError contendo mensagem, status, dados e código de erro.
+ */
 export function handleApiError(error: any, defaultCode: ErrorCode = ErrorCode.UNKNOWN_ERROR): ApiError {
   console.error('API Error:', error)
 

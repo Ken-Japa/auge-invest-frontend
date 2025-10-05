@@ -1,6 +1,12 @@
-// API base URL
+/**
+ * @constant {string} API_BASE_URL - A URL base para todas as requisições da API.
+ * Obtém o valor da variável de ambiente NEXT_PUBLIC_API_URL ou usa um valor padrão.
+ */
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api-servidor-yupg.onrender.com'
 
+/**
+ * @constant {object} API_ENDPOINTS - Objeto contendo todos os endpoints da API, categorizados por funcionalidade.
+ */
 export const API_ENDPOINTS = {
   // Auth endpoints
   AUTH: {
@@ -97,6 +103,11 @@ export const API_ENDPOINTS = {
   // Outros grupos de endpoints...
 }
 
+/**
+ * Constrói a URL completa para um endpoint da API.
+ * @param {string} endpoint O caminho do endpoint (ex: '/login').
+ * @returns {string} A URL completa do endpoint.
+ */
 export function getFullEndpointUrl(endpoint: string): string {
   return `${API_BASE_URL}${endpoint}`
 }

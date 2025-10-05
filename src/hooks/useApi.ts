@@ -39,6 +39,11 @@ export const useApi = <T, E = unknown>(
   const [error, setError] = useState<AxiosError<E> | null>(null)
   const currentController = useRef<AbortController | undefined>(undefined)
 
+  /**
+   * Executa a chamada de API. Pode ser chamado manualmente para iniciar a requisição.
+   * @param {...any[]} args Argumentos adicionais a serem passados para a função `apiCall`.
+   * @returns {Promise<AbortController>} Uma promessa que resolve com o AbortController usado para a requisição, permitindo cancelamento externo.
+   */
   const execute = useCallback(
     async (...args: any[]) => {
       setLoading(true)
@@ -77,6 +82,7 @@ export const useApi = <T, E = unknown>(
     }
 
     return () => {
+      // Aborta a requisição se o componente for desmontado ou se uma nova execução for iniciada.
       if (currentController.current) {
         currentController.current.abort()
       }

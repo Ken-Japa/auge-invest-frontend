@@ -1,3 +1,8 @@
+/**
+ * Recupera o token de autenticação do localStorage ou dos cookies.
+ * Prioriza o token do localStorage. Se um userId for encontrado sem um token, um token temporário 'google_' é gerado.
+ * @returns {string | null} O token de autenticação ou null se não for encontrado.
+ */
 export function getAuthToken(): string | null {
   const localToken = localStorage.getItem('authToken')
   if (localToken) {
@@ -18,7 +23,11 @@ export function getAuthToken(): string | null {
   return null
 }
 
-// Função centralizada para definir dados de autenticação
+/**
+ * Define os dados de autenticação (token e userId) no localStorage e nos cookies.
+ * @param {string} token O token de autenticação a ser armazenado.
+ * @param {string} [userId] O ID do usuário a ser armazenado (opcional).
+ */
 export function setAuthData(token: string, userId?: string): void {
   if (!token) return
 
@@ -42,6 +51,10 @@ export function setAuthData(token: string, userId?: string): void {
   }
 }
 
+/**
+ * Recupera o ID do usuário do localStorage, cookies ou da sessão do next-auth, sem exibir mensagens no console.
+ * @returns {string | null} O ID do usuário ou null se não for encontrado.
+ */
 function getUserIdNoConsole(): string | null {
   const localUserId = localStorage.getItem('userId')
   if (localUserId) return localUserId
@@ -61,6 +74,11 @@ function getUserIdNoConsole(): string | null {
   return null
 }
 
+/**
+ * Recupera o valor de um cookie específico pelo nome.
+ * @param {string} name O nome do cookie a ser recuperado.
+ * @returns {string | null} O valor do cookie ou null se o cookie não for encontrado.
+ */
 export function getCookie(name: string): string | null {
   if (typeof document === 'undefined') return null
 
@@ -73,6 +91,11 @@ export function getCookie(name: string): string | null {
   return null
 }
 
+/**
+ * Recupera o ID do usuário do localStorage, cookies ou da sessão fornecida.
+ * @param {any} session O objeto de sessão do next-auth.
+ * @returns {string | null} O ID do usuário ou null se não for encontrado.
+ */
 export function getUserId(session: any): string | null {
   const localUserId = localStorage.getItem('userId')
   if (localUserId) return localUserId
@@ -86,6 +109,9 @@ export function getUserId(session: any): string | null {
   return null
 }
 
+/**
+ * Limpa todos os dados de autenticação (token e userId) do localStorage e dos cookies.
+ */
 export function clearAuthData(): void {
   localStorage.removeItem('authToken')
   localStorage.removeItem('userId')
