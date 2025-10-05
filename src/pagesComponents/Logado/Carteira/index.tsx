@@ -1,8 +1,8 @@
 'use client'
 
-import { lazy } from 'react'
 import { Container } from '@mui/material'
 import { useSession } from 'next-auth/react'
+import { lazy } from 'react'
 
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
@@ -10,8 +10,10 @@ import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 import { PageTransition } from '@/components/Helpers/PageTransition'
 import { PageBackground } from '@/components/Layout/PageBackground'
 
-const PositionSection = lazy(() => import('./components').then(mod => ({ default: mod.PositionSection })))
-const WalletSection = lazy(() => import('./components/WalletSection').then(mod => ({ default: mod.WalletSection })))
+const PositionSection = lazy(() => import('./components').then((mod) => ({ default: mod.PositionSection })))
+const WalletSection = lazy(() =>
+  import('./components/WalletSection').then((mod) => ({ default: mod.WalletSection })),
+)
 import { FocusProvider } from './components/RecentActivities/components/FocusContext/FocusContext'
 import { RecentActivitiesProvider } from './context/RecentActivitiesContext'
 import { PageTitle, SectionContainer } from './styled'

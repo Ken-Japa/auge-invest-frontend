@@ -13,17 +13,17 @@ import { PageTransition } from '@/components/Helpers/PageTransition'
 import { PageBackground } from '@/components/Layout/PageBackground'
 
 const DataInputForm = lazy(() =>
-  import('./components/DataInputForm').then(mod => ({ default: mod.DataInputForm })),
+  import('./components/DataInputForm').then((mod) => ({ default: mod.DataInputForm })),
 )
-const HelpDialog = lazy(() => import('./components/HelpDialog').then(mod => ({ default: mod.HelpDialog })))
+const HelpDialog = lazy(() => import('./components/HelpDialog').then((mod) => ({ default: mod.HelpDialog })))
 const MetricsDisplay = lazy(() =>
-  import('./components/MetricsDisplay').then(mod => ({ default: mod.MetricsDisplay })),
+  import('./components/MetricsDisplay').then((mod) => ({ default: mod.MetricsDisplay })),
 )
 const SaveReportSection = lazy(() =>
-  import('./components/SaveReportSection').then(mod => ({ default: mod.SaveReportSection })),
+  import('./components/SaveReportSection').then((mod) => ({ default: mod.SaveReportSection })),
 )
 const ValuationSection = lazy(() =>
-  import('./components/ValuationSection').then(mod => ({ default: mod.ValuationSection })),
+  import('./components/ValuationSection').then((mod) => ({ default: mod.ValuationSection })),
 )
 import { generatePDF } from './components/SaveReportSection/utils/pdfGenerator'
 import { generateReport } from './components/SaveReportSection/utils/reportGenerator'

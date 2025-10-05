@@ -113,18 +113,20 @@ Para configurar e executar o projeto localmente, siga os passos abaixo:
 
 Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 
-*   Node.js (versão 18 ou superior)
-*   npm (gerenciador de pacotes do Node.js) ou Yarn
+- Node.js (versão 18 ou superior)
+- npm (gerenciador de pacotes do Node.js) ou Yarn
 
 ### Configuração do Ambiente
 
 1.  **Clone o Repositório:**
+
     ```bash
     git clone https://github.com/seu-usuario/auge-invest.git
     cd auge-invest
     ```
 
 2.  **Instale as Dependências:**
+
     ```bash
     npm install
     # ou
@@ -141,26 +143,31 @@ Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
     # Adicione outras variáveis de ambiente necessárias para APIs externas, banco de dados, etc.
     # EX: API_BASE_URL=http://localhost:8080/api
     ```
+
     Certifique-se de que `NEXTAUTH_SECRET` seja uma string longa e aleatória para segurança.
 
 ### Execução do Projeto
 
 1.  **Modo de Desenvolvimento:**
     Para iniciar o servidor de desenvolvimento com hot-reloading:
+
     ```bash
     npm run dev
     # ou
     yarn dev
     ```
+
     O aplicativo estará disponível em `http://localhost:3000`.
 
 2.  **Construção para Produção:**
     Para compilar o projeto para produção:
+
     ```bash
     npm run build
     # ou
     yarn build
     ```
+
     Isso criará uma pasta `.next` com os arquivos otimizados para deploy.
 
 3.  **Modo de Produção (Local):**

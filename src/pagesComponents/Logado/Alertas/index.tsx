@@ -17,7 +17,7 @@ import { useAlerts } from './hooks/useAlerts'
 import { ActionContainer, PageHeader } from './styled'
 
 const AlertsTable = lazy(() =>
-  import('./components/AlertsTable').then(module => ({ default: module.AlertsTable })),
+  import('./components/AlertsTable').then((module) => ({ default: module.AlertsTable })),
 )
 
 export const Alertas = () => {

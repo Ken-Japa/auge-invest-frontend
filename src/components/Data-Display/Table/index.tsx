@@ -73,3 +73,5 @@ export const StyledTable = memo(
     )
   },
 )
+
+StyledTable.displayName = 'StyledTable'

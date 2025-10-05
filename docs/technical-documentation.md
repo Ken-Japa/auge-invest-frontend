@@ -119,12 +119,15 @@ Vários componentes de gráficos estão disponíveis em src/components/charts/ p
 ### Padrões de Documentação
 
 #### Comentários de Código (JSDoc)
+
 Todas as funções, componentes React, classes e métodos devem ser documentados usando JSDoc.
+
 - Incluir `@param` para cada parâmetro, descrevendo seu tipo e propósito.
 - Incluir `@returns` para descrever o valor de retorno da função.
 - Incluir `@typedef` para tipos complexos ou interfaces.
 
 Exemplo:
+
 ```typescript
 /**
  * Calcula a soma de dois números.
@@ -133,14 +136,15 @@ Exemplo:
  * @returns {number} A soma de 'a' e 'b'.
  */
 function sum(a: number, b: number): number {
-  return a + b;
+  return a + b
 }
 ```
 
 #### Formatação de Arquivos Markdown
+
 - **Títulos:** Usar `#` para o título principal, `##` para seções, `###` para subseções, e assim por diante.
 - **Listas:** Usar `-` ou `*` para listas não ordenadas e `1.`, `2.` para listas ordenadas.
-- **Blocos de Código:** Usar três crases (```) para blocos de código, especificando a linguagem (ex: ```typescript, ```json, ```bash).
+- **Blocos de Código:** Usar três crases (`) para blocos de código, especificando a linguagem (ex: `typescript, `json, `bash).
 - **Negrito e Itálico:** Usar `**texto**` para negrito e `*texto*` para itálico.
 - **Links:** Usar `[texto do link](url)` para links.
 - **Imagens:** Usar `![texto alternativo](url da imagem)` para imagens.

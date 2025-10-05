@@ -96,7 +96,8 @@ export const Login = () => {
           transitionDuration={{
             enter: 300,
             exit: 200,
-          }}>
+          }}
+        >
           <h2 id="login-dialog-title" style={{ position: 'absolute', left: '-9999px' }}>
             Login
           </h2>

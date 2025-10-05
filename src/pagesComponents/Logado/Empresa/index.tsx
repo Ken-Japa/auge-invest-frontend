@@ -2,8 +2,9 @@
 
 import { Box } from '@mui/material'
 import { useState } from 'react'
-
 // Componentes compartilhados
+import React from 'react'
+
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
 import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
@@ -12,8 +13,9 @@ import { PageTransition } from '@/components/Helpers/PageTransition'
 import { PageBackground } from '@/components/Layout/PageBackground'
 import { AtivosTitle } from '@/components/Shared-Styles/AtivosStyledComponents'
 
-import React from 'react'
-const LazyVisualizationContent = React.lazy(() => import('../components/EmpresaView').then(module => ({ default: module.VisualizationContent })))
+const LazyVisualizationContent = React.lazy(() =>
+  import('../components/EmpresaView').then((module) => ({ default: module.VisualizationContent })),
+)
 import { ModoVisualizacao } from '../components/EmpresaView/Elementos/ModoVisualizacao'
 import { ViewMode } from '../components/EmpresaView/Elementos/ModoVisualizacao/types'
 // Componentes específicos
