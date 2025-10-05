@@ -10,6 +10,20 @@ interface GenericSearchInputProps {
   placeholder?: string
 }
 
+/**
+ * @typedef {object} GenericSearchInputProps
+ * @property {string} value - O valor atual do campo de busca.
+ * @property {(e: ChangeEvent<HTMLInputElement>) => void} onChange - Função de callback para lidar com a mudança do valor do campo de busca.
+ * @property {string} [placeholder] - O texto do placeholder para o campo de busca. Padrão é 'Pesquisar...'.
+ */
+
+/**
+ * Componente de input de busca genérico e reutilizável.
+ * Inclui um ícone de busca e um botão para limpar o campo, se houver valor.
+ *
+ * @param {GenericSearchInputProps} props - As propriedades do componente.
+ * @returns {JSX.Element} O componente GenericSearchInput renderizado.
+ */
 export const GenericSearchInput: FC<GenericSearchInputProps> = ({
   value,
   onChange,

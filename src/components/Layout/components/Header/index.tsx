@@ -18,6 +18,19 @@ import { AlertButton } from './PerfilButtons/components/AlertButton'
 import { FavoriteButton } from './PerfilButtons/components/FavoriteButton'
 import { DrawerContent, HeaderContainer } from './styled'
 
+/**
+ * @typedef {object} HeaderProps
+ * // Não há props diretas para o componente Header, mas ele gerencia o estado de autenticação e navegação.
+ */
+
+/**
+ * Componente de cabeçalho responsivo para a aplicação.
+ * Gerencia a navegação, autenticação de usuário e exibe diferentes elementos
+ * com base no tamanho da tela (mobile vs. desktop) e no status da sessão do usuário.
+ * Inclui um drawer para navegação em dispositivos móveis e botões de login/perfil.
+ *
+ * @returns {JSX.Element} O componente Header renderizado.
+ */
 export const Header = () => {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))

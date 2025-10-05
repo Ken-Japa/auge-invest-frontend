@@ -6,6 +6,17 @@ import Link from 'next/link'
 import { BlogCardSkeleton } from './BlogCardSkeleton'
 import { CardContainer, CardOverlay } from './styled'
 
+/**
+ * @typedef {object} BlogCardProps
+ * @property {string | null} title - O título do post do blog.
+ * @property {string | null} description - A descrição curta do post do blog.
+ * @property {string | null} [image] - A URL da imagem de capa do post do blog.
+ * @property {string | string[] | null} category - A categoria ou categorias do post do blog.
+ * @property {string | null} author - O autor do post do blog.
+ * @property {string | null} date - A data de publicação do post do blog (formato string).
+ * @property {string} slug - O slug do post do blog para a URL.
+ * @property {boolean} [isLoading] - Indica se o card está em estado de carregamento, exibindo um skeleton.
+ */
 interface BlogCardProps {
   title: string | null
   description: string | null
@@ -17,6 +28,14 @@ interface BlogCardProps {
   isLoading?: boolean
 }
 
+/**
+ * Componente BlogCard reutilizável para exibir prévias de posts de blog.
+ * Inclui título, descrição, imagem, autor e data, com um link para o post completo.
+ * Suporta um estado de carregamento para exibir um skeleton.
+ *
+ * @param {BlogCardProps} props - As propriedades do componente.
+ * @returns {JSX.Element} O componente BlogCard renderizado.
+ */
 export const BlogCard = ({ title, description, image, author, date, slug, isLoading }: BlogCardProps) => {
   const formattedDate = date ? new Date(date).toLocaleDateString('pt-BR') : ''
   if (isLoading) {

@@ -28,6 +28,30 @@ interface Props {
   onChange?: (event: React.SyntheticEvent, expanded: boolean) => void
 }
 
+/**
+ * @typedef {object} Props
+ * @property {string} title - O título do acordeão.
+ * @property {ReactNode} [children] - Conteúdo React a ser exibido dentro do corpo do acordeão.
+ * @property {string} [body] - Conteúdo HTML em string a ser exibido dentro do corpo do acordeão. Se `children` for fornecido, `body` será ignorado.
+ * @property {'light' | 'dark'} [variant] - A variante de tema do acordeão (claro ou escuro). Se não for fornecido, usará o tema global.
+ * @property {string} [className] - Classes CSS adicionais para o componente Accordion.
+ * @property {string} [titleColor] - Cor customizada para o título do acordeão.
+ * @property {string} [bodyColor] - Cor customizada para o corpo do acordeão.
+ * @property {string} [customBackground] - Cor de fundo customizada para o acordeão.
+ * @property {string} [customBorderColor] - Cor da borda customizada para o acordeão.
+ * @property {string} [customTitleColor] - Cor customizada para o título do acordeão, sobrescrevendo `titleColor`.
+ * @property {string} [customContentBackground] - Cor de fundo customizada para o conteúdo do acordeão.
+ * @property {boolean} [expanded] - Controla se o acordeão está expandido ou não.
+ * @property {(event: React.SyntheticEvent, expanded: boolean) => void} [onChange] - Callback disparado quando o estado de expansão do acordeão muda.
+ */
+
+/**
+ * Componente CustomAccordion reutilizável que exibe um título e um conteúdo expansível.
+ * Ele suporta temas claro/escuro e permite ampla customização de estilo.
+ *
+ * @param {Props} props - As propriedades do componente.
+ * @returns {JSX.Element} O componente Accordion renderizado.
+ */
 export const CustomAccordion = ({
   title,
   children,

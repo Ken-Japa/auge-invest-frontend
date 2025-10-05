@@ -14,6 +14,25 @@ interface Props {
   animationDuration?: number
 }
 
+/**
+ * @typedef {object} Props
+ * @property {string} text - O texto a ser animado com o efeito Matrix Rain.
+ * @property {string} [className] - Classes CSS adicionais para o container do texto.
+ * @property {string} [fontSize] - Tamanho da fonte para os caracteres do texto.
+ * @property {() => void} [onComplete] - Callback a ser executado quando a animação estiver completa.
+ * @property {boolean} [triggerOnce] - Se a animação deve ser executada apenas uma vez. Padrão é `true`.
+ * @property {number} [charDelay] - Atraso em milissegundos entre a animação de cada caractere. Padrão é `25`.
+ * @property {number} [animationDuration] - Duração da animação de queda de cada caractere em segundos. Padrão é `0.2`.
+ */
+
+/**
+ * Componente MatrixRainText que anima um texto com um efeito de "chuva" estilo Matrix.
+ * Cada caractere aparece sequencialmente com um pequeno atraso e uma animação de queda.
+ * Utiliza `memo` para otimização de performance.
+ *
+ * @param {Props} props - As propriedades do componente.
+ * @returns {JSX.Element} O componente MatrixRainText renderizado.
+ */
 export const MatrixRainText = memo(
   ({
     text,

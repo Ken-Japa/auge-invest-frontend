@@ -37,21 +37,26 @@ const ThemeContext = createContext<ThemeContextType>({
 export const useTheme = () => useContext(ThemeContext)
 
 /**
- * @function ThemeProvider
- * @description Componente provedor de tema que encapsula a aplicação para fornecer o contexto do tema.
+ * @typedef {object} ThemeProviderProps
+ * @property {React.ReactNode} children - Os elementos filhos que terão acesso ao contexto do tema.
+ */
+
+/**
+ * Componente provedor de tema que encapsula a aplicação para fornecer o contexto do tema.
  * Gerencia o estado do tema (claro/escuro) e persiste a preferência do usuário no localStorage.
  * Aplica o tema Material-UI correspondente (darkTheme ou lightTheme) e o CssBaseline.
- * @param {object} props - As propriedades do componente.
- * @param {React.ReactNode} props.children - Os elementos filhos que terão acesso ao contexto do tema.
+ *
+ * @param {ThemeProviderProps} props - As propriedades do componente.
  * @returns {JSX.Element} Um provedor de tema que envolve os componentes filhos.
  */
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [isDarkMode, setIsDarkMode] = useState(true)
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY)
-    setIsDarkMode(savedTheme !== 'light')
-  }, [])
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+      return savedTheme !== 'light';
+    }
+    return true; // Default to dark mode if on server or localStorage not available
+  });
 
   const toggleTheme = useCallback(() => {
     setIsDarkMode((prev) => {
