@@ -41,6 +41,11 @@ const IMAGE_PROPS = {
   quality: 60,
 } as const
 
+/**
+ * @function Login
+ * @description Componente da página de login, responsável por exibir o formulário de autenticação, gerenciar o estado de bloqueio e integração com autenticação social. Garante o carregamento progressivo e tratamento de erros.
+ * @returns {JSX.Element} O componente Login.
+ */
 export const Login = () => {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [isComponentMounted, setIsComponentMounted] = useState(false)
@@ -91,8 +96,10 @@ export const Login = () => {
           transitionDuration={{
             enter: 300,
             exit: 200,
-          }}
-        >
+          }}>
+          <h2 id="login-dialog-title" style={{ position: 'absolute', left: '-9999px' }}>
+            Login
+          </h2>
           <div className="background-image">
             <OptimizedImage
               {...IMAGE_PROPS}

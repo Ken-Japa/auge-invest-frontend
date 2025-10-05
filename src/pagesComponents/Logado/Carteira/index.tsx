@@ -16,6 +16,11 @@ import { FocusProvider } from './components/RecentActivities/components/FocusCon
 import { RecentActivitiesProvider } from './context/RecentActivitiesContext'
 import { PageTitle, SectionContainer } from './styled'
 
+/**
+ * @function Dashboard
+ * @description Componente principal da página de Carteira, exibindo a posição real e simulada do usuário, bem como suas carteiras. Garante o carregamento progressivo e tratamento de erros.
+ * @returns {JSX.Element} O componente Dashboard.
+ */
 export const Dashboard = () => {
   const { data: session } = useSession()
 
@@ -23,7 +28,7 @@ export const Dashboard = () => {
     <PageTransition direction="up" duration={0.4} distance={30}>
       <ErrorBoundary>
         <PageBackground imageName="Dashboard">
-          <Container maxWidth="xl">
+          <Container maxWidth="xl" role="main">
             <PageTitle variant="h2">Posição de {session?.user?.name}</PageTitle>
             <RecentActivitiesProvider>
               <FocusProvider>

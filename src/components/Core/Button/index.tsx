@@ -29,6 +29,9 @@ interface CustomButtonProps extends Omit<ButtonProps, 'variant' | 'color' | 'siz
   animate?: HTMLMotionProps<'button'>['animate']
   transition?: HTMLMotionProps<'button'>['transition']
   ariaLabel?: string
+  /**
+   * @description Rótulo de acessibilidade para o botão. É crucial fornecer um rótulo descritivo para leitores de tela, especialmente quando o `children` do botão não é um texto simples (ex: um ícone).
+   */
   isSelected?: boolean
 }
 
