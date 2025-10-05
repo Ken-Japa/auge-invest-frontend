@@ -7,9 +7,10 @@ export class BaseApiService {
     url: string,
     params: any = {},
     errorCode: ErrorCode = ErrorCode.SERVER_ERROR,
+    signal?: AbortSignal,
   ): Promise<T> {
     try {
-      const response = await apiClient.get<ApiSuccessResponse<T>>(url, { params })
+      const response = await apiClient.get<ApiSuccessResponse<T>>(url, { params, signal })
       return response.data.data
     } catch (error) {
       console.error(`Error fetching data from ${url}:`, error)
@@ -21,9 +22,10 @@ export class BaseApiService {
     url: string,
     data?: any,
     errorCode: ErrorCode = ErrorCode.SERVER_ERROR,
+    signal?: AbortSignal,
   ): Promise<T> {
     try {
-      const response = await apiClient.post<ApiSuccessResponse<T>>(url, data)
+      const response = await apiClient.post<ApiSuccessResponse<T>>(url, data, { signal })
       return response.data.data
     } catch (error) {
       console.error(`Error posting data to ${url}:`, error)
@@ -31,9 +33,14 @@ export class BaseApiService {
     }
   }
 
-  protected async put<T>(url: string, data?: any, errorCode: ErrorCode = ErrorCode.SERVER_ERROR): Promise<T> {
+  protected async put<T>(
+    url: string,
+    data?: any,
+    errorCode: ErrorCode = ErrorCode.SERVER_ERROR,
+    signal?: AbortSignal,
+  ): Promise<T> {
     try {
-      const response = await apiClient.put<ApiSuccessResponse<T>>(url, data)
+      const response = await apiClient.put<ApiSuccessResponse<T>>(url, data, { signal })
       return response.data.data
     } catch (error) {
       console.error(`Error updating data at ${url}:`, error)
@@ -45,9 +52,10 @@ export class BaseApiService {
     url: string,
     params: any = {},
     errorCode: ErrorCode = ErrorCode.SERVER_ERROR,
+    signal?: AbortSignal,
   ): Promise<T> {
     try {
-      const response = await apiClient.delete<ApiSuccessResponse<T>>(url, { params })
+      const response = await apiClient.delete<ApiSuccessResponse<T>>(url, { params, signal })
       return response.data.data
     } catch (error) {
       console.error(`Error deleting data from ${url}:`, error)
@@ -59,9 +67,10 @@ export class BaseApiService {
     url: string,
     data?: any,
     errorCode: ErrorCode = ErrorCode.SERVER_ERROR,
+    signal?: AbortSignal,
   ): Promise<T> {
     try {
-      const response = await apiClient.patch<ApiSuccessResponse<T>>(url, data)
+      const response = await apiClient.patch<ApiSuccessResponse<T>>(url, data, { signal })
       return response.data.data
     } catch (error) {
       console.error(`Error patching data at ${url}:`, error)
