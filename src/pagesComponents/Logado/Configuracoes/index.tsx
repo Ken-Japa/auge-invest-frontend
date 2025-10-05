@@ -108,9 +108,7 @@ export const Configuracoes = () => {
                   autoHideDuration={3000}
                   onClose={() => setSnackbar((prev) => ({ ...prev, open: false }))}
                 >
-                  <StyledAlert severity={snackbar.type}>
-                    {snackbar.message}
-                  </StyledAlert>
+                  <StyledAlert severity={snackbar.type}>{snackbar.message}</StyledAlert>
                 </Snackbar>
               </StyledContainer>
             </PageBackground>

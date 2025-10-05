@@ -21,6 +21,7 @@ import { api } from '@/services/api'
 import { Favorite } from '@/services/api/types/favorite'
 
 import { SettingsControlContainer } from '../../styled'
+
 import { StyledCard, StyledListItem } from './styled'
 
 interface FavoritesManagementProps {

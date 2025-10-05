@@ -1,5 +1,6 @@
 import { Paper, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+
 import { spacing, transitions } from '@/theme/variables'
 
 export const StyledPaper = styled(Paper)(({ theme }) => ({

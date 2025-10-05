@@ -4,6 +4,7 @@ import { FormulaText } from '../../styled'
 import { MetricCardProps } from '../../types/types'
 import { getMetricColor } from '../../utils/metricFormatting'
 import { formatMetricValue } from '../../utils/utils'
+
 import { StyledPaper, StyledValueTypography } from './styled'
 
 export const MetricCard = ({

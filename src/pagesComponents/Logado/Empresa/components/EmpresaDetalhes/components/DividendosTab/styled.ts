@@ -1,5 +1,6 @@
 import { Paper, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { styled } from '@mui/material/styles'
+
 import { borderRadius, shadows } from '@/theme/variables'
 
 export const StyledDividendosPaper = styled(Paper)(({ theme }) => ({

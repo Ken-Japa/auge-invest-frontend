@@ -107,7 +107,11 @@ export function handleApiError(error: any, defaultCode: ErrorCode = ErrorCode.UN
 
   if (error.response) {
     // Tenta extrair o código de erro do corpo da resposta, se disponível
-    if (error.response.data && error.response.data.code && Object.values(ErrorCode).includes(error.response.data.code)) {
+    if (
+      error.response.data &&
+      error.response.data.code &&
+      Object.values(ErrorCode).includes(error.response.data.code)
+    ) {
       errorCode = error.response.data.code
     } else {
       const status = error.response.status

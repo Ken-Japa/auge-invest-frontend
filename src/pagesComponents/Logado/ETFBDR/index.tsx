@@ -23,6 +23,7 @@ import {
 import { ETFBDRFilter } from '@/services/api/types/etfbdr'
 
 import ETFBDRSearchBar from '../components/ETFBDR/components/SearchBar'
+
 import { DashboardIconButton, DashboardIconStyled, HeaderWrapper } from './styled'
 
 const LazyVisualizationETFBDRs = lazy(() =>

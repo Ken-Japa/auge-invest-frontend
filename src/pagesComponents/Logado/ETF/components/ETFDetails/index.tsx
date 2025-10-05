@@ -53,11 +53,7 @@ const ETFDetails = ({ slug, codigo, isCode = false }: ETFDetailsProps) => {
 
                 <ETFInfoSection etf={etf} />
 
-                <BackButton
-                  startIcon={<ArrowBackIcon />}
-                  variant="contained"
-                  onClick={handleBack}
-                >
+                <BackButton startIcon={<ArrowBackIcon />} variant="contained" onClick={handleBack}>
                   Voltar
                 </BackButton>
               </ContentWrapper>

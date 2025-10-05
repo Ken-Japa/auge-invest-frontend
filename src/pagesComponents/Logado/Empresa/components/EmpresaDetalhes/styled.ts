@@ -1,5 +1,6 @@
 import { Box, Paper, Tab, Tabs, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+
 import { borderRadius, spacing, typography } from '@/theme/variables'
 
 export const EmpresaContainer = styled(Box)(({ theme }) => ({

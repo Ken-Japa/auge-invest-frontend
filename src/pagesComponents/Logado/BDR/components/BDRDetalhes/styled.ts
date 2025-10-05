@@ -8,6 +8,7 @@ import {
   TypographyProps,
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
+
 import { layout, typography, components } from '@/theme/variables'
 
 export const DetailPageContainer = styled(Box)(({ theme }) => ({

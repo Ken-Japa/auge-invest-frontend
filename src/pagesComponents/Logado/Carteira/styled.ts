@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+
 import { typography } from '@/theme/variables'
 
 export const PageTitle = styled(Typography)(({ theme }) => ({

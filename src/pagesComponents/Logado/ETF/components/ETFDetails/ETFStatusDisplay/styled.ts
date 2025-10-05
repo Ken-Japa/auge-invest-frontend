@@ -1,5 +1,6 @@
 import { Box, Button } from '@mui/material'
 import { styled } from '@mui/material/styles'
+
 import { overlay } from '../../../../../../theme/variables'
 
 export const BackButton = styled(Button)(() => ({

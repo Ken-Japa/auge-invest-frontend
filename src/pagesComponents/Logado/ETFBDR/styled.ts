@@ -1,6 +1,6 @@
+import DashboardIcon from '@mui/icons-material/Dashboard'
 import { Box, IconButton } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import DashboardIcon from '@mui/icons-material/Dashboard'
 
 export const HeaderWrapper = styled(Box)({
   display: 'flex',

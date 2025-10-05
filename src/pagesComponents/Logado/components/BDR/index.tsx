@@ -23,7 +23,6 @@ import BDRSearchBar from './components/SearchBar'
 import VisualizacaoBDRs from './components/Vizualização'
 import { useBDRTabsLogic } from './hooks/useBDRTabsLogic'
 
-
 interface BDRProps {
   defaultPageSize?: number
   viewMode?: 'card' | 'table' | 'grid'

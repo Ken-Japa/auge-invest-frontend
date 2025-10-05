@@ -1,6 +1,7 @@
-import { useCallback, useState, useEffect, useRef } from 'react'
 import axios, { AxiosError } from 'axios'
-import api from '../services/api/client' // Assuming 'api' is your Axios instance
+import { useCallback, useState, useEffect, useRef } from 'react'
+
+// Assuming 'api' is your Axios instance
 
 /**
  * @typedef {Object} UseApiResult
@@ -73,7 +74,7 @@ export const useApi = <T, E = unknown>(
       // Return the controller so it can be used for external cancellation if needed
       return controller
     },
-    [apiCall, options?.onSuccess, options?.onError],
+    [apiCall, options],
   )
 
   useEffect(() => {

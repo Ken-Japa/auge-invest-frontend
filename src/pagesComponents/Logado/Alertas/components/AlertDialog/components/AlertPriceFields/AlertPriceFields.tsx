@@ -23,7 +23,7 @@ export const AlertPriceFields: React.FC<AlertPriceFieldsProps> = ({ formData, ha
           onChange={handleChange}
           InputProps={{
             startAdornment: <InputAdornment position="start">R$</InputAdornment>,
-            inputProps: { textAlign: "left" },
+            inputProps: { textAlign: 'left' },
           }}
           required
         />
@@ -38,7 +38,7 @@ export const AlertPriceFields: React.FC<AlertPriceFieldsProps> = ({ formData, ha
           onChange={handleChange}
           InputProps={{
             endAdornment: <InputAdornment position="end">%</InputAdornment>,
-            inputProps: { textAlign: "right" },
+            inputProps: { textAlign: 'right' },
           }}
         />
       </Grid>

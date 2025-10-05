@@ -2,7 +2,6 @@ import { BaseApiService } from '../baseService'
 import { API_ENDPOINTS } from '../config'
 import { ErrorCode, handleApiError } from '../errorHandler'
 import { ApiSuccessResponse, User } from '../types'
-import axios from 'axios'
 
 class UserApiService extends BaseApiService {
   createUser = async (userData: Partial<User>): Promise<User> => {

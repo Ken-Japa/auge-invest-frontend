@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+
 import { borderRadius, shadows, typography } from '@/theme/variables'
 
 export const HeaderContainer = styled(Box)(({ theme }) => ({

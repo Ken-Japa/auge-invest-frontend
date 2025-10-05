@@ -22,7 +22,6 @@ import FIISearchBar from './components/SearchBar'
 import { VisualizacaoFIIs } from './components/Vizualização'
 import { useFIITabsLogic } from './hooks/useFIITabsLogic'
 
-
 interface FIIProps {
   defaultPageSize?: number
   viewMode?: 'card' | 'table' | 'grid'
