@@ -33,6 +33,14 @@ src/
 ├── types/ # Definições de tipos TypeScript
 └── utils/ # Funções utilitárias
 
+### Decisões de Arquitetura
+
+- **Next.js**: Escolhido por sua capacidade de renderização no lado do servidor (SSR) e geração de site estático (SSG), o que melhora a performance, SEO e experiência do desenvolvedor. Facilita a criação de APIs e o roteamento baseado em arquivos.
+- **TypeScript**: Adotado para garantir maior segurança de tipo, facilitar a manutenção do código e melhorar a colaboração em equipe, prevenindo erros comuns de JavaScript em tempo de desenvolvimento.
+- **Estrutura Modular**: A organização do projeto em módulos (app, components, services, utils, etc.) promove a separação de responsabilidades, reusabilidade de código e escalabilidade. Isso permite que novas funcionalidades sejam adicionadas com impacto mínimo nas existentes.
+- **Material UI e Tailwind CSS**: A combinação dessas bibliotecas oferece o melhor dos dois mundos: componentes UI prontos e acessíveis do Material UI, e a flexibilidade e velocidade de desenvolvimento do Tailwind CSS para estilos personalizados e responsivos.
+- **Zustand e React Query**: Utilizados para gerenciamento de estado global e de servidor, respectivamente. Zustand é leve e performático para estado de UI, enquanto React Query otimiza a busca, cache e sincronização de dados com o backend, melhorando a experiência do usuário e a performance da aplicação.
+
 ## Componentes Principais
 
 ### Autenticação
@@ -101,6 +109,43 @@ Vários componentes de gráficos estão disponíveis em src/components/charts/ p
 
 ## Diretrizes de Desenvolvimento
 
+### Padrões de Design
+
+- **Componentes Reutilizáveis**: Priorizar a criação de componentes pequenos, focados e reutilizáveis. Isso promove a consistência da UI, reduz a duplicação de código e facilita a manutenção.
+- **Atomic Design**: Embora não seja estritamente seguido, a filosofia do Atomic Design (Átomos, Moléculas, Organismos, Templates, Páginas) pode ser uma boa referência para estruturar componentes, especialmente em projetos maiores.
+- **Injeção de Dependência (via Hooks)**: Utilizar hooks personalizados para injetar dependências (como serviços de API ou contextos) em componentes, mantendo-os mais limpos e testáveis.
+- **Separação de Preocupações**: Garantir que cada módulo, componente ou função tenha uma única responsabilidade bem definida. Por exemplo, componentes devem focar na UI, enquanto serviços devem lidar com a lógica de negócio e comunicação com a API.
+
+### Padrões de Documentação
+
+#### Comentários de Código (JSDoc)
+Todas as funções, componentes React, classes e métodos devem ser documentados usando JSDoc.
+- Incluir `@param` para cada parâmetro, descrevendo seu tipo e propósito.
+- Incluir `@returns` para descrever o valor de retorno da função.
+- Incluir `@typedef` para tipos complexos ou interfaces.
+
+Exemplo:
+```typescript
+/**
+ * Calcula a soma de dois números.
+ * @param {number} a - O primeiro número.
+ * @param {number} b - O segundo número.
+ * @returns {number} A soma de 'a' e 'b'.
+ */
+function sum(a: number, b: number): number {
+  return a + b;
+}
+```
+
+#### Formatação de Arquivos Markdown
+- **Títulos:** Usar `#` para o título principal, `##` para seções, `###` para subseções, e assim por diante.
+- **Listas:** Usar `-` ou `*` para listas não ordenadas e `1.`, `2.` para listas ordenadas.
+- **Blocos de Código:** Usar três crases (```) para blocos de código, especificando a linguagem (ex: ```typescript, ```json, ```bash).
+- **Negrito e Itálico:** Usar `**texto**` para negrito e `*texto*` para itálico.
+- **Links:** Usar `[texto do link](url)` para links.
+- **Imagens:** Usar `![texto alternativo](url da imagem)` para imagens.
+- **Consistência:** Manter um estilo consistente em todos os arquivos Markdown.
+
 ### Gerenciamento de Estado
 
 - Use Zustand para gerenciamento de estado global
@@ -119,6 +164,20 @@ Vários componentes de gráficos estão disponíveis em src/components/charts/ p
 - Use error boundaries para tratamento de erros em nível de componente
 - Exiba mensagens de erro amigáveis usando notistack
 
-## Implantação
+### Performance
 
-A aplicação é implantada na Vercel com um domínio personalizado em augeinvest.com.
+- **Otimização de Imagens**: Utilizar o componente `next/image` para otimização automática de imagens, incluindo lazy loading e redimensionamento.
+- **Memoização**: Em componentes de alta performance, usar `React.memo`, `useCallback` e `useMemo` para evitar re-renderizações desnecessárias.
+- **Lazy Loading**: Implementar lazy loading para componentes e rotas que não são essenciais no carregamento inicial, utilizando `React.lazy` e `Suspense`.
+
+### Acessibilidade
+
+- **Semântica HTML**: Utilizar tags HTML semânticas para melhorar a estrutura e a compreensão por tecnologias assistivas.
+- **Atributos ARIA**: Garantir que todos os elementos interativos tenham rótulos (`aria-label`) e estados (`aria-expanded`, `aria-pressed`) apropriados.
+- **Navegação por Teclado**: Testar e garantir que toda a aplicação seja navegável e funcional usando apenas o teclado.
+
+### Segurança
+
+- **Validação de Entrada**: Validar e sanitizar todas as entradas de usuário no frontend para prevenir ataques como XSS (Cross-Site Scripting).
+- **Proteção de Rotas**: Assegurar que as rotas de API e páginas sensíveis sejam protegidas com autenticação e autorização adequadas.
+- **Variáveis de Ambiente**: Evitar a exposição de informações sensíveis (chaves de API, segredos) no código do frontend. Utilizar variáveis de ambiente e garantir que elas sejam carregadas de forma segura.

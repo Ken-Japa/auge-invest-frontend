@@ -7,18 +7,27 @@ import { useForm } from 'react-hook-form'
 
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
+import { ContentSkeleton } from '@/components/Feedback/Skeletons/ContentSkeleton'
 import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 import { PageTransition } from '@/components/Helpers/PageTransition'
 import { PageBackground } from '@/components/Layout/PageBackground'
 
-import { DataInputForm } from './components/DataInputForm'
-const HelpDialog = lazy(() => import('./components/HelpDialog').then((mod) => ({ default: mod.HelpDialog })))
-import { MetricsDisplay } from './components/MetricsDisplay'
-import { SaveReportSection } from './components/SaveReportSection'
+const DataInputForm = lazy(() =>
+  import('./components/DataInputForm').then(mod => ({ default: mod.DataInputForm })),
+)
+const HelpDialog = lazy(() => import('./components/HelpDialog').then(mod => ({ default: mod.HelpDialog })))
+const MetricsDisplay = lazy(() =>
+  import('./components/MetricsDisplay').then(mod => ({ default: mod.MetricsDisplay })),
+)
+const SaveReportSection = lazy(() =>
+  import('./components/SaveReportSection').then(mod => ({ default: mod.SaveReportSection })),
+)
+const ValuationSection = lazy(() =>
+  import('./components/ValuationSection').then(mod => ({ default: mod.ValuationSection })),
+)
 import { generatePDF } from './components/SaveReportSection/utils/pdfGenerator'
 import { generateReport } from './components/SaveReportSection/utils/reportGenerator'
 import { GenerateReportParams } from './components/SaveReportSection/utils/types'
-import { ValuationSection } from './components/ValuationSection'
 import { SensitivityResults, ValuationResults } from './components/ValuationSection/types'
 import { ContentContainer, StyledPaper, StyledPaperInput, Title } from './styled'
 import { DadosAnaliseFundamental, MetricasCalculadas } from './types'
@@ -100,41 +109,49 @@ export const AnaliseFundamentalista = () => {
                   <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
                       <StyledPaperInput>
-                        <DataInputForm control={control} />
+                        <Suspense fallback={<ContentSkeleton type="card" cardHeight={200} />}>
+                          <DataInputForm control={control} />
+                        </Suspense>
                       </StyledPaperInput>
                     </Grid>
                     <Grid item xs={12} md={6}>
                       <StyledPaper>
-                        <MetricsDisplay ref={metricsRef} data={formValues} />
+                        <Suspense fallback={<ContentSkeleton type="card" cardHeight={200} />}>
+                          <MetricsDisplay ref={metricsRef} data={formValues} />
+                        </Suspense>
                       </StyledPaper>
                     </Grid>
                     <Grid item xs={12}>
                       <StyledPaper>
-                        <ValuationSection
-                          fluxoCaixaOperacional={formValues.fluxoCaixaOperacional}
-                          fluxoCaixaLivre={formValues.fluxoCaixaLivre}
-                          precoAcao={formValues.precoAcao}
-                          acoesCirculacao={formValues.acoesCirculacao}
-                          dividaLiquida={formValues.dividaLiquida}
-                          ebitda={formValues.ebitda}
-                          lucroLiquido={formValues.lucroLiquido}
-                          patrimonioLiquido={formValues.patrimonioLiquido}
-                          caixaEquivalentes={formValues.caixaEquivalentes}
-                          onResultsChange={setResults}
-                          onSensitivityResultsChange={setSensitivityResults}
-                        />
+                        <Suspense fallback={<ContentSkeleton type="card" cardHeight={300} />}>
+                          <ValuationSection
+                            fluxoCaixaOperacional={formValues.fluxoCaixaOperacional}
+                            fluxoCaixaLivre={formValues.fluxoCaixaLivre}
+                            precoAcao={formValues.precoAcao}
+                            acoesCirculacao={formValues.acoesCirculacao}
+                            dividaLiquida={formValues.dividaLiquida}
+                            ebitda={formValues.ebitda}
+                            lucroLiquido={formValues.lucroLiquido}
+                            patrimonioLiquido={formValues.patrimonioLiquido}
+                            caixaEquivalentes={formValues.caixaEquivalentes}
+                            onResultsChange={setResults}
+                            onSensitivityResultsChange={setSensitivityResults}
+                          />
+                        </Suspense>
                       </StyledPaper>
                     </Grid>
                     <Grid item xs={12}>
                       <StyledPaperInput>
-                        <SaveReportSection
-                          onSave={handleSaveReport}
-                          isEnabled={!!formValues.precoAcao && !!formValues.acoesCirculacao}
-                          fundamentalData={formValues}
-                          valuationResults={results}
-                          sensitivityResults={sensitivityResults}
-                          metricsResults={metricsResults}
-                        />
+                        <Suspense fallback={<ContentSkeleton type="card" cardHeight={100} />}>
+                          <SaveReportSection
+                            onSave={handleSaveReport}
+                            isEnabled={!!formValues.precoAcao && !!formValues.acoesCirculacao}
+                            fundamentalData={formValues}
+                            valuationResults={results}
+                            sensitivityResults={sensitivityResults}
+                            metricsResults={metricsResults}
+                          />
+                        </Suspense>
                       </StyledPaperInput>
                     </Grid>
                   </Grid>

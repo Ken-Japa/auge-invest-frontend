@@ -1,6 +1,6 @@
 'use client'
 import { Alert, Snackbar, Tab, Tabs } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useState, lazy } from 'react'
 
 import { useErrorHandling } from '@/components/Data-Display/ErrorHandling'
 import { TabPanel } from '@/components/Data-Display/TabPanel'
@@ -20,7 +20,7 @@ import {
 } from '@/components/Shared-Styles/AtivosStyledComponents'
 
 import BDRSearchBar from './components/SearchBar'
-import VisualizacaoBDRs from './components/Vizualização'
+const VisualizacaoBDRs = lazy(() => import('./components/Vizualização'))
 import { useBDRTabsLogic } from './hooks/useBDRTabsLogic'
 
 interface BDRProps {
@@ -69,28 +69,34 @@ export const BDR: React.FC<BDRProps> = ({ defaultPageSize, viewMode }) => {
                     </Tabs>
                   </VisualizationContainer>
                   <TabPanel value={value} index={0}>
-                    <VisualizacaoBDRs
-                      mode="card"
-                      filter={{}}
-                      onError={setError}
-                      defaultPageSize={defaultPageSize}
-                    />
+                    <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
+                      <VisualizacaoBDRs
+                        mode="card"
+                        filter={{}}
+                        onError={setError}
+                        defaultPageSize={defaultPageSize}
+                      />
+                    </SuspenseWrapper>
                   </TabPanel>
                   <TabPanel value={value} index={1}>
-                    <VisualizacaoBDRs
-                      mode="table"
-                      filter={{}}
-                      onError={setError}
-                      defaultPageSize={defaultPageSize}
-                    />
+                    <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
+                      <VisualizacaoBDRs
+                        mode="table"
+                        filter={{}}
+                        onError={setError}
+                        defaultPageSize={defaultPageSize}
+                      />
+                    </SuspenseWrapper>
                   </TabPanel>
                   <TabPanel value={value} index={2}>
-                    <VisualizacaoBDRs
-                      mode="grid"
-                      filter={{}}
-                      onError={setError}
-                      defaultPageSize={defaultPageSize}
-                    />
+                    <SuspenseWrapper fallback={<ContentSkeleton type="card" height={800} />}>
+                      <VisualizacaoBDRs
+                        mode="grid"
+                        filter={{}}
+                        onError={setError}
+                        defaultPageSize={defaultPageSize}
+                      />
+                    </SuspenseWrapper>
                   </TabPanel>
                 </AtivosContainer>
               </ContentBox>

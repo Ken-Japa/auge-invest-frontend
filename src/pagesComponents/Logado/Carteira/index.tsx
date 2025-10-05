@@ -1,5 +1,6 @@
 'use client'
 
+import { lazy } from 'react'
 import { Container } from '@mui/material'
 import { useSession } from 'next-auth/react'
 
@@ -9,9 +10,9 @@ import { SuspenseWrapper } from '@/components/Feedback/SuspenseWrapper'
 import { PageTransition } from '@/components/Helpers/PageTransition'
 import { PageBackground } from '@/components/Layout/PageBackground'
 
-import { PositionSection } from './components'
+const PositionSection = lazy(() => import('./components').then(mod => ({ default: mod.PositionSection })))
+const WalletSection = lazy(() => import('./components/WalletSection').then(mod => ({ default: mod.WalletSection })))
 import { FocusProvider } from './components/RecentActivities/components/FocusContext/FocusContext'
-import { WalletSection } from './components/WalletSection'
 import { RecentActivitiesProvider } from './context/RecentActivitiesContext'
 import { PageTitle, SectionContainer } from './styled'
 

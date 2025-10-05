@@ -12,7 +12,8 @@ import { PageTransition } from '@/components/Helpers/PageTransition'
 import { PageBackground } from '@/components/Layout/PageBackground'
 import { AtivosTitle } from '@/components/Shared-Styles/AtivosStyledComponents'
 
-import { VisualizationContent } from '../components/EmpresaView'
+import React from 'react'
+const LazyVisualizationContent = React.lazy(() => import('../components/EmpresaView').then(module => ({ default: module.VisualizationContent })))
 import { ModoVisualizacao } from '../components/EmpresaView/Elementos/ModoVisualizacao'
 import { ViewMode } from '../components/EmpresaView/Elementos/ModoVisualizacao/types'
 // Componentes específicos
@@ -44,7 +45,7 @@ export const Empresa = () => {
                 </ControlsWrapper>
 
                 <ContentContainer>
-                  <VisualizationContent
+                  <LazyVisualizationContent
                     viewMode={viewMode}
                     isLoading={isLoading}
                     setIsLoading={setIsLoading}

@@ -8,7 +8,17 @@
 - [Alertas](#alertas)
 - [Dados Econômicos](#dados-econômicos)
 
-## Autenticação
+## Mecanismos de Autenticação
+
+Após realizar o login ou registro, a API retorna um token JWT (JSON Web Token). Este token deve ser incluído no cabeçalho `Authorization` de todas as requisições subsequentes que exigem autenticação, no formato `Bearer <token>`. Por exemplo:
+
+```
+Authorization: seu-jwt-token-aqui
+```
+
+Se o token for inválido ou estiver ausente em uma rota protegida, a API retornará um erro de autenticação (geralmente status HTTP 401 Unauthorized).
+
+## Endpoints de Autenticação
 
 ### Login
 

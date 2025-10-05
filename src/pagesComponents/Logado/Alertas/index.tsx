@@ -1,7 +1,7 @@
 'use client'
 
 import { Container, Typography } from '@mui/material'
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 
 import { ErrorBoundary } from '@/components/Feedback/ErrorBoundary'
 import { ProgressiveLoad } from '@/components/Feedback/ProgressiveLoad'
@@ -13,9 +13,12 @@ import { PageBackground } from '@/components/Layout/PageBackground'
 import { useApi } from '@/providers/ApiProvider'
 
 import { AddAlertButton } from './components/AddAlertButton'
-import { AlertsTable } from './components/AlertsTable'
 import { useAlerts } from './hooks/useAlerts'
 import { ActionContainer, PageHeader } from './styled'
+
+const AlertsTable = lazy(() =>
+  import('./components/AlertsTable').then(module => ({ default: module.AlertsTable })),
+)
 
 export const Alertas = () => {
   const { alerts, loading, error, refreshAlerts, toggleAlert, deleteAlert } = useAlerts()
@@ -63,7 +66,9 @@ export const Alertas = () => {
             </PageHeader>
 
             <ActionContainer>
-              <AddAlertButton refreshAlerts={refreshAlerts} showSnackbar={showSnackbar} />
+              <Suspense fallback={<ContentSkeleton type="card" cardHeight={50} />}>
+                <AddAlertButton refreshAlerts={refreshAlerts} showSnackbar={showSnackbar} />
+              </Suspense>
             </ActionContainer>
 
             <SuspenseWrapper fallback={<ContentSkeleton type="card" cardHeight={400} />}>

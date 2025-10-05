@@ -107,16 +107,88 @@ Docs:
 
 ## Instalação e Execução
 
-```bash
-# Instalar dependências
-npm install
+Para configurar e executar o projeto localmente, siga os passos abaixo:
 
-# Executar em ambiente de desenvolvimento
-npm run dev
+### Pré-requisitos
 
-# Construir para produção
-npm run build
+Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 
-# Iniciar em modo de produção
-npm run start
-```
+*   Node.js (versão 18 ou superior)
+*   npm (gerenciador de pacotes do Node.js) ou Yarn
+
+### Configuração do Ambiente
+
+1.  **Clone o Repositório:**
+    ```bash
+    git clone https://github.com/seu-usuario/auge-invest.git
+    cd auge-invest
+    ```
+
+2.  **Instale as Dependências:**
+    ```bash
+    npm install
+    # ou
+    yarn install
+    ```
+
+3.  **Variáveis de Ambiente:**
+    Crie um arquivo `.env.local` na raiz do projeto com as seguintes variáveis de ambiente. Você pode usar o arquivo `.env.example` como base.
+
+    ```
+    # Exemplo de variáveis de ambiente
+    NEXTAUTH_URL=http://localhost:3000
+    NEXTAUTH_SECRET=SEGREDO_MUITO_SEGURO_E_LONGO
+    # Adicione outras variáveis de ambiente necessárias para APIs externas, banco de dados, etc.
+    # EX: API_BASE_URL=http://localhost:8080/api
+    ```
+    Certifique-se de que `NEXTAUTH_SECRET` seja uma string longa e aleatória para segurança.
+
+### Execução do Projeto
+
+1.  **Modo de Desenvolvimento:**
+    Para iniciar o servidor de desenvolvimento com hot-reloading:
+    ```bash
+    npm run dev
+    # ou
+    yarn dev
+    ```
+    O aplicativo estará disponível em `http://localhost:3000`.
+
+2.  **Construção para Produção:**
+    Para compilar o projeto para produção:
+    ```bash
+    npm run build
+    # ou
+    yarn build
+    ```
+    Isso criará uma pasta `.next` com os arquivos otimizados para deploy.
+
+3.  **Modo de Produção (Local):**
+    Após a construção, você pode iniciar o aplicativo em modo de produção localmente:
+    ```bash
+    npm run start
+    # ou
+    yarn start
+    ```
+    O aplicativo estará disponível em `http://localhost:3000`.
+
+## Deploy
+
+Este projeto é um aplicativo Next.js e pode ser facilmente implantado em plataformas como Vercel, Netlify ou em um servidor Node.js customizado.
+
+### Deploy na Vercel
+
+Se você estiver usando a Vercel, basta conectar seu repositório GitHub. A Vercel detectará automaticamente que é um projeto Next.js e configurará o deploy. Certifique-se de adicionar suas variáveis de ambiente no painel da Vercel.
+
+### Deploy em Outras Plataformas
+
+Para outras plataformas, como Netlify ou um servidor Node.js:
+
+1.  **Construa o Projeto:**
+    ```bash
+    npm run build
+    ```
+2.  **Configure o Servidor:**
+    Configure seu servidor para servir os arquivos estáticos da pasta `public` e iniciar o servidor Next.js usando `npm run start`.
+
+Para mais detalhes sobre deploy do Next.js, consulte a [documentação oficial do Next.js](https://nextjs.org/docs/deployment).
