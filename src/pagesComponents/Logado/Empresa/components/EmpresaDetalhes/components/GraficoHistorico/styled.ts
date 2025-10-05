@@ -1,9 +1,11 @@
 import { Box, Paper } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-export const GraficoContainer = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(3),
-  marginBottom: theme.spacing(3),
+import { spacing } from '@/theme/variables'
+
+export const GraficoContainer = styled(Paper)(() => ({
+  padding: spacing.md,
+  marginBottom: spacing.md,
 }))
 
 export const GraficoHeader = styled(Box)(({ theme }) => ({

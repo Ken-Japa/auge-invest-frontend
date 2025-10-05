@@ -58,7 +58,7 @@ export const ControlsWrapper = styled(Box)(({ theme }) => ({
   gap: spacing.md,
   width: 'fit-content',
   margin: '0 auto',
-  padding: spacing.sm,
+  padding: spacing.md,
   borderRadius: borderRadius.sm,
   backgroundColor: theme.palette.background.paper,
   boxShadow: shadows.md,

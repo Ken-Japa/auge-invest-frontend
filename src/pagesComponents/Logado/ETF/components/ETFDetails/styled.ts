@@ -12,7 +12,7 @@ export const DetailPageContainer = styled(Box)(({ theme }) => ({
 export const ContentWrapper = styled(Box)(({ theme }) => ({
   maxWidth: 1200,
   margin: '0 auto',
-  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(18, 24, 38)' : 'rgba(255, 255, 255)',
+  backgroundColor: theme.palette.background.paper,
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[4],
   padding: theme.spacing(3),
@@ -42,7 +42,7 @@ export const ErrorContainer = styled(Box)(({ theme }) => ({
 }))
 
 export const BackButton = styled(Button)(({ theme }) => ({
-  marginTop: theme.spacing(3),
+  marginTop: theme.spacing(4),
 }))
 
 export const Header = styled(Box)(({ theme }) => ({
@@ -96,4 +96,11 @@ export const BoxBody = styled(Box)(({ theme }) => ({
   '& strong': {
     marginRight: theme.spacing(1),
   },
+}))
+
+export const InfoSectionGrid = styled(Box)(({ theme }) => ({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+  gap: theme.spacing(4),
+  marginTop: theme.spacing(4),
 }))

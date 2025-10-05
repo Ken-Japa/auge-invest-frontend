@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material'
 
 import { formatCNPJ, formatLink, formatNumber } from '@/components/Helpers/Formatters/formatters'
 
-import { BoxBody, BoxContent, BoxHeader } from '../styled'
+import { BoxBody, BoxContent, BoxHeader, InfoSectionGrid } from '../styled'
 
 interface ETFInfoSectionProps {
   etf: any
@@ -10,7 +10,7 @@ interface ETFInfoSectionProps {
 
 const ETFInfoSection = ({ etf }: ETFInfoSectionProps) => {
   return (
-    <Box display="grid" gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap={4} mt={4}>
+    <InfoSectionGrid>
       <Box>
         <BoxHeader>
           <Typography variant="h4" component="h4" gutterBottom>
@@ -63,7 +63,7 @@ const ETFInfoSection = ({ etf }: ETFInfoSectionProps) => {
           </BoxBody>
         </BoxContent>
       </Box>
-    </Box>
+    </InfoSectionGrid>
   )
 }
 

@@ -39,3 +39,7 @@ export const ErrorContainer = styled(Box)(({ theme }) => ({
   maxWidth: 400,
   width: '100%',
 }))
+
+export const InfoBoxWrapper = styled(Box)(({ theme }) => ({
+  marginTop: theme.spacing(4),
+}))

@@ -144,6 +144,11 @@ export const gradients = {
   warningToError: 'linear-gradient(135deg, #ff9800 0%, #ff5722 100%)',
 }
 
+// Cores de overlay
+export const overlay = {
+  default: 'rgba(0, 0, 0, 0.5)',
+}
+
 // Layout - Variáveis relacionadas ao layout geral da página
 export const layout = {
   minHeightPage: '100vh', // Altura mínima para páginas

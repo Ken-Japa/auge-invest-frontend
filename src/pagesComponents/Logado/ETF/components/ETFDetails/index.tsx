@@ -57,7 +57,6 @@ const ETFDetails = ({ slug, codigo, isCode = false }: ETFDetailsProps) => {
                   startIcon={<ArrowBackIcon />}
                   variant="contained"
                   onClick={handleBack}
-                  sx={{ mt: 4 }}
                 >
                   Voltar
                 </BackButton>

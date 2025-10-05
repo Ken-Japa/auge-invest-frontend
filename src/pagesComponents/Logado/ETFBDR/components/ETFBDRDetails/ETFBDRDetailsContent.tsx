@@ -1,10 +1,10 @@
 import { ArrowBack as ArrowBackIcon } from '@mui/icons-material'
-import { Box, Button, Typography } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import React from 'react'
 
 import { ETFBDR } from '@/services/api/types/etfbdr'
 
-import { ContentWrapper } from './styled'
+import { ContentWrapper, InfoBoxWrapper } from './styled'
 
 interface ETFBDRDetailsContentProps {
   etf: ETFBDR
@@ -19,7 +19,7 @@ export const ETFBDRDetailsContent: React.FC<ETFBDRDetailsContentProps> = ({ etf,
     <Typography variant="h6" color="textSecondary" gutterBottom>
       {etf.nomeCompletoETF}
     </Typography>
-    <Box sx={{ mt: 4 }}>
+    <InfoBoxWrapper>
       <Typography variant="body1">
         <strong>Código:</strong> {etf.codigoETF}
       </Typography>
@@ -29,7 +29,7 @@ export const ETFBDRDetailsContent: React.FC<ETFBDRDetailsContentProps> = ({ etf,
       <Typography variant="body1">
         <strong>Segmento:</strong> {etf.segmento}
       </Typography>
-    </Box>
+    </InfoBoxWrapper>
     <Button startIcon={<ArrowBackIcon />} variant="contained" onClick={onBack} sx={{ mt: 4 }}>
       Voltar
     </Button>

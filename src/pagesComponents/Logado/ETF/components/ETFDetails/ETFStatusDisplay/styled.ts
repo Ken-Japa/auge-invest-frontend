@@ -1,14 +1,15 @@
 import { Box, Button } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import { overlay } from '../../../../../../theme/variables'
 
-export const BackButton = styled(Button)(({ theme }) => ({
-  marginTop: theme.spacing(3),
+export const BackButton = styled(Button)(() => ({
+  marginTop: '24px',
 }))
 
 export const ContentWrapper = styled(Box)(({ theme }) => ({
   maxWidth: 1200,
   margin: '0 auto',
-  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(18, 24, 38)' : 'rgba(255, 255, 255)',
+  backgroundColor: theme.palette.background.paper,
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[4],
   padding: theme.spacing(3),
@@ -41,7 +42,7 @@ export const DetailPageContainer = styled(Box)(({ theme }) => ({
     left: 0,
     width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: overlay.default,
     zIndex: 1,
   },
 }))

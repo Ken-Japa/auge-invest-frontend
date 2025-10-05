@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import { borderRadius, shadows, typography } from '@/theme/variables'
 
 export const HeaderContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -9,28 +10,28 @@ export const HeaderContainer = styled(Box)(({ theme }) => ({
   backgroundColor:
     theme.palette.mode === 'dark' ? theme.palette.background.paper : theme.palette.background.default,
   color: theme.palette.text.primary,
-  borderRadius: '12px',
+  borderRadius: borderRadius.md,
   overflow: 'hidden',
   marginBottom: theme.spacing(4),
-  boxShadow: theme.shadows[2],
+  boxShadow: shadows.md,
   border: `1px solid ${theme.palette.divider}`,
   transition: theme.transitions.create(['background-color', 'box-shadow', 'transform', 'border-color'], {
     duration: theme.transitions.duration.standard,
   }),
   '&:hover': {
-    boxShadow: theme.shadows[8],
+    boxShadow: shadows.xl,
     borderColor: theme.palette.primary.main,
   },
 }))
 
-export const EmpresaInfo = styled(Box)(({ theme }) => ({
+export const EmpresaInfo = styled(Box)(() => ({
   flex: '1 1 auto',
   maxWidth: '100%',
 }))
 
 export const EmpresaTitulo = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(1),
-  fontWeight: 600,
+  fontWeight: typography.fontWeights.semiBold,
   color: theme.palette.text.primary,
   [theme.breakpoints.down('sm')]: {
     fontSize: theme.typography.h5.fontSize,

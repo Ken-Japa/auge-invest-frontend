@@ -1,5 +1,6 @@
 import { Box, Paper, Tab, Tabs, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import { borderRadius, spacing, typography } from '@/theme/variables'
 
 export const EmpresaContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(3),
@@ -9,7 +10,7 @@ export const EmpresaContainer = styled(Box)(({ theme }) => ({
 export const ContentContainer = styled(Box)(({ theme }) => ({
   maxWidth: 1200,
   margin: '0 auto',
-  borderRadius: '12px',
+  borderRadius: borderRadius.md,
   backdropFilter: 'blur(16px)',
   padding: theme.spacing(3),
   transition: theme.transitions.create(['background-color', 'box-shadow'], {
@@ -85,10 +86,10 @@ export const StyledPaper = styled(Paper)(({ theme }) => ({
   }),
 }))
 
-export const SectionTitle = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
-  fontWeight: 500,
-}))
+export const SectionTitle = styled(Typography)({
+  marginBottom: spacing.md,
+  fontWeight: typography.fontWeights.medium,
+})
 
 export const SectionDescription = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(3),

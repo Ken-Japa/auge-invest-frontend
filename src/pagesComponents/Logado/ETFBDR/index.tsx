@@ -1,7 +1,6 @@
 'use client'
 
-import DashboardIcon from '@mui/icons-material/Dashboard'
-import { Box, IconButton, Tab, Tabs, Tooltip } from '@mui/material'
+import { Tab, Tabs, Tooltip } from '@mui/material'
 import Link from 'next/link'
 import { lazy, useState } from 'react'
 
@@ -24,6 +23,7 @@ import {
 import { ETFBDRFilter } from '@/services/api/types/etfbdr'
 
 import ETFBDRSearchBar from '../components/ETFBDR/components/SearchBar'
+import { DashboardIconButton, DashboardIconStyled, HeaderWrapper } from './styled'
 
 const LazyVisualizationETFBDRs = lazy(() =>
   import('../components/ETFBDR/components/Visualization').then((mod) => ({
@@ -47,36 +47,20 @@ export const ETFBDRPage = () => {
             <PageBackground imageName="ETF">
               <ContentWrapper maxWidth="xl">
                 <ContentBox>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      width: '100%',
-                      position: 'relative',
-                    }}
-                  >
+                  <HeaderWrapper>
                     <AtivosTitle variant="h2" gutterBottom>
                       ETF de BDRs
                     </AtivosTitle>
                     <EtfIconLink>
                       <Tooltip title="Voltar para ETFs" arrow>
                         <Link href="/etf" passHref>
-                          <IconButton
-                            sx={{
-                              ml: 2,
-                              '&:hover': {
-                                color: (theme) => theme.palette.primary.main,
-                                backgroundColor: 'rgba(128, 128, 128, 0.1)',
-                              },
-                            }}
-                          >
-                            <DashboardIcon sx={{ fontSize: 30, cursor: 'pointer' }} />
-                          </IconButton>
+                          <DashboardIconButton>
+                            <DashboardIconStyled />
+                          </DashboardIconButton>
                         </Link>
                       </Tooltip>
                     </EtfIconLink>
-                  </Box>
+                  </HeaderWrapper>
 
                   <AtivosContainer>
                     <AtivosSearchWrapper>
