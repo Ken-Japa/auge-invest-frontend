@@ -137,10 +137,6 @@ npm run start
   - Cobertura de ativos internacionais
   - App mobile
 
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
 ---
 
 <div align="center">
